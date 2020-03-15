@@ -73,6 +73,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem systemItem="favorites" id="Wpl-Fm-hvW"/>
+                                    <tabBarItem title="Item" id="Z6Q-Hs-zsP"/>
                                     <tabBarItem systemItem="more" id="maJ-2d-UAX"/>
                                 </items>
                             </tabBar>
