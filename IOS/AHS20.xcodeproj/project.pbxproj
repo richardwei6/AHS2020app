@@ -15,6 +15,7 @@
 		330D3E1C241D5E8D007D0628 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330D3E1A241D5E8D007D0628 /* LaunchScreen.storyboard */; };
 		330D3E27241D5E8D007D0628 /* AHS20Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E26241D5E8D007D0628 /* AHS20Tests.swift */; };
 		330D3E32241D5E8D007D0628 /* AHS20UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E31241D5E8D007D0628 /* AHS20UITests.swift */; };
+		334E1EF9241DB50000D482B4 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 334E1EF8241DB50000D482B4 /* Assets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		330D3E2D241D5E8D007D0628 /* AHS20UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AHS20UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		330D3E31241D5E8D007D0628 /* AHS20UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHS20UITests.swift; sourceTree = "<group>"; };
 		330D3E33241D5E8D007D0628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		334E1EF8241DB50000D482B4 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../Assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				330D3E11241D5E8C007D0628 /* SceneDelegate.swift */,
 				330D3E13241D5E8C007D0628 /* ViewController.swift */,
 				330D3E15241D5E8C007D0628 /* Main.storyboard */,
+				334E1EF8241DB50000D482B4 /* Assets */,
 				330D3E18241D5E8D007D0628 /* Assets.xcassets */,
 				330D3E1A241D5E8D007D0628 /* LaunchScreen.storyboard */,
 				330D3E1D241D5E8D007D0628 /* Info.plist */,
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				330D3E1C241D5E8D007D0628 /* LaunchScreen.storyboard in Resources */,
+				334E1EF9241DB50000D482B4 /* Assets in Resources */,
 				330D3E19241D5E8D007D0628 /* Assets.xcassets in Resources */,
 				330D3E17241D5E8C007D0628 /* Main.storyboard in Resources */,
 			);
