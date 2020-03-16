@@ -33,6 +33,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             // TODO: implement array that has needed text from firebase
             let textView = UITextView(frame: ausdNewsframe);
             textView.text = "Sample text";
+            textView.backgroundColor = UIColor.init(red: CGFloat(147.0/255.0), green: CGFloat(66.0/255.0), blue: CGFloat(78.0/255.0), alpha: CGFloat(1.0));
             self.ausdNewsScrollView.addSubview(textView);
         }
         // set size of scrollview
@@ -42,9 +43,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     // every time scrollview stops moving
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // gets current page num
-        var pageNum = ausdNewsScrollView.contentOffset.x / ausdNewsScrollView.frame.size.width;
+        //var pageNum = ausdNewsScrollView.contentOffset.x / ausdNewsScrollView.frame.size.width;
         // set dot of pagecontrol to correct page
-        ausdNewsPageControl.currentPage = Int(pageNum); // Typecasting float to int
+        
+        ausdNewsPageControl.currentPage = Int(ausdNewsScrollView.contentOffset.x / ausdNewsScrollView.frame.size.width); // Typecasting float to int
         
     }
 

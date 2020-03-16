@@ -48,7 +48,7 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="8Po-QA-fbO"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="BBq-60-BYU"/>
                                             </scrollView>
-                                            <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="ntL-pT-eOt">
+                                            <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="ntL-pT-eOt">
                                                 <rect key="frame" x="188" y="311" width="39" height="37"/>
                                                 <color key="pageIndicatorTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="currentPageIndicatorTintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -99,10 +99,10 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="iU0-cq-eZZ"/>
                             </scrollView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUf-Tg-603">
-                                <rect key="frame" x="0.0" y="2920" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="2940" width="414" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="PwE-Pz-7vq"/>
+                                    <constraint firstAttribute="height" constant="60" id="PwE-Pz-7vq"/>
                                 </constraints>
                                 <items>
                                     <tabBarItem systemItem="favorites" id="Wpl-Fm-hvW"/>
@@ -114,7 +114,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="MUf-Tg-603" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="9q3-85-WuT"/>
-                            <constraint firstItem="MUf-Tg-603" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="bottom" constant="-73" id="DX5-UT-7eP"/>
                             <constraint firstItem="MUf-Tg-603" firstAttribute="firstBaseline" secondItem="jUX-Qr-YKC" secondAttribute="baseline" symbolType="layoutAnchor" id="PBN-ge-Lym"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Ry-tp-vWQ" secondAttribute="trailing" constant="244" id="PuO-EH-GfX"/>
                             <constraint firstItem="7Ry-tp-vWQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="2" id="Z1T-qj-Pem"/>
