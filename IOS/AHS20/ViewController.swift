@@ -52,16 +52,31 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         // ausdnews - 4 is default
         ausdNewsPageControl.numberOfPages = ausdNewsSize;
+        ausdNewsScrollView.layer.cornerRadius = 20;
+        sportsPageControl.layer.borderColor = UIColor.white.cgColor;
         for articleIndex in 0..<ausdNewsSize {
             // set up frame
             ausdNewsframe.origin.x = ausdNewsScrollView.frame.size.width * CGFloat(articleIndex);
             ausdNewsframe.size = ausdNewsScrollView.frame.size;
             // set up text onto scrollview
             // TODO: implement array that has needed text from firebase
-            let textView = UITextView(frame: ausdNewsframe);
-            textView.text = "Sample text";
-            textView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
-            self.ausdNewsScrollView.addSubview(textView);
+            
+            let contentView = UIView(frame: ausdNewsframe); // content view will contain text and image
+            contentView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+            
+            let textFrame = CGRect(x: 0.0, y: 0.0, width: 200.0, height: 30.0); // pos, width, and height of text
+            let textView = UITextView(frame: textFrame);
+            textView.text = "Sample text with image";
+            //textView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+            
+            let imageFrame = CGRect(x: 50.0, y: 50.0, width: 100.0, height: 100.0);
+            let imageview = UIImageView(frame: imageFrame);
+            imageview.image = UIImage(named: "Asset 14");
+            
+            contentView.addSubview(textView);
+            contentView.addSubview(imageview);
+            
+            self.ausdNewsScrollView.addSubview(contentView);
         }
         // set size of scrollview
         ausdNewsScrollView.contentSize = CGSize(width: (ausdNewsScrollView.frame.size.width * CGFloat(ausdNewsSize)), height: ausdNewsScrollView.frame.size.height);
