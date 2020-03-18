@@ -1,4 +1,4 @@
-package com.example.ahsapptest2;
+package com.example.ahsapptest2.Main_Page_Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.ahsapptest2.R;
 
-public class Upcoming_Events_MainPage extends Fragment {
 
-    public Upcoming_Events_MainPage() {
+public class Other_MainPage extends Fragment {
+
+    public Other_MainPage() {
         // Required empty public constructor
     }
 
@@ -18,7 +20,7 @@ public class Upcoming_Events_MainPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.upcoming_events__main_page_layout, container, false);
+        return inflater.inflate(R.layout.other__main_page_layout, container, false);
     }
 
 }

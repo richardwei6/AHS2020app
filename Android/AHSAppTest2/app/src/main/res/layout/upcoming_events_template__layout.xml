@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".Upcoming_Events">
+
+    <ImageView
+        android:id="@+id/BackgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/star_background" />
+
+    <ImageView
+        android:id="@+id/Red_Bar"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/Date"
+        app:layout_constraintStart_toStartOf="@id/Date"
+        app:layout_constraintTop_toBottomOf="@+id/Date"
+        app:srcCompat="@drawable/red_bar" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Date "
+        android:textColor="@color/Black"
+        android:textSize="14sp"
+        app:fontFamily="@font/harlowsolidplain"
+        app:layout_constraintBottom_toBottomOf="@id/BackgroundImage"
+        app:layout_constraintEnd_toEndOf="@id/BackgroundImage"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="@id/BackgroundImage"
+        app:layout_constraintTop_toTopOf="@id/BackgroundImage"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Title"
+        android:textSize="18sp"
+        app:fontFamily="@font/din_condensed"
+        app:layout_constraintEnd_toEndOf="@+id/Date"
+        app:layout_constraintStart_toStartOf="@+id/Date"
+        app:layout_constraintTop_toTopOf="@+id/Red_Bar" />
+
+    <TextView
+        android:id="@+id/Summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="summary"
+        android:textSize="12sp"
+        app:fontFamily="@font/minion_semibold"
+        app:layout_constraintBottom_toBottomOf="@id/BackgroundImage"
+        app:layout_constraintEnd_toEndOf="@id/BackgroundImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/BackgroundImage"
+        app:layout_constraintTop_toTopOf="@id/BackgroundImage" />
+</androidx.constraintlayout.widget.ConstraintLayout>
