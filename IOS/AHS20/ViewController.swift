@@ -72,7 +72,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        
+        // TODO: fix textviews almost overlapping the title on scrollviews - also fix scrollview and constraint issues on smaller screens like iPhone SE.
         
         // ausdnews - 4 is default
         ausdNewsPageControl.numberOfPages = ausdNewsSize;
@@ -116,7 +116,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             contentView.addSubview(titletextView);
             contentView.addSubview(imageview);
             contentView.addSubview(articletextView);
-            
             self.ausdNewsScrollView.addSubview(contentView);
         }
         // set size of scrollview

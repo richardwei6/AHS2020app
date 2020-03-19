@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		330D3E0C241D5E8C007D0628 /* AHS20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AHS20.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		330D3E0C241D5E8C007D0628 /* AHS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AHS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		330D3E0F241D5E8C007D0628 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		330D3E11241D5E8C007D0628 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		330D3E13241D5E8C007D0628 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		330D3E0D241D5E8C007D0628 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				330D3E0C241D5E8C007D0628 /* AHS20.app */,
+				330D3E0C241D5E8C007D0628 /* AHS.app */,
 				330D3E22241D5E8D007D0628 /* AHS20Tests.xctest */,
 				330D3E2D241D5E8D007D0628 /* AHS20UITests.xctest */,
 			);
@@ -148,7 +148,7 @@
 			);
 			name = AHS20;
 			productName = AHS20;
-			productReference = 330D3E0C241D5E8C007D0628 /* AHS20.app */;
+			productReference = 330D3E0C241D5E8C007D0628 /* AHS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		330D3E21241D5E8D007D0628 /* AHS20Tests */ = {
@@ -445,9 +445,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hsappdev.AHS20;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AHS;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -462,9 +462,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = hsappdev.AHS20;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AHS;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

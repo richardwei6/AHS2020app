@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Asset 18" translatesAutoresizingMaskIntoConstraints="NO" id="7Ry-tp-vWQ">
-                                <rect key="frame" x="20" y="2" width="150" height="82"/>
+                                <rect key="frame" x="20" y="2" width="186" height="82"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jUX-Qr-YKC" userLabel="mainContentSCRL">
                                 <rect key="frame" x="0.0" y="90" width="414" height="2820"/>
@@ -362,9 +362,7 @@
                         <constraints>
                             <constraint firstItem="MUf-Tg-603" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="9q3-85-WuT"/>
                             <constraint firstItem="MUf-Tg-603" firstAttribute="firstBaseline" secondItem="jUX-Qr-YKC" secondAttribute="baseline" symbolType="layoutAnchor" id="PBN-ge-Lym"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Ry-tp-vWQ" secondAttribute="trailing" constant="244" id="PuO-EH-GfX"/>
                             <constraint firstItem="7Ry-tp-vWQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="2" id="Z1T-qj-Pem"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Ry-tp-vWQ" secondAttribute="trailing" constant="244" id="aC7-GC-Y1H"/>
                             <constraint firstItem="jUX-Qr-YKC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="amD-i9-J2Y"/>
                             <constraint firstItem="jUX-Qr-YKC" firstAttribute="top" secondItem="7Ry-tp-vWQ" secondAttribute="bottom" constant="6" id="cIe-Sh-SIZ"/>
                             <constraint firstItem="MUf-Tg-603" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="jla-mf-dWg"/>
