@@ -20,6 +20,30 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var sportsScrollView: UIScrollView!
     @IBOutlet weak var sportsPageControl: UIPageControl!
     
+    @IBOutlet weak var Upcoming1Text: UITextView!
+    @IBOutlet weak var Upcoming1Date: UILabel!
+    @IBOutlet weak var Upcoming1Title: UILabel!
+    
+    
+    
+    @IBOutlet weak var Upcoming2Text: UITextView!
+    @IBOutlet weak var Upcoming2Date: UILabel!
+    @IBOutlet weak var Upcoming2Title: UILabel!
+    
+    
+    
+    @IBOutlet weak var Upcoming3Text: UITextView!
+    @IBOutlet weak var Upcoming3Date: UILabel!
+    @IBOutlet weak var Upcoming3Title: UILabel!
+    
+    
+    
+    @IBOutlet weak var Upcoming4Text: UITextView!
+    @IBOutlet weak var Upcoming4Date: UILabel!
+    @IBOutlet weak var Upcoming4Title: UILabel!
+    
+    
+    
     
     // 4 is default and 0-3 strings are default
     //var ausdNewsArr: [String] = ["0","1","2","3"]
@@ -44,7 +68,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         return UIColor.init(red: CGFloat(r/255.0), green: CGFloat(g/255.0), blue: CGFloat(b/255.0), alpha: CGFloat(1.0));
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad() { // setup function
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
@@ -53,28 +77,45 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         // ausdnews - 4 is default
         ausdNewsPageControl.numberOfPages = ausdNewsSize;
         ausdNewsScrollView.layer.cornerRadius = 20;
-        sportsPageControl.layer.borderColor = UIColor.white.cgColor;
         for articleIndex in 0..<ausdNewsSize {
             // set up frame
             ausdNewsframe.origin.x = ausdNewsScrollView.frame.size.width * CGFloat(articleIndex);
             ausdNewsframe.size = ausdNewsScrollView.frame.size;
             // set up text onto scrollview
             // TODO: implement array that has needed text from firebase
+            let articleBackground = makeColor(r: 147, g: 66, b: 78);
+            let textColor = UIColor.white;
             
             let contentView = UIView(frame: ausdNewsframe); // content view will contain text and image
-            contentView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+            contentView.backgroundColor = articleBackground;
+            contentView.layer.cornerRadius = 20;
             
-            let textFrame = CGRect(x: 0.0, y: 0.0, width: 200.0, height: 30.0); // pos, width, and height of text
-            let textView = UITextView(frame: textFrame);
-            textView.text = "Sample text with image";
+            let titletextFrame = CGRect(x: 95.0, y: 0.0, width: 200.0, height: 30.0); // pos, width, and height of text; x is from 0 to 400
+            let titletextView = UITextView(frame: titletextFrame);
+            titletextView.text = "Title here";
+            titletextView.textAlignment = .center;
+            titletextView.backgroundColor = articleBackground;
+            titletextView.textColor = textColor;
+            titletextView.isEditable = false;
             //textView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
             
-            let imageFrame = CGRect(x: 50.0, y: 50.0, width: 100.0, height: 100.0);
+            let imageFrame = CGRect(x: 40.0, y: 60.0, width: 100.0, height: 100.0);
             let imageview = UIImageView(frame: imageFrame);
             imageview.image = UIImage(named: "Asset 14");
+            // image of article
             
-            contentView.addSubview(textView);
+            let articletextFrame = CGRect(x: 170.0, y: 20.0, width: 200.0, height: 200.0);
+            let articletextView = UITextView(frame: articletextFrame);
+            articletextView.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            articletextView.textAlignment = .left;
+            articletextView.backgroundColor = articleBackground;
+            articletextView.textColor = textColor;
+            articletextView.isEditable = false;
+            
+            // add contentView to scrollview
+            contentView.addSubview(titletextView);
             contentView.addSubview(imageview);
+            contentView.addSubview(articletextView);
             
             self.ausdNewsScrollView.addSubview(contentView);
         }
@@ -94,20 +135,39 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             // content goes here:
             // TODO: implement array that has needed text from firebase
+            let articleBackground = makeColor(r: 220, g: 220, b: 220);
+            let textColor = UIColor.black;
+            
             let contentView = UIView(frame: clubframe); // content view will contain text and image
-            //contentView.backgroundColor = makeColor(r: 0, g: 255, b: 255);
-            
-            let textFrame = CGRect(x: 0.0, y: 0.0, width: 200.0, height: 30.0); // pos, width, and height of text
-            let textView = UITextView(frame: textFrame);
-            textView.text = "Sample text with image";
-            //textView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
-            
-            let imageFrame = CGRect(x: 50.0, y: 50.0, width: 100.0, height: 100.0);
+            contentView.backgroundColor = articleBackground;
+            contentView.layer.cornerRadius = 20;
+                       
+            let titletextFrame = CGRect(x: 95.0, y: 0.0, width: 200.0, height: 30.0); // pos, width, and height of text; x is from 0 to 400
+            let titletextView = UITextView(frame: titletextFrame);
+            titletextView.text = "Title here";
+            titletextView.textAlignment = .center;
+            titletextView.backgroundColor = articleBackground;
+            titletextView.textColor = textColor;
+            titletextView.isEditable = false;
+                       //textView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+                       
+            let imageFrame = CGRect(x: 40.0, y: 90.0, width: 100.0, height: 100.0);
             let imageview = UIImageView(frame: imageFrame);
             imageview.image = UIImage(named: "Asset 14");
-            
-            contentView.addSubview(textView);
+                       // image of article
+                       
+            let articletextFrame = CGRect(x: 170.0, y: 20.0, width: 200.0, height: 260.0);
+            let articletextView = UITextView(frame: articletextFrame);
+            articletextView.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            articletextView.textAlignment = .left;
+            articletextView.backgroundColor = articleBackground;
+            articletextView.textColor = textColor;
+            articletextView.isEditable = false;
+                       
+            // add contentView to scrollview
+            contentView.addSubview(titletextView);
             contentView.addSubview(imageview);
+            contentView.addSubview(articletextView);
             
             self.clubScrollView.addSubview(contentView);
         }
@@ -126,12 +186,42 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             // content goes here:
             // TODO: implement array that has needed text from firebase
-            let textView = UITextView(frame: asbframe);
-            textView.text = "Sample text";
-            textView.backgroundColor = makeColor(r: 0, g: 255, b: 255);
+            let articleBackground = makeColor(r: 220, g: 220, b: 220);
+            let textColor = UIColor.black;
+            
+            let contentView = UIView(frame: asbframe); // content view will contain text and image
+            contentView.backgroundColor = articleBackground;
+            contentView.layer.cornerRadius = 20;
+                       
+            let titletextFrame = CGRect(x: 95.0, y: 0.0, width: 200.0, height: 30.0); // pos, width, and height of text; x is from 0 to 400
+            let titletextView = UITextView(frame: titletextFrame);
+            titletextView.text = "Title here";
+            titletextView.textAlignment = .center;
+            titletextView.backgroundColor = articleBackground;
+            titletextView.textColor = textColor;
+            titletextView.isEditable = false;
+                       //textView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+                       
+            let imageFrame = CGRect(x: 40.0, y: 90.0, width: 100.0, height: 100.0);
+            let imageview = UIImageView(frame: imageFrame);
+            imageview.image = UIImage(named: "Asset 14");
+                       // image of article
+                       
+            let articletextFrame = CGRect(x: 170.0, y: 20.0, width: 200.0, height: 260.0);
+            let articletextView = UITextView(frame: articletextFrame);
+            articletextView.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            articletextView.textAlignment = .left;
+            articletextView.backgroundColor = articleBackground;
+            articletextView.textColor = textColor;
+            articletextView.isEditable = false;
+                       
+            // add contentView to scrollview
+            contentView.addSubview(titletextView);
+            contentView.addSubview(imageview);
+            contentView.addSubview(articletextView);
             
             
-            self.asbScrollView.addSubview(textView);
+            self.asbScrollView.addSubview(contentView);
         }
         // set size of scrollview
         asbScrollView.contentSize = CGSize(width: (asbScrollView.frame.size.width * CGFloat(asbSize)), height: asbScrollView.frame.size.height);
@@ -147,15 +237,41 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             otherframe.origin.x = otherScrollView.frame.size.width * CGFloat(pageIndex);
             otherframe.size = otherScrollView.frame.size;
             
-            // content goes here:
-            // TODO: implement array that has needed text from firebase
-            let textView = UITextView(frame: otherframe);
-            textView.text = "Sample text";
-            textView.backgroundColor = makeColor(r: 0, g: 255, b: 0);
-            //textView.backgroundColor = UIColor.init(red: CGFloat(147.0/255.0), green: CGFloat(66.0/255.0), blue: CGFloat(78.0/255.0), alpha: CGFloat(1.0));
+            let articleBackground = makeColor(r: 220, g: 220, b: 220);
+            let textColor = UIColor.black;
             
+            let contentView = UIView(frame: otherframe); // content view will contain text and image
+            contentView.backgroundColor = articleBackground;
+            contentView.layer.cornerRadius = 20;
+                       
+            let titletextFrame = CGRect(x: 95.0, y: 0.0, width: 200.0, height: 30.0); // pos, width, and height of text; x is from 0 to 400
+            let titletextView = UITextView(frame: titletextFrame);
+            titletextView.text = "Title here";
+            titletextView.textAlignment = .center;
+            titletextView.backgroundColor = articleBackground;
+            titletextView.textColor = textColor;
+            titletextView.isEditable = false;
+                       //textView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+                       
+            let imageFrame = CGRect(x: 40.0, y: 90.0, width: 100.0, height: 100.0);
+            let imageview = UIImageView(frame: imageFrame);
+            imageview.image = UIImage(named: "Asset 14");
+                       // image of article
+                       
+            let articletextFrame = CGRect(x: 170.0, y: 20.0, width: 200.0, height: 260.0);
+            let articletextView = UITextView(frame: articletextFrame);
+            articletextView.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            articletextView.textAlignment = .left;
+            articletextView.backgroundColor = articleBackground;
+            articletextView.textColor = textColor;
+            articletextView.isEditable = false;
+                       
+            // add contentView to scrollview
+            contentView.addSubview(titletextView);
+            contentView.addSubview(imageview);
+            contentView.addSubview(articletextView);
             
-            self.otherScrollView.addSubview(textView);
+            self.otherScrollView.addSubview(contentView);
         }
         // set size of scrollview
         otherScrollView.contentSize = CGSize(width: (otherScrollView.frame.size.width * CGFloat(otherSize)), height: otherScrollView.frame.size.height);
@@ -165,22 +281,59 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         //sports
         sportsPageControl.numberOfPages = sportsSize;
+        sportsScrollView.layer.cornerRadius = 20;
         for articleIndex in 0..<sportsSize {
             // set up frame
             sportsframe.origin.x = sportsScrollView.frame.size.width * CGFloat(articleIndex);
             sportsframe.size = sportsScrollView.frame.size;
             // set up text onto scrollview
             // TODO: implement array that has needed text from firebase
-            let textView = UITextView(frame: sportsframe);
-            textView.text = "Sample text in sports";
-            textView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
-            self.sportsScrollView.addSubview(textView);
+            let articleBackground = makeColor(r: 147, g: 66, b: 78);
+            let textColor = UIColor.white;
+            
+            let contentView = UIView(frame: sportsframe); // content view will contain text and image
+            contentView.backgroundColor = articleBackground;
+            contentView.layer.cornerRadius = 20;
+                       
+            let titletextFrame = CGRect(x: 95.0, y: 0.0, width: 200.0, height: 30.0); // pos, width, and height of text; x is from 0 to 400
+            let titletextView = UITextView(frame: titletextFrame);
+            titletextView.text = "Title here";
+            titletextView.textAlignment = .center;
+            titletextView.backgroundColor = articleBackground;
+            titletextView.textColor = textColor;
+            titletextView.isEditable = false;
+                       //textView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+                       
+            let imageFrame = CGRect(x: 40.0, y: 90.0, width: 100.0, height: 100.0);
+            let imageview = UIImageView(frame: imageFrame);
+            imageview.image = UIImage(named: "Asset 14");
+                       // image of article
+                       
+            let articletextFrame = CGRect(x: 170.0, y: 20.0, width: 200.0, height: 260.0);
+            let articletextView = UITextView(frame: articletextFrame);
+            articletextView.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            articletextView.textAlignment = .left;
+            articletextView.backgroundColor = articleBackground;
+            articletextView.textColor = textColor;
+            articletextView.isEditable = false;
+                       
+            // add contentView to scrollview
+            contentView.addSubview(titletextView);
+            contentView.addSubview(imageview);
+            contentView.addSubview(articletextView);
+            self.sportsScrollView.addSubview(contentView);
         }
         // set size of scrollview
         sportsScrollView.contentSize = CGSize(width: (sportsScrollView.frame.size.width * CGFloat(sportsSize)), height: sportsScrollView.frame.size.height);
         sportsScrollView.delegate = self;
         
         
+        // end setup for scrollviews
+        // setup Upcoming views
+        Upcoming1Text.font = .systemFont(ofSize: 12);
+        Upcoming2Text.font = .systemFont(ofSize: 12);
+        Upcoming3Text.font = .systemFont(ofSize: 12);
+        Upcoming4Text.font = .systemFont(ofSize: 12);
     }
     // every time scrollview stops moving
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
