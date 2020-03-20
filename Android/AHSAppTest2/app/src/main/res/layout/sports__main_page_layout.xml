@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
@@ -40,11 +40,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Upcoming_Events_Titletext">
 
-        <com.chabbal.slidingdotsplash.SlidingSplashView
-            android:id="@+id/splash"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/sportsPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:imageResources="@array/img_id_arr"/>
-    </LinearLayout>
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="10dp">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/sportsindicator"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/sportsPager"
+            app:layout_constraintEnd_toEndOf="@+id/sportsPager"
+            app:layout_constraintStart_toStartOf="@+id/sportsPager"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
