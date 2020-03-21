@@ -15,6 +15,9 @@
 		330D3E1C241D5E8D007D0628 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330D3E1A241D5E8D007D0628 /* LaunchScreen.storyboard */; };
 		330D3E27241D5E8D007D0628 /* AHS20Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E26241D5E8D007D0628 /* AHS20Tests.swift */; };
 		330D3E32241D5E8D007D0628 /* AHS20UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E31241D5E8D007D0628 /* AHS20UITests.swift */; };
+		33376A642425CC0700E8DF66 /* HARLOWSI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33376A632425CBFB00E8DF66 /* HARLOWSI.ttf */; };
+		33376A652425CC0800E8DF66 /* HARLOWSI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33376A632425CBFB00E8DF66 /* HARLOWSI.ttf */; };
+		33376A662425CC0900E8DF66 /* HARLOWSI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33376A632425CBFB00E8DF66 /* HARLOWSI.ttf */; };
 		334E1EF9241DB50000D482B4 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 334E1EF8241DB50000D482B4 /* Assets */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,7 @@
 		330D3E2D241D5E8D007D0628 /* AHS20UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AHS20UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		330D3E31241D5E8D007D0628 /* AHS20UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHS20UITests.swift; sourceTree = "<group>"; };
 		330D3E33241D5E8D007D0628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33376A632425CBFB00E8DF66 /* HARLOWSI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HARLOWSI.ttf; sourceTree = "<group>"; };
 		334E1EF8241DB50000D482B4 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../Assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +113,7 @@
 				330D3E18241D5E8D007D0628 /* Assets.xcassets */,
 				330D3E1A241D5E8D007D0628 /* LaunchScreen.storyboard */,
 				330D3E1D241D5E8D007D0628 /* Info.plist */,
+				33376A632425CBFB00E8DF66 /* HARLOWSI.ttf */,
 			);
 			path = AHS20;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33376A642425CC0700E8DF66 /* HARLOWSI.ttf in Resources */,
 				330D3E1C241D5E8D007D0628 /* LaunchScreen.storyboard in Resources */,
 				334E1EF9241DB50000D482B4 /* Assets in Resources */,
 				330D3E19241D5E8D007D0628 /* Assets.xcassets in Resources */,
@@ -246,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33376A652425CC0800E8DF66 /* HARLOWSI.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33376A662425CC0900E8DF66 /* HARLOWSI.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
