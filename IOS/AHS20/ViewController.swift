@@ -8,46 +8,30 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate {
+
+extension UILabel{
+    func setRoundedEdge(corners:UIRectCorner, radius: CGFloat){ // label.setRoundedEdge([.TopLeft, . TopRight], radius: 10)
+        let maskPath1 = UIBezierPath(roundedRect: bounds,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius))
+        let maskLayer1 = CAShapeLayer()
+        maskLayer1.frame = bounds
+        maskLayer1.path = maskPath1.cgPath
+        layer.mask = maskLayer1
+    }
+}
+
+
+class ViewController: UIViewController,UIScrollViewDelegate {
 
     // link UI elements to swift via outlets
-    @IBOutlet weak var mainPageScrollView: UIScrollView!
-    @IBOutlet weak var ausdNewsScrollView: UIScrollView!
-    @IBOutlet weak var ausdNewsPageControl: UIPageControl!
-    @IBOutlet weak var clubScrollView: UIScrollView!
-    @IBOutlet weak var asbScrollView: UIScrollView!
-    @IBOutlet weak var otherScrollView: UIScrollView!
-    @IBOutlet weak var sportsScrollView: UIScrollView!
-    @IBOutlet weak var sportsPageControl: UIPageControl!
-    
-    @IBOutlet weak var Upcoming1Text: UITextView!
-    @IBOutlet weak var Upcoming1Date: UILabel!
-    @IBOutlet weak var Upcoming1Title: UILabel!
-    
-    
-    
-    @IBOutlet weak var Upcoming2Text: UITextView!
-    @IBOutlet weak var Upcoming2Date: UILabel!
-    @IBOutlet weak var Upcoming2Title: UILabel!
-    
-    
-    
-    @IBOutlet weak var Upcoming3Text: UITextView!
-    @IBOutlet weak var Upcoming3Date: UILabel!
-    @IBOutlet weak var Upcoming3Title: UILabel!
-    
-    
-    
-    @IBOutlet weak var Upcoming4Text: UITextView!
-    @IBOutlet weak var Upcoming4Date: UILabel!
-    @IBOutlet weak var Upcoming4Title: UILabel!
-    
+    @IBOutlet weak var homeLabel: UILabel!
     
     
     
     // 4 is default and 0-3 strings are default
     //var ausdNewsArr: [String] = ["0","1","2","3"]
-    var ausdNewsSize = 10
+    /*var ausdNewsSize = 10
     var ausdNewsframe = CGRect(x:0,y:0,width:0,height:0)
     
     var clubSize = 4
@@ -60,7 +44,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var otherframe = CGRect(x:0,y:0,width:0,height:0)
     
     var sportsSize = 4
-    var sportsframe = CGRect(x:0,y:0,width:0,height:0)
+    var sportsframe = CGRect(x:0,y:0,width:0,height:0)*/
     
     // func that returns UIcolor from rgb values
     
@@ -68,14 +52,17 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         return UIColor.init(red: CGFloat(r/255.0), green: CGFloat(g/255.0), blue: CGFloat(b/255.0), alpha: CGFloat(1.0));
     }
     
+    
     override func viewDidLoad() { // setup function
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        homeLabel.setRoundedEdge(corners: [.bottomLeft, .bottomRight], radius: 30);
+        
         // TODO: fix textviews almost overlapping the title on scrollviews - also fix scrollview and constraint issues on smaller screens like iPhone SE.
         
         // ausdnews - 4 is default
-        ausdNewsPageControl.numberOfPages = ausdNewsSize;
+        /*ausdNewsPageControl.numberOfPages = ausdNewsSize;
         ausdNewsScrollView.layer.cornerRadius = 20;
         for articleIndex in 0..<ausdNewsSize {
             // set up frame
@@ -332,16 +319,16 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         Upcoming1Text.font = .systemFont(ofSize: 12);
         Upcoming2Text.font = .systemFont(ofSize: 12);
         Upcoming3Text.font = .systemFont(ofSize: 12);
-        Upcoming4Text.font = .systemFont(ofSize: 12);
+        Upcoming4Text.font = .systemFont(ofSize: 12);*/
     }
     // every time scrollview stops moving
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // gets current page num
         // set dot of pagecontrol to correct page
         
-        ausdNewsPageControl.currentPage = Int(ausdNewsScrollView.contentOffset.x / ausdNewsScrollView.frame.size.width); // Typecasting float to int
+        //ausdNewsPageControl.currentPage = Int(ausdNewsScrollView.contentOffset.x / ausdNewsScrollView.frame.size.width); // Typecasting float to int
         
-        sportsPageControl.currentPage = Int(sportsScrollView.contentOffset.x / sportsScrollView.frame.size.width); // Typecasting float to int
+        //sportsPageControl.currentPage = Int(sportsScrollView.contentOffset.x / sportsScrollView.frame.size.width); // Typecasting float to int
         
     }
 
