@@ -1,4 +1,4 @@
-package com.example.ahsapptest2.Main_Page_Fragments;
+package com.example.ahsapptest2.Old_Code.Main_Page_Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment;
 import com.example.ahsapptest2.R;
 
 
-public class ASB_MainPage extends Fragment {
+public class Other_MainPage extends Fragment {
 
-    public ASB_MainPage() {
+    public Other_MainPage() {
         // Required empty public constructor
     }
 
@@ -20,7 +20,7 @@ public class ASB_MainPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.asb__main_page_layout, container, false);
+        return inflater.inflate(R.layout.other__main_page_layout, container, false);
     }
 
 }

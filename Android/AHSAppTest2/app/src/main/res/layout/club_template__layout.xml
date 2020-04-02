@@ -7,7 +7,7 @@
     android:layout_height="300dp"
     android:background="@drawable/rounded_neutral"
     android:backgroundTint="@color/LightPink"
-    tools:context=".Club_Template">
+    tools:context=".Old_Code.Club_Template">
 
     <TextView
         android:id="@+id/title_text"

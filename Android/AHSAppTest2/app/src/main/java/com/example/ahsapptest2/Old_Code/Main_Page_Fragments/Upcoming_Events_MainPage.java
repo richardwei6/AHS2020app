@@ -1,18 +1,14 @@
-package com.example.ahsapptest2.Main_Page_Fragments;
+package com.example.ahsapptest2.Old_Code.Main_Page_Fragments;
 
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 
 import com.example.ahsapptest2.R;
-import com.example.ahsapptest2.Upcoming_Events;
 
 
 public class Upcoming_Events_MainPage extends Fragment {
@@ -25,7 +21,7 @@ public class Upcoming_Events_MainPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.upcoming_events__main_page_layout, container, false);
-        ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R.id.Upcoming_Events_Constraint_Layout);
+        /*ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R.id.Upcoming_Events_Constraint_Layout);
 
         String [][] data = getInfo();
         if (data.length == 0) return view;
@@ -86,7 +82,7 @@ public class Upcoming_Events_MainPage extends Fragment {
         }
 
         // Inflate the layout for this fragment
-
+*/
         return view;
     }
 

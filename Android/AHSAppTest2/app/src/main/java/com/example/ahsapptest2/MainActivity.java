@@ -7,25 +7,23 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.widget.FrameLayout;
 
-import com.example.ahsapptest2.Main_Page_Fragments.Article_MainPage;
+import com.example.ahsapptest2.Old_Code.Main_Page_Fragments.Article_MainPage;
+import com.example.ahsapptest2.Old_Code.Club_Template;
 
 import me.relex.circleindicator.CircleIndicator;
-import me.relex.circleindicator.CircleIndicator3;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int NUM_PAGES = 5;
+    /*private static final int NUM_PAGES = 5;
     private ViewPager ausdNewsPager;
-    private ViewPager sportsPager;
+    private ViewPager sportsPager;*/
 
 
     //@SuppressLint("ResourceType")
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
-        Club_Template thing1 = new Club_Template();
+        /*Club_Template thing1 = new Club_Template();
 
         ConstraintLayout mainlayout = (ConstraintLayout) findViewById(R.id.Clubs_Constraint_Layout);
 
@@ -113,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return new Article_MainPage();
             }
-            return null;*/
+            return null;*'/
             return new Article_MainPage();
         }
 
@@ -121,5 +119,8 @@ public class MainActivity extends AppCompatActivity {
         public int getCount() {
             return NUM_PAGES;
         }
+        */
+
     }
+
 }

@@ -8,4 +8,8 @@
     <color name="DarkerGray">#D6D6D6</color>
     <color name="Blank">#00000000</color>
     <color name="Black">#010101</color>
+    <color name = "NewDarkGray">#8D888D</color>
+    <color name = "NewTextGray">#717273</color>
+    <color name = "NewDarkerGray">#D6D6D5</color>
+    <color name = "NewLighterGray">#EBEBEC</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.ahsapptest2.Main_Page_Fragments;
+package com.example.ahsapptest2.Old_Code.Main_Page_Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.ahsapptest2.R;
-import androidx.fragment.app.Fragment;
 
 public class Article_MainPage extends Fragment {
 

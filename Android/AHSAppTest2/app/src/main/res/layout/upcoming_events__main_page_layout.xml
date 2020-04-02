@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/LightGray"
     android:padding="10dp"
-    tools:context=".Main_Page_Fragments.Clubs_MainPage">
+    tools:context=".Old_Code.Main_Page_Fragments.Clubs_MainPage">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
