@@ -8,8 +8,18 @@
 
 import UIKit
 
+
 extension UILabel{ // add setRoundedEdge func to UILabel
     func setRoundedEdge(corners:UIRectCorner, radius: CGFloat){ // label.setRoundedEdge([.TopLeft, . TopRight], radius: 10)
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+}
+
+extension UIButton{
+	func setRoundedEdge(corners:UIRectCorner, radius: CGFloat){ // label.setRoundedEdge([.TopLeft, . TopRight], radius: 10)
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
         mask.path = path.cgPath
@@ -22,15 +32,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
     // link UI elements to swift via outlets
     @IBOutlet weak var homeLabel: UILabel!
-    @IBOutlet weak var districtNewsScrollView: UIScrollView!
-    @IBOutlet weak var districtNewsLabel: UILabel!
+	@IBOutlet weak var districtNewsScrollView: UIScrollView!
 	@IBOutlet weak var sportsNewsScrollView: UIScrollView!
-	@IBOutlet weak var sportsNewsLabel: UILabel!
 	@IBOutlet weak var asbNewsScrollView: UIScrollView!
-	@IBOutlet weak var asbNewsLabel: UILabel!
 	
 	
-    
     // 4 is default and 0-3 strings are default
     var districtNewsSize = 10;
     var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
@@ -62,18 +68,35 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	  
             
             // create content in scrollview
-			let testButton = UIButton(frame: districtNewsFrame);
-			testButton.setImage(UIImage(named: "ahsldpi.png"), for: .normal);
-			testButton.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+			let contentView = UIButton(frame: districtNewsFrame); // wrapper for article
+			//testButton.setImage(UIImage(named: "ahsldpi.png"), for: .normal);
+			contentView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+			
+			// content inside contentView -------
+			let articleContentFrame = CGRect(x:0,y:0,width:districtNewsFrame.width,height:districtNewsFrame.height-60);
+			let articleContent = UIView(frame: articleContentFrame); // may be image?
+			articleContent.backgroundColor = makeColor(r: 138, g: 138, b: 138);
+			
+			let articleLabelFrame = CGRect(x:0,y:districtNewsFrame.height-60,width:districtNewsFrame.width,height:60);
+			let articleLabel = UILabel(frame: articleLabelFrame);
+			articleLabel.text = "    " + "Title";
+			articleLabel.backgroundColor = UIColor.white;
+			articleLabel.font = UIFont(name: "DIN-Condensed", size: 30);
+			
+			
+			
+			// add content inside contentView to contentview
+			contentView.addSubview(articleContent);
+			contentView.addSubview(articleLabel);
             // add contentview to scrollview
-            self.districtNewsScrollView.addSubview(testButton);
+			contentView.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 30);
+            self.districtNewsScrollView.addSubview(contentView);
         }
         // change horizontal size of scrollview
 		districtNewsScrollView.contentSize = CGSize(width: districtNewsScrollView.frame.size.width * CGFloat(districtNewsSize), height: districtNewsScrollView.frame.size.height);
         districtNewsScrollView.delegate = self;
         
 
-        
         
         // Sports News -----
 		  for aIndex in 0..<sportsNewsSize{
@@ -94,11 +117,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		  sportsNewsScrollView.contentSize = CGSize(width: sportsNewsScrollView.frame.size.width * CGFloat(sportsNewsSize), height: sportsNewsScrollView.frame.size.height);
 		  sportsNewsScrollView.delegate = self;
 		
+		
+		
 		// ASB News -----
 		  for aIndex in 0..<asbNewsSize{
 			  //districtNewsFrame.origin.x = (UIScreen.main.bounds.size.width-52) * CGFloat(aIndex);
 			  //districtNewsFrame.size = UIScreen.main.bounds.size;
-			  asbNewsFrame.origin.x = sportsNewsScrollView.frame.size.width * CGFloat(aIndex);
+			  asbNewsFrame.origin.x = asbNewsScrollView.frame.size.width * CGFloat(aIndex);
 			  asbNewsFrame.size = asbNewsScrollView.frame.size;
 		
 			  
@@ -112,16 +137,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		  // change horizontal size of scrollview
 		  asbNewsScrollView.contentSize = CGSize(width: asbNewsScrollView.frame.size.width * CGFloat(asbNewsSize), height: asbNewsScrollView.frame.size.height);
 		  asbNewsScrollView.delegate = self;
-        
+		
+	
         
     }
 	
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews();
 		//districtNewsScrollView.setRoundedEdge(corners: [.topRight,.topLeft], radius: 30);
-		districtNewsLabel.setRoundedEdge(corners: [.bottomRight,.bottomLeft], radius: 30);
-		sportsNewsLabel.setRoundedEdge(corners:[.bottomRight,.bottomLeft], radius: 30);
-		asbNewsLabel.setRoundedEdge(corners:[.bottomRight,.bottomLeft], radius: 30);
 		homeLabel.setRoundedEdge(corners: [.bottomLeft, .bottomRight], radius: 30);
 	}
 	
