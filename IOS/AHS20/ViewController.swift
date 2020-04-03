@@ -36,18 +36,17 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	@IBOutlet weak var sportsNewsScrollView: UIScrollView!
 	@IBOutlet weak var asbNewsScrollView: UIScrollView!
 	
-	
-    // 4 is default and 0-3 strings are default
+	// TODO: get data from server
     var districtNewsSize = 10;
     var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	var sportsNewsSize = 10;
     var sportsNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	var asbNewsSize = 10;
     var asbNewsFrame = CGRect(x:0,y:0,width:0,height:0);
+	
 
     
     // func that returns UIcolor from rgb values
-    
     func makeColor(r: Float, g: Float, b: Float) -> UIColor{
         return UIColor.init(red: CGFloat(r/255.0), green: CGFloat(g/255.0), blue: CGFloat(b/255.0), alpha: CGFloat(1.0));
     }
@@ -57,14 +56,18 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // TODO: fix rounding edges
+		var spaceDistance = 0.0; // weird math stuff that takes care of space between articles
+		
+		
         
         // District News -----
         for aIndex in 0..<districtNewsSize{
             //districtNewsFrame.origin.x = (UIScreen.main.bounds.size.width-52) * CGFloat(aIndex);
 			//districtNewsFrame.size = UIScreen.main.bounds.size;
-			districtNewsFrame.origin.x = districtNewsScrollView.frame.size.width * CGFloat(aIndex);
+			districtNewsFrame.origin.x = (districtNewsScrollView.frame.size.width * CGFloat(aIndex)) + 10 * CGFloat(aIndex);
 			districtNewsFrame.size = districtNewsScrollView.frame.size;
+			
+			spaceDistance += 2 * Double(aIndex); // weird math stuff - takes care of space between articles
 	  
             
             // create content in scrollview
@@ -81,7 +84,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 			let articleLabel = UILabel(frame: articleLabelFrame);
 			articleLabel.text = "    " + "Title";
 			articleLabel.backgroundColor = UIColor.white;
-			articleLabel.font = UIFont(name: "DIN-Condensed", size: 30);
+			articleLabel.font = UIFont(name: "DINCondensed-Bold", size: 30);
 			
 			
 			
@@ -93,49 +96,90 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             self.districtNewsScrollView.addSubview(contentView);
         }
         // change horizontal size of scrollview
-		districtNewsScrollView.contentSize = CGSize(width: districtNewsScrollView.frame.size.width * CGFloat(districtNewsSize), height: districtNewsScrollView.frame.size.height);
+		districtNewsScrollView.contentSize = CGSize(width: (districtNewsScrollView.frame.size.width * CGFloat(districtNewsSize)) + CGFloat(spaceDistance), height: districtNewsScrollView.frame.size.height);
         districtNewsScrollView.delegate = self;
         
-
+		
+		// reset distance
+		spaceDistance = 0.0;
         
         // Sports News -----
 		  for aIndex in 0..<sportsNewsSize{
 			  //districtNewsFrame.origin.x = (UIScreen.main.bounds.size.width-52) * CGFloat(aIndex);
 			  //districtNewsFrame.size = UIScreen.main.bounds.size;
-			  sportsNewsFrame.origin.x = sportsNewsScrollView.frame.size.width * CGFloat(aIndex);
+			  sportsNewsFrame.origin.x = sportsNewsScrollView.frame.size.width * CGFloat(aIndex) + 10 * CGFloat(aIndex);
 			  sportsNewsFrame.size = sportsNewsScrollView.frame.size;
-		
+				  
+			
+			  spaceDistance += 2 * Double(aIndex); // weird math stuff - takes care of space between articles
 			  
-			  // create content in scrollview
-			  let testButton = UIButton(frame: sportsNewsFrame);
-			  testButton.setImage(UIImage(named: "ahsldpi.png"), for: .normal);
-			  testButton.backgroundColor = makeColor(r: 147, g: 66, b: 78);
-			  // add contentview to scrollview
-			  self.sportsNewsScrollView.addSubview(testButton);
+			   // create content in scrollview
+			   let contentView = UIButton(frame: sportsNewsFrame); // wrapper for article
+			   contentView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+						 
+			   // content inside contentView -------
+			   let articleContentFrame = CGRect(x:0,y:0,width:districtNewsFrame.width,height:districtNewsFrame.height-60);
+			   let articleContent = UIView(frame: articleContentFrame); // may be image?
+			   articleContent.backgroundColor = makeColor(r: 138, g: 138, b: 138);
+						 
+			   let articleLabelFrame = CGRect(x:0,y:districtNewsFrame.height-60,width:districtNewsFrame.width,height:60);
+			   let articleLabel = UILabel(frame: articleLabelFrame);
+			   articleLabel.text = "    " + "Title";
+	           articleLabel.backgroundColor = UIColor.white;
+			   articleLabel.font = UIFont(name: "DINCondensed-Bold", size: 30);
+						 
+						 
+						 
+			   // add content inside contentView to contentview
+			   contentView.addSubview(articleContent);
+			   contentView.addSubview(articleLabel);
+			   // add contentview to scrollview
+			   contentView.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 30);
+			   self.sportsNewsScrollView.addSubview(contentView);
 		  }
 		  // change horizontal size of scrollview
-		  sportsNewsScrollView.contentSize = CGSize(width: sportsNewsScrollView.frame.size.width * CGFloat(sportsNewsSize), height: sportsNewsScrollView.frame.size.height);
+		  sportsNewsScrollView.contentSize = CGSize(width: (sportsNewsScrollView.frame.size.width * CGFloat(sportsNewsSize)) + CGFloat(spaceDistance), height: sportsNewsScrollView.frame.size.height);
 		  sportsNewsScrollView.delegate = self;
 		
+		// reset distance
+		spaceDistance = 0.0;
 		
 		
 		// ASB News -----
 		  for aIndex in 0..<asbNewsSize{
 			  //districtNewsFrame.origin.x = (UIScreen.main.bounds.size.width-52) * CGFloat(aIndex);
 			  //districtNewsFrame.size = UIScreen.main.bounds.size;
-			  asbNewsFrame.origin.x = asbNewsScrollView.frame.size.width * CGFloat(aIndex);
+			  asbNewsFrame.origin.x = asbNewsScrollView.frame.size.width * CGFloat(aIndex) + 10 * CGFloat(aIndex);
 			  asbNewsFrame.size = asbNewsScrollView.frame.size;
-		
+			
+			  spaceDistance += 2 * Double(aIndex); // weird math stuff - takes care of space between articles
 			  
 			  // create content in scrollview
-			  let testButton = UIButton(frame: asbNewsFrame);
-			  testButton.setImage(UIImage(named: "ahsldpi.png"), for: .normal);
-			  testButton.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+			  let contentView = UIButton(frame: asbNewsFrame); // wrapper for article
+			  contentView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+						
+			  // content inside contentView -------
+			  let articleContentFrame = CGRect(x:0,y:0,width:districtNewsFrame.width,height:districtNewsFrame.height-60);
+			  let articleContent = UIView(frame: articleContentFrame); // may be image?
+			  articleContent.backgroundColor = makeColor(r: 138, g: 138, b: 138);
+						
+			  let articleLabelFrame = CGRect(x:0,y:districtNewsFrame.height-60,width:districtNewsFrame.width,height:60);
+			  let articleLabel = UILabel(frame: articleLabelFrame);
+			  articleLabel.text = "    " + "Title";
+			  articleLabel.backgroundColor = UIColor.white;
+			  articleLabel.font = UIFont(name: "DINCondensed-Bold", size: 30);
+						
+						
+						
+			  // add content inside contentView to contentview
+			  contentView.addSubview(articleContent);
+			  contentView.addSubview(articleLabel);
 			  // add contentview to scrollview
-			  self.asbNewsScrollView.addSubview(testButton);
+			  contentView.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 30);
+			  self.asbNewsScrollView.addSubview(contentView);
 		  }
 		  // change horizontal size of scrollview
-		  asbNewsScrollView.contentSize = CGSize(width: asbNewsScrollView.frame.size.width * CGFloat(asbNewsSize), height: asbNewsScrollView.frame.size.height);
+		  asbNewsScrollView.contentSize = CGSize(width: (asbNewsScrollView.frame.size.width * CGFloat(asbNewsSize)) + CGFloat(spaceDistance), height: asbNewsScrollView.frame.size.height);
 		  asbNewsScrollView.delegate = self;
 		
 	
