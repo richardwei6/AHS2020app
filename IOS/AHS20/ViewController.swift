@@ -36,6 +36,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	@IBOutlet weak var sportsNewsScrollView: UIScrollView!
 	@IBOutlet weak var asbNewsScrollView: UIScrollView!
 	
+	@IBOutlet weak var tabBar: UITabBar!
+	
 	// TODO: get data from server
     var districtNewsSize = 5;
     var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
@@ -44,8 +46,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	var asbNewsSize = 3;
     var asbNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	
-
-    
+	
     // func that returns UIcolor from rgb values
     func makeColor(r: Float, g: Float, b: Float) -> UIColor{
         return UIColor.init(red: CGFloat(r/255.0), green: CGFloat(g/255.0), blue: CGFloat(b/255.0), alpha: CGFloat(1.0));
@@ -55,8 +56,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() { // setup function
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-		
+
+		tabBar.selectedItem = tabBar.items?.first;
+		tabBar.layer.cornerRadius = 20;
+		tabBar.clipsToBounds = true;
         
         // District News -----
         for aIndex in 0..<districtNewsSize{
