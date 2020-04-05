@@ -56,6 +56,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() { // setup function
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+		homeLabel.baselineAdjustment = .alignCenters;
 
 		tabBar.selectedItem = tabBar.items?.first;
 		tabBar.layer.cornerRadius = 20;
@@ -136,7 +137,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		  sportsNewsScrollView.contentSize = CGSize(width: (sportsNewsScrollView.frame.size.width * CGFloat(sportsNewsSize)), height: sportsNewsScrollView.frame.size.height);
 		  sportsNewsScrollView.delegate = self;
 		
-		// reset distance
 		
 		
 		// ASB News -----
