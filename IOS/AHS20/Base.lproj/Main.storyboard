@@ -170,12 +170,16 @@
                                     <constraint firstAttribute="height" constant="50" id="E2z-VC-zju"/>
                                 </constraints>
                                 <items>
-                                    <tabBarItem systemItem="favorites" id="ZOU-GJ-tDZ"/>
-                                    <tabBarItem systemItem="more" id="iUO-tu-Ibi"/>
+                                    <tabBarItem title="" id="uvR-o8-AI2"/>
+                                    <tabBarItem title="" id="YLc-hW-i32"/>
+                                    <tabBarItem title="" id="7h8-pm-0qs"/>
+                                    <tabBarItem title="" id="v7e-EG-ngO"/>
                                 </items>
+                                <color key="tintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="selectedImageTintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tabBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="jUX-Qr-YKC" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="2PY-BN-2WM"/>
                             <constraint firstItem="jUX-Qr-YKC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="3JR-lY-dLC"/>
@@ -198,6 +202,7 @@
                         <outlet property="districtNewsScrollView" destination="LOr-27-cZb" id="Fhy-kh-xMC"/>
                         <outlet property="homeLabel" destination="nF4-gy-0S7" id="WCq-ZO-MoK"/>
                         <outlet property="sportsNewsScrollView" destination="8JZ-Sn-r9c" id="Bpm-XR-C9f"/>
+                        <outlet property="tabBar" destination="iB8-s7-b6s" id="2qV-xY-HFi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
