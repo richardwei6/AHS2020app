@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Upcoming_Events">
+    tools:context=".Old_Code.Upcoming_Events">
 
     <ImageView
         android:id="@+id/BackgroundImage"

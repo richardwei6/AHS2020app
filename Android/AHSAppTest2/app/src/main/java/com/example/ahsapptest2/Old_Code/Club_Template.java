@@ -1,4 +1,4 @@
-package com.example.ahsapptest2;
+package com.example.ahsapptest2.Old_Code;
 
 
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
+import com.example.ahsapptest2.R;
 
 
 /**

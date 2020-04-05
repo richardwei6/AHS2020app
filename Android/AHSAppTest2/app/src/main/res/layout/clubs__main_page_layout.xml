@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Upcoming_Events_Constraint_Layout"
+    android:id="@+id/Outer_Constraint_Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".Main_Page_Fragments.Clubs_MainPage">
+    tools:context=".Old_Code.Main_Page_Fragments.Clubs_MainPage">
 
     <!-- TODO: Update blank fragment layout -->
 

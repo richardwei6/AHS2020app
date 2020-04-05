@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Outer_Constraint_Layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/Blank"
+    tools:context=".Old_Code.Main_Page_Fragments.Clubs_MainPage">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/Scrolling_Template_Titletext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        android:text="ASB NEWS"
+        android:textColor="@color/NewTextGray"
+        android:textSize="18sp"
+        app:fontFamily="@font/din_condensed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:src="@drawable/right_rounded_yellow"
+        app:layout_constraintBottom_toBottomOf="@id/Scrolling_Template_Titletext"
+        app:layout_constraintEnd_toStartOf="@id/Scrolling_Template_Titletext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/Scrolling_Template_Titletext" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:src="@drawable/left_rounded_red"
+        app:layout_constraintBottom_toBottomOf="@+id/Scrolling_Template_Titletext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Scrolling_Template_Titletext"
+        app:layout_constraintTop_toTopOf="@+id/Scrolling_Template_Titletext" />
+
+    <HorizontalScrollView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Scrolling_Template_Titletext">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Scrolling_Template_ScrollView_ConstraintLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

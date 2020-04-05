@@ -1,0 +1,40 @@
+REMOTE LOGIN
+
+Unix command line:		ssh root@173.255.210.125
+Password: 			62x3mnGH4v3XA$Q7
+Directory:		 	cd /usr/local/tomcat7/webapps/AHS-Mobile/
+____________________________________
+
+MYSQL 
+
+Turn on:			sudo systemctl start mysqld
+Turn off:			sudo systemctl stop mysqld
+Get into mysql command line:	mysql -u root -p
+Password: 			Nu3wa1shi2!
+Return to unix command line:	Exit
+________________________________________________
+
+TOMCAT 
+
+Turn on:			cd /usr/local/tomcat7
+				./bin/startup.sh
+Turn off:			cd /usr/local/tomcat7
+				./bin/shutdown.sh
+
+____________
+
+As for testing locally, you can install and set up Apache Tomcat and MySQL. Since this process is cumbersome as the commands will be different, you can alternatively test remotely by making another directory within webapps with a different name than AHS-Mobile (the actual production server).
+_____________
+
+Transfer AHS-Mobile locally to server (2-10-20 as an example)
+
+Compress the local AHS-Mobile directory:	tar -czvf 2-10-20.tar.gz /path/to/AHS-Mobile
+
+Secure copy the tar file:			scp 2-10-20.tar.gz root@173.255.210.125:.
+
+Uncompress the tar file:			tar -xf 2-10-20.tar.gz
+
+Move current version to home directory:		mv /usr/local/tomcat7/webapps/AHS-Mobile prev-to-2-10-20
+
+Move new version to right directory: 		mv AHS-Mobile /usr/local/tomcat7/webapps/.
+
