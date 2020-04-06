@@ -165,10 +165,10 @@
                                     <constraint firstAttribute="height" constant="50" id="E2z-VC-zju"/>
                                 </constraints>
                                 <items>
-                                    <tabBarItem title="" id="uvR-o8-AI2"/>
-                                    <tabBarItem title="" id="YLc-hW-i32"/>
-                                    <tabBarItem title="" id="7h8-pm-0qs"/>
-                                    <tabBarItem title="" id="v7e-EG-ngO"/>
+                                    <tabBarItem title="" image="up" id="uvR-o8-AI2"/>
+                                    <tabBarItem title="" image="pin" id="YLc-hW-i32"/>
+                                    <tabBarItem title="" image="bell" id="7h8-pm-0qs"/>
+                                    <tabBarItem title="" image="gear" id="v7e-EG-ngO"/>
                                 </items>
                                 <color key="tintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="selectedImageTintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -206,7 +206,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bell" width="25" height="30"/>
+        <image name="gear" width="25" height="25"/>
+        <image name="pin" width="20" height="28.333333969116211"/>
         <image name="redlinecategorydetail" width="451" height="9"/>
+        <image name="up" width="25" height="25"/>
         <image name="yellowlinecategorydetail" width="41" height="9"/>
     </resources>
 </document>
