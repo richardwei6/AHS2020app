@@ -28,7 +28,7 @@ extension UIButton{
 }
 
 
-class ViewController: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
+class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
 
     // link UI elements to swift via outlets
     @IBOutlet weak var homeLabel: UILabel!
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITabBarController
 	@IBOutlet weak var sportsNewsScrollView: UIScrollView!
 	@IBOutlet weak var asbNewsScrollView: UIScrollView!
 	
-	@IBOutlet weak var tabBar: UITabBar!
+	//@IBOutlet weak var tabBar: UITabBar!
 	
 	// TODO: get data from server
     var districtNewsSize = 5;
@@ -63,9 +63,9 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITabBarController
         // Do any additional setup after loading the view.
 		homeLabel.baselineAdjustment = .alignCenters;
 
-		tabBar.selectedItem = tabBar.items?.first;
-		tabBar.layer.cornerRadius = 20;
-		tabBar.clipsToBounds = true;
+		//tabBar.selectedItem = tabBar.items?.first;
+		//tabBar.layer.cornerRadius = 20;
+		//tabBar.clipsToBounds = true;
         
         // District News -----
         for aIndex in 0..<districtNewsSize{
