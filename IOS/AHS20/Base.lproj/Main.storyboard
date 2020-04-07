@@ -74,17 +74,17 @@
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LOr-27-cZb">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LOr-27-cZb">
                                                 <rect key="frame" x="17" y="107" width="380" height="250"/>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="JFQ-8y-lUU"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="SI1-Hc-cno"/>
                                             </scrollView>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8JZ-Sn-r9c">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8JZ-Sn-r9c">
                                                 <rect key="frame" x="17" y="442" width="380" height="250"/>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="sXv-S4-tHc"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="HU6-WT-1qv"/>
                                             </scrollView>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZb-eV-Gnz">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZb-eV-Gnz">
                                                 <rect key="frame" x="17" y="777" width="380" height="250"/>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="g2N-PA-1VT"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Xxe-A0-Mxn"/>

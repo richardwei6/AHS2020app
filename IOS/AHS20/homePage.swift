@@ -67,15 +67,15 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		//tabBar.layer.cornerRadius = 20;
 		//tabBar.clipsToBounds = true;
         
+		
         // District News -----
+		districtNewsFrame.size = districtNewsScrollView.frame.size;
+		districtNewsFrame.size.width = UIScreen.main.bounds.size.width - 34;
         for aIndex in 0..<districtNewsSize{
             //districtNewsFrame.origin.x = (UIScreen.main.bounds.size.width-52) * CGFloat(aIndex);
 			//districtNewsFrame.size = UIScreen.main.bounds.size;
-			districtNewsFrame.origin.x = (districtNewsScrollView.frame.size.width * CGFloat(aIndex));
-			districtNewsFrame.size = districtNewsScrollView.frame.size;
+			districtNewsFrame.origin.x = (districtNewsFrame.size.width * CGFloat(aIndex));
 			
-	  
-            
             // create content in scrollview
 			let contentView = UIButton(frame: districtNewsFrame); // wrapper for article
 			//testButton.setImage(UIImage(named: "ahsldpi.png"), for: .normal);
@@ -102,16 +102,18 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
             self.districtNewsScrollView.addSubview(contentView);
         }
         // change horizontal size of scrollview
-		districtNewsScrollView.contentSize = CGSize(width: (districtNewsScrollView.frame.size.width * CGFloat(districtNewsSize)), height: districtNewsScrollView.frame.size.height);
+		districtNewsScrollView.contentSize = CGSize(width: (districtNewsFrame.size.width * CGFloat(districtNewsSize)), height: districtNewsScrollView.frame.size.height);
         districtNewsScrollView.delegate = self;
         
-        
+		
+		
         // Sports News -----
+		sportsNewsFrame.size = sportsNewsScrollView.frame.size;
+		sportsNewsFrame.size.width = UIScreen.main.bounds.size.width - 34;
 		  for aIndex in 0..<sportsNewsSize{
 			  //districtNewsFrame.origin.x = (UIScreen.main.bounds.size.width-52) * CGFloat(aIndex);
 			  //districtNewsFrame.size = UIScreen.main.bounds.size;
-			  sportsNewsFrame.origin.x = sportsNewsScrollView.frame.size.width * CGFloat(aIndex);
-			  sportsNewsFrame.size = sportsNewsScrollView.frame.size;
+			sportsNewsFrame.origin.x = sportsNewsFrame.size.width * CGFloat(aIndex);
 				  
 			
 			   // create content in scrollview
@@ -139,17 +141,18 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			   self.sportsNewsScrollView.addSubview(contentView);
 		  }
 		  // change horizontal size of scrollview
-		  sportsNewsScrollView.contentSize = CGSize(width: (sportsNewsScrollView.frame.size.width * CGFloat(sportsNewsSize)), height: sportsNewsScrollView.frame.size.height);
+		sportsNewsScrollView.contentSize = CGSize(width: (sportsNewsFrame.size.width * CGFloat(sportsNewsSize)), height: sportsNewsScrollView.frame.size.height);
 		  sportsNewsScrollView.delegate = self;
 		
 		
-		
+
 		// ASB News -----
+		asbNewsFrame.size = asbNewsScrollView.frame.size;
+		asbNewsFrame.size.width = UIScreen.main.bounds.width - 34;
 		  for aIndex in 0..<asbNewsSize{
 			  //districtNewsFrame.origin.x = (UIScreen.main.bounds.size.width-52) * CGFloat(aIndex);
 			  //districtNewsFrame.size = UIScreen.main.bounds.size;
-			  asbNewsFrame.origin.x = asbNewsScrollView.frame.size.width * CGFloat(aIndex);
-			  asbNewsFrame.size = asbNewsScrollView.frame.size;
+			asbNewsFrame.origin.x = asbNewsFrame.size.width * CGFloat(aIndex);
 			
 			  
 			  // create content in scrollview
@@ -177,7 +180,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			  self.asbNewsScrollView.addSubview(contentView);
 		  }
 		  // change horizontal size of scrollview
-		  asbNewsScrollView.contentSize = CGSize(width: (asbNewsScrollView.frame.size.width * CGFloat(asbNewsSize)) , height: asbNewsScrollView.frame.size.height);
+		  asbNewsScrollView.contentSize = CGSize(width: (asbNewsFrame.size.width * CGFloat(asbNewsSize)) , height: asbNewsScrollView.frame.size.height);
 		  asbNewsScrollView.delegate = self;
 		
 	
