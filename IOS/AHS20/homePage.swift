@@ -189,7 +189,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews();
-		//districtNewsScrollView.setRoundedEdge(corners: [.topRight,.topLeft], radius: 30);
 		homeLabel.setRoundedEdge(corners: [.bottomLeft, .bottomRight], radius: 30);
 	}
 	
