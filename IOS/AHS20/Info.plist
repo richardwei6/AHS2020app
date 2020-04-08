@@ -4,7 +4,6 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>DINCondensed-Bold.ttf</string>
 		<string>HARLOWSI.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
@@ -48,8 +47,6 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -62,6 +59,8 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>
