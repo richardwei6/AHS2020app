@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" Date "
-        android:textColor="@color/Black"
+        android:textColor="@color/OldBlack"
         android:textSize="14sp"
         app:fontFamily="@font/harlowsolidplain"
         app:layout_constraintBottom_toBottomOf="@id/BackgroundImage"

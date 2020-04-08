@@ -1,23 +1,15 @@
 package com.example.ahsapptest2;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.widget.FrameLayout;
+import android.view.View;
+import android.widget.ImageButton;
 
-import com.example.ahsapptest2.Old_Code.Main_Page_Fragments.Article_MainPage;
-import com.example.ahsapptest2.Old_Code.Club_Template;
-
-import me.relex.circleindicator.CircleIndicator;
+import com.example.ahsapptest2.Home_Page_Code.Home_Page_Fragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,43 +17,29 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager ausdNewsPager;
     private ViewPager sportsPager;*/
 
-
+    ImageButton home_button, bulletin_button, notifications_button, settings_button;
+    ImageButton[] nav_buttons;
+    Fragment currentFrag;
     //@SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        setContentView(R.layout.main);
+        home_button = findViewById(R.id.home_button);
+        bulletin_button = findViewById(R.id.pinned_button);
+        notifications_button = findViewById(R.id.notif_button);
+        settings_button = findViewById(R.id.settings_button);
 
-        /*Club_Template thing1 = new Club_Template();
+        nav_buttons = new ImageButton[] {
+                home_button,
+                bulletin_button,
+                notifications_button,
+                settings_button
+        };
 
-        ConstraintLayout mainlayout = (ConstraintLayout) findViewById(R.id.Clubs_Constraint_Layout);
-
-        FrameLayout frameLayout = new FrameLayout(this); // Set up framelayout to put the fragment in
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.WRAP_CONTENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT
-        );
-        frameLayout.setLayoutParams(params);
-        frameLayout.setId(1012345); // Just a random id
-
-        mainlayout.addView(frameLayout);
-
-        ConstraintSet set2 = new ConstraintSet();
-        set2.clone(mainlayout);
-        set2.connect(frameLayout.getId(),ConstraintSet.LEFT,mainlayout.getId(),ConstraintSet.LEFT);
-        set2.connect(frameLayout.getId(),ConstraintSet.TOP,mainlayout.getId(),ConstraintSet.TOP);
-        set2.clear(R.id.firstView,ConstraintSet.START);
-        set2.clear(R.id.firstView,ConstraintSet.LEFT);
-        set2.connect(R.id.firstView, ConstraintSet.LEFT,frameLayout.getId(),ConstraintSet.RIGHT, (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 16,
-                getResources().getDisplayMetrics()));
-        set2.applyTo(mainlayout);
-
-        getSupportFragmentManager()
-            .beginTransaction()
-            .add(frameLayout.getId(),thing1)
-            .commit();
-
+        currentFrag = getSupportFragmentManager().findFragmentById(R.id.home_fragment);
+        //bulletin_button.setColorFilter(R.color.DarkLogoRed);
+        /*
 
         // viewpager
         // dots - https://github.com/ongakuer/CircleIndicator
@@ -122,5 +100,63 @@ public class MainActivity extends AppCompatActivity {
         */
 
     }
+    public void goToHome(View view)
+    {
+        if(!(currentFrag instanceof Home_Page_Fragment)) { //if we decide to animate the changes, we wouldn't want to animate it if the user goes to the same page
+            for (ImageButton button : nav_buttons) {
+                if (button.equals(home_button))
+                    button.setColorFilter(ContextCompat.getColor(this, R.color.DarkLogoRed_791314__Everywhere));
+                else
+                    button.setColorFilter(ContextCompat.getColor(this, R.color.Gray_D6D6D6__Home_Bulletin));
+            }
+            Home_Page_Fragment newFrag = new Home_Page_Fragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(currentFrag.getId(), newFrag)
+                    .addToBackStack(null)//Lets user use the back button to go back
+                    .commit();
+            currentFrag = newFrag;
+        }
+    }
+    public void goToBulletin(View view)
+    {
+        if(!(currentFrag instanceof Bulletin_Page_Fragment)) {
+            for (ImageButton button : nav_buttons) {
+                if (button.equals(bulletin_button))
+                    button.setColorFilter(ContextCompat.getColor(this, R.color.DarkLogoRed_791314__Everywhere));
+                else
+                    button.setColorFilter(ContextCompat.getColor(this, R.color.Gray_D6D6D6__Home_Bulletin));
+            }
+            Bulletin_Page_Fragment newFrag = new Bulletin_Page_Fragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(currentFrag.getId(), newFrag)
+                    .addToBackStack(null)//Lets user use the back button to go back
+                    .commit();
+            currentFrag = newFrag;
+        }
+    }
+    public void goToNotifications(View view)
+    {
+        for(ImageButton button: nav_buttons) {
+            if (button.equals(notifications_button))
+                button.setColorFilter(ContextCompat.getColor(this, R.color.DarkLogoRed_791314__Everywhere));
+            else
+                button.setColorFilter(ContextCompat.getColor(this, R.color.Gray_D6D6D6__Home_Bulletin));
+        }
+    }
+    public void goToSettings(View view)
+    {
+        for(ImageButton button: nav_buttons) {
+            if (button.equals(settings_button))
+                button.setColorFilter(ContextCompat.getColor(this, R.color.DarkLogoRed_791314__Everywhere));
+            else
+                button.setColorFilter(ContextCompat.getColor(this, R.color.Gray_D6D6D6__Home_Bulletin));
+        }
+    }
+    //TODO: fix the colors right above
+    //TODO: fix colors.xml and sort out that mess before it gets even bigger
+    //TODO: kind of make bulletin page
+    //TODO: padding for main buttons
 
 }

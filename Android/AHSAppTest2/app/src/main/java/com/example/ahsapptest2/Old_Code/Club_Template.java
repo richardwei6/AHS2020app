@@ -32,7 +32,7 @@ public class Club_Template extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.club_template__layout, container, false);
+        view = inflater.inflate(R.layout.old_club_template__layout, container, false);
         title = (TextView) view.findViewById(R.id.title_text);
         image = (ImageView) view.findViewById(R.id.Image);
         description = (TextView) view.findViewById(R.id.Description);

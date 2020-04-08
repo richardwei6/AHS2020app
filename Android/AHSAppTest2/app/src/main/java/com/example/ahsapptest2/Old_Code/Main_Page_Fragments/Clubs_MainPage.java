@@ -21,7 +21,7 @@ public class Clubs_MainPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.clubs__main_page_layout, container, false);
+        View view = inflater.inflate(R.layout.old_clubs__main_page_layout, container, false);
 
         return view;
     }

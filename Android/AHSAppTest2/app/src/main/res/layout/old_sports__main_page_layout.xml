@@ -2,12 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/news_mainpage_root"
+    android:id="@+id/Outer_Constraint_Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightGray"
     android:padding="10dp"
-    tools:context=".Old_Code.Main_Page_Fragments.News_MainPage">
+    tools:context=".Old_Code.Main_Page_Fragments.Clubs_MainPage">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -19,7 +18,7 @@
         android:paddingTop="5dp"
         android:paddingRight="20dp"
         android:paddingBottom="5dp"
-        android:text="AUSD NEWS"
+        android:text="SPORTS"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:fontFamily="@font/din_condensed"
@@ -34,7 +33,7 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
-        android:background="@color/Crimson"
+        android:background="@color/OldCrimson"
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Upcoming_Events_Titletext">
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/ausdNewsPager"
+            android:id="@+id/sportsPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="10dp"
@@ -51,13 +50,13 @@
         </androidx.viewpager.widget.ViewPager>
 
         <me.relex.circleindicator.CircleIndicator
-            android:id="@+id/ausdindicator"
+            android:id="@+id/sportsindicator"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ausdNewsPager"
-            app:layout_constraintEnd_toEndOf="@+id/ausdNewsPager"
-            app:layout_constraintStart_toStartOf="@+id/ausdNewsPager"
-             />
+            app:layout_constraintBottom_toBottomOf="@+id/sportsPager"
+            app:layout_constraintEnd_toEndOf="@+id/sportsPager"
+            app:layout_constraintStart_toStartOf="@+id/sportsPager"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

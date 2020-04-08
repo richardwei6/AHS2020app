@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="LightPink">#f9f2f2</color>
-    <color name="DarkLogoRed">#791314</color>
-    <color name="LightGray">#E8E8E8</color>
-    <color name="GoldenYellow">#e8bc66</color>
-    <color name="Crimson">#93424e</color>
-    <color name="DarkerGray">#D6D6D6</color>
+    <!-- Only to allow old layouts to work, do not use for new ones -->
+    <color name="OldLightPink">#f9f2f2</color>
+
+    <color name="OldLightGray">#E8E8E8</color>
+    <color name="OldGoldenYellow">#e8bc66</color>
+    <color name="OldCrimson">#93424e</color>
+
+
+    <color name="OldBlack">#010101</color>
+
+
+    <!--Note: to avoid confusion, use only the colors below. Even if a new color is the same
+     as one above, still add a new one below. Append which pages the color is used on to avoid
+     confusion, just follow that format-->
+    <color name = "DarkGray_605E5F__Home_Bulletin">#605E5F</color>
+    <color name = "GoldenYellow_E8BC66__Home_Bulletin">#E8BC66</color>
+    <color name = "Crimson_93424E__Bulletin">#93424E</color>
+    <color name = "LightGray_E8E8E8__Home_Bulletin">#E8E8E8</color>
+    <color name = "DullYellow_C6A97D__Bulletin">#C6A97D</color>
+    <color name = "LightPink_F9F2F2__Bulletin">#F9F2F2</color>
+    <color name = "Gray_D6D6D6__Home_Bulletin">#D6D6D6</color>
+    <color name = "DarkLogoRed_791314__Everywhere">#791314</color>
+    <color name = "DarkishGray_8D888D__Home">#8D888D</color>
+    <color name = "LighterGray_EAEAEA__Home">#EAEAEA</color>
     <color name="Blank">#00000000</color>
-    <color name="Black">#010101</color>
-    <color name = "NewDarkGray">#8D888D</color>
-    <color name = "NewTextGray">#717273</color>
-    <color name = "NewDarkerGray">#D6D6D5</color>
-    <color name = "NewLighterGray">#EBEBEC</color>
 </resources>

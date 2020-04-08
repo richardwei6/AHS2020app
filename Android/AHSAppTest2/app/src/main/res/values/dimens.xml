@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name = "HomePage_ArticleBlurbHeight">240dp</dimen>
+    <dimen name = "HomePage_ArticleBlurbSpacing">16dp</dimen>
+    <dimen name = "HomePage_Nav_Button_SideLength">25dp</dimen>
+</resources>

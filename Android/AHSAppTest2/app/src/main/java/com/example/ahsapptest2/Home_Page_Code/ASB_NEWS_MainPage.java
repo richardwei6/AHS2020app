@@ -1,9 +1,11 @@
-package com.example.ahsapptest2;
+package com.example.ahsapptest2.Home_Page_Code;
 
 
-public class DISTRICT_NEWS_MainPage extends Main_Page_Scrolling_Template {
+import com.example.ahsapptest2.R;
 
-    public DISTRICT_NEWS_MainPage() {
+public class ASB_NEWS_MainPage extends Main_Page_Scrolling_Template {
+
+    public ASB_NEWS_MainPage() {
         super();
     }
 
@@ -12,7 +14,7 @@ public class DISTRICT_NEWS_MainPage extends Main_Page_Scrolling_Template {
         // fully implement later
         return
                 new String[][] {
-                        {"District News Title1","text1"},
+                        {"Asb News Title1","text1"},
                         {"Title2","text2"},
                         {"Title3","text3"},
                         {"Title4","text4"},
@@ -21,7 +23,7 @@ public class DISTRICT_NEWS_MainPage extends Main_Page_Scrolling_Template {
 
     public int getLayoutId()
     {
-        return R.layout.scrolling_template__main_page_layout;
+        return R.layout.home_page__scrolling_template_layout;
     }
 
     public int getConstraintLayoutId()
@@ -31,11 +33,11 @@ public class DISTRICT_NEWS_MainPage extends Main_Page_Scrolling_Template {
 
     public int getIdRange()
     {
-        return 1010000; // Reserve 1010000-1020000 for District HomePage
+        return 1030000; // Reserve 1030000-1040000 for ASB HomePage
     }
 
     public String getTitleText()
     {
-        return "DISTRICT NEWS";
+        return "ASB NEWS";
     }
 }

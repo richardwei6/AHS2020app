@@ -5,7 +5,7 @@
     android:id="@+id/Upcoming_Events_Constraint_Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightGray"
+    android:background="@color/OldLightGray"
     android:padding="10dp"
     tools:context=".Old_Code.Main_Page_Fragments.Clubs_MainPage">
 

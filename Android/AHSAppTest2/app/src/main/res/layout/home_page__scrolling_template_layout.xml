@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/Blank"
+    android:paddingLeft="@dimen/HomePage_ArticleBlurbSpacing"
+    android:paddingRight="@dimen/HomePage_ArticleBlurbSpacing"
     tools:context=".Old_Code.Main_Page_Fragments.Clubs_MainPage">
 
     <!-- TODO: Update blank fragment layout -->
@@ -21,9 +23,9 @@
         android:paddingTop="5dp"
         android:paddingRight="5dp"
         android:paddingBottom="5dp"
-        android:text="ASB NEWS"
-        android:textColor="@color/NewTextGray"
-        android:textSize="18sp"
+        android:text="TitleText"
+        android:textColor="@color/DarkGray_605E5F__Home_Bulletin"
+        android:textSize="20sp"
         app:fontFamily="@font/din_condensed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,41 +35,48 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/yellowLeft"
         android:layout_width="0dp"
         android:layout_height="4dp"
-        android:src="@drawable/right_rounded_yellow"
+        android:src="@drawable/rounded_right_yellow"
         app:layout_constraintBottom_toBottomOf="@id/Scrolling_Template_Titletext"
         app:layout_constraintEnd_toStartOf="@id/Scrolling_Template_Titletext"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/Scrolling_Template_Titletext" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/redRight"
         android:layout_width="0dp"
         android:layout_height="4dp"
-        android:src="@drawable/left_rounded_red"
+        android:src="@drawable/rounded_left_red"
         app:layout_constraintBottom_toBottomOf="@+id/Scrolling_Template_Titletext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Scrolling_Template_Titletext"
         app:layout_constraintTop_toTopOf="@+id/Scrolling_Template_Titletext" />
 
     <HorizontalScrollView
+        android:id="@+id/HorizontalScrollView"
         android:layout_width="0dp"
+
+
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:fadeScrollbars="false"
+        android:paddingBottom="@dimen/HomePage_ArticleBlurbSpacing"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarSize="4dp"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbarThumbHorizontal="@drawable/horiz_scrollbar_graythumb"
+        android:scrollbarTrackHorizontal="@drawable/horiz_scrollbar_track"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Scrolling_Template_Titletext">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/Scrolling_Template_ScrollView_ConstraintLayout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

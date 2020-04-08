@@ -20,7 +20,7 @@ public class Upcoming_Events_MainPage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.upcoming_events__main_page_layout, container, false);
+        View view = inflater.inflate(R.layout.old_upcoming_events__main_page_layout, container, false);
         /*ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R.id.Upcoming_Events_Constraint_Layout);
 
         String [][] data = getInfo();

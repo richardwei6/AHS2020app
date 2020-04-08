@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/MainPageLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/harlowsolidplain"
+        android:padding="0sp"
+        android:text="AHS "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/DarkLogoRed_791314__Everywhere"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.example.ahsapptest2.Home_Page_Code.Home_Page_Fragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MainPageLogo"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout = "@layout/home_page_layout"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Nav_Bar_Layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_white"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/home_button"
+            android:layout_width="@dimen/HomePage_Nav_Button_SideLength"
+            android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:background="@color/Blank"
+            android:onClick="goToHome"
+            android:padding="2dp"
+            android:scaleType="fitXY"
+            android:tint="@color/DarkLogoRed_791314__Everywhere"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/home_button" />
+
+        <ImageButton
+            android:id="@+id/pinned_button"
+            android:layout_width="@dimen/HomePage_Nav_Button_SideLength"
+            android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:background="@color/Blank"
+            android:onClick="goToBulletin"
+            android:padding="2dp"
+            android:scaleType="fitCenter"
+            android:tint="@color/Gray_D6D6D6__Home_Bulletin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/home_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/pin_button" />
+
+        <ImageButton
+            android:id="@+id/notif_button"
+            android:layout_width="@dimen/HomePage_Nav_Button_SideLength"
+            android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:background="@color/Blank"
+            android:onClick="goToNotifications"
+            android:padding="2dp"
+            android:scaleType="fitCenter"
+            android:tint="@color/Gray_D6D6D6__Home_Bulletin"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/pinned_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/notification_button" />
+
+        <ImageButton
+            android:id="@+id/settings_button"
+            android:layout_width="@dimen/HomePage_Nav_Button_SideLength"
+            android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/Blank"
+            android:onClick="goToSettings"
+            android:padding="2dp"
+            android:scaleType="fitXY"
+            android:tint="@color/Gray_D6D6D6__Home_Bulletin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/notif_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/settings_button" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

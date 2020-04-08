@@ -1,5 +1,4 @@
-package com.example.ahsapptest2.Old_Code.Main_Page_Fragments;
-
+package com.example.ahsapptest2;
 
 import android.os.Bundle;
 
@@ -9,20 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ahsapptest2.R;
 
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class Bulletin_Page_Fragment extends Fragment {
 
-public class News_MainPage extends Fragment {
-
-    public News_MainPage() {
+    public Bulletin_Page_Fragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.old_news__main_page_layout, container, false);
+        return inflater.inflate(R.layout.bulletin__layout, container, false);
     }
-
 }

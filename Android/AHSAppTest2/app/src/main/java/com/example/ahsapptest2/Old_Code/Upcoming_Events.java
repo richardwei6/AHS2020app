@@ -28,7 +28,7 @@ public class Upcoming_Events extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.upcoming_events_template__layout, container, false);
+        view = inflater.inflate(R.layout.old_upcoming_events_template__layout, container, false);
         setDate(view);
         setTitle(view);
         setSummary(view);

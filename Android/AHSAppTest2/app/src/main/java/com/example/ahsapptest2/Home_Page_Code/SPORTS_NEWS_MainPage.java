@@ -1,5 +1,7 @@
-package com.example.ahsapptest2;
+package com.example.ahsapptest2.Home_Page_Code;
 
+
+import com.example.ahsapptest2.R;
 
 public class SPORTS_NEWS_MainPage extends Main_Page_Scrolling_Template {
 
@@ -21,7 +23,7 @@ public class SPORTS_NEWS_MainPage extends Main_Page_Scrolling_Template {
 
     public int getLayoutId()
     {
-        return R.layout.scrolling_template__main_page_layout;
+        return R.layout.home_page__scrolling_template_layout;
     }
 
     public int getConstraintLayoutId()

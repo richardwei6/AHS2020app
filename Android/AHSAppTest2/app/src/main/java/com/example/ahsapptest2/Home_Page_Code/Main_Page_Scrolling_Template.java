@@ -1,4 +1,4 @@
-package com.example.ahsapptest2;
+package com.example.ahsapptest2.Home_Page_Code;
 
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -12,7 +12,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 
-import com.example.ahsapptest2.Article_Blurb_Template;
 import com.example.ahsapptest2.R;
 
 
@@ -33,8 +32,10 @@ abstract class Main_Page_Scrolling_Template extends Fragment {
 
         ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(getConstraintLayoutId());
 
+
         String [][] data = getInfo();
         if (data.length == 0) return view;
+
 
         FrameLayout[] frameLayouts = new FrameLayout[data.length];
 
@@ -69,7 +70,7 @@ abstract class Main_Page_Scrolling_Template extends Fragment {
                         constraintLayout.getId(),ConstraintSet.TOP);
                 set.connect(
                         frameLayouts[i].getId(),ConstraintSet.START,
-                        frameLayouts[i-1].getId(),ConstraintSet.END,dp_to_pixel(16));
+                        frameLayouts[i-1].getId(),ConstraintSet.END,(int)getResources().getDimension(R.dimen.HomePage_ArticleBlurbSpacing));
             }
             set.applyTo(constraintLayout);
         }
@@ -92,7 +93,7 @@ abstract class Main_Page_Scrolling_Template extends Fragment {
         return view;
     }
 
-    public int dp_to_pixel(int dp)
+    public int dp_to_pixel(float dp)
     {
         return (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, dp,
@@ -108,4 +109,6 @@ abstract class Main_Page_Scrolling_Template extends Fragment {
     abstract int getIdRange();
 
     abstract String getTitleText();
+
+
 }
