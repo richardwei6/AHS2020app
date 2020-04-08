@@ -11,15 +11,8 @@ import UIKit
 
 class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
 
-    @IBOutlet weak var bulletinLabel: UILabel!
-    @IBOutlet weak var comingUpLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad();
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews();
     }
 
 }
