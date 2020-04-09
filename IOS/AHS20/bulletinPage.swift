@@ -17,7 +17,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     @IBOutlet weak var referenceButton: UIButton!
     @IBOutlet weak var otherButton: UIButton!
     
-    var buttonTextEdgeInset = UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 0);
+    var buttonTextEdgeInset = UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0);
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -29,12 +29,18 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         collegeButton.contentHorizontalAlignment = .left;
         athleticsButton.contentEdgeInsets = buttonTextEdgeInset;
         athleticsButton.contentHorizontalAlignment = .left;
-        eventsButton.contentEdgeInsets = buttonTextEdgeInset;
+        eventsButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 55, bottom: 0, right: 0);
         eventsButton.contentHorizontalAlignment = .left;
-        referenceButton.contentEdgeInsets = buttonTextEdgeInset;
+        referenceButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 0);
         referenceButton.contentHorizontalAlignment = .left;
         otherButton.contentEdgeInsets = buttonTextEdgeInset;
         otherButton.contentHorizontalAlignment = .left;
+        seniorButton.layer.cornerRadius = 14;
+        collegeButton.layer.cornerRadius = 14;
+        athleticsButton.layer.cornerRadius = 14;
+        eventsButton.layer.cornerRadius = 14;
+        referenceButton.layer.cornerRadius = 14;
+        otherButton.layer.cornerRadius = 14;
         
         
         

@@ -285,14 +285,14 @@
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                     </button>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="2021" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiY-u0-3iR">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="2021" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiY-u0-3iR" userLabel="yearText">
                                                                         <rect key="frame" x="5" y="0.0" width="37" height="65"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="HarlowSolid" family="Harlow Solid Italic" pointSize="23"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                     </textView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstItem="ZiY-u0-3iR" firstAttribute="leading" secondItem="4JY-Or-bx2" secondAttribute="leading" constant="5" id="8QK-PU-9bg"/>
                                                                     <constraint firstItem="t26-g7-1g9" firstAttribute="top" secondItem="4JY-Or-bx2" secondAttribute="top" id="EMP-k7-uDz"/>
@@ -315,13 +315,20 @@
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                     </button>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="college.png" translatesAutoresizingMaskIntoConstraints="NO" id="Suv-ud-ZdK">
+                                                                        <rect key="frame" x="4" y="0.0" width="40" height="65"/>
+                                                                    </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="bottom" secondItem="ryS-Mj-U8i" secondAttribute="bottom" id="4zJ-oz-UCy"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="Suv-ud-ZdK" secondAttribute="bottom" constant="-0.33000000000000002" id="8aA-D0-fhs"/>
+                                                                    <constraint firstItem="Suv-ud-ZdK" firstAttribute="top" secondItem="XpT-Ic-WhW" secondAttribute="top" id="A6X-oP-vbe"/>
                                                                     <constraint firstItem="ryS-Mj-U8i" firstAttribute="top" secondItem="XpT-Ic-WhW" secondAttribute="top" id="Cxd-08-OVf"/>
                                                                     <constraint firstAttribute="trailing" secondItem="ryS-Mj-U8i" secondAttribute="trailing" id="OX4-Jl-kfZ"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Suv-ud-ZdK" secondAttribute="trailing" constant="131" id="cPm-t9-Lxm"/>
                                                                     <constraint firstItem="ryS-Mj-U8i" firstAttribute="leading" secondItem="XpT-Ic-WhW" secondAttribute="leading" id="q4E-T2-KaZ"/>
+                                                                    <constraint firstItem="Suv-ud-ZdK" firstAttribute="leading" secondItem="XpT-Ic-WhW" secondAttribute="leading" constant="4" id="uBk-KE-oiW"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yPD-AS-UOZ" userLabel="athleticsView">
@@ -335,13 +342,20 @@
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                     </button>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="athletics logo" translatesAutoresizingMaskIntoConstraints="NO" id="Mcp-GC-XsH">
+                                                                        <rect key="frame" x="4" y="0.0" width="40" height="65"/>
+                                                                    </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="Mcp-GC-XsH" secondAttribute="trailing" constant="131" id="5ch-JV-jyx"/>
                                                                     <constraint firstAttribute="trailing" secondItem="LU5-Kc-H8n" secondAttribute="trailing" id="8F4-3k-jRI"/>
                                                                     <constraint firstAttribute="bottom" secondItem="LU5-Kc-H8n" secondAttribute="bottom" id="FEB-42-bOr"/>
                                                                     <constraint firstItem="LU5-Kc-H8n" firstAttribute="leading" secondItem="yPD-AS-UOZ" secondAttribute="leading" id="btA-zG-v8P"/>
+                                                                    <constraint firstItem="Mcp-GC-XsH" firstAttribute="leading" secondItem="yPD-AS-UOZ" secondAttribute="leading" constant="4" id="dCx-UL-79x"/>
+                                                                    <constraint firstItem="Mcp-GC-XsH" firstAttribute="top" secondItem="yPD-AS-UOZ" secondAttribute="top" id="eBh-rZ-ujd"/>
                                                                     <constraint firstItem="LU5-Kc-H8n" firstAttribute="top" secondItem="yPD-AS-UOZ" secondAttribute="top" id="s3z-qZ-MTK"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="Mcp-GC-XsH" secondAttribute="bottom" constant="-0.33000000000000002" id="zc2-PO-zr8"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -360,13 +374,20 @@
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                     </button>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarsymbol" translatesAutoresizingMaskIntoConstraints="NO" id="oN4-Zn-JQA">
+                                                                        <rect key="frame" x="6" y="0.0" width="40" height="65"/>
+                                                                    </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
+                                                                    <constraint firstItem="oN4-Zn-JQA" firstAttribute="leading" secondItem="MJc-PM-bAJ" secondAttribute="leading" constant="6" id="AYf-eE-Xrq"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="oN4-Zn-JQA" secondAttribute="bottom" constant="-0.33000000000000002" id="EAt-Fv-x62"/>
                                                                     <constraint firstItem="Hjz-Yy-4ZT" firstAttribute="leading" secondItem="MJc-PM-bAJ" secondAttribute="leading" id="GYm-9o-PLH"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="oN4-Zn-JQA" secondAttribute="trailing" constant="129" id="UCc-Na-63m"/>
                                                                     <constraint firstAttribute="bottom" secondItem="Hjz-Yy-4ZT" secondAttribute="bottom" id="aw0-SH-WA9"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Hjz-Yy-4ZT" secondAttribute="trailing" id="enX-F3-azz"/>
                                                                     <constraint firstItem="Hjz-Yy-4ZT" firstAttribute="top" secondItem="MJc-PM-bAJ" secondAttribute="top" id="lzz-tz-NuY"/>
+                                                                    <constraint firstItem="oN4-Zn-JQA" firstAttribute="top" secondItem="MJc-PM-bAJ" secondAttribute="top" id="mVY-hv-245"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iLk-Bq-wUc" userLabel="referenceView">
@@ -380,13 +401,20 @@
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                     </button>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="referencesymbol" translatesAutoresizingMaskIntoConstraints="NO" id="xPN-Mr-uYg">
+                                                                        <rect key="frame" x="4" y="5" width="39" height="56"/>
+                                                                    </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="bottom" secondItem="Psl-lF-bis" secondAttribute="bottom" id="3XK-Ie-gnb"/>
                                                                     <constraint firstItem="Psl-lF-bis" firstAttribute="leading" secondItem="iLk-Bq-wUc" secondAttribute="leading" id="71N-Ib-RqV"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="xPN-Mr-uYg" secondAttribute="trailing" constant="132" id="AwC-wx-4yD"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Psl-lF-bis" secondAttribute="trailing" id="D0B-H2-r14"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="xPN-Mr-uYg" secondAttribute="bottom" constant="3.6699999999999999" id="W0F-aj-i47"/>
+                                                                    <constraint firstItem="xPN-Mr-uYg" firstAttribute="leading" secondItem="iLk-Bq-wUc" secondAttribute="leading" constant="4" id="cgb-0t-LgP"/>
                                                                     <constraint firstItem="Psl-lF-bis" firstAttribute="top" secondItem="iLk-Bq-wUc" secondAttribute="top" id="lat-rp-019"/>
+                                                                    <constraint firstItem="xPN-Mr-uYg" firstAttribute="top" secondItem="iLk-Bq-wUc" secondAttribute="top" constant="5" id="vUu-8e-mfd"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KPT-vM-49j" userLabel="otherView">
@@ -400,31 +428,44 @@
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                     </button>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="otherstar" translatesAutoresizingMaskIntoConstraints="NO" id="UIR-va-HhL">
+                                                                        <rect key="frame" x="4" y="0.0" width="40" height="64"/>
+                                                                    </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="bottom" secondItem="F3Q-B8-JOg" secondAttribute="bottom" id="9kl-ks-mce"/>
+                                                                    <constraint firstItem="UIR-va-HhL" firstAttribute="leading" secondItem="KPT-vM-49j" secondAttribute="leading" constant="4" id="EZp-at-Ibd"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="UIR-va-HhL" secondAttribute="bottom" constant="0.67000000000000004" id="GLG-q9-gFf"/>
                                                                     <constraint firstItem="F3Q-B8-JOg" firstAttribute="leading" secondItem="KPT-vM-49j" secondAttribute="leading" id="LhK-l6-bvD"/>
+                                                                    <constraint firstItem="UIR-va-HhL" firstAttribute="top" secondItem="KPT-vM-49j" secondAttribute="top" id="OZX-q0-O13"/>
                                                                     <constraint firstItem="F3Q-B8-JOg" firstAttribute="top" secondItem="KPT-vM-49j" secondAttribute="top" id="fbV-zX-acq"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="UIR-va-HhL" secondAttribute="trailing" constant="131" id="pA5-Dv-v0H"/>
                                                                     <constraint firstAttribute="trailing" secondItem="F3Q-B8-JOg" secondAttribute="trailing" id="vuc-MU-JuK"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="6li-z6-kN1" firstAttribute="leading" secondItem="uLV-jy-OV5" secondAttribute="leading" id="295-hc-uuo"/>
                                                     <constraint firstAttribute="trailing" secondItem="ydE-DG-H1a" secondAttribute="trailing" id="NSF-MO-R8O"/>
                                                 </constraints>
                                             </stackView>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOZ-Az-5EG">
+                                                <rect key="frame" x="22" y="308" width="370" height="580"/>
+                                                <viewLayoutGuide key="contentLayoutGuide" id="qtR-S4-eNV"/>
+                                                <viewLayoutGuide key="frameLayoutGuide" id="nRb-fe-drc"/>
+                                            </scrollView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="jPU-rO-HQn" secondAttribute="trailing" id="1DK-56-z2k"/>
                                             <constraint firstItem="jPU-rO-HQn" firstAttribute="top" secondItem="uLV-jy-OV5" secondAttribute="bottom" constant="8" id="Cyc-me-tNi"/>
                                             <constraint firstItem="jPU-rO-HQn" firstAttribute="leading" secondItem="t1K-cF-1kW" secondAttribute="leading" id="Epc-k2-kUR"/>
                                             <constraint firstAttribute="trailing" secondItem="RHQ-1P-pza" secondAttribute="trailing" id="FGM-95-P0O"/>
+                                            <constraint firstItem="cOZ-Az-5EG" firstAttribute="leading" secondItem="t1K-cF-1kW" secondAttribute="leading" constant="22" id="KOG-FS-lQv"/>
                                             <constraint firstItem="RHQ-1P-pza" firstAttribute="leading" secondItem="t1K-cF-1kW" secondAttribute="leading" id="LQN-5G-dFN"/>
                                             <constraint firstItem="uLV-jy-OV5" firstAttribute="top" secondItem="RHQ-1P-pza" secondAttribute="bottom" constant="8" id="RSY-Gh-Td5"/>
                                             <constraint firstItem="jPU-rO-HQn" firstAttribute="top" secondItem="uLV-jy-OV5" secondAttribute="bottom" constant="8" id="SSV-sm-aia"/>
@@ -434,8 +475,12 @@
                                             <constraint firstItem="uLV-jy-OV5" firstAttribute="top" secondItem="RHQ-1P-pza" secondAttribute="bottom" constant="8" id="m1k-OG-US3"/>
                                             <constraint firstAttribute="bottom" secondItem="RHQ-1P-pza" secondAttribute="bottom" constant="856" id="naH-4l-AP0"/>
                                             <constraint firstItem="jPU-rO-HQn" firstAttribute="leading" secondItem="t1K-cF-1kW" secondAttribute="leading" id="q1d-21-HsV"/>
+                                            <constraint firstItem="cOZ-Az-5EG" firstAttribute="top" secondItem="RHQ-1P-pza" secondAttribute="bottom" constant="268" id="tq1-Pw-JKe"/>
                                             <constraint firstAttribute="bottom" secondItem="jPU-rO-HQn" secondAttribute="bottom" constant="596" id="ujK-hV-J4e"/>
                                             <constraint firstAttribute="trailing" secondItem="jPU-rO-HQn" secondAttribute="trailing" id="wxU-Xr-L30"/>
+                                            <constraint firstAttribute="bottom" secondItem="cOZ-Az-5EG" secondAttribute="bottom" constant="8" id="yVm-PM-m4m"/>
+                                            <constraint firstAttribute="trailing" secondItem="cOZ-Az-5EG" secondAttribute="trailing" constant="22" id="yp8-Qi-pa8"/>
+                                            <constraint firstItem="cOZ-Az-5EG" firstAttribute="top" secondItem="jPU-rO-HQn" secondAttribute="bottom" constant="8" id="yqu-qA-jFg"/>
                                             <constraint firstItem="RHQ-1P-pza" firstAttribute="top" secondItem="t1K-cF-1kW" secondAttribute="top" id="ys6-hk-fPo"/>
                                         </constraints>
                                     </view>
@@ -1603,17 +1648,18 @@
     <resources>
         <image name="2021" width="128" height="128"/>
         <image name="articlebg" width="128" height="128"/>
-        <image name="athletics logo" width="128" height="128"/>
+        <image name="athletics logo" width="58" height="62"/>
         <image name="bell" width="25" height="30"/>
-        <image name="calendarsymbol" width="128" height="128"/>
+        <image name="calendarsymbol" width="58" height="59"/>
         <image name="categoryred" width="128" height="128"/>
         <image name="college white" width="128" height="128"/>
+        <image name="college.png" width="61" height="61"/>
         <image name="collegeimage" width="128" height="128"/>
         <image name="gear" width="25" height="25"/>
-        <image name="otherstar" width="128" height="128"/>
+        <image name="otherstar" width="53" height="47"/>
         <image name="pin" width="20" height="28.333333969116211"/>
         <image name="redlinecategorydetail" width="451" height="9"/>
-        <image name="referencesymbol" width="128" height="128"/>
+        <image name="referencesymbol" width="43" height="54"/>
         <image name="selectedcategoryyellow" width="128" height="128"/>
         <image name="up" width="25" height="25"/>
         <image name="yellowlinecategorydetail" width="41" height="9"/>
