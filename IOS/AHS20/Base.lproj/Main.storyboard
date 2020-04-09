@@ -285,23 +285,36 @@
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                     </button>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="2021" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiY-u0-3iR" userLabel="yearText">
-                                                                        <rect key="frame" x="5" y="0.0" width="37" height="65"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zqP-eG-15L">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="36" height="32"/>
+                                                                        <fontDescription key="fontDescription" name="HarlowSolid" family="Harlow Solid Italic" pointSize="25"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <fontDescription key="fontDescription" name="HarlowSolid" family="Harlow Solid Italic" pointSize="23"/>
-                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                                    </textView>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWE-18-SQm">
+                                                                        <rect key="frame" x="0.0" y="32" width="36" height="32"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="32" id="N9i-kD-G4m"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="HarlowSolid" family="Harlow Solid Italic" pointSize="25"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="ZiY-u0-3iR" firstAttribute="leading" secondItem="4JY-Or-bx2" secondAttribute="leading" constant="5" id="8QK-PU-9bg"/>
+                                                                    <constraint firstItem="zqP-eG-15L" firstAttribute="leading" secondItem="4JY-Or-bx2" secondAttribute="leading" id="0H6-1f-wqH"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="iWE-18-SQm" secondAttribute="bottom" constant="0.67000000000000004" id="0d5-hE-mWk"/>
                                                                     <constraint firstItem="t26-g7-1g9" firstAttribute="top" secondItem="4JY-Or-bx2" secondAttribute="top" id="EMP-k7-uDz"/>
                                                                     <constraint firstAttribute="trailing" secondItem="t26-g7-1g9" secondAttribute="trailing" id="ILz-gS-3ij"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="zqP-eG-15L" secondAttribute="trailing" constant="139" id="P11-FE-a1I"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="iWE-18-SQm" secondAttribute="trailing" constant="139" id="TAv-bg-giR"/>
                                                                     <constraint firstAttribute="bottom" secondItem="t26-g7-1g9" secondAttribute="bottom" id="UYj-LD-vvN"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="ZiY-u0-3iR" secondAttribute="trailing" constant="133" id="iJt-d5-6rU"/>
+                                                                    <constraint firstItem="iWE-18-SQm" firstAttribute="leading" secondItem="4JY-Or-bx2" secondAttribute="leading" id="Ure-L6-fRt"/>
+                                                                    <constraint firstItem="zqP-eG-15L" firstAttribute="top" secondItem="4JY-Or-bx2" secondAttribute="top" id="Yal-gF-o3u"/>
                                                                     <constraint firstItem="t26-g7-1g9" firstAttribute="leading" secondItem="4JY-Or-bx2" secondAttribute="leading" id="jTf-cc-F2f"/>
-                                                                    <constraint firstItem="ZiY-u0-3iR" firstAttribute="top" secondItem="4JY-Or-bx2" secondAttribute="top" id="pJj-mH-EgT"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="ZiY-u0-3iR" secondAttribute="bottom" constant="-0.33000000000000002" id="rIZ-2Q-5Dw"/>
+                                                                    <constraint firstItem="iWE-18-SQm" firstAttribute="top" secondItem="zqP-eG-15L" secondAttribute="bottom" id="lWl-40-npk"/>
+                                                                    <constraint firstItem="iWE-18-SQm" firstAttribute="top" secondItem="zqP-eG-15L" secondAttribute="bottom" id="oTi-QN-Ux5"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpT-Ic-WhW" userLabel="collegeView">
@@ -337,7 +350,7 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LU5-Kc-H8n" userLabel="athleticsButton">
                                                                         <rect key="frame" x="0.0" y="0.0" width="175" height="64.666666666666671"/>
                                                                         <color key="backgroundColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <fontDescription key="fontDescription" name="HarlowSolid" family="Harlow Solid Italic" pointSize="30"/>
+                                                                        <fontDescription key="fontDescription" name="HarlowSolid" family="Harlow Solid Italic" pointSize="24"/>
                                                                         <state key="normal" title="Athletics">
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
@@ -396,7 +409,7 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psl-lF-bis" userLabel="referenceButton">
                                                                         <rect key="frame" x="0.0" y="0.0" width="175" height="64.666666666666671"/>
                                                                         <color key="backgroundColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <fontDescription key="fontDescription" name="HarlowSolid" family="Harlow Solid Italic" pointSize="30"/>
+                                                                        <fontDescription key="fontDescription" name="HarlowSolid" family="Harlow Solid Italic" pointSize="24"/>
                                                                         <state key="normal" title="Reference">
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
