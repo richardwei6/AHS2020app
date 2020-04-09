@@ -512,7 +512,10 @@
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="athleticsButton" destination="LU5-Kc-H8n" id="zhO-Br-bz4"/>
+                        <outlet property="bulletinLabel" destination="RHQ-1P-pza" id="16n-1V-7h5"/>
                         <outlet property="collegeButton" destination="ryS-Mj-U8i" id="MWc-kw-Ddh"/>
+                        <outlet property="comingUpLabel" destination="jPU-rO-HQn" id="9pK-yr-zcG"/>
+                        <outlet property="comingUpScrollView" destination="cOZ-Az-5EG" id="5vR-ly-CgZ"/>
                         <outlet property="eventsButton" destination="Hjz-Yy-4ZT" id="mOR-mM-Cc5"/>
                         <outlet property="otherButton" destination="F3Q-B8-JOg" id="gkB-bO-Org"/>
                         <outlet property="referenceButton" destination="Psl-lF-bis" id="uHU-tF-qM4"/>
