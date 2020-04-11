@@ -159,4 +159,33 @@ public class MainActivity extends AppCompatActivity {
     //TODO: kind of make bulletin page
     //TODO: padding for main buttons
 
+    public void onBulletinSeniorsClick(View view){
+        if (currentFrag instanceof Bulletin_Page_Fragment)
+            ((Bulletin_Page_Fragment) currentFrag).onSeniorsClick(view);
+    }
+
+    public void onBulletinEventsClick(View view){
+        if (currentFrag instanceof Bulletin_Page_Fragment)
+            ((Bulletin_Page_Fragment) currentFrag).onEventsClick(view);
+    }
+
+    public void onBulletinCollegeClick(View view){
+        if (currentFrag instanceof Bulletin_Page_Fragment)
+            ((Bulletin_Page_Fragment) currentFrag).onCollegeClick(view);
+    }
+
+    public void onBulletinReferenceClick(View view){
+        if (currentFrag instanceof Bulletin_Page_Fragment)
+            ((Bulletin_Page_Fragment) currentFrag).onReferenceClick(view);
+    }
+
+    public void onBulletinAthleticsClick(View view){
+        if (currentFrag instanceof Bulletin_Page_Fragment)
+            ((Bulletin_Page_Fragment) currentFrag).onAthleticsClick(view);
+    }
+
+    public void onBulletinOtherClick(View view){
+        if (currentFrag instanceof Bulletin_Page_Fragment)
+            ((Bulletin_Page_Fragment) currentFrag).onOtherClick(view);
+    }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bulletin_template_ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_lightpink_bulletin_template"
+    android:padding="@dimen/Bulletin_Template_Padding"
+    tools:context=".Bulletin_Template">
+
+    <ImageView
+        android:id="@+id/bulletin_template_ImageView"
+        android:layout_width="@dimen/Bulletin_Image_Size"
+        android:layout_height="@dimen/Bulletin_Image_Size"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/bulletin_template_TitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Bulletin_Item_Inside_Margin"
+        android:layout_marginLeft="@dimen/Bulletin_Item_Inside_Margin"
+        android:layout_marginEnd="@dimen/Bulletin_Item_Inside_Margin"
+        android:layout_marginRight="@dimen/Bulletin_Item_Inside_Margin"
+        android:text="Title Text"
+        android:textColor="@color/DarkGray_605E5F__Home_Bulletin"
+        android:textSize="18sp"
+        app:fontFamily="@font/din_condensed"
+        app:layout_constraintEnd_toStartOf="@+id/bulletin_template_DateText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/bulletin_template_ImageView"
+        app:layout_constraintTop_toTopOf="@id/bulletin_template_DateText" />
+
+    <TextView
+        android:id="@+id/bulletin_template_BodyText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/Bulletin_Item_Inside_Margin"
+        android:text="Sample Text"
+        android:textColor="@color/DarkGray_605E5F__Home_Bulletin"
+        app:fontFamily="@font/minion_semibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bulletin_template_TitleText" />
+
+    <TextView
+        android:id="@+id/bulletin_template_DateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textColor="@color/DullYellow_C6A97D__Bulletin"
+        android:textSize="18sp"
+        app:fontFamily="@font/din_condensed"
+        app:layout_constraintBottom_toBottomOf="@id/bulletin_template_ImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bulletin_template_TitleText"
+        app:layout_constraintTop_toTopOf="@id/bulletin_template_ImageView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

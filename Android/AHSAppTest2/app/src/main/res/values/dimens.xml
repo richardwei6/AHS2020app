@@ -3,4 +3,11 @@
     <dimen name = "HomePage_ArticleBlurbHeight">240dp</dimen>
     <dimen name = "HomePage_ArticleBlurbSpacing">16dp</dimen>
     <dimen name = "HomePage_Nav_Button_SideLength">25dp</dimen>
+    <dimen name = "Bulletin_Margin">10dp</dimen>
+    <dimen name = "Bulletin_Button_Padding">10dp</dimen>
+    <dimen name = "Bulletin_Template_Padding">10dp</dimen>
+    <dimen name = "Bulletin_Image_Size">25dp</dimen>
+    <dimen name = "Bulletin_Button_BetweenMargin">10dp</dimen>
+    <dimen name = "Bulletin_Item_Margin">10dp</dimen>
+    <dimen name = "Bulletin_Item_Inside_Margin">10dp</dimen>
 </resources>

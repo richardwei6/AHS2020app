@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="200dp"
     android:layout_height="300dp"
-    android:background="@drawable/rounded_neutral"
+    android:background="@drawable/rounded_lightpink_bulletin_template"
     android:backgroundTint="@color/OldLightPink"
     tools:context=".Old_Code.Club_Template">
 

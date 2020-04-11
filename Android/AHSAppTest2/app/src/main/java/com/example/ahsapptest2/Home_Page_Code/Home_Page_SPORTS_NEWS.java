@@ -3,9 +3,9 @@ package com.example.ahsapptest2.Home_Page_Code;
 
 import com.example.ahsapptest2.R;
 
-public class SPORTS_NEWS_MainPage extends Main_Page_Scrolling_Template {
+public class Home_Page_SPORTS_NEWS extends Main_Page_Scrolling_Template {
 
-    public SPORTS_NEWS_MainPage() {
+    public Home_Page_SPORTS_NEWS() {
         super();
     }
 

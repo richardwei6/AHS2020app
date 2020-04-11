@@ -1,93 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/outer_home_page_constraintLayout"
+    android:id="@+id/home_FrameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.ahsapptest2.Home_Page_Code.Home_Page_Fragment">
 
     <ScrollView
         android:id="@+id/home_scrollview"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/Gray_D6D6D6__Home_Bulletin"
-        android:padding="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="0dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/home_page_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingBottom="32dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/Home_Title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/rounded_bottom_gray" />
-
-                <TextView
-                    android:id="@+id/Home_Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="HOME"
-                    android:textColor="@color/DarkGray_605E5F__Home_Bulletin"
-                    android:textSize="24sp"
-                    app:fontFamily="@font/din_condensed"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:background="@drawable/rounded_bottom_gray"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="HOME"
+                android:textColor="@color/DarkGray_605E5F__Home_Bulletin"
+                android:textSize="24sp"
+                app:fontFamily="@font/din_condensed" />
 
             <fragment
                 android:id="@+id/fragment"
-                android:name="com.example.ahsapptest2.Home_Page_Code.DISTRICT_NEWS_MainPage"
-                android:layout_width="0dp"
+                android:name="com.example.ahsapptest2.Home_Page_Code.Home_Page_DISTRICT_NEWS"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
                 tools:layout="@layout/home_page__scrolling_template_layout" />
 
             <fragment
                 android:id="@+id/fragment2"
-                android:name="com.example.ahsapptest2.Home_Page_Code.SPORTS_NEWS_MainPage"
-                android:layout_width="0dp"
+                android:name="com.example.ahsapptest2.Home_Page_Code.Home_Page_SPORTS_NEWS"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment"
                 tools:layout="@layout/home_page__scrolling_template_layout" />
 
             <fragment
                 android:id="@+id/fragment3"
-                android:name="com.example.ahsapptest2.Home_Page_Code.ASB_NEWS_MainPage"
-                android:layout_width="0dp"
+                android:name="com.example.ahsapptest2.Home_Page_Code.Home_Page_ASB_NEWS"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment2"
                 tools:layout="@layout/home_page__scrolling_template_layout" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -1,11 +1,16 @@
 package com.example.ahsapptest2.Home_Page_Code;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -40,7 +45,6 @@ abstract class Main_Page_Scrolling_Template extends Fragment {
         FrameLayout[] frameLayouts = new FrameLayout[data.length];
 
         ConstraintSet set = new ConstraintSet();
-
 
         for(int i = 0; i < frameLayouts.length; i++)
         {

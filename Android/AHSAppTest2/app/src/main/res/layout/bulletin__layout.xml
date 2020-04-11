@@ -1,59 +1,343 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/outer_bulletin_page_constraintLayout"
+    tools:context=".Bulletin_Page_Fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Gray_D6D6D6__Home_Bulletin"
-    tools:context=".Bulletin_Page_Fragment">
-
+    android:id="@+id/bulletin_FrameLayout">
     <ScrollView
+
         android:id="@+id/bulletin_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/Gray_D6D6D6__Home_Bulletin"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bulletin_page_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
+
+            <TextView
+                android:id="@+id/bulletin_ComingUp_TitleText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/rounded_bottom_gray"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="COMING UP"
+                android:textColor="@color/DarkGray_605E5F__Home_Bulletin"
+                android:textSize="24sp"
+                app:fontFamily="@font/din_condensed"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/bulletin_Coming_Up_Barrier" />
+
+
+            <TextView
+                android:id="@+id/bulletin_TitleText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_bottom_gray"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="BULLETIN"
+                android:textColor="@color/DarkGray_605E5F__Home_Bulletin"
+                android:textSize="24sp"
+                app:fontFamily="@font/din_condensed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/bulletin_SeniorsLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/Bulletin_Margin"
+                android:layout_marginLeft="@dimen/Bulletin_Margin"
+                android:layout_marginTop="@dimen/Bulletin_Margin"
+                android:layout_marginEnd="@dimen/Bulletin_Margin"
+                android:layout_marginRight="@dimen/Bulletin_Margin"
+                android:background="@drawable/rounded_crimson_bulletin_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="onBulletinSeniorsClick"
+                android:orientation="horizontal"
+                android:padding="@dimen/Bulletin_Button_Padding"
+                app:layout_constraintEnd_toStartOf="@id/bulletin_EventsLinearLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_TitleText">
 
                 <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/rounded_bottom_gray" />
+                    android:id="@+id/bulletin_SeniorsImage"
+                    android:layout_width="@dimen/Bulletin_Image_Size"
+                    android:layout_height="@dimen/Bulletin_Image_Size"
+                    android:layout_weight="0"
+                    android:clickable="false"
+                    android:scaleType="fitCenter"
+
+                    android:tint="@color/LightPink_F9F2F2__Bulletin"
+                    app:srcCompat="@drawable/bulletin_seniors" />
 
                 <TextView
-                    android:id="@+id/Bulletin_Title"
+                    android:id="@+id/bulletin_SeniorsTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="BULLETIN"
-                    android:textColor="@color/DarkGray_605E5F__Home_Bulletin"
-                    android:textSize="24sp"
-                    app:fontFamily="@font/din_condensed"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_marginLeft="@dimen/Bulletin_Button_BetweenMargin"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:focusable="auto"
+                    android:text="Seniors "
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    app:fontFamily="@font/harlowsolidplain" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bulletin_CollegeLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/Bulletin_Margin"
+                android:layout_marginLeft="@dimen/Bulletin_Margin"
+                android:layout_marginTop="@dimen/Bulletin_Margin"
+                android:layout_marginEnd="@dimen/Bulletin_Margin"
+                android:layout_marginRight="@dimen/Bulletin_Margin"
+                android:background="@drawable/rounded_crimson_bulletin_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="onBulletinCollegeClick"
+                android:orientation="horizontal"
+                android:padding="@dimen/Bulletin_Button_Padding"
+                app:layout_constraintEnd_toStartOf="@id/bulletin_ReferenceLinearLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_SeniorsLinearLayout">
+
+                <ImageView
+                    android:id="@+id/bulletin_CollegeImage"
+                    android:layout_width="@dimen/Bulletin_Image_Size"
+                    android:layout_height="@dimen/Bulletin_Image_Size"
+                    android:layout_weight="0"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/LightPink_F9F2F2__Bulletin"
+                    app:srcCompat="@drawable/bulletin_college" />
+
+                <TextView
+                    android:id="@+id/bulletin_CollegeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/Bulletin_Button_BetweenMargin"
+                    android:layout_weight="1"
+                    android:focusable="auto"
+                    android:text="College"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    app:fontFamily="@font/harlowsolidplain" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bulletin_AthleticsLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/Bulletin_Margin"
+                android:layout_marginLeft="@dimen/Bulletin_Margin"
+                android:layout_marginTop="@dimen/Bulletin_Margin"
+                android:layout_marginEnd="@dimen/Bulletin_Margin"
+                android:layout_marginRight="@dimen/Bulletin_Margin"
+                android:layout_marginBottom="@dimen/Bulletin_Margin"
+                android:background="@drawable/rounded_crimson_bulletin_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="onBulletinAthleticsClick"
+                android:orientation="horizontal"
+                android:padding="@dimen/Bulletin_Button_Padding"
+                app:layout_constraintBottom_toTopOf="@id/bulletin_Coming_Up_Barrier"
+                app:layout_constraintEnd_toStartOf="@id/bulletin_OtherLinearLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_CollegeLinearLayout">
+
+                <ImageView
+                    android:id="@+id/bulletin_AthleticsImage"
+                    android:layout_width="@dimen/Bulletin_Image_Size"
+                    android:layout_height="@dimen/Bulletin_Image_Size"
+                    android:layout_weight="0"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/LightPink_F9F2F2__Bulletin"
+                    app:srcCompat="@drawable/bulletin_athletics" />
+
+                <TextView
+                    android:id="@+id/bulletin_AthleticsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/Bulletin_Button_BetweenMargin"
+                    android:layout_weight="1"
+                    android:focusable="auto"
+                    android:text="Athletics"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    app:fontFamily="@font/harlowsolidplain" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bulletin_EventsLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Bulletin_Margin"
+                android:layout_marginEnd="@dimen/Bulletin_Margin"
+                android:layout_marginRight="@dimen/Bulletin_Margin"
+                android:background="@drawable/rounded_crimson_bulletin_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="onBulletinEventsClick"
+                android:orientation="horizontal"
+                android:padding="@dimen/Bulletin_Button_Padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bulletin_SeniorsLinearLayout"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_TitleText">
+
+                <ImageView
+                    android:id="@+id/bulletin_EventsImage"
+                    android:layout_width="@dimen/Bulletin_Image_Size"
+                    android:layout_height="@dimen/Bulletin_Image_Size"
+                    android:layout_weight="0"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/LightPink_F9F2F2__Bulletin"
+                    app:srcCompat="@drawable/bulletin_events" />
+
+                <TextView
+                    android:id="@+id/bulletin_EventsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/Bulletin_Button_BetweenMargin"
+                    android:layout_weight="1"
+                    android:focusable="auto"
+                    android:text="Events "
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    app:fontFamily="@font/harlowsolidplain" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bulletin_ReferenceLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Bulletin_Margin"
+                android:layout_marginEnd="@dimen/Bulletin_Margin"
+                android:layout_marginRight="@dimen/Bulletin_Margin"
+                android:background="@drawable/rounded_crimson_bulletin_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="onBulletinReferenceClick"
+                android:orientation="horizontal"
+                android:padding="@dimen/Bulletin_Button_Padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bulletin_CollegeLinearLayout"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_EventsLinearLayout">
+
+                <ImageView
+                    android:id="@+id/bulletin_ReferenceImage"
+                    android:layout_width="@dimen/Bulletin_Image_Size"
+                    android:layout_height="@dimen/Bulletin_Image_Size"
+                    android:layout_weight="0"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/LightPink_F9F2F2__Bulletin"
+                    app:srcCompat="@drawable/bulletin_reference" />
+
+                <TextView
+                    android:id="@+id/bulletin_ReferenceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/Bulletin_Button_BetweenMargin"
+                    android:layout_weight="1"
+                    android:focusable="auto"
+                    android:text="Reference"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    app:fontFamily="@font/harlowsolidplain" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bulletin_OtherLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Bulletin_Margin"
+                android:layout_marginEnd="@dimen/Bulletin_Margin"
+                android:layout_marginRight="@dimen/Bulletin_Margin"
+                android:layout_marginBottom="@dimen/Bulletin_Margin"
+                android:background="@drawable/rounded_crimson_bulletin_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="onBulletinOtherClick"
+                android:orientation="horizontal"
+                android:padding="@dimen/Bulletin_Button_Padding"
+                app:layout_constraintBottom_toTopOf="@id/bulletin_Coming_Up_Barrier"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bulletin_AthleticsLinearLayout"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_ReferenceLinearLayout">
+
+                <ImageView
+                    android:id="@+id/bulletin_OtherImage"
+                    android:layout_width="@dimen/Bulletin_Image_Size"
+                    android:layout_height="@dimen/Bulletin_Image_Size"
+                    android:layout_weight="0"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/LightPink_F9F2F2__Bulletin"
+                    app:srcCompat="@drawable/bulletin_other" />
+
+                <TextView
+                    android:id="@+id/bulletin_OtherTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/Bulletin_Button_BetweenMargin"
+                    android:layout_weight="1"
+                    android:focusable="auto"
+                    android:text="Other"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    app:fontFamily="@font/harlowsolidplain" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/bulletin_Coming_Up_Barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="top"
+                app:constraint_referenced_ids="bulletin_ComingUp_TitleText"
+                tools:layout_editor_absoluteY="314dp" />
+
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/bulletin_ComingUp_NestedScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:fillViewport="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_ComingUp_TitleText">
+
+                <LinearLayout
+                    android:id="@+id/bulletin_ComingUp_LinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/Bulletin_Margin"
+                    tools:layout_conversion_absoluteHeight="19dp"
+                    tools:layout_conversion_absoluteWidth="59dp" />
+            </androidx.core.widget.NestedScrollView>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+</FrameLayout>
     <!-- TODO: Update blank fragment layout -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,7 +50,6 @@ public class Article_Blurb_Template extends Fragment {
     }
     public void setTitle(View view){
         TextView title = (TextView) view.findViewById(R.id.Title);
-        assert getArguments() != null;
         title.setText(getArguments().getString("title"));
     }
 
