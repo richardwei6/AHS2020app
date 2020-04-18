@@ -1,6 +1,8 @@
 package com.example.ahsapptest2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         };
 
         currentFrag = getSupportFragmentManager().findFragmentById(R.id.home_fragment);
+
+
         //bulletin_button.setColorFilter(R.color.DarkLogoRed);
         /*
 
@@ -189,3 +193,4 @@ public class MainActivity extends AppCompatActivity {
             ((Bulletin_Page_Fragment) currentFrag).onOtherClick(view);
     }
 }
+

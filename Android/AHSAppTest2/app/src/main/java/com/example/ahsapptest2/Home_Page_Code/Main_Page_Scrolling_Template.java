@@ -82,7 +82,6 @@ abstract class Main_Page_Scrolling_Template extends Fragment {
 
         Article_Blurb_Template[] blurbs = new Article_Blurb_Template[data.length];
 
-
         for(int i = 0; i < blurbs.length; i++)
         {
             blurbs[i] = Article_Blurb_Template.newInstance(data[i][0],data[i][1]);

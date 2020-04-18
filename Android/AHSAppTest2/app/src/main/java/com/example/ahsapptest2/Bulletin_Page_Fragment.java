@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -31,7 +32,54 @@ public class Bulletin_Page_Fragment extends Fragment {
     FrameLayout[] frameLayouts;
     LinearLayout seniors_layout, events_layout, college_layout, reference_layout, athletics_layout, other_layout;
     Bulletin_Template[] items;
-    boolean[] is_active = {false,false,false,false,false,false};
+
+    boolean[] is_active = new boolean[6]; //automatically all false
+
+    public boolean is_Type_Layout_Active(BulletinType type) //"Translates" enum to is_active array location
+    {
+        switch(type)
+        {
+            case SENIORS:
+                return is_active[0];
+            case EVENTS:
+                return is_active[1];
+            case COLLEGE:
+                return is_active[2];
+            case REFERENCE:
+                return is_active[3];
+            case ATHLETICS:
+                return is_active[4];
+            case OTHER:
+                return is_active[5];
+            default:
+                return false; //this really shouldn't happen
+        }
+    }
+
+    public void switch_Type_Layout_Active(BulletinType type)
+    {
+        switch(type)
+        {
+            case SENIORS:
+                is_active[0] = !is_active[0];
+                break;
+            case EVENTS:
+                is_active[1] = !is_active[1];
+                break;
+            case COLLEGE:
+                is_active[2] = !is_active[2];
+                break;
+            case REFERENCE:
+                is_active[3] = !is_active[3];
+                break;
+            case ATHLETICS:
+                is_active[4] = !is_active[4];
+                break;
+            case OTHER:
+                is_active[5] = !is_active[5];
+                break;
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,16 +87,15 @@ public class Bulletin_Page_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.bulletin__layout, container, false);
 
+        seniors_layout =          view.findViewById(R.id.bulletin_SeniorsLinearLayout);
+        events_layout =         view.findViewById(R.id.bulletin_EventsLinearLayout);
+        college_layout =        view.findViewById(R.id.bulletin_CollegeLinearLayout);
+        reference_layout =          view.findViewById(R.id.bulletin_ReferenceLinearLayout);
+        athletics_layout =          view.findViewById(R.id.bulletin_AthleticsLinearLayout);
+        other_layout =          view.findViewById(R.id.bulletin_OtherLinearLayout);
 
-         seniors_layout =          view.findViewById(R.id.bulletin_SeniorsLinearLayout);
-         events_layout=         view.findViewById(R.id.bulletin_EventsLinearLayout);
-         college_layout=        view.findViewById(R.id.bulletin_CollegeLinearLayout);
-        reference_layout=          view.findViewById(R.id.bulletin_ReferenceLinearLayout);
-        athletics_layout=          view.findViewById(R.id.bulletin_AthleticsLinearLayout);
-        other_layout=          view.findViewById(R.id.bulletin_OtherLinearLayout)    ;
 
-
-        String [][] data = getInfo();
+        final String [][] data = getInfo();
         if (data.length == 0) return view;
 
 
@@ -60,7 +107,6 @@ public class Bulletin_Page_Fragment extends Fragment {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
         params.setMargins(0,0,0,(int)getResources().getDimension(R.dimen.Bulletin_Margin));
-    System.out.println("Margins successful");
         for(int i = 0; i < frameLayouts.length; i++) {
             frameLayouts[i] = new FrameLayout(this.getContext());
             frameLayouts[i].setLayoutParams(new FrameLayout.LayoutParams(
@@ -70,22 +116,26 @@ public class Bulletin_Page_Fragment extends Fragment {
             frameLayouts[i].setId(getIdRange()+i);
             bulletin_item_LinearLayout.addView(frameLayouts[i],params);
 
-            System.out.println("Adding successful for fragment" + i);
             bulletin_item_LinearLayout.invalidate();
         }
-System.out.println(bulletin_item_LinearLayout.getChildCount());
+
         items = new Bulletin_Template[data.length];
 
-        for (int i = 0; i < items.length; i++)
-        {
-            items[i] = Bulletin_Template.newInstance(data[i][0],data[i][1],data[i][2],getItemType(data[i][3]));
-            getFragmentManager()
-                    .beginTransaction()
-                    .add(frameLayouts[i].getId(),items[i])
-                    .commit();
-            System.out.println("Commit successful for fragment" + i);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < items.length; i++)
+                {
+                    items[i] = Bulletin_Template.newInstance(data[i][0],data[i][1],data[i][2],getItemType(data[i][3]));
+                    getFragmentManager()
+                            .beginTransaction()
+                            .add(frameLayouts[i].getId(),items[i])
+                            .commit();
 
-        }
+                }
+            }
+        }).start();
+
 
 
         return view;
@@ -124,6 +174,7 @@ System.out.println(bulletin_item_LinearLayout.getChildCount());
 
     public Bulletin_Page_Fragment.BulletinType getItemType(String type)
     {
+        // TODO: fully implement this, because I don't know how it is currently sorted/ how the input works
         if(type.equals("Seniors"))
             return BulletinType.SENIORS;
         if(type.equals("Events"))
@@ -140,98 +191,72 @@ System.out.println(bulletin_item_LinearLayout.getChildCount());
 
     public void onSeniorsClick(View view)
     {
-        if(is_active[0])
-        {
-            seniors_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.Crimson_93424E__Bulletin));
-            is_active[0] = false;
-            filterItems();
-        }
+        if(is_Type_Layout_Active(BulletinType.SENIORS))
+            setLayoutTintActive(seniors_layout);
         else
-        {
-            seniors_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.GoldenYellow_E8BC66__Home_Bulletin));
-            is_active[0] = true;
-            filterItems();
-        }
+            setLayoutTintInactive(seniors_layout);
+        switch_Type_Layout_Active(BulletinType.SENIORS);
+        filterItems();
     }
 
     public void onEventsClick(View view)
     {
-        if(is_active[1])
-        {
-            events_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.Crimson_93424E__Bulletin));
-            is_active[1] = false;
-            filterItems();
-        }
+        if(is_Type_Layout_Active(BulletinType.EVENTS))
+            setLayoutTintActive(events_layout);
         else
-        {
-            events_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.GoldenYellow_E8BC66__Home_Bulletin));
-            is_active[1] = true;
-            filterItems();
-        }
+            setLayoutTintInactive(events_layout);
+        switch_Type_Layout_Active(BulletinType.EVENTS);
+        filterItems();
     }
 
     public void onCollegeClick(View view)
     {
-        if(is_active[2])
-        {
-            college_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.Crimson_93424E__Bulletin));
-            is_active[2] = false;
-            filterItems();
-        }
+        if(is_Type_Layout_Active(BulletinType.COLLEGE))
+            setLayoutTintActive(college_layout);
         else
-        {
-            college_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.GoldenYellow_E8BC66__Home_Bulletin));
-            is_active[2] = true;
-            filterItems();
-        }
+            setLayoutTintInactive(college_layout);
+        switch_Type_Layout_Active(BulletinType.COLLEGE);
+        filterItems();
     }
 
     public void onReferenceClick(View view)
     {
-        if(is_active[3])
-        {
-            reference_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.Crimson_93424E__Bulletin));
-            is_active[3] = false;
-            filterItems();
-        }
+        if(is_Type_Layout_Active(BulletinType.REFERENCE))
+            setLayoutTintActive(reference_layout);
         else
-        {
-            reference_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.GoldenYellow_E8BC66__Home_Bulletin));
-            is_active[3] = true;
-            filterItems();
-        }
+            setLayoutTintInactive(reference_layout);
+        switch_Type_Layout_Active(BulletinType.REFERENCE);
+        filterItems();
     }
 
     public void onAthleticsClick(View view)
     {
-        if(is_active[4])
-        {
-            athletics_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.Crimson_93424E__Bulletin));
-            is_active[4] = false;
-            filterItems();
-        }
+        if(is_Type_Layout_Active(BulletinType.ATHLETICS))
+            setLayoutTintActive(athletics_layout);
         else
-        {
-            athletics_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.GoldenYellow_E8BC66__Home_Bulletin));
-            is_active[4] = true;
-            filterItems();
-        }
+            setLayoutTintInactive(athletics_layout);
+        switch_Type_Layout_Active(BulletinType.ATHLETICS);
+        filterItems();
     }
 
     public void onOtherClick(View view)
     {
-        if(is_active[5])
-        {
-            other_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.Crimson_93424E__Bulletin));
-            is_active[5] = false;
-            filterItems();
-        }
+        if(is_Type_Layout_Active(BulletinType.OTHER))
+            setLayoutTintActive(other_layout);
         else
-        {
-            other_layout.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(),R.color.GoldenYellow_E8BC66__Home_Bulletin));
-            is_active[5] = true;
-            filterItems();
-        }
+            setLayoutTintInactive(other_layout);
+        switch_Type_Layout_Active(BulletinType.OTHER);
+        filterItems();
+    }
+
+    public void setLayoutTintActive(View view)
+    {
+        ViewCompat.setBackgroundTintList(view,ContextCompat.getColorStateList(getActivity(),R.color.Crimson_93424E__Bulletin));
+    }
+
+    public void setLayoutTintInactive(View view)
+    {
+        ViewCompat.setBackgroundTintList(view,ContextCompat.getColorStateList(getActivity(),R.color.GoldenYellow_E8BC66__Home_Bulletin));
     }
 
     public void filterItems()
@@ -239,48 +264,13 @@ System.out.println(bulletin_item_LinearLayout.getChildCount());
 
         for(int i = 0; i < items.length; i++)
         {
-            switch(items[i].getType())
-            {
-                case SENIORS:
-                    if(is_active[0])
-                        frameLayouts[i].setVisibility(View.VISIBLE);
-                    else
-                        frameLayouts[i].setVisibility(View.GONE);
-                    break;
-                case EVENTS:
-                    if(is_active[1])
-                        frameLayouts[i].setVisibility(View.VISIBLE);
-                    else
-                        frameLayouts[i].setVisibility(View.GONE);
-                    break;
-                case COLLEGE:
-                    if(is_active[2])
-                        frameLayouts[i].setVisibility(View.VISIBLE);
-                    else
-                        frameLayouts[i].setVisibility(View.GONE);
-                    break;
-                case REFERENCE:
-                    if(is_active[3])
-                        frameLayouts[i].setVisibility(View.VISIBLE);
-                    else
-                        frameLayouts[i].setVisibility(View.GONE);
-                    break;
-                case ATHLETICS:
-                    if(is_active[4])
-                        frameLayouts[i].setVisibility(View.VISIBLE);
-                    else
-                        frameLayouts[i].setVisibility(View.GONE);
-                    break;
-                case OTHER:
-                    if(is_active[5])
-                        frameLayouts[i].setVisibility(View.VISIBLE);
-                    else
-                        frameLayouts[i].setVisibility(View.GONE);
-                default:
-                    break;
-            }
+            if(is_Type_Layout_Active(items[i].getType()))
+                frameLayouts[i].setVisibility(View.VISIBLE);
+            else
+                frameLayouts[i].setVisibility(View.GONE);
             frameLayouts[i].invalidate();
         }
+
         boolean isallfalse = false;
         for(boolean b: is_active)
             isallfalse = isallfalse||b;
