@@ -55,28 +55,32 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	
 	
-	// scrollview variables
-	var scrollViewHorizontalConstraints = CGFloat(50);
+	
+	// func that returns UIcolor from rgb values
+	   func makeColor(r: Float, g: Float, b: Float) -> UIColor{
+		   return UIColor.init(red: CGFloat(r/255.0), green: CGFloat(g/255.0), blue: CGFloat(b/255.0), alpha: CGFloat(1.0));
+	   }
+	
+	
 
-	
-	
-    // func that returns UIcolor from rgb values
-    func makeColor(r: Float, g: Float, b: Float) -> UIColor{
-        return UIColor.init(red: CGFloat(r/255.0), green: CGFloat(g/255.0), blue: CGFloat(b/255.0), alpha: CGFloat(1.0));
-    }
-    
+
     
     override func viewDidLoad() { // setup function
         super.viewDidLoad()
 		
         // Do any additional setup after loading the view.
-		//homeLabel.baselineAdjustment = .alignCenters;
-
-		//tabBar.selectedItem = tabBar.items?.first;
-		//tabBar.layer.cornerRadius = 20;
-		//tabBar.clipsToBounds = true;
 		
-        
+		
+		// article variables
+		let articleHorizontalPadding = CGFloat(10);
+		let articleVerticalPadding = CGFloat(5);
+		
+		
+        //let articleGreyBackground = makeColor(r: 239, g: 247, b: 237);
+		let articleDarkGreyBackground = makeColor(r: 143, g: 142, b: 142);
+		// scrollview variables
+		let scrollViewHorizontalConstraints = CGFloat(50);
+		
 		
 		// Featured News -----
 		featuredPageControl.numberOfPages = featuredSize;
@@ -87,12 +91,52 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
             // create content in scrollview
 			let contentView = UIButton(frame: featuredFrame); // wrapper for article
-			contentView.backgroundColor = makeColor(r: 147, g: 66, b: 78);
+			//contentView.backgroundColor = articleGreyBackground;
+			
+			
+			let articleImageViewFrame = CGRect(x: articleHorizontalPadding, y: articleVerticalPadding, width: featuredFrame.size.width-(2*articleHorizontalPadding), height: featuredFrame.size.height-60-articleVerticalPadding);
+			let articleImageView = UIImageView(frame:articleImageViewFrame);
+			articleImageView.backgroundColor = articleDarkGreyBackground;
+			articleImageView.layer.cornerRadius = 10;
+			
+			// time stamp
+			let articleTimestampFrame = CGRect(x: articleImageViewFrame.size.width - 60, y: articleImageViewFrame.size.height - 30, width: 50, height: 20);
+			let articleTimestamp = UILabel(frame: articleTimestampFrame);
+			articleTimestamp.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			articleTimestamp.font = UIFont(name: "SFProDisplay-Regular", size: 10);
+			articleTimestamp.textAlignment = .center;
+			articleTimestamp.textColor = makeColor(r: 57, g: 57, b: 57);
+			articleTimestamp.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
+			articleTimestamp.text = "1 hour ago"; // insert code here to get time of article
+
+			
+			//bookmark image button - 30x30
+			let bookmarkFrame = CGRect(x: articleImageViewFrame.size.width - 40, y: 10, width: 30, height: 30);
+			let bookmarkButton = UIButton(frame: bookmarkFrame);
+			bookmarkButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
+			let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
+			bookmarkButton.setImage(bookmarkImage, for: .normal);
+			
+			
+			
+			articleImageView.addSubview(bookmarkButton); // add bookmark button to imageview
+			articleImageView.addSubview(articleTimestamp); // add timestamp to imageview
+			
+			
+			let articleTitleFrame = CGRect(x: articleHorizontalPadding+1, y: featuredFrame.size.height - 60, width: featuredFrame.size.width-(2*articleHorizontalPadding)-2, height: 60);
+			let articleTitleLabel = UILabel(frame: articleTitleFrame);
+			articleTitleLabel.text = "Lorem Ipsum Long Title";
+			articleTitleLabel.textAlignment = .left;
+			articleTitleLabel.font = UIFont(name:"SFProText-Bold",size: 25);
 			
 			
 			
             // add contentview to scrollview
-			contentView.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 30);
+			contentView.addSubview(articleTitleLabel);
+			contentView.addSubview(articleImageView);
+			
+			
             self.featuredScrollView.addSubview(contentView);
         }
         // change horizontal size of scrollview

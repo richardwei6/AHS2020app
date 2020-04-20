@@ -95,8 +95,8 @@
                                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pageControl>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SPORTS NEWS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhP-qJ-RL9">
-                                                <rect key="frame" x="24" y="690" width="221" height="35"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPORTS NEWS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhP-qJ-RL9">
+                                                <rect key="frame" x="24.000000000000014" y="690" width="217.33333333333337" height="35"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="29"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -226,7 +226,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="up" id="r7s-HY-eAK"/>
+                    <tabBarItem key="tabBarItem" title="" image="arrowtriangle.up.circle.fill" catalog="system" id="r7s-HY-eAK"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
@@ -253,8 +253,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XRA-Ed-vnU">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.16078431372549018" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="selectedImageTintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <outlet property="TabBar" destination="XRA-Ed-vnU" id="CNh-Gu-8bO"/>
@@ -278,7 +277,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="QWa-7E-gcV"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="pin" id="jqn-gg-M2p"/>
+                    <tabBarItem key="tabBarItem" title="" image="doc.plaintext" catalog="system" id="jqn-gg-M2p"/>
                     <size key="freeformSize" width="414" height="1000"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8K-aq-voA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -295,7 +294,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="f7i-KM-eYF"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="bell" id="4tA-p1-WWh"/>
+                    <tabBarItem key="tabBarItem" title="" image="bookmark" catalog="system" id="4tA-p1-WWh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Hp-9R-HoA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -311,7 +310,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Cga-1v-EAA"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="gear" id="f5h-jM-6uR"/>
+                    <tabBarItem key="tabBarItem" title="" image="gear.png" id="f5h-jM-6uR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CzJ-an-mok" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="gxN-nj-8VK" userLabel="bulletinScrollView">
@@ -1377,22 +1376,22 @@
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="2021" width="128" height="128"/>
+        <image name="arrowtriangle.up.circle.fill" catalog="system" width="128" height="121"/>
         <image name="articlebg" width="128" height="128"/>
         <image name="athletics logo" width="58" height="62"/>
-        <image name="bell" width="25" height="30"/>
         <image name="blue barldpi" width="658" height="5"/>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="calendarsymbol" width="58" height="59"/>
         <image name="categoryred" width="128" height="128"/>
         <image name="college white" width="128" height="128"/>
         <image name="collegeimage" width="128" height="128"/>
+        <image name="doc.plaintext" catalog="system" width="115" height="128"/>
         <image name="featherldpi" width="131" height="122"/>
-        <image name="gear" width="25" height="25"/>
+        <image name="gear.png" width="25" height="25"/>
         <image name="otherstar" width="53" height="47"/>
-        <image name="pin" width="20" height="28.333333969116211"/>
         <image name="red barldpi" width="658" height="5"/>
         <image name="referencesymbol" width="43" height="54"/>
         <image name="selectedcategoryyellow" width="128" height="128"/>
-        <image name="up" width="25" height="25"/>
         <image name="yellow barldpi" width="658" height="5"/>
     </resources>
 </document>
