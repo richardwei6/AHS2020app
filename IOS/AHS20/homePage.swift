@@ -232,14 +232,14 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	}
 	
 	
-	func  scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-		featuredPageControl.currentPage = Int(round(featuredScrollView.contentOffset.x / featuredScrollView.frame.size.width));
+	func  scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+		featuredPageControl.currentPage = Int(featuredScrollView.contentOffset.x / featuredFrame.size.width);
 		
-		asbNewsPageControl.currentPage = Int(round(asbNewsScrollView.contentOffset.x / asbNewsScrollView.frame.size.width));
+		asbNewsPageControl.currentPage = Int(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width);
 		
-		sportsNewsPageControl.currentPage = Int(round(sportsNewsScrollView.contentOffset.x / sportsNewsScrollView.frame.size.width));
+		sportsNewsPageControl.currentPage = Int(sportsNewsScrollView.contentOffset.x / sportsNewsFrame.size.width);
 		
-		districtNewsPageControl.currentPage = Int(round(districtNewsScrollView.contentOffset.x / districtNewsScrollView.frame.size.width));
+		districtNewsPageControl.currentPage = Int(districtNewsScrollView.contentOffset.x / districtNewsFrame.size.width);
 	}
 	
 
