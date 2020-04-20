@@ -10,18 +10,7 @@ import Foundation
 import UIKit
 
 class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
-    
-    @IBOutlet weak var bulletinLabel: UILabel!
-    @IBOutlet weak var comingUpLabel: UILabel!
-    
-    @IBOutlet weak var seniorButton: UIButton!
-    @IBOutlet weak var collegeButton: UIButton!
-    @IBOutlet weak var athleticsButton: UIButton!
-    @IBOutlet weak var eventsButton: UIButton!
-    @IBOutlet weak var referenceButton: UIButton!
-    @IBOutlet weak var otherButton: UIButton!
-    
-    @IBOutlet weak var comingUpScrollView: UIScrollView!
+
     
     var comingUpSize = 10;
     var comingUpFrame = CGRect(x:0,y:0,width:0,height:0);
@@ -31,7 +20,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
+        /*
         bulletinLabel.setRoundedEdge(corners: [.bottomLeft,.bottomRight], radius: 30);
         comingUpLabel.setRoundedEdge(corners: [.bottomLeft,.bottomRight], radius: 30);
         
@@ -100,7 +89,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         }
         comingUpScrollView.contentSize = CGSize(width: comingUpFrame.size.width, height: comingUpFrame.size.height*CGFloat(comingUpSize) + CGFloat(spacing*comingUpSize));
         comingUpScrollView.delegate = self;
-        
+        */
     }
 
 }

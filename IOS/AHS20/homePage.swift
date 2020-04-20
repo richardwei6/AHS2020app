@@ -31,10 +31,6 @@ extension UIButton{
 class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
 
     // link UI elements to swift via outlets
-    @IBOutlet weak var homeLabel: UILabel!
-	@IBOutlet weak var districtNewsScrollView: UIScrollView!
-	@IBOutlet weak var sportsNewsScrollView: UIScrollView!
-	@IBOutlet weak var asbNewsScrollView: UIScrollView!
 	
 	//@IBOutlet weak var tabBar: UITabBar!
 	
@@ -60,7 +56,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
         super.viewDidLoad()
 		self.tabBarController?.delegate = self;
 		
-        // Do any additional setup after loading the view.
+        /*// Do any additional setup after loading the view.
 		homeLabel.baselineAdjustment = .alignCenters;
 
 		//tabBar.selectedItem = tabBar.items?.first;
@@ -183,13 +179,13 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		  asbNewsScrollView.contentSize = CGSize(width: (asbNewsFrame.size.width * CGFloat(asbNewsSize)) , height: asbNewsScrollView.frame.size.height);
 		  asbNewsScrollView.delegate = self;
 		
-	
+	  */
         
     }
 	
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews();
-		homeLabel.setRoundedEdge(corners: [.bottomLeft, .bottomRight], radius: 30);
+		//homeLabel.setRoundedEdge(corners: [.bottomLeft, .bottomRight], radius: 30);
 	}
 	
 
