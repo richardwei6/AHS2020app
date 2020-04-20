@@ -81,18 +81,43 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellow barldpi" translatesAutoresizingMaskIntoConstraints="NO" id="HPc-pr-wnr">
+                                                <rect key="frame" x="18" y="52" width="378" height="5"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red barldpi" translatesAutoresizingMaskIntoConstraints="NO" id="KgT-aZ-0k6">
+                                                <rect key="frame" x="18" y="394" width="378" height="5"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue barldpi" translatesAutoresizingMaskIntoConstraints="NO" id="9xr-5p-x60">
+                                                <rect key="frame" x="18" y="714" width="378" height="5"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellow barldpi" translatesAutoresizingMaskIntoConstraints="NO" id="mb6-Ff-M4i">
+                                                <rect key="frame" x="18" y="1034" width="378" height="5"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstItem="9xr-5p-x60" firstAttribute="top" secondItem="KgT-aZ-0k6" secondAttribute="bottom" constant="315" id="2RQ-I7-8o9"/>
                                             <constraint firstItem="fEC-OS-JXP" firstAttribute="leading" secondItem="2wD-YH-ePo" secondAttribute="leading" constant="24" id="37f-g3-LMi"/>
                                             <constraint firstItem="fEC-OS-JXP" firstAttribute="top" secondItem="rhP-qJ-RL9" secondAttribute="bottom" constant="285" id="8Yf-v0-vvr"/>
+                                            <constraint firstItem="KgT-aZ-0k6" firstAttribute="leading" secondItem="2wD-YH-ePo" secondAttribute="leading" constant="18" id="ApW-q4-Tj4"/>
+                                            <constraint firstItem="HPc-pr-wnr" firstAttribute="leading" secondItem="2wD-YH-ePo" secondAttribute="leading" constant="18" id="EGj-FM-gYW"/>
+                                            <constraint firstAttribute="bottom" secondItem="mb6-Ff-M4i" secondAttribute="bottom" constant="355" id="H2i-cm-5EG"/>
+                                            <constraint firstAttribute="trailing" secondItem="KgT-aZ-0k6" secondAttribute="trailing" constant="18" id="SYo-UE-VFL"/>
+                                            <constraint firstItem="9xr-5p-x60" firstAttribute="leading" secondItem="2wD-YH-ePo" secondAttribute="leading" constant="18" id="TKv-8h-hfg"/>
+                                            <constraint firstAttribute="trailing" secondItem="9xr-5p-x60" secondAttribute="trailing" constant="18" id="U7W-2i-zzK"/>
                                             <constraint firstItem="i7d-Cz-PL0" firstAttribute="top" secondItem="qQh-4Z-gwG" secondAttribute="bottom" constant="307" id="UUd-Jk-Zeb"/>
+                                            <constraint firstAttribute="trailing" secondItem="HPc-pr-wnr" secondAttribute="trailing" constant="18" id="dOO-wV-wX5"/>
                                             <constraint firstItem="rhP-qJ-RL9" firstAttribute="top" secondItem="i7d-Cz-PL0" secondAttribute="bottom" constant="285" id="dPg-Gb-4E9"/>
                                             <constraint firstAttribute="bottom" secondItem="fEC-OS-JXP" secondAttribute="bottom" constant="369" id="ebS-w9-LP1"/>
                                             <constraint firstItem="i7d-Cz-PL0" firstAttribute="leading" secondItem="2wD-YH-ePo" secondAttribute="leading" constant="24" id="g4N-ci-R1A"/>
+                                            <constraint firstAttribute="trailing" secondItem="mb6-Ff-M4i" secondAttribute="trailing" constant="18" id="jyT-AW-wjo"/>
                                             <constraint firstItem="qQh-4Z-gwG" firstAttribute="top" secondItem="2wD-YH-ePo" secondAttribute="top" constant="8" id="kiN-49-reK"/>
+                                            <constraint firstItem="mb6-Ff-M4i" firstAttribute="top" secondItem="9xr-5p-x60" secondAttribute="bottom" constant="315" id="l7W-bl-bLu"/>
+                                            <constraint firstItem="mb6-Ff-M4i" firstAttribute="leading" secondItem="2wD-YH-ePo" secondAttribute="leading" constant="18" id="lzZ-Wa-ypm"/>
+                                            <constraint firstItem="KgT-aZ-0k6" firstAttribute="top" secondItem="HPc-pr-wnr" secondAttribute="bottom" constant="337" id="mpg-xf-Ak4"/>
                                             <constraint firstItem="rhP-qJ-RL9" firstAttribute="leading" secondItem="2wD-YH-ePo" secondAttribute="leading" constant="24" id="pFI-gR-aVG"/>
                                             <constraint firstItem="qQh-4Z-gwG" firstAttribute="leading" secondItem="2wD-YH-ePo" secondAttribute="leading" constant="24" id="qa1-IM-s1M"/>
+                                            <constraint firstItem="HPc-pr-wnr" firstAttribute="top" secondItem="2wD-YH-ePo" secondAttribute="top" constant="52" id="vf1-gI-SMi"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -131,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-497" y="1762"/>
+            <point key="canvasLocation" x="-497.10144927536237" y="1761.6847826086957"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="acC-Sg-idM">
@@ -1268,6 +1293,7 @@
         <image name="articlebg" width="128" height="128"/>
         <image name="athletics logo" width="58" height="62"/>
         <image name="bell" width="25" height="30"/>
+        <image name="blue barldpi" width="658" height="5"/>
         <image name="calendarsymbol" width="58" height="59"/>
         <image name="categoryred" width="128" height="128"/>
         <image name="college white" width="128" height="128"/>
@@ -1276,8 +1302,10 @@
         <image name="gear" width="25" height="25"/>
         <image name="otherstar" width="53" height="47"/>
         <image name="pin" width="20" height="28.333333969116211"/>
+        <image name="red barldpi" width="658" height="5"/>
         <image name="referencesymbol" width="43" height="54"/>
         <image name="selectedcategoryyellow" width="128" height="128"/>
         <image name="up" width="25" height="25"/>
+        <image name="yellow barldpi" width="658" height="5"/>
     </resources>
 </document>
