@@ -70,7 +70,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		let articleTextWidth = (width/2) + 10;
 		
 		// article timestamp
-		let timestampFrame = CGRect(x: 0, y: 0, width: 70, height: 10);
+		let timestampFrame = CGRect(x: 0, y: 0, width: 70, height: 20);
 		let timestamp = UILabel(frame: timestampFrame);
 		timestamp.numberOfLines = 1;
 		timestamp.adjustsFontSizeToFitWidth = true;
@@ -133,6 +133,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
         super.viewDidLoad()
 		
         // Do any additional setup after loading the view.
+		// set month -
+		let month = Calendar.current.component(.month, from: Date());
+		monthLabel.text = "Month " + (month < 10 ? "0":"") + String(month);
 		
 		
 		// article variables

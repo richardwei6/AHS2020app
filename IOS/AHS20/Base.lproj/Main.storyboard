@@ -226,7 +226,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="arrowtriangle.up.circle.fill" catalog="system" id="r7s-HY-eAK"/>
+                    <tabBarItem key="tabBarItem" title="" image="shift.fill" catalog="system" id="r7s-HY-eAK"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
@@ -254,6 +254,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <outlet property="TabBar" destination="XRA-Ed-vnU" id="CNh-Gu-8bO"/>
@@ -294,7 +295,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="f7i-KM-eYF"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="bookmark" catalog="system" id="4tA-p1-WWh"/>
+                    <tabBarItem key="tabBarItem" title="" image="bookmark.fill" catalog="system" id="4tA-p1-WWh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Hp-9R-HoA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -310,7 +311,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Cga-1v-EAA"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="gear.png" id="f5h-jM-6uR"/>
+                    <tabBarItem key="tabBarItem" title=" " image="gear.png" id="f5h-jM-6uR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CzJ-an-mok" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="gxN-nj-8VK" userLabel="bulletinScrollView">
@@ -1376,11 +1377,10 @@
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="2021" width="128" height="128"/>
-        <image name="arrowtriangle.up.circle.fill" catalog="system" width="128" height="121"/>
         <image name="articlebg" width="128" height="128"/>
         <image name="athletics logo" width="58" height="62"/>
         <image name="blue barldpi" width="658" height="5"/>
-        <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="calendarsymbol" width="58" height="59"/>
         <image name="categoryred" width="128" height="128"/>
         <image name="college white" width="128" height="128"/>
@@ -1392,6 +1392,7 @@
         <image name="red barldpi" width="658" height="5"/>
         <image name="referencesymbol" width="43" height="54"/>
         <image name="selectedcategoryyellow" width="128" height="128"/>
+        <image name="shift.fill" catalog="system" width="128" height="106"/>
         <image name="yellow barldpi" width="658" height="5"/>
     </resources>
 </document>
