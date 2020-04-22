@@ -32,6 +32,7 @@
 		33E69204243AD1F20004E2F1 /* bulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69203243AD1F20004E2F1 /* bulletinPage.swift */; };
 		33E69206243AD2110004E2F1 /* notificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69205243AD2110004E2F1 /* notificationPage.swift */; };
 		33E69208243AD21F0004E2F1 /* settingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69207243AD21F0004E2F1 /* settingPage.swift */; };
+		33E80ED9244FBBB900020640 /* articlePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E80ED8244FBBB900020640 /* articlePage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		33E69203243AD1F20004E2F1 /* bulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bulletinPage.swift; sourceTree = "<group>"; };
 		33E69205243AD2110004E2F1 /* notificationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationPage.swift; sourceTree = "<group>"; };
 		33E69207243AD21F0004E2F1 /* settingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingPage.swift; sourceTree = "<group>"; };
+		33E80ED8244FBBB900020640 /* articlePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = articlePage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				33E69203243AD1F20004E2F1 /* bulletinPage.swift */,
 				33E69205243AD2110004E2F1 /* notificationPage.swift */,
 				33E69207243AD21F0004E2F1 /* settingPage.swift */,
+				33E80ED8244FBBB900020640 /* articlePage.swift */,
 				330D3E15241D5E8C007D0628 /* Main.storyboard */,
 				330D3E1A241D5E8D007D0628 /* LaunchScreen.storyboard */,
 				334E1EF8241DB50000D482B4 /* Assets */,
@@ -312,6 +315,7 @@
 				330D3E10241D5E8C007D0628 /* AppDelegate.swift in Sources */,
 				33E69208243AD21F0004E2F1 /* settingPage.swift in Sources */,
 				33E69202243ACA970004E2F1 /* CustomUITabController.swift in Sources */,
+				33E80ED9244FBBB900020640 /* articlePage.swift in Sources */,
 				330D3E12241D5E8C007D0628 /* SceneDelegate.swift in Sources */,
 				33E69204243AD1F20004E2F1 /* bulletinPage.swift in Sources */,
 			);

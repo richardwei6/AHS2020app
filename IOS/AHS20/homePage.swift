@@ -65,6 +65,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	@objc func openArticle(){
 		print("Button pressed");
+		performSegue(withIdentifier: "articleSegue", sender: nil);
 	}
 	
 	@objc func bookmarkCurrentArticle(){
@@ -122,77 +123,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		mainArticleView.addSubview(articleTitleLabel);
 		mainArticleView.addSubview(articleSubtitleContent);
 		mainArticleView.addSubview(articleImageView);
-		
-		
-		
-		
-		/*
-		//construct main UIView
-		let articleFrame = CGRect(x: x, y: y, width: width, height: height);
-		let articleView = UIView(frame: articleFrame);
-		
-		let articleContentView = UIButton(frame: articleFrame);
-		
-		let articleTextWidth = (width/2) + 10;
-		
-		// article timestamp
-		let timestampFrame = CGRect(x: 0, y: 0, width: 70, height: 20);
-		let timestamp = UILabel(frame: timestampFrame);
-		timestamp.numberOfLines = 1;
-		timestamp.adjustsFontSizeToFitWidth = true;
-		timestamp.minimumScaleFactor = 0.5;
-		timestamp.textAlignment = .left;
-		timestamp.textColor = makeColor(r: 57, g: 57, b: 57);
-		timestamp.font = UIFont(name: "SFProDisplay-Regular", size: 10);
-		timestamp.text = "1 hour ago";
-		
-		
-		let articleTitleFrame = CGRect(x: 0, y: 10, width: articleTextWidth, height: height/2);
-		let articleTitleLabel = UILabel(frame: articleTitleFrame);
-		articleTitleLabel.numberOfLines = 2;
-		articleTitleLabel.adjustsFontSizeToFitWidth = true;
-		articleTitleLabel.minimumScaleFactor = 0.8;
-		articleTitleLabel.textAlignment = .left;
-		articleTitleLabel.font = UIFont(name: "SFProDisplay-Black",size: 20);
-		articleTitleLabel.text = "Auto Adjusting Long Title";
-		
-		
-		let articleSubtitleFrame = CGRect(x: 0, y: height/2, width: articleTextWidth, height: height/2);
-		let articleSubtitleContent = UILabel(frame: articleSubtitleFrame);
-		articleSubtitleContent.numberOfLines = 2;
-		articleSubtitleContent.textAlignment = .left;
-		articleSubtitleContent.font = UIFont(name: "SFProDisplay-Regular", size: 15);
-		articleSubtitleContent.text = "This is the content inside the article. What you are seeing is a preview of such article.";
-		
-		
-		let articleImageFrame = CGRect(x: articleTextWidth + 10, y: 10, width: width - (articleTextWidth + 20), height: height - 10);
-		let articleImageView = UIImageView(frame: articleImageFrame);
-		articleImageView.backgroundColor = makeColor(r: 143, g: 142, b: 142); // articleDarkGreyBackground
-		articleImageView.layer.cornerRadius = 10;
-		
-		//add all other elements to everything
-		articleContentView.addSubview(timestamp);
-		articleContentView.addSubview(articleTitleLabel);
-		articleContentView.addSubview(articleSubtitleContent);
-		articleContentView.addSubview(articleImageView);
-		
-		
-		// subview bookmark button - 30x30
-		let bookmarkFrame = CGRect(x: width - 40, y: 10, width: 30, height: 30);
-		let bookmarkButton = UIButton(frame: bookmarkFrame);
-		bookmarkButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
-		bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-		let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
-		bookmarkButton.setImage(bookmarkImage, for: .normal);
-		
-		// add what happens when button pressed
-		//bookmarkButton.addTarget(self, action: #selector(self.bookmarkCurrentArticle), for: .touchUpInside);
-	  
-		
-		articleView.addSubview(bookmarkButton);
-		articleView.addSubview(articleContentView);
-		*/
-		
 		mainArticleView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
 		
 		return mainArticleView;
