@@ -9,25 +9,6 @@
 import UIKit
 
 
-extension UILabel{ // add setRoundedEdge func to UILabel
-    func setRoundedEdge(corners:UIRectCorner, radius: CGFloat){ // label.setRoundedEdge([.TopLeft, . TopRight], radius: 10)
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        layer.mask = mask
-    }
-}
-
-extension UIButton{
-	func setRoundedEdge(corners:UIRectCorner, radius: CGFloat){ // label.setRoundedEdge([.TopLeft, . TopRight], radius: 10)
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        layer.mask = mask
-    }
-}
-
-
 class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
 
     // link UI elements to swift via outlets
@@ -53,13 +34,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     var sportsNewsFrame = CGRect(x:0,y:0,width:0,height:0);
     var districtNewsSize = 5;
     var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
-	
-	
-	
-	// func that returns UIcolor from rgb values
-	   func makeColor(r: Float, g: Float, b: Float) -> UIColor{
-		   return UIColor.init(red: CGFloat(r/255.0), green: CGFloat(g/255.0), blue: CGFloat(b/255.0), alpha: CGFloat(1.0));
-	   }
 	
 	
 	
@@ -154,8 +128,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		featuredFrame.size.width = UIScreen.main.bounds.size.width - scrollViewHorizontalConstraints;
         for aIndex in 0..<featuredSize{
 			featuredFrame.origin.x = (featuredFrame.size.width * CGFloat(aIndex));
-			
-			
 			
 			
             // create content in scrollview

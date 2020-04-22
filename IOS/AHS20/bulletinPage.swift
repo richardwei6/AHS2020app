@@ -11,85 +11,77 @@ import UIKit
 
 class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
 
+    @IBOutlet weak var filterScrollView: UIScrollView!
+    @IBOutlet weak var bulletinScrollView: UIScrollView!
     
-    var comingUpSize = 10;
-    var comingUpFrame = CGRect(x:0,y:0,width:0,height:0);
+    @IBOutlet weak var monthLabel: UILabel!
+    
+    // padding variables
+    let iconHorizontalPadding = CGFloat(10);
+    let articleHorizontalPadding = CGFloat(10);
+    let articleVerticalPadding = CGFloat(10);
+    let articleVerticalSize = CGFloat(100);
     
     
-    var buttonTextEdgeInset = UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0);
+    let filterSize = 6;
+    var filterFrame = CGRect(x:0,y:0,width: 0, height: 0);
+    var filterIconSize = CGFloat(85);
+    
+    
+    var bulletinSize = 10;
+    var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
+    
+    @objc func openArticle(){
+        print("Button pressed");
+        performSegue(withIdentifier: "articleSegue", sender: nil);
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        /*
-        bulletinLabel.setRoundedEdge(corners: [.bottomLeft,.bottomRight], radius: 30);
-        comingUpLabel.setRoundedEdge(corners: [.bottomLeft,.bottomRight], radius: 30);
+       
+        filterIconSize = filterScrollView.frame.size.height;
         
-        // set up correct spacing between text on button and image
-        seniorButton.contentEdgeInsets = buttonTextEdgeInset;
-        seniorButton.contentHorizontalAlignment = .left;
-        collegeButton.contentEdgeInsets = buttonTextEdgeInset;
-        collegeButton.contentHorizontalAlignment = .left;
-        athleticsButton.contentEdgeInsets = buttonTextEdgeInset;
-        athleticsButton.contentHorizontalAlignment = .left;
-        eventsButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 55, bottom: 0, right: 0);
-        eventsButton.contentHorizontalAlignment = .left;
-        referenceButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 0);
-        referenceButton.contentHorizontalAlignment = .left;
-        otherButton.contentEdgeInsets = buttonTextEdgeInset;
-        otherButton.contentHorizontalAlignment = .left;
-        seniorButton.layer.cornerRadius = 14;
-        collegeButton.layer.cornerRadius = 14;
-        athleticsButton.layer.cornerRadius = 14;
-        eventsButton.layer.cornerRadius = 14;
-        referenceButton.layer.cornerRadius = 14;
-        otherButton.layer.cornerRadius = 14;
+        let month = Calendar.current.component(.month, from: Date());
+        monthLabel.text = "Month " + (month < 10 ? "0":"") + String(month);
         
-        // set up scroll view
-        let spacing = 10;
-        comingUpFrame.size.height = 120;
-        comingUpFrame.size.width = UIScreen.main.bounds.size.width - 44;
-        for aIndex in 0..<comingUpSize{
-            comingUpFrame.origin.y = (comingUpFrame.size.height*CGFloat(aIndex)) + CGFloat(spacing*aIndex);
+        // set up both scrollviews here
+        
+        
+        
+        //filterFrame.size = filterScrollView.frame.size;
+        filterFrame.size.height = filterIconSize;
+        filterFrame.size.width = filterIconSize; //
+        
+        for buttonIndex in 0..<filterSize{
+            filterFrame.origin.x = articleHorizontalPadding+((filterIconSize+iconHorizontalPadding) * CGFloat(buttonIndex));
+            let buttonView = UIButton(frame: filterFrame);
+            //buttonView.setImage("", for: .normal);
+            buttonView.backgroundColor = UIColor.gray;
             
-            let contentButton = UIButton(frame: comingUpFrame);
-            contentButton.backgroundColor = UIColor.white;
-            
-            // content inside contentView ---
-            let imageFrame = CGRect(x:10, y:10, width: 30, height: 30);
-            let imageView = UIImageView(frame: imageFrame);
-            imageView.image = UIImage(named: "college-selected.png");
-            
-            
-            let titleFrame = CGRect(x:55, y:15, width: 100, height: 30);
-            let titleText = UILabel(frame: titleFrame);
-            titleText.text = "Title";
-            titleText.font = UIFont(name: "DINCondensed-Bold", size: 30);
-            
-            
-            let dateFrame = CGRect(x:comingUpFrame.size.width-110, y: 10, width: 100, height: 20);
-            let dateText = UILabel(frame: dateFrame);
-            dateText.text = "00/00/0000";
-            
-            
-            let contentFrame = CGRect(x:10, y:45, width: comingUpFrame.size.width-20, height: comingUpFrame.size.height - 45);
-            let contentText = UILabel(frame: contentFrame);
-            contentText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend erat ultricies bibendum bibendum. Nulla imperdiet dui a auctor tristique. Aliquam lobortis tellus vel mauris congue lobortis. Etiam rutrum ultrices convallis. Sed nulla felis, tincidunt vel diam eget, consectetur lobortis magna. Praesent quis lacus mi. Integer varius, nisi at ullamcorper sagittis, dolor elit ornare lorem, ac commodo enim quam convallis nulla. Cras ultricies vestibulum eleifend. Sed at malesuada dolor, et consequat quam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Interdum et malesuada fames ac ante ipsum primis in faucibus. In consectetur augue consequat ex ornare, non tempor ipsum lacinia. Fusce auctor, felis id consectetur consequat, mauris purus luctus erat, in mattis odio augue in magna. Pellentesque ac congue justo.";
-            contentText.font = UIFont(name: contentText.font.fontName, size: 20);
-            contentText.numberOfLines = 3;
-
-            
-            // add subviews to main button
-            contentButton.addSubview(imageView);
-            contentButton.addSubview(titleText);
-            contentButton.addSubview(dateText);
-            contentButton.addSubview(contentText);
-            
-            contentButton.layer.cornerRadius = 20;
-            self.comingUpScrollView.addSubview(contentButton);
+            self.filterScrollView.addSubview(buttonView);
         }
-        comingUpScrollView.contentSize = CGSize(width: comingUpFrame.size.width, height: comingUpFrame.size.height*CGFloat(comingUpSize) + CGFloat(spacing*comingUpSize));
-        comingUpScrollView.delegate = self;
-        */
+        filterScrollView.contentSize = CGSize(width: (filterIconSize+iconHorizontalPadding) * CGFloat(filterSize), height: filterScrollView.frame.size.height);
+        filterScrollView.delegate = self;
+        
+        
+        // set up bulletin
+        bulletinFrame.size.height = articleVerticalSize;
+        bulletinFrame.size.width = UIScreen.main.bounds.size.width - (2*articleHorizontalPadding);
+        
+        for aIndex in 0..<bulletinSize{
+            bulletinFrame.origin.x = articleHorizontalPadding;
+            bulletinFrame.origin.y = ((bulletinFrame.size.height+articleVerticalPadding)*CGFloat(aIndex));
+            let articleButton = UIButton(frame: bulletinFrame);
+            articleButton.backgroundColor = UIColor.gray;
+            
+            
+            
+            articleButton.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside)
+            self.bulletinScrollView.addSubview(articleButton);
+        }
+        bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width-(2*articleHorizontalPadding), height: articleHorizontalPadding+(bulletinFrame.size.height+articleHorizontalPadding)*CGFloat(bulletinSize));
+        bulletinScrollView.delegate = self;
     }
 
 }
