@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AHSAppTest3</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="time_updated_placeholder">Updated %1$d hours ago</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

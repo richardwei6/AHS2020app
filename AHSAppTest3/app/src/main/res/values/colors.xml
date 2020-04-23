@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name = "Crimson_992938__HOME">#992938</color>
+    <color name = "LightGray_F2F2F3__HOME">#F2F2F3</color>
+    <color name = "VomitYellow_DDCD3E__HOME">#DDCD3E</color>
+    <color name = "LightishGray_EFEDED__HOME">#EFEDED</color>
+    <color name = "Black_000000__HOME">#000</color>
+    <color name = "SeaBlue_364D9E__HOME">#364D9E</color>
+    <color name = "Blank">#0000</color>
+    <color name = "DarkGray_8D898D__HOME">#8D898D</color>
+    <color name = "DarkerGray_6F7073__HOME">#6F7073</color>
+</resources>
