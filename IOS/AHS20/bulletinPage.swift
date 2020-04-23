@@ -31,6 +31,10 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     var bulletinSize = 10;
     var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
     
+    
+    //let filterIcons[,,,,,];
+    
+    
     @objc func openArticle(){
         print("Button pressed");
         performSegue(withIdentifier: "articleSegue", sender: nil);
@@ -61,7 +65,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             
             self.filterScrollView.addSubview(buttonView);
         }
-        filterScrollView.contentSize = CGSize(width: (filterIconSize+iconHorizontalPadding) * CGFloat(filterSize), height: filterScrollView.frame.size.height);
+        filterScrollView.contentSize = CGSize(width: (filterIconSize+iconHorizontalPadding) * CGFloat(filterSize)+iconHorizontalPadding, height: filterScrollView.frame.size.height);
         filterScrollView.delegate = self;
         
         
@@ -82,6 +86,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         }
         bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width-(2*articleHorizontalPadding), height: articleHorizontalPadding+(bulletinFrame.size.height+articleHorizontalPadding)*CGFloat(bulletinSize));
         bulletinScrollView.delegate = self;
+        
+        
+        
     }
 
 }
