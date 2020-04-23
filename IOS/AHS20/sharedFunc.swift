@@ -14,8 +14,8 @@ import UIKit
 
 
 class CustomUIButton: UIButton{
-    var articleIndex: Int?
-    var articleID: String? // string?
+    var articleIndex = -1;
+    var articleID: String? // is articleID a string?
 }
 
 

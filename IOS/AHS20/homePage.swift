@@ -6,6 +6,12 @@
 //  Copyright © 2020 AHS. All rights reserved.
 //
 
+
+// ----- READ: Hello whomever might be reading this. I have many custom features added to this code that you won't find on stock swift projects. This is why I have included some notes that you might want to read below:
+/*
+- sharedFunc.swift includes the shared functions/classes between all swift files. You can access any of theses functions from any swift file
+- CustomUIButton is a custom class that I created that is an extension of the regular UIButton class. The main different to this class is that there are extra data types that allow you allow you to pass data to a ".addTarget" @objc function that you normally wouldn't be able to do. The data types can be found in sharedFunc.swift
+*/
 import UIKit
 
 

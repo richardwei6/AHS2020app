@@ -36,7 +36,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     let filterIconPicturePath = ["Group 33.png","Path 44.png","Group 34.png","Path 43.png","Path 45.png"];
     let filterIconName = ["Seniors", "Colleges", "Events", "Athletics", "Reference", "Others"];
     
-    var selectedFilters: [Int]?;
+    var selectedFilters: [Bool] = [false, false, false, false, false, false]; // selected types in this order - seniors, colleges, events, athletics, reference, and others
     
     
     @objc func openArticle(sender: CustomUIButton){
@@ -45,11 +45,19 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     }
     
     @objc func addFilter(sender: CustomUIButton){
-        print(sender.articleIndex);
+        if (sender.isSelected){ // selected to unselected
+            sender.backgroundColor = UIColor.white;
+        }else{ // unselected to selected
+            sender.backgroundColor = makeColor(r: 228, g: 182, b: 189);
+        }
+        sender.isSelected = !sender.isSelected;
+        print(sender.isSelected);
+        selectedFilters[sender.articleIndex] = sender.isSelected;
+        generateBulletin();
     }
     
     
-    func generateBulletin(){ // TODO: implement filter
+    func generateBulletin(){ // TODO: implement filter ---------
         // set up bulletin
         bulletinFrame.size.height = articleVerticalSize;
         bulletinFrame.size.width = UIScreen.main.bounds.size.width - (2*articleHorizontalPadding);
@@ -62,7 +70,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             
             // content inside button
             let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding) - 20, height: bulletinFrame.size.height - 10);
-            let mainView = UIButton(frame : mainViewFrame);
+            let mainView = CustomUIButton(frame: mainViewFrame);
             
             let articleIconFrame = CGRect(x: 0, y: 0, width: 40, height: 40);
             let articleIcon = UIImageView(frame: articleIconFrame);
@@ -175,11 +183,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 yearText.font = UIFont(name: "HarlowSolid", size: 30);
                 iconView.addSubview(yearText);
             }
+        
             
             iconView.addTarget(self, action: #selector(self.addFilter), for: .touchUpInside);
-            
-            
-            
             
             
             let iconTextFrame = CGRect(x:0, y: filterIconSize, width: filterIconSize, height: textMargin);

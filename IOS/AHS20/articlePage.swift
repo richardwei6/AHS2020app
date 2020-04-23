@@ -14,8 +14,6 @@ class articlePageViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
-        
     }
     
     @IBAction func exitArticle(_ sender: UIButton) {
