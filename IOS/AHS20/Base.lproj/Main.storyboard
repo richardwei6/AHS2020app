@@ -353,7 +353,7 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="P5n-mr-d09"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="GAd-35-9Gc"/>
                                             </scrollView>
-                                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rC-8R-9Il">
+                                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rC-8R-9Il">
                                                 <rect key="frame" x="0.0" y="17" width="416" height="89"/>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="ozh-6A-dv4"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Rpy-VH-LYh"/>

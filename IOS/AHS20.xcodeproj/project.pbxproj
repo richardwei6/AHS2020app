@@ -28,6 +28,9 @@
 		3343E26A244D0E7E0009D136 /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3343E268244D0E7E0009D136 /* SFProDisplay-Regular.ttf */; };
 		3343E26B244D0E7E0009D136 /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3343E268244D0E7E0009D136 /* SFProDisplay-Regular.ttf */; };
 		334E1EF9241DB50000D482B4 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 334E1EF8241DB50000D482B4 /* Assets */; };
+		33CF84AF24512CB500F8872A /* HARLOWSI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33CF84AE24512CB500F8872A /* HARLOWSI.ttf */; };
+		33CF84B024512CB500F8872A /* HARLOWSI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33CF84AE24512CB500F8872A /* HARLOWSI.ttf */; };
+		33CF84B124512CB500F8872A /* HARLOWSI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33CF84AE24512CB500F8872A /* HARLOWSI.ttf */; };
 		33E69202243ACA970004E2F1 /* CustomUITabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69201243ACA970004E2F1 /* CustomUITabController.swift */; };
 		33E69204243AD1F20004E2F1 /* bulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69203243AD1F20004E2F1 /* bulletinPage.swift */; };
 		33E69206243AD2110004E2F1 /* notificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69205243AD2110004E2F1 /* notificationPage.swift */; };
@@ -73,6 +76,7 @@
 		3343E264244D0DD80009D136 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Bold.ttf"; sourceTree = "<group>"; };
 		3343E268244D0E7E0009D136 /* SFProDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		334E1EF8241DB50000D482B4 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../Assets; sourceTree = "<group>"; };
+		33CF84AE24512CB500F8872A /* HARLOWSI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HARLOWSI.ttf; sourceTree = "<group>"; };
 		33E69201243ACA970004E2F1 /* CustomUITabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITabController.swift; sourceTree = "<group>"; };
 		33E69203243AD1F20004E2F1 /* bulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bulletinPage.swift; sourceTree = "<group>"; };
 		33E69205243AD2110004E2F1 /* notificationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationPage.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */,
 				3343E264244D0DD80009D136 /* SFProText-Bold.ttf */,
 				3343E260244D0DD30009D136 /* SFProDisplay-Semibold.ttf */,
+				33CF84AE24512CB500F8872A /* HARLOWSI.ttf */,
 			);
 			path = AHS20;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 			files = (
 				330D3E1C241D5E8D007D0628 /* LaunchScreen.storyboard in Resources */,
 				3343E261244D0DD30009D136 /* SFProDisplay-Semibold.ttf in Resources */,
+				33CF84AF24512CB500F8872A /* HARLOWSI.ttf in Resources */,
 				334E1EF9241DB50000D482B4 /* Assets in Resources */,
 				3343E269244D0E7E0009D136 /* SFProDisplay-Regular.ttf in Resources */,
 				3343E25D244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */,
@@ -288,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33CF84B024512CB500F8872A /* HARLOWSI.ttf in Resources */,
 				3343E25E244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */,
 				3343E266244D0DD80009D136 /* SFProText-Bold.ttf in Resources */,
 				3343E262244D0DD30009D136 /* SFProDisplay-Semibold.ttf in Resources */,
@@ -299,6 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33CF84B124512CB500F8872A /* HARLOWSI.ttf in Resources */,
 				3343E25F244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */,
 				3343E267244D0DD80009D136 /* SFProText-Bold.ttf in Resources */,
 				3343E263244D0DD30009D136 /* SFProDisplay-Semibold.ttf in Resources */,

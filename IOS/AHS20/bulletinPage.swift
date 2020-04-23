@@ -32,7 +32,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
     
     
-    //let filterIcons[,,,,,];
+    let filterIconName = ["Group 33.png","Path 44.png","Group 34.png","Path 43.png","Path 45.png"];
     
     
     @objc func openArticle(){
@@ -51,8 +51,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         
         // set up both scrollviews here
         
-        
-        
         //filterFrame.size = filterScrollView.frame.size;
         filterFrame.size.height = filterIconSize;
         filterFrame.size.width = filterIconSize; //
@@ -61,7 +59,23 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             filterFrame.origin.x = articleHorizontalPadding+((filterIconSize+iconHorizontalPadding) * CGFloat(buttonIndex));
             let buttonView = UIButton(frame: filterFrame);
             //buttonView.setImage("", for: .normal);
-            buttonView.backgroundColor = UIColor.gray;
+            buttonView.layer.borderColor = makeColor(r: 127, g: 47, b: 60).cgColor;
+            buttonView.layer.borderWidth = 3;
+            buttonView.layer.cornerRadius = 45;
+            if (buttonIndex != 0){
+                buttonView.setImage(UIImage(named: filterIconName[buttonIndex-1]), for: .normal);
+            }else{
+                let yearTextFrame = CGRect(x: 0, y: 5, width: filterFrame.size.width, height: filterFrame.size.height);
+                let yearText = UILabel(frame: yearTextFrame);
+                yearText.text = "20\n21";
+                yearText.setLineSpacing(lineHeightMultiple: 0.8);
+                yearText.textColor = makeColor(r: 127, g: 47, b: 60);
+                yearText.numberOfLines = 2;
+                yearText.textAlignment = .center;
+                yearText.font = UIFont(name: "HarlowSolid", size: 30);
+                buttonView.addSubview(yearText);
+            }
+            
             
             self.filterScrollView.addSubview(buttonView);
         }
