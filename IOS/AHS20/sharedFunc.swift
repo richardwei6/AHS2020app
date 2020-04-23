@@ -12,6 +12,13 @@ import UIKit
 
 // swift file with shared functions and extensions between files
 
+
+class CustomUIButton: UIButton{
+    var articleIndex: Int?
+    var articleID: String? // string?
+}
+
+
 extension UILabel {
 
     // Pass value for any one of both parameters and see result

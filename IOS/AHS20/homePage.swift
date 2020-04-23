@@ -37,20 +37,20 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	
 	
-	@objc func openArticle(){
+	@objc func openArticle(sender: CustomUIButton){
 		print("Button pressed");
 		performSegue(withIdentifier: "articleSegue", sender: nil);
 	}
 	
-	@objc func bookmarkCurrentArticle(){
+	@objc func bookmarkCurrentArticle(sender: CustomUIButton){
 		print("Bookmark Button");
 	}
 	
 	
-	func smallArticle(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, articleNum: Int) -> UIButton{//TODO: find out a way to separate article from top and bottom
+	func smallArticle(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, articleNum: Int) -> CustomUIButton{//TODO: find out a way to separate article from top and bottom
 			
 		let mainArticleFrame = CGRect(x: x, y: y, width: width, height: height);
-		let mainArticleView = UIButton(frame: mainArticleFrame);
+		let mainArticleView = CustomUIButton(frame: mainArticleFrame);
 		
 		
 		let articleTextWidth = (width/2) + 10;
@@ -131,7 +131,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
 			
             // create content in scrollview
-			let contentView = UIButton(frame: featuredFrame); // wrapper for article
+			let contentView = CustomUIButton(frame: featuredFrame); // wrapper for article
 			//contentView.backgroundColor = articleGreyBackground;
 			
 			
@@ -164,7 +164,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
 			//bookmark image button - 30x30
 			let bookmarkFrame = CGRect(x: (featuredFrame.size.width - 40 - articleHorizontalPadding) + (featuredFrame.size.width * CGFloat(aIndex)), y: 10+articleVerticalPadding, width: 30, height: 30);
-			let bookmarkButton = UIButton(frame: bookmarkFrame);
+			let bookmarkButton = CustomUIButton(frame: bookmarkFrame);
 			bookmarkButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
 			bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
@@ -205,13 +205,13 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
 			// subview bookmark button - 30x30
 			let bookmarkAFrame = CGRect(x: asbNewsFrame.size.width - 45, y: 15, width: 30, height: 30);
-			let bookmarkAButton = UIButton(frame: bookmarkAFrame);
+			let bookmarkAButton = CustomUIButton(frame: bookmarkAFrame);
 			bookmarkAButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
 			bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkAButton.setImage(bookmarkImage, for: .normal);
 			// B button
 			let bookmarkBFrame = CGRect(x: asbNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
-			let bookmarkBButton = UIButton(frame: bookmarkBFrame);
+			let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
 			bookmarkBButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
 			bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkBButton.setImage(bookmarkImage, for: .normal);
@@ -253,13 +253,13 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
 			// subview bookmark button - 30x30
 			let bookmarkAFrame = CGRect(x: sportsNewsFrame.size.width - 45, y: 15, width: 30, height: 30);
-			let bookmarkAButton = UIButton(frame: bookmarkAFrame);
+			let bookmarkAButton = CustomUIButton(frame: bookmarkAFrame);
 			bookmarkAButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
 			bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkAButton.setImage(bookmarkImage, for: .normal);
 			// B button
 			let bookmarkBFrame = CGRect(x: sportsNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
-			let bookmarkBButton = UIButton(frame: bookmarkBFrame);
+			let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
 			bookmarkBButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
 			bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkBButton.setImage(bookmarkImage, for: .normal);
@@ -295,13 +295,13 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
 			// subview bookmark button - 30x30
 			let bookmarkAFrame = CGRect(x: districtNewsFrame.size.width - 45, y: 15, width: 30, height: 30);
-			let bookmarkAButton = UIButton(frame: bookmarkAFrame);
+			let bookmarkAButton = CustomUIButton(frame: bookmarkAFrame);
 			bookmarkAButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
 			bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkAButton.setImage(bookmarkImage, for: .normal);
 			// B button
 			let bookmarkBFrame = CGRect(x: districtNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
-			let bookmarkBButton = UIButton(frame: bookmarkBFrame);
+			let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
 			bookmarkBButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
 			bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkBButton.setImage(bookmarkImage, for: .normal);
