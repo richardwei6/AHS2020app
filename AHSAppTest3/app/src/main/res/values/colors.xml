@@ -3,6 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="white">#FFFFFF</color>
+
 
     <color name = "Crimson_992938__HOME">#992938</color>
     <color name = "LightGray_F2F2F3__HOME">#F2F2F3</color>
