@@ -125,8 +125,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         let textMargin = CGFloat(20);
         filterIconSize = filterScrollView.frame.size.height-textMargin;
         
-        let month = Calendar.current.component(.month, from: Date());
-        monthLabel.text = "Month " + (month < 10 ? "0":"") + String(month);
+        monthLabel.text = getTitleDateAndMonth();
+        monthLabel.adjustsFontSizeToFitWidth = true;
+        monthLabel.minimumScaleFactor = 0.8;
         
         // set up both scrollviews here
         

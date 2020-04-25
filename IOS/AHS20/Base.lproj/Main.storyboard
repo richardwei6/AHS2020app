@@ -202,7 +202,7 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="vKC-E4-3oE"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="PwC-bv-Tgp"/>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-vu-DvI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-vu-DvI">
                                 <rect key="frame" x="26" y="28" width="79" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="79" id="Bms-Q4-7E7"/>
@@ -280,12 +280,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="951"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month 00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRa-vP-GeM">
-                                <rect key="frame" x="26" y="28" width="74.666666666666671" height="21"/>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arcadia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-qY-4Ox">
                                 <rect key="frame" x="26" y="5.9999999999999982" width="81" height="25.333333333333329"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="21"/>
@@ -341,16 +335,24 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="2Is-oT-sx5"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="k9N-8z-u9O"/>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="vQm-L9-rgt">
+                                <rect key="frame" x="26" y="28" width="79" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="79" id="aga-d6-6Yy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="QWa-7E-gcV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cWQ-qY-4Ox" secondAttribute="trailing" symbolic="YES" id="9Im-ZS-xoE"/>
                             <constraint firstItem="cWQ-qY-4Ox" firstAttribute="top" secondItem="QWa-7E-gcV" secondAttribute="top" constant="6" id="JuG-QL-o9B"/>
-                            <constraint firstItem="zRa-vP-GeM" firstAttribute="leading" secondItem="QWa-7E-gcV" secondAttribute="leading" constant="26" id="Q1n-63-VsR"/>
                             <constraint firstItem="QWa-7E-gcV" firstAttribute="bottom" secondItem="pm9-GY-9Nm" secondAttribute="bottom" id="VOX-zA-FEx"/>
                             <constraint firstItem="qM5-hE-V8h" firstAttribute="top" secondItem="QWa-7E-gcV" secondAttribute="top" constant="6" id="Zep-Et-IoI"/>
-                            <constraint firstItem="QWa-7E-gcV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zRa-vP-GeM" secondAttribute="trailing" symbolic="YES" id="fF9-Nh-pBj"/>
-                            <constraint firstItem="zRa-vP-GeM" firstAttribute="top" secondItem="QWa-7E-gcV" secondAttribute="top" constant="28" id="mOK-hE-fxG"/>
+                            <constraint firstItem="vQm-L9-rgt" firstAttribute="leading" secondItem="QWa-7E-gcV" secondAttribute="leading" constant="26" id="eCC-uZ-mKU"/>
+                            <constraint firstItem="vQm-L9-rgt" firstAttribute="top" secondItem="QWa-7E-gcV" secondAttribute="top" constant="28" id="mOg-JI-MQG"/>
                             <constraint firstItem="qM5-hE-V8h" firstAttribute="leading" secondItem="QWa-7E-gcV" secondAttribute="leading" constant="94" id="oMe-5z-fqU"/>
                             <constraint firstItem="pm9-GY-9Nm" firstAttribute="width" secondItem="fN1-Xs-ly6" secondAttribute="width" multiplier="1.00483" id="rk3-S1-KHc"/>
                             <constraint firstItem="cWQ-qY-4Ox" firstAttribute="leading" secondItem="QWa-7E-gcV" secondAttribute="leading" constant="26" id="uKr-z0-9em"/>
@@ -364,7 +366,7 @@
                     <connections>
                         <outlet property="bulletinScrollView" destination="7fW-Zl-nwU" id="SNI-SI-TpG"/>
                         <outlet property="filterScrollView" destination="6rC-8R-9Il" id="oT4-H9-lIf"/>
-                        <outlet property="monthLabel" destination="zRa-vP-GeM" id="WVp-Kl-50q"/>
+                        <outlet property="monthLabel" destination="vQm-L9-rgt" id="uh5-VQ-nKK"/>
                         <segue destination="947-74-bR0" kind="presentation" identifier="articleSegue" id="ubl-hZ-R1k"/>
                     </connections>
                 </viewController>
@@ -739,7 +741,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="NMc-HB-l48"/>
+        <segue reference="ubl-hZ-R1k"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

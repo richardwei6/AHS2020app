@@ -113,13 +113,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		
         // Do any additional setup after loading the view.
 		// set month -
-		let dateObj = Date();
-		let calender = Calendar.current;
-		let dayInt = calender.component(.day , from: dateObj);
-		
-		let monthInt = Calendar.current.dateComponents([.month], from: Date()).month;
-		let monthStr = Calendar.current.monthSymbols[monthInt!-1];
-		monthLabel.text = String(monthStr) + " " + String(dayInt);
+		monthLabel.text = getTitleDateAndMonth();
 		monthLabel.adjustsFontSizeToFitWidth = true;
 		monthLabel.minimumScaleFactor = 0.8;
 		
