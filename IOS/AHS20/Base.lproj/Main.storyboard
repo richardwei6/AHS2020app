@@ -38,6 +38,15 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-vu-DvI">
+                                <rect key="frame" x="26" y="28" width="79" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="79" id="Bms-Q4-7E7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="featherldpi" translatesAutoresizingMaskIntoConstraints="NO" id="9Ke-4S-D3G">
                                 <rect key="frame" x="94" y="6" width="48" height="44"/>
                                 <constraints>
@@ -202,15 +211,10 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="vKC-E4-3oE"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="PwC-bv-Tgp"/>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-vu-DvI">
-                                <rect key="frame" x="26" y="28" width="79" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="79" id="Bms-Q4-7E7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28b-cQ-Jc4">
+                                <rect key="frame" x="367" y="11" width="27" height="34"/>
+                                <state key="normal" backgroundImage="Icon ionic-ios-notifications.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.16078431372549018" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -218,9 +222,11 @@
                             <constraint firstItem="WHU-WA-zgn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="IwL-nx-D7l"/>
                             <constraint firstItem="hlT-D8-SH4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MhN-FT-rIA"/>
                             <constraint firstItem="hlT-D8-SH4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="57" id="Rwj-wT-vJR"/>
+                            <constraint firstItem="28b-cQ-Jc4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="11" id="UDd-Le-xww"/>
                             <constraint firstItem="WHU-WA-zgn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="6" id="aYv-4d-B44"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WHU-WA-zgn" secondAttribute="trailing" symbolic="YES" id="fnm-uw-wti"/>
                             <constraint firstItem="9Ke-4S-D3G" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="6" id="hF3-dQ-5rT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="28b-cQ-Jc4" secondAttribute="trailing" constant="20" id="mGJ-fI-FEg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kd3-vu-DvI" secondAttribute="trailing" symbolic="YES" id="pOC-jE-4t8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hlT-D8-SH4" secondAttribute="bottom" id="s7I-7g-nGz"/>
                             <constraint firstItem="Kd3-vu-DvI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="t8n-pJ-12E"/>
@@ -240,9 +246,11 @@
                         <outlet property="featuredPageControl" destination="ziZ-3F-Lph" id="oBa-fJ-0AU"/>
                         <outlet property="featuredScrollView" destination="5Zk-F5-cgs" id="8K5-Zz-hSV"/>
                         <outlet property="monthLabel" destination="Kd3-vu-DvI" id="JjG-ep-NhE"/>
+                        <outlet property="notificationBellButton" destination="28b-cQ-Jc4" id="WCn-gD-PoC"/>
                         <outlet property="sportsNewsPageControl" destination="CoA-5E-cXD" id="9IQ-Xd-aRg"/>
                         <outlet property="sportsNewsScrollView" destination="pZl-Yn-t3q" id="bd7-Ui-NmE"/>
                         <segue destination="947-74-bR0" kind="presentation" identifier="articleSegue" id="NMc-HB-l48"/>
+                        <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" id="KTY-iA-Gv7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -280,6 +288,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="951"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="vQm-L9-rgt">
+                                <rect key="frame" x="26" y="28" width="79" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="79" id="aga-d6-6Yy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arcadia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-qY-4Ox">
                                 <rect key="frame" x="26" y="5.9999999999999982" width="81" height="25.333333333333329"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="21"/>
@@ -335,15 +352,10 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="2Is-oT-sx5"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="k9N-8z-u9O"/>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="vQm-L9-rgt">
-                                <rect key="frame" x="26" y="28" width="79" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="79" id="aga-d6-6Yy"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xI6-ol-6dh">
+                                <rect key="frame" x="367" y="11" width="27" height="34"/>
+                                <state key="normal" backgroundImage="Icon ionic-ios-notifications.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -352,8 +364,10 @@
                             <constraint firstItem="QWa-7E-gcV" firstAttribute="bottom" secondItem="pm9-GY-9Nm" secondAttribute="bottom" id="VOX-zA-FEx"/>
                             <constraint firstItem="qM5-hE-V8h" firstAttribute="top" secondItem="QWa-7E-gcV" secondAttribute="top" constant="6" id="Zep-Et-IoI"/>
                             <constraint firstItem="vQm-L9-rgt" firstAttribute="leading" secondItem="QWa-7E-gcV" secondAttribute="leading" constant="26" id="eCC-uZ-mKU"/>
+                            <constraint firstItem="xI6-ol-6dh" firstAttribute="top" secondItem="QWa-7E-gcV" secondAttribute="top" constant="11" id="kYa-F5-7Vk"/>
                             <constraint firstItem="vQm-L9-rgt" firstAttribute="top" secondItem="QWa-7E-gcV" secondAttribute="top" constant="28" id="mOg-JI-MQG"/>
                             <constraint firstItem="qM5-hE-V8h" firstAttribute="leading" secondItem="QWa-7E-gcV" secondAttribute="leading" constant="94" id="oMe-5z-fqU"/>
+                            <constraint firstItem="QWa-7E-gcV" firstAttribute="trailing" secondItem="xI6-ol-6dh" secondAttribute="trailing" constant="20" id="oN3-zK-KoS"/>
                             <constraint firstItem="pm9-GY-9Nm" firstAttribute="width" secondItem="fN1-Xs-ly6" secondAttribute="width" multiplier="1.00483" id="rk3-S1-KHc"/>
                             <constraint firstItem="cWQ-qY-4Ox" firstAttribute="leading" secondItem="QWa-7E-gcV" secondAttribute="leading" constant="26" id="uKr-z0-9em"/>
                             <constraint firstItem="QWa-7E-gcV" firstAttribute="trailing" secondItem="pm9-GY-9Nm" secondAttribute="trailing" id="zdt-FN-25q"/>
@@ -367,17 +381,19 @@
                         <outlet property="bulletinScrollView" destination="7fW-Zl-nwU" id="SNI-SI-TpG"/>
                         <outlet property="filterScrollView" destination="6rC-8R-9Il" id="oT4-H9-lIf"/>
                         <outlet property="monthLabel" destination="vQm-L9-rgt" id="uh5-VQ-nKK"/>
+                        <outlet property="notificationBellButton" destination="xI6-ol-6dh" id="gSt-Yl-lrm"/>
                         <segue destination="947-74-bR0" kind="presentation" identifier="articleSegue" id="ubl-hZ-R1k"/>
+                        <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" id="rHG-Yz-Bir"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8K-aq-voA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="356.52173913043481" y="1557.8804347826087"/>
         </scene>
-        <!--Notifications-->
+        <!--savedPage-->
         <scene sceneID="EgA-Wq-Py7">
             <objects>
-                <viewController title="Notifications" id="1F2-5M-QoV" customClass="notificationClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="savedPage" id="1F2-5M-QoV" customClass="savedClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zSq-4z-8Ob">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="951"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -404,13 +420,19 @@
                                     <constraint firstAttribute="height" constant="44" id="fbL-HR-dhD"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCq-En-B3i">
+                                <rect key="frame" x="367" y="11" width="27" height="34"/>
+                                <state key="normal" backgroundImage="Icon ionic-ios-notifications.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Vkk-Jn-XKk" firstAttribute="trailing" secondItem="TCq-En-B3i" secondAttribute="trailing" constant="20" id="17Z-Za-KCq"/>
                             <constraint firstItem="KXl-kQ-tkQ" firstAttribute="top" secondItem="Vkk-Jn-XKk" secondAttribute="top" constant="28" id="IeD-1u-fv1"/>
                             <constraint firstItem="bbi-Em-9rW" firstAttribute="top" secondItem="Vkk-Jn-XKk" secondAttribute="top" constant="6" id="M3y-4F-RIc"/>
                             <constraint firstItem="KXl-kQ-tkQ" firstAttribute="leading" secondItem="Vkk-Jn-XKk" secondAttribute="leading" constant="26" id="RuH-7p-Vp7"/>
                             <constraint firstItem="bbi-Em-9rW" firstAttribute="leading" secondItem="Vkk-Jn-XKk" secondAttribute="leading" constant="26" id="VnB-j6-306"/>
+                            <constraint firstItem="TCq-En-B3i" firstAttribute="top" secondItem="Vkk-Jn-XKk" secondAttribute="top" constant="11" id="Xxb-65-QNV"/>
                             <constraint firstItem="4Of-ET-LUr" firstAttribute="leading" secondItem="Vkk-Jn-XKk" secondAttribute="leading" constant="94" id="opw-BN-1so"/>
                             <constraint firstItem="4Of-ET-LUr" firstAttribute="top" secondItem="Vkk-Jn-XKk" secondAttribute="top" constant="6" id="p4R-aI-4vD"/>
                         </constraints>
@@ -419,7 +441,10 @@
                     <tabBarItem key="tabBarItem" title="" image="bookmark.fill" catalog="system" id="4tA-p1-WWh"/>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
+                        <outlet property="monthLabel" destination="KXl-kQ-tkQ" id="ioE-u2-RIH"/>
+                        <outlet property="notificationBellButton" destination="TCq-En-B3i" id="NZd-BM-pnc"/>
                         <segue destination="947-74-bR0" kind="presentation" identifier="articleSegue" id="MsQ-j6-zm2"/>
+                        <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" id="RQu-ij-jEm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Hp-9R-HoA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -657,6 +682,51 @@
             </objects>
             <point key="canvasLocation" x="1848" y="1450"/>
         </scene>
+        <!--Notifications Class-->
+        <scene sceneID="wEy-Kl-Saf">
+            <objects>
+                <viewController id="iaA-pd-aga" customClass="notificationsClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VUm-Fx-egc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFM-Ry-8wA">
+                                <rect key="frame" x="15" y="13" width="45" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="BC6-tj-ePA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="exitPopup:" destination="iaA-pd-aga" eventType="touchUpInside" id="XEW-Qk-BjL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40C-dy-wD3">
+                                <rect key="frame" x="184" y="343" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="test:" destination="iaA-pd-aga" eventType="touchUpInside" id="C3L-20-cRc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="40C-dy-wD3" firstAttribute="centerX" secondItem="2sE-1G-zN5" secondAttribute="centerX" id="DZ3-uO-PG5"/>
+                            <constraint firstItem="PFM-Ry-8wA" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" constant="13" id="MKF-61-1k1"/>
+                            <constraint firstItem="40C-dy-wD3" firstAttribute="centerY" secondItem="2sE-1G-zN5" secondAttribute="centerY" id="O3h-tr-6E2"/>
+                            <constraint firstItem="PFM-Ry-8wA" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" constant="15" id="eoJ-XV-mzz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2sE-1G-zN5"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="k1G-N1-tkc"/>
+                    <connections>
+                        <segue destination="947-74-bR0" kind="show" identifier="notificationToArticle" id="0bJ-Bc-tI6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oLZ-t6-pdv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1704" y="2755"/>
+        </scene>
         <!--Article Page View Controller-->
         <scene sceneID="RDm-Qy-cfW">
             <objects>
@@ -773,11 +843,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MsQ-j6-zm2"/>
+        <segue reference="0bJ-Bc-tI6"/>
+        <segue reference="KTY-iA-Gv7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="2021" width="128" height="128"/>
+        <image name="Icon ionic-ios-notifications.png" width="27" height="34"/>
         <image name="athletics logo" width="58" height="62"/>
         <image name="blue barldpi" width="658" height="5"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>

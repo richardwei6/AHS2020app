@@ -16,6 +16,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     @IBOutlet weak var monthLabel: UILabel!
     
+    @IBOutlet weak var notificationBellButton: UIButton!
+    
     // padding variables
     let iconHorizontalPadding = CGFloat(20);
     let articleHorizontalPadding = CGFloat(10);
@@ -38,6 +40,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     var selectedFilters: [Bool] = [false, false, false, false, false, false]; // selected types in this order - seniors, colleges, events, athletics, reference, and others
     
+    
+    @objc func openNotifcations(sender: UIButton){
+        print("Notifcations");
+        performSegue(withIdentifier: "notificationSegue", sender: nil);
+    }
     
     @objc func openArticle(sender: CustomUIButton){
         print("Button pressed");
@@ -128,6 +135,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         monthLabel.text = getTitleDateAndMonth();
         monthLabel.adjustsFontSizeToFitWidth = true;
         monthLabel.minimumScaleFactor = 0.8;
+        
+        notificationBellButton.addTarget(self, action: #selector(self.openNotifcations), for: .touchUpInside);
         
         // set up both scrollviews here
         
