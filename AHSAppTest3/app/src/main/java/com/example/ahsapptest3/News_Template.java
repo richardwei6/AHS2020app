@@ -2,14 +2,13 @@ package com.example.ahsapptest3;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -20,7 +19,7 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class News_Template extends Fragment {
+public abstract class News_Template extends Fragment {
 
     public News_Template() {
         // Required empty public constructor
@@ -33,8 +32,14 @@ public class News_Template extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.template__news_layout, container, false);
 
+        TextView titleText = view.findViewById(R.id.template_news__TitleText);
+        titleText.setText(getTitleText());
+
+        ImageView titleBar = view.findViewById(R.id.template_news__rounded_bar);
+        titleBar.setColorFilter(getBarColor());
+
         String[][] data = getData();
-        if(data.length == 0) return view;
+        //if(data.length == 0) return view;
 
         int num_stacked = getNumStacked();
         final int startID = getStartID();
@@ -76,7 +81,7 @@ public class News_Template extends Fragment {
 
 
         display_frags = new Article_Display_Stacked[]{Article_Display_Stacked.newInstanceOf(thisfrags,getStartID())};*/
-        viewPager.setAdapter(new ScreenSlidePagerAdapter(getFragmentManager(),display_frags,display_frags.length));
+        viewPager.setAdapter(new ScreenSlidePagerAdapter(getChildFragmentManager(),display_frags,display_frags.length));
         TabLayout tabLayout = view.findViewById(R.id.template_news__TabLayout);
         tabLayout.setupWithViewPager(viewPager, true);
 
@@ -84,8 +89,8 @@ public class News_Template extends Fragment {
         return view;
     }
 
-    public String[][] getData()
-    {
+    abstract String[][] getData();
+    /*{
         return new String[][]
                 {
                         {"Lorem Ipsum a Very Long Title", "hello world what a nice day!"},
@@ -95,7 +100,7 @@ public class News_Template extends Fragment {
                         {"Title5", "summaryText5"},
                         {"Title6", "summaryText6"}
                 };
-    }
+    }*/
 
     public Date getDate(String key)
     {
@@ -125,4 +130,10 @@ public class News_Template extends Fragment {
     {
         return 2000000;
     }
+
+    abstract String getTitleText();
+
+    abstract int getBarColor();
+
+
 }

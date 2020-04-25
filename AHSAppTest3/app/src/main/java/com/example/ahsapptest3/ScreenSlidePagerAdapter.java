@@ -9,11 +9,11 @@ import java.util.Date;
 public class ScreenSlidePagerAdapter extends FragmentPagerAdapter
 {
     private int NUM_PAGES;
-    private Article_Display_Stacked[] frags;
+    private Fragment[] frags;
     private boolean[] already_added;
 
     Date date;
-    public ScreenSlidePagerAdapter(@NonNull FragmentManager fm, Article_Display_Stacked[] frags, int num_pages) {
+    public ScreenSlidePagerAdapter(@NonNull FragmentManager fm, Fragment[] frags, int num_pages) {
         super(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         NUM_PAGES = num_pages;
         this.frags = frags;

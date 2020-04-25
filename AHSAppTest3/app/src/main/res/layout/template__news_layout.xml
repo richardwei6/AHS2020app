@@ -4,8 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/template_news__ConstraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="5dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/template_news__background_gradient"
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="5dp"
     tools:context=".News_Template">
 
     <TextView
