@@ -109,12 +109,19 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	}
     
     override func viewDidLoad() { // setup function
-        super.viewDidLoad()
+		super.viewDidLoad();
 		
         // Do any additional setup after loading the view.
 		// set month -
-		let month = Calendar.current.component(.month, from: Date());
-		monthLabel.text = "Month " + (month < 10 ? "0":"") + String(month);
+		let dateObj = Date();
+		let calender = Calendar.current;
+		let dayInt = calender.component(.day , from: dateObj);
+		
+		let monthInt = Calendar.current.dateComponents([.month], from: Date()).month;
+		let monthStr = Calendar.current.monthSymbols[monthInt!-1];
+		monthLabel.text = String(monthStr) + " " + String(dayInt);
+		monthLabel.adjustsFontSizeToFitWidth = true;
+		monthLabel.minimumScaleFactor = 0.8;
 		
 		
 		// article variables
