@@ -202,10 +202,10 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="vKC-E4-3oE"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="PwC-bv-Tgp"/>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-vu-DvI">
-                                <rect key="frame" x="26" y="28" width="80" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-vu-DvI">
+                                <rect key="frame" x="26" y="28" width="79" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="NgH-5y-0eP"/>
+                                    <constraint firstAttribute="width" constant="79" id="Bms-Q4-7E7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -218,12 +218,12 @@
                             <constraint firstItem="WHU-WA-zgn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="IwL-nx-D7l"/>
                             <constraint firstItem="hlT-D8-SH4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MhN-FT-rIA"/>
                             <constraint firstItem="hlT-D8-SH4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="57" id="Rwj-wT-vJR"/>
-                            <constraint firstItem="Kd3-vu-DvI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="Wd7-Su-JZ1"/>
                             <constraint firstItem="WHU-WA-zgn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="6" id="aYv-4d-B44"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WHU-WA-zgn" secondAttribute="trailing" symbolic="YES" id="fnm-uw-wti"/>
                             <constraint firstItem="9Ke-4S-D3G" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="6" id="hF3-dQ-5rT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kd3-vu-DvI" secondAttribute="trailing" symbolic="YES" id="pOC-jE-4t8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hlT-D8-SH4" secondAttribute="bottom" id="s7I-7g-nGz"/>
+                            <constraint firstItem="Kd3-vu-DvI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="t8n-pJ-12E"/>
                             <constraint firstItem="9Ke-4S-D3G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="94" id="u7J-mu-uKU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hlT-D8-SH4" secondAttribute="trailing" id="vEi-AL-tQX"/>
                         </constraints>
