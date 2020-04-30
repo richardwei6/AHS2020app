@@ -235,7 +235,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="shift.fill" catalog="system" id="r7s-HY-eAK"/>
+                    <tabBarItem key="tabBarItem" title=" " image="home" id="r7s-HY-eAK"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
@@ -854,8 +854,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0bJ-Bc-tI6"/>
-        <segue reference="rHG-Yz-Bir"/>
+        <segue reference="NMc-HB-l48"/>
+        <segue reference="KTY-iA-Gv7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
@@ -871,11 +871,11 @@
         <image name="doc.plaintext" catalog="system" width="115" height="128"/>
         <image name="featherldpi" width="131" height="122"/>
         <image name="gear.png" width="25" height="25"/>
+        <image name="home" width="25" height="23"/>
         <image name="otherstar" width="53" height="47"/>
         <image name="red barldpi" width="658" height="5"/>
         <image name="referencesymbol" width="43" height="54"/>
         <image name="selectedcategoryyellow" width="128" height="128"/>
-        <image name="shift.fill" catalog="system" width="128" height="106"/>
         <image name="yellow barldpi" width="658" height="5"/>
     </resources>
 </document>

@@ -35,7 +35,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
     
     
-    let filterIconPicturePath = ["Group 33.png","Path 44.png","Group 34.png","Path 43.png","Path 45.png"];
+    let filterIconPicturePath = ["Group 33.png","Path 44.png","Group 50.png","Path 43.png","Path 45.png"];
     let filterIconName = ["Seniors", "Colleges", "Events", "Athletics", "Reference", "Others"];
     
     var selectedFilters: [Bool] = [false, false, false, false, false, false]; // selected types in this order - seniors, colleges, events, athletics, reference, and others
@@ -179,6 +179,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 let iconImageFrame = CGRect(x:(iconViewFrame.size.width/2) - (filterIconImageSize/2), y: (iconViewFrame.size.height/2) - (filterIconImageSize/2), width: filterIconImageSize, height: filterIconImageSize );
                 let iconImageView = UIImageView(frame: iconImageFrame);
                 iconImageView.image = UIImage(named: filterIconPicturePath[buttonIndex-1]);
+                iconImageView.contentMode = .scaleAspectFit;
                 
                 iconView.addSubview(iconImageView);
                 
