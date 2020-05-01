@@ -119,6 +119,17 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     override func viewDidLoad() { // setup function
 		super.viewDidLoad();
 		
+		
+		/*for family in UIFont.familyNames {
+
+			let sName: String = family as String
+			print("family: \(sName)")
+					
+			for name in UIFont.fontNames(forFamilyName: sName) {
+				print("name: \(name as String)")
+			}
+		}*/
+		
         // Do any additional setup after loading the view.
 		// set month -
 		monthLabel.text = getTitleDateAndMonth();

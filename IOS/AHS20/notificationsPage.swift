@@ -62,7 +62,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             let notificationTitleFrame = CGRect(x: readIndicatorWidth + 5, y: 0, width: 200, height: 50);
             let notificationTitle = UILabel(frame: notificationTitleFrame);
             notificationTitle.text = "Title";
-            notificationTitle.font = UIFont(name:"SFProDisplay-Semibold",size: 25);
+            notificationTitle.font = UIFont(name:"SFProText-Bold",size: 22);
             
             
             let notificationBodyFrame = CGRect(x: readIndicatorWidth + 8, y: notificationTitleFrame.size.height-11, width: notificationFrame.size.width - readIndicatorWidth - chevronWidth - 8, height: notificationFrame.size.height - (notificationTitleFrame.size.height-11));
