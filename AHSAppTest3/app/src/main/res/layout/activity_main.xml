@@ -36,49 +36,15 @@
 
     -->
 
-    <View
-        android:id="@+id/topBar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/Crimson_992938__HOME"
-        app:layout_constraintBottom_toBottomOf="@+id/monthText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/arcadiaHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:fontFamily="@font/sf_pro_display"
-        android:text="Arcadia"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/monthText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="1dp"
-        android:fontFamily="@font/sf_pro_display"
-        android:text="Month 00"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/arcadiaHeader" />
-
 
     <ScrollView
         android:id="@+id/home_page__scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topBar">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,137 +52,48 @@
             android:orientation="vertical">
 
             <fragment
+                android:id="@+id/home_header"
+                android:name="com.example.ahsapptest3.Header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/header_layout" />
+
+            <fragment
                 android:id="@+id/fragment"
                 android:name="com.example.ahsapptest3.Featured_News"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:layout="@layout/template__featured_display"/>
 
             <fragment
                 android:id="@+id/asbNews"
                 android:name="com.example.ahsapptest3.Asb_News"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:layout="@layout/template__news_layout"/>
 
             <fragment
                 android:id="@+id/sportsNews"
                 android:name="com.example.ahsapptest3.Sports_News"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:layout="@layout/template__news_layout"/>
 
             <fragment
                 android:id="@+id/districtNews"
                 android:name="com.example.ahsapptest3.District_News"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:layout="@layout/template__news_layout"/>
 
         </LinearLayout>
     </ScrollView>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+    <include
+        android:id="@+id/home_page__navigation_bar"
+        layout="@layout/navigation_bar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".10" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".90" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="48dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/feather"
-        app:layout_constraintBottom_toBottomOf="@+id/topBar"
-        app:layout_constraintStart_toEndOf="@+id/monthText"
-        app:layout_constraintTop_toTopOf="@+id/topBar"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <FrameLayout
-        android:id="@+id/nav_bar_FrameLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/Nav_Bar_Layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/navigation_bar_background__rounded_crimson"
-            android:padding="10dp">
-
-            <ImageButton
-                android:id="@+id/home_button"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
-                android:background="@color/Blank"
-                android:onClick="goToHome"
-                android:padding="2dp"
-                android:scaleType="fitCenter"
-
-
-                app:layout_constraintEnd_toStartOf="@+id/bulletin_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_home" />
-
-            <ImageButton
-                android:id="@+id/bulletin_button"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
-                android:background="@color/Blank"
-                android:onClick="goToBulletin"
-                android:padding="2dp"
-                android:scaleType="fitCenter"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/bookmarks_button"
-                app:layout_constraintStart_toEndOf="@+id/home_button"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_bulletin" />
-
-            <ImageButton
-                android:id="@+id/bookmarks_button"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
-                android:background="@color/Blank"
-                android:onClick="goToBookmarks"
-                android:padding="2dp"
-
-                android:scaleType="fitCenter"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/settings_button"
-                app:layout_constraintStart_toEndOf="@+id/bulletin_button"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_bookmark" />
-
-            <ImageButton
-                android:id="@+id/settings_button"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
-                android:background="@color/Blank"
-                android:onClick="goToSettings"
-                android:padding="2dp"
-                android:scaleType="fitCenter"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-
-                app:layout_constraintStart_toEndOf="@+id/bookmarks_button"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_settings" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
+        android:layout_height="wrap_content" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

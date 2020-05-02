@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/nav_bar_guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/nav_bar_guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".90" />
+
+    <FrameLayout
+        android:id="@+id/nav_bar_FrameLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nav_bar_guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/nav_bar_guideline_left">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Nav_Bar_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/navigation_bar_background__rounded_crimson"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/home_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
+                android:background="@color/Blank"
+                android:onClick="goToHome"
+                android:padding="2dp"
+                android:scaleType="fitCenter"
+
+
+                app:layout_constraintEnd_toStartOf="@+id/bulletin_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_home" />
+
+            <ImageButton
+                android:id="@+id/bulletin_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
+                android:background="@color/Blank"
+                android:onClick="goToBulletin"
+                android:padding="2dp"
+                android:scaleType="fitCenter"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/bookmarks_button"
+                app:layout_constraintStart_toEndOf="@+id/home_button"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_bulletin" />
+
+            <ImageButton
+                android:id="@+id/bookmarks_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
+                android:background="@color/Blank"
+                android:onClick="goToBookmarks"
+                android:padding="2dp"
+
+                android:scaleType="fitCenter"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/settings_button"
+                app:layout_constraintStart_toEndOf="@+id/bulletin_button"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_bookmark" />
+
+            <ImageButton
+                android:id="@+id/settings_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/HomePage_Nav_Button_SideLength"
+                android:background="@color/Blank"
+                android:onClick="goToSettings"
+                android:padding="2dp"
+                android:scaleType="fitCenter"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toEndOf="@+id/bookmarks_button"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_settings" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</merge>

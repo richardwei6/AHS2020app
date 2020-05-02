@@ -1,5 +1,6 @@
 package com.example.ahsapptest3;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -9,18 +10,13 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int NUM_PAGES = 5;
-    private ViewPager testPager;
 
     private ImageButton home_btn, bulletin_btn, bookmarks_btn, settings_btn;
     private ImageButton[] nav_btns;
-    ConstraintLayout navBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,16 +41,18 @@ public class MainActivity extends AppCompatActivity {
         testTab.setupWithViewPager(testPager,true);*/
         final FrameLayout navBar= findViewById(R.id.nav_bar_FrameLayout);
         final ScrollView scrollView = findViewById(R.id.home_page__scrollView);
+        final int scrollAnimBuffer = 4;
+
         scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             float y = 0;
             @Override
             public void onScrollChanged() {
-                if(scrollView.getScrollY() > y + 3) // scroll down, 2 is the buffer
+                if(scrollView.getScrollY() > y + scrollAnimBuffer) // scroll down, 2 is the buffer
                 {
                     slideDown(navBar);
                     is_nav_bar_up = false;
                 }
-                else if (scrollView.getScrollY() < y - 3)
+                else if (scrollView.getScrollY() < y - scrollAnimBuffer)
                 {
                     slideUp(navBar);
                     is_nav_bar_up = true;
@@ -63,59 +61,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
-
-    /*public class OnScrollChangedScrollView extends ScrollView
-    {
-
-        public OnScrollChangedScrollView(Context context) {
-            super(context);
-        }
-
-        public OnScrollChangedScrollView(Context context, AttributeSet attrs) {
-            super(context, attrs);
-        }
-
-        public OnScrollChangedScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
-            super(context, attrs, defStyleAttr);
-        }
-
-        protected void onScrollChanged(int l, int t, int oldl, int oldt)
-        {
-            if(oldl < l) // scrolled down
-            {
-                slideDown(navBar);
-            }
-        }
-
-
-    }*/
-
-
 
     public void goToHome (View view)
     {
-        for(ImageButton i: nav_btns)
-        {
-            if(i.equals(home_btn))
-                i.setColorFilter(ContextCompat.getColor(this,R.color.LightGray_F2F2F3__HOME)); // active
-            else
-                i.clearColorFilter(); // inactive
-        }
+
     }
 
     public void goToBulletin (View view)
     {
-        for(ImageButton i: nav_btns)
-        {
-            if(i.equals(bulletin_btn))
-                i.setColorFilter(ContextCompat.getColor(this,R.color.LightGray_F2F2F3__HOME));
-            else
-                i.clearColorFilter();
-        }
+        Intent myIntent = new Intent(MainActivity.this,BulletinActivity.class);
+        MainActivity.this.startActivity(myIntent);
     }
 
     public void goToBookmarks(View view)

@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/Crimson_992938__HOME</item> <!--The color of the top bar thingy on your phone-->
+        <item name="colorPrimaryDark">@color/Crimson_7F2F3C__HOME_BULLETIN</item> <!--The color of the top bar thingy on your phone-->
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

@@ -1,10 +1,6 @@
 package com.example.ahsapptest3;
 
 import android.os.Bundle;
-
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -12,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
 
 import java.util.Date;
 
@@ -75,7 +74,7 @@ public class Article_Display_Template extends Fragment implements Parcelable {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.template__article_display, container, false);
 
-        final ImageButton bookmarked_btn = view.findViewById(R.id.bookmarked_button);
+        final ImageButton bookmarked_btn = view.findViewById(R.id.article_display__bookmarked_button);
         bookmarked_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,24 +112,22 @@ public class Article_Display_Template extends Fragment implements Parcelable {
 
     public void setTimeUpdated(View view)
     {
-        TextView updated_text = view.findViewById(R.id.time_updated_Text);
+        TextView updated_text = view.findViewById(R.id.article_display__time_updated_Text);
         Date currentTime = new Date();
-        System.out.println("currentTime" + currentTime);
         long time_difference = currentTime.getTime()-time;
-        System.out.println("difference: time " + time +" currentTime " + currentTime.getTime());
         int hours = (int) Math.round((time_difference/(3600000.0)));
         updated_text.setText(getString(R.string.time_updated_placeholder, hours));
     }
 
     public void setTitleText(View view)
     {
-        TextView titleText = view.findViewById(R.id.title_Text);
+        TextView titleText = view.findViewById(R.id.article_display__title_Text);
         titleText.setText(title);
     }
 
     public void setSummaryText(View view)
     {
-        TextView summaryText = view.findViewById(R.id.summary_Text);
+        TextView summaryText = view.findViewById(R.id.article_display__summary_Text);
         summaryText.setText(summary);
     }
 
@@ -151,7 +148,7 @@ public class Article_Display_Template extends Fragment implements Parcelable {
 
     public void swap_bookmark(ImageButton btn)
     {
-        if(is_bookmarked)
+        if(!is_bookmarked)
         {
             btn.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.bookmarked_icon_inactive, null));
         }
@@ -161,6 +158,31 @@ public class Article_Display_Template extends Fragment implements Parcelable {
         }
         is_bookmarked = !is_bookmarked;
 
+    }
+
+    public long getTime()
+    {
+        return time;
+    }
+
+    public String getTitle()
+    {
+        return title;
+    }
+
+    public String getSummary()
+    {
+        return summary;
+    }
+
+    public String getImagePath()
+    {
+        return imagePath;
+    }
+
+    public boolean isBookmarked()
+    {
+        return is_bookmarked;
     }
 
 

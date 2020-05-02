@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bulletin__ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BulletinActivity">
+
+    <ScrollView
+        android:id="@+id/bulletin__scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/LightBackgroundGray_EAEAEA__BULLETIN"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/bulletin__LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <fragment
+                android:id="@+id/bulletin__header"
+                android:name="com.example.ahsapptest3.Header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/header_layout" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Blank"
+                    android:paddingTop="@dimen/Bulletin_Selector_padding"
+                    android:paddingBottom="@dimen/Bulletin_Selector_padding">
+
+                    <ImageView
+                        android:id="@+id/bulletin_seniors_toggle_image"
+                        android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_marginStart="@dimen/Bulletin_Selector_padding"
+                        android:layout_marginLeft="@dimen/Bulletin_Selector_padding"
+                        android:onClick="onSeniorsClick"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/bulletin_red_ring" />
+
+                    <ImageView
+                        android:id="@+id/bulletin_seniors"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginBottom="14dp"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toBottomOf="@+id/bulletin_seniors_toggle_image"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_seniors_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_seniors_toggle_image"
+                        app:layout_constraintTop_toTopOf="@+id/bulletin_seniors_toggle_image"
+                        app:srcCompat="@drawable/bulletin_seniors" />
+
+                    <TextView
+                        android:id="@+id/bulletin_seniors_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="Seniors"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_seniors_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_seniors_toggle_image"
+                        app:layout_constraintTop_toBottomOf="@id/bulletin_seniors_toggle_image" />
+
+                    <ImageView
+                        android:id="@+id/bulletin_colleges_toggle_image"
+                        android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_marginStart="@dimen/Bulletin_Icon_Selector_spacing"
+                        android:layout_marginLeft="@dimen/Bulletin_Icon_Selector_spacing"
+                        android:onClick="onCollegesClick"
+                        app:layout_constraintStart_toEndOf="@+id/bulletin_seniors_toggle_image"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/bulletin_red_ring" />
+
+                    <ImageView
+                        android:id="@+id/bulletin_colleges"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginBottom="14dp"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toBottomOf="@+id/bulletin_colleges_toggle_image"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_colleges_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_colleges_toggle_image"
+                        app:layout_constraintTop_toTopOf="@+id/bulletin_colleges_toggle_image"
+                        app:srcCompat="@drawable/bulletin_colleges" />
+
+                    <TextView
+                        android:id="@+id/bulletin_colleges_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="Colleges"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_colleges_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_colleges_toggle_image"
+                        app:layout_constraintTop_toBottomOf="@id/bulletin_colleges_toggle_image" />
+
+                    <ImageView
+                        android:id="@+id/bulletin_events_toggle_image"
+                        android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_marginStart="@dimen/Bulletin_Icon_Selector_spacing"
+                        android:layout_marginLeft="@dimen/Bulletin_Icon_Selector_spacing"
+                        android:onClick="onEventsClick"
+                        app:layout_constraintStart_toEndOf="@+id/bulletin_colleges_toggle_image"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/bulletin_red_ring" />
+
+                    <ImageView
+                        android:id="@+id/bulletin_events"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginBottom="14dp"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toBottomOf="@+id/bulletin_events_toggle_image"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_events_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_events_toggle_image"
+                        app:layout_constraintTop_toTopOf="@+id/bulletin_events_toggle_image"
+                        app:srcCompat="@drawable/bulletin_events" />
+
+                    <TextView
+                        android:id="@+id/bulletin_events_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="Events"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_events_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_events_toggle_image"
+                        app:layout_constraintTop_toBottomOf="@id/bulletin_events_toggle_image" />
+
+                    <ImageView
+                        android:id="@+id/bulletin_athletics_toggle_image"
+                        android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_marginStart="@dimen/Bulletin_Icon_Selector_spacing"
+                        android:layout_marginLeft="@dimen/Bulletin_Icon_Selector_spacing"
+                        android:onClick="onAthleticsClick"
+                        app:layout_constraintStart_toEndOf="@+id/bulletin_events_toggle_image"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/bulletin_red_ring" />
+
+                    <ImageView
+                        android:id="@+id/bulletin_athletics"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginBottom="14dp"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toBottomOf="@+id/bulletin_athletics_toggle_image"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_athletics_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_athletics_toggle_image"
+                        app:layout_constraintTop_toTopOf="@+id/bulletin_athletics_toggle_image"
+                        app:srcCompat="@drawable/bulletin_athletics" />
+
+                    <TextView
+                        android:id="@+id/bulletin_athletics_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="Athletics"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_athletics_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_athletics_toggle_image"
+                        app:layout_constraintTop_toBottomOf="@id/bulletin_athletics_toggle_image" />
+
+                    <ImageView
+                        android:id="@+id/bulletin_reference_toggle_image"
+                        android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_marginStart="@dimen/Bulletin_Icon_Selector_spacing"
+                        android:layout_marginLeft="@dimen/Bulletin_Icon_Selector_spacing"
+                        android:onClick="onReferenceClick"
+                        app:layout_constraintStart_toEndOf="@+id/bulletin_athletics_toggle_image"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/bulletin_red_ring" />
+
+                    <ImageView
+                        android:id="@+id/bulletin_reference"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginBottom="14dp"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toBottomOf="@+id/bulletin_reference_toggle_image"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_reference_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_reference_toggle_image"
+                        app:layout_constraintTop_toTopOf="@+id/bulletin_reference_toggle_image"
+                        app:srcCompat="@drawable/bulletin_reference" />
+
+                    <TextView
+                        android:id="@+id/bulletin_reference_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="Reference"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_reference_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_reference_toggle_image"
+                        app:layout_constraintTop_toBottomOf="@id/bulletin_reference_toggle_image" />
+
+                    <ImageView
+                        android:id="@+id/bulletin_others_toggle_image"
+                        android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
+                        android:layout_marginStart="@dimen/Bulletin_Icon_Selector_spacing"
+                        android:layout_marginLeft="@dimen/Bulletin_Icon_Selector_spacing"
+                        android:layout_marginEnd="@dimen/Bulletin_Selector_padding"
+                        android:layout_marginRight="@dimen/Bulletin_Selector_padding"
+                        android:onClick="onOthersClick"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/bulletin_reference_toggle_image"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/bulletin_red_ring" />
+
+                    <ImageView
+                        android:id="@+id/bulletin_others"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginBottom="14dp"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toBottomOf="@+id/bulletin_others_toggle_image"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_others_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_others_toggle_image"
+                        app:layout_constraintTop_toTopOf="@+id/bulletin_others_toggle_image"
+                        app:srcCompat="@drawable/bulletin_others" />
+
+                    <TextView
+                        android:id="@+id/bulletin_others_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="Others"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/bulletin_others_toggle_image"
+                        app:layout_constraintStart_toStartOf="@+id/bulletin_others_toggle_image"
+                        app:layout_constraintTop_toBottomOf="@id/bulletin_others_toggle_image" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/bulletin__navigation_bar"
+        layout="@layout/navigation_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

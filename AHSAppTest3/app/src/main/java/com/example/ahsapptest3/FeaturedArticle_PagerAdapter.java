@@ -4,27 +4,27 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import java.util.Date;
 
-public class ScreenSlidePagerAdapter extends FragmentPagerAdapter
+public class FeaturedArticle_PagerAdapter extends FragmentPagerAdapter
 {
     private int NUM_PAGES;
-    private Fragment[] frags;
-    private boolean[] already_added;
+    private Article[] articles;
 
-    Date date;
-    public ScreenSlidePagerAdapter(@NonNull FragmentManager fm, Fragment[] frags, int num_pages) {
+
+
+    public FeaturedArticle_PagerAdapter(@NonNull FragmentManager fm, Article[] articles)
+    {
         super(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        NUM_PAGES = num_pages;
-        this.frags = frags;
-        already_added = new boolean[frags.length];
+        NUM_PAGES = articles.length;
+        this.articles = articles;
 
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return frags[position];
+
+        return Featured_Display.newInstanceOf(articles[position]);
     }
 
     @Override

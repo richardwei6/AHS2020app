@@ -23,6 +23,6 @@ public class Sports_News extends News_Template {
 
     @Override
     int getBarColor() {
-        return ContextCompat.getColor(getContext(),R.color.SeaBlue_364D9E__HOME);
+        return ContextCompat.getColor(getContext(), R.color.SeaBlue_364D9E__HOME);
     }
 }

@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name = "HomePage_Nav_Button_SideLength">30dp</dimen>
+    <dimen name = "EveryPage_Side_Padding">16dp</dimen>
+    <dimen name = "EveryPage_Side_Padding_Half">8dp</dimen>
     <dimen name = "Article_Display_padding">5dp</dimen>
     <dimen name = "Article_Display_bookmarked_btn_size">40dp</dimen>
     <dimen name = "Article_Display_middle_spacing">5dp</dimen> <!-- Multiply by 2 to get the actual spacing, since it is applied on both sides-->
+
+    <dimen name = "Bulletin_Image_Size">30dp</dimen>
+    <dimen name = "Bulletin_Item_Inside_Margin">5dp</dimen>
+    <dimen name = "Bulletin_Icon_Selector_Size">50dp</dimen>
+    <dimen name = "Bulletin_Icon_Selector_spacing">30dp</dimen>
+    <dimen name = "Bulletin_Selector_padding">10dp</dimen>
+    <dimen name="Bulletin_Margin">10dp</dimen>
 
     <dimen name = "Selector_Dot_Radius_unselected">5dp</dimen>
     <dimen name = "Selector_Dot_Radius_selected">6dp</dimen>

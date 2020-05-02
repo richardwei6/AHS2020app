@@ -25,15 +25,26 @@ public abstract class Featured_Template extends News_Template {
 
         String[][] data = getData();
 
-        EnhancedWrapContentViewPager viewPager = view.findViewById(R.id.template_news__ViewPager);
-
-        Featured_Display_Template[] display_frags = new Featured_Display_Template[5];
-        for(int i = 0; i < display_frags.length; i++)
+        Article[] articles = new Article[data.length];
+        for(int i = 0; i < articles.length; i++)
         {
-            display_frags[i] = new Featured_Display_Template();
+            articles[i] = new Article(
+                    getDate(""),
+                    data[i][0],
+                    data[i][1],
+                    getImageFilePath(""),
+                    isAlreadyBookmarked(""));
         }
 
-        viewPager.setAdapter(new ScreenSlidePagerAdapter(getChildFragmentManager(),display_frags,display_frags.length));
+        EnhancedWrapContentViewPager viewPager = view.findViewById(R.id.template_news__ViewPager);
+        viewPager.setAdapter(new FeaturedArticle_PagerAdapter(getChildFragmentManager(),articles));
+        Featured_Display[] display_frags = new Featured_Display[5];
+        for(int i = 0; i < display_frags.length; i++)
+        {
+            display_frags[i] = new Featured_Display();
+        }
+
+        /*viewPager.setAdapter(new ScreenSlidePagerAdapter(getChildFragmentManager(),display_frags,display_frags.length,3000000));*/
         TabLayout tabLayout = view.findViewById(R.id.template_news__TabLayout);
         tabLayout.setupWithViewPager(viewPager, true);
 

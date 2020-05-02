@@ -1,14 +1,13 @@
 package com.example.ahsapptest3;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -42,10 +41,12 @@ public abstract class News_Template extends Fragment {
         //if(data.length == 0) return view;
 
         int num_stacked = getNumStacked();
-        final int startID = getStartID();
+        /*final int startID = getStartID();
 
         Article_Display_Stacked[] display_frags = new Article_Display_Stacked[data.length/num_stacked];
         Article_Display_Template[] frags = new Article_Display_Template[data.length];
+
+
         for(int i = 0; i < frags.length; i++)
         {
             frags[i] = Article_Display_Template.newInstanceOf(
@@ -54,6 +55,7 @@ public abstract class News_Template extends Fragment {
                     data[i][1],
                     getImageFilePath(""),
                     isAlreadyBookmarked(""));
+            articles[i] = new Article(getDate(""),data[i][0],data[i][1],getImageFilePath(""),isAlreadyBookmarked(""));
         }
 
         int count = 0;
@@ -69,7 +71,18 @@ public abstract class News_Template extends Fragment {
             display_frags[i] = Article_Display_Stacked.newInstanceOf(frags_stacked,startID+i*1000);
         }
 
-        System.out.println("length::" + display_frags.length);
+        System.out.println("length::" + display_frags.length);*/
+
+        Article[] articles = new Article[data.length];
+        for(int i = 0; i < articles.length; i++)
+        {
+            articles[i] = new Article(
+                    getDate(""),
+                    data[i][0],
+                    data[i][1],
+                    getImageFilePath(""),
+                    isAlreadyBookmarked(""));
+        }
         EnhancedWrapContentViewPager viewPager = view.findViewById(R.id.template_news__ViewPager);
 
        /* Date date = getDate("");
@@ -81,7 +94,7 @@ public abstract class News_Template extends Fragment {
 
 
         display_frags = new Article_Display_Stacked[]{Article_Display_Stacked.newInstanceOf(thisfrags,getStartID())};*/
-        viewPager.setAdapter(new ScreenSlidePagerAdapter(getChildFragmentManager(),display_frags,display_frags.length));
+        viewPager.setAdapter(new Article_Stacked_PagerAdapter(getChildFragmentManager(),articles,getNumStacked(), getStartID()));
         TabLayout tabLayout = view.findViewById(R.id.template_news__TabLayout);
         tabLayout.setupWithViewPager(viewPager, true);
 

@@ -23,6 +23,6 @@ public class District_News extends News_Template {
 
     @Override
     int getBarColor() {
-        return ContextCompat.getColor(getContext(),R.color.VomitYellow_DDCD3E__HOME);
+        return ContextCompat.getColor(getContext(), R.color.VomitYellow_DDCD3E__HOME);
     }
 }
