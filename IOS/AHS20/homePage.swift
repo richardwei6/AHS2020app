@@ -30,6 +30,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var districtNewsScrollView: UIScrollView!
 	@IBOutlet weak var districtNewsPageControl: UIPageControl!
 	
+	@IBOutlet weak var notificationBellButton: UIButton!
 	
 	// TODO: get data from server
 	var featuredSize = 10;
@@ -41,6 +42,13 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     var districtNewsSize = 5;
     var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	
+	
+	
+	
+	@objc func openNotifcations(sender: UIButton){
+		print("Notifcations");
+		performSegue(withIdentifier: "notificationSegue", sender: nil);
+	}
 	
 	
 	@objc func openArticle(sender: CustomUIButton){
@@ -109,12 +117,26 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	}
     
     override func viewDidLoad() { // setup function
-        super.viewDidLoad()
+		super.viewDidLoad();
+		
+		
+		/*for family in UIFont.familyNames {
+
+			let sName: String = family as String
+			print("family: \(sName)")
+					
+			for name in UIFont.fontNames(forFamilyName: sName) {
+				print("name: \(name as String)")
+			}
+		}*/
 		
         // Do any additional setup after loading the view.
 		// set month -
-		let month = Calendar.current.component(.month, from: Date());
-		monthLabel.text = "Month " + (month < 10 ? "0":"") + String(month);
+		monthLabel.text = getTitleDateAndMonth();
+		monthLabel.adjustsFontSizeToFitWidth = true;
+		monthLabel.minimumScaleFactor = 0.8;
+		
+		notificationBellButton.addTarget(self, action: #selector(self.openNotifcations), for: .touchUpInside);
 		
 		
 		// article variables

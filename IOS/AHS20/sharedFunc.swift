@@ -19,6 +19,17 @@ class CustomUIButton: UIButton{
 }
 
 
+func getTitleDateAndMonth() -> String {
+    let dateObj = Date();
+    let calender = Calendar.current;
+    let dayInt = calender.component(.day , from: dateObj);
+    
+    let monthInt = Calendar.current.dateComponents([.month], from: Date()).month;
+    let monthStr = Calendar.current.monthSymbols[monthInt!-1];
+    return String(monthStr) + " " + String(dayInt);
+}
+
+
 extension UILabel {
 
     // Pass value for any one of both parameters and see result
@@ -66,3 +77,5 @@ extension UIButton{
 func makeColor(r: Float, g: Float, b: Float) -> UIColor{
     return UIColor.init(red: CGFloat(r/255.0), green: CGFloat(g/255.0), blue: CGFloat(b/255.0), alpha: CGFloat(1.0));
 }
+
+

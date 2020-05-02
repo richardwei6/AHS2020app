@@ -16,6 +16,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     @IBOutlet weak var monthLabel: UILabel!
     
+    @IBOutlet weak var notificationBellButton: UIButton!
+    
     // padding variables
     let iconHorizontalPadding = CGFloat(20);
     let articleHorizontalPadding = CGFloat(10);
@@ -33,11 +35,16 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
     
     
-    let filterIconPicturePath = ["Group 33.png","Path 44.png","Group 34.png","Path 43.png","Path 45.png"];
+    let filterIconPicturePath = ["Group 33.png","Path 44.png","Group 50.png","Path 43.png","Path 45.png"];
     let filterIconName = ["Seniors", "Colleges", "Events", "Athletics", "Reference", "Others"];
     
     var selectedFilters: [Bool] = [false, false, false, false, false, false]; // selected types in this order - seniors, colleges, events, athletics, reference, and others
     
+    
+    @objc func openNotifcations(sender: UIButton){
+        print("Notifcations");
+        performSegue(withIdentifier: "notificationSegue", sender: nil);
+    }
     
     @objc func openArticle(sender: CustomUIButton){
         print("Button pressed");
@@ -125,8 +132,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         let textMargin = CGFloat(20);
         filterIconSize = filterScrollView.frame.size.height-textMargin;
         
-        let month = Calendar.current.component(.month, from: Date());
-        monthLabel.text = "Month " + (month < 10 ? "0":"") + String(month);
+        monthLabel.text = getTitleDateAndMonth();
+        monthLabel.adjustsFontSizeToFitWidth = true;
+        monthLabel.minimumScaleFactor = 0.8;
+        
+        notificationBellButton.addTarget(self, action: #selector(self.openNotifcations), for: .touchUpInside);
         
         // set up both scrollviews here
         
@@ -169,6 +179,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 let iconImageFrame = CGRect(x:(iconViewFrame.size.width/2) - (filterIconImageSize/2), y: (iconViewFrame.size.height/2) - (filterIconImageSize/2), width: filterIconImageSize, height: filterIconImageSize );
                 let iconImageView = UIImageView(frame: iconImageFrame);
                 iconImageView.image = UIImage(named: filterIconPicturePath[buttonIndex-1]);
+                iconImageView.contentMode = .scaleAspectFit;
                 
                 iconView.addSubview(iconImageView);
                 
