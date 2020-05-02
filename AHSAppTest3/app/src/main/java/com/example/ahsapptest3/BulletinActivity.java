@@ -3,7 +3,6 @@ package com.example.ahsapptest3;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.core.view.ViewCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -200,7 +199,7 @@ public class BulletinActivity extends AppCompatActivity {
             seniors_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_seniors);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_seniors));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_7F2F3C__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
         }
         switch_Type_Layout_Active(BulletinType.SENIORS);
         filterItems();
@@ -220,7 +219,7 @@ public class BulletinActivity extends AppCompatActivity {
             events_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_events);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_events));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_7F2F3C__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
         }
         switch_Type_Layout_Active(BulletinType.EVENTS);
         filterItems();
@@ -240,7 +239,7 @@ public class BulletinActivity extends AppCompatActivity {
             colleges_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_colleges);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_colleges));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_7F2F3C__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
         }
         switch_Type_Layout_Active(BulletinType.COLLEGES);
         filterItems();
@@ -260,7 +259,7 @@ public class BulletinActivity extends AppCompatActivity {
             reference_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_reference);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_reference));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_7F2F3C__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
         }
         switch_Type_Layout_Active(BulletinType.REFERENCE);
         filterItems();
@@ -280,7 +279,7 @@ public class BulletinActivity extends AppCompatActivity {
             athletics_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_athletics);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_athletics));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_7F2F3C__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
         }
         switch_Type_Layout_Active(BulletinType.ATHLETICS);
         filterItems();
@@ -300,7 +299,7 @@ public class BulletinActivity extends AppCompatActivity {
             others_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_others);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_others));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_7F2F3C__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
         }
         switch_Type_Layout_Active(BulletinType.OTHERS);
         filterItems();

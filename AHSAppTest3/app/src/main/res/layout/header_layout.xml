@@ -5,7 +5,7 @@
     android:id="@+id/header__ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/Crimson_7F2F3C__HOME_BULLETIN"
+    android:background="@color/Crimson_992938__HOME_BULLETIN"
     android:paddingLeft="@dimen/EveryPage_Side_Padding"
     android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
     android:paddingRight="@dimen/EveryPage_Side_Padding"

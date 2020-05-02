@@ -7,7 +7,7 @@
   <path
       android:pathData="M52.2,2.5V72.27a1,1 0,0 1,-1.59 0.82L27.44,56.46a1,1 0,0 0,-1.18 0L3.09,73.09a1,1 0,0 1,-1.59 -0.82V2.5a1,1 0,0 1,1 -1H51.2A1,1 0,0 1,52.2 2.5Z"
       android:strokeWidth="3"
-      android:fillColor="@color/Crimson_7F2F3C__HOME_BULLETIN">
+      android:fillColor="@color/Crimson_992938__HOME_BULLETIN">
     <aapt:attr name="android:strokeColor">
       <gradient
           >

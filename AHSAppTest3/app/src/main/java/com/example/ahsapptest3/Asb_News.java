@@ -24,6 +24,6 @@ public class Asb_News extends News_Template {
 
     @Override
     public int getBarColor() {
-        return ContextCompat.getColor(getContext(), R.color.Crimson_7F2F3C__HOME_BULLETIN);
+        return ContextCompat.getColor(getContext(), R.color.Crimson_992938__HOME_BULLETIN);
     }
 }
