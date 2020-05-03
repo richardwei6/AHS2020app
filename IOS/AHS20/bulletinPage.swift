@@ -51,11 +51,30 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         performSegue(withIdentifier: "articleSegue", sender: nil);
     }
     
-    @objc func addFilter(sender: CustomUIButton){
+    @objc func addFilter(sender: BulletinFilterUIButton){
         if (sender.isSelected){ // selected to unselected
-            sender.backgroundColor = UIColor.white;
+            sender.backgroundColor = nil;
+            
+            // TODO: remove all subviews then recreate the subviews
+            
+            // need to make a function for this
+            
+            if (sender.articleIndex != 0){
+                sender.iconView?.tintColor = makeColor(r: 127, g: 47, b: 60);
+            }
+            else{
+                sender.textView?.tintColor = makeColor(r: 127, g: 47, b: 60);
+            }
+          
         }else{ // unselected to selected
-            sender.backgroundColor = makeColor(r: 228, g: 182, b: 189);
+            sender.backgroundColor = makeColor(r: 127, g: 47, b: 60);
+            sender.tintColor = nil;
+            if (sender.articleIndex != 0){
+                sender.iconView?.tintColor = UIColor.white;
+            }
+            else{
+                sender.textView?.tintColor = UIColor.white;
+            }
         }
         sender.isSelected = !sender.isSelected;
         print(sender.isSelected);
@@ -71,9 +90,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         
         for aIndex in 0..<bulletinSize{
             bulletinFrame.origin.x = articleHorizontalPadding;
-            bulletinFrame.origin.y = ((bulletinFrame.size.height+articleVerticalPadding)*CGFloat(aIndex));
+            bulletinFrame.origin.y = articleVerticalPadding+((bulletinFrame.size.height+articleVerticalPadding)*CGFloat(aIndex));
             let articleButton = UIView(frame: bulletinFrame);
-            articleButton.backgroundColor = makeColor(r: 247, g: 238, b: 239);
+            articleButton.backgroundColor = UIColor.white;
             
             // content inside button
             let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding) - 20, height: bulletinFrame.size.height - 10);
@@ -120,7 +139,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             mainView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
             self.bulletinScrollView.addSubview(articleButton);
         }
-        bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width-(2*articleHorizontalPadding), height: articleHorizontalPadding+(bulletinFrame.size.height+articleHorizontalPadding)*CGFloat(bulletinSize));
+        bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width-(2*articleHorizontalPadding), height: 2*articleVerticalPadding+(bulletinFrame.size.height+articleVerticalPadding)*CGFloat(bulletinSize));
         bulletinScrollView.delegate = self;
     }
     
@@ -146,30 +165,12 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         
         for buttonIndex in 0..<filterSize{
             filterFrame.origin.x = articleHorizontalPadding+((filterIconSize+iconHorizontalPadding) * CGFloat(buttonIndex));
-            /*let buttonView = UIButton(frame: filterFrame);
-            //buttonView.setImage("", for: .normal);
-            buttonView.layer.borderColor = makeColor(r: 127, g: 47, b: 60).cgColor;
-            buttonView.layer.borderWidth = 3;
-            buttonView.layer.cornerRadius = 45;
-            if (buttonIndex != 0){
-                buttonView.setImage(UIImage(named: filterIconName[buttonIndex-1]), for: .normal);
-            }else{
-                let yearTextFrame = CGRect(x: 0, y: 5, width: filterFrame.size.width, height: filterFrame.size.height);
-                let yearText = UILabel(frame: yearTextFrame);
-                yearText.text = "20\n21";
-                yearText.setLineSpacing(lineHeightMultiple: 0.8);
-                yearText.textColor = makeColor(r: 127, g: 47, b: 60);
-                yearText.numberOfLines = 2;
-                yearText.textAlignment = .center;
-                yearText.font = UIFont(name: "HarlowSolid", size: 30);
-                buttonView.addSubview(yearText);
-            }
-            */
+
             
             let mainView = UIView(frame: filterFrame);
             
             let iconViewFrame = CGRect(x:0, y:0, width: filterIconSize, height: filterIconSize);
-            let iconView = CustomUIButton(frame: iconViewFrame);
+            let iconView = BulletinFilterUIButton(frame: iconViewFrame);
             iconView.layer.cornerRadius = filterIconSize/2;
             iconView.layer.borderColor = makeColor(r: 127, g: 47, b: 60).cgColor;
             iconView.layer.borderWidth = 3;
@@ -183,6 +184,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 
                 iconView.addSubview(iconImageView);
                 
+                iconView.iconView = iconImageView;
+                
             }else{
                 let yearTextFrame = CGRect(x: 0, y: 5, width: iconViewFrame.size.width, height: iconViewFrame.size.height);
                 let yearText = UILabel(frame: yearTextFrame);
@@ -193,6 +196,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 yearText.textAlignment = .center;
                 yearText.font = UIFont(name: "HarlowSolid", size: 30);
                 iconView.addSubview(yearText);
+                
+                iconView.textView = yearText;
             }
         
             

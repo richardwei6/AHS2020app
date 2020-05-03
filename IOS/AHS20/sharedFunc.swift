@@ -18,6 +18,11 @@ class CustomUIButton: UIButton{
     var articleID: String? // is articleID a string?
 }
 
+class BulletinFilterUIButton: CustomUIButton{
+    var iconView: UIImageView?;
+    var textView: UILabel?;
+}
+
 
 func getTitleDateAndMonth() -> String {
     let dateObj = Date();

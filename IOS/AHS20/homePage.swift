@@ -140,8 +140,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		
 		
 		// article variables
-		let articleHorizontalPadding = CGFloat(10);
-		let articleVerticalPadding = CGFloat(5);
+		/*let articleHorizontalPadding = CGFloat(10);
+		let articleVerticalPadding = CGFloat(5);*/
 		
 		
         //let articleGreyBackground = makeColor(r: 239, g: 247, b: 237);
@@ -158,12 +158,13 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			featuredFrame.origin.x = (featuredFrame.size.width * CGFloat(aIndex));
 			
 			let outerContentView = CustomUIButton(frame: featuredFrame);
+			//outerContentView.backgroundColor = UIColor.gray;
 			
 			let innerContentViewContraint = CGFloat(24);
 			let contentViewFrame = CGRect(x: innerContentViewContraint, y: 0, width: featuredFrame.size.width - (2*innerContentViewContraint), height: featuredFrame.size.height);
-			let contentView = UIView(frame: contentViewFrame);
+			let contentView = CustomUIButton(frame: contentViewFrame);
 			
-			let articleImageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: contentViewFrame.size.height - 60); // add to contentView
+			let articleImageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: contentViewFrame.size.height - 40); // add to contentView
 			let articleImageView = UIImageView(frame:articleImageViewFrame);
 			articleImageView.backgroundColor = articleDarkGreyBackground;
 			articleImageView.layer.cornerRadius = 10;
@@ -182,7 +183,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			articleImageView.addSubview(articleTimestamp); // add timestamp to imageview
 			
 			
-			let articleTitleFrame = CGRect(x: 0, y: contentViewFrame.size.height - 60, width: contentViewFrame.size.width, height: 60);
+			let articleTitleFrame = CGRect(x: 0, y: contentViewFrame.size.height - 30, width: contentViewFrame.size.width, height: 30);
 			let articleTitleLabel = UILabel(frame: articleTitleFrame);
 			articleTitleLabel.text = "Lorem Ipsum Long Title";
 			articleTitleLabel.textAlignment = .left;
@@ -198,64 +199,13 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
 			bookmarkButton.setImage(bookmarkImage, for: .normal);
+
+			contentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
 			
-			//contentView.backgroundColor = UIColor.gray;
-			/*
-            // create content in scrollview
-			let contentViewContraints = CGFloat(20);
-			let contentViewFrame = CGRect(x: contentViewContraints, y : 0, width: featuredFrame.size.width - (2*contentViewContraints), height: featuredFrame.size.height);
-			let contentView = CustomUIButton(frame: contentViewFrame); // wrapper for article
-			contentView.backgroundColor = UIColor.gray;
-			
-	  
-			let articleImageViewFrame = CGRect(x: articleHorizontalPadding, y: articleVerticalPadding, width: contentViewFrame.size.width-(2*articleHorizontalPadding), height: contentViewFrame.size.height-60-articleVerticalPadding);
-			let articleImageView = UIImageView(frame:articleImageViewFrame);
-			articleImageView.backgroundColor = articleDarkGreyBackground;
-			articleImageView.layer.cornerRadius = 10;
-			
-			// time stamp
-			let articleTimestampFrame = CGRect(x: articleImageViewFrame.size.width - 60, y: articleImageViewFrame.size.height - 30, width: 50, height: 20);
-			let articleTimestamp = UILabel(frame: articleTimestampFrame);
-			articleTimestamp.backgroundColor = makeColor(r: 216, g: 216, b: 216);
-			articleTimestamp.font = UIFont(name: "SFProDisplay-Regular", size: 10);
-			articleTimestamp.textAlignment = .center;
-			articleTimestamp.textColor = makeColor(r: 57, g: 57, b: 57);
-			articleTimestamp.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-			articleTimestamp.text = "1 hour ago"; // insert code here to get time of article
-			
-			
-			//articleImageView.addSubview(bookmarkButton); // add bookmark button to imageview
-			articleImageView.addSubview(articleTimestamp); // add timestamp to imageview
-			
-			
-			let articleTitleFrame = CGRect(x: articleHorizontalPadding+1, y: contentViewFrame.size.height - 60, width: contentViewFrame.size.width-(2*articleHorizontalPadding)-2, height: 60);
-			let articleTitleLabel = UILabel(frame: articleTitleFrame);
-			articleTitleLabel.text = "Lorem Ipsum Long Title";
-			articleTitleLabel.textAlignment = .left;
-			articleTitleLabel.font = UIFont(name:"SFProText-Bold",size: 25);
-			
-			
-			//bookmark image button - 30x30
-			let bookmarkFrame = CGRect(x: (featuredFrame.size.width - 40 - articleHorizontalPadding) + (featuredFrame.size.width * CGFloat(aIndex)), y: 10+articleVerticalPadding, width: 30, height: 30);
-			let bookmarkButton = CustomUIButton(frame: bookmarkFrame);
-			bookmarkButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
-			bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-			let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
-			bookmarkButton.setImage(bookmarkImage, for: .normal);
-			
-			
-            // add contentview to scrollview
-			contentView.addSubview(articleTitleLabel);
-			contentView.addSubview(articleImageView);
-			
-			//button actions
-			contentView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
-			bookmarkButton.addTarget(self, action: #selector(self.bookmarkCurrentArticle), for: .touchUpInside);
-			
-			outercontentView.addSubview(contentView);
-			//self.featuredScrollView.addSubview(bookmarkButton);
-			*/
 			outerContentView.addSubview(contentView);
+			
+			outerContentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
+			bookmarkButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
 			
 			self.featuredScrollView.addSubview(outerContentView);
 			self.featuredScrollView.addSubview(bookmarkButton);
