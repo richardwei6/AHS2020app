@@ -99,7 +99,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleSubtitleContent.text = "This is the content inside the article. What you are seeing is a preview of such article.";
 		
 		
-		let articleImageFrame = CGRect(x: articleTextWidth + 10, y: 10, width: width - (articleTextWidth + 20), height: height - 10);
+		let articleImageFrame = CGRect(x: articleTextWidth + 10, y: 10, width: width - (articleTextWidth + 18), height: height - 10);
 		let articleImageView = UIImageView(frame: articleImageFrame);
 		articleImageView.backgroundColor = makeColor(r: 143, g: 142, b: 142); // articleDarkGreyBackground
 		articleImageView.layer.cornerRadius = 10;
@@ -147,7 +147,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
         //let articleGreyBackground = makeColor(r: 239, g: 247, b: 237);
 		let articleDarkGreyBackground = makeColor(r: 143, g: 142, b: 142);
 		// scrollview variables
-		let scrollViewHorizontalConstraints = CGFloat(50);
+		let scrollViewHorizontalConstraints = CGFloat(36);
 		
 		
 		// Featured News ----- NOTE - article is not created by smallArticle() func
