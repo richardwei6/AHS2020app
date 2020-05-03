@@ -87,7 +87,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleTitleLabel.adjustsFontSizeToFitWidth = true;
 		articleTitleLabel.minimumScaleFactor = 0.8;
 		articleTitleLabel.textAlignment = .left;
-		articleTitleLabel.font = UIFont(name: "SFProDisplay-Black",size: 20);
+		articleTitleLabel.font = UIFont(name: "SFProText-Bold",size: 20);
 		articleTitleLabel.text = "Auto Adjusting Long Title";
 		
 		
