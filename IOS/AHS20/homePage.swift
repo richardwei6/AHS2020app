@@ -153,17 +153,62 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		// Featured News ----- NOTE - article is not created by smallArticle() func
 		featuredPageControl.numberOfPages = featuredSize;
 		featuredFrame.size = featuredScrollView.frame.size;
-		featuredFrame.size.width = UIScreen.main.bounds.size.width - scrollViewHorizontalConstraints;
+		featuredFrame.size.width = UIScreen.main.bounds.size.width;
         for aIndex in 0..<featuredSize{
 			featuredFrame.origin.x = (featuredFrame.size.width * CGFloat(aIndex));
 			
+			let outerContentView = CustomUIButton(frame: featuredFrame);
 			
+			let innerContentViewContraint = CGFloat(24);
+			let contentViewFrame = CGRect(x: innerContentViewContraint, y: 0, width: featuredFrame.size.width - (2*innerContentViewContraint), height: featuredFrame.size.height);
+			let contentView = UIView(frame: contentViewFrame);
+			
+			let articleImageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: contentViewFrame.size.height - 60); // add to contentView
+			let articleImageView = UIImageView(frame:articleImageViewFrame);
+			articleImageView.backgroundColor = articleDarkGreyBackground;
+			articleImageView.layer.cornerRadius = 10;
+			
+			// time stamp
+			let articleTimestampFrame = CGRect(x: articleImageViewFrame.size.width - 60, y: articleImageViewFrame.size.height - 30, width: 50, height: 20);
+			let articleTimestamp = UILabel(frame: articleTimestampFrame);
+			articleTimestamp.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			articleTimestamp.font = UIFont(name: "SFProDisplay-Regular", size: 10);
+			articleTimestamp.textAlignment = .center;
+			articleTimestamp.textColor = makeColor(r: 57, g: 57, b: 57);
+			articleTimestamp.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
+			articleTimestamp.text = "1 hour ago"; // insert code here to get time of article
+			
+			
+			articleImageView.addSubview(articleTimestamp); // add timestamp to imageview
+			
+			
+			let articleTitleFrame = CGRect(x: 0, y: contentViewFrame.size.height - 60, width: contentViewFrame.size.width, height: 60);
+			let articleTitleLabel = UILabel(frame: articleTitleFrame);
+			articleTitleLabel.text = "Lorem Ipsum Long Title";
+			articleTitleLabel.textAlignment = .left;
+			articleTitleLabel.font = UIFont(name:"SFProText-Bold",size: 25);
+			
+			contentView.addSubview(articleImageView);
+			contentView.addSubview(articleTitleLabel);
+			
+			
+			let bookmarkFrame = CGRect(x: (featuredFrame.size.width - 40 - innerContentViewContraint) + (featuredFrame.size.width * CGFloat(aIndex)), y: 10, width: 30, height: 30);
+			let bookmarkButton = CustomUIButton(frame: bookmarkFrame);
+			bookmarkButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
+			let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
+			bookmarkButton.setImage(bookmarkImage, for: .normal);
+			
+			//contentView.backgroundColor = UIColor.gray;
+			/*
             // create content in scrollview
-			let contentView = CustomUIButton(frame: featuredFrame); // wrapper for article
-			//contentView.backgroundColor = articleGreyBackground;
+			let contentViewContraints = CGFloat(20);
+			let contentViewFrame = CGRect(x: contentViewContraints, y : 0, width: featuredFrame.size.width - (2*contentViewContraints), height: featuredFrame.size.height);
+			let contentView = CustomUIButton(frame: contentViewFrame); // wrapper for article
+			contentView.backgroundColor = UIColor.gray;
 			
-			
-			let articleImageViewFrame = CGRect(x: articleHorizontalPadding, y: articleVerticalPadding, width: featuredFrame.size.width-(2*articleHorizontalPadding), height: featuredFrame.size.height-60-articleVerticalPadding);
+	  
+			let articleImageViewFrame = CGRect(x: articleHorizontalPadding, y: articleVerticalPadding, width: contentViewFrame.size.width-(2*articleHorizontalPadding), height: contentViewFrame.size.height-60-articleVerticalPadding);
 			let articleImageView = UIImageView(frame:articleImageViewFrame);
 			articleImageView.backgroundColor = articleDarkGreyBackground;
 			articleImageView.layer.cornerRadius = 10;
@@ -183,7 +228,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			articleImageView.addSubview(articleTimestamp); // add timestamp to imageview
 			
 			
-			let articleTitleFrame = CGRect(x: articleHorizontalPadding+1, y: featuredFrame.size.height - 60, width: featuredFrame.size.width-(2*articleHorizontalPadding)-2, height: 60);
+			let articleTitleFrame = CGRect(x: articleHorizontalPadding+1, y: contentViewFrame.size.height - 60, width: contentViewFrame.size.width-(2*articleHorizontalPadding)-2, height: 60);
 			let articleTitleLabel = UILabel(frame: articleTitleFrame);
 			articleTitleLabel.text = "Lorem Ipsum Long Title";
 			articleTitleLabel.textAlignment = .left;
@@ -207,7 +252,12 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			contentView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
 			bookmarkButton.addTarget(self, action: #selector(self.bookmarkCurrentArticle), for: .touchUpInside);
 			
-            self.featuredScrollView.addSubview(contentView);
+			outercontentView.addSubview(contentView);
+			//self.featuredScrollView.addSubview(bookmarkButton);
+			*/
+			outerContentView.addSubview(contentView);
+			
+			self.featuredScrollView.addSubview(outerContentView);
 			self.featuredScrollView.addSubview(bookmarkButton);
         }
         // change horizontal size of scrollview
