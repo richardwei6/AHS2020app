@@ -18,12 +18,6 @@ class CustomUIButton: UIButton{
     var articleID: String? // is articleID a string?
 }
 
-class BulletinFilterUIButton: CustomUIButton{
-    var iconView: UIImageView?;
-    var textView: UILabel?;
-}
-
-
 func getTitleDateAndMonth() -> String {
     let dateObj = Date();
     let calender = Calendar.current;
@@ -76,6 +70,14 @@ extension UIButton{
         mask.path = path.cgPath
         layer.mask = mask
     }
+}
+
+extension UIImageView {
+  func setImageColor(color: UIColor) {
+    let templateImage = self.image?.withRenderingMode(.alwaysTemplate)
+    self.image = templateImage
+    self.tintColor = color
+  }
 }
 
 // func that returns UIcolor from rgb values

@@ -27,7 +27,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     let filterSize = 6;
     var filterFrame = CGRect(x:0,y:0,width: 0, height: 0);
-    var filterIconSize = CGFloat(85);
     var filterIconImageSize = CGFloat(40);
     
     
@@ -35,11 +34,14 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
     
     
-    let filterIconPicturePath = ["Group 33.png","Path 44.png","Group 50.png","Path 43.png","Path 45.png"];
+    let filterIconPicturePath = ["Group 51.png","Path 275.png","Group 34.png","Path 276.png","Path 277.png"];
     let filterIconName = ["Seniors", "Colleges", "Events", "Athletics", "Reference", "Others"];
     
     var selectedFilters: [Bool] = [false, false, false, false, false, false]; // selected types in this order - seniors, colleges, events, athletics, reference, and others
     
+    
+    // icon stuff
+    var iconViewFrame: CGRect?;
     
     @objc func openNotifcations(sender: UIButton){
         print("Notifcations");
@@ -51,37 +53,62 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         performSegue(withIdentifier: "articleSegue", sender: nil);
     }
     
-    @objc func addFilter(sender: BulletinFilterUIButton){
+    @objc func addFilter(sender: CustomUIButton){
+        removeAllSubViews(sender: sender);
         if (sender.isSelected){ // selected to unselected
             sender.backgroundColor = nil;
-            
-            // TODO: remove all subviews then recreate the subviews
-            
-            // need to make a function for this
-            
-            if (sender.articleIndex != 0){
-                sender.iconView?.tintColor = makeColor(r: 127, g: 47, b: 60);
-            }
-            else{
-                sender.textView?.tintColor = makeColor(r: 127, g: 47, b: 60);
-            }
-          
         }else{ // unselected to selected
             sender.backgroundColor = makeColor(r: 127, g: 47, b: 60);
-            sender.tintColor = nil;
-            if (sender.articleIndex != 0){
-                sender.iconView?.tintColor = UIColor.white;
-            }
-            else{
-                sender.textView?.tintColor = UIColor.white;
-            }
         }
         sender.isSelected = !sender.isSelected;
-        print(sender.isSelected);
         selectedFilters[sender.articleIndex] = sender.isSelected;
+        print(sender.isSelected);
+        generateIconImage(iconView: sender);
         generateBulletin();
     }
     
+    func removeAllSubViews(sender: CustomUIButton){
+        for view in sender.subviews{
+            view.removeFromSuperview();
+        }
+    }
+    
+    
+    func generateIconImage(iconView: CustomUIButton){
+        
+        
+        
+        if (iconView.articleIndex != 0){
+            let imageIconPadding = CGFloat(5);
+            let iconImageFrame = CGRect(x:(iconViewFrame!.size.width/2) - (filterIconImageSize/2) + imageIconPadding, y: (iconViewFrame!.size.height/2) - (filterIconImageSize/2)+imageIconPadding, width: filterIconImageSize-(2*imageIconPadding), height: filterIconImageSize-(2*imageIconPadding));
+            let iconImageView = UIImageView(frame: iconImageFrame);
+            iconImageView.image = UIImage(named: filterIconPicturePath[iconView.articleIndex-1]);
+            iconImageView.contentMode = .scaleAspectFit;
+            if (iconView.isSelected == true){
+                iconImageView.setImageColor(color: UIColor.white);
+            }
+            else{
+                iconImageView.setImageColor(color: makeColor(r: 127, g: 47, b: 60));
+            }
+            iconView.addSubview(iconImageView);
+        }else{
+            let yearTextFrame = CGRect(x: 0, y: 5, width: iconViewFrame!.size.width, height: iconViewFrame!.size.height);
+            let yearText = UILabel(frame: yearTextFrame);
+            yearText.text = "20\n21";
+            yearText.setLineSpacing(lineHeightMultiple: 0.7);
+          
+            if (iconView.isSelected == true){
+                yearText.textColor = UIColor.white;
+            }
+            else{
+                yearText.textColor = makeColor(r: 127, g: 47, b: 60);
+            }
+            yearText.numberOfLines = 2;
+            yearText.textAlignment = .center;
+            yearText.font = UIFont(name: "HarlowSolid", size: 20);
+            iconView.addSubview(yearText);
+        }
+    }
     
     func generateBulletin(){ // TODO: implement filter ---------
         // set up bulletin
@@ -148,8 +175,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         super.viewDidLoad();
        
         
-        let textMargin = CGFloat(20);
-        filterIconSize = filterScrollView.frame.size.height-textMargin;
         
         monthLabel.text = getTitleDateAndMonth();
         monthLabel.adjustsFontSizeToFitWidth = true;
@@ -159,58 +184,41 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         
         // set up both scrollviews here
         
+        let textMargin = CGFloat(20);
+        let topMargin = CGFloat(5);
+        let betweenMargin = CGFloat(3);
+        let filterIconSize = filterScrollView.frame.size.height-textMargin-topMargin-betweenMargin;
+        iconViewFrame = CGRect(x:0, y:topMargin, width: filterIconSize, height: filterIconSize);
+        
         //filterFrame.size = filterScrollView.frame.size;
         filterFrame.size.height = filterScrollView.frame.size.height;
         filterFrame.size.width = filterScrollView.frame.size.height; //
         
         for buttonIndex in 0..<filterSize{
-            filterFrame.origin.x = articleHorizontalPadding+((filterIconSize+iconHorizontalPadding) * CGFloat(buttonIndex));
+            filterFrame.origin.x = 15+((filterIconSize+iconHorizontalPadding) * CGFloat(buttonIndex));
 
             
             let mainView = UIView(frame: filterFrame);
             
-            let iconViewFrame = CGRect(x:0, y:0, width: filterIconSize, height: filterIconSize);
-            let iconView = BulletinFilterUIButton(frame: iconViewFrame);
+            let iconView = CustomUIButton(frame: iconViewFrame!);
             iconView.layer.cornerRadius = filterIconSize/2;
             iconView.layer.borderColor = makeColor(r: 127, g: 47, b: 60).cgColor;
             iconView.layer.borderWidth = 3;
             iconView.articleIndex = buttonIndex;
             
-            if (buttonIndex != 0){
-                let iconImageFrame = CGRect(x:(iconViewFrame.size.width/2) - (filterIconImageSize/2), y: (iconViewFrame.size.height/2) - (filterIconImageSize/2), width: filterIconImageSize, height: filterIconImageSize );
-                let iconImageView = UIImageView(frame: iconImageFrame);
-                iconImageView.image = UIImage(named: filterIconPicturePath[buttonIndex-1]);
-                iconImageView.contentMode = .scaleAspectFit;
-                
-                iconView.addSubview(iconImageView);
-                
-                iconView.iconView = iconImageView;
-                
-            }else{
-                let yearTextFrame = CGRect(x: 0, y: 5, width: iconViewFrame.size.width, height: iconViewFrame.size.height);
-                let yearText = UILabel(frame: yearTextFrame);
-                yearText.text = "20\n21";
-                yearText.setLineSpacing(lineHeightMultiple: 0.8);
-                yearText.textColor = makeColor(r: 127, g: 47, b: 60);
-                yearText.numberOfLines = 2;
-                yearText.textAlignment = .center;
-                yearText.font = UIFont(name: "HarlowSolid", size: 30);
-                iconView.addSubview(yearText);
-                
-                iconView.textView = yearText;
-            }
-        
             
-            iconView.addTarget(self, action: #selector(self.addFilter), for: .touchUpInside);
+            generateIconImage(iconView: iconView);
             
             
-            let iconTextFrame = CGRect(x:0, y: filterIconSize, width: filterIconSize, height: textMargin);
+            let iconTextFrame = CGRect(x:0, y: filterIconSize+topMargin+betweenMargin, width: filterIconSize, height: textMargin);
             let iconText = UILabel(frame: iconTextFrame);
             iconText.text = filterIconName[buttonIndex];
             iconText.numberOfLines = 1;
-            iconText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
+            iconText.font = UIFont(name: "SFProDisplay-Regular", size: 13);
             iconText.textAlignment = .center;
             
+            
+            iconView.addTarget(self, action: #selector(self.addFilter), for: .touchUpInside);
             
             mainView.addSubview(iconView);
             mainView.addSubview(iconText);
@@ -218,7 +226,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             
             self.filterScrollView.addSubview(mainView);
         }
-        filterScrollView.contentSize = CGSize(width: (filterIconSize+iconHorizontalPadding) * CGFloat(filterSize)+iconHorizontalPadding, height: filterScrollView.frame.size.height);
+        filterScrollView.contentSize = CGSize(width: (filterIconSize+iconHorizontalPadding) * CGFloat(filterSize)+15, height: filterScrollView.frame.size.height);
         filterScrollView.delegate = self;
         
         
