@@ -110,6 +110,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         super.viewDidLoad();
         
         // set iphone x or above color below the safe area
+      
         notificationScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
         loadScrollView();

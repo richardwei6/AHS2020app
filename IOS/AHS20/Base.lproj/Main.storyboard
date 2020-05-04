@@ -245,7 +245,7 @@
                         <outlet property="notificationBellButton" destination="28b-cQ-Jc4" id="WCn-gD-PoC"/>
                         <outlet property="sportsNewsPageControl" destination="CoA-5E-cXD" id="9IQ-Xd-aRg"/>
                         <outlet property="sportsNewsScrollView" destination="pZl-Yn-t3q" id="bd7-Ui-NmE"/>
-                        <segue destination="947-74-bR0" kind="presentation" identifier="articleSegue" id="NMc-HB-l48"/>
+                        <segue destination="947-74-bR0" kind="show" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="NMc-HB-l48"/>
                         <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" id="KTY-iA-Gv7"/>
                     </connections>
                 </viewController>
@@ -379,7 +379,7 @@
                         <outlet property="filterScrollView" destination="6rC-8R-9Il" id="oT4-H9-lIf"/>
                         <outlet property="monthLabel" destination="ob5-wS-cv8" id="2ig-Xg-Bgg"/>
                         <outlet property="notificationBellButton" destination="xI6-ol-6dh" id="gSt-Yl-lrm"/>
-                        <segue destination="947-74-bR0" kind="presentation" identifier="articleSegue" id="ubl-hZ-R1k"/>
+                        <segue destination="947-74-bR0" kind="show" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="ubl-hZ-R1k"/>
                         <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" id="rHG-Yz-Bir"/>
                     </connections>
                 </viewController>
@@ -440,7 +440,7 @@
                     <connections>
                         <outlet property="monthLabel" destination="Ya8-UY-bHv" id="Z3U-bL-RrZ"/>
                         <outlet property="notificationBellButton" destination="TCq-En-B3i" id="NZd-BM-pnc"/>
-                        <segue destination="947-74-bR0" kind="presentation" identifier="articleSegue" id="MsQ-j6-zm2"/>
+                        <segue destination="947-74-bR0" kind="show" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="MsQ-j6-zm2"/>
                         <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" id="RQu-ij-jEm"/>
                     </connections>
                 </viewController>
@@ -728,22 +728,22 @@
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="notificationScrollView" destination="NZN-7j-auO" id="Djl-yF-4jT"/>
-                        <segue destination="947-74-bR0" kind="show" identifier="notificationToArticle" id="0bJ-Bc-tI6"/>
+                        <segue destination="947-74-bR0" kind="show" identifier="notificationToArticle" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="0bJ-Bc-tI6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLZ-t6-pdv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1585.5072463768117" y="2861.413043478261"/>
+            <point key="canvasLocation" x="1626" y="2825"/>
         </scene>
         <!--Article Page View Controller-->
         <scene sceneID="RDm-Qy-cfW">
             <objects>
-                <viewController id="947-74-bR0" customClass="articlePageViewController" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="947-74-bR0" customClass="articlePageViewController" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jxm-w1-fgP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjk-rW-re5">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjk-rW-re5">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1455.6666666666667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wU-Tb-SE3" userLabel="ContentView">
@@ -886,16 +886,32 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1b-zf-jR1">
-                                        <rect key="frame" x="42" y="14" width="80" height="29"/>
+                                        <rect key="frame" x="42.000000000000007" y="14" width="79.666666666666686" height="28"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aa7-j2-uef" userLabel="ExitButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="Qra-7V-cjR"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="exitArticle:" destination="947-74-bR0" eventType="touchUpInside" id="H9L-CY-eha"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Aa7-j2-uef" firstAttribute="width" secondItem="yjk-rW-re5" secondAttribute="width" id="4pH-ux-MOU"/>
+                                    <constraint firstAttribute="trailing" secondItem="Aa7-j2-uef" secondAttribute="trailing" id="8us-ap-38I"/>
                                     <constraint firstAttribute="trailing" secondItem="0wU-Tb-SE3" secondAttribute="trailing" id="8wr-uQ-caT"/>
+                                    <constraint firstItem="Aa7-j2-uef" firstAttribute="top" secondItem="yjk-rW-re5" secondAttribute="top" id="Hnv-f7-KnA"/>
+                                    <constraint firstItem="Aa7-j2-uef" firstAttribute="leading" secondItem="yjk-rW-re5" secondAttribute="leading" id="KJ2-Lp-Wdr"/>
+                                    <constraint firstAttribute="trailing" secondItem="Aa7-j2-uef" secondAttribute="trailing" id="Ta1-x3-kfC"/>
                                     <constraint firstItem="B1b-zf-jR1" firstAttribute="leading" secondItem="yjk-rW-re5" secondAttribute="leading" constant="42" id="UXR-RX-5Vu"/>
+                                    <constraint firstItem="Aa7-j2-uef" firstAttribute="top" secondItem="yjk-rW-re5" secondAttribute="top" id="WNc-nU-JUQ"/>
                                     <constraint firstItem="0wU-Tb-SE3" firstAttribute="height" secondItem="yjk-rW-re5" secondAttribute="height" priority="250" id="Yxz-ei-8M2"/>
+                                    <constraint firstItem="Aa7-j2-uef" firstAttribute="leading" secondItem="yjk-rW-re5" secondAttribute="leading" id="ab9-Ds-c7b"/>
                                     <constraint firstAttribute="bottom" secondItem="0wU-Tb-SE3" secondAttribute="bottom" id="ala-Sf-ESC"/>
                                     <constraint firstItem="B1b-zf-jR1" firstAttribute="top" secondItem="yjk-rW-re5" secondAttribute="top" constant="14" id="bgr-fG-two"/>
                                     <constraint firstItem="0wU-Tb-SE3" firstAttribute="width" secondItem="yjk-rW-re5" secondAttribute="width" id="eRr-XJ-gem"/>
@@ -907,14 +923,14 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="yjk-rW-re5" firstAttribute="trailing" secondItem="Hjo-ez-ooT" secondAttribute="trailing" id="PyH-du-cQf"/>
-                            <constraint firstItem="yjk-rW-re5" firstAttribute="top" secondItem="Hjo-ez-ooT" secondAttribute="top" id="h6e-xP-Ae2"/>
                             <constraint firstItem="yjk-rW-re5" firstAttribute="leading" secondItem="Hjo-ez-ooT" secondAttribute="leading" id="mzU-d7-GFq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hjo-ez-ooT"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="7re-pu-26n"/>
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
@@ -927,11 +943,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWK-cg-QNH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653.62318840579712" y="3066.847826086957"/>
+            <point key="canvasLocation" x="373.91304347826087" y="3184.239130434783"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MsQ-j6-zm2"/>
+        <segue reference="0bJ-Bc-tI6"/>
         <segue reference="rHG-Yz-Bir"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
