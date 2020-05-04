@@ -372,7 +372,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	}
 	
 	
-	func  scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+	func  scrollViewDidScroll(_ scrollView: UIScrollView) {
 		featuredPageControl.currentPage = Int(featuredScrollView.contentOffset.x / featuredFrame.size.width);
 		
 		asbNewsPageControl.currentPage = Int(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width);
