@@ -14,10 +14,10 @@ import UIKit
 
 
 class article{
-    struct articleData {
+    struct articleData: Codable {
         var articleID: String?;
     }
-    var articleList: [articleData]?;
+    var articleList = [articleData]();
     class func setUpLocalData(){ // TODO: implement to got all data from json file and input to articleData
         
     }
