@@ -192,7 +192,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 mainView.addSubview(articleIcon);
             }
             else{
-                let articleIconFrame = CGRect(x: 2, y: 7, width: 40, height: 50);
+                let articleIconFrame = CGRect(x: 2, y: 7, width: 30, height: 50);
                 let articleIcon = UILabel(frame: articleIconFrame);
                 articleIcon.text = "20\n21";
                 articleIcon.setLineSpacing(lineHeightMultiple: 0.7);
