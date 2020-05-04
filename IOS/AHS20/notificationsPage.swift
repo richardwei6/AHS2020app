@@ -34,6 +34,11 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
 
     
     func loadScrollView(){
+        // remove prev subviews
+        for subview in notificationScrollView.subviews{
+            subview.removeFromSuperview();
+        }
+        
         notificationFrame.size.width = UIScreen.main.bounds.size.width - (2 * horizontalPadding);
         notificationFrame.size.height = 110;
         // add notification label at start

@@ -128,29 +128,16 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         }
     }
     
-    func noneSelected() -> Bool{
-        for i in selectedFilters{
-            if (i == true){
-                return false;
-            }
-        }
-        return true;
-    }
-    
     
     func filterArticles() -> [tempArticle]{
         var copy = [tempArticle]();
-        if (noneSelected() == true){
-            return totalArticles;
-        }
-        else{
-            for i in 0..<totalArticles.count{
-                if (selectedFilters[totalArticles[i].articleType] == true){
+  
+        for i in 0..<totalArticles.count{
+            if (selectedFilters[totalArticles[i].articleType] == true){
                     copy.append(totalArticles[i]);
-                }
             }
         }
-        return copy;
+        return copy.count == 0 ?totalArticles:copy;
     }
     
     
