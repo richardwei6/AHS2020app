@@ -35,7 +35,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     func loadScrollView(){
         notificationFrame.size.width = UIScreen.main.bounds.size.width - (2 * horizontalPadding);
-        notificationFrame.size.height = 100;
+        notificationFrame.size.height = 110;
         // add notification label at start
         for nIndex in 0..<unreadNotificationSize+readNotificationSize{
             notificationFrame.origin.x = horizontalPadding;
@@ -56,8 +56,8 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 readIndicator.backgroundColor = makeColor(r: 204, g: 204, b: 205);
             }
             
-            let chevronWidth = CGFloat(20);
-            let chevronFrame = CGRect(x: notificationFrame.size.width-chevronWidth-5, y: (notificationFrame.size.height/2)-(chevronWidth/2), width: chevronWidth, height: chevronWidth);
+            let chevronWidth = CGFloat(22);
+            let chevronFrame = CGRect(x: notificationFrame.size.width-chevronWidth-15, y: (notificationFrame.size.height/2)-(chevronWidth/2), width: chevronWidth, height: chevronWidth);
             let chevronImage = UIImageView(frame: chevronFrame);
             chevronImage.image = UIImage(systemName: "chevron.right");
             chevronImage.tintColor = UIColor.gray;
@@ -69,11 +69,11 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             notificationTitle.font = UIFont(name:"SFProText-Bold",size: 22);
             
             
-            let notificationBodyFrame = CGRect(x: readIndicatorWidth + 8, y: notificationTitleFrame.size.height-11, width: notificationFrame.size.width - readIndicatorWidth - chevronWidth - 8, height: notificationFrame.size.height - (notificationTitleFrame.size.height-11));
+            let notificationBodyFrame = CGRect(x: readIndicatorWidth + 8, y: notificationTitleFrame.size.height-15, width: notificationFrame.size.width - readIndicatorWidth - chevronWidth - 25, height: notificationFrame.size.height - (notificationTitleFrame.size.height-11));
             let notificationBodyText = UILabel(frame: notificationBodyFrame);
-            notificationBodyText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec blandit erat, a pellentesque urna. Donec eget tristique elit, non mattis mauris. Duis eget feugiat nisi, eget ornare velit. Maecenas a malesuada orci. Sed suscipit augue vitae turpis blandit, sit amet condimentum nulla blandit. Integer malesuada sed dolor vel ultrices. Aenean eget ligula pulvinar leo hendrerit ornare eget a augue. Aenean id hendrerit erat, in sodales massa. Etiam eu finibus justo. Morbi nunc eros, aliquam non erat eu, tincidunt vulputate mauris. Integer non nibh a nisi vestibulum condimentum. Etiam et sapien lacus. Donec sollicitudin, turpis quis aliquam hendrerit, sem arcu consectetur erat, sed bibendum sapien sapien vel ante. Duis eget mi feugiat, aliquet diam id, vehicula tellus. Maecenas et rutrum metus, in sodales nulla.";
+            notificationBodyText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec blandit erat, a pellentesque urna. Donec eget tristique elit, non mattis mauris.";
             notificationBodyText.numberOfLines = 3;
-            notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 15);
+            notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 16);
             
             
             let timeStampLength = CGFloat(100);
