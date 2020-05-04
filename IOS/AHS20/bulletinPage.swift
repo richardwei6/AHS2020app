@@ -22,7 +22,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     let iconHorizontalPadding = CGFloat(20);
     let articleHorizontalPadding = CGFloat(10);
     let articleVerticalPadding = CGFloat(10);
-    let articleVerticalSize = CGFloat(120);
+    let articleVerticalSize = CGFloat(130);
     
     
     let filterSize = 6;
@@ -75,9 +75,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     
     func generateIconImage(iconView: CustomUIButton){
-        
-        
-        
         if (iconView.articleIndex != 0){
             let imageIconPadding = CGFloat(5);
             let iconImageFrame = CGRect(x:(iconViewFrame!.size.width/2) - (filterIconImageSize/2) + imageIconPadding, y: (iconViewFrame!.size.height/2) - (filterIconImageSize/2)+imageIconPadding, width: filterIconImageSize-(2*imageIconPadding), height: filterIconImageSize-(2*imageIconPadding));
@@ -88,7 +85,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 iconImageView.setImageColor(color: UIColor.white);
             }
             else{
-                iconImageView.setImageColor(color: makeColor(r: 127, g: 47, b: 60));
+                iconImageView.setImageColor(color: mainThemeColor);
             }
             iconView.addSubview(iconImageView);
         }else{
@@ -96,12 +93,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             let yearText = UILabel(frame: yearTextFrame);
             yearText.text = "20\n21";
             yearText.setLineSpacing(lineHeightMultiple: 0.7);
-          
             if (iconView.isSelected == true){
                 yearText.textColor = UIColor.white;
             }
             else{
-                yearText.textColor = makeColor(r: 127, g: 47, b: 60);
+                yearText.textColor = mainThemeColor;
             }
             yearText.numberOfLines = 2;
             yearText.textAlignment = .center;
@@ -115,6 +111,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         bulletinFrame.size.height = articleVerticalSize;
         bulletinFrame.size.width = UIScreen.main.bounds.size.width - (2*articleHorizontalPadding);
         
+        let imageArticleSize = CGFloat(35);
+        
         for aIndex in 0..<bulletinSize{
             bulletinFrame.origin.x = articleHorizontalPadding;
             bulletinFrame.origin.y = articleVerticalPadding+((bulletinFrame.size.height+articleVerticalPadding)*CGFloat(aIndex));
@@ -125,21 +123,23 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding) - 20, height: bulletinFrame.size.height - 10);
             let mainView = CustomUIButton(frame: mainViewFrame);
             
-            let articleIconFrame = CGRect(x: 0, y: 0, width: 40, height: 40);
+            let articleIconFrame = CGRect(x: 2, y: 7, width: imageArticleSize, height: imageArticleSize);
             let articleIcon = UIImageView(frame: articleIconFrame);
-            articleIcon.image = UIImage(named: "Group 33.png");
+            articleIcon.image = UIImage(named: "Group 51.png");
+            articleIcon.setImageColor(color: mainThemeColor);
             
-            let articleTitleFrame = CGRect(x: 50, y : 5, width: 100, height: 60);
+            let articleTitleFrame = CGRect(x: 45, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 100, height: 25);
             let articleTitleText = UILabel(frame: articleTitleFrame);
             articleTitleText.text = "Title"; // insert title text here
             articleTitleText.font =  UIFont(name: "SFProDisplay-Regular",size: 30);
             articleTitleText.numberOfLines = 1;
-            articleTitleText.adjustsFontSizeToFitWidth = true;
-            articleTitleText.sizeToFit();
+            //articleTitleText.backgroundColor = UIColor.gray;
+            /*articleTitleText.adjustsFontSizeToFitWidth = true;
+            articleTitleText.sizeToFit();*/
 
             
             
-            let articleBodyFrame = CGRect(x: 0, y: 40, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
+            let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
             let articleBodyText = UILabel(frame: articleBodyFrame);
             articleBodyText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec blandit erat, a pellentesque urna. Donec eget tristique elit, non mattis mauris. Duis eget feugiat nisi, eget ornare velit. Maecenas a malesuada orci. Sed suscipit augue vitae turpis blandit, sit amet condimentum nulla blandit. Integer malesuada sed dolor vel ultrices. Aenean eget ligula pulvinar leo hendrerit ornare eget a augue. Aenean id hendrerit erat, in sodales massa. Etiam eu finibus justo. Morbi nunc eros, aliquam non erat eu, tincidunt vulputate mauris. Integer non nibh a nisi vestibulum condimentum. Etiam et sapien lacus. Donec sollicitudin, turpis quis aliquam hendrerit, sem arcu consectetur erat, sed bibendum sapien sapien vel ante. Duis eget mi feugiat, aliquet diam id, vehicula tellus. Maecenas et rutrum metus, in sodales nulla." // insert body text here
             articleBodyText.numberOfLines = 4;
@@ -151,7 +151,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             //mainView.addSubview(dateText);
             mainView.addSubview(articleBodyText);
             
-            let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 0, width: 100, height: 25);
+            let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
             let dateText = UILabel(frame: dateTextFrame);
             dateText.text = "00/00/0000"; // insert date here
             dateText.textColor = makeColor(r: 189, g: 151, b: 104);
