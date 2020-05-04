@@ -13,11 +13,25 @@ import UIKit
 // swift file with shared functions and extensions between files
 
 
+class article{
+    struct articleData {
+        var articleID: String?;
+    }
+    var articleList: [articleData]?;
+    class func setUpLocalData(){ // TODO: implement to got all data from json file and input to articleData
+        
+    }
+}
+
+
 class CustomUIButton: UIButton{
     var articleIndex = -1;
     var articleID: String? // is articleID a string?
 }
 
+class notificationUIButton: CustomUIButton{
+    var unreadBool = false;
+}
 
 func getTitleDateAndMonth() -> String {
     let dateObj = Date();
@@ -73,9 +87,17 @@ extension UIButton{
     }
 }
 
+extension UIImageView {
+  func setImageColor(color: UIColor) {
+    let templateImage = self.image?.withRenderingMode(.alwaysTemplate)
+    self.image = templateImage
+    self.tintColor = color
+  }
+}
+
 // func that returns UIcolor from rgb values
 func makeColor(r: Float, g: Float, b: Float) -> UIColor{
     return UIColor.init(red: CGFloat(r/255.0), green: CGFloat(g/255.0), blue: CGFloat(b/255.0), alpha: CGFloat(1.0));
 }
 
-
+let mainThemeColor = makeColor(r: 127, g: 47, b: 60);

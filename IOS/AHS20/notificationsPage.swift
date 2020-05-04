@@ -14,9 +14,12 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
 
     @IBOutlet weak var notificationScrollView: UIScrollView!
     
-    @objc func openArticle(_ sender: CustomUIButton) {
-        unreadNotificationSize-=1;
-        readNotificationSize+=1;
+    @objc func openArticle(_ sender: notificationUIButton) {
+        if (sender.unreadBool == true){
+            unreadNotificationSize-=1;
+            readNotificationSize+=1;
+            sender.unreadBool = false;
+        }
         performSegue(withIdentifier: "notificationToArticle", sender: nil);
         loadScrollView();
     }
@@ -38,7 +41,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             notificationFrame.origin.x = horizontalPadding;
             notificationFrame.origin.y = verticalPadding+((notificationFrame.size.height + verticalPadding)*CGFloat(nIndex));
             
-            let notificationButton = CustomUIButton(frame: notificationFrame);
+            let notificationButton = notificationUIButton(frame: notificationFrame);
             notificationButton.backgroundColor = makeColor(r: 244, g: 244, b: 245);
             
             
@@ -47,6 +50,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             let readIndicator = UIView(frame: readIndicatorFrame);
             if (nIndex+1<=unreadNotificationSize){
                 readIndicator.backgroundColor = makeColor(r: 230, g: 205, b: 85);
+                notificationButton.unreadBool = true;
             }
             else{
                 readIndicator.backgroundColor = makeColor(r: 204, g: 204, b: 205);

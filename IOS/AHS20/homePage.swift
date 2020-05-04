@@ -33,11 +33,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var notificationBellButton: UIButton!
 	
 	// TODO: get data from server
-	var featuredSize = 10;
+	var featuredSize = 6;
 	var featuredFrame = CGRect(x:0,y:0,width:0,height:0);
 	var asbNewsSize = 3;
     var asbNewsFrame = CGRect(x:0,y:0,width:0,height:0);
-	var sportsNewsSize = 2;
+	var sportsNewsSize = 3;
     var sportsNewsFrame = CGRect(x:0,y:0,width:0,height:0);
     var districtNewsSize = 5;
     var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
@@ -87,7 +87,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleTitleLabel.adjustsFontSizeToFitWidth = true;
 		articleTitleLabel.minimumScaleFactor = 0.8;
 		articleTitleLabel.textAlignment = .left;
-		articleTitleLabel.font = UIFont(name: "SFProDisplay-Black",size: 20);
+		articleTitleLabel.font = UIFont(name: "SFProText-Bold",size: 20);
 		articleTitleLabel.text = "Auto Adjusting Long Title";
 		
 		
@@ -99,7 +99,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleSubtitleContent.text = "This is the content inside the article. What you are seeing is a preview of such article.";
 		
 		
-		let articleImageFrame = CGRect(x: articleTextWidth + 10, y: 10, width: width - (articleTextWidth + 20), height: height - 10);
+		let articleImageFrame = CGRect(x: articleTextWidth + 10, y: 10, width: width - (articleTextWidth + 18), height: height - 10);
 		let articleImageView = UIImageView(frame: articleImageFrame);
 		articleImageView.backgroundColor = makeColor(r: 143, g: 142, b: 142); // articleDarkGreyBackground
 		articleImageView.layer.cornerRadius = 10;
@@ -119,6 +119,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     override func viewDidLoad() { // setup function
 		super.viewDidLoad();
 		
+		article.setUpLocalData(); // retrieve data from json file - see sharedFunc.swift for more info
 		
 		/*for family in UIFont.familyNames {
 
@@ -140,38 +141,43 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		
 		
 		// article variables
-		let articleHorizontalPadding = CGFloat(10);
-		let articleVerticalPadding = CGFloat(5);
+		/*let articleHorizontalPadding = CGFloat(10);
+		let articleVerticalPadding = CGFloat(5);*/
+		
+		let bookMarkTint = UIColor.white;
+		let bookMarkBackground = makeColor(r: 165, g: 165, b: 165);
 		
 		
-        //let articleGreyBackground = makeColor(r: 239, g: 247, b: 237);
+		
 		let articleDarkGreyBackground = makeColor(r: 143, g: 142, b: 142);
 		// scrollview variables
-		let scrollViewHorizontalConstraints = CGFloat(50);
+		let scrollViewHorizontalConstraints = CGFloat(36);
 		
 		
 		// Featured News ----- NOTE - article is not created by smallArticle() func
 		featuredPageControl.numberOfPages = featuredSize;
 		featuredFrame.size = featuredScrollView.frame.size;
-		featuredFrame.size.width = UIScreen.main.bounds.size.width - scrollViewHorizontalConstraints;
+		featuredFrame.size.width = UIScreen.main.bounds.size.width;
         for aIndex in 0..<featuredSize{
 			featuredFrame.origin.x = (featuredFrame.size.width * CGFloat(aIndex));
 			
+			let outerContentView = CustomUIButton(frame: featuredFrame);
+			let articleTimeStampLength = CGFloat(60)
+			//outerContentView.backgroundColor = UIColor.gray;
 			
-            // create content in scrollview
-			let contentView = CustomUIButton(frame: featuredFrame); // wrapper for article
-			//contentView.backgroundColor = articleGreyBackground;
+			let innerContentViewContraint = CGFloat(24);
+			let contentViewFrame = CGRect(x: innerContentViewContraint, y: 0, width: featuredFrame.size.width - (2*innerContentViewContraint), height: featuredFrame.size.height);
+			let contentView = CustomUIButton(frame: contentViewFrame);
 			
-			
-			let articleImageViewFrame = CGRect(x: articleHorizontalPadding, y: articleVerticalPadding, width: featuredFrame.size.width-(2*articleHorizontalPadding), height: featuredFrame.size.height-60-articleVerticalPadding);
+			let articleImageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: contentViewFrame.size.height - 40); // add to contentView
 			let articleImageView = UIImageView(frame:articleImageViewFrame);
 			articleImageView.backgroundColor = articleDarkGreyBackground;
 			articleImageView.layer.cornerRadius = 10;
 			
 			// time stamp
-			let articleTimestampFrame = CGRect(x: articleImageViewFrame.size.width - 60, y: articleImageViewFrame.size.height - 30, width: 50, height: 20);
+			let articleTimestampFrame = CGRect(x: articleImageViewFrame.size.width - (10+articleTimeStampLength), y: articleImageViewFrame.size.height - 30, width: articleTimeStampLength, height: 20);
 			let articleTimestamp = UILabel(frame: articleTimestampFrame);
-			articleTimestamp.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			articleTimestamp.backgroundColor = makeColor(r: 197, g: 197, b: 197);
 			articleTimestamp.font = UIFont(name: "SFProDisplay-Regular", size: 10);
 			articleTimestamp.textAlignment = .center;
 			articleTimestamp.textColor = makeColor(r: 57, g: 57, b: 57);
@@ -179,35 +185,35 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			articleTimestamp.text = "1 hour ago"; // insert code here to get time of article
 			
 			
-			//articleImageView.addSubview(bookmarkButton); // add bookmark button to imageview
 			articleImageView.addSubview(articleTimestamp); // add timestamp to imageview
 			
 			
-			let articleTitleFrame = CGRect(x: articleHorizontalPadding+1, y: featuredFrame.size.height - 60, width: featuredFrame.size.width-(2*articleHorizontalPadding)-2, height: 60);
+			let articleTitleFrame = CGRect(x: 0, y: contentViewFrame.size.height - 30, width: contentViewFrame.size.width, height: 30);
 			let articleTitleLabel = UILabel(frame: articleTitleFrame);
 			articleTitleLabel.text = "Lorem Ipsum Long Title";
 			articleTitleLabel.textAlignment = .left;
 			articleTitleLabel.font = UIFont(name:"SFProText-Bold",size: 25);
 			
+			contentView.addSubview(articleImageView);
+			contentView.addSubview(articleTitleLabel);
 			
-			//bookmark image button - 30x30
-			let bookmarkFrame = CGRect(x: (featuredFrame.size.width - 40 - articleHorizontalPadding) + (featuredFrame.size.width * CGFloat(aIndex)), y: 10+articleVerticalPadding, width: 30, height: 30);
+			
+			let bookmarkFrame = CGRect(x: (featuredFrame.size.width - 40 - innerContentViewContraint) + (featuredFrame.size.width * CGFloat(aIndex)), y: 10, width: 30, height: 30);
 			let bookmarkButton = CustomUIButton(frame: bookmarkFrame);
-			bookmarkButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			bookmarkButton.backgroundColor = bookMarkBackground;
 			bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
 			bookmarkButton.setImage(bookmarkImage, for: .normal);
+			bookmarkButton.tintColor = bookMarkTint;
+
+			contentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
 			
+			outerContentView.addSubview(contentView);
 			
-            // add contentview to scrollview
-			contentView.addSubview(articleTitleLabel);
-			contentView.addSubview(articleImageView);
+			outerContentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
+			bookmarkButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
 			
-			//button actions
-			contentView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
-			bookmarkButton.addTarget(self, action: #selector(self.bookmarkCurrentArticle), for: .touchUpInside);
-			
-            self.featuredScrollView.addSubview(contentView);
+			self.featuredScrollView.addSubview(outerContentView);
 			self.featuredScrollView.addSubview(bookmarkButton);
         }
         // change horizontal size of scrollview
@@ -234,15 +240,17 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			// subview bookmark button - 30x30
 			let bookmarkAFrame = CGRect(x: asbNewsFrame.size.width - 45, y: 15, width: 30, height: 30);
 			let bookmarkAButton = CustomUIButton(frame: bookmarkAFrame);
-			bookmarkAButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			bookmarkAButton.backgroundColor = bookMarkBackground;
 			bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkAButton.setImage(bookmarkImage, for: .normal);
+			bookmarkAButton.tintColor = bookMarkTint;
 			// B button
 			let bookmarkBFrame = CGRect(x: asbNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
 			let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
-			bookmarkBButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			bookmarkBButton.backgroundColor = bookMarkBackground;
 			bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkBButton.setImage(bookmarkImage, for: .normal);
+			bookmarkBButton.tintColor = bookMarkTint;
 			
 			
 			//create article with function - TODO: find out a way to separate article from top and bottom
@@ -282,15 +290,17 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			// subview bookmark button - 30x30
 			let bookmarkAFrame = CGRect(x: sportsNewsFrame.size.width - 45, y: 15, width: 30, height: 30);
 			let bookmarkAButton = CustomUIButton(frame: bookmarkAFrame);
-			bookmarkAButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			bookmarkAButton.backgroundColor = bookMarkBackground;
 			bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkAButton.setImage(bookmarkImage, for: .normal);
+			bookmarkAButton.tintColor = bookMarkTint;
 			// B button
 			let bookmarkBFrame = CGRect(x: sportsNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
 			let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
-			bookmarkBButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			bookmarkBButton.backgroundColor = bookMarkBackground;
 			bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkBButton.setImage(bookmarkImage, for: .normal);
+			bookmarkBButton.tintColor = bookMarkTint;
 			
 			
 			//create article with function - TODO: find out a way to separate article from top and bottom
@@ -324,15 +334,17 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			// subview bookmark button - 30x30
 			let bookmarkAFrame = CGRect(x: districtNewsFrame.size.width - 45, y: 15, width: 30, height: 30);
 			let bookmarkAButton = CustomUIButton(frame: bookmarkAFrame);
-			bookmarkAButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			bookmarkAButton.backgroundColor = bookMarkBackground;
 			bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkAButton.setImage(bookmarkImage, for: .normal);
+			bookmarkAButton.tintColor = bookMarkTint;
 			// B button
 			let bookmarkBFrame = CGRect(x: districtNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
 			let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
-			bookmarkBButton.backgroundColor = makeColor(r: 216, g: 216, b: 216);
+			bookmarkBButton.backgroundColor = bookMarkBackground;
 			bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkBButton.setImage(bookmarkImage, for: .normal);
+			bookmarkBButton.tintColor = bookMarkTint;
 			
 			
 			//create article with function - TODO: find out a way to separate article from top and bottom
