@@ -41,8 +41,8 @@ class CustomTabBarController: UIViewController {
 
         // set up buttons
         for index in 0..<buttons.count{
-            var image = UIImage(systemName: iconImagePath[index]);
-            image = image?.maskWithColor(color: UIColor.white);
+            let image = UIImage(systemName: iconImagePath[index]);
+            //image = image?.maskWithColor(color: UIColor.white);
             buttons[index].setImage(image, for: .normal);
             buttons[index].tintColor = UIColor.white;
         }
