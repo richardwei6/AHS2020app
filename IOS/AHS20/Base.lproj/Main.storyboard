@@ -709,17 +709,30 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="quT-Ls-N2h"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="CS7-96-2oQ"/>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arG-KJ-TsU">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="HJf-b2-LfI"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="exitPopup:" destination="iaA-pd-aga" eventType="touchUpInside" id="Xbd-Zg-dYD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="NZN-7j-auO" firstAttribute="top" secondItem="arG-KJ-TsU" secondAttribute="bottom" id="Hc9-NE-aho"/>
                             <constraint firstItem="NZN-7j-auO" firstAttribute="width" secondItem="VUm-Fx-egc" secondAttribute="width" id="NFo-pA-H9n"/>
                             <constraint firstItem="MJJ-OQ-oKj" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" constant="15" id="QGJ-3E-GgU"/>
                             <constraint firstItem="2sE-1G-zN5" firstAttribute="trailing" secondItem="NZN-7j-auO" secondAttribute="trailing" id="R1S-jJ-qFo"/>
+                            <constraint firstItem="arG-KJ-TsU" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" id="Y7P-WO-FZx"/>
+                            <constraint firstItem="arG-KJ-TsU" firstAttribute="trailing" secondItem="2sE-1G-zN5" secondAttribute="trailing" id="ZTR-ML-yK1"/>
                             <constraint firstItem="MJJ-OQ-oKj" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" constant="15" id="bvx-UK-UTp"/>
                             <constraint firstItem="4fI-zh-Z0s" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" constant="14" id="lHs-mT-DwJ"/>
                             <constraint firstItem="NZN-7j-auO" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" constant="58" id="mXf-jD-rAc"/>
                             <constraint firstItem="2sE-1G-zN5" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4fI-zh-Z0s" secondAttribute="trailing" symbolic="YES" id="phP-Rt-p2T"/>
                             <constraint firstItem="4fI-zh-Z0s" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" constant="42" id="sEV-cR-s1m"/>
+                            <constraint firstItem="arG-KJ-TsU" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" id="tIO-bv-aMS"/>
                             <constraint firstItem="NZN-7j-auO" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" id="vHO-QD-qX5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2sE-1G-zN5"/>
@@ -733,7 +746,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLZ-t6-pdv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1626" y="2825"/>
+            <point key="canvasLocation" x="1624.6376811594205" y="2824.7282608695655"/>
         </scene>
         <!--Article Page View Controller-->
         <scene sceneID="RDm-Qy-cfW">
