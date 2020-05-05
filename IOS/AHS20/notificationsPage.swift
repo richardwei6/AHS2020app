@@ -34,6 +34,11 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
 
     
     func loadScrollView(){
+        // remove prev subviews
+        for subview in notificationScrollView.subviews{
+            subview.removeFromSuperview();
+        }
+        
         notificationFrame.size.width = UIScreen.main.bounds.size.width - (2 * horizontalPadding);
         notificationFrame.size.height = 110;
         // add notification label at start
@@ -105,6 +110,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         super.viewDidLoad();
         
         // set iphone x or above color below the safe area
+      
         notificationScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
         loadScrollView();

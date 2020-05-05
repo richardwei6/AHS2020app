@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+
+struct tempArticle{
+    var articleTitle: String;
+    var articlePara: String;
+    var articleDate: String;
+    var articleType: Int;
+}
+
+
 class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
 
     @IBOutlet weak var filterScrollView: UIScrollView!
@@ -17,6 +26,23 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     @IBOutlet weak var monthLabel: UILabel!
     
     @IBOutlet weak var notificationBellButton: UIButton!
+    
+    
+    // start test data
+    
+    
+    let articleTitle = ["Science Bowl Tryouts: ", "Arcadia's Got Talent- AEF Video Contest", "Blind Date with a Book is Back!", "Title1", "Title1", "Title1"];
+    let articlePara = ["Short answer written test on AP Bio, AP Chem, AP Physics, Earth & Space Sciences, Statistics, Math Analysis, Calculus. Candidates ideally should have taken an AP class and show subject mastery. No need to know all subjects. Team members typically show content mastery of a specific subject, not all of the subjects. Check out the link to watch a regional match, finals round. For questions email cmynster@ausd.net", "- Open until 3/25/2020. Click on the link to access further", "Come to the library to check out a surprise book. Read and review\n" +
+        "the book, and you can win prizes! With over 50 excellent books wrapped up for a delicious suprise, you're bound to find something you love!", "Sample Text", "Sample Text", "Sample Text"];
+    let articleDate = ["4/24/2020", "3/25/2020", "4/30/2020", "99/99/9999", "99/99/9999", "99/99/9999"];
+    let articleImage = [0, 2, 5, 1, 3, 4];
+    
+    var totalArticles = [tempArticle]();
+    
+    
+    // end test data
+    
+    
     
     // padding variables
     let iconHorizontalPadding = CGFloat(20);
@@ -30,10 +56,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     var filterIconImageSize = CGFloat(40);
     
     
-    var bulletinSize = 10;
-    var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
-    
-    
     let filterIconPicturePath = ["Group 51.png","Path 275.png","Group 34.png","Path 276.png","Path 277.png"];
     let filterIconName = ["Seniors", "Colleges", "Events", "Athletics", "Reference", "Others"];
     
@@ -44,12 +66,12 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     var iconViewFrame: CGRect?;
     
     @objc func openNotifcations(sender: UIButton){
-        print("Notifcations");
+        //print("Notifcations");
         performSegue(withIdentifier: "notificationSegue", sender: nil);
     }
     
     @objc func openArticle(sender: CustomUIButton){
-        print("Button pressed");
+       // print("Button pressed");
         performSegue(withIdentifier: "articleSegue", sender: nil);
     }
     
@@ -62,7 +84,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         }
         sender.isSelected = !sender.isSelected;
         selectedFilters[sender.articleIndex] = sender.isSelected;
-        print(sender.isSelected);
+        //print(sender.isSelected);
         generateIconImage(iconView: sender);
         generateBulletin();
     }
@@ -106,8 +128,32 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         }
     }
     
+    
+    func filterArticles() -> [tempArticle]{
+        var copy = [tempArticle]();
+  
+        for i in 0..<totalArticles.count{
+            if (selectedFilters[totalArticles[i].articleType] == true){
+                    copy.append(totalArticles[i]);
+            }
+        }
+        return copy.count == 0 ?totalArticles:copy;
+    }
+    
+    
     func generateBulletin(){ // TODO: implement filter ---------
         // set up bulletin
+        
+        // remove all prev views
+        for subview in bulletinScrollView.subviews{
+            subview.removeFromSuperview();
+        }
+        
+        var currentArticles = filterArticles();
+        
+        var bulletinSize = currentArticles.count;
+        var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
+        
         bulletinFrame.size.height = articleVerticalSize;
         bulletinFrame.size.width = UIScreen.main.bounds.size.width - (2*articleHorizontalPadding);
         
@@ -123,15 +169,32 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding) - 20, height: bulletinFrame.size.height - 10);
             let mainView = CustomUIButton(frame: mainViewFrame);
             
-            let articleIconFrame = CGRect(x: 2, y: 7, width: imageArticleSize, height: imageArticleSize);
-            let articleIcon = UIImageView(frame: articleIconFrame);
-            articleIcon.image = UIImage(named: "Group 51.png");
-            articleIcon.setImageColor(color: mainThemeColor);
+
+            if (currentArticles[aIndex].articleType != 0){
+                let articleIconFrame = CGRect(x: 2, y: 7, width: imageArticleSize, height: imageArticleSize);
+                let articleIcon = UIImageView(frame: articleIconFrame);
+                articleIcon.image = UIImage(named: filterIconPicturePath[currentArticles[aIndex].articleType-1]); // temporary------
+                articleIcon.contentMode = .scaleAspectFit;
+                articleIcon.setImageColor(color: mainThemeColor);
+                mainView.addSubview(articleIcon);
+            }
+            else{
+                let articleIconFrame = CGRect(x: 2, y: 7, width: 30, height: 50);
+                let articleIcon = UILabel(frame: articleIconFrame);
+                articleIcon.text = "20\n21";
+                articleIcon.setLineSpacing(lineHeightMultiple: 0.7);
+                articleIcon.numberOfLines = 3;
+                articleIcon.textAlignment = .center;
+                articleIcon.font = UIFont(name: "HarlowSolid", size: 22);
+                articleIcon.textColor = mainThemeColor;
+                mainView.addSubview(articleIcon);
+            }
+            //articleIcon.setImageColor(color: mainThemeColor);
             
             let articleTitleFrame = CGRect(x: 45, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 100, height: 25);
             let articleTitleText = UILabel(frame: articleTitleFrame);
-            articleTitleText.text = "Title"; // insert title text here
-            articleTitleText.font =  UIFont(name: "SFProDisplay-Regular",size: 30);
+            articleTitleText.text = currentArticles[aIndex].articleTitle; // insert title text here ------ temporary
+            articleTitleText.font =  UIFont(name: "SFProDisplay-Regular",size: 20);
             articleTitleText.numberOfLines = 1;
             //articleTitleText.backgroundColor = UIColor.gray;
             /*articleTitleText.adjustsFontSizeToFitWidth = true;
@@ -141,19 +204,19 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             
             let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
             let articleBodyText = UILabel(frame: articleBodyFrame);
-            articleBodyText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec blandit erat, a pellentesque urna. Donec eget tristique elit, non mattis mauris. Duis eget feugiat nisi, eget ornare velit. Maecenas a malesuada orci. Sed suscipit augue vitae turpis blandit, sit amet condimentum nulla blandit. Integer malesuada sed dolor vel ultrices. Aenean eget ligula pulvinar leo hendrerit ornare eget a augue. Aenean id hendrerit erat, in sodales massa. Etiam eu finibus justo. Morbi nunc eros, aliquam non erat eu, tincidunt vulputate mauris. Integer non nibh a nisi vestibulum condimentum. Etiam et sapien lacus. Donec sollicitudin, turpis quis aliquam hendrerit, sem arcu consectetur erat, sed bibendum sapien sapien vel ante. Duis eget mi feugiat, aliquet diam id, vehicula tellus. Maecenas et rutrum metus, in sodales nulla." // insert body text here
+            articleBodyText.text = currentArticles[aIndex].articlePara;// insert body text here ------- temporary
             articleBodyText.numberOfLines = 4;
             articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
             
             
-            mainView.addSubview(articleIcon);
+            
             mainView.addSubview(articleTitleText);
             //mainView.addSubview(dateText);
             mainView.addSubview(articleBodyText);
             
             let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
             let dateText = UILabel(frame: dateTextFrame);
-            dateText.text = "00/00/0000"; // insert date here
+            dateText.text = currentArticles[aIndex].articleDate; // insert date here -------- temporary
             dateText.textColor = makeColor(r: 189, g: 151, b: 104);
             dateText.textAlignment = .right;
 
@@ -174,7 +237,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     override func viewDidLoad() {
         super.viewDidLoad();
        
-        
+        // test data
+        for i in 0..<articleTitle.count{
+            totalArticles.append(tempArticle.init(articleTitle: articleTitle[i], articlePara: articlePara[i], articleDate: articleDate[i], articleType: articleImage[i]));
+        }
+        // end test data
         
         monthLabel.text = getTitleDateAndMonth();
         monthLabel.adjustsFontSizeToFitWidth = true;
