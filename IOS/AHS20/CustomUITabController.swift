@@ -35,7 +35,7 @@ class CustomTabBarController: UIViewController {
         contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
         tabBarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -25).isActive = true;
-        tabBarView.layer.cornerRadius = 30;
+        tabBarView.layer.cornerRadius = 25;
        // tabBarView.frame.size.height = CGFloat(70);
         
 
