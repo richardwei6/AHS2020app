@@ -166,7 +166,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             articleButton.backgroundColor = UIColor.white;
             
             // content inside button
-            let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding) - 20, height: bulletinFrame.size.height - 10);
+            let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding), height: bulletinFrame.size.height - 10);
             let mainView = CustomUIButton(frame: mainViewFrame);
             
 
