@@ -31,7 +31,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arcadia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGs-Tp-TiM">
-                                        <rect key="frame" x="46.999999999999993" y="5.9999999999999982" width="71.333333333333314" height="25.333333333333329"/>
+                                        <rect key="frame" x="47" y="5.9999999999999982" width="81" height="25.333333333333329"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -56,10 +56,10 @@
                                         <rect key="frame" x="0.0" y="57" width="414" height="1473"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c60-pn-icN" userLabel="ContentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1394"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1424"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="FEATURED" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnJ-7H-0gk">
-                                                        <rect key="frame" x="24" y="8" width="146.33333333333334" height="35"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEATURED" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnJ-7H-0gk">
+                                                        <rect key="frame" x="24" y="8" width="155.66666666666666" height="35"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="29"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -77,8 +77,8 @@
                                                         <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </pageControl>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ASB NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKr-lH-Bsn">
-                                                        <rect key="frame" x="24" y="360" width="150" height="35"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKr-lH-Bsn">
+                                                        <rect key="frame" x="24" y="360" width="157.66666666666666" height="35"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="29"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -96,8 +96,8 @@
                                                         <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </pageControl>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="SPORTS NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wO-JH-02W">
-                                                        <rect key="frame" x="24" y="690" width="207" height="35"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPORTS NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wO-JH-02W">
+                                                        <rect key="frame" x="24.000000000000014" y="690" width="217.33333333333337" height="35"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="29"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -110,8 +110,8 @@
                                                         <viewLayoutGuide key="contentLayoutGuide" id="IA9-Pm-pRz"/>
                                                         <viewLayoutGuide key="frameLayoutGuide" id="ldF-Tw-Grh"/>
                                                     </scrollView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="DISTRICT NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71t-R9-dZP">
-                                                        <rect key="frame" x="24" y="1020" width="221" height="35"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISTRICT NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71t-R9-dZP">
+                                                        <rect key="frame" x="24" y="1020" width="236" height="35"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="29"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -163,9 +163,9 @@
                                                     <constraint firstAttribute="trailing" secondItem="JC3-cx-3cn" secondAttribute="trailing" constant="18" id="OKp-VJ-YSn"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8wO-JH-02W" secondAttribute="trailing" constant="20" symbolic="YES" id="Odb-eQ-bBC"/>
                                                     <constraint firstItem="heA-bb-B3F" firstAttribute="leading" secondItem="c60-pn-icN" secondAttribute="leading" constant="18" id="P0p-O6-TS9"/>
-                                                    <constraint firstAttribute="bottom" secondItem="heA-bb-B3F" secondAttribute="bottom" constant="326" id="Q1g-ek-gNw"/>
                                                     <constraint firstItem="XaI-RB-eFN" firstAttribute="top" secondItem="g9T-Qn-sUC" secondAttribute="bottom" id="RR6-mo-JHj"/>
                                                     <constraint firstItem="Aqy-2R-0Gs" firstAttribute="top" secondItem="heA-bb-B3F" secondAttribute="bottom" constant="8" id="SB6-5d-yRZ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Lf4-vr-Yuw" secondAttribute="bottom" constant="71" id="SI4-G1-d4O"/>
                                                     <constraint firstAttribute="trailing" secondItem="8rx-zh-BcH" secondAttribute="trailing" constant="18" id="SeU-lj-JEA"/>
                                                     <constraint firstAttribute="trailing" secondItem="pDx-yg-g8f" secondAttribute="trailing" constant="18" id="Tf3-Pe-sQz"/>
                                                     <constraint firstItem="Lf4-vr-Yuw" firstAttribute="top" secondItem="Aqy-2R-0Gs" secondAttribute="bottom" id="Uh4-Nl-F6Z"/>
@@ -177,19 +177,19 @@
                                                     <constraint firstItem="kKr-lH-Bsn" firstAttribute="leading" secondItem="c60-pn-icN" secondAttribute="leading" constant="24" id="bNg-SZ-Mby"/>
                                                     <constraint firstAttribute="trailing" secondItem="Ji5-mS-FN0" secondAttribute="trailing" constant="25" id="d1L-VI-Tsq"/>
                                                     <constraint firstItem="JC3-cx-3cn" firstAttribute="top" secondItem="8rx-zh-BcH" secondAttribute="bottom" constant="325" id="eAc-HZ-x32"/>
+                                                    <constraint firstAttribute="bottom" secondItem="heA-bb-B3F" secondAttribute="bottom" constant="356" id="eBH-oL-9ia"/>
                                                     <constraint firstItem="71t-R9-dZP" firstAttribute="top" secondItem="8wO-JH-02W" secondAttribute="bottom" constant="295" id="eI4-aP-Qp5"/>
                                                     <constraint firstItem="71t-R9-dZP" firstAttribute="leading" secondItem="c60-pn-icN" secondAttribute="leading" constant="24" id="fkx-L3-ktR"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Lf4-vr-Yuw" secondAttribute="bottom" constant="41" id="hTG-7Q-oAQ"/>
                                                     <constraint firstItem="g9T-Qn-sUC" firstAttribute="leading" secondItem="c60-pn-icN" secondAttribute="leading" constant="18" id="hTH-fJ-B0F"/>
                                                     <constraint firstItem="SnJ-7H-0gk" firstAttribute="top" secondItem="c60-pn-icN" secondAttribute="top" constant="8" id="iJ2-DI-ZgN"/>
                                                     <constraint firstAttribute="trailing" secondItem="eaE-3W-KHX" secondAttribute="trailing" constant="18" id="j2v-3q-tFq"/>
                                                     <constraint firstItem="8rx-zh-BcH" firstAttribute="leading" secondItem="c60-pn-icN" secondAttribute="leading" constant="18" id="jIn-9h-gp0"/>
                                                     <constraint firstItem="g9T-Qn-sUC" firstAttribute="top" secondItem="JC3-cx-3cn" secondAttribute="bottom" constant="8" id="kEE-Fe-Y1s"/>
                                                     <constraint firstAttribute="trailing" secondItem="Aqy-2R-0Gs" secondAttribute="trailing" constant="18" id="lSV-I8-D0i"/>
-                                                    <constraint firstAttribute="bottom" secondItem="71t-R9-dZP" secondAttribute="bottom" constant="339" id="mYk-Ic-wac"/>
                                                     <constraint firstItem="Lf4-vr-Yuw" firstAttribute="top" secondItem="Aqy-2R-0Gs" secondAttribute="bottom" id="oCM-IX-Jy9"/>
                                                     <constraint firstItem="JCP-z7-LmY" firstAttribute="top" secondItem="w6x-vh-G08" secondAttribute="bottom" id="oey-0u-2nl"/>
                                                     <constraint firstAttribute="trailing" secondItem="JCP-z7-LmY" secondAttribute="trailing" constant="25" id="tAD-F5-efI"/>
+                                                    <constraint firstAttribute="bottom" secondItem="71t-R9-dZP" secondAttribute="bottom" constant="369" id="vOu-dc-cOX"/>
                                                     <constraint firstItem="SnJ-7H-0gk" firstAttribute="leading" secondItem="c60-pn-icN" secondAttribute="leading" constant="24" id="vgY-LX-hos"/>
                                                     <constraint firstItem="Lf4-vr-Yuw" firstAttribute="leading" secondItem="c60-pn-icN" secondAttribute="leading" constant="25" id="w6z-Vl-342"/>
                                                     <constraint firstItem="pDx-yg-g8f" firstAttribute="top" secondItem="8rx-zh-BcH" secondAttribute="bottom" constant="8" id="yVc-67-6Xi"/>
@@ -199,11 +199,11 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="c60-pn-icN" firstAttribute="leading" secondItem="ABh-Jo-9bx" secondAttribute="leading" id="4bA-jA-pN4"/>
-                                            <constraint firstAttribute="bottom" secondItem="c60-pn-icN" secondAttribute="bottom" id="Eaf-dF-F9F"/>
+                                            <constraint firstAttribute="bottom" secondItem="c60-pn-icN" secondAttribute="bottom" constant="49" id="BMT-iD-KJR"/>
                                             <constraint firstItem="c60-pn-icN" firstAttribute="top" secondItem="ABh-Jo-9bx" secondAttribute="top" id="Got-1R-gVS"/>
                                             <constraint firstItem="c60-pn-icN" firstAttribute="width" secondItem="ABh-Jo-9bx" secondAttribute="width" id="RnL-ds-QSP"/>
+                                            <constraint firstItem="c60-pn-icN" firstAttribute="height" secondItem="ABh-Jo-9bx" secondAttribute="height" multiplier="0.966735" priority="250" id="Wmv-Ub-xq7"/>
                                             <constraint firstAttribute="trailing" secondItem="c60-pn-icN" secondAttribute="trailing" id="gXq-9e-0yz"/>
-                                            <constraint firstItem="c60-pn-icN" firstAttribute="height" secondItem="ABh-Jo-9bx" secondAttribute="height" priority="250" id="xYJ-Ah-OlV"/>
                                         </constraints>
                                         <viewLayoutGuide key="contentLayoutGuide" id="eQN-GW-9Or"/>
                                         <viewLayoutGuide key="frameLayoutGuide" id="kyh-uD-8ZZ"/>
@@ -217,6 +217,7 @@
                                 <constraints>
                                     <constraint firstItem="HFX-h2-FtY" firstAttribute="bottom" secondItem="ABh-Jo-9bx" secondAttribute="bottom" id="2Mt-Bc-11K"/>
                                     <constraint firstItem="pyQ-gP-1Uj" firstAttribute="leading" secondItem="HFX-h2-FtY" secondAttribute="leading" constant="47" id="3v6-qY-Fhb"/>
+                                    <constraint firstItem="ABh-Jo-9bx" firstAttribute="height" secondItem="780-jE-tNr" secondAttribute="height" multiplier="0.962745" id="874-aO-xfz"/>
                                     <constraint firstItem="rtx-8x-3qt" firstAttribute="top" secondItem="HFX-h2-FtY" secondAttribute="top" constant="11" id="Bww-1d-grJ"/>
                                     <constraint firstItem="HFX-h2-FtY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pyQ-gP-1Uj" secondAttribute="trailing" symbolic="YES" id="DaH-pa-dgQ"/>
                                     <constraint firstItem="HFX-h2-FtY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tGs-Tp-TiM" secondAttribute="trailing" symbolic="YES" id="EXj-JX-7GS"/>
@@ -225,7 +226,6 @@
                                     <constraint firstItem="HFX-h2-FtY" firstAttribute="trailing" secondItem="ABh-Jo-9bx" secondAttribute="trailing" id="ZQW-is-URL"/>
                                     <constraint firstItem="HFX-h2-FtY" firstAttribute="trailing" secondItem="rtx-8x-3qt" secondAttribute="trailing" constant="26" id="bRK-Fz-SiI"/>
                                     <constraint firstItem="tGs-Tp-TiM" firstAttribute="leading" secondItem="HFX-h2-FtY" secondAttribute="leading" constant="47" id="bsT-ak-akf"/>
-                                    <constraint firstItem="ABh-Jo-9bx" firstAttribute="height" secondItem="780-jE-tNr" secondAttribute="height" multiplier="0.962" id="cpG-3E-E59"/>
                                     <constraint firstItem="ABh-Jo-9bx" firstAttribute="leading" secondItem="HFX-h2-FtY" secondAttribute="leading" id="gRj-pr-HhU"/>
                                     <constraint firstItem="pyQ-gP-1Uj" firstAttribute="top" secondItem="HFX-h2-FtY" secondAttribute="top" constant="28" id="hdq-sA-Ufn"/>
                                     <constraint firstItem="ABh-Jo-9bx" firstAttribute="top" secondItem="HFX-h2-FtY" secondAttribute="top" constant="57" id="iRn-Jd-HvJ"/>
@@ -825,8 +825,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jFx-sQ-NyB"/>
-        <segue reference="v0c-dE-OoU"/>
+        <segue reference="ubl-hZ-R1k"/>
+        <segue reference="rHG-Yz-Bir"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

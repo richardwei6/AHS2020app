@@ -229,7 +229,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             mainView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
             self.bulletinScrollView.addSubview(articleButton);
         }
-        bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width-(2*articleHorizontalPadding), height: 2*articleVerticalPadding+(bulletinFrame.size.height+articleVerticalPadding)*CGFloat(bulletinSize));
+        bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width-(2*articleHorizontalPadding), height: 2*articleVerticalPadding+(bulletinFrame.size.height+articleVerticalPadding)*CGFloat(bulletinSize)+75);
         bulletinScrollView.delegate = self;
     }
     
