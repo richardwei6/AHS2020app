@@ -197,11 +197,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             let articleTitleFrame = CGRect(x: 45, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 100, height: 25);
             let articleTitleText = UILabel(frame: articleTitleFrame);
             articleTitleText.text = currentArticles[aIndex].articleTitle; // insert title text here ------ temporary
-            articleTitleText.font =  UIFont(name: "SFProDisplay-Regular",size: 20);
-            articleTitleText.numberOfLines = 1;
+            articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 20);
+            //articleTitleText.numberOfLines = 1;
             //articleTitleText.backgroundColor = UIColor.gray;
-            /*articleTitleText.adjustsFontSizeToFitWidth = true;
-            articleTitleText.sizeToFit();*/
+            articleTitleText.adjustsFontSizeToFitWidth = true;
+            articleTitleText.minimumScaleFactor = 0.5;
 
             
             

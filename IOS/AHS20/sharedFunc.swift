@@ -16,7 +16,7 @@ import AudioToolbox
 var savedArticles = [String]();
 
 func getSavedArticles(){ // get saved articles from phone local storage
-    savedArticles = ["", "", "", "", "", "", ""];
+    //savedArticles = ["", "", "", "", "", "", ""];
 }
 
 

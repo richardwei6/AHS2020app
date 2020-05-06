@@ -507,8 +507,8 @@
                                     <constraint firstAttribute="height" constant="44" id="dGd-zh-gEy"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No saved pages found." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rh-dO-soH">
-                                <rect key="frame" x="64" y="485" width="286" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No saved articles found. Click on the bookmark icon to save an article." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rh-dO-soH">
+                                <rect key="frame" x="10" y="455.33333333333331" width="394" height="89.666666666666686"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -524,6 +524,7 @@
                         <constraints>
                             <constraint firstItem="s9L-3k-W7b" firstAttribute="top" secondItem="Vkk-Jn-XKk" secondAttribute="top" constant="6" id="1gp-da-Dmv"/>
                             <constraint firstItem="s9L-3k-W7b" firstAttribute="leading" secondItem="Vkk-Jn-XKk" secondAttribute="leading" constant="5" id="29G-Qx-nrj"/>
+                            <constraint firstAttribute="trailing" secondItem="6Rh-dO-soH" secondAttribute="trailing" constant="10" id="2gX-xX-cnc"/>
                             <constraint firstItem="Vkk-Jn-XKk" firstAttribute="trailing" secondItem="TCq-En-B3i" secondAttribute="trailing" constant="26" id="7D5-kk-Gcz"/>
                             <constraint firstItem="6Rh-dO-soH" firstAttribute="centerY" secondItem="Vkk-Jn-XKk" secondAttribute="centerY" id="BZI-kO-xOq"/>
                             <constraint firstItem="Lrm-pV-QtS" firstAttribute="trailing" secondItem="Vkk-Jn-XKk" secondAttribute="trailing" id="DAv-ax-JlN"/>
@@ -534,7 +535,7 @@
                             <constraint firstItem="GSf-Ve-Jbt" firstAttribute="leading" secondItem="Vkk-Jn-XKk" secondAttribute="leading" constant="47" id="VoT-TG-3kw"/>
                             <constraint firstItem="TCq-En-B3i" firstAttribute="top" secondItem="Vkk-Jn-XKk" secondAttribute="top" constant="11" id="Xxb-65-QNV"/>
                             <constraint firstItem="Lrm-pV-QtS" firstAttribute="top" secondItem="s9L-3k-W7b" secondAttribute="bottom" constant="8" id="cFN-5J-gbf"/>
-                            <constraint firstItem="6Rh-dO-soH" firstAttribute="centerX" secondItem="Vkk-Jn-XKk" secondAttribute="centerX" id="tNe-Ds-g4w"/>
+                            <constraint firstItem="6Rh-dO-soH" firstAttribute="leading" secondItem="Vkk-Jn-XKk" secondAttribute="leading" constant="10" id="d5W-Y0-Dtn"/>
                             <constraint firstItem="GSf-Ve-Jbt" firstAttribute="top" secondItem="Vkk-Jn-XKk" secondAttribute="top" constant="6" id="yl9-48-fhO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vkk-Jn-XKk"/>
