@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
 
 class articlePageViewController: UIViewController, UIScrollViewDelegate{
     /*@IBOutlet weak var backButton: UIButton!
@@ -33,6 +34,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     
     @IBAction func exitArticle(_ sender: UIButton){
         dismiss(animated: true);
+       AudioServicesPlaySystemSound(1519);
     }
     
     

@@ -13,7 +13,7 @@
 - CustomUIButton is a custom class that I created that is an extension of the regular UIButton class. The main different to this class is that there are extra data types that allow you allow you to pass data to a ".addTarget" @objc function that you normally wouldn't be able to do. The data types can be found in sharedFunc.swift
 */
 import UIKit
-
+import AudioToolbox
 
 class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
 

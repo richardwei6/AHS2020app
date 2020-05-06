@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
 
 class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
 
@@ -119,7 +120,8 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     
     @IBAction func exitPopup(_ sender: UIButton) {
-         dismiss(animated: true);
+        dismiss(animated: true);
+        AudioServicesPlaySystemSound(1519);
     }
     
 }

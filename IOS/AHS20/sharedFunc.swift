@@ -8,9 +8,16 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
 
 
 // swift file with shared functions and extensions between files
+
+var savedArticles = [String]();
+
+func getSavedArticles(){ // get saved articles from phone local storage
+    savedArticles = ["", "", "", "", "", "", ""];
+}
 
 
 class article{
@@ -126,7 +133,9 @@ class SegueFromRight: UIStoryboardSegue {
     override func perform() {
         let src = self.source
         let dst = self.destination
-
+        
+        AudioServicesPlaySystemSound(1519);
+        
         src.view.superview?.insertSubview(dst.view, aboveSubview: src.view)
         dst.view.transform = CGAffineTransform(translationX: src.view.frame.size.width, y: 0)
 
