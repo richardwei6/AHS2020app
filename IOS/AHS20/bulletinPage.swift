@@ -252,7 +252,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         // set up both scrollviews here
         
         let textMargin = CGFloat(20);
-        let topMargin = CGFloat(5);
+        let topMargin = CGFloat(10);
         let betweenMargin = CGFloat(3);
         let filterIconSize = filterScrollView.frame.size.height-textMargin-topMargin-betweenMargin;
         iconViewFrame = CGRect(x:0, y:topMargin, width: filterIconSize, height: filterIconSize);
