@@ -33,7 +33,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
         getSavedArticles();
         
         let articleHeight = CGFloat(130);
-        let articleHorizontalPadding = CGFloat(10);
+        let articleHorizontalPadding = CGFloat(11);
         let articleVerticalPadding = CGFloat(10);
         
         monthLabel.text = getTitleDateAndMonth();
@@ -65,9 +65,11 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
             
             let articleTitleFrame = CGRect(x: articleImageFrameWidth + 20, y: 10, width: articleFrame.size.width - articleImageFrameWidth - 20, height: 30);
             let articleTitle = UILabel(frame: articleTitleFrame);
-            articleTitle.numberOfLines = 1;
+            //articleTitle.numberOfLines = 1;
+            articleTitle.adjustsFontSizeToFitWidth = true;
+            articleTitle.minimumScaleFactor = 0.4;
             articleTitle.text = "Article Title Article Title";
-            articleTitle.font = UIFont(name: "SFProText-Bold",size: 15);
+            articleTitle.font = UIFont(name: "SFProText-Bold",size: 25);
             
             
             let articleDescriptionFrame = CGRect(x: articleImageFrameWidth + 20, y: 45, width: articleFrame.size.width - articleImageFrameWidth - 20, height: articleFrame.size.height - 50);
