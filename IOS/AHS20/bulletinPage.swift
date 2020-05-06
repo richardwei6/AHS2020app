@@ -27,6 +27,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     @IBOutlet weak var notificationBellButton: UIButton!
     
+    @IBOutlet weak var filterScrollViewHeightContraint: NSLayoutConstraint!
     
     // start test data
     
@@ -64,6 +65,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     // icon stuff
     var iconViewFrame: CGRect?;
+    var filterScrollViewMaxHeight: CGFloat?;
+    var filterScrollViewMinHeight: CGFloat?;
     
     @objc func openNotifcations(sender: UIButton){
         //print("Notifcations");
@@ -243,6 +246,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         }
         // end test data
         
+        filterScrollViewMaxHeight = 89;
+        filterScrollViewMinHeight = 20;
+        
         monthLabel.text = getTitleDateAndMonth();
         monthLabel.adjustsFontSizeToFitWidth = true;
         monthLabel.minimumScaleFactor = 0.8;
@@ -254,6 +260,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         let textMargin = CGFloat(20);
         let topMargin = CGFloat(10);
         let betweenMargin = CGFloat(3);
+        
+
         let filterIconSize = filterScrollView.frame.size.height-textMargin-topMargin-betweenMargin;
         iconViewFrame = CGRect(x:0, y:topMargin, width: filterIconSize, height: filterIconSize);
         
@@ -302,5 +310,21 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         
         
     }
+    /*
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let y: CGFloat = scrollView.contentOffset.y;
+        let newHeaderViewHeight: CGFloat = filterScrollViewHeightContraint.constant - y;
+        
+        if newHeaderViewHeight > filterScrollViewMaxHeight!{
+            filterScrollViewHeightContraint.constant = filterScrollViewMaxHeight!;
+        }
+        else if newHeaderViewHeight < filterScrollViewMinHeight!{
+            filterScrollViewHeightContraint.constant = filterScrollViewMinHeight!;
+        }
+        else{
+            filterScrollViewHeightContraint.constant = newHeaderViewHeight;
+            scrollView.contentOffset.y = 0;
+        }
+    }*/
 
 }

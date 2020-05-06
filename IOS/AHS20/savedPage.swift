@@ -30,19 +30,21 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        getSavedArticles();
-        
-        let articleHeight = CGFloat(130);
-        let articleHorizontalPadding = CGFloat(11);
-        let articleVerticalPadding = CGFloat(10);
         
         monthLabel.text = getTitleDateAndMonth();
         monthLabel.adjustsFontSizeToFitWidth = true;
         monthLabel.minimumScaleFactor = 0.8;
         
-        mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
-        
         notificationBellButton.addTarget(self, action: #selector(self.openNotifcations), for: .touchUpInside);
+        
+        getSavedArticles();
+        
+    if (savedArticles.count != 0){
+        let articleHeight = CGFloat(130);
+        let articleHorizontalPadding = CGFloat(11);
+        let articleVerticalPadding = CGFloat(10);
+        
+        mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
         var articleFrame = CGRect(x:0, y: 0, width: 0, height: 0);
         articleFrame.size.height = articleHeight;
@@ -90,5 +92,6 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
         }
         mainScrollView.contentSize = CGSize(width: articleFrame.size.width, height: 2*articleVerticalPadding+(articleFrame.size.height+articleVerticalPadding) * CGFloat(savedArticles.count)+85);
         mainScrollView.delegate = self;
+        }
     }
 }

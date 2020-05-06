@@ -382,7 +382,7 @@
                                             <scrollView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rC-8R-9Il">
                                                 <rect key="frame" x="0.0" y="0.0" width="416" height="89"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="89" id="VsH-b4-4hc"/>
+                                                    <constraint firstAttribute="height" priority="250" constant="89" id="VsH-b4-4hc"/>
                                                 </constraints>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="ozh-6A-dv4"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Rpy-VH-LYh"/>
@@ -462,6 +462,7 @@
                     <connections>
                         <outlet property="bulletinScrollView" destination="7fW-Zl-nwU" id="SNI-SI-TpG"/>
                         <outlet property="filterScrollView" destination="6rC-8R-9Il" id="oT4-H9-lIf"/>
+                        <outlet property="filterScrollViewHeightContraint" destination="VsH-b4-4hc" id="1Xg-TM-24x"/>
                         <outlet property="monthLabel" destination="ob5-wS-cv8" id="2ig-Xg-Bgg"/>
                         <outlet property="notificationBellButton" destination="xI6-ol-6dh" id="gSt-Yl-lrm"/>
                         <segue destination="947-74-bR0" kind="show" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="ubl-hZ-R1k"/>
@@ -849,8 +850,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ubl-hZ-R1k"/>
-        <segue reference="rHG-Yz-Bir"/>
+        <segue reference="MsQ-j6-zm2"/>
+        <segue reference="RQu-ij-jEm"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
