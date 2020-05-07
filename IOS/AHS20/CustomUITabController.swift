@@ -30,7 +30,9 @@ class CustomTabBarController: UIViewController {
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad();
+        
+        getSavedArticles(); // load default saved articles
         
         contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         

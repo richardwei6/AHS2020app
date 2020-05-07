@@ -44,8 +44,19 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	
 	
+	func setUpColorOfBookmark(sender: CustomUIButton){
+		if (isSavedCurrentArticle(articleID: sender.articleID ?? "") == true){ // TODO: implement sender.articleID
+			sender.tintColor = mainThemeColor;
+		//	sender.backgroundColor = mainThemeColor;
+		}
+		else{
+			sender.tintColor = UIColor.white;
+		//	sender.backgroundColor = nil; // clear bacgkround color
+		}
+	}
 	
-	@objc func openNotifcations(sender: UIButton){
+	
+	@objc func openNotifcations(sender: CustomUIButton){
 		print("Notifcations");
 		performSegue(withIdentifier: "notificationSegue", sender: nil);
 	}
@@ -58,6 +69,15 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	@objc func bookmarkCurrentArticle(sender: CustomUIButton){
 		print("Bookmark Button");
+		if (sender.isSelected == false){
+			sender.tintColor = mainThemeColor;
+			saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+		}
+		else{
+			sender.tintColor = UIColor.white;
+			removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+		}
+		sender.isSelected = !sender.isSelected;
 	}
 	
 	
@@ -204,7 +224,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
 			bookmarkButton.setImage(bookmarkImage, for: .normal);
-			bookmarkButton.tintColor = bookMarkTint;
+			//bookmarkButton.tintColor = bookMarkTint;
+			setUpColorOfBookmark(sender: bookmarkButton);
+			bookmarkButton.isSelected = false;
 
 			contentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
 			
@@ -243,14 +265,19 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			bookmarkAButton.backgroundColor = bookMarkBackground;
 			bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkAButton.setImage(bookmarkImage, for: .normal);
-			bookmarkAButton.tintColor = bookMarkTint;
+			//bookmarkAButton.tintColor = bookMarkTint;
+			setUpColorOfBookmark(sender: bookmarkAButton);
+			bookmarkAButton.isSelected = false;
+			
 			// B button
 			let bookmarkBFrame = CGRect(x: asbNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
 			let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
 			bookmarkBButton.backgroundColor = bookMarkBackground;
 			bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkBButton.setImage(bookmarkImage, for: .normal);
-			bookmarkBButton.tintColor = bookMarkTint;
+			//bookmarkBButton.tintColor = bookMarkTint;
+			setUpColorOfBookmark(sender: bookmarkBButton);
+			bookmarkBButton.isSelected = false;
 			
 			
 			//create article with function - TODO: find out a way to separate article from top and bottom
@@ -293,14 +320,19 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			bookmarkAButton.backgroundColor = bookMarkBackground;
 			bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkAButton.setImage(bookmarkImage, for: .normal);
-			bookmarkAButton.tintColor = bookMarkTint;
+			//bookmarkAButton.tintColor = bookMarkTint;
+			setUpColorOfBookmark(sender: bookmarkAButton);
+			bookmarkAButton.isSelected = false;
+			
 			// B button
 			let bookmarkBFrame = CGRect(x: sportsNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
 			let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
 			bookmarkBButton.backgroundColor = bookMarkBackground;
 			bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkBButton.setImage(bookmarkImage, for: .normal);
-			bookmarkBButton.tintColor = bookMarkTint;
+			//bookmarkBButton.tintColor = bookMarkTint;
+			setUpColorOfBookmark(sender: bookmarkBButton);
+			bookmarkBButton.isSelected = false;
 			
 			
 			//create article with function - TODO: find out a way to separate article from top and bottom
@@ -337,14 +369,19 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			bookmarkAButton.backgroundColor = bookMarkBackground;
 			bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkAButton.setImage(bookmarkImage, for: .normal);
-			bookmarkAButton.tintColor = bookMarkTint;
+			//bookmarkAButton.tintColor = bookMarkTint;
+			setUpColorOfBookmark(sender: bookmarkAButton);
+			bookmarkAButton.isSelected = false;
+			
 			// B button
 			let bookmarkBFrame = CGRect(x: districtNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
 			let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
 			bookmarkBButton.backgroundColor = bookMarkBackground;
 			bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 			bookmarkBButton.setImage(bookmarkImage, for: .normal);
-			bookmarkBButton.tintColor = bookMarkTint;
+			//bookmarkBButton.tintColor = bookMarkTint;
+			setUpColorOfBookmark(sender: bookmarkBButton);
+			bookmarkBButton.isSelected = false;
 			
 			
 			//create article with function - TODO: find out a way to separate article from top and bottom

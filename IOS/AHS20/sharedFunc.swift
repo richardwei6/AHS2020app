@@ -16,8 +16,26 @@ import AudioToolbox
 var savedArticles = [String]();
 
 func getSavedArticles(){ // get saved articles from phone local storage
-    //savedArticles = ["", "", "", "", "", "", ""];
+            //savedArticles = ["", "", "", "", "", "", ""];
+    savedArticles = UserDefaults.standard.stringArray(forKey: "savedArticles") ?? [];
 }
+
+func saveCurrentArticle(articleID: String){
+  //  if (savedArticles.contains(articleID) == false){ TODO: remove comments after implmenting article id
+        savedArticles.append(articleID);
+        UserDefaults.standard.set(savedArticles, forKey: "savedArticles");
+    //}
+}
+
+func removeCurrentArticle(articleID: String){
+    // TODO: add function to look for article id and remove it;
+    UserDefaults.standard.set(savedArticles, forKey: "savedArticles");
+}
+    
+func isSavedCurrentArticle(articleID: String) -> Bool{
+    return false; // TODO: integrate function later
+}
+
 
 
 class article{

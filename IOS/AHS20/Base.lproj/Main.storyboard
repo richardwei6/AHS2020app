@@ -561,7 +561,20 @@
                     <view key="view" contentMode="scaleToFill" id="L9f-uf-B3b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBe-S9-264">
+                                <rect key="frame" x="138" y="353" width="138" height="30"/>
+                                <state key="normal" title="Reset saved articles"/>
+                                <connections>
+                                    <action selector="resetPreferences:" destination="eJS-N8-KBM" eventType="touchUpInside" id="TQ6-JI-AhA"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="jBe-S9-264" firstAttribute="centerX" secondItem="Cga-1v-EAA" secondAttribute="centerX" id="M8d-SZ-BPz"/>
+                            <constraint firstItem="jBe-S9-264" firstAttribute="centerY" secondItem="Cga-1v-EAA" secondAttribute="centerY" id="P7V-jx-gZ5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Cga-1v-EAA"/>
                     </view>
                     <tabBarItem key="tabBarItem" title=" " image="gear.png" id="f5h-jM-6uR"/>
@@ -839,6 +852,7 @@
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
                         <outlet property="articleText" destination="cOg-EF-qjc" id="msh-ht-7Oa"/>
+                        <outlet property="bookmarkButton" destination="ui0-tM-hO3" id="rvU-qP-Lqj"/>
                         <outlet property="imagePageControl" destination="cu9-hd-ekI" id="VeY-X6-Nfa"/>
                         <outlet property="imageScrollView" destination="ki3-E6-wIg" id="Vto-e8-89H"/>
                         <outlet property="mainScrollView" destination="yjk-rW-re5" id="wVV-aJ-Gja"/>

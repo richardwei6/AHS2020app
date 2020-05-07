@@ -23,13 +23,34 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var imagePageControl: UIPageControl!
     @IBOutlet weak var whiteBackground: UIImageView!
     
+    @IBOutlet weak var bookmarkButton: CustomUIButton!
     
     var contentWidth: CGFloat = 0.0
     var imageFrame = CGRect(x: 0, y:0, width: 0, height: 0);
     var imageSize = 3;
     
+    func setUpColorOfBookmark(sender: CustomUIButton){
+        if (isSavedCurrentArticle(articleID: sender.articleID ?? "") == true){ // TODO: implement sender.articleID
+            sender.tintColor = mainThemeColor;
+        //    sender.backgroundColor = mainThemeColor;
+        }
+        else{
+            sender.tintColor = UIColor.white;
+        //    sender.backgroundColor = nil; // clear bacgkround color
+        }
+    }
+    
     @IBAction func saveArticle(sender: CustomUIButton){
         print("Bookmark");
+        if (sender.isSelected == false){
+            sender.tintColor = mainThemeColor;
+            saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+        }
+        else{
+            sender.tintColor = UIColor.white;
+            removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+        }
+        sender.isSelected = !sender.isSelected;
     }
     
     @IBAction func exitArticle(_ sender: UIButton){
@@ -40,7 +61,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     
     // ------------
     // TODO: Fix issue where long text gets cut off *completed, thank u for the reminder XD -em&kim
-    // TODO: Fix issue where the imagescrollview doesn't allow you to go to the third image on real devices *still on it
+    // TODO: Fix issue where the imagescrollview doesn't allow you to go to the third image on real devices -fixed
     // TODO: Fix issue on Storyboard where the Bookmark button gets blurry - use the system bookmark image and put a circular background behind it *completed
     // ------------
     override func viewDidLoad() {
@@ -49,6 +70,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
+        setUpColorOfBookmark(sender: bookmarkButton);
     
         articleText.text = "Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via.Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via. Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via.Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via."
         

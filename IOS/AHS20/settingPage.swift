@@ -15,4 +15,8 @@ class settingClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDe
         super.viewDidLoad();
     }
 
+    @IBAction func resetPreferences(_ sender: Any) {
+        UserDefaults.standard.removeObject(forKey: "savedArticles");
+        savedArticles = [];
+    }
 }
