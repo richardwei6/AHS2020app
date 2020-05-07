@@ -24,6 +24,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var whiteBackground: UIImageView!
     
     @IBOutlet weak var bookmarkButton: CustomUIButton!
+    @IBOutlet weak var bookmarkOuter: CustomUIButton!
     
     var contentWidth: CGFloat = 0.0
     var imageFrame = CGRect(x: 0, y:0, width: 0, height: 0);
@@ -66,6 +67,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     // ------------
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        bookmarkOuter.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 12);
         
         mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;

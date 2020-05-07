@@ -682,16 +682,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBD-To-cbw" userLabel="Saved Circle" customClass="CustomUIButton" customModule="AHS" customModuleProvider="target">
-                                                <rect key="frame" x="352" y="70" width="54" height="53.000000000000014"/>
+                                                <rect key="frame" x="352" y="69" width="54" height="54.333333333333343"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="54" id="6b5-82-e39"/>
                                                     <constraint firstAttribute="height" constant="54.329999999999998" id="g2A-0l-IPz"/>
                                                 </constraints>
                                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="saveArticleWithSender:" destination="947-74-bR0" eventType="touchUpInside" id="yNn-QM-wnI"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ui0-tM-hO3" userLabel="Saved Bookmark" customClass="CustomUIButton" customModule="AHS" customModuleProvider="target">
                                                 <rect key="frame" x="365" y="79" width="29" height="36"/>
@@ -853,6 +850,7 @@
                     <connections>
                         <outlet property="articleText" destination="cOg-EF-qjc" id="msh-ht-7Oa"/>
                         <outlet property="bookmarkButton" destination="ui0-tM-hO3" id="rvU-qP-Lqj"/>
+                        <outlet property="bookmarkOuter" destination="EBD-To-cbw" id="vLS-Pz-lv5"/>
                         <outlet property="imagePageControl" destination="cu9-hd-ekI" id="VeY-X6-Nfa"/>
                         <outlet property="imageScrollView" destination="ki3-E6-wIg" id="Vto-e8-89H"/>
                         <outlet property="mainScrollView" destination="yjk-rW-re5" id="wVV-aJ-Gja"/>
@@ -875,7 +873,6 @@
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
-        <image name="circle.fill" catalog="system" width="128" height="121"/>
         <image name="featherldpi" width="131" height="122"/>
         <image name="gear.png" width="25" height="25"/>
         <image name="red barldpi" width="658" height="5"/>
