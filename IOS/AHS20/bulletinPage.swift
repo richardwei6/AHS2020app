@@ -23,9 +23,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     @IBOutlet weak var filterScrollView: UIScrollView!
     @IBOutlet weak var bulletinScrollView: UIScrollView!
     
-    @IBOutlet weak var monthLabel: UILabel!
-    
-    @IBOutlet weak var notificationBellButton: UIButton!
     
     @IBOutlet weak var filterScrollViewHeightContraint: NSLayoutConstraint!
     
@@ -67,11 +64,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     var iconViewFrame: CGRect?;
     var filterScrollViewMaxHeight: CGFloat?;
     var filterScrollViewMinHeight: CGFloat?;
-    
-    @objc func openNotifcations(sender: UIButton){
-        //print("Notifcations");
-        performSegue(withIdentifier: "notificationSegue", sender: nil);
-    }
     
     @objc func openArticle(sender: CustomUIButton){
        // print("Button pressed");
@@ -248,12 +240,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         
         filterScrollViewMaxHeight = 89;
         filterScrollViewMinHeight = 20;
-        
-        monthLabel.text = getTitleDateAndMonth();
-        monthLabel.adjustsFontSizeToFitWidth = true;
-        monthLabel.minimumScaleFactor = 0.8;
-        
-        notificationBellButton.addTarget(self, action: #selector(self.openNotifcations), for: .touchUpInside);
         
         // set up both scrollviews here
         

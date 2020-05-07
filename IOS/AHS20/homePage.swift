@@ -20,7 +20,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     // link UI elements to swift via outlets
 	
 	//@IBOutlet weak var tabBar: UITabBar!
-	@IBOutlet weak var monthLabel: UILabel!
 	@IBOutlet weak var featuredScrollView: UIScrollView!
 	@IBOutlet weak var featuredPageControl: UIPageControl!
 	@IBOutlet weak var asbNewsScrollView: UIScrollView!
@@ -30,7 +29,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var districtNewsScrollView: UIScrollView!
 	@IBOutlet weak var districtNewsPageControl: UIPageControl!
 	
-	@IBOutlet weak var notificationBellButton: UIButton!
 	
 	// TODO: get data from server
 	var featuredSize = 6;
@@ -54,13 +52,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		//	sender.backgroundColor = nil; // clear bacgkround color
 		}
 	}
-	
-	
-	@objc func openNotifcations(sender: CustomUIButton){
-		print("Notifcations");
-		performSegue(withIdentifier: "notificationSegue", sender: nil);
-	}
-	
+		
 	
 	@objc func openArticle(sender: CustomUIButton){
 		print("Button pressed");
@@ -153,11 +145,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		
         // Do any additional setup after loading the view.
 		// set month -
-		monthLabel.text = getTitleDateAndMonth();
-		monthLabel.adjustsFontSizeToFitWidth = true;
-		monthLabel.minimumScaleFactor = 0.8;
-		
-		notificationBellButton.addTarget(self, action: #selector(self.openNotifcations), for: .touchUpInside);
 		
 		
 		// article variables

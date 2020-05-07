@@ -13,14 +13,6 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
 
     @IBOutlet weak var mainScrollView: UIScrollView!
     
-    @IBOutlet weak var monthLabel: UILabel!
-    
-    @IBOutlet weak var notificationBellButton: UIButton!
-    
-    @objc func openNotifcations(sender: UIButton){
-        print("Notifcations");
-        performSegue(withIdentifier: "notificationSegue", sender: nil);
-    }
     
     @objc func openArticle(sender: CustomUIButton){
        // print("Button pressed");
@@ -29,15 +21,6 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
-        
-        monthLabel.text = getTitleDateAndMonth();
-        monthLabel.adjustsFontSizeToFitWidth = true;
-        monthLabel.minimumScaleFactor = 0.8;
-        
-        notificationBellButton.addTarget(self, action: #selector(self.openNotifcations), for: .touchUpInside);
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
