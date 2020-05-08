@@ -9,12 +9,27 @@
 import Foundation
 import UIKit
 
-class settingClass: UITableViewController, UITabBarControllerDelegate {
+class settingClass: UITableViewController {
 
+    
+
+    @IBOutlet weak var fontSizeSlider: UISlider!
+    @IBOutlet weak var fontSizeLabel: UILabel!
+    
+    @IBOutlet weak var clearSavedArticleCell: UITableViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad();
+        fontSizeSlider.value = Float(fontSize);
+        fontSizeLabel.text = String(fontSize);
     }
-
+    
+    @IBAction func sliderChange(_ sender: Any) {
+        fontSize = Int(fontSizeSlider.value);
+        fontSizeLabel.text = String(fontSize);
+        UserDefaults.standard.set(fontSize, forKey: "fontSize");
+    }
+    
     @IBAction func resetPreferences(_ sender: Any) {
         UserDefaults.standard.removeObject(forKey: "savedArticles");
         savedArticles = [];

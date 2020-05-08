@@ -176,3 +176,5 @@ func makeColor(r: Float, g: Float, b: Float) -> UIColor{
 }
 
 let mainThemeColor = makeColor(r: 127, g: 47, b: 60);
+
+var fontSize = 20;

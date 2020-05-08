@@ -45,6 +45,9 @@ class CustomTabBarController: UIViewController {
         
         getSavedArticles(); // load default saved articles
         
+        fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
+        
+        
         contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
         tabBarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -25).isActive = true;
