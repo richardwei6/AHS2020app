@@ -200,7 +200,6 @@
                         <outlet property="sportsNewsPageControl" destination="tGx-ft-ywP" id="ixK-ZO-qZo"/>
                         <outlet property="sportsNewsScrollView" destination="INr-3C-66i" id="0MU-cE-xrg"/>
                         <segue destination="947-74-bR0" kind="show" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="jFx-sQ-NyB"/>
-                        <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" id="v0c-dE-OoU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4C-W9-Pl9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -279,7 +278,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arcadia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDh-5f-hAD">
-                                <rect key="frame" x="47" y="5.9999999999999982" width="83" height="25.333333333333329"/>
+                                <rect key="frame" x="47" y="6.0000000000000018" width="83" height="24.666666666666671"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="83" id="idN-Pd-dLE"/>
                                 </constraints>
@@ -288,7 +287,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Yex-nn-bGV">
-                                <rect key="frame" x="47" y="28" width="79" height="20.333333333333329"/>
+                                <rect key="frame" x="47" y="28" width="79" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="79" id="eqN-aF-elr"/>
                                 </constraints>
@@ -340,6 +339,7 @@
                         <outletCollection property="buttons" destination="gQX-ap-fFu" collectionClass="NSMutableArray" id="Eqt-4g-Ikt"/>
                         <outletCollection property="buttons" destination="rd3-Ho-FeZ" collectionClass="NSMutableArray" id="6el-vk-Enz"/>
                         <outletCollection property="buttons" destination="PBQ-ay-oxj" collectionClass="NSMutableArray" id="Jef-C8-zgi"/>
+                        <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" id="at6-zS-lft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHq-og-Cig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -422,7 +422,6 @@
                         <outlet property="filterScrollView" destination="6rC-8R-9Il" id="oT4-H9-lIf"/>
                         <outlet property="filterScrollViewHeightContraint" destination="VsH-b4-4hc" id="1Xg-TM-24x"/>
                         <segue destination="947-74-bR0" kind="show" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="ubl-hZ-R1k"/>
-                        <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" id="rHG-Yz-Bir"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8K-aq-voA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -467,7 +466,6 @@
                     <connections>
                         <outlet property="mainScrollView" destination="Lrm-pV-QtS" id="wHj-Sc-iwt"/>
                         <segue destination="947-74-bR0" kind="show" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="MsQ-j6-zm2"/>
-                        <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" id="RQu-ij-jEm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Hp-9R-HoA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -569,7 +567,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLZ-t6-pdv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1624.6376811594205" y="2824.7282608695655"/>
+            <point key="canvasLocation" x="2916" y="1557"/>
         </scene>
         <!--Article Page View Controller-->
         <scene sceneID="RDm-Qy-cfW">
@@ -782,8 +780,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jFx-sQ-NyB"/>
-        <segue reference="v0c-dE-OoU"/>
+        <segue reference="0bJ-Bc-tI6"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
