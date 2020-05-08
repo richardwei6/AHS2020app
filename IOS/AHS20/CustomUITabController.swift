@@ -22,6 +22,8 @@ class CustomTabBarController: UIViewController {
     var savedViewController: UIViewController!
     var settingsViewController: UIViewController!
     
+    @IBOutlet weak var monthLabel: UILabel!
+    
     var viewControllers: [UIViewController]!
     
     var selectedIndex: Int = 0;
@@ -29,8 +31,17 @@ class CustomTabBarController: UIViewController {
     let iconImagePath = ["house.fill", "doc.plaintext", "bookmark", "gear"];
     
     
+    @IBAction func openNotifications(_ sender: UIButton) {
+        print("Notifcations");
+        performSegue(withIdentifier: "notificationSegue", sender: nil);
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        monthLabel.text = getTitleDateAndMonth();
+        monthLabel.adjustsFontSizeToFitWidth = true;
+        monthLabel.minimumScaleFactor = 0.8;
         
         getSavedArticles(); // load default saved articles
         

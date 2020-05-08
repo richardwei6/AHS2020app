@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class settingClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
+class settingClass: UITableViewController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad();
