@@ -20,6 +20,14 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     // link UI elements to swift via outlets
 	
 	//@IBOutlet weak var tabBar: UITabBar!
+	/*@IBOutlet weak var featuredScrollView: UIScrollView!
+	@IBOutlet weak var featuredPageControl: UIPageControl!
+	@IBOutlet weak var asbNewsScrollView: UIScrollView!
+	@IBOutlet weak var asbNewsPageControl: UIPageControl!
+	@IBOutlet weak var sportsNewsScrollView: UIScrollView!
+	@IBOutlet weak var sportsNewsPageControl: UIPageControl!
+	@IBOutlet weak var districtNewsScrollView: UIScrollView!
+	@IBOutlet weak var districtNewsPageControl: UIPageControl!*/
 	@IBOutlet weak var featuredScrollView: UIScrollView!
 	@IBOutlet weak var featuredPageControl: UIPageControl!
 	@IBOutlet weak var asbNewsScrollView: UIScrollView!
@@ -28,6 +36,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var sportsNewsPageControl: UIPageControl!
 	@IBOutlet weak var districtNewsScrollView: UIScrollView!
 	@IBOutlet weak var districtNewsPageControl: UIPageControl!
+	
+	
 	
 	
 	// TODO: get data from server
@@ -150,7 +160,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		// article variables
 		/*let articleHorizontalPadding = CGFloat(10);
 		let articleVerticalPadding = CGFloat(5);*/
-		/*
+		
 		let bookMarkTint = UIColor.white;
 		let bookMarkBackground = makeColor(r: 165, g: 165, b: 165);
 		
@@ -387,7 +397,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
         // change horizontal size of scrollview
 		districtNewsScrollView.contentSize = CGSize(width: 1+(districtNewsFrame.size.width * CGFloat(districtNewsSize)), height: districtNewsScrollView.frame.size.height);
         districtNewsScrollView.delegate = self;
-        */
+        
     }
 	
 	override func viewDidLayoutSubviews() {
