@@ -150,7 +150,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		// article variables
 		/*let articleHorizontalPadding = CGFloat(10);
 		let articleVerticalPadding = CGFloat(5);*/
-		
+		/*
 		let bookMarkTint = UIColor.white;
 		let bookMarkBackground = makeColor(r: 165, g: 165, b: 165);
 		
@@ -387,7 +387,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
         // change horizontal size of scrollview
 		districtNewsScrollView.contentSize = CGSize(width: 1+(districtNewsFrame.size.width * CGFloat(districtNewsSize)), height: districtNewsScrollView.frame.size.height);
         districtNewsScrollView.delegate = self;
-        
+        */
     }
 	
 	override func viewDidLayoutSubviews() {
