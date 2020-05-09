@@ -29,7 +29,11 @@ class creditsPage: UIViewController {
     
     let one = makeColor(r: 0, g: 200, b: 255).cgColor; // light blue
     let two = makeColor(r: 0, g: 128, b: 255).cgColor; // blue
-    let three = makeColor(r: 255, g: 0, b: 89).cgColor; // pink
+    let three = makeColor(r: 243, g: 0, b: 255).cgColor; // purple
+    let four = makeColor(r: 255, g: 0, b: 89).cgColor; // pink
+    let five = makeColor(r: 255, g: 162, b: 0).cgColor; // orange
+    let six = makeColor(r: 251, g: 255, b: 0).cgColor; // yellow
+    let seven  = makeColor(r: 0, g: 255, b: 19).cgColor; // green
     
     
     override func viewDidLoad() {
@@ -42,7 +46,11 @@ class creditsPage: UIViewController {
         
         gradientSet.append([one, two])
         gradientSet.append([two, three])
-        gradientSet.append([three, one])
+        gradientSet.append([three, four])
+        gradientSet.append([four, five]);
+        gradientSet.append([five, six]);
+        gradientSet.append([six, seven]);
+        gradientSet.append([seven, one]);
         
         
         gradient.frame = self.view.bounds
@@ -50,7 +58,7 @@ class creditsPage: UIViewController {
         gradient.startPoint = CGPoint(x:0, y:0)
         gradient.endPoint = CGPoint(x:1, y:1)
         gradient.drawsAsynchronously = true
-        mainView.layer.addSublayer(gradient)
+        mainView.layer.insertSublayer(gradient, at: 0);
         
         animateGradient()
     }
