@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
 
 class settingClass: UITableViewController {
 
@@ -31,6 +32,7 @@ class settingClass: UITableViewController {
     }
     
     @IBAction func resetPreferences(_ sender: Any) {
+        AudioServicesPlaySystemSound(1519);
         UserDefaults.standard.removeObject(forKey: "savedArticles");
         savedArticles = [];
     }
