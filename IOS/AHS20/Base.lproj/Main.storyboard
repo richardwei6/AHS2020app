@@ -680,6 +680,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="appVersionLabel" destination="Y1L-r3-ObI" id="yu3-YB-Jpa"/>
                         <outlet property="clearSavedArticleCell" destination="2d6-bx-ml2" id="SkV-Rs-kRf"/>
                         <outlet property="fontSizeLabel" destination="OsJ-UV-I8Q" id="AV3-Kf-yTP"/>
                         <outlet property="fontSizeSlider" destination="v7E-F5-6SR" id="ySC-fA-EdM"/>
@@ -1324,7 +1325,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MsQ-j6-zm2"/>
+        <segue reference="jFx-sQ-NyB"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

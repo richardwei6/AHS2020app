@@ -70,7 +70,7 @@ class CustomTabBarController: UIViewController {
         savedViewController = storyboard.instantiateViewController(withIdentifier: "savedViewController");
         settingsViewController = storyboard.instantiateViewController(withIdentifier: "settingsViewController");
         viewControllers = [homeViewController, bulletinViewController, savedViewController, settingsViewController];
-        buttons[selectedIndex].isSelected = true;
+        //buttons[selectedIndex].isSelected = true;
         didPressTab(buttons[selectedIndex]);
     }
     
@@ -79,14 +79,15 @@ class CustomTabBarController: UIViewController {
         selectedIndex = sender.tag;
         
         // remove prev view controller
-        buttons[prevIndex].isSelected = false;
+        //buttons[prevIndex].isSelected = false;
+        
         let prevVC = viewControllers[prevIndex];
         prevVC.willMove(toParent: nil);
         prevVC.view.removeFromSuperview();
         prevVC.removeFromParent();
         
         // add current view controller
-        sender.isSelected = true;
+       // sender.isSelected = true;
         let vc = viewControllers[selectedIndex];
         addChild(vc);
         vc.view.frame = contentView.bounds;
