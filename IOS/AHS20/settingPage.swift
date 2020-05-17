@@ -16,6 +16,7 @@ class settingClass: UITableViewController {
 
     @IBOutlet weak var fontSizeSlider: UISlider!
     @IBOutlet weak var fontSizeLabel: UILabel!
+    @IBOutlet weak var appVersionLabel: UILabel!
     
     @IBOutlet weak var clearSavedArticleCell: UITableViewCell!
     
@@ -23,6 +24,7 @@ class settingClass: UITableViewController {
         super.viewDidLoad();
         fontSizeSlider.value = Float(fontSize);
         fontSizeLabel.text = String(fontSize);
+        appVersionLabel.text = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0") + ".0";
     }
     
     @IBAction func sliderChange(_ sender: Any) {
@@ -33,7 +35,12 @@ class settingClass: UITableViewController {
     
     @IBAction func resetPreferences(_ sender: Any) {
         AudioServicesPlaySystemSound(1519);
-        UserDefaults.standard.removeObject(forKey: "savedArticles");
-        savedArticles = [];
+        let confirmPopup = UIAlertController(title: "Reset saved articles", message: "Your saved articles will be removed", preferredStyle: UIAlertController.Style.alert);
+        confirmPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            UserDefaults.standard.removeObject(forKey: "savedArticles");
+            savedArticles = [];
+        }));
+        confirmPopup.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in }));
+        present(confirmPopup, animated: true, completion: nil);
     }
 }

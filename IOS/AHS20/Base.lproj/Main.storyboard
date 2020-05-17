@@ -455,13 +455,11 @@
                             <constraint firstItem="6Rh-dO-soH" firstAttribute="centerY" secondItem="Vkk-Jn-XKk" secondAttribute="centerY" id="BZI-kO-xOq"/>
                             <constraint firstItem="Lrm-pV-QtS" firstAttribute="trailing" secondItem="Vkk-Jn-XKk" secondAttribute="trailing" id="DAv-ax-JlN"/>
                             <constraint firstItem="Lrm-pV-QtS" firstAttribute="leading" secondItem="Vkk-Jn-XKk" secondAttribute="leading" id="EV4-FL-qhp"/>
-                            <constraint firstItem="Lrm-pV-QtS" firstAttribute="bottom" secondItem="Vkk-Jn-XKk" secondAttribute="bottom" id="NaX-1t-vE2"/>
                             <constraint firstItem="6Rh-dO-soH" firstAttribute="leading" secondItem="Vkk-Jn-XKk" secondAttribute="leading" constant="10" id="d5W-Y0-Dtn"/>
                             <constraint firstItem="Lrm-pV-QtS" firstAttribute="top" secondItem="Vkk-Jn-XKk" secondAttribute="top" id="vBN-4F-Ryz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vkk-Jn-XKk"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="bookmark.fill" catalog="system" id="4tA-p1-WWh"/>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="mainScrollView" destination="Lrm-pV-QtS" id="wHj-Sc-iwt"/>
@@ -491,32 +489,32 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Font Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3Y-DQ-RmM">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="84" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="9.9999999999999982" width="76.666666666666671" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="1" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="v7E-F5-6SR">
-                                                    <rect key="frame" x="137.33333333333331" y="6.9999999999999982" width="176.33333333333331" height="30.333333333333329"/>
+                                                    <rect key="frame" x="130" y="6.9999999999999982" width="182" height="30.333333333333329"/>
                                                     <color key="minimumTrackTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <connections>
                                                         <action selector="sliderChange:" destination="AeW-YG-ifG" eventType="valueChanged" id="ZvB-KJ-NMb"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsJ-UV-I8Q">
-                                                    <rect key="frame" x="342.66666666666669" y="9.9999999999999982" width="22.333333333333314" height="24.333333333333329"/>
+                                                    <rect key="frame" x="341" y="9.9999999999999982" width="24" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ED-Pk-sSr">
-                                                    <rect key="frame" x="317.66666666666669" y="3" width="19" height="36.333333333333336"/>
+                                                    <rect key="frame" x="316" y="3" width="19" height="36.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="30"/>
                                                     <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bfd-Ei-Kkb">
-                                                    <rect key="frame" x="121.33333333333333" y="7.9999999999999982" width="11.999999999999986" height="27.333333333333329"/>
+                                                    <rect key="frame" x="114" y="7.9999999999999982" width="12" height="27.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="19"/>
                                                     <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -550,7 +548,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxT-Fq-XRE">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="112" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20.000000000000007" y="9.9999999999999982" width="105.66666666666669" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -603,7 +601,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wG-AV-dN0">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="206.33333333333334" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="9.9999999999999982" width="192.66666666666666" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -627,7 +625,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ9-e6-CdU">
-                                                    <rect key="frame" x="20" y="8.9999999999999982" width="64.333333333333329" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20.000000000000004" y="8.9999999999999982" width="60.333333333333343" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -651,13 +649,13 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVp-ib-Cim">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="108" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="9.9999999999999982" width="101" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1L-r3-ObI">
-                                                    <rect key="frame" x="322.33333333333331" y="9.9999999999999982" width="44.666666666666686" height="24.333333333333329"/>
+                                                    <rect key="frame" x="321" y="9.9999999999999982" width="46" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -682,6 +680,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="appVersionLabel" destination="Y1L-r3-ObI" id="yu3-YB-Jpa"/>
                         <outlet property="clearSavedArticleCell" destination="2d6-bx-ml2" id="SkV-Rs-kRf"/>
                         <outlet property="fontSizeLabel" destination="OsJ-UV-I8Q" id="AV3-Kf-yTP"/>
                         <outlet property="fontSizeSlider" destination="v7E-F5-6SR" id="ySC-fA-EdM"/>
@@ -921,7 +920,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsF-GI-9Jv">
-                                <rect key="frame" x="42.000000000000014" y="14" width="247.33333333333337" height="28"/>
+                                <rect key="frame" x="42" y="14" width="272.33333333333331" height="28"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1020,7 +1019,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Names here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLZ-kx-wP3">
-                                <rect key="frame" x="156" y="358" width="102" height="21"/>
+                                <rect key="frame" x="156" y="357.66666666666669" width="102" height="21"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1066,7 +1065,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fI-zh-Z0s">
-                                <rect key="frame" x="42" y="14" width="134.33333333333334" height="28"/>
+                                <rect key="frame" x="42" y="14" width="153.33333333333334" height="28"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1114,7 +1113,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLZ-t6-pdv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1090" y="2640"/>
+            <point key="canvasLocation" x="-1596" y="1779"/>
         </scene>
         <!--Article Page View Controller-->
         <scene sceneID="RDm-Qy-cfW">
@@ -1263,7 +1262,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1b-zf-jR1">
-                                        <rect key="frame" x="42.000000000000007" y="14" width="67.666666666666686" height="28"/>
+                                        <rect key="frame" x="42.000000000000007" y="14" width="79.666666666666686" height="28"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1326,14 +1325,13 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0bJ-Bc-tI6"/>
+        <segue reference="jFx-sQ-NyB"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="Icon ionic-ios-notifications.png" width="27" height="34"/>
         <image name="blue barldpi" width="658" height="5"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
-        <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="featherldpi" width="131" height="122"/>
         <image name="red barldpi" width="658" height="5"/>
