@@ -1,6 +1,7 @@
-package com.example.ahsapptest3;
+package com.example.ahsapptest3.HomePage_News;
 
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.ahsapptest3.Article;
+import com.example.ahsapptest3.R;
 
 
 /**
@@ -72,6 +76,13 @@ public class Article_Display_Stacked extends Fragment {
             layout.addView(stubs[i],params);
             stubs[i].setLayoutResource(R.layout.template__article_display);
             inflated[i] = stubs[i].inflate();
+
+            // this creates that ripple effect on default button
+            TypedValue outValue = new TypedValue();
+            getContext().getTheme().resolveAttribute(R.attr.selectableItemBackground,outValue,true);
+            inflated[i].setBackgroundResource(outValue.resourceId);
+
+            articles[i].setArticleListener_toView(inflated[i],this.getContext());
         }
 
         for(int i = 0; i < inflated.length; i++)
@@ -83,7 +94,7 @@ public class Article_Display_Stacked extends Fragment {
             else
             {
                 // set time updated
-                articles[i].setTimeUpdatedText_toView((TextView) inflated[i].findViewById(R.id.article_display__time_updated_Text));
+                articles[i].setTime_Hours_UpdatedText_toView((TextView) inflated[i].findViewById(R.id.article_display__time_updated_Text));
 
                 // set title
                 articles[i].setTitleText_toView((TextView) inflated[i].findViewById(R.id.article_display__title_Text));

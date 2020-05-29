@@ -7,5 +7,5 @@
       android:pathData="M70,70m-67.5,0a67.5,67.5 0,1 1,135 0a67.5,67.5 0,1 1,-135 0"
       android:strokeWidth="5"
       android:fillColor="#00000000"
-      android:strokeColor="#7f2f3c"/>
+      android:strokeColor="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF"/>
 </vector>

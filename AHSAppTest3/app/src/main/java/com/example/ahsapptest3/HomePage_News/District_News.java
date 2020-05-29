@@ -1,14 +1,16 @@
-package com.example.ahsapptest3;
+package com.example.ahsapptest3.HomePage_News;
 
 import androidx.core.content.ContextCompat;
 
-public class Featured_News extends Featured_Template {
+import com.example.ahsapptest3.R;
+
+public class District_News extends News_Template {
     @Override
     String[][] getData() {
         return new String[][]
                 {
-                        {"Lorem Ipsum a Very Long Title", "hello world what a nice day!"},
-                        {"ASB NEWS Title2", "summaryText2. This is a long sample summary. This should cut off at two lines, with an ellipsis."},
+                        {"Lorem Ipsum a Veryd Long Titled", "hello world what a nice day! This is the content inside the article."},
+                        {"Title2f", "summaryText2"},
                         {"Title3", "summaryText3"},
                         {"Title4", "summaryText4"},
                         {"Title5", "summaryText5"},
@@ -18,7 +20,7 @@ public class Featured_News extends Featured_Template {
 
     @Override
     String getTitleText() {
-        return "FEATURED";
+        return "DISTRICT NEWS";
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.ahsapptest3;
+package com.example.ahsapptest3.HomePage_News;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ahsapptest3.Article;
+import com.example.ahsapptest3.Helper_Code.EnhancedWrapContentViewPager;
+import com.example.ahsapptest3.R;
 import com.google.android.material.tabs.TabLayout;
 
 public abstract class Featured_Template extends News_Template {

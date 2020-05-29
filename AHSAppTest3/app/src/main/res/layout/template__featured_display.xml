@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/EveryPage_Side_Padding"
     android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
     android:paddingRight="@dimen/EveryPage_Side_Padding"
-    tools:context=".Featured_Template">
+    android:paddingBottom="0dp"
+    tools:context=".HomePage_News.Featured_Template">
 
     <ImageView
         android:id="@+id/template_featured__ImageView"
@@ -39,12 +40,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
         android:layout_weight="1"
+        android:ellipsize="end"
         android:fontFamily="@font/sf_pro_semibold"
         android:lines="1"
         android:text="Lorum Ipsum the Long Title"
         android:textColor="@color/Black_000000__HOME"
-        android:textSize="30sp"
-        app:autoSizeTextType="uniform"
+        android:textSize="22sp"
+        app:autoSizeTextType="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
