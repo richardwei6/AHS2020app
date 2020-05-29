@@ -60,28 +60,28 @@
 
             <fragment
                 android:id="@+id/fragment"
-                android:name="com.example.ahsapptest3.Featured_News"
+                android:name="com.example.ahsapptest3.HomePage_News.Featured_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout="@layout/template__featured_display"/>
+                tools:layout="@layout/template__featured_display" />
 
             <fragment
                 android:id="@+id/asbNews"
-                android:name="com.example.ahsapptest3.Asb_News"
+                android:name="com.example.ahsapptest3.HomePage_News.Asb_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout="@layout/template__news_layout"/>
 
             <fragment
                 android:id="@+id/sportsNews"
-                android:name="com.example.ahsapptest3.Sports_News"
+                android:name="com.example.ahsapptest3.HomePage_News.Sports_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout="@layout/template__news_layout"/>
 
             <fragment
                 android:id="@+id/districtNews"
-                android:name="com.example.ahsapptest3.District_News"
+                android:name="com.example.ahsapptest3.HomePage_News.District_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout="@layout/template__news_layout"/>

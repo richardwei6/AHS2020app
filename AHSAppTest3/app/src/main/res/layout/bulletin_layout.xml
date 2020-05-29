@@ -5,13 +5,14 @@
     android:id="@+id/bulletin__ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BulletinActivity">
+    tools:context=".BulletinActivity"
+    android:animateLayoutChanges="true">
 
     <ScrollView
         android:id="@+id/bulletin__scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/LightBackgroundGray_EAEAEA__BULLETIN"
+        android:background="@color/LightBackgroundGray_EAEAEA__BULLETIN_ARTICLE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +39,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/Blank"
+                    android:paddingLeft="@dimen/Bulletin_Selector_padding"
                     android:paddingTop="@dimen/Bulletin_Selector_padding"
+                    android:paddingRight="@dimen/Bulletin_Selector_padding"
                     android:paddingBottom="@dimen/Bulletin_Selector_padding">
 
                     <ImageView

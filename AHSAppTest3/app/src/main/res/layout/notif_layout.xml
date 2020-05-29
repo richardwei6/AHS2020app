@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notif_outerFrameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Notif_Activity">
+
+    <ScrollView
+        android:id="@+id/notif_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF">
+
+        <LinearLayout
+            android:id="@+id/notif_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/LightishGray_EFEDED__HOME_NOTIF"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/EveryPage_Side_Padding_Quarter">
+
+            <LinearLayout
+                android:id="@+id/notif_headerLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/EveryPage_Side_Padding_Quarter"
+                android:background="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF"
+                android:orientation="horizontal"
+
+                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingRight="@dimen/EveryPage_Side_Padding_Half">
+
+                <ImageButton
+                    android:id="@+id/notif_header_back"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/EveryPage_Side_Padding_Half"
+
+
+                    android:scaleType="fitCenter"
+                    android:scrollbarFadeDuration="15000"
+                    app:srcCompat="@drawable/article_back_button" />
+
+                <TextView
+                    android:id="@+id/notif_header_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sf_pro_compactbold"
+                    android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                    android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                    android:text="NOTIFICATIONS"
+                    android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

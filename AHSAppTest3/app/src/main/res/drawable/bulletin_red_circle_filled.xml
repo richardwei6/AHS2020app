@@ -5,5 +5,5 @@
     android:viewportHeight="140">
   <path
       android:pathData="M70,70m-70,0a70,70 0,1 1,140 0a70,70 0,1 1,-140 0"
-      android:fillColor="@color/Crimson_992938__HOME_BULLETIN"/>
+      android:fillColor="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF"/>
 </vector>

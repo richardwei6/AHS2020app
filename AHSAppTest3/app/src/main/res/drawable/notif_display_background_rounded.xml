@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/DarkGray_8D898D__HOME_BULLETIN"
+    <solid android:color="@color/DullWhite_F4F4F5__NOTIF"
         />
     <corners
-        android:radius="@dimen/Rounded_Background_Radius"
+        android:radius = "@dimen/Notif_rounded_radius"
         />
 </shape>

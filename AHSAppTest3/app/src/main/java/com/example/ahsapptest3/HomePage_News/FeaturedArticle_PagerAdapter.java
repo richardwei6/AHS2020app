@@ -1,9 +1,12 @@
-package com.example.ahsapptest3;
+package com.example.ahsapptest3.HomePage_News;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.example.ahsapptest3.Article;
+import com.example.ahsapptest3.HomePage_News.Featured_Display;
 
 public class FeaturedArticle_PagerAdapter extends FragmentPagerAdapter
 {

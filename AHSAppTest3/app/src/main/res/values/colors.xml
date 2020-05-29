@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">@color/MoldyGolden_BD9768__BULLETIN</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="White_FFFFFF__HOME_BULLETIN">#FFFFFF</color>
+    <color name="colorAccent">@color/MoldyGolden_BD9768__BULLETIN</color>
 
-
-    <color name = "Crimson_992938__HOME_BULLETIN">#993333</color>
-    <color name = "LightGray_F2F2F3__HOME">#F2F2F3</color>
-    <color name = "VomitYellow_DDCD3E__HOME">#DDCD3E</color>
-    <color name = "LightishGray_EFEDED__HOME">#EFEDED</color>
-    <color name = "Black_000000__HOME">#000</color>
-    <color name = "SeaBlue_364D9E__HOME">#364D9E</color>
     <color name = "Blank">#0000</color>
-    <color name = "DarkGray_8D898D__HOME_BULLETIN">#8D898D</color>
-    <color name = "DarkerGray_6F7073__HOME">#6F7073</color>
-    <color name = "Transparent_55FFFFFF__HOME">#5FFF</color>
-    <color name = "LightBackgroundGray_EAEAEA__BULLETIN">#EAEAEA</color>
 
+    <color name = "Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF">#992938</color>
+
+    <color name = "White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF">#FFFFFF</color>
+    <color name = "LightGray_F2F2F3__HOME">#F2F2F3</color>
+    <color name = "DullWhite_F4F4F5__NOTIF">#F4F4F5</color>
+    <color name = "LightBackgroundGray_EAEAEA__BULLETIN_ARTICLE">#EAEAEA</color>
+    <color name = "LightishGray_EFEDED__HOME_NOTIF">#EFEDED</color>
+    <color name = "Gray_CCCCCD__NOTIF">#CCCCCD</color>
+    <color name = "BetweenGray_ADADAD__ARTICLE">#ADADAD</color>
+    <color name = "Transparent_88FFFFFF__HOME">#8FFF</color>
+    <color name = "DarkGray_8D898D__HOME_BULLETIN">#8D898D</color>
+    <color name = "DarkerGray_656668__HOME_ARTICLE_NOTIF">#656668</color>
+    <color name = "DarkestGray_555555__HOME_ARTICLE">#555555</color>
+    <color name = "Black_000000__HOME">#000</color>
+
+    <color name = "VomitYellow_DDCD3E__HOME">#DDCD3E</color>
+    <color name = "GoldenYellow_E6CD55__NOTIF">#E6CD55</color>
     <color name = "MoldyGolden_BD9768__BULLETIN">#BD9768</color>
+
+    <color name = "SeaBlue_364D9E__HOME">#364D9E</color>
+
+
 </resources>

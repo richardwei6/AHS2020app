@@ -1,4 +1,4 @@
-package com.example.ahsapptest3;
+package com.example.ahsapptest3.HomePage_News;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.ahsapptest3.Article;
+import com.example.ahsapptest3.Helper_Code.EnhancedWrapContentViewPager;
+import com.example.ahsapptest3.R;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package com.example.ahsapptest3;
+package com.example.ahsapptest3.HomePage_News;
 
 import android.os.Bundle;
 import android.os.Parcel;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
+
+import com.example.ahsapptest3.R;
 
 import java.util.Date;
 
@@ -116,7 +118,7 @@ public class Article_Display_Template extends Fragment implements Parcelable {
         Date currentTime = new Date();
         long time_difference = currentTime.getTime()-time;
         int hours = (int) Math.round((time_difference/(3600000.0)));
-        updated_text.setText(getString(R.string.time_updated_placeholder, hours));
+        updated_text.setText(getString(R.string.time_hours_updated_placeholder, hours));
     }
 
     public void setTitleText(View view)

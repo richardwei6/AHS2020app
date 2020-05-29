@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notif_display_outerConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+    android:paddingTop="@dimen/EveryPage_Side_Padding_Quarter"
+    android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+    android:paddingBottom="@dimen/EveryPage_Side_Padding_Quarter"
+    android:background="?attr/selectableItemBackground"
+    tools:context=".Notif_Template">
+
+    <ImageView
+        android:id="@+id/notif_display_backgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/notif_display_background_rounded" />
+
+    <ImageView
+        android:id="@+id/notif_display_indicatorImage"
+        android:layout_width="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/notif_display_indicator_rounded" />
+
+    <TextView
+        android:id="@+id/notif_display_titleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+        android:fontFamily="@font/sf_pro_semibold"
+        android:text="Title"
+        android:textColor="@color/Black_000000__HOME"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/notif_display_timeUpdatedText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/notif_display_indicatorImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/notif_display_summaryText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_marginTop="@dimen/EveryPage_Side_Padding_Quarter"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_marginBottom="@dimen/EveryPage_Side_Padding_Half"
+        android:fontFamily="@font/sf_pro_display"
+        android:maxLines="3"
+        android:text="Summary"
+        android:textColor="@color/Black_000000__HOME"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/notif_display_forwardImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/notif_display_indicatorImage"
+        app:layout_constraintTop_toBottomOf="@+id/notif_display_titleText" />
+
+    <ImageButton
+        android:id="@+id/notif_display_forwardImage"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
+        android:background="@color/Blank"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/notif_forward_button" />
+
+    <TextView
+        android:id="@+id/notif_display_timeUpdatedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="00 min ago"
+        android:textColor="@color/DarkerGray_656668__HOME_ARTICLE_NOTIF"
+        app:layout_constraintEnd_toEndOf="@+id/notif_display_summaryText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

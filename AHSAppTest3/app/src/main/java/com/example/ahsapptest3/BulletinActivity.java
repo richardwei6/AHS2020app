@@ -128,7 +128,7 @@ public class BulletinActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
         int margin = (int)getResources().getDimension(R.dimen.Bulletin_Margin);
-        params.setMargins(margin,margin,margin,0);
+        params.setMargins(margin,0,margin,margin);
         for(int i = 0; i < frameLayouts.length; i++) {
             frameLayouts[i] = new FrameLayout(this);
             frameLayouts[i].setLayoutParams(new FrameLayout.LayoutParams(
@@ -192,14 +192,14 @@ public class BulletinActivity extends AppCompatActivity {
             seniors_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_circle_filled));
             ImageView inner = findViewById(R.id.bulletin_seniors);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_seniors));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         else
         {
             seniors_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_seniors);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_seniors));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         switch_Type_Layout_Active(BulletinType.SENIORS);
         filterItems();
@@ -212,14 +212,14 @@ public class BulletinActivity extends AppCompatActivity {
             events_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_circle_filled));
             ImageView inner = findViewById(R.id.bulletin_events);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_events));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         else
         {
             events_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_events);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_events));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         switch_Type_Layout_Active(BulletinType.EVENTS);
         filterItems();
@@ -232,14 +232,14 @@ public class BulletinActivity extends AppCompatActivity {
             colleges_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_circle_filled));
             ImageView inner = findViewById(R.id.bulletin_colleges);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_colleges));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         else
         {
             colleges_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_colleges);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_colleges));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         switch_Type_Layout_Active(BulletinType.COLLEGES);
         filterItems();
@@ -252,14 +252,14 @@ public class BulletinActivity extends AppCompatActivity {
             reference_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_circle_filled));
             ImageView inner = findViewById(R.id.bulletin_reference);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_reference));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         else
         {
             reference_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_reference);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_reference));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         switch_Type_Layout_Active(BulletinType.REFERENCE);
         filterItems();
@@ -272,14 +272,14 @@ public class BulletinActivity extends AppCompatActivity {
             athletics_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_circle_filled));
             ImageView inner = findViewById(R.id.bulletin_athletics);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_athletics));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         else
         {
             athletics_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_athletics);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_athletics));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         switch_Type_Layout_Active(BulletinType.ATHLETICS);
         filterItems();
@@ -292,14 +292,14 @@ public class BulletinActivity extends AppCompatActivity {
             others_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_circle_filled));
             ImageView inner = findViewById(R.id.bulletin_others);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_others));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         else
         {
             others_toggle.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_red_ring));
             ImageView inner = findViewById(R.id.bulletin_others);
             inner.setImageDrawable(getResources().getDrawable(R.drawable.bulletin_others));
-            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN,null));
+            inner.setColorFilter(ResourcesCompat.getColor(getResources(),R.color.Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF,null));
         }
         switch_Type_Layout_Active(BulletinType.OTHERS);
         filterItems();
@@ -310,10 +310,19 @@ public class BulletinActivity extends AppCompatActivity {
         for(int i = 0; i < data.length; i++)
         {
             if(is_Type_Layout_Active(data[i].getType()))
-                frameLayouts[i].setVisibility(View.VISIBLE);
+            {
+                if(frameLayouts[i].getVisibility() != View.VISIBLE)
+                    frameLayouts[i].setVisibility(View.VISIBLE);
+                    //expand(frameLayouts[i]);
+            }
             else
-                frameLayouts[i].setVisibility(View.GONE);
-            frameLayouts[i].invalidate();
+            {
+                if (frameLayouts[i].getVisibility() == View.VISIBLE)
+                    //collapse(frameLayouts[i]);
+                    frameLayouts[i].setVisibility(View.GONE);
+            }
+
+            //frameLayouts[i].invalidate();
         }
 
         boolean isallfalse = false;
@@ -323,7 +332,9 @@ public class BulletinActivity extends AppCompatActivity {
         if(!isallfalse)
         {
             for(FrameLayout i: frameLayouts)
-                i.setVisibility(View.VISIBLE);
+                if(i.getVisibility() != View.VISIBLE)
+                    //expand(i);
+                    i.setVisibility(View.VISIBLE);
         }
     }
 
@@ -393,4 +404,62 @@ public class BulletinActivity extends AppCompatActivity {
         }
 
     }
+/*
+    public static void expand(View view) {
+        Animation animation = expandAction(view);
+        view.startAnimation(animation);
+    }
+
+    private static Animation expandAction(final View view) {
+
+        view.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        final int actualheight = view.getMeasuredHeight();
+
+        view.getLayoutParams().height = 0;
+        view.setVisibility(View.VISIBLE);
+
+        Animation animation = new Animation() {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+
+                view.getLayoutParams().height = interpolatedTime == 1
+                        ? ViewGroup.LayoutParams.WRAP_CONTENT
+                        : (int) (actualheight * interpolatedTime);
+                view.requestLayout();
+            }
+        };
+
+
+        animation.setDuration((long) (actualheight / view.getContext().getResources().getDisplayMetrics().density));
+
+        view.startAnimation(animation);
+
+        return animation;
+
+
+    }
+
+    public static void collapse(final View view) {
+
+        final int actualHeight = view.getMeasuredHeight();
+
+        Animation animation = new Animation() {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+
+                if (interpolatedTime == 1) {
+                    view.setVisibility(View.GONE);
+                } else {
+                    view.getLayoutParams().height = actualHeight - (int) (actualHeight * interpolatedTime);
+                    view.requestLayout();
+
+                }
+            }
+        };
+
+        animation.setDuration((long) (actualHeight/ view.getContext().getResources().getDisplayMetrics().density));
+        view.startAnimation(animation);
+    }
+    */
+
 }
