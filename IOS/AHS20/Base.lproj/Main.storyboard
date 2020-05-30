@@ -339,7 +339,7 @@
                         <outletCollection property="buttons" destination="gQX-ap-fFu" collectionClass="NSMutableArray" id="Eqt-4g-Ikt"/>
                         <outletCollection property="buttons" destination="rd3-Ho-FeZ" collectionClass="NSMutableArray" id="6el-vk-Enz"/>
                         <outletCollection property="buttons" destination="PBQ-ay-oxj" collectionClass="NSMutableArray" id="Jef-C8-zgi"/>
-                        <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" id="at6-zS-lft"/>
+                        <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="at6-zS-lft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHq-og-Cig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1049,9 +1049,9 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
         <!--Notifications Class-->
         <scene sceneID="wEy-Kl-Saf">
             <objects>
-                <viewController id="iaA-pd-aga" customClass="notificationsClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="iaA-pd-aga" customClass="notificationsClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VUm-Fx-egc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="980"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJJ-OQ-oKj">
@@ -1325,7 +1325,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jFx-sQ-NyB"/>
+        <segue reference="0bJ-Bc-tI6"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
