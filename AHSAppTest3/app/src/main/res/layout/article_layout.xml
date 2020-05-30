@@ -70,7 +70,7 @@
                     android:layout_marginTop="@dimen/Article_Display_bookmarked_btn_padding"
 
                     android:layout_marginEnd="@dimen/Article_Display_bookmarked_btn_padding"
-                    android:background="@color/Blank"
+                    android:background="@drawable/bookmarked_button_background"
                     android:scaleType="fitCenter"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -105,6 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/article_background_rounded"
+
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/EveryPage_Side_Padding"
                 android:paddingTop="@dimen/EveryPage_Side_Padding"

@@ -28,7 +28,7 @@
         android:layout_marginTop="@dimen/Article_Display_padding"
         android:layout_marginEnd="@dimen/Article_Display_padding"
         android:layout_marginRight="@dimen/Article_Display_padding"
-        android:background="@color/Blank"
+        android:background="@drawable/bookmarked_button_background"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="@id/template_featured__ImageView"
         app:layout_constraintTop_toTopOf="@id/template_featured__ImageView"
@@ -64,6 +64,7 @@
         android:lines="1"
         android:padding="5dp"
         android:text="Updated 5 hours ago"
+        android:textColor="@color/DarkestGray_555555__HOME_ARTICLE"
         app:layout_constraintBottom_toBottomOf="@+id/template_featured__ImageView"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -90,7 +90,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:background="@color/Blank"
+        android:background="@drawable/bookmarked_button_background"
         android:padding="@dimen/Article_Display_bookmarked_btn_padding_homepage"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="@id/article_display__imageView"

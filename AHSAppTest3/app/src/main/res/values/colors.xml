@@ -15,7 +15,7 @@
     <color name = "LightishGray_EFEDED__HOME_NOTIF">#EFEDED</color>
     <color name = "Gray_CCCCCD__NOTIF">#CCCCCD</color>
     <color name = "BetweenGray_ADADAD__ARTICLE">#ADADAD</color>
-    <color name = "Transparent_88FFFFFF__HOME">#8FFF</color>
+
     <color name = "DarkGray_8D898D__HOME_BULLETIN">#8D898D</color>
     <color name = "DarkerGray_656668__HOME_ARTICLE_NOTIF">#656668</color>
     <color name = "DarkestGray_555555__HOME_ARTICLE">#555555</color>
@@ -27,5 +27,5 @@
 
     <color name = "SeaBlue_364D9E__HOME">#364D9E</color>
 
-
+    <color name = "Transparent_22FFFFFF__HOME">#2FFF</color>
 </resources>
