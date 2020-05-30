@@ -35,7 +35,7 @@ public class Featured_Display extends Fragment {
         article.setBookMarkListener_toView((ImageButton) view.findViewById(R.id.template_featured__bookmarked_button));
         article.setTime_Hours_UpdatedText_toView((TextView) view.findViewById(R.id.template_featured__updated_Text));
         article.setImage_toView((ImageView) view.findViewById(R.id.template_featured__ImageView));
-
+    article.setArticleListener_toView(view, getContext());
         return view;
     }
 
