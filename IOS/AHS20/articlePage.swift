@@ -57,8 +57,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     @IBAction func exitArticle(_ sender: UIButton){
         dismiss(animated: true);
        AudioServicesPlaySystemSound(1519);
-    }
-    
+    }    
     
     // ------------
     // TODO: Fix issue where long text gets cut off *completed, thank u for the reminder XD -em&kim
