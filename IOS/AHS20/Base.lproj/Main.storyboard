@@ -295,7 +295,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="featherldpi" translatesAutoresizingMaskIntoConstraints="NO" id="nSs-7n-3QV">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="featherldpiF" translatesAutoresizingMaskIntoConstraints="NO" id="nSs-7n-3QV">
                                 <rect key="frame" x="5" y="6" width="48" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="JPZ-kV-LIB"/>
@@ -1333,7 +1333,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
         <image name="blue barldpi" width="658" height="5"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
-        <image name="featherldpi" width="131" height="122"/>
+        <image name="featherldpiF" width="131" height="122"/>
         <image name="red barldpi" width="658" height="5"/>
         <image name="yellow barldpi" width="658" height="5"/>
     </resources>
