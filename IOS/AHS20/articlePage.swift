@@ -43,21 +43,42 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     
     @IBAction func saveArticle(sender: CustomUIButton){
         print("Bookmark");
+        
         if (sender.isSelected == false){
-            sender.tintColor = mainThemeColor;
+            //sender.imageView?.image? = sender.imageView?.image?.maskWithColor(color: mainThemeColor)! as! UIImage;
             saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
         }
         else{
-            sender.tintColor = UIColor.white;
+            //sender.imageView?.image? = sender.imageView?.image?.maskWithColor(color: UIColor.white)! as! UIImage;
             removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
         }
         sender.isSelected = !sender.isSelected;
+        setBookmarkColor();
     }
     
     @IBAction func exitArticle(_ sender: UIButton){
         dismiss(animated: true);
        AudioServicesPlaySystemSound(1519);
-    }    
+    }
+    
+    func setBookmarkColor(){
+        /*let bookmarkImage = UIImage(systemName: "bookmark");
+        let stencil = bookmarkImage?.withRenderingMode(.alwaysTemplate);
+        bookmarkButton.setImage(stencil, for: .normal);
+        if (bookmarkButton.isSelected == true){ // main theme color
+            bookmarkButton.tintColor = mainThemeColor;
+        }
+        else{ // UIColor.white
+            bookmarkButton.tintColor = UIColor.white;
+        }*/
+        bookmarkButton.imageView?.image = bookmarkButton.imageView?.image?.withRenderingMode(.alwaysTemplate);
+        if (bookmarkButton.isSelected){
+            bookmarkButton.tintColor = mainThemeColor;
+        }
+        else{
+            bookmarkButton.tintColor = UIColor.white;
+        }
+    }
     
     // ------------
     // TODO: Fix issue where long text gets cut off *completed, thank u for the reminder XD -em&kim
@@ -67,6 +88,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad();
         
+        
+        setBookmarkColor();
         bookmarkOuter.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 12);
         
         mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
