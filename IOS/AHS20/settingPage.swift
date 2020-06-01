@@ -43,4 +43,6 @@ class settingClass: UITableViewController {
         confirmPopup.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in }));
         present(confirmPopup, animated: true, completion: nil);
     }
+    
+    
 }

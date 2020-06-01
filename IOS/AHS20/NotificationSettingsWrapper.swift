@@ -16,7 +16,6 @@ class notificationSettingsWrapperClass: UIViewController{
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true);
-        AudioServicesPlaySystemSound(1519);
     }
     override func viewDidLoad(){
         super.viewDidLoad();

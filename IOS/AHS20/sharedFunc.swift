@@ -152,8 +152,6 @@ class SegueFromRight: UIStoryboardSegue {
         let src = self.source
         let dst = self.destination
         
-        AudioServicesPlaySystemSound(1519);
-        
         src.view.superview?.insertSubview(dst.view, aboveSubview: src.view)
         dst.view.transform = CGAffineTransform(translationX: src.view.frame.size.width, y: 0)
 
@@ -188,6 +186,14 @@ class SegueFromLeftExit: UIStoryboardSegue {
                                 src.present(dst, animated: false, completion: nil)
                                     }
                         )
+    }
+}
+
+func resetAllSettingsDefaults() {
+    let defaults = UserDefaults.standard
+    let dictionary = defaults.dictionaryRepresentation()
+    dictionary.keys.forEach { key in
+        defaults.removeObject(forKey: key)
     }
 }
 

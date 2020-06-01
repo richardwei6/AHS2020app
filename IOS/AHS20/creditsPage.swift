@@ -82,6 +82,7 @@ class creditsPage: UIViewController {
     
     @IBAction func exitCredits(_ sender: Any) {
         dismiss(animated: true);
+        UIImpactFeedbackGenerator(style: .light).impactOccurred();
     }
     
     

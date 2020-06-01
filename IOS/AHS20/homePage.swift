@@ -141,6 +141,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     override func viewDidLoad() { // setup function
 		super.viewDidLoad();
 		
+		
 		article.setUpLocalData(); // retrieve data from json file - see sharedFunc.swift for more info
 		
 		/*for family in UIFont.familyNames {
