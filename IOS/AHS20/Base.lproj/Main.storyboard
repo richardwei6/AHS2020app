@@ -562,7 +562,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="oRL-gJ-8Hx" kind="show" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="XLt-zm-CWl"/>
+                                            <segue destination="Py0-9m-jp6" kind="custom" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="mOz-eH-0bR"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" tag="1" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" editingAccessoryType="detailButton" id="2d6-bx-ml2">
@@ -691,12 +691,79 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
             </objects>
             <point key="canvasLocation" x="1855" y="1572"/>
         </scene>
+        <!--Notification Settings Wrapper Class-->
+        <scene sceneID="vG3-le-DNP">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="Py0-9m-jp6" customClass="notificationSettingsWrapperClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7hh-3K-eeT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="936"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAq-mj-Ifb">
+                                <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="chevron.left" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismiss:" destination="Py0-9m-jp6" eventType="touchUpInside" id="Rh0-Q5-Rcb"/>
+                                    <action selector="exitArticle:" destination="947-74-bR0" eventType="touchUpInside" id="AOg-EL-GSE"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFK-Rj-RZJ">
+                                <rect key="frame" x="41.999999999999986" y="14" width="244.66666666666663" height="28"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VND-nr-sKV">
+                                <rect key="frame" x="0.0" y="57" width="414" height="879"/>
+                                <connections>
+                                    <segue destination="oRL-gJ-8Hx" kind="embed" id="6Ba-GN-IhJ"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCo-sO-Epk" userLabel="ExitButton">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="rvN-t9-9m0"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="dismiss:" destination="Py0-9m-jp6" eventType="touchUpInside" id="rZn-xb-Vec"/>
+                                    <action selector="exitArticle:" destination="947-74-bR0" eventType="touchUpInside" id="gAr-vH-uFr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="hAq-mj-Ifb" firstAttribute="leading" secondItem="t72-7N-Wcb" secondAttribute="leading" constant="15" id="35D-iK-J1n"/>
+                            <constraint firstItem="VND-nr-sKV" firstAttribute="trailing" secondItem="t72-7N-Wcb" secondAttribute="trailing" id="A4h-Qb-ui1"/>
+                            <constraint firstItem="hAq-mj-Ifb" firstAttribute="top" secondItem="t72-7N-Wcb" secondAttribute="top" constant="15" id="flr-RJ-p69"/>
+                            <constraint firstItem="t72-7N-Wcb" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BFK-Rj-RZJ" secondAttribute="trailing" symbolic="YES" id="kl6-yn-8WX"/>
+                            <constraint firstItem="BFK-Rj-RZJ" firstAttribute="top" secondItem="t72-7N-Wcb" secondAttribute="top" constant="14" id="mHL-FE-FMf"/>
+                            <constraint firstItem="VND-nr-sKV" firstAttribute="top" secondItem="iCo-sO-Epk" secondAttribute="bottom" id="nRu-Q4-i39"/>
+                            <constraint firstItem="iCo-sO-Epk" firstAttribute="leading" secondItem="t72-7N-Wcb" secondAttribute="leading" id="oJP-aK-9nv"/>
+                            <constraint firstItem="iCo-sO-Epk" firstAttribute="trailing" secondItem="t72-7N-Wcb" secondAttribute="trailing" id="qAb-J4-lTk"/>
+                            <constraint firstItem="VND-nr-sKV" firstAttribute="leading" secondItem="t72-7N-Wcb" secondAttribute="leading" id="rad-Bq-Mk3"/>
+                            <constraint firstItem="BFK-Rj-RZJ" firstAttribute="leading" secondItem="t72-7N-Wcb" secondAttribute="leading" constant="42" id="vLd-Ai-LJL"/>
+                            <constraint firstItem="iCo-sO-Epk" firstAttribute="top" secondItem="t72-7N-Wcb" secondAttribute="top" id="yb1-km-E6t"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="t72-7N-Wcb"/>
+                    </view>
+                    <size key="freeformSize" width="414" height="936"/>
+                    <connections>
+                        <outlet property="notificationsContainer" destination="VND-nr-sKV" id="3m6-gU-ya6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="48r-kT-Nao" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2693" y="1254"/>
+        </scene>
         <!--Notification Settings Class-->
         <scene sceneID="N9H-Py-QIY">
             <objects>
                 <tableViewController storyboardIdentifier="notificationSettings" modalPresentationStyle="overCurrentContext" id="oRL-gJ-8Hx" customClass="notificationSettingsClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="singleLineEtched" sectionIndexMinimumDisplayRowCount="5" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="rII-iU-PJ4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="879"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
@@ -858,31 +925,6 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="958-sM-ohC">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" editingAccessoryType="disclosureIndicator" id="jkR-6q-h4z">
-                                        <rect key="frame" x="20" y="308.33333969116211" width="374" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jkR-6q-h4z" id="2B2-HL-dtt">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXT-me-RSf">
-                                                    <rect key="frame" x="20" y="7" width="374" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="21"/>
-                                                    <state key="normal" title="Return to previous page">
-                                                        <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="dismiss:" destination="oRL-gJ-8Hx" eventType="touchUpInside" id="Sxp-Ad-Kop"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="oRL-gJ-8Hx" id="OXF-b2-k4B"/>
@@ -900,7 +942,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzz-xd-k7h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2693" y="1377"/>
+            <point key="canvasLocation" x="3503" y="949"/>
         </scene>
         <!--Termsandagreements Page-->
         <scene sceneID="ETL-Us-Rej">
