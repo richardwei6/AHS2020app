@@ -23,59 +23,59 @@
             <objects>
                 <viewController storyboardIdentifier="homeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XJz-g3-Eid" customClass="homeClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LqR-GK-uab">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1440"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1450"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-Ha-pr7">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1440"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1450"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QW8-La-LPp" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1440"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QW8-La-LPp" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="9" width="414" height="1450"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
                                     <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="tGx-ft-ywP">
-                                        <rect key="frame" x="25" y="986" width="364" height="37"/>
+                                        <rect key="frame" x="25" y="995" width="364" height="37"/>
                                         <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pageControl>
                                     <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="wX7-ew-MiB">
-                                        <rect key="frame" x="25" y="334" width="364" height="37"/>
+                                        <rect key="frame" x="25" y="337" width="364" height="37"/>
                                         <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pageControl>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellow barldpi" translatesAutoresizingMaskIntoConstraints="NO" id="SCP-IR-cLT">
-                                        <rect key="frame" x="18" y="1063" width="378" height="5"/>
+                                        <rect key="frame" x="18" y="1072" width="378" height="5"/>
                                     </imageView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygz-DW-kFo">
-                                        <rect key="frame" x="0.0" y="65" width="414" height="269"/>
+                                        <rect key="frame" x="0.0" y="68" width="414" height="269"/>
                                         <viewLayoutGuide key="contentLayoutGuide" id="aYL-Vb-590"/>
                                         <viewLayoutGuide key="frameLayoutGuide" id="mgr-4c-OSo"/>
                                     </scrollView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLK-MU-hLe">
-                                        <rect key="frame" x="24" y="360" width="157.66666666666666" height="35"/>
+                                        <rect key="frame" x="24" y="369" width="157.66666666666666" height="35"/>
                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="29"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red barldpi" translatesAutoresizingMaskIntoConstraints="NO" id="m0X-gR-vqn">
-                                        <rect key="frame" x="18" y="403" width="378" height="5"/>
+                                        <rect key="frame" x="18" y="412" width="378" height="5"/>
                                     </imageView>
                                     <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="2xM-GT-Y0I">
-                                        <rect key="frame" x="25" y="656" width="364" height="37"/>
+                                        <rect key="frame" x="25" y="665" width="364" height="37"/>
                                         <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pageControl>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue barldpi" translatesAutoresizingMaskIntoConstraints="NO" id="uEZ-Vs-CLu">
-                                        <rect key="frame" x="18" y="733" width="378" height="5"/>
+                                        <rect key="frame" x="18" y="742" width="378" height="5"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISTRICT NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjV-w6-LdP">
-                                        <rect key="frame" x="24" y="1020" width="236" height="35"/>
+                                        <rect key="frame" x="24" y="1029" width="236" height="35"/>
                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="29"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPORTS NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTI-vV-Mff">
-                                        <rect key="frame" x="24.000000000000014" y="690" width="217.33333333333337" height="35"/>
+                                        <rect key="frame" x="24.000000000000014" y="699" width="217.33333333333337" height="35"/>
                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="29"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -90,27 +90,28 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INr-3C-66i">
-                                        <rect key="frame" x="18" y="746" width="378" height="240"/>
+                                        <rect key="frame" x="18" y="755" width="378" height="240"/>
                                         <viewLayoutGuide key="contentLayoutGuide" id="lhB-Ha-Hi8"/>
                                         <viewLayoutGuide key="frameLayoutGuide" id="Lim-bw-9Ta"/>
                                     </scrollView>
                                     <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="GgV-KK-HXF">
-                                        <rect key="frame" x="25" y="1316" width="364" height="37"/>
+                                        <rect key="frame" x="25" y="1325" width="364" height="37"/>
                                         <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pageControl>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgP-9s-qoN">
-                                        <rect key="frame" x="18" y="416" width="378" height="240"/>
+                                        <rect key="frame" x="18" y="425" width="378" height="240"/>
                                         <viewLayoutGuide key="contentLayoutGuide" id="DSa-Y2-k1f"/>
                                         <viewLayoutGuide key="frameLayoutGuide" id="grX-yY-gDh"/>
                                     </scrollView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN6-0P-mEy">
-                                        <rect key="frame" x="18" y="1076" width="378" height="240"/>
+                                        <rect key="frame" x="18" y="1085" width="378" height="240"/>
                                         <viewLayoutGuide key="contentLayoutGuide" id="FDj-wH-ctM"/>
                                         <viewLayoutGuide key="frameLayoutGuide" id="cRK-jM-2pE"/>
                                     </scrollView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="cjV-w6-LdP" firstAttribute="top" secondItem="QW8-La-LPp" secondAttribute="bottom" constant="-430" id="0ON-SS-tLk"/>
                                     <constraint firstItem="INr-3C-66i" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="0fI-OT-LhG"/>
                                     <constraint firstItem="2xM-GT-Y0I" firstAttribute="top" secondItem="GgP-9s-qoN" secondAttribute="bottom" id="0rh-7R-KZy"/>
                                     <constraint firstItem="srU-5T-z4c" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="2p5-HX-y4r"/>
@@ -120,9 +121,9 @@
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rLK-MU-hLe" secondAttribute="trailing" symbolic="YES" id="6XK-d3-ead"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="GgP-9s-qoN" secondAttribute="trailing" constant="18" id="6jC-SH-V8x"/>
                                     <constraint firstItem="LTI-vV-Mff" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="24" id="7XR-41-iCF"/>
+                                    <constraint firstItem="m0X-gR-vqn" firstAttribute="top" secondItem="srU-5T-z4c" secondAttribute="bottom" constant="355" id="A5e-Sa-X6R"/>
                                     <constraint firstItem="QW8-La-LPp" firstAttribute="top" secondItem="Xab-Ha-pr7" secondAttribute="top" id="AgA-7U-4xm"/>
                                     <constraint firstItem="xN6-0P-mEy" firstAttribute="top" secondItem="SCP-IR-cLT" secondAttribute="bottom" constant="8" id="B8U-J2-GwW"/>
-                                    <constraint firstItem="mUw-fl-t0f" firstAttribute="bottom" secondItem="GgV-KK-HXF" secondAttribute="bottom" constant="87" id="Cjv-UK-QDZ"/>
                                     <constraint firstItem="SCP-IR-cLT" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="GKL-dh-Gre"/>
                                     <constraint firstItem="uEZ-Vs-CLu" firstAttribute="top" secondItem="2xM-GT-Y0I" secondAttribute="bottom" constant="40" id="Hnv-KH-wQn"/>
                                     <constraint firstItem="QW8-La-LPp" firstAttribute="height" secondItem="Xab-Ha-pr7" secondAttribute="height" priority="250" id="Iux-BP-taI"/>
@@ -133,10 +134,11 @@
                                     <constraint firstItem="LTI-vV-Mff" firstAttribute="top" secondItem="rLK-MU-hLe" secondAttribute="bottom" constant="295" id="LsH-kq-7eu"/>
                                     <constraint firstItem="GgV-KK-HXF" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="25" id="NFp-Cw-b2L"/>
                                     <constraint firstItem="2xM-GT-Y0I" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="25" id="OKi-LT-54o"/>
+                                    <constraint firstItem="SCP-IR-cLT" firstAttribute="top" secondItem="QW8-La-LPp" secondAttribute="bottom" constant="-387" id="QAs-7N-Edv"/>
                                     <constraint firstAttribute="bottom" secondItem="QW8-La-LPp" secondAttribute="bottom" id="QUc-Cj-gnh"/>
-                                    <constraint firstItem="m0X-gR-vqn" firstAttribute="top" secondItem="srU-5T-z4c" secondAttribute="bottom" constant="346" id="R7f-0j-SGX"/>
                                     <constraint firstItem="wX7-ew-MiB" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="25" id="RIa-ZH-FC8"/>
                                     <constraint firstItem="SCP-IR-cLT" firstAttribute="top" secondItem="tGx-ft-ywP" secondAttribute="bottom" constant="40" id="TT8-TW-817"/>
+                                    <constraint firstItem="ygz-DW-kFo" firstAttribute="top" secondItem="srU-5T-z4c" secondAttribute="bottom" constant="11" id="Tds-N7-1dw"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="xN6-0P-mEy" secondAttribute="trailing" constant="18" id="TlB-04-K3z"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="tGx-ft-ywP" secondAttribute="trailing" constant="25" id="U3N-Np-N3m"/>
                                     <constraint firstItem="rLK-MU-hLe" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="24" id="UPh-t6-WBx"/>
@@ -146,33 +148,32 @@
                                     <constraint firstItem="uEZ-Vs-CLu" firstAttribute="top" secondItem="m0X-gR-vqn" secondAttribute="bottom" constant="325" id="Xpd-Qx-Rag"/>
                                     <constraint firstItem="QW8-La-LPp" firstAttribute="top" secondItem="srU-5T-z4c" secondAttribute="bottom" constant="-57" id="Y3K-QU-Wda"/>
                                     <constraint firstItem="cjV-w6-LdP" firstAttribute="top" secondItem="LTI-vV-Mff" secondAttribute="bottom" constant="295" id="YyO-pi-6c6"/>
-                                    <constraint firstItem="m0X-gR-vqn" firstAttribute="top" secondItem="wX7-ew-MiB" secondAttribute="bottom" constant="32" id="aL5-lN-OBC"/>
+                                    <constraint firstItem="rLK-MU-hLe" firstAttribute="top" secondItem="fyR-VW-MkK" secondAttribute="bottom" constant="326" id="Z57-YJ-JVI"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="GgV-KK-HXF" secondAttribute="trailing" constant="25" id="ajv-0f-NUJ"/>
-                                    <constraint firstItem="SCP-IR-cLT" firstAttribute="top" secondItem="QW8-La-LPp" secondAttribute="bottom" constant="-377" id="cXi-i2-Wnq"/>
                                     <constraint firstItem="tGx-ft-ywP" firstAttribute="top" secondItem="INr-3C-66i" secondAttribute="bottom" id="dDH-EZ-t6Y"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="2xM-GT-Y0I" secondAttribute="trailing" constant="25" id="dUT-ry-6un"/>
                                     <constraint firstItem="INr-3C-66i" firstAttribute="top" secondItem="uEZ-Vs-CLu" secondAttribute="bottom" constant="8" id="dpP-5f-kMc"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="uEZ-Vs-CLu" secondAttribute="trailing" constant="18" id="eVY-dg-bjN"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="INr-3C-66i" secondAttribute="trailing" constant="18" id="eh4-hl-Vwv"/>
                                     <constraint firstItem="m0X-gR-vqn" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="evh-TM-imQ"/>
-                                    <constraint firstItem="cjV-w6-LdP" firstAttribute="top" secondItem="QW8-La-LPp" secondAttribute="bottom" constant="-420" id="fmu-un-Ezy"/>
-                                    <constraint firstItem="rLK-MU-hLe" firstAttribute="top" secondItem="fyR-VW-MkK" secondAttribute="bottom" constant="317" id="hcH-Bo-pww"/>
                                     <constraint firstItem="GgV-KK-HXF" firstAttribute="top" secondItem="xN6-0P-mEy" secondAttribute="bottom" id="hiC-0d-Cpl"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="wX7-ew-MiB" secondAttribute="trailing" constant="25" id="hmC-GI-Kqm"/>
                                     <constraint firstItem="wX7-ew-MiB" firstAttribute="top" secondItem="ygz-DW-kFo" secondAttribute="bottom" id="jsE-FB-7nJ"/>
                                     <constraint firstItem="SCP-IR-cLT" firstAttribute="top" secondItem="uEZ-Vs-CLu" secondAttribute="bottom" constant="325" id="ldW-Wm-HVu"/>
                                     <constraint firstItem="tGx-ft-ywP" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="25" id="le8-yE-dvj"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fyR-VW-MkK" secondAttribute="trailing" symbolic="YES" id="lp7-ba-C2y"/>
+                                    <constraint firstItem="mUw-fl-t0f" firstAttribute="bottom" secondItem="GgV-KK-HXF" secondAttribute="bottom" constant="97" id="m4l-j8-014"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="SCP-IR-cLT" secondAttribute="trailing" constant="18" id="m4q-Fn-sPA"/>
                                     <constraint firstItem="xN6-0P-mEy" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="oYT-A0-qHg"/>
                                     <constraint firstItem="GgP-9s-qoN" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="rS5-iz-iuy"/>
                                     <constraint firstItem="GgP-9s-qoN" firstAttribute="top" secondItem="m0X-gR-vqn" secondAttribute="bottom" constant="8" id="rSs-D5-Ttj"/>
-                                    <constraint firstItem="ygz-DW-kFo" firstAttribute="top" secondItem="srU-5T-z4c" secondAttribute="bottom" constant="8" id="rXu-yf-OqI"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LTI-vV-Mff" secondAttribute="trailing" symbolic="YES" id="sK8-dH-Pvn"/>
                                     <constraint firstItem="QW8-La-LPp" firstAttribute="width" secondItem="Xab-Ha-pr7" secondAttribute="width" id="tqS-6M-tAY"/>
                                     <constraint firstItem="uEZ-Vs-CLu" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="u9V-ZP-fGP"/>
+                                    <constraint firstItem="xN6-0P-mEy" firstAttribute="top" secondItem="QW8-La-LPp" secondAttribute="bottom" constant="-374" id="uLk-L7-zAh"/>
                                     <constraint firstItem="fyR-VW-MkK" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="24" id="uY3-o7-axB"/>
                                     <constraint firstItem="ygz-DW-kFo" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" id="xtJ-ry-SzA"/>
+                                    <constraint firstItem="m0X-gR-vqn" firstAttribute="top" secondItem="wX7-ew-MiB" secondAttribute="bottom" constant="38" id="y0D-xv-hOT"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="mUw-fl-t0f"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="UXg-bT-DFr"/>
@@ -189,7 +190,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MrD-os-5QI"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1440"/>
+                    <size key="freeformSize" width="414" height="1450"/>
                     <connections>
                         <outlet property="asbNewsPageControl" destination="2xM-GT-Y0I" id="eDI-ld-FQe"/>
                         <outlet property="asbNewsScrollView" destination="GgP-9s-qoN" id="6m4-b7-5Xp"/>
@@ -1323,7 +1324,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0bJ-Bc-tI6"/>
+        <segue reference="jFx-sQ-NyB"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
