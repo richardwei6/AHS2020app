@@ -23,14 +23,14 @@
             <objects>
                 <viewController storyboardIdentifier="homeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XJz-g3-Eid" customClass="homeClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LqR-GK-uab">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1440"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1445"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-Ha-pr7">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1440"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1445"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QW8-La-LPp" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="9" width="414" height="1440"/>
+                                        <rect key="frame" x="0.0" y="9" width="414" height="1445"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
                                     <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="tGx-ft-ywP">
@@ -95,7 +95,7 @@
                                         <viewLayoutGuide key="frameLayoutGuide" id="Lim-bw-9Ta"/>
                                     </scrollView>
                                     <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="GgV-KK-HXF">
-                                        <rect key="frame" x="25" y="1334" width="364" height="37"/>
+                                        <rect key="frame" x="25" y="1330" width="364" height="37"/>
                                         <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pageControl>
@@ -119,6 +119,7 @@
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="m0X-gR-vqn" secondAttribute="trailing" constant="18" id="5Yy-G4-L5B"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rLK-MU-hLe" secondAttribute="trailing" symbolic="YES" id="6XK-d3-ead"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="GgP-9s-qoN" secondAttribute="trailing" constant="18" id="6jC-SH-V8x"/>
+                                    <constraint firstItem="GgV-KK-HXF" firstAttribute="top" secondItem="QW8-La-LPp" secondAttribute="bottom" constant="-124" id="6my-t7-e6q"/>
                                     <constraint firstItem="LTI-vV-Mff" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="24" id="7XR-41-iCF"/>
                                     <constraint firstItem="m0X-gR-vqn" firstAttribute="top" secondItem="srU-5T-z4c" secondAttribute="bottom" constant="355" id="A5e-Sa-X6R"/>
                                     <constraint firstItem="QW8-La-LPp" firstAttribute="top" secondItem="Xab-Ha-pr7" secondAttribute="top" id="AgA-7U-4xm"/>
@@ -139,7 +140,6 @@
                                     <constraint firstItem="ygz-DW-kFo" firstAttribute="top" secondItem="srU-5T-z4c" secondAttribute="bottom" constant="11" id="Tds-N7-1dw"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="xN6-0P-mEy" secondAttribute="trailing" constant="18" id="TlB-04-K3z"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="tGx-ft-ywP" secondAttribute="trailing" constant="25" id="U3N-Np-N3m"/>
-                                    <constraint firstItem="SCP-IR-cLT" firstAttribute="top" secondItem="QW8-La-LPp" secondAttribute="bottom" constant="-377" id="U6e-7G-Hw6"/>
                                     <constraint firstItem="rLK-MU-hLe" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="24" id="UPh-t6-WBx"/>
                                     <constraint firstItem="QW8-La-LPp" firstAttribute="leading" secondItem="Xab-Ha-pr7" secondAttribute="leading" id="UXs-aQ-0S6"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cjV-w6-LdP" secondAttribute="trailing" symbolic="YES" id="V6l-3w-sC1"/>
@@ -149,22 +149,22 @@
                                     <constraint firstItem="cjV-w6-LdP" firstAttribute="top" secondItem="LTI-vV-Mff" secondAttribute="bottom" constant="295" id="YyO-pi-6c6"/>
                                     <constraint firstItem="rLK-MU-hLe" firstAttribute="top" secondItem="fyR-VW-MkK" secondAttribute="bottom" constant="326" id="Z57-YJ-JVI"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="GgV-KK-HXF" secondAttribute="trailing" constant="25" id="ajv-0f-NUJ"/>
+                                    <constraint firstItem="cjV-w6-LdP" firstAttribute="top" secondItem="QW8-La-LPp" secondAttribute="bottom" constant="-425" id="bpm-dl-EqO"/>
                                     <constraint firstItem="tGx-ft-ywP" firstAttribute="top" secondItem="INr-3C-66i" secondAttribute="bottom" id="dDH-EZ-t6Y"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="2xM-GT-Y0I" secondAttribute="trailing" constant="25" id="dUT-ry-6un"/>
                                     <constraint firstItem="INr-3C-66i" firstAttribute="top" secondItem="uEZ-Vs-CLu" secondAttribute="bottom" constant="8" id="dpP-5f-kMc"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="uEZ-Vs-CLu" secondAttribute="trailing" constant="18" id="eVY-dg-bjN"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="INr-3C-66i" secondAttribute="trailing" constant="18" id="eh4-hl-Vwv"/>
-                                    <constraint firstItem="mUw-fl-t0f" firstAttribute="bottom" secondItem="GgV-KK-HXF" secondAttribute="bottom" constant="78" id="erm-Ue-65X"/>
                                     <constraint firstItem="m0X-gR-vqn" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="evh-TM-imQ"/>
                                     <constraint firstItem="GgV-KK-HXF" firstAttribute="top" secondItem="xN6-0P-mEy" secondAttribute="bottom" id="hiC-0d-Cpl"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="wX7-ew-MiB" secondAttribute="trailing" constant="25" id="hmC-GI-Kqm"/>
-                                    <constraint firstItem="cjV-w6-LdP" firstAttribute="top" secondItem="QW8-La-LPp" secondAttribute="bottom" constant="-420" id="imK-P3-3el"/>
                                     <constraint firstItem="wX7-ew-MiB" firstAttribute="top" secondItem="ygz-DW-kFo" secondAttribute="bottom" id="jsE-FB-7nJ"/>
                                     <constraint firstItem="SCP-IR-cLT" firstAttribute="top" secondItem="uEZ-Vs-CLu" secondAttribute="bottom" constant="325" id="ldW-Wm-HVu"/>
                                     <constraint firstItem="tGx-ft-ywP" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="25" id="le8-yE-dvj"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fyR-VW-MkK" secondAttribute="trailing" symbolic="YES" id="lp7-ba-C2y"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="SCP-IR-cLT" secondAttribute="trailing" constant="18" id="m4q-Fn-sPA"/>
                                     <constraint firstItem="xN6-0P-mEy" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="oYT-A0-qHg"/>
+                                    <constraint firstItem="SCP-IR-cLT" firstAttribute="top" secondItem="QW8-La-LPp" secondAttribute="bottom" constant="-382" id="ouk-w1-mPv"/>
                                     <constraint firstItem="GgP-9s-qoN" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="rS5-iz-iuy"/>
                                     <constraint firstItem="GgP-9s-qoN" firstAttribute="top" secondItem="m0X-gR-vqn" secondAttribute="bottom" constant="8" id="rSs-D5-Ttj"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LTI-vV-Mff" secondAttribute="trailing" symbolic="YES" id="sK8-dH-Pvn"/>
@@ -189,7 +189,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MrD-os-5QI"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1440"/>
+                    <size key="freeformSize" width="414" height="1445"/>
                     <connections>
                         <outlet property="asbNewsPageControl" destination="2xM-GT-Y0I" id="eDI-ld-FQe"/>
                         <outlet property="asbNewsScrollView" destination="GgP-9s-qoN" id="6m4-b7-5Xp"/>
@@ -439,7 +439,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No saved articles found. Click on the bookmark icon to save an article." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rh-dO-soH">
-                                <rect key="frame" x="10" y="456.33333333333331" width="394" height="87.666666666666686"/>
+                                <rect key="frame" x="10" y="455.33333333333331" width="394" height="89.666666666666686"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1304,7 +1304,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1b-zf-jR1">
-                                        <rect key="frame" x="42.000000000000007" y="14" width="67.666666666666686" height="28"/>
+                                        <rect key="frame" x="42.000000000000007" y="14" width="79.666666666666686" height="28"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
