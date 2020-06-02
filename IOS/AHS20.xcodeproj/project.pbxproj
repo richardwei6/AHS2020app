@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330B4D4D2484CA4C001087E9 /* NotificationSettingsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330B4D4C2484CA4C001087E9 /* NotificationSettingsWrapper.swift */; };
 		330D3E10241D5E8C007D0628 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E0F241D5E8C007D0628 /* AppDelegate.swift */; };
 		330D3E12241D5E8C007D0628 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E11241D5E8C007D0628 /* SceneDelegate.swift */; };
 		330D3E14241D5E8C007D0628 /* homePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E13241D5E8C007D0628 /* homePage.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		330B4D4C2484CA4C001087E9 /* NotificationSettingsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsWrapper.swift; sourceTree = "<group>"; };
 		330D3E0C241D5E8C007D0628 /* AHS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AHS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		330D3E0F241D5E8C007D0628 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		330D3E11241D5E8C007D0628 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				33CD41B32453ECAB008E6558 /* savedPage.swift */,
 				33E69207243AD21F0004E2F1 /* settingPage.swift */,
 				331793F12464FEF5007CF7B7 /* notificationSettings.swift */,
+				330B4D4C2484CA4C001087E9 /* NotificationSettingsWrapper.swift */,
 				3354C8D724664AA5008C0F67 /* termsandagreementsPage.swift */,
 				3354C8D924664C9B008C0F67 /* creditsPage.swift */,
 				33E80ED8244FBBB900020640 /* articlePage.swift */,
@@ -348,6 +351,7 @@
 				33E80EDB244FD76900020640 /* sharedFunc.swift in Sources */,
 				33E80ED9244FBBB900020640 /* articlePage.swift in Sources */,
 				330D3E12241D5E8C007D0628 /* SceneDelegate.swift in Sources */,
+				330B4D4D2484CA4C001087E9 /* NotificationSettingsWrapper.swift in Sources */,
 				331793F22464FEF5007CF7B7 /* notificationSettings.swift in Sources */,
 				33E69204243AD1F20004E2F1 /* bulletinPage.swift in Sources */,
 			);

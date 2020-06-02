@@ -58,7 +58,6 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     
     @IBAction func exitArticle(_ sender: UIButton){
         dismiss(animated: true);
-       AudioServicesPlaySystemSound(1519);
     }
     
     func setBookmarkColor(){

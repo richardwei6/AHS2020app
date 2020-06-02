@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import AudioToolbox
 
 struct tempArticle{
     var articleTitle: String;
@@ -82,6 +82,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         //print(sender.isSelected);
         generateIconImage(iconView: sender);
         generateBulletin();
+       // AudioServicesPlaySystemSound(1519);
+        UIImpactFeedbackGenerator(style: .light).impactOccurred();
     }
     
     func removeAllSubViews(sender: CustomUIButton){
