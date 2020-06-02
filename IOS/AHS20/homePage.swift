@@ -38,7 +38,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var districtNewsPageControl: UIPageControl!
 	
 	
-	
+	//let bookmarkImageUI = UIImage(named: "invertedbookmark");
+	let bookmarkImageUI = UIImage(systemName: "bookmark");
 	
 	// TODO: get data from server
 	var featuredSize = 6;
@@ -141,18 +142,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     override func viewDidLoad() { // setup function
 		super.viewDidLoad();
 		
-		
 		article.setUpLocalData(); // retrieve data from json file - see sharedFunc.swift for more info
 		
-		/*for family in UIFont.familyNames {
-
-			let sName: String = family as String
-			print("family: \(sName)")
-					
-			for name in UIFont.fontNames(forFamilyName: sName) {
-				print("name: \(name as String)")
-			}
-		}*/
+		
 		
         // Do any additional setup after loading the view.
 		// set month -
@@ -220,7 +212,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			let bookmarkButton = CustomUIButton(frame: bookmarkFrame);
 			bookmarkButton.backgroundColor = bookMarkBackground;
 			bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-			let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
+			let bookmarkImage = bookmarkImageUI; // get system image
 			bookmarkButton.setImage(bookmarkImage, for: .normal);
 			//bookmarkButton.tintColor = bookMarkTint;
 			setUpColorOfBookmark(sender: bookmarkButton);
@@ -255,7 +247,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			let contentView = UIView(frame: asbNewsFrame); // wrapper for article
 			
 			
-			let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
+			let bookmarkImage = bookmarkImageUI; // get system image
 			
 			// subview bookmark button - 30x30
 			let bookmarkAFrame = CGRect(x: asbNewsFrame.size.width - 45, y: 15, width: 30, height: 30);
@@ -310,7 +302,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
 			   // create content in scrollview
 			let contentView = UIView(frame: sportsNewsFrame); // wrapper for article
-			let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
+			let bookmarkImage = bookmarkImageUI; // get system image
 			
 			// subview bookmark button - 30x30
 			let bookmarkAFrame = CGRect(x: sportsNewsFrame.size.width - 45, y: 15, width: 30, height: 30);
@@ -359,7 +351,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
             // create content in scrollview
 			let contentView = UIView(frame: districtNewsFrame); // wrapper for article
-			let bookmarkImage = UIImage(systemName: "bookmark"); // get system image
+			let bookmarkImage = bookmarkImageUI; // get system image
 			
 			// subview bookmark button - 30x30
 			let bookmarkAFrame = CGRect(x: districtNewsFrame.size.width - 45, y: 15, width: 30, height: 30);

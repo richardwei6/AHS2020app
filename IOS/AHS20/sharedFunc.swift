@@ -202,6 +202,18 @@ func makeColor(r: Float, g: Float, b: Float) -> UIColor{
     return UIColor.init(red: CGFloat(r/255.0), green: CGFloat(g/255.0), blue: CGFloat(b/255.0), alpha: CGFloat(1.0));
 }
 
+func printFontFamilies(){
+    for family in UIFont.familyNames {
+
+        let sName: String = family as String
+        print("family: \(sName)")
+                
+        for name in UIFont.fontNames(forFamilyName: sName) {
+            print("name: \(name as String)")
+        }
+    }
+}
+
 let mainThemeColor = makeColor(r: 127, g: 47, b: 60);
 
 var fontSize = 20;

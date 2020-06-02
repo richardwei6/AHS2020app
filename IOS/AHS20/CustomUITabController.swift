@@ -28,8 +28,9 @@ class CustomTabBarController: UIViewController {
     
     var selectedIndex: Int = 0;
 
-    let iconImagePath = ["house.fill", "doc.plaintext", "bookmark", "gear"];
-    
+    let iconImagePath = ["invertedhome", "invertedbulletin", "invertedbookmark", "invertedsettings"];
+    let iconImagePathInv = ["homeInv", "bulletinInv", "BookmarkInv", "GearInv"];
+    let selectedColor = makeColor(r: 243, g: 149, b: 143);
     
     @IBAction func openNotifications(_ sender: UIButton) {
         print("Notifcations");
@@ -57,7 +58,7 @@ class CustomTabBarController: UIViewController {
 
         // set up buttons
         for index in 0..<buttons.count{
-            let image = UIImage(systemName: iconImagePath[index]);
+            let image = UIImage(named: iconImagePath[index]);
             //image = image?.maskWithColor(color: UIColor.white);
             buttons[index].setImage(image, for: .normal);
             buttons[index].tintColor = UIColor.white;
@@ -70,7 +71,8 @@ class CustomTabBarController: UIViewController {
         savedViewController = storyboard.instantiateViewController(withIdentifier: "savedViewController");
         settingsViewController = storyboard.instantiateViewController(withIdentifier: "settingsViewController");
         viewControllers = [homeViewController, bulletinViewController, savedViewController, settingsViewController];
-        //buttons[selectedIndex].isSelected = true;
+        buttons[selectedIndex].setImage(UIImage(named: iconImagePathInv[selectedIndex]), for: .normal);
+        //buttons[selectedIndex].tintColor = selectedColor;
         didPressTab(buttons[selectedIndex]);
     }
     
@@ -80,6 +82,8 @@ class CustomTabBarController: UIViewController {
         
         // remove prev view controller
         //buttons[prevIndex].isSelected = false;
+        buttons[prevIndex].setImage(UIImage(named: iconImagePath[prevIndex]), for: .normal);
+        //buttons[prevIndex].tintColor = UIColor.white;
         
         let prevVC = viewControllers[prevIndex];
         prevVC.willMove(toParent: nil);
@@ -88,6 +92,8 @@ class CustomTabBarController: UIViewController {
         
         // add current view controller
        // sender.isSelected = true;
+       // sender.tintColor = selectedColor;
+        sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
         let vc = viewControllers[selectedIndex];
         addChild(vc);
         vc.view.frame = contentView.bounds;
