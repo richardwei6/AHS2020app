@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+
+
 class CustomTabBarController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
@@ -36,6 +38,11 @@ class CustomTabBarController: UIViewController {
         print("Notifcations");
         performSegue(withIdentifier: "notificationSegue", sender: nil);
     }
+    
+    func openArticle(){
+           performSegue(withIdentifier: "articleSegue", sender: nil);
+    }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -96,6 +103,11 @@ class CustomTabBarController: UIViewController {
                     page.mainScrollView.setContentOffset(.zero, animated: true);
                 }
             }
+            if (sender.tag == 1){
+                if let page = viewControllers[sender.tag] as? bulletinClass{
+                    page.bulletinScrollView.setContentOffset(.zero, animated: true);
+                }
+            }
         }
         else{
         // remove prev view controller
@@ -123,3 +135,5 @@ class CustomTabBarController: UIViewController {
     
     
 }
+
+

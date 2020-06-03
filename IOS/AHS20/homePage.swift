@@ -71,7 +71,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	@objc func openArticle(sender: CustomUIButton){
 		print("Button pressed");
-		performSegue(withIdentifier: "articleSegue", sender: nil);
+		//performSegue(withIdentifier: "articleSegue", sender: nil);
+	  
 	}
 	
 	@objc func bookmarkCurrentArticle(sender: CustomUIButton){
@@ -145,6 +146,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     
     override func viewDidLoad() { // setup function
 		super.viewDidLoad();
+		
+		
 		
 		article.setUpLocalData(); // retrieve data from json file - see sharedFunc.swift for more info
 		
