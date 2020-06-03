@@ -39,13 +39,17 @@ class CustomTabBarController: UIViewController {
         performSegue(withIdentifier: "notificationSegue", sender: nil);
     }
     
-    func openArticle(){
-           performSegue(withIdentifier: "articleSegue", sender: nil);
+    @objc func articleSelector(notification: NSNotification){
+        print("articleSelector")
+        performSegue(withIdentifier: "articleSegue", sender: nil);
     }
+
    
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         
         monthLabel.text = getTitleDateAndMonth();
         monthLabel.adjustsFontSizeToFitWidth = true;
@@ -73,10 +77,10 @@ class CustomTabBarController: UIViewController {
         
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil);
-        homeViewController = storyboard.instantiateViewController(withIdentifier: "homeViewController");
-        bulletinViewController = storyboard.instantiateViewController(withIdentifier: "bulletinViewController");
-        savedViewController = storyboard.instantiateViewController(withIdentifier: "savedViewController");
-        settingsViewController = storyboard.instantiateViewController(withIdentifier: "settingsViewController");
+        homeViewController = storyboard.instantiateViewController(withIdentifier: "homeViewController") as! homeClass;
+        bulletinViewController = storyboard.instantiateViewController(withIdentifier: "bulletinViewController") as! bulletinClass;
+        savedViewController = storyboard.instantiateViewController(withIdentifier: "savedViewController") as! savedClass;
+        settingsViewController = storyboard.instantiateViewController(withIdentifier: "settingsViewController") as! settingClass;
         viewControllers = [homeViewController, bulletinViewController, savedViewController, settingsViewController];
         buttons[selectedIndex].setImage(UIImage(named: iconImagePathInv[selectedIndex]), for: .normal);
         //buttons[selectedIndex].tintColor = selectedColor;

@@ -16,7 +16,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
     
     @objc func openArticle(sender: CustomUIButton){
        // print("Button pressed");
-        performSegue(withIdentifier: "articleSegue", sender: nil);
+       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil);
     }
     
     override func viewDidLoad() {

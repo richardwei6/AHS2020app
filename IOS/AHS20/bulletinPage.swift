@@ -67,7 +67,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     @objc func openArticle(sender: CustomUIButton){
        // print("Button pressed");
-        performSegue(withIdentifier: "articleSegue", sender: nil);
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil);
     }
     
     @objc func addFilter(sender: CustomUIButton){

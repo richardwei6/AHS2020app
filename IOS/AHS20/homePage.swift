@@ -38,6 +38,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var districtNewsScrollView: UIScrollView!
 	@IBOutlet weak var districtNewsPageControl: UIPageControl!
 	
+
 	
 	//let bookmarkImageUI = UIImage(named: "invertedbookmark");
 	let bookmarkImageUI = UIImage(systemName: "bookmark");
@@ -52,10 +53,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     var districtNewsSize = 5;
     var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	
-	
-	func moveScrollViewUp(){
-		mainScrollView.setContentOffset(.zero, animated: true);
-	}
+
 	
 	func setUpColorOfBookmark(sender: CustomUIButton){
 		if (isSavedCurrentArticle(articleID: sender.articleID ?? "") == true){ // TODO: implement sender.articleID
@@ -72,7 +70,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@objc func openArticle(sender: CustomUIButton){
 		print("Button pressed");
 		//performSegue(withIdentifier: "articleSegue", sender: nil);
-	  
+		NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil);
 	}
 	
 	@objc func bookmarkCurrentArticle(sender: CustomUIButton){
