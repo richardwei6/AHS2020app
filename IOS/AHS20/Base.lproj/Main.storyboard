@@ -176,6 +176,9 @@
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="mUw-fl-t0f"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="UXg-bT-DFr"/>
+                                <connections>
+                                    <outlet property="delegate" destination="XJz-g3-Eid" id="Yaq-xR-Pwj"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -197,6 +200,7 @@
                         <outlet property="districtNewsScrollView" destination="xN6-0P-mEy" id="lzf-8e-yZa"/>
                         <outlet property="featuredPageControl" destination="wX7-ew-MiB" id="9Zh-pT-tam"/>
                         <outlet property="featuredScrollView" destination="ygz-DW-kFo" id="Ap3-eR-tN9"/>
+                        <outlet property="mainScrollView" destination="Xab-Ha-pr7" id="Jdt-6E-T6h"/>
                         <outlet property="sportsNewsPageControl" destination="tGx-ft-ywP" id="ixK-ZO-qZo"/>
                         <outlet property="sportsNewsScrollView" destination="INr-3C-66i" id="0MU-cE-xrg"/>
                         <segue destination="947-74-bR0" kind="show" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="jFx-sQ-NyB"/>
@@ -1063,7 +1067,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Names here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLZ-kx-wP3">
-                                <rect key="frame" x="161.33333333333334" y="358" width="91.333333333333343" height="20"/>
+                                <rect key="frame" x="156.33333333333334" y="358" width="101.66666666666666" height="20"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

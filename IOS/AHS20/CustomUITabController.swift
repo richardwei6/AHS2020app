@@ -73,32 +73,52 @@ class CustomTabBarController: UIViewController {
         viewControllers = [homeViewController, bulletinViewController, savedViewController, settingsViewController];
         buttons[selectedIndex].setImage(UIImage(named: iconImagePathInv[selectedIndex]), for: .normal);
         //buttons[selectedIndex].tintColor = selectedColor;
-        didPressTab(buttons[selectedIndex]);
-    }
-    
-    @IBAction func didPressTab(_ sender: UIButton) {
-        let prevIndex = selectedIndex;
-        selectedIndex = sender.tag;
-        
-        // remove prev view controller
-        //buttons[prevIndex].isSelected = false;
-        buttons[prevIndex].setImage(UIImage(named: iconImagePath[prevIndex]), for: .normal);
-        //buttons[prevIndex].tintColor = UIColor.white;
-        
-        let prevVC = viewControllers[prevIndex];
-        prevVC.willMove(toParent: nil);
-        prevVC.view.removeFromSuperview();
-        prevVC.removeFromParent();
-        
-        // add current view controller
-       // sender.isSelected = true;
-       // sender.tintColor = selectedColor;
-        sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
         let vc = viewControllers[selectedIndex];
         addChild(vc);
         vc.view.frame = contentView.bounds;
         contentView.addSubview(vc.view);
         vc.didMove(toParent: self);
+    }
+    
+    @IBAction func didPressTab(_ sender: UIButton) {
+        let prevIndex = selectedIndex;
+        selectedIndex = sender.tag;
+        if (prevIndex == sender.tag){
+            if (sender.tag == 0){
+                // add code here
+                if let page  = viewControllers[0] as? homeClass{
+                    page.mainScrollView.setContentOffset(.zero, animated: true);
+                }
+                
+            }
+            if (sender.tag == 2){
+                if let page = viewControllers[sender.tag] as? savedClass{
+                    page.mainScrollView.setContentOffset(.zero, animated: true);
+                }
+            }
+        }
+        else{
+        // remove prev view controller
+        //buttons[prevIndex].isSelected = false;
+            buttons[prevIndex].setImage(UIImage(named: iconImagePath[prevIndex]), for: .normal);
+        //buttons[prevIndex].tintColor = UIColor.white;
+        
+            let prevVC = viewControllers[prevIndex];
+            prevVC.willMove(toParent: nil);
+            prevVC.view.removeFromSuperview();
+            prevVC.removeFromParent();
+        
+        // add current view controller
+       // sender.isSelected = true;
+       // sender.tintColor = selectedColor;
+            sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
+            let vc = viewControllers[selectedIndex];
+            addChild(vc);
+            vc.view.frame = contentView.bounds;
+            contentView.addSubview(vc.view);
+            vc.didMove(toParent: self);
+        }
+            
     }
     
     

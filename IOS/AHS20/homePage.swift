@@ -28,6 +28,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var sportsNewsPageControl: UIPageControl!
 	@IBOutlet weak var districtNewsScrollView: UIScrollView!
 	@IBOutlet weak var districtNewsPageControl: UIPageControl!*/
+	@IBOutlet weak var mainScrollView: UIScrollView!
 	@IBOutlet weak var featuredScrollView: UIScrollView!
 	@IBOutlet weak var featuredPageControl: UIPageControl!
 	@IBOutlet weak var asbNewsScrollView: UIScrollView!
@@ -52,6 +53,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	
 	
+	func moveScrollViewUp(){
+		mainScrollView.setContentOffset(.zero, animated: true);
+	}
 	
 	func setUpColorOfBookmark(sender: CustomUIButton){
 		if (isSavedCurrentArticle(articleID: sender.articleID ?? "") == true){ // TODO: implement sender.articleID
