@@ -427,7 +427,6 @@
                         <outlet property="bulletinScrollView" destination="7fW-Zl-nwU" id="SNI-SI-TpG"/>
                         <outlet property="filterScrollView" destination="6rC-8R-9Il" id="oT4-H9-lIf"/>
                         <outlet property="filterScrollViewHeightContraint" destination="VsH-b4-4hc" id="1Xg-TM-24x"/>
-                        <segue destination="947-74-bR0" kind="show" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="ubl-hZ-R1k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8K-aq-voA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -469,7 +468,6 @@
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="mainScrollView" destination="Lrm-pV-QtS" id="wHj-Sc-iwt"/>
-                        <segue destination="947-74-bR0" kind="show" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="MsQ-j6-zm2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Hp-9R-HoA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1251,13 +1249,13 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ui0-tM-hO3" userLabel="Saved Bookmark" customClass="CustomUIButton" customModule="AHS" customModuleProvider="target">
-                                                <rect key="frame" x="369" y="74.333333333333329" width="29" height="34"/>
+                                                <rect key="frame" x="372" y="77" width="22" height="28"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="29" id="l9Y-Tu-01p"/>
-                                                    <constraint firstAttribute="height" constant="34.329999999999998" id="pe3-YW-exG"/>
+                                                    <constraint firstAttribute="height" constant="28" id="bsW-GT-w64"/>
+                                                    <constraint firstAttribute="width" constant="22" id="rLO-5d-LaZ"/>
                                                 </constraints>
                                                 <color key="tintColor" red="0.99657541510000003" green="0.99982887509999996" blue="0.99975782629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" backgroundImage="bookmark" catalog="system"/>
+                                                <state key="normal" image="invertedbookmark"/>
                                                 <connections>
                                                     <action selector="saveArticleWithSender:" destination="947-74-bR0" eventType="touchUpInside" id="lxK-xz-WIG"/>
                                                 </connections>
@@ -1266,17 +1264,16 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                         <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="EBD-To-cbw" secondAttribute="trailing" constant="8" id="0Pi-05-c9O"/>
-                                            <constraint firstAttribute="trailing" secondItem="ui0-tM-hO3" secondAttribute="trailing" constant="16" id="3eY-G1-AkA"/>
                                             <constraint firstAttribute="bottom" secondItem="fse-fh-VRV" secondAttribute="bottom" id="4mU-Nh-03M"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hxm-7f-5JD" secondAttribute="trailing" constant="20" symbolic="YES" id="DH7-eu-Bxd"/>
                                             <constraint firstItem="aWe-ZQ-wqV" firstAttribute="top" secondItem="fse-fh-VRV" secondAttribute="top" constant="40" id="DJb-bS-2AF"/>
                                             <constraint firstItem="6lG-do-eYz" firstAttribute="top" secondItem="fse-fh-VRV" secondAttribute="top" constant="35" id="Hng-GM-kce"/>
                                             <constraint firstItem="bb4-Ub-HhJ" firstAttribute="leading" secondItem="0wU-Tb-SE3" secondAttribute="leading" constant="112" id="JWq-Wv-43T"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cOg-EF-qjc" secondAttribute="trailing" constant="20" symbolic="YES" id="KJ9-18-nO3"/>
-                                            <constraint firstItem="ui0-tM-hO3" firstAttribute="top" secondItem="0wU-Tb-SE3" secondAttribute="top" constant="74" id="MvD-Bc-pcz"/>
                                             <constraint firstAttribute="trailing" secondItem="ki3-E6-wIg" secondAttribute="trailing" id="NHe-y2-eea"/>
                                             <constraint firstItem="hxm-7f-5JD" firstAttribute="top" secondItem="aWe-ZQ-wqV" secondAttribute="bottom" id="NeB-UU-iGE"/>
                                             <constraint firstItem="cu9-hd-ekI" firstAttribute="top" secondItem="0wU-Tb-SE3" secondAttribute="top" constant="490" id="OQE-ge-fcV"/>
+                                            <constraint firstAttribute="trailing" secondItem="ui0-tM-hO3" secondAttribute="trailing" constant="20" id="QNi-E7-7cC"/>
                                             <constraint firstAttribute="trailing" secondItem="6lG-do-eYz" secondAttribute="trailing" constant="31" id="R5F-zi-RY4"/>
                                             <constraint firstAttribute="trailing" secondItem="bb4-Ub-HhJ" secondAttribute="trailing" constant="112" id="RQb-py-37e"/>
                                             <constraint firstItem="cu9-hd-ekI" firstAttribute="centerX" secondItem="0wU-Tb-SE3" secondAttribute="centerX" id="Sp9-fg-8E0"/>
@@ -1294,6 +1291,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <constraint firstItem="cOg-EF-qjc" firstAttribute="leading" secondItem="0wU-Tb-SE3" secondAttribute="leading" constant="30" id="oEc-1k-kEj"/>
                                             <constraint firstItem="fse-fh-VRV" firstAttribute="leading" secondItem="0wU-Tb-SE3" secondAttribute="leading" id="qLd-zV-ry7"/>
                                             <constraint firstItem="bb4-Ub-HhJ" firstAttribute="top" secondItem="cu9-hd-ekI" secondAttribute="bottom" constant="16" id="r4a-ZL-tff"/>
+                                            <constraint firstItem="ui0-tM-hO3" firstAttribute="top" secondItem="0wU-Tb-SE3" secondAttribute="top" constant="77" id="tOD-lh-7B0"/>
                                             <constraint firstItem="6lG-do-eYz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0wU-Tb-SE3" secondAttribute="leading" constant="20" symbolic="YES" id="yNt-48-LBD"/>
                                         </constraints>
                                     </view>
@@ -1371,15 +1369,15 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ubl-hZ-R1k"/>
+        <segue reference="KeJ-WP-BpQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="Icon ionic-ios-notifications.png" width="27" height="34"/>
         <image name="blue barldpi" width="658" height="5"/>
-        <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="featherldpiF" width="131" height="122"/>
+        <image name="invertedbookmark" width="18.333333969116211" height="25.333333969116211"/>
         <image name="red barldpi" width="658" height="5"/>
         <image name="yellow barldpi" width="658" height="5"/>
     </resources>

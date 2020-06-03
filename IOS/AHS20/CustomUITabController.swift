@@ -40,10 +40,8 @@ class CustomTabBarController: UIViewController {
     }
     
     @objc func articleSelector(notification: NSNotification){
-        print("articleSelector")
         performSegue(withIdentifier: "articleSegue", sender: nil);
     }
-
    
     
     override func viewDidLoad() {

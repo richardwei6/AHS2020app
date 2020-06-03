@@ -39,6 +39,7 @@ class settingClass: UITableViewController {
         confirmPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             UserDefaults.standard.removeObject(forKey: "savedArticles");
             savedArticles = [];
+            resetUpArticles = true;
         }));
         confirmPopup.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in }));
         present(confirmPopup, animated: true, completion: nil);

@@ -39,9 +39,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var districtNewsPageControl: UIPageControl!
 	
 
+	let bookmarkImageVerticalInset = CGFloat(5);
+	let bookmarkImageHorizontalInset = CGFloat(7);
 	
-	//let bookmarkImageUI = UIImage(named: "invertedbookmark");
-	let bookmarkImageUI = UIImage(systemName: "bookmark");
+	let bookmarkImageUI = UIImage(named: "invertedbookmark");
+	//let bookmarkImageUI = UIImage(systemName: "bookmark");
 	
 	// TODO: get data from server
 	var featuredSize = 6;
@@ -53,6 +55,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
     var districtNewsSize = 5;
     var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	
+	var refreshControl = UIRefreshControl();
 
 	
 	func setUpColorOfBookmark(sender: CustomUIButton){
@@ -142,23 +145,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		return mainArticleView;
 	}
     
-    override func viewDidLoad() { // setup function
-		super.viewDidLoad();
-		
-		
-		
-		article.setUpLocalData(); // retrieve data from json file - see sharedFunc.swift for more info
-		
-		
-		
-        // Do any additional setup after loading the view.
-		// set month -
-		
-		
-		// article variables
-		/*let articleHorizontalPadding = CGFloat(10);
-		let articleVerticalPadding = CGFloat(5);*/
-		
+	func setUpAllViews(){
 		let bookMarkTint = UIColor.white;
 		let bookMarkBackground = makeColor(r: 165, g: 165, b: 165);
 		
@@ -222,6 +209,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			//bookmarkButton.tintColor = bookMarkTint;
 			setUpColorOfBookmark(sender: bookmarkButton);
 			bookmarkButton.isSelected = false;
+			bookmarkButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
 
 			contentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
 			
@@ -263,6 +251,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			//bookmarkAButton.tintColor = bookMarkTint;
 			setUpColorOfBookmark(sender: bookmarkAButton);
 			bookmarkAButton.isSelected = false;
+			bookmarkAButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
 			
 			// B button
 			let bookmarkBFrame = CGRect(x: asbNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
@@ -273,6 +262,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			//bookmarkBButton.tintColor = bookMarkTint;
 			setUpColorOfBookmark(sender: bookmarkBButton);
 			bookmarkBButton.isSelected = false;
+			bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
 			
 			
 			//create article with function - TODO: find out a way to separate article from top and bottom
@@ -318,6 +308,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			//bookmarkAButton.tintColor = bookMarkTint;
 			setUpColorOfBookmark(sender: bookmarkAButton);
 			bookmarkAButton.isSelected = false;
+			bookmarkAButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
 			
 			// B button
 			let bookmarkBFrame = CGRect(x: sportsNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
@@ -328,6 +319,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			//bookmarkBButton.tintColor = bookMarkTint;
 			setUpColorOfBookmark(sender: bookmarkBButton);
 			bookmarkBButton.isSelected = false;
+			bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
 			
 			
 			//create article with function - TODO: find out a way to separate article from top and bottom
@@ -367,6 +359,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			//bookmarkAButton.tintColor = bookMarkTint;
 			setUpColorOfBookmark(sender: bookmarkAButton);
 			bookmarkAButton.isSelected = false;
+			bookmarkAButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
 			
 			// B button
 			let bookmarkBFrame = CGRect(x: districtNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
@@ -377,6 +370,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			//bookmarkBButton.tintColor = bookMarkTint;
 			setUpColorOfBookmark(sender: bookmarkBButton);
 			bookmarkBButton.isSelected = false;
+			bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
 			
 			
 			//create article with function - TODO: find out a way to separate article from top and bottom
@@ -395,12 +389,31 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
         // change horizontal size of scrollview
 		districtNewsScrollView.contentSize = CGSize(width: 1+(districtNewsFrame.size.width * CGFloat(districtNewsSize)), height: districtNewsScrollView.frame.size.height);
         districtNewsScrollView.delegate = self;
-        
+	}
+	
+	@objc func refreshAllArticles(){
+		print("refresh");
+		article.setUpLocalData();
+		setUpAllViews();
+		refreshControl.endRefreshing();
+	}
+	
+    override func viewDidLoad() { // setup function
+		super.viewDidLoad();
+		
+		article.setUpLocalData(); // retrieve data from json file - see sharedFunc.swift for more info
+		
+		setUpAllViews();
+		
+		refreshControl.addTarget(self, action: #selector(refreshAllArticles), for: UIControl.Event.valueChanged);
+		mainScrollView.addSubview(refreshControl);
     }
 	
-	override func viewDidLayoutSubviews() {
-		super.viewDidLayoutSubviews();
-		//homeLabel.setRoundedEdge(corners: [.bottomLeft, .bottomRight], radius: 30);
+	override func viewDidAppear(_ animated: Bool) {
+		if (resetUpArticles){ // refresh bookmarks
+			setUpAllViews();
+			resetUpArticles = false;
+		}
 	}
 	
 	

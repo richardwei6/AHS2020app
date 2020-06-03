@@ -40,7 +40,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     // end test data
     
-    
+    let refreshControl = UIRefreshControl();
     
     // padding variables
     let iconHorizontalPadding = CGFloat(20);
@@ -228,6 +228,17 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         }
         bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: 2*articleVerticalPadding+(bulletinFrame.size.height+articleVerticalPadding)*CGFloat(bulletinSize)+75);
         bulletinScrollView.delegate = self;
+        
+        bulletinScrollView.addSubview(refreshControl);
+        bulletinScrollView.isScrollEnabled = true;
+        bulletinScrollView.alwaysBounceVertical = true;
+    }
+    
+    @objc func refreshBulletin(){
+        print("refresh");
+        // add func to load data
+        refreshControl.endRefreshing();
+        generateBulletin();
     }
     
     
@@ -294,25 +305,10 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         
         
        // set up bulletin for the first time before any filters
+        
+        refreshControl.addTarget(self, action: #selector(refreshBulletin), for: UIControl.Event.valueChanged);
         generateBulletin();
         
-        
     }
-    /*
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let y: CGFloat = scrollView.contentOffset.y;
-        let newHeaderViewHeight: CGFloat = filterScrollViewHeightContraint.constant - y;
-        
-        if newHeaderViewHeight > filterScrollViewMaxHeight!{
-            filterScrollViewHeightContraint.constant = filterScrollViewMaxHeight!;
-        }
-        else if newHeaderViewHeight < filterScrollViewMinHeight!{
-            filterScrollViewHeightContraint.constant = filterScrollViewMinHeight!;
-        }
-        else{
-            filterScrollViewHeightContraint.constant = newHeaderViewHeight;
-            scrollView.contentOffset.y = 0;
-        }
-    }*/
 
 }

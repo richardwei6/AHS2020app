@@ -30,30 +30,19 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     var imageFrame = CGRect(x: 0, y:0, width: 0, height: 0);
     var imageSize = 3;
     
-    func setUpColorOfBookmark(sender: CustomUIButton){
-        if (isSavedCurrentArticle(articleID: sender.articleID ?? "") == true){ // TODO: implement sender.articleID
-            sender.tintColor = mainThemeColor;
-        //    sender.backgroundColor = mainThemeColor;
-        }
-        else{
-            sender.tintColor = UIColor.white;
-        //    sender.backgroundColor = nil; // clear bacgkround color
-        }
-    }
     
     @IBAction func saveArticle(sender: CustomUIButton){
         print("Bookmark");
         
         if (sender.isSelected == false){
-            //sender.imageView?.image? = sender.imageView?.image?.maskWithColor(color: mainThemeColor)! as! UIImage;
             saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
         }
         else{
-            //sender.imageView?.image? = sender.imageView?.image?.maskWithColor(color: UIColor.white)! as! UIImage;
-            removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+           removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
         }
         sender.isSelected = !sender.isSelected;
         setBookmarkColor();
+        resetUpArticles = true;
     }
     
     @IBAction func exitArticle(_ sender: UIButton){
@@ -61,16 +50,6 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     }
     
     func setBookmarkColor(){
-        /*let bookmarkImage = UIImage(systemName: "bookmark");
-        let stencil = bookmarkImage?.withRenderingMode(.alwaysTemplate);
-        bookmarkButton.setImage(stencil, for: .normal);
-        if (bookmarkButton.isSelected == true){ // main theme color
-            bookmarkButton.tintColor = mainThemeColor;
-        }
-        else{ // UIColor.white
-            bookmarkButton.tintColor = UIColor.white;
-        }*/
-        bookmarkButton.imageView?.image = bookmarkButton.imageView?.image?.withRenderingMode(.alwaysTemplate);
         if (bookmarkButton.isSelected){
             bookmarkButton.tintColor = mainThemeColor;
         }
@@ -87,14 +66,13 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        
         setBookmarkColor();
+        
         bookmarkOuter.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 12);
         
         mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
-        setUpColorOfBookmark(sender: bookmarkButton);
     
         articleText.text = "Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via.Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via. Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via.Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via."
         articleText.font = UIFont(name: articleText.font.fontName, size: CGFloat(fontSize));
