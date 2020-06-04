@@ -34,6 +34,8 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     var verticalPadding = CGFloat(10);
     
     let timeStampLength = CGFloat(100);
+    
+    var refreshControl = UIRefreshControl();
 
     
     func loadScrollView(){
@@ -108,8 +110,15 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         notificationScrollView.backgroundColor = makeColor(r: 230, g: 230, b: 230);
         notificationScrollView.contentSize = CGSize(width: notificationFrame.size.width, height: (2*verticalPadding)+((notificationFrame.size.height+verticalPadding)*CGFloat(unreadNotificationSize+readNotificationSize)));
         notificationScrollView.delegate = self;
+        
+        notificationScrollView.addSubview(refreshControl);
     }
     
+    @objc func refreshNotifications(){
+        // implement get data
+        loadScrollView();
+        refreshControl.endRefreshing();
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -118,6 +127,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
       
         notificationScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
+        refreshControl.addTarget(self, action: #selector(refreshNotifications), for: UIControl.Event.valueChanged);
         loadScrollView();
         
     }
