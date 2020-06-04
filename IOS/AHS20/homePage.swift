@@ -146,7 +146,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	}
     
 	func setUpAllViews(){
-		let bookMarkTint = UIColor.white;
 		let bookMarkBackground = makeColor(r: 165, g: 165, b: 165);
 		
 		
