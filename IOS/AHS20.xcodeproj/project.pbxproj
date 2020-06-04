@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03D90C432C58398DAAFD15A5 /* Pods_AHS20_AHS20UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCF37F53DEBD054FFAE137F /* Pods_AHS20_AHS20UITests.framework */; };
 		330B4D4D2484CA4C001087E9 /* NotificationSettingsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330B4D4C2484CA4C001087E9 /* NotificationSettingsWrapper.swift */; };
 		330D3E10241D5E8C007D0628 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E0F241D5E8C007D0628 /* AppDelegate.swift */; };
 		330D3E12241D5E8C007D0628 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E11241D5E8C007D0628 /* SceneDelegate.swift */; };
@@ -46,6 +47,8 @@
 		33E69208243AD21F0004E2F1 /* settingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69207243AD21F0004E2F1 /* settingPage.swift */; };
 		33E80ED9244FBBB900020640 /* articlePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E80ED8244FBBB900020640 /* articlePage.swift */; };
 		33E80EDB244FD76900020640 /* sharedFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E80EDA244FD76900020640 /* sharedFunc.swift */; };
+		64134687E6F71D55D287A00B /* Pods_AHS20Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333AD720161C30D24A5F236D /* Pods_AHS20Tests.framework */; };
+		E406DBEA3DD0D37A9C4F2DBB /* Pods_AHS20.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8435FB9CC697DFCCBEF005AE /* Pods_AHS20.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		060D98B3340FC7258FF4C04C /* Pods-AHS20.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AHS20.release.xcconfig"; path = "Target Support Files/Pods-AHS20/Pods-AHS20.release.xcconfig"; sourceTree = "<group>"; };
+		08ACA3FA6EC26EC03C1FF4C6 /* Pods-AHS20Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AHS20Tests.release.xcconfig"; path = "Target Support Files/Pods-AHS20Tests/Pods-AHS20Tests.release.xcconfig"; sourceTree = "<group>"; };
+		17C723ECCC56EA9B30FF6456 /* Pods-AHS20Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AHS20Tests.debug.xcconfig"; path = "Target Support Files/Pods-AHS20Tests/Pods-AHS20Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		2FCF37F53DEBD054FFAE137F /* Pods_AHS20_AHS20UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AHS20_AHS20UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		330B4D4C2484CA4C001087E9 /* NotificationSettingsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsWrapper.swift; sourceTree = "<group>"; };
 		330D3E0C241D5E8C007D0628 /* AHS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AHS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		330D3E0F241D5E8C007D0628 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +89,7 @@
 		330D3E31241D5E8D007D0628 /* AHS20UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHS20UITests.swift; sourceTree = "<group>"; };
 		330D3E33241D5E8D007D0628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		331793F12464FEF5007CF7B7 /* notificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationSettings.swift; sourceTree = "<group>"; };
+		333AD720161C30D24A5F236D /* Pods_AHS20Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AHS20Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Black.ttf"; sourceTree = "<group>"; };
 		3343E260244D0DD30009D136 /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
 		3343E264244D0DD80009D136 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Bold.ttf"; sourceTree = "<group>"; };
@@ -92,11 +100,16 @@
 		33CD41B32453ECAB008E6558 /* savedPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = savedPage.swift; sourceTree = "<group>"; };
 		33CD41B72453ED78008E6558 /* notificationsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationsPage.swift; sourceTree = "<group>"; };
 		33CF84AE24512CB500F8872A /* HARLOWSI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HARLOWSI.ttf; sourceTree = "<group>"; };
+		33E46F31248987790058128B /* AHS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AHS.entitlements; sourceTree = "<group>"; };
 		33E69201243ACA970004E2F1 /* CustomUITabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITabController.swift; sourceTree = "<group>"; };
 		33E69203243AD1F20004E2F1 /* bulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bulletinPage.swift; sourceTree = "<group>"; };
 		33E69207243AD21F0004E2F1 /* settingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingPage.swift; sourceTree = "<group>"; };
 		33E80ED8244FBBB900020640 /* articlePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = articlePage.swift; sourceTree = "<group>"; };
 		33E80EDA244FD76900020640 /* sharedFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharedFunc.swift; sourceTree = "<group>"; };
+		74699537C115D26155EF5650 /* Pods-AHS20-AHS20UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AHS20-AHS20UITests.release.xcconfig"; path = "Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests.release.xcconfig"; sourceTree = "<group>"; };
+		8435FB9CC697DFCCBEF005AE /* Pods_AHS20.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AHS20.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99F130CDC1BAEAB3D466C758 /* Pods-AHS20-AHS20UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AHS20-AHS20UITests.debug.xcconfig"; path = "Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		ECE7EDC3387AA51878081BDA /* Pods-AHS20.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AHS20.debug.xcconfig"; path = "Target Support Files/Pods-AHS20/Pods-AHS20.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E406DBEA3DD0D37A9C4F2DBB /* Pods_AHS20.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64134687E6F71D55D287A00B /* Pods_AHS20Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,12 +133,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03D90C432C58398DAAFD15A5 /* Pods_AHS20_AHS20UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		100F6160545B65DFF7AA5E78 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ECE7EDC3387AA51878081BDA /* Pods-AHS20.debug.xcconfig */,
+				060D98B3340FC7258FF4C04C /* Pods-AHS20.release.xcconfig */,
+				99F130CDC1BAEAB3D466C758 /* Pods-AHS20-AHS20UITests.debug.xcconfig */,
+				74699537C115D26155EF5650 /* Pods-AHS20-AHS20UITests.release.xcconfig */,
+				17C723ECCC56EA9B30FF6456 /* Pods-AHS20Tests.debug.xcconfig */,
+				08ACA3FA6EC26EC03C1FF4C6 /* Pods-AHS20Tests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		330D3E03241D5E8B007D0628 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +161,8 @@
 				330D3E25241D5E8D007D0628 /* AHS20Tests */,
 				330D3E30241D5E8D007D0628 /* AHS20UITests */,
 				330D3E0D241D5E8C007D0628 /* Products */,
+				100F6160545B65DFF7AA5E78 /* Pods */,
+				63D54709C3A359A01E059023 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +179,7 @@
 		330D3E0E241D5E8C007D0628 /* AHS20 */ = {
 			isa = PBXGroup;
 			children = (
+				33E46F31248987790058128B /* AHS.entitlements */,
 				330D3E0F241D5E8C007D0628 /* AppDelegate.swift */,
 				330D3E11241D5E8C007D0628 /* SceneDelegate.swift */,
 				33E69201243ACA970004E2F1 /* CustomUITabController.swift */,
@@ -193,6 +226,16 @@
 			path = AHS20UITests;
 			sourceTree = "<group>";
 		};
+		63D54709C3A359A01E059023 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8435FB9CC697DFCCBEF005AE /* Pods_AHS20.framework */,
+				2FCF37F53DEBD054FFAE137F /* Pods_AHS20_AHS20UITests.framework */,
+				333AD720161C30D24A5F236D /* Pods_AHS20Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -200,9 +243,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 330D3E36241D5E8D007D0628 /* Build configuration list for PBXNativeTarget "AHS20" */;
 			buildPhases = (
+				4A42806BD4B2D9989ED072DF /* [CP] Check Pods Manifest.lock */,
 				330D3E08241D5E8C007D0628 /* Sources */,
 				330D3E09241D5E8C007D0628 /* Frameworks */,
 				330D3E0A241D5E8C007D0628 /* Resources */,
+				00C77731DCD0994B1DCF7211 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -217,6 +262,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 330D3E39241D5E8D007D0628 /* Build configuration list for PBXNativeTarget "AHS20Tests" */;
 			buildPhases = (
+				82B26AED0BCA3923F8E49432 /* [CP] Check Pods Manifest.lock */,
 				330D3E1E241D5E8D007D0628 /* Sources */,
 				330D3E1F241D5E8D007D0628 /* Frameworks */,
 				330D3E20241D5E8D007D0628 /* Resources */,
@@ -235,9 +281,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 330D3E3C241D5E8D007D0628 /* Build configuration list for PBXNativeTarget "AHS20UITests" */;
 			buildPhases = (
+				7DC667B0D35A2AF621AC7962 /* [CP] Check Pods Manifest.lock */,
 				330D3E29241D5E8D007D0628 /* Sources */,
 				330D3E2A241D5E8D007D0628 /* Frameworks */,
 				330D3E2B241D5E8D007D0628 /* Resources */,
+				5D8D6E636707C6A80C6C75B0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -334,6 +382,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00C77731DCD0994B1DCF7211 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AHS20/Pods-AHS20-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AHS20/Pods-AHS20-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AHS20/Pods-AHS20-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A42806BD4B2D9989ED072DF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AHS20-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D8D6E636707C6A80C6C75B0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DC667B0D35A2AF621AC7962 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AHS20-AHS20UITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		82B26AED0BCA3923F8E49432 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AHS20Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		330D3E08241D5E8C007D0628 /* Sources */ = {
@@ -528,10 +679,12 @@
 		};
 		330D3E37241D5E8D007D0628 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECE7EDC3387AA51878081BDA /* Pods-AHS20.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AHS20/AHS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2HDWBQ9P3D;
+				DEVELOPMENT_TEAM = P5E4JP96ES;
 				INFOPLIST_FILE = AHS20/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -546,10 +699,12 @@
 		};
 		330D3E38241D5E8D007D0628 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 060D98B3340FC7258FF4C04C /* Pods-AHS20.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AHS20/AHS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2HDWBQ9P3D;
+				DEVELOPMENT_TEAM = P5E4JP96ES;
 				INFOPLIST_FILE = AHS20/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -564,6 +719,7 @@
 		};
 		330D3E3A241D5E8D007D0628 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17C723ECCC56EA9B30FF6456 /* Pods-AHS20Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -585,6 +741,7 @@
 		};
 		330D3E3B241D5E8D007D0628 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08ACA3FA6EC26EC03C1FF4C6 /* Pods-AHS20Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -606,6 +763,7 @@
 		};
 		330D3E3D241D5E8D007D0628 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99F130CDC1BAEAB3D466C758 /* Pods-AHS20-AHS20UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -625,6 +783,7 @@
 		};
 		330D3E3E241D5E8D007D0628 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74699537C115D26155EF5650 /* Pods-AHS20-AHS20UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
