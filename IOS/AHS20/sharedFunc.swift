@@ -196,6 +196,6 @@ func printFontFamilies(){
     }
 }
 
-let mainThemeColor = makeColor(r: 127, g: 47, b: 60);
+let mainThemeColor = makeColor(r: 153, g: 41, b: 56);
 
 var fontSize = 20;
