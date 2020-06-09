@@ -47,6 +47,9 @@
 		33E69208243AD21F0004E2F1 /* settingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69207243AD21F0004E2F1 /* settingPage.swift */; };
 		33E80ED9244FBBB900020640 /* articlePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E80ED8244FBBB900020640 /* articlePage.swift */; };
 		33E80EDB244FD76900020640 /* sharedFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E80EDA244FD76900020640 /* sharedFunc.swift */; };
+		33FB5EAE248F32210059EE61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FB5EAD248F32210059EE61 /* GoogleService-Info.plist */; };
+		33FB5EAF248F32210059EE61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FB5EAD248F32210059EE61 /* GoogleService-Info.plist */; };
+		33FB5EB0248F32210059EE61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FB5EAD248F32210059EE61 /* GoogleService-Info.plist */; };
 		64134687E6F71D55D287A00B /* Pods_AHS20Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333AD720161C30D24A5F236D /* Pods_AHS20Tests.framework */; };
 		E406DBEA3DD0D37A9C4F2DBB /* Pods_AHS20.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8435FB9CC697DFCCBEF005AE /* Pods_AHS20.framework */; };
 /* End PBXBuildFile section */
@@ -106,6 +109,7 @@
 		33E69207243AD21F0004E2F1 /* settingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingPage.swift; sourceTree = "<group>"; };
 		33E80ED8244FBBB900020640 /* articlePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = articlePage.swift; sourceTree = "<group>"; };
 		33E80EDA244FD76900020640 /* sharedFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharedFunc.swift; sourceTree = "<group>"; };
+		33FB5EAD248F32210059EE61 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		74699537C115D26155EF5650 /* Pods-AHS20-AHS20UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AHS20-AHS20UITests.release.xcconfig"; path = "Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests.release.xcconfig"; sourceTree = "<group>"; };
 		8435FB9CC697DFCCBEF005AE /* Pods_AHS20.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AHS20.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F130CDC1BAEAB3D466C758 /* Pods-AHS20-AHS20UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AHS20-AHS20UITests.debug.xcconfig"; path = "Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 				330D3E1A241D5E8D007D0628 /* LaunchScreen.storyboard */,
 				334E1EF8241DB50000D482B4 /* Assets */,
 				330D3E18241D5E8D007D0628 /* Assets.xcassets */,
+				33FB5EAD248F32210059EE61 /* GoogleService-Info.plist */,
 				330D3E1D241D5E8D007D0628 /* Info.plist */,
 				3343E268244D0E7E0009D136 /* SFProDisplay-Regular.ttf */,
 				3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */,
@@ -351,6 +356,7 @@
 				3343E269244D0E7E0009D136 /* SFProDisplay-Regular.ttf in Resources */,
 				3343E25D244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */,
 				330D3E19241D5E8D007D0628 /* Assets.xcassets in Resources */,
+				33FB5EAE248F32210059EE61 /* GoogleService-Info.plist in Resources */,
 				330D3E17241D5E8C007D0628 /* Main.storyboard in Resources */,
 				3343E265244D0DD80009D136 /* SFProText-Bold.ttf in Resources */,
 			);
@@ -365,6 +371,7 @@
 				3343E266244D0DD80009D136 /* SFProText-Bold.ttf in Resources */,
 				3343E262244D0DD30009D136 /* SFProDisplay-Semibold.ttf in Resources */,
 				3343E26A244D0E7E0009D136 /* SFProDisplay-Regular.ttf in Resources */,
+				33FB5EAF248F32210059EE61 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +384,7 @@
 				3343E267244D0DD80009D136 /* SFProText-Bold.ttf in Resources */,
 				3343E263244D0DD30009D136 /* SFProDisplay-Semibold.ttf in Resources */,
 				3343E26B244D0E7E0009D136 /* SFProDisplay-Regular.ttf in Resources */,
+				33FB5EB0248F32210059EE61 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

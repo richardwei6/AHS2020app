@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>654225823864-24u04uoao3geu9qpo71qtqn6965ks25t.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.654225823864-24u04uoao3geu9qpo71qtqn6965ks25t</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>654225823864-b207cdvh2tf8eg8id3qe8kapmgvv86nm.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAxLCkYzcpipWPg75XCyAuEui5835zYyUU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>654225823864</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>hsappdev.AHS20</string>
+	<key>PROJECT_ID</key>
+	<string>arcadia-high-mobile</string>
+	<key>STORAGE_BUCKET</key>
+	<string>arcadia-high-mobile.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:654225823864:ios:6f072880afceec74b7758d</string>
+	<key>DATABASE_URL</key>
+	<string>https://arcadia-high-mobile.firebaseio.com</string>
+</dict>
+</plist>
