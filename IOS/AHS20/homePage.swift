@@ -48,7 +48,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	//let bookmarkImageUI = UIImage(systemName: "bookmark");
 	
 	// TODO: get data from server
-	var featuredSize = 1;
+	var featuredSize = 6;
 	var featuredFrame = CGRect(x:0,y:0,width:0,height:0);
 	var asbNewsSize = 1;
 	var asbNewsFrame = CGRect(x:0,y:0,width:0,height:0);
@@ -87,9 +87,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				
 				//print(s);
 				ref.child("homepage").child(s).observeSingleEvent(of: .value) { (snapshot) in
-					print(s);
+					//print(s);
 					
-					print(snapshot.childrenCount)
+					//print(snapshot.childrenCount)
 					let enumerator = snapshot.children;
 					var temp = [articleData](); // temporary array
 					while let article = enumerator.nextObject() as? DataSnapshot{ // each article
@@ -515,13 +515,15 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	
 	func  scrollViewDidScroll(_ scrollView: UIScrollView) {
-		featuredPageControl.currentPage = Int(featuredScrollView.contentOffset.x / featuredFrame.size.width);
-		
-		asbNewsPageControl.currentPage = Int(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width);
-		
-		sportsNewsPageControl.currentPage = Int(sportsNewsScrollView.contentOffset.x / sportsNewsFrame.size.width);
-		
-		districtNewsPageControl.currentPage = Int(districtNewsScrollView.contentOffset.x / districtNewsFrame.size.width);
+		if (internetConnected && scrollView.tag != -1){
+			featuredPageControl.currentPage = Int(featuredScrollView.contentOffset.x / featuredFrame.size.width);
+			
+			asbNewsPageControl.currentPage = Int(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width);
+			
+			sportsNewsPageControl.currentPage = Int(sportsNewsScrollView.contentOffset.x / sportsNewsFrame.size.width);
+			
+			districtNewsPageControl.currentPage = Int(districtNewsScrollView.contentOffset.x / districtNewsFrame.size.width);
+		}
 	}
 	
 	

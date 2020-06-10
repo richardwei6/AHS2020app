@@ -57,6 +57,7 @@ var ref: DatabaseReference!; // database reference
 func setUpConnection(){
     if (Reachability.isConnectedToNetwork()){
         internetConnected = true;
+        Database.database().goOnline();
         ref = Database.database().reference();
     }
     else{

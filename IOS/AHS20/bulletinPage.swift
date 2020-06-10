@@ -100,9 +100,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 }
                 
                 ref.child("bulletin").child(s).observeSingleEvent(of: .value) { (snapshot) in
-                    print(s);
+                  //  print(s);
                     
-                    print(snapshot.childrenCount)
+                  //  print(snapshot.childrenCount)
                     let enumerator = snapshot.children;
                     var temp = [articleData](); // temporary array
                     while let article = enumerator.nextObject() as? DataSnapshot{ // each article
@@ -346,9 +346,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         print("refresh");
         // add func to load data
         getBulletinArticleData();
-        if (internetConnected){
-            generateBulletin();
-        }
         refreshControl.endRefreshing();
     }
     
