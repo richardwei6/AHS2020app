@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import AudioToolbox
+import Firebase
+import FirebaseDatabase
 
 struct tempArticle{
     var articleTitle: String;
@@ -19,7 +21,7 @@ struct tempArticle{
 
 
 class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
-
+    
     @IBOutlet weak var filterScrollView: UIScrollView!
     @IBOutlet weak var bulletinScrollView: UIScrollView!
     
@@ -65,8 +67,110 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     var filterScrollViewMaxHeight: CGFloat?;
     var filterScrollViewMinHeight: CGFloat?;
     
+    func getBulletinArticleData() {
+        setUpConnection();
+        if (internetConnected){
+            print("ok -------- loading articles - bulletin");
+            
+            bulletinArticleList = [[articleData]]();
+            for i in 0..<6{
+                var s: String; // path inside homepage
+                switch i {
+                case 0: // athletics
+                    s = "athletics";
+                    break;
+                case 1: // colleges
+                    s = "colleges";
+                    break;
+                case 2: // events
+                    s = "events";
+                    break;
+                case 3: // others
+                    s = "others";
+                    break;
+                case 4: // reference
+                    s = "reference";
+                    break;
+                case 5: // seniors
+                    s = "seniors";
+                    break;
+                default:
+                    s = "";
+                    break;
+                }
+                
+                ref.child("bulletin").child(s).observeSingleEvent(of: .value) { (snapshot) in
+                    print(s);
+                    
+                    print(snapshot.childrenCount)
+                    let enumerator = snapshot.children;
+                    var temp = [articleData](); // temporary array
+                    while let article = enumerator.nextObject() as? DataSnapshot{ // each article
+                        //print(article);
+                        
+                        
+                        let enumerator = article.children;
+                        var singleArticle = articleData();
+                        while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
+                            
+                            
+                            if (articleContent.key == "ID"){
+                                singleArticle.articleID = articleContent.value as? Int;
+                            }
+                            else if (articleContent.key == "articleAuthor"){
+                                singleArticle.articleAuthor = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "articleBody"){
+                                singleArticle.articleBody = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "articleDate"){
+                                singleArticle.articleDate = articleContent.value as? Int;
+                            }
+                            else if (articleContent.key == "articleImages"){
+                                
+                                var tempImage = [String]();
+                                let imageIt = articleContent.children;
+                                while let image = imageIt.nextObject() as? DataSnapshot{
+                                    tempImage.append(image.value as! String);
+                                }
+                                //print(tempImage)
+                                singleArticle.articleImages = tempImage;
+                            }
+                            else if (articleContent.key == "articleTitle"){
+                                
+                                singleArticle.articleTitle = articleContent.value as? String;
+                            }
+                            //print(articleContent.key as? NSString);
+                            
+                        }
+                        // print("append to main")
+                        // print(temp.count);
+                        //print(singleArticle.articleTitle);
+                        //print(singleArticle.articleImages);
+                        temp.append(singleArticle);
+                        
+                    }
+                    //print("append to main - ")
+                    //print(temp)
+                    bulletinArticleList.append(temp);
+                    self.generateBulletin();
+                };
+                
+            }
+            
+        }
+        else{
+            setUpConnection();
+            if (internetConnected){
+                getBulletinArticleData();
+            }
+            print("no network detected - bulletin");
+        }
+        
+    }
+    
     @objc func openArticle(sender: CustomUIButton){
-       // print("Button pressed");
+        // print("Button pressed");
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil);
     }
     
@@ -82,7 +186,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         //print(sender.isSelected);
         generateIconImage(iconView: sender);
         generateBulletin();
-       // AudioServicesPlaySystemSound(1519);
+        // AudioServicesPlaySystemSound(1519);
         UIImpactFeedbackGenerator(style: .light).impactOccurred();
     }
     
@@ -128,10 +232,10 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     func filterArticles() -> [tempArticle]{
         var copy = [tempArticle]();
-  
+        
         for i in 0..<totalArticles.count{
             if (selectedFilters[totalArticles[i].articleType] == true){
-                    copy.append(totalArticles[i]);
+                copy.append(totalArticles[i]);
             }
         }
         return copy.count == 0 ?totalArticles:copy;
@@ -142,102 +246,106 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         // set up bulletin
         
         // remove all prev views
-        for subview in bulletinScrollView.subviews{
-            subview.removeFromSuperview();
-        }
-        
-        var currentArticles = filterArticles();
-        
-        var bulletinSize = currentArticles.count;
-        var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
-        
-        bulletinFrame.size.height = articleVerticalSize;
-        bulletinFrame.size.width = UIScreen.main.bounds.size.width - (2*articleHorizontalPadding);
-        
-        let imageArticleSize = CGFloat(35);
-        
-        for aIndex in 0..<bulletinSize{
-            bulletinFrame.origin.x = articleHorizontalPadding;
-            bulletinFrame.origin.y = articleVerticalPadding+((bulletinFrame.size.height+articleVerticalPadding)*CGFloat(aIndex));
-            let articleButton = UIView(frame: bulletinFrame);
-            articleButton.backgroundColor = UIColor.white;
-            
-            // content inside button
-            let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding), height: bulletinFrame.size.height - 10);
-            let mainView = CustomUIButton(frame: mainViewFrame);
-            
-
-            if (currentArticles[aIndex].articleType != 0){
-                let articleIconFrame = CGRect(x: 2, y: 7, width: imageArticleSize, height: imageArticleSize);
-                let articleIcon = UIImageView(frame: articleIconFrame);
-                articleIcon.image = UIImage(named: filterIconPicturePath[currentArticles[aIndex].articleType-1]); // temporary------
-                articleIcon.contentMode = .scaleAspectFit;
-                articleIcon.setImageColor(color: mainThemeColor);
-                mainView.addSubview(articleIcon);
+        if (bulletinArticleList.count == 6){
+            print("bulletin")
+            print(bulletinArticleList)
+            for subview in bulletinScrollView.subviews{
+                subview.removeFromSuperview();
             }
-            else{
-                let articleIconFrame = CGRect(x: 2, y: 7, width: 30, height: 50);
-                let articleIcon = UILabel(frame: articleIconFrame);
-                articleIcon.text = "20\n21";
-                articleIcon.setLineSpacing(lineHeightMultiple: 0.7);
-                articleIcon.numberOfLines = 3;
-                articleIcon.textAlignment = .center;
-                articleIcon.font = UIFont(name: "HarlowSolid", size: 22);
-                articleIcon.textColor = mainThemeColor;
-                mainView.addSubview(articleIcon);
+            
+            var currentArticles = filterArticles();
+            
+            var bulletinSize = currentArticles.count;
+            var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
+            
+            bulletinFrame.size.height = articleVerticalSize;
+            bulletinFrame.size.width = UIScreen.main.bounds.size.width - (2*articleHorizontalPadding);
+            
+            let imageArticleSize = CGFloat(35);
+            
+            for aIndex in 0..<bulletinSize{
+                bulletinFrame.origin.x = articleHorizontalPadding;
+                bulletinFrame.origin.y = articleVerticalPadding+((bulletinFrame.size.height+articleVerticalPadding)*CGFloat(aIndex));
+                let articleButton = UIView(frame: bulletinFrame);
+                articleButton.backgroundColor = UIColor.white;
+                
+                // content inside button
+                let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding), height: bulletinFrame.size.height - 10);
+                let mainView = CustomUIButton(frame: mainViewFrame);
+                
+                
+                if (currentArticles[aIndex].articleType != 0){
+                    let articleIconFrame = CGRect(x: 2, y: 7, width: imageArticleSize, height: imageArticleSize);
+                    let articleIcon = UIImageView(frame: articleIconFrame);
+                    articleIcon.image = UIImage(named: filterIconPicturePath[currentArticles[aIndex].articleType-1]); // temporary------
+                    articleIcon.contentMode = .scaleAspectFit;
+                    articleIcon.setImageColor(color: mainThemeColor);
+                    mainView.addSubview(articleIcon);
+                }
+                else{
+                    let articleIconFrame = CGRect(x: 2, y: 7, width: 30, height: 50);
+                    let articleIcon = UILabel(frame: articleIconFrame);
+                    articleIcon.text = "20\n21";
+                    articleIcon.setLineSpacing(lineHeightMultiple: 0.7);
+                    articleIcon.numberOfLines = 3;
+                    articleIcon.textAlignment = .center;
+                    articleIcon.font = UIFont(name: "HarlowSolid", size: 22);
+                    articleIcon.textColor = mainThemeColor;
+                    mainView.addSubview(articleIcon);
+                }
+                //articleIcon.setImageColor(color: mainThemeColor);
+                
+                let articleTitleFrame = CGRect(x: 45, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 100, height: 25);
+                let articleTitleText = UILabel(frame: articleTitleFrame);
+                articleTitleText.text = currentArticles[aIndex].articleTitle; // insert title text here ------ temporary
+                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 20);
+                //articleTitleText.numberOfLines = 1;
+                //articleTitleText.backgroundColor = UIColor.gray;
+                articleTitleText.adjustsFontSizeToFitWidth = true;
+                articleTitleText.minimumScaleFactor = 0.5;
+                
+                
+                
+                let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
+                let articleBodyText = UILabel(frame: articleBodyFrame);
+                articleBodyText.text = currentArticles[aIndex].articlePara;// insert body text here ------- temporary
+                articleBodyText.numberOfLines = 4;
+                articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
+                
+                
+                
+                mainView.addSubview(articleTitleText);
+                //mainView.addSubview(dateText);
+                mainView.addSubview(articleBodyText);
+                
+                let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
+                let dateText = UILabel(frame: dateTextFrame);
+                dateText.text = currentArticles[aIndex].articleDate; // insert date here -------- temporary
+                dateText.textColor = makeColor(r: 189, g: 151, b: 104);
+                dateText.textAlignment = .right;
+                
+                
+                articleButton.addSubview(dateText);
+                articleButton.addSubview(mainView);
+                
+                articleButton.layer.cornerRadius = 10;
+                
+                mainView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
+                self.bulletinScrollView.addSubview(articleButton);
             }
-            //articleIcon.setImageColor(color: mainThemeColor);
+            bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: 2*articleVerticalPadding+(bulletinFrame.size.height+articleVerticalPadding)*CGFloat(bulletinSize)+75);
+            bulletinScrollView.delegate = self;
             
-            let articleTitleFrame = CGRect(x: 45, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 100, height: 25);
-            let articleTitleText = UILabel(frame: articleTitleFrame);
-            articleTitleText.text = currentArticles[aIndex].articleTitle; // insert title text here ------ temporary
-            articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 20);
-            //articleTitleText.numberOfLines = 1;
-            //articleTitleText.backgroundColor = UIColor.gray;
-            articleTitleText.adjustsFontSizeToFitWidth = true;
-            articleTitleText.minimumScaleFactor = 0.5;
-
-            
-            
-            let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
-            let articleBodyText = UILabel(frame: articleBodyFrame);
-            articleBodyText.text = currentArticles[aIndex].articlePara;// insert body text here ------- temporary
-            articleBodyText.numberOfLines = 4;
-            articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
-            
-            
-            
-            mainView.addSubview(articleTitleText);
-            //mainView.addSubview(dateText);
-            mainView.addSubview(articleBodyText);
-            
-            let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
-            let dateText = UILabel(frame: dateTextFrame);
-            dateText.text = currentArticles[aIndex].articleDate; // insert date here -------- temporary
-            dateText.textColor = makeColor(r: 189, g: 151, b: 104);
-            dateText.textAlignment = .right;
-
-            
-            articleButton.addSubview(dateText);
-            articleButton.addSubview(mainView);
-            
-            articleButton.layer.cornerRadius = 10;
-            
-            mainView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
-            self.bulletinScrollView.addSubview(articleButton);
+            bulletinScrollView.addSubview(refreshControl);
+            bulletinScrollView.isScrollEnabled = true;
+            bulletinScrollView.alwaysBounceVertical = true;
         }
-        bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: 2*articleVerticalPadding+(bulletinFrame.size.height+articleVerticalPadding)*CGFloat(bulletinSize)+75);
-        bulletinScrollView.delegate = self;
-        
-        bulletinScrollView.addSubview(refreshControl);
-        bulletinScrollView.isScrollEnabled = true;
-        bulletinScrollView.alwaysBounceVertical = true;
     }
     
     @objc func refreshBulletin(){
         print("refresh");
         // add func to load data
-        article.getBulletinArticleData();
+        getBulletinArticleData();
         if (internetConnected){
             generateBulletin();
         }
@@ -247,7 +355,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad();
-       
+        
         // test data
         for i in 0..<articleTitle.count{
             totalArticles.append(tempArticle.init(articleTitle: articleTitle[i], articlePara: articlePara[i], articleDate: articleDate[i], articleType: articleImage[i]));
@@ -263,7 +371,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         let topMargin = CGFloat(10);
         let betweenMargin = CGFloat(3);
         
-
+        
         let filterIconSize = filterScrollView.frame.size.height-textMargin-topMargin-betweenMargin;
         iconViewFrame = CGRect(x:0, y:topMargin, width: filterIconSize, height: filterIconSize);
         
@@ -273,7 +381,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         
         for buttonIndex in 0..<filterSize{
             filterFrame.origin.x = 15+((filterIconSize+iconHorizontalPadding) * CGFloat(buttonIndex));
-
+            
             
             let mainView = UIView(frame: filterFrame);
             
@@ -307,11 +415,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         filterScrollView.delegate = self;
         
         
-       // set up bulletin for the first time before any filters
+        // set up bulletin for the first time before any filters
         
         refreshControl.addTarget(self, action: #selector(refreshBulletin), for: UIControl.Event.valueChanged);
-        generateBulletin();
+        getBulletinArticleData();
         
     }
-
+    
 }

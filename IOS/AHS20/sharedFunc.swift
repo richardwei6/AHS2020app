@@ -41,7 +41,7 @@ func isSavedCurrentArticle(articleID: String) -> Bool{
 }
 
 struct articleData: Codable {
-    var articleID: String?;
+    var articleID: Int?;
     var articleTitle: String?;
     var articleDate: Int?; // unix epoch time stamp
     var articleBody: String?;
@@ -54,212 +54,19 @@ var bulletinArticleList = [[articleData]](); // size of 6 rows, seniors, college
 
 var ref: DatabaseReference!; // database reference
 
-class article{
-    
-    class func setUpConnection(){
-        if (Reachability.isConnectedToNetwork()){
-            internetConnected = true;
-            ref = Database.database().reference();
-        }
-        else{
-            internetConnected = false;
-            Database.database().goOffline();
-            ref = nil;
-        }
+func setUpConnection(){
+    if (Reachability.isConnectedToNetwork()){
+        internetConnected = true;
+        ref = Database.database().reference();
     }
-    
-    class func getAllArticleData(){ // TODO: implement to got all data from json file and input to articleData
-        internetConnected = Reachability.isConnectedToNetwork();
-        if (internetConnected){
-            print("ok -------- loading articles - all");
-            getHomeArticleData();
-            getBulletinArticleData();
-            
-        }
-        else{
-            setUpConnection();
-            if (internetConnected){ // try again
-                getAllArticleData();
-            }
-            print("no network detected - all");
-        }
+    else{
+        internetConnected = false;
+        Database.database().goOffline();
+        ref = nil;
     }
-    
-    class func getHomeArticleData(){
-        setUpConnection();
-        if (internetConnected){
-            print("ok -------- loading articles - home");
-            homeArticleList = [[articleData]]();
-            
-            for i in 0..<4{
-                var s: String; // path inside homepage
-                switch i {
-                case 0: // featured
-                    s = "featured";
-                    break;
-                case 1: // asb
-                    s = "asb";
-                    break;
-                case 2: // sports
-                    s = "sports";
-                    break;
-                case 3: // district
-                    s = "district";
-                    break;
-                default:
-                    s = "";
-                    break;
-                }
-                
-                var temp = [articleData](); // temporary array
-                
-                ref?.child("homepage").child(s).observeSingleEvent(of: .value) { (snapshot) in
-                
-                  
-                    for catagoryChildren in snapshot.children.allObjects as! [DataSnapshot]{ // for each article in catagory
-                        
-                        var singleArticle = articleData();
-                        
-                        for articleContent in catagoryChildren.children.allObjects as! [DataSnapshot]{ // for everything inside article
-                        
-                        
-                            if (articleContent.key == "ID"){
-                                singleArticle.articleID = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleAuthor"){
-                                singleArticle.articleAuthor = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleBody"){
-                                singleArticle.articleBody = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleDate"){
-                                singleArticle.articleDate = articleContent.value as? Int;
-                            }
-                            else if (articleContent.key == "articleImages"){
-                                
-                                for articleImage in articleContent.children.allObjects as! [DataSnapshot]{
-                                    singleArticle.articleImages?.append(articleImage.value as? String ?? "");
-                                }
-                                
-                            }
-                            else if (articleContent.key == "articleTitle"){
-                                singleArticle.articleTitle = articleContent.value as? String;
-                            }
-                            
-                        }
-                        
-                        temp.append(singleArticle);
-                        
-                    }
-                    
-                };
-                
-                homeArticleList.append(temp);
-                
-            }
-            
-            
-        }
-        else{
-            setUpConnection();
-            if (internetConnected){
-                getHomeArticleData();
-            }
-            print("no network detected - home");
-        }
-    }
-    
-    class func getBulletinArticleData(){
-        setUpConnection();
-        if (internetConnected){
-            print("ok -------- loading articles - bulletin");
-            
-            bulletinArticleList = [[articleData]]();
-            
-            for i in 0..<6{
-                var s: String; // path inside homepage
-                switch i {
-                case 0: // athletics
-                    s = "athletics";
-                    break;
-                case 1: // colleges
-                    s = "colleges";
-                    break;
-                case 2: // events
-                    s = "events";
-                    break;
-                case 3: // others
-                    s = "others";
-                    break;
-                case 4: // reference
-                    s = "reference";
-                    break;
-                case 5: // seniors
-                    s = "seniors";
-                    break;
-                default:
-                    s = "";
-                    break;
-                }
-                
-                var temp = [articleData](); // temporary array
-                
-                ref?.child("bulletin").child(s).observeSingleEvent(of: .value) { (snapshot) in
-                
-                    for catagoryChildren in snapshot.children.allObjects as! [DataSnapshot]{ // for each article in catagory
-                        
-                        var singleArticle = articleData();
-                        
-                        for articleContent in catagoryChildren.children.allObjects as! [DataSnapshot]{ // for everything inside article
- 
-                        
-                            if (articleContent.key == "ID"){
-                                singleArticle.articleID = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleAuthor"){
-                                singleArticle.articleAuthor = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleBody"){
-                                singleArticle.articleBody = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleDate"){
-                                singleArticle.articleDate = articleContent.value as? Int;
-                            }
-                            else if (articleContent.key == "articleImages"){
-                                
-                                for articleImage in articleContent.children.allObjects as! [DataSnapshot]{
-                                    singleArticle.articleImages?.append(articleImage.value as? String ?? "");
-                                }
-                                
-                            }
-                            else if (articleContent.key == "articleTitle"){
-                                singleArticle.articleTitle = articleContent.value as? String;
-                            }
-                            
-                        }
-                        
-                        temp.append(singleArticle);
-                        
-                    }
-                    
-                };
-                
-                bulletinArticleList.append(temp);
-                
-            }
-            
-        }
-        else{
-            setUpConnection();
-            if (internetConnected){
-                getBulletinArticleData();
-            }
-            print("no network detected - bulletin");
-        }
-        
-    }
-    
 }
+
+
 
 
 class CustomUIButton: UIButton{

@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import Firebase
 
 
 class CustomTabBarController: UIViewController {
@@ -43,12 +43,24 @@ class CustomTabBarController: UIViewController {
         performSegue(withIdentifier: "articleSegue", sender: nil);
     }
    
+    func setUpConnection(){
+        if (Reachability.isConnectedToNetwork()){
+            internetConnected = true;
+            ref = Database.database().reference();
+        }
+        else{
+            internetConnected = false;
+            Database.database().goOffline();
+            ref = nil;
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
-        article.setUpConnection();
-        article.getAllArticleData();
+      
+        setUpConnection();
+        print("Connection Established");
+
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         
