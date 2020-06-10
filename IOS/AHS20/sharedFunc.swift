@@ -50,7 +50,7 @@ struct articleData: Codable {
 }
 var internetConnected = false;
 var homeArticleList = [[articleData]](); // size of 4 rows, featured, asb, sports, district
-var bulletinArticleList = [[articleData]](); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
+var bulletinArticleList = [[bulletinClass.bulletinArticleData]](); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
 
 var ref: DatabaseReference!; // database reference
 

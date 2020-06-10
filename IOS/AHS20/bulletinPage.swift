@@ -12,12 +12,6 @@ import AudioToolbox
 import Firebase
 import FirebaseDatabase
 
-struct tempArticle{
-    var articleTitle: String;
-    var articlePara: String;
-    var articleDate: String;
-    var articleType: Int;
-}
 
 
 class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
@@ -28,19 +22,15 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     @IBOutlet weak var filterScrollViewHeightContraint: NSLayoutConstraint!
     
-    // start test data
-    
-    
-    let articleTitle = ["Science Bowl Tryouts: ", "Arcadia's Got Talent- AEF Video Contest", "Blind Date with a Book is Back!", "Title1", "Title1", "Title1"];
-    let articlePara = ["Short answer written test on AP Bio, AP Chem, AP Physics, Earth & Space Sciences, Statistics, Math Analysis, Calculus. Candidates ideally should have taken an AP class and show subject mastery. No need to know all subjects. Team members typically show content mastery of a specific subject, not all of the subjects. Check out the link to watch a regional match, finals round. For questions email cmynster@ausd.net", "- Open until 3/25/2020. Click on the link to access further", "Come to the library to check out a surprise book. Read and review\n" +
-        "the book, and you can win prizes! With over 50 excellent books wrapped up for a delicious suprise, you're bound to find something you love!", "Sample Text", "Sample Text", "Sample Text"];
-    let articleDate = ["4/24/2020", "3/25/2020", "4/30/2020", "99/99/9999", "99/99/9999", "99/99/9999"];
-    let articleImage = [0, 2, 5, 1, 3, 4];
-    
-    var totalArticles = [tempArticle]();
-    
-    
-    // end test data
+    struct bulletinArticleData: Codable {
+        var articleID: Int?;
+        var articleTitle: String?;
+        var articleDate: Int?; // unix epoch time stamp
+        var articleBody: String?;
+        var articleAuthor: String?;
+        var articleImages: [String]?; // list of image urls
+        var articleType = -1;
+    }
     
     let refreshControl = UIRefreshControl();
     
@@ -61,6 +51,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     var selectedFilters: [Bool] = [false, false, false, false, false, false]; // selected types in this order - seniors, colleges, events, athletics, reference, and others
     
+    var totalArticles = [bulletinArticleData]();
     
     // icon stuff
     var iconViewFrame: CGRect?;
@@ -72,12 +63,12 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         if (internetConnected){
             print("ok -------- loading articles - bulletin");
             
-            bulletinArticleList = [[articleData]]();
+            bulletinArticleList = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 6);
             for i in 0..<6{
                 var s: String; // path inside homepage
                 switch i {
-                case 0: // athletics
-                    s = "athletics";
+                case 0: // seniors
+                    s = "seniors";
                     break;
                 case 1: // colleges
                     s = "colleges";
@@ -85,14 +76,14 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 case 2: // events
                     s = "events";
                     break;
-                case 3: // others
-                    s = "others";
+                case 3: // athletics
+                    s = "athletics";
                     break;
                 case 4: // reference
                     s = "reference";
                     break;
-                case 5: // seniors
-                    s = "seniors";
+                case 5: // others
+                    s = "others";
                     break;
                 default:
                     s = "";
@@ -104,13 +95,13 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     
                   //  print(snapshot.childrenCount)
                     let enumerator = snapshot.children;
-                    var temp = [articleData](); // temporary array
+                    var temp = [bulletinArticleData](); // temporary array
                     while let article = enumerator.nextObject() as? DataSnapshot{ // each article
                         //print(article);
                         
                         
                         let enumerator = article.children;
-                        var singleArticle = articleData();
+                        var singleArticle = bulletinArticleData();
                         while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                             
                             
@@ -147,12 +138,13 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                         // print(temp.count);
                         //print(singleArticle.articleTitle);
                         //print(singleArticle.articleImages);
+                        singleArticle.articleType = i;
                         temp.append(singleArticle);
                         
                     }
                     //print("append to main - ")
                     //print(temp)
-                    bulletinArticleList.append(temp);
+                    bulletinArticleList[i] = temp;
                     self.generateBulletin();
                     self.refreshControl.endRefreshing();
                     self.addRefreshCTRL();
@@ -230,8 +222,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     }
     
     
-    func filterArticles() -> [tempArticle]{
-        var copy = [tempArticle]();
+    func filterArticles() -> [bulletinArticleData]{
+        var copy = [bulletinArticleData]();
         
         for i in 0..<totalArticles.count{
             if (selectedFilters[totalArticles[i].articleType] == true){
@@ -252,9 +244,15 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         // set up bulletin
         
         // remove all prev views
-        if (bulletinArticleList.count == 6){
-            print("bulletin")
-            print(bulletinArticleList)
+        if (bulletinArticleList[0].count > 0 && bulletinArticleList[1].count > 0 && bulletinArticleList[2].count > 0 && bulletinArticleList[3].count > 0 && bulletinArticleList[4].count > 0 && bulletinArticleList[5].count > 0){
+      
+            totalArticles = [bulletinArticleData]();
+            for i in 0...5{
+                for c in bulletinArticleList[i]{
+                    totalArticles.append(c);
+                }
+            }
+            
             for subview in bulletinScrollView.subviews{
                 subview.removeFromSuperview();
             }
@@ -314,7 +312,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 
                 let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
                 let articleBodyText = UILabel(frame: articleBodyFrame);
-                articleBodyText.text = currentArticles[aIndex].articlePara;// insert body text here ------- temporary
+                articleBodyText.text = currentArticles[aIndex].articleBody;// insert body text here ------- temporary
                 articleBodyText.numberOfLines = 4;
                 articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
                 
@@ -326,7 +324,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 
                 let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
                 let dateText = UILabel(frame: dateTextFrame);
-                dateText.text = currentArticles[aIndex].articleDate; // insert date here -------- temporary
+                dateText.text = "99/99/99"; // insert date here -------- temporary
                 dateText.textColor = makeColor(r: 189, g: 151, b: 104);
                 dateText.textAlignment = .right;
                 
@@ -354,14 +352,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
-        
-        
-        // test data
-        for i in 0..<articleTitle.count{
-            totalArticles.append(tempArticle.init(articleTitle: articleTitle[i], articlePara: articlePara[i], articleDate: articleDate[i], articleType: articleImage[i]));
-        }
-        // end test data
+
         
         filterScrollViewMaxHeight = 89;
         filterScrollViewMinHeight = 20;

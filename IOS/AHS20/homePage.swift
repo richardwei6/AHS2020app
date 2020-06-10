@@ -144,7 +144,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			}
 		}
 		else{
-			setUpAllViews();
+			//setUpAllViews();
 			print("no network detected - home");
 			refreshControl.endRefreshing();
 		}
