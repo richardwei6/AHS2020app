@@ -47,6 +47,9 @@ class CustomTabBarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         
+        article.setUpConnection();
+        article.getAllArticleData();
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         
         monthLabel.text = getTitleDateAndMonth();

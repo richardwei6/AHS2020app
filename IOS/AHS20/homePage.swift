@@ -392,15 +392,18 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	@objc func refreshAllArticles(){
 		print("refresh");
-		article.setUpLocalData();
-		setUpAllViews();
+		//article.setUpLocalData();
+	    article.getHomeArticleData();
+		if (internetConnected){
+			setUpAllViews();
+		}
 		refreshControl.endRefreshing();
 	}
 	
     override func viewDidLoad() { // setup function
 		super.viewDidLoad();
 		
-		article.setUpLocalData(); // retrieve data from json file - see sharedFunc.swift for more info
+		//article.setUpLocalData(); // retrieve data from json file - see sharedFunc.swift for more info
 		
 		setUpAllViews();
 		

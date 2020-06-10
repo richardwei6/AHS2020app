@@ -13,6 +13,8 @@ target 'AHS20' do
   # For example, to use Firebase Authentication and Cloud Firestore
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
+
 
   target 'AHS20Tests' do
     inherit! :search_paths

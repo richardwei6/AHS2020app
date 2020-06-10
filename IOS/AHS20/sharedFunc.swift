@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import AudioToolbox
+import SystemConfiguration
+import FirebaseDatabase
 
 var resetUpArticles = false;
 
@@ -38,16 +40,225 @@ func isSavedCurrentArticle(articleID: String) -> Bool{
     return false; // TODO: integrate function later
 }
 
+struct articleData: Codable {
+    var articleID: String?;
+    var articleTitle: String?;
+    var articleDate: Int?; // unix epoch time stamp
+    var articleBody: String?;
+    var articleAuthor: String?;
+    var articleImages: [String]?; // list of image urls
+}
+var internetConnected = false;
+var homeArticleList = [[articleData]](); // size of 4 rows, featured, asb, sports, district
+var bulletinArticleList = [[articleData]](); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
 
+var ref: DatabaseReference!; // database reference
 
 class article{
-    struct articleData: Codable {
-        var articleID: String?;
+    
+    class func setUpConnection(){
+        if (Reachability.isConnectedToNetwork()){
+            internetConnected = true;
+            ref = Database.database().reference();
+        }
+        else{
+            internetConnected = false;
+            Database.database().goOffline();
+            ref = nil;
+        }
     }
-    var articleList = [articleData]();
-    class func setUpLocalData(){ // TODO: implement to got all data from json file and input to articleData
+    
+    class func getAllArticleData(){ // TODO: implement to got all data from json file and input to articleData
+        internetConnected = Reachability.isConnectedToNetwork();
+        if (internetConnected){
+            print("ok -------- loading articles - all");
+            getHomeArticleData();
+            getBulletinArticleData();
+            
+        }
+        else{
+            setUpConnection();
+            if (internetConnected){ // try again
+                getAllArticleData();
+            }
+            print("no network detected - all");
+        }
+    }
+    
+    class func getHomeArticleData(){
+        setUpConnection();
+        if (internetConnected){
+            print("ok -------- loading articles - home");
+            homeArticleList = [[articleData]]();
+            
+            for i in 0..<4{
+                var s: String; // path inside homepage
+                switch i {
+                case 0: // featured
+                    s = "featured";
+                    break;
+                case 1: // asb
+                    s = "asb";
+                    break;
+                case 2: // sports
+                    s = "sports";
+                    break;
+                case 3: // district
+                    s = "district";
+                    break;
+                default:
+                    s = "";
+                    break;
+                }
+                
+                var temp = [articleData](); // temporary array
+                
+                ref?.child("homepage").child(s).observeSingleEvent(of: .value) { (snapshot) in
+                
+                  
+                    for catagoryChildren in snapshot.children.allObjects as! [DataSnapshot]{ // for each article in catagory
+                        
+                        var singleArticle = articleData();
+                        
+                        for articleContent in catagoryChildren.children.allObjects as! [DataSnapshot]{ // for everything inside article
+                        
+                        
+                            if (articleContent.key == "ID"){
+                                singleArticle.articleID = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "articleAuthor"){
+                                singleArticle.articleAuthor = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "articleBody"){
+                                singleArticle.articleBody = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "articleDate"){
+                                singleArticle.articleDate = articleContent.value as? Int;
+                            }
+                            else if (articleContent.key == "articleImages"){
+                                
+                                for articleImage in articleContent.children.allObjects as! [DataSnapshot]{
+                                    singleArticle.articleImages?.append(articleImage.value as? String ?? "");
+                                }
+                                
+                            }
+                            else if (articleContent.key == "articleTitle"){
+                                singleArticle.articleTitle = articleContent.value as? String;
+                            }
+                            
+                        }
+                        
+                        temp.append(singleArticle);
+                        
+                    }
+                    
+                };
+                
+                homeArticleList.append(temp);
+                
+            }
+            
+            
+        }
+        else{
+            setUpConnection();
+            if (internetConnected){
+                getHomeArticleData();
+            }
+            print("no network detected - home");
+        }
+    }
+    
+    class func getBulletinArticleData(){
+        setUpConnection();
+        if (internetConnected){
+            print("ok -------- loading articles - bulletin");
+            
+            bulletinArticleList = [[articleData]]();
+            
+            for i in 0..<6{
+                var s: String; // path inside homepage
+                switch i {
+                case 0: // athletics
+                    s = "athletics";
+                    break;
+                case 1: // colleges
+                    s = "colleges";
+                    break;
+                case 2: // events
+                    s = "events";
+                    break;
+                case 3: // others
+                    s = "others";
+                    break;
+                case 4: // reference
+                    s = "reference";
+                    break;
+                case 5: // seniors
+                    s = "seniors";
+                    break;
+                default:
+                    s = "";
+                    break;
+                }
+                
+                var temp = [articleData](); // temporary array
+                
+                ref?.child("bulletin").child(s).observeSingleEvent(of: .value) { (snapshot) in
+                
+                    for catagoryChildren in snapshot.children.allObjects as! [DataSnapshot]{ // for each article in catagory
+                        
+                        var singleArticle = articleData();
+                        
+                        for articleContent in catagoryChildren.children.allObjects as! [DataSnapshot]{ // for everything inside article
+ 
+                        
+                            if (articleContent.key == "ID"){
+                                singleArticle.articleID = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "articleAuthor"){
+                                singleArticle.articleAuthor = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "articleBody"){
+                                singleArticle.articleBody = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "articleDate"){
+                                singleArticle.articleDate = articleContent.value as? Int;
+                            }
+                            else if (articleContent.key == "articleImages"){
+                                
+                                for articleImage in articleContent.children.allObjects as! [DataSnapshot]{
+                                    singleArticle.articleImages?.append(articleImage.value as? String ?? "");
+                                }
+                                
+                            }
+                            else if (articleContent.key == "articleTitle"){
+                                singleArticle.articleTitle = articleContent.value as? String;
+                            }
+                            
+                        }
+                        
+                        temp.append(singleArticle);
+                        
+                    }
+                    
+                };
+                
+                bulletinArticleList.append(temp);
+                
+            }
+            
+        }
+        else{
+            setUpConnection();
+            if (internetConnected){
+                getBulletinArticleData();
+            }
+            print("no network detected - bulletin");
+        }
         
     }
+    
 }
 
 
@@ -70,6 +281,42 @@ func getTitleDateAndMonth() -> String {
     return String(monthStr) + " " + String(dayInt);
 }
 
+
+
+public class Reachability {
+
+    class func isConnectedToNetwork() -> Bool {
+
+        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+
+        var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
+        if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
+            return false
+        }
+
+        /* Only Working for WIFI
+        let isReachable = flags == .reachable
+        let needsConnection = flags == .connectionRequired
+
+        return isReachable && !needsConnection
+        */
+
+        // Working for Cellular and WIFI
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+
+        return (isReachable && !needsConnection)
+
+    }
+}
 
 extension UILabel {
 

@@ -237,8 +237,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     @objc func refreshBulletin(){
         print("refresh");
         // add func to load data
+        article.getBulletinArticleData();
+        if (internetConnected){
+            generateBulletin();
+        }
         refreshControl.endRefreshing();
-        generateBulletin();
     }
     
     
