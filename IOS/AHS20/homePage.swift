@@ -63,9 +63,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		setUpConnection();
 		if (internetConnected){
 			print("ok -------- loading articles - home");
-			homeArticleList = [[articleData]]();
+			homeArticleList = [[articleData]](repeating: [articleData](), count: 4);
 			
-			for i in 0..<4{
+			for i in 0...3{
 				var s: String; // path inside homepage
 				switch i {
 				case 0: // featured
@@ -137,9 +137,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 						temp.append(singleArticle);
 						
 					}
-					//print("append to main - ")
-					//print(temp)
-					homeArticleList.append(temp);
+					homeArticleList[i] = temp;
 					self.setUpAllViews();
 					self.refreshControl.endRefreshing();
 				};
@@ -153,14 +151,15 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	}
 	
 	func setUpColorOfBookmark(sender: CustomUIButton){
-		if (isSavedCurrentArticle(articleID: sender.articleID ?? "") == true){ // TODO: implement sender.articleID
+/*		if (isSavedCurrentArticle(articleID: sender.articleID ?? "") == true){ // TODO: implement sender.articleID
 			sender.tintColor = mainThemeColor;
 			//	sender.backgroundColor = mainThemeColor;
 		}
 		else{
 			sender.tintColor = UIColor.white;
 			//	sender.backgroundColor = nil; // clear bacgkround color
-		}
+		}*/ // TODO: FIX THIS
+		
 	}
 	
 	
@@ -172,25 +171,27 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	@objc func bookmarkCurrentArticle(sender: CustomUIButton){
 		print("Bookmark Button");
-		if (sender.isSelected == false){
+		/*if (sender.isSelected == false){
 			sender.tintColor = mainThemeColor;
 			saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
 		}
 		else{
 			sender.tintColor = UIColor.white;
 			removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
-		}
+		}*/
+		// TODO: FIX
 		sender.isSelected = !sender.isSelected;
 	}
 	
 	
-	func smallArticle(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, articleNum: Int) -> CustomUIButton{//TODO: find out a way to separate article from top and bottom
+	func smallArticle(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, articleSingle: articleData) -> CustomUIButton{//TODO: find out a way to separate article from top and bottom
 		
 		let mainArticleFrame = CGRect(x: x, y: y, width: width, height: height);
 		let mainArticleView = CustomUIButton(frame: mainArticleFrame);
 		
 		
 		let articleTextWidth = (width/2) + 10;
+		
 		
 		// article timestamp
 		let timestampFrame = CGRect(x: 0, y: 0, width: 70, height: 20);
@@ -211,7 +212,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleTitleLabel.minimumScaleFactor = 0.8;
 		articleTitleLabel.textAlignment = .left;
 		articleTitleLabel.font = UIFont(name: "SFProText-Bold",size: 20);
-		articleTitleLabel.text = "Auto Adjusting Long Title";
+		articleTitleLabel.text =  articleSingle.articleTitle; // DATA
 		
 		
 		let articleSubtitleFrame = CGRect(x: 0, y: height/2, width: articleTextWidth, height: height/2);
@@ -219,16 +220,15 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleSubtitleContent.numberOfLines = 2;
 		articleSubtitleContent.textAlignment = .left;
 		articleSubtitleContent.font = UIFont(name: "SFProDisplay-Regular", size: 15);
-		articleSubtitleContent.text = "This is the content inside the article. What you are seeing is a preview of such article.";
-		
+		articleSubtitleContent.text = articleSingle.articleBody; // DATA
 		
 		let articleImageFrame = CGRect(x: articleTextWidth + 10, y: 10, width: width - (articleTextWidth + 18), height: height - 10);
 		let articleImageView = UIImageView(frame: articleImageFrame);
 		articleImageView.backgroundColor = makeColor(r: 143, g: 142, b: 142); // articleDarkGreyBackground
-		articleImageView.layer.cornerRadius = 10;
+		articleImageView.imgFromURL(sURL: articleSingle.articleImages?[0] ?? "");
 		
-		
-		
+		//articleImageView.layer.cornerRadius = 10;
+		articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
 		
 		mainArticleView.addSubview(timestamp);
 		mainArticleView.addSubview(articleTitleLabel);
@@ -239,14 +239,46 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		return mainArticleView;
 	}
 	
+	func arrayToPairs(a: [articleData]) -> [[articleData]]{
+		var ans = [[articleData]]();
+		var temp = [articleData](); // pairs
+		for i in a{
+			temp.append(i);
+			if (temp.count == 2){
+				ans.append(temp);
+				temp = [articleData]();
+			}
+		}
+		if (temp.count > 0){
+			ans.append(temp);
+		}
+		return ans;
+	}
+	
 	func setUpAllViews(){
 		
 		//	print("home");
 		//	print(homeArticleList.count);
-		if (homeArticleList.count == 4){
+		if (homeArticleList[0].count > 0 && homeArticleList[1].count > 0 && homeArticleList[2].count > 0 && homeArticleList[3].count > 0){
 			
-			print("home");
-			print(homeArticleList)
+			//print("home");
+			//print(homeArticleList)
+			let asbArticlePairs = arrayToPairs(a: homeArticleList[1]);
+			let sportsArticlePairs = arrayToPairs(a: homeArticleList[2]);
+			let districtArticlePairs = arrayToPairs(a: homeArticleList[3]);
+			featuredSize = homeArticleList[0].count;
+			asbNewsSize = asbArticlePairs.count;
+			sportsNewsSize = sportsArticlePairs.count;
+			districtNewsSize = districtArticlePairs.count;
+			/*print(asbArticlePairs);
+			print(sportsArticlePairs);
+			print(districtArticlePairs);
+			print("home")
+			print(featuredSize);
+			print(asbNewsSize);
+			print(sportsNewsSize);
+			print(districtNewsSize);*/
+			
 			let bookMarkBackground = makeColor(r: 165, g: 165, b: 165);
 			
 			
@@ -254,6 +286,18 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			// scrollview variables
 			let scrollViewHorizontalConstraints = CGFloat(36);
 			
+			for view in featuredScrollView.subviews{
+				view.removeFromSuperview();
+			}
+			for view in asbNewsScrollView.subviews{
+				view.removeFromSuperview();
+			}
+			for view in sportsNewsScrollView.subviews{
+				view.removeFromSuperview();
+			}
+			for view in districtNewsScrollView.subviews{
+				view.removeFromSuperview();
+			}
 			
 			// Featured News ----- NOTE - article is not created by smallArticle() func
 			featuredPageControl.numberOfPages = featuredSize;
@@ -261,6 +305,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			featuredFrame.size.width = UIScreen.main.bounds.size.width;
 			for aIndex in 0..<featuredSize{
 				featuredFrame.origin.x = (featuredFrame.size.width * CGFloat(aIndex));
+				
+				let currArticle = homeArticleList[0][aIndex];
 				
 				let outerContentView = CustomUIButton(frame: featuredFrame);
 				let articleTimeStampLength = CGFloat(60)
@@ -273,7 +319,10 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				let articleImageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: contentViewFrame.size.height - 40); // add to contentView
 				let articleImageView = UIImageView(frame:articleImageViewFrame);
 				articleImageView.backgroundColor = articleDarkGreyBackground;
-				articleImageView.layer.cornerRadius = 10;
+	
+				articleImageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
+				
+				
 				
 				// time stamp
 				let articleTimestampFrame = CGRect(x: articleImageViewFrame.size.width - (10+articleTimeStampLength), y: articleImageViewFrame.size.height - 30, width: articleTimeStampLength, height: 20);
@@ -291,7 +340,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				
 				let articleTitleFrame = CGRect(x: 0, y: contentViewFrame.size.height - 30, width: contentViewFrame.size.width, height: 30);
 				let articleTitleLabel = UILabel(frame: articleTitleFrame);
-				articleTitleLabel.text = "Lorem Ipsum Long Title";
+				articleTitleLabel.text = currArticle.articleTitle; // DATA
 				articleTitleLabel.textAlignment = .left;
 				articleTitleLabel.font = UIFont(name:"SFProText-Bold",size: 25);
 				
@@ -316,6 +365,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				
 				outerContentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
 				bookmarkButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
+				articleImageView.layer.cornerRadius = 10;
 				
 				self.featuredScrollView.addSubview(outerContentView);
 				self.featuredScrollView.addSubview(bookmarkButton);
@@ -351,30 +401,25 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				setUpColorOfBookmark(sender: bookmarkAButton);
 				bookmarkAButton.isSelected = false;
 				bookmarkAButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
-				
-				// B button
-				let bookmarkBFrame = CGRect(x: asbNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
-				let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
-				bookmarkBButton.backgroundColor = bookMarkBackground;
-				bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-				bookmarkBButton.setImage(bookmarkImage, for: .normal);
-				//bookmarkBButton.tintColor = bookMarkTint;
-				setUpColorOfBookmark(sender: bookmarkBButton);
-				bookmarkBButton.isSelected = false;
-				bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
-				
-				
-				//create article with function - TODO: find out a way to separate article from top and bottom
-				contentView.addSubview(smallArticle(x: 5, y: 0, width: asbNewsFrame.size.width-5, height: 120, articleNum: aIndex));
-				contentView.addSubview(smallArticle(x: 5, y: 120, width: asbNewsFrame.size.width-5, height: 120, articleNum: aIndex));
-				
+				contentView.addSubview(smallArticle(x: 5, y: 0, width: asbNewsFrame.size.width-5, height: 120, articleSingle: asbArticlePairs[aIndex][0]));
 				bookmarkAButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
-				bookmarkBButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
-				
-				
 				contentView.addSubview(bookmarkAButton);
-				contentView.addSubview(bookmarkBButton);
 				
+				if (asbArticlePairs[aIndex].count == 2){
+					// B button
+					let bookmarkBFrame = CGRect(x: asbNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
+					let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
+					bookmarkBButton.backgroundColor = bookMarkBackground;
+					bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
+					bookmarkBButton.setImage(bookmarkImage, for: .normal);
+					//bookmarkBButton.tintColor = bookMarkTint;
+					setUpColorOfBookmark(sender: bookmarkBButton);
+					bookmarkBButton.isSelected = false;
+					bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
+					contentView.addSubview(smallArticle(x: 5, y: 120, width: asbNewsFrame.size.width-5, height: 120, articleSingle: asbArticlePairs[aIndex][1]));
+					bookmarkBButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
+					contentView.addSubview(bookmarkBButton);
+				}
 				
 				self.asbNewsScrollView.addSubview(contentView);
 			}
@@ -408,29 +453,26 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				setUpColorOfBookmark(sender: bookmarkAButton);
 				bookmarkAButton.isSelected = false;
 				bookmarkAButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
-				
-				// B button
-				let bookmarkBFrame = CGRect(x: sportsNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
-				let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
-				bookmarkBButton.backgroundColor = bookMarkBackground;
-				bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-				bookmarkBButton.setImage(bookmarkImage, for: .normal);
-				//bookmarkBButton.tintColor = bookMarkTint;
-				setUpColorOfBookmark(sender: bookmarkBButton);
-				bookmarkBButton.isSelected = false;
-				bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
-				
-				
-				//create article with function - TODO: find out a way to separate article from top and bottom
-				contentView.addSubview(smallArticle(x: 5, y: 0, width: sportsNewsFrame.size.width-5, height: 120, articleNum: aIndex));
-				contentView.addSubview(smallArticle(x: 5, y: 120, width: sportsNewsFrame.size.width-5, height: 120, articleNum: aIndex));
-				
+				contentView.addSubview(smallArticle(x: 5, y: 0, width: sportsNewsFrame.size.width-5, height: 120, articleSingle: sportsArticlePairs[aIndex][0]));
 				bookmarkAButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
-				bookmarkBButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
-				
-				
 				contentView.addSubview(bookmarkAButton);
-				contentView.addSubview(bookmarkBButton);
+				
+				if (sportsArticlePairs[aIndex].count == 2){
+					// B button
+					let bookmarkBFrame = CGRect(x: sportsNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
+					let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
+					bookmarkBButton.backgroundColor = bookMarkBackground;
+					bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
+					bookmarkBButton.setImage(bookmarkImage, for: .normal);
+					//bookmarkBButton.tintColor = bookMarkTint;
+					setUpColorOfBookmark(sender: bookmarkBButton);
+					bookmarkBButton.isSelected = false;
+					bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
+					contentView.addSubview(smallArticle(x: 5, y: 120, width: sportsNewsFrame.size.width-5, height: 120, articleSingle: sportsArticlePairs[aIndex][1]));
+					bookmarkBButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
+					contentView.addSubview(bookmarkBButton);
+				}
+				
 				self.sportsNewsScrollView.addSubview(contentView);
 			}
 			// change horizontal size of scrollview
@@ -459,29 +501,25 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				setUpColorOfBookmark(sender: bookmarkAButton);
 				bookmarkAButton.isSelected = false;
 				bookmarkAButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
-				
-				// B button
-				let bookmarkBFrame = CGRect(x: districtNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
-				let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
-				bookmarkBButton.backgroundColor = bookMarkBackground;
-				bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-				bookmarkBButton.setImage(bookmarkImage, for: .normal);
-				//bookmarkBButton.tintColor = bookMarkTint;
-				setUpColorOfBookmark(sender: bookmarkBButton);
-				bookmarkBButton.isSelected = false;
-				bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
-				
-				
-				//create article with function - TODO: find out a way to separate article from top and bottom
-				contentView.addSubview(smallArticle(x: 5, y: 0, width: districtNewsFrame.size.width-5, height: 120, articleNum: aIndex));
-				contentView.addSubview(smallArticle(x: 5, y: 120, width: districtNewsFrame.size.width-5, height: 120, articleNum: aIndex));
-				
+				contentView.addSubview(smallArticle(x: 5, y: 0, width: districtNewsFrame.size.width-5, height: 120, articleSingle: districtArticlePairs[aIndex][0]));
 				bookmarkAButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
-				bookmarkBButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
-				
-				
 				contentView.addSubview(bookmarkAButton);
-				contentView.addSubview(bookmarkBButton);
+				
+				if (districtArticlePairs[aIndex].count == 2){
+					// B button
+					let bookmarkBFrame = CGRect(x: districtNewsFrame.size.width - 45, y: 135, width: 30, height: 30);
+					let bookmarkBButton = CustomUIButton(frame: bookmarkBFrame);
+					bookmarkBButton.backgroundColor = bookMarkBackground;
+					bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
+					bookmarkBButton.setImage(bookmarkImage, for: .normal);
+					//bookmarkBButton.tintColor = bookMarkTint;
+					setUpColorOfBookmark(sender: bookmarkBButton);
+					bookmarkBButton.isSelected = false;
+					bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
+					contentView.addSubview(smallArticle(x: 5, y: 120, width: districtNewsFrame.size.width-5, height: 120, articleSingle: districtArticlePairs[aIndex][1]));
+					bookmarkBButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
+					contentView.addSubview(bookmarkBButton);
+				}
 				
 				self.districtNewsScrollView.addSubview(contentView);
 			}

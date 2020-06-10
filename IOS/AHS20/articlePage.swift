@@ -34,12 +34,13 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     @IBAction func saveArticle(sender: CustomUIButton){
         print("Bookmark");
         
-        if (sender.isSelected == false){
+       /* if (sender.isSelected == false){
             saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
         }
         else{
            removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
-        }
+        }*/
+        // TODO: FIX
         sender.isSelected = !sender.isSelected;
         setBookmarkColor();
         resetUpArticles = true;

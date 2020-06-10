@@ -72,7 +72,7 @@ func setUpConnection(){
 
 class CustomUIButton: UIButton{
     var articleIndex = -1;
-    var articleID: String? // is articleID a string?
+    var articleCompleteData = articleData();
 }
 
 class notificationUIButton: CustomUIButton{
@@ -170,11 +170,31 @@ extension UIButton{
 }
 
 extension UIImageView {
-  func setImageColor(color: UIColor) {
-    let templateImage = self.image?.withRenderingMode(.alwaysTemplate)
-    self.image = templateImage
-    self.tintColor = color
-  }
+    func setImageColor(color: UIColor) {
+        let templateImage = self.image?.withRenderingMode(.alwaysTemplate)
+        self.image = templateImage
+        self.tintColor = color
+    }
+    func imgFromURL(sURL: String) {
+        if (sURL == ""){
+            return;
+        }
+        guard let url = URL(string: sURL) else { return };
+        if let data = try? Data(contentsOf: url) {
+            if let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.contentMode = .scaleAspectFit;
+                    self.image = image;
+                }
+            }
+        }
+    }
+    func setRoundedEdge(corners:UIRectCorner, radius: CGFloat){ // label.setRoundedEdge([.TopLeft, . TopRight], radius: 10)
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
 }
 
 extension UIImage {
