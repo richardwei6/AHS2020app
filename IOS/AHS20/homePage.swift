@@ -141,12 +141,14 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					//print(temp)
 					homeArticleList.append(temp);
 					self.setUpAllViews();
+					self.refreshControl.endRefreshing();
 				};
 			}
 		}
 		else{
 			setUpAllViews();
 			print("no network detected - home");
+			refreshControl.endRefreshing();
 		}
 	}
 	
@@ -493,7 +495,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		print("refresh");
 		//article.setUpLocalData();
 		getHomeArticleData();
-		refreshControl.endRefreshing();
 	}
 	
 	override func viewDidLoad() { // setup function

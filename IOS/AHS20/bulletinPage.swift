@@ -154,19 +154,19 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     //print(temp)
                     bulletinArticleList.append(temp);
                     self.generateBulletin();
+                    self.refreshControl.endRefreshing();
+                    self.addRefreshCTRL();
                 };
                 
             }
             
         }
         else{
-            setUpConnection();
-            if (internetConnected){
-                getBulletinArticleData();
-            }
             print("no network detected - bulletin");
+            refreshControl.endRefreshing();
+            addRefreshCTRL();
         }
-        addRefreshCTRL();
+        
     }
     
     @objc func openArticle(sender: CustomUIButton){
@@ -341,15 +341,14 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             }
             bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: 2*articleVerticalPadding+(bulletinFrame.size.height+articleVerticalPadding)*CGFloat(bulletinSize)+75);
             bulletinScrollView.delegate = self;
+            addRefreshCTRL();
         }
-        addRefreshCTRL();
     }
     
     @objc func refreshBulletin(){
         print("refresh");
         // add func to load data
         getBulletinArticleData();
-        refreshControl.endRefreshing();
     }
     
     
