@@ -166,7 +166,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             }
             print("no network detected - bulletin");
         }
-        
+        addRefreshCTRL();
     }
     
     @objc func openArticle(sender: CustomUIButton){
@@ -241,6 +241,12 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         return copy.count == 0 ?totalArticles:copy;
     }
     
+    func addRefreshCTRL(){
+        refreshControl.addTarget(self, action: #selector(refreshBulletin), for: UIControl.Event.valueChanged);
+        bulletinScrollView.addSubview(refreshControl);
+        bulletinScrollView.isScrollEnabled = true;
+        bulletinScrollView.alwaysBounceVertical = true;
+    }
     
     func generateBulletin(){ // TODO: implement filter ---------
         // set up bulletin
@@ -335,11 +341,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             }
             bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: 2*articleVerticalPadding+(bulletinFrame.size.height+articleVerticalPadding)*CGFloat(bulletinSize)+75);
             bulletinScrollView.delegate = self;
-            
-            bulletinScrollView.addSubview(refreshControl);
-            bulletinScrollView.isScrollEnabled = true;
-            bulletinScrollView.alwaysBounceVertical = true;
         }
+        addRefreshCTRL();
     }
     
     @objc func refreshBulletin(){
@@ -352,6 +355,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        
         
         // test data
         for i in 0..<articleTitle.count{
@@ -413,8 +418,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         
         
         // set up bulletin for the first time before any filters
-        
-        refreshControl.addTarget(self, action: #selector(refreshBulletin), for: UIControl.Event.valueChanged);
         getBulletinArticleData();
         
     }
