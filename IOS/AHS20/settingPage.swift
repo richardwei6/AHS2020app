@@ -35,8 +35,8 @@ class settingClass: UITableViewController {
     
     @IBAction func resetPreferences(_ sender: Any) {
         AudioServicesPlaySystemSound(1519);
-        let confirmPopup = UIAlertController(title: "Reset saved articles", message: "Your saved articles will be removed", preferredStyle: UIAlertController.Style.alert);
-        confirmPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+        let confirmPopup = UIAlertController(title: "Reset saved articles", message: "Your saved articles will be removed", preferredStyle: UIAlertController.Style.actionSheet);
+        confirmPopup.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (action: UIAlertAction!) in
             UserDefaults.standard.removeObject(forKey: "savedArticles");
             savedArticles = [];
             resetUpArticles = true;

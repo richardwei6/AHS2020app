@@ -40,6 +40,12 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var districtNewsScrollView: UIScrollView!
 	@IBOutlet weak var districtNewsPageControl: UIPageControl!
 	
+	@IBOutlet weak var featuredLabel: UILabel!
+	@IBOutlet weak var sportsLabel: UILabel!
+	@IBOutlet weak var districtLabel: UILabel!
+	@IBOutlet weak var asbLabel: UILabel!
+	
+	let loading = "Loading... Please wait.";
 	
 	let bookmarkImageVerticalInset = CGFloat(5);
 	let bookmarkImageHorizontalInset = CGFloat(7);
@@ -146,7 +152,15 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		else{
 			//setUpAllViews();
 			print("no network detected - home");
-			refreshControl.endRefreshing();
+			featuredLabel.text = "NO Connection";
+			asbLabel.text = "NO Connection";
+			sportsLabel.text = "NO Connection";
+			districtLabel.text = "NO Connection";
+			let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
+			infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+				self.refreshControl.endRefreshing();
+			}));
+			present(infoPopup, animated: true, completion: nil);
 		}
 	}
 	
@@ -266,6 +280,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		//	print("home");
 		//	print(homeArticleList.count);
 		if (homeArticleList[0].count > 0 && homeArticleList[1].count > 0 && homeArticleList[2].count > 0 && homeArticleList[3].count > 0){
+			
+			featuredLabel.text = "FEATURED";
+			asbLabel.text = "ASB NEWS";
+			sportsLabel.text = "SPORTS NEWS";
+			districtLabel.text = "DISTRICT NEWS";
 			
 			//print("home");
 			//print(homeArticleList)
@@ -544,11 +563,21 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@objc func refreshAllArticles(){
 		print("refresh");
 		//article.setUpLocalData();
+		featuredLabel.text = loading;
+		asbLabel.text = loading;
+		sportsLabel.text = loading;
+		districtLabel.text = loading;
 		getHomeArticleData();
 	}
 	
 	override func viewDidLoad() { // setup function
 		super.viewDidLoad();
+		
+		
+		featuredLabel.text = loading;
+		asbLabel.text = loading;
+		sportsLabel.text = loading;
+		districtLabel.text = loading;
 		
 	  	getHomeArticleData();
 		
