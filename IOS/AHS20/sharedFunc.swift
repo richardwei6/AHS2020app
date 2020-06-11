@@ -17,31 +17,60 @@ var resetUpArticles = false;
 // swift file with shared functions and extensions between files
 
 
-var savedArticles = [String]();
-
-func getSavedArticles(){ // get saved articles from phone local storage
-            //savedArticles = ["", "", "", "", "", "", ""];
-    savedArticles = UserDefaults.standard.stringArray(forKey: "savedArticles") ?? [];
-}
-
-func saveCurrentArticle(articleID: String){
-  //  if (savedArticles.contains(articleID) == false){ TODO: remove comments after implmenting article id
-        savedArticles.append(articleID);
-        UserDefaults.standard.set(savedArticles, forKey: "savedArticles");
-    //}
-}
-
-func removeCurrentArticle(articleID: String){
-    // TODO: add function to look for article id and remove it;
-    UserDefaults.standard.set(savedArticles, forKey: "savedArticles");
+class savedArticleClass{
+    static var savedArticles = [String: articleData]();
+    class func getSavedArticles() -> [articleData]{ // get saved articles from phone local storage
+        //savedArticles = ( UserDefaults.standard.dictionary(forKey: "savedArticles") ?? [String: articleData]() ) as! [String : articleData];
+        getArticleDictionary();
+        var temp = [articleData]();
+        for i in savedArticles{
+            temp.append(i.value);
+        }
+        return temp;
+    }
+    class func saveCurrArticle(articleID: String, article: articleData){
+        savedArticles[articleID] = article;
+        saveArticleDictionary();
+    }
+    class func removeCurrArticle(articleID: String){
+        savedArticles[articleID] = nil;
+        saveArticleDictionary();
+    }
+    
+    class func isSavedCurrentArticle(articleID: String) -> Bool{
+        return savedArticles[articleID] != nil;
+    }
+    // custom object saving
+    class func saveArticleDictionary(){
+        do{
+            let encoder = JSONEncoder();
+            let data = try encoder.encode(savedArticles);
+            UserDefaults.standard.set(data, forKey: "savedArticleDict");
+        } catch{
+            print("error encoding object to save");
+        }
+    }
+    class func getArticleDictionary(){
+        if let data = UserDefaults.standard.data(forKey: "savedArticleDict"){
+            do{
+                let decoder = JSONDecoder();
+                
+                savedArticles = try decoder.decode([String:articleData].self, from: data);
+                
+            }catch{
+                print("error decoding")
+            }
+        }
+        else{
+            print("default - no saved found");
+        }
+    }
 }
     
-func isSavedCurrentArticle(articleID: String) -> Bool{
-    return false; // TODO: integrate function later
-}
+
 
 struct articleData: Codable {
-    var articleID: Int?;
+    var articleID: String?;
     var articleTitle: String?;
     var articleDate: Int?; // unix epoch time stamp
     var articleBody: String?;

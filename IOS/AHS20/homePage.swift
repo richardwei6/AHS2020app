@@ -45,7 +45,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var districtLabel: UILabel!
 	@IBOutlet weak var asbLabel: UILabel!
 	
-	let loading = "Loading... Please wait.";
+	let loading = "Loading... Please wait";
 	
 	let bookmarkImageVerticalInset = CGFloat(5);
 	let bookmarkImageHorizontalInset = CGFloat(7);
@@ -108,7 +108,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 							
 							
 							if (articleContent.key == "ID"){
-								singleArticle.articleID = articleContent.value as? Int;
+								singleArticle.articleID = articleContent.value as? String;
 							}
 							else if (articleContent.key == "articleAuthor"){
 								singleArticle.articleAuthor = articleContent.value as? String;
@@ -165,14 +165,15 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	}
 	
 	func setUpColorOfBookmark(sender: CustomUIButton){
-/*		if (isSavedCurrentArticle(articleID: sender.articleID ?? "") == true){ // TODO: implement sender.articleID
+		
+		if (savedArticleClass.isSavedCurrentArticle(articleID: sender.articleCompleteData.articleID!)){ // TODO: implement sender.articleID
 			sender.tintColor = mainThemeColor;
 			//	sender.backgroundColor = mainThemeColor;
 		}
 		else{
-			sender.tintCol;or = UIColor.white;
+			sender.tintColor = UIColor.white;
 			//	sender.backgroundColor = nil; // clear bacgkround color
-		}*/ // TODO: FIX THIS
+		} // TODO: FIX THIS
 		
 	}
 	
@@ -188,15 +189,15 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 
 	
 	@objc func bookmarkCurrentArticle(sender: CustomUIButton){
-		print("Bookmark Button");
-		/*if (sender.isSelected == false){
+		//print("Bookmark Button - \(sender.articleCompleteData)");
+		if (sender.isSelected == false){
 			sender.tintColor = mainThemeColor;
-			saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+			savedArticleClass.saveCurrArticle(articleID: sender.articleCompleteData.articleID!, article: sender.articleCompleteData);
 		}
 		else{
 			sender.tintColor = UIColor.white;
-			removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
-		}*/
+			savedArticleClass.removeCurrArticle(articleID: sender.articleCompleteData.articleID!);
+		}
 		// TODO: FIX
 		sender.isSelected = !sender.isSelected;
 	}
@@ -381,9 +382,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				let bookmarkImage = bookmarkImageUI; // get system image
 				bookmarkButton.setImage(bookmarkImage, for: .normal);
 				//bookmarkButton.tintColor = bookMarkTint;
+				bookmarkButton.articleCompleteData = currArticle;
 				setUpColorOfBookmark(sender: bookmarkButton);
 				bookmarkButton.isSelected = false;
 				bookmarkButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
+				
 				
 				outerContentView.articleCompleteData = currArticle;
 				contentView.articleCompleteData = currArticle;
@@ -429,6 +432,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 				bookmarkAButton.setImage(bookmarkImage, for: .normal);
 				//bookmarkAButton.tintColor = bookMarkTint;
+				bookmarkAButton.articleCompleteData = asbArticlePairs[aIndex][0];
 				setUpColorOfBookmark(sender: bookmarkAButton);
 				bookmarkAButton.isSelected = false;
 				bookmarkAButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
@@ -444,6 +448,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 					bookmarkBButton.setImage(bookmarkImage, for: .normal);
 					//bookmarkBButton.tintColor = bookMarkTint;
+					bookmarkBButton.articleCompleteData = asbArticlePairs[aIndex][1];
 					setUpColorOfBookmark(sender: bookmarkBButton);
 					bookmarkBButton.isSelected = false;
 					bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
@@ -481,6 +486,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 				bookmarkAButton.setImage(bookmarkImage, for: .normal);
 				//bookmarkAButton.tintColor = bookMarkTint;
+				bookmarkAButton.articleCompleteData = sportsArticlePairs[aIndex][0];
 				setUpColorOfBookmark(sender: bookmarkAButton);
 				bookmarkAButton.isSelected = false;
 				bookmarkAButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
@@ -496,6 +502,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 					bookmarkBButton.setImage(bookmarkImage, for: .normal);
 					//bookmarkBButton.tintColor = bookMarkTint;
+					bookmarkBButton.articleCompleteData = sportsArticlePairs[aIndex][1];
 					setUpColorOfBookmark(sender: bookmarkBButton);
 					bookmarkBButton.isSelected = false;
 					bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
@@ -529,6 +536,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				bookmarkAButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 				bookmarkAButton.setImage(bookmarkImage, for: .normal);
 				//bookmarkAButton.tintColor = bookMarkTint;
+				bookmarkAButton.articleCompleteData = districtArticlePairs[aIndex][0];
 				setUpColorOfBookmark(sender: bookmarkAButton);
 				bookmarkAButton.isSelected = false;
 				bookmarkAButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
@@ -544,6 +552,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					bookmarkBButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
 					bookmarkBButton.setImage(bookmarkImage, for: .normal);
 					//bookmarkBButton.tintColor = bookMarkTint;
+					bookmarkBButton.articleCompleteData = districtArticlePairs[aIndex][1];
 					setUpColorOfBookmark(sender: bookmarkBButton);
 					bookmarkBButton.isSelected = false;
 					bookmarkBButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);

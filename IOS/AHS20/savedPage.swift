@@ -25,7 +25,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
-        getSavedArticles();
+        let savedArticles =  savedArticleClass.getSavedArticles();
         
 //        print("got saved");
 //        print(savedArticles.count);
@@ -34,7 +34,6 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
             view.removeFromSuperview();
         }
                 
-            
         if (savedArticles.count != 0){
             let articleHeight = CGFloat(130);
             let articleHorizontalPadding = CGFloat(11);
@@ -90,6 +89,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
             }
             mainScrollView.contentSize = CGSize(width: articleFrame.size.width, height: 2*articleVerticalPadding+(articleFrame.size.height+articleVerticalPadding) * CGFloat(savedArticles.count)+85);
             mainScrollView.delegate = self;
+ 
         }
         else{
             mainScrollView.isHidden = true;

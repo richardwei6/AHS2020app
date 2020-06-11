@@ -12,11 +12,11 @@ import AudioToolbox
 
 class articlePageViewController: UIViewController, UIScrollViewDelegate{
     /*@IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var articleText: UILabel!
-    @IBOutlet weak var imageScrollView: UIScrollView!
-    @IBOutlet weak var imagePageControl: UIPageControl!
-    @IBOutlet weak var whiteBackground: UIImageView!*/    //@IBOutlet weak var notificationBellButton: UIButton!
-   
+     @IBOutlet weak var articleText: UILabel!
+     @IBOutlet weak var imageScrollView: UIScrollView!
+     @IBOutlet weak var imagePageControl: UIPageControl!
+     @IBOutlet weak var whiteBackground: UIImageView!*/    //@IBOutlet weak var notificationBellButton: UIButton!
+    
     @IBOutlet weak var articleAuthor: UILabel!
     @IBOutlet weak var articleDate: UILabel!
     @IBOutlet weak var articleTitle: UILabel!
@@ -37,17 +37,20 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     
     @IBAction func saveArticle(sender: CustomUIButton){
         print("Bookmark");
-        
-       /* if (sender.isSelected == false){
-            saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+        if (sender.articleCompleteData.articleID != nil){
+            if (sender.isSelected == false){
+                // saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+                savedArticleClass.saveCurrArticle(articleID: sender.articleCompleteData.articleID!, article: sender.articleCompleteData);
+            }
+            else{
+                //  removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+                savedArticleClass.removeCurrArticle(articleID: sender.articleCompleteData.articleID!);
+            }
+            // TODO: FIX
+            sender.isSelected = !sender.isSelected;
+            setBookmarkColor();
+            resetUpArticles = true;
         }
-        else{
-           removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
-        }*/
-        // TODO: FIX
-        sender.isSelected = !sender.isSelected;
-        setBookmarkColor();
-        resetUpArticles = true;
     }
     
     @IBAction func exitArticle(_ sender: UIButton){
@@ -55,11 +58,13 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     }
     
     func setBookmarkColor(){
-        if (bookmarkButton.isSelected){
+        if (articleContent?.articleID != nil && savedArticleClass.isSavedCurrentArticle(articleID: (articleContent?.articleID)!)){
             bookmarkButton.tintColor = mainThemeColor;
+            bookmarkButton.isSelected = true;
         }
         else{
             bookmarkButton.tintColor = UIColor.white;
+            bookmarkButton.isSelected = false;
         }
     }
     
@@ -71,8 +76,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad();
         
-       // print("article page")
-        //print(articleContent)
+        bookmarkButton.articleCompleteData = articleContent ?? articleData();
+        bookmarkOuter.articleCompleteData = articleContent ?? articleData();
         
         setBookmarkColor();
         
@@ -81,11 +86,11 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
-    
+        
         articleText.text = articleContent?.articleBody;
         articleText.font = UIFont(name: articleText.font.fontName, size: CGFloat(fontSize));
         articleTitle.text = "Loading images..."; // see func viewdidappear
-        articleDate.text = "\(articleContent?.articleID ?? -1)"; // TODO: IMPLEMENT A FUNC TO GET INT TO STRING DATE
+        articleDate.text = "\(articleContent?.articleDate ?? -1)"; // TODO: IMPLEMENT A FUNC TO GET INT TO STRING DATE
         articleAuthor.text = "By " + (articleContent?.articleAuthor ?? " NULL Author");
         
         
@@ -93,25 +98,25 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         whiteBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         //horizontal image scroll view
-       /* imageScrollView.delegate = self
-        
-        for imageIndex in 0..<imageSize{
-            let imageToDisplay = UIImage(named: "\(imageIndex).png")
-            let imageView = UIImageView(image: imageToDisplay)
-            
-            imageScrollView.addSubview(imageView)
-            
-            let xCoordinate = view.frame.midX + view.frame.width * CGFloat(imageIndex) // use UIScreen.main.bounds.width instead - view.frame.width is constant size across all devices while UIScreen is different
-            
-            contentWidth += view.frame.width
-            
-            imageView.frame = CGRect(x: xCoordinate, y: view.frame.height/2, width: 100, height: 100)
-        }
-        
-        imageScrollView.contentSize = CGSize(width: contentWidth, height: view.frame.height)*/
+        /* imageScrollView.delegate = self
+         
+         for imageIndex in 0..<imageSize{
+         let imageToDisplay = UIImage(named: "\(imageIndex).png")
+         let imageView = UIImageView(image: imageToDisplay)
+         
+         imageScrollView.addSubview(imageView)
+         
+         let xCoordinate = view.frame.midX + view.frame.width * CGFloat(imageIndex) // use UIScreen.main.bounds.width instead - view.frame.width is constant size across all devices while UIScreen is different
+         
+         contentWidth += view.frame.width
+         
+         imageView.frame = CGRect(x: xCoordinate, y: view.frame.height/2, width: 100, height: 100)
+         }
+         
+         imageScrollView.contentSize = CGSize(width: contentWidth, height: view.frame.height)*/
     }
     override func viewDidAppear(_ animated: Bool) {
-        imageSize = articleContent?.articleImages?.count as? Int ?? 0;
+        imageSize = articleContent?.articleImages?.count ?? 0;
         imagePageControl.numberOfPages = imageSize;
         imageFrame.size = imageScrollView.frame.size;
         imageFrame.size.width = UIScreen.main.bounds.size.width;

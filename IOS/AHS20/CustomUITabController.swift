@@ -84,7 +84,8 @@ class CustomTabBarController: UIViewController {
         monthLabel.adjustsFontSizeToFitWidth = true;
         monthLabel.minimumScaleFactor = 0.8;
         
-        getSavedArticles(); // load default saved articles
+       // getSavedArticles(); // load default saved articles
+        savedArticleClass.getSavedArticles();
         
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
         

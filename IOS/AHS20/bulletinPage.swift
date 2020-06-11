@@ -23,7 +23,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     @IBOutlet weak var filterScrollViewHeightContraint: NSLayoutConstraint!
     
     struct bulletinArticleData: Codable {
-        var articleID: Int?;
+        var articleID: String?;
         var articleTitle: String?;
         var articleDate: Int?; // unix epoch time stamp
         var articleBody: String?;
@@ -106,7 +106,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                             
                             
                             if (articleContent.key == "ID"){
-                                singleArticle.articleID = articleContent.value as? Int;
+                                singleArticle.articleID = articleContent.value as? String;
                             }
                             else if (articleContent.key == "articleAuthor"){
                                 singleArticle.articleAuthor = articleContent.value as? String;
