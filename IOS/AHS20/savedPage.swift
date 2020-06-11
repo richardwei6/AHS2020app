@@ -63,6 +63,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 articleImage.backgroundColor = makeColor(r: 143, g: 142, b: 142);
                 articleImage.imgFromURL(sURL: savedArticles[aIndex].articleImages?[0] ?? "");
                 articleImage.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 20);
+                articleImage.contentMode = .scaleAspectFit;
                 
                 let articleTitleFrame = CGRect(x: articleImageFrameWidth + 20, y: 10, width: articleFrame.size.width - articleImageFrameWidth - 20, height: 30);
                 let articleTitle = UILabel(frame: articleTitleFrame);

@@ -11,6 +11,7 @@ import UIKit
 import AudioToolbox
 import SystemConfiguration
 import FirebaseDatabase
+import SDWebImage
 
 var resetUpArticles = false;
 
@@ -208,15 +209,7 @@ extension UIImageView {
         if (sURL == ""){
             return;
         }
-        guard let url = URL(string: sURL) else { return };
-        if let data = try? Data(contentsOf: url) {
-            if let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self.contentMode = .scaleAspectFit;
-                    self.image = image;
-                }
-            }
-        }
+        self.sd_setImage(with: URL(string: sURL));
     }
     func setRoundedEdge(corners:UIRectCorner, radius: CGFloat){ // label.setRoundedEdge([.TopLeft, . TopRight], radius: 10)
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))

@@ -245,6 +245,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		let articleImageView = UIImageView(frame: articleImageFrame);
 		articleImageView.backgroundColor = makeColor(r: 143, g: 142, b: 142); // articleDarkGreyBackground
 		articleImageView.imgFromURL(sURL: articleSingle.articleImages?[0] ?? "");
+		articleImageView.contentMode = .scaleAspectFit;
 		
 		//articleImageView.layer.cornerRadius = 10;
 		articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
@@ -349,6 +350,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 				articleImageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
 				articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
+				articleImageView.contentMode = .scaleAspectFit;
 				
 				
 				// time stamp

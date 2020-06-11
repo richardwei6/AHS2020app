@@ -127,6 +127,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             //imageView.backgroundColor = UIColor.white;
             // add image here
             imageView.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
+            imageView.contentMode = .scaleAspectFit;
             
             self.imageScrollView.addSubview(imageView);
         }
