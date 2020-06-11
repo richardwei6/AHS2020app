@@ -162,8 +162,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     }
     
     @objc func openArticle(sender: CustomUIButton){
-        // print("Button pressed");
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil);
+        print("Button pressed");
+        let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
     }
     
     @objc func addFilter(sender: CustomUIButton){
@@ -238,6 +239,18 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         bulletinScrollView.addSubview(refreshControl);
         bulletinScrollView.isScrollEnabled = true;
         bulletinScrollView.alwaysBounceVertical = true;
+    }
+    
+    
+    func bulletinDataToarticleData(data: bulletinArticleData) -> articleData{
+        var temp = articleData();
+        temp.articleAuthor = data.articleAuthor;
+        temp.articleBody = data.articleBody;
+        temp.articleDate = data.articleDate;
+        temp.articleID = data.articleID;
+        temp.articleImages = data.articleImages;
+        temp.articleTitle = data.articleTitle;
+        return temp;
     }
     
     func generateBulletin(){ // TODO: implement filter ---------
@@ -333,6 +346,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 articleButton.addSubview(mainView);
                 
                 articleButton.layer.cornerRadius = 10;
+                
+                mainView.articleCompleteData = bulletinDataToarticleData(data: currentArticles[aIndex]);
                 
                 mainView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
                 self.bulletinScrollView.addSubview(articleButton);

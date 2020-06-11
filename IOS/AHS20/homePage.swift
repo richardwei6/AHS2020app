@@ -156,7 +156,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			//	sender.backgroundColor = mainThemeColor;
 		}
 		else{
-			sender.tintColor = UIColor.white;
+			sender.tintCol;or = UIColor.white;
 			//	sender.backgroundColor = nil; // clear bacgkround color
 		}*/ // TODO: FIX THIS
 		
@@ -166,8 +166,12 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@objc func openArticle(sender: CustomUIButton){
 		print("Button pressed");
 		//performSegue(withIdentifier: "articleSegue", sender: nil);
-		NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil);
+	//	print("home page notif");
+	//	print(sender.articleCompleteData)
+		let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
+		NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
 	}
+
 	
 	@objc func bookmarkCurrentArticle(sender: CustomUIButton){
 		print("Bookmark Button");
@@ -235,6 +239,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		mainArticleView.addSubview(articleSubtitleContent);
 		mainArticleView.addSubview(articleImageView);
 		mainArticleView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
+		
+		mainArticleView.articleCompleteData = articleSingle;
 		
 		return mainArticleView;
 	}
@@ -312,6 +318,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				let articleTimeStampLength = CGFloat(60)
 				//outerContentView.backgroundColor = UIColor.gray;
 				
+				
 				let innerContentViewContraint = CGFloat(24);
 				let contentViewFrame = CGRect(x: innerContentViewContraint, y: 0, width: featuredFrame.size.width - (2*innerContentViewContraint), height: featuredFrame.size.height);
 				let contentView = CustomUIButton(frame: contentViewFrame);
@@ -321,7 +328,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				articleImageView.backgroundColor = articleDarkGreyBackground;
 	
 				articleImageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
-				
+				articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
 				
 				
 				// time stamp
@@ -359,13 +366,18 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				bookmarkButton.isSelected = false;
 				bookmarkButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
 				
+				outerContentView.articleCompleteData = currArticle;
+				contentView.articleCompleteData = currArticle;
+				
 				contentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
+				
 				
 				outerContentView.addSubview(contentView);
 				
 				outerContentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
 				bookmarkButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
-				articleImageView.layer.cornerRadius = 10;
+				//articleImageView.layer.cornerRadius = 10;
+				
 				
 				self.featuredScrollView.addSubview(outerContentView);
 				self.featuredScrollView.addSubview(bookmarkButton);
@@ -538,8 +550,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	override func viewDidLoad() { // setup function
 		super.viewDidLoad();
 		
-		getHomeArticleData();
-		
+	  	getHomeArticleData();
 		
 		refreshControl.addTarget(self, action: #selector(refreshAllArticles), for: UIControl.Event.valueChanged);
 		mainScrollView.addSubview(refreshControl);

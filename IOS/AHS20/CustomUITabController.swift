@@ -34,18 +34,34 @@ class CustomTabBarController: UIViewController {
     let iconImagePathInv = ["homeInv", "bulletinInv", "BookmarkInv", "GearInv"];
     let selectedColor = makeColor(r: 243, g: 149, b: 143);
     
+    var articleContentInSegue: articleData?;
+    
     @IBAction func openNotifications(_ sender: UIButton) {
         print("Notifcations");
         performSegue(withIdentifier: "notificationSegue", sender: nil);
     }
     
     @objc func articleSelector(notification: NSNotification){
+        articleContentInSegue = notification.userInfo?["articleContent"] as? articleData;
+     //   print("pre segue");
+      //  print(articleContentInSegue)
+        //prepare(for: "articleSegue", sender: articleContentInSegue)
         performSegue(withIdentifier: "articleSegue", sender: nil);
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "articleSegue"){
+        //    print("segue");
+         //   print(articleContentInSegue)
+            let vc = segue.destination as! articlePageViewController;
+            vc.articleContent = articleContentInSegue;
+        }
     }
    
     func setUpConnection(){
         if (Reachability.isConnectedToNetwork()){
             internetConnected = true;
+            Database.database().goOnline();
             ref = Database.database().reference();
         }
         else{
