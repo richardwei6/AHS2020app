@@ -71,8 +71,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        print("article page")
-        print(articleContent)
+       // print("article page")
+        //print(articleContent)
         
         setBookmarkColor();
         
@@ -84,7 +84,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     
         articleText.text = articleContent?.articleBody;
         articleText.font = UIFont(name: articleText.font.fontName, size: CGFloat(fontSize));
-        articleTitle.text = articleContent?.articleTitle;
+        articleTitle.text = "Loading images..."; // see func viewdidappear
         articleDate.text = "\(articleContent?.articleID ?? -1)"; // TODO: IMPLEMENT A FUNC TO GET INT TO STRING DATE
         articleAuthor.text = "By " + (articleContent?.articleAuthor ?? " NULL Author");
         
@@ -127,6 +127,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         }
         imageScrollView.contentSize = CGSize(width: (imageFrame.size.width * CGFloat(imageSize)), height: imageScrollView.frame.size.height);
         imageScrollView.delegate = self;
+        articleTitle.text = articleContent?.articleTitle; // set article title herer
     }
     
     
