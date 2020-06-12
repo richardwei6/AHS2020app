@@ -571,7 +571,7 @@
                                             <segue destination="Py0-9m-jp6" kind="custom" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="mOz-eH-0bR"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" tag="1" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" editingAccessoryType="detailButton" id="2d6-bx-ml2">
+                                    <tableViewCell clipsSubviews="YES" tag="1" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" editingAccessoryType="detailButton" id="2d6-bx-ml2">
                                         <rect key="frame" x="20" y="142.66666793823242" width="374" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2d6-bx-ml2" id="wii-kt-ZdF">

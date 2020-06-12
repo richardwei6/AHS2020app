@@ -281,7 +281,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		
 		//	print("home");
 		//	print(homeArticleList.count);
-		if (homeArticleList[0].count > 0 && homeArticleList[1].count > 0 && homeArticleList[2].count > 0 && homeArticleList[3].count > 0){
+		setUpConnection();
+		if (internetConnected && homeArticleList[0].count > 0 && homeArticleList[1].count > 0 && homeArticleList[2].count > 0 && homeArticleList[3].count > 0){
 			
 			featuredLabel.text = "FEATURED";
 			asbLabel.text = "ASB NEWS";
