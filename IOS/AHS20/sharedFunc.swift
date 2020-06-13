@@ -77,6 +77,7 @@ struct articleData: Codable {
     var articleBody: String?;
     var articleAuthor: String?;
     var articleImages: [String]?; // list of image urls
+    var isFeatured = false;
 }
 var internetConnected = false;
 var homeArticleList = [[articleData]](); // size of 4 rows, featured, asb, sports, district

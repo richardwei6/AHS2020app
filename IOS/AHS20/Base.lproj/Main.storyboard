@@ -57,6 +57,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Featured articles" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQG-0f-rbH">
+                                        <rect key="frame" x="10" y="197" width="394" height="30"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red barldpi" translatesAutoresizingMaskIntoConstraints="NO" id="m0X-gR-vqn">
                                         <rect key="frame" x="18" y="412" width="378" height="5"/>
                                     </imageView>
@@ -124,11 +130,13 @@
                                     <constraint firstItem="m0X-gR-vqn" firstAttribute="top" secondItem="srU-5T-z4c" secondAttribute="bottom" constant="355" id="A5e-Sa-X6R"/>
                                     <constraint firstItem="QW8-La-LPp" firstAttribute="top" secondItem="Xab-Ha-pr7" secondAttribute="top" id="AgA-7U-4xm"/>
                                     <constraint firstItem="xN6-0P-mEy" firstAttribute="top" secondItem="SCP-IR-cLT" secondAttribute="bottom" constant="8" id="B8U-J2-GwW"/>
+                                    <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="MQG-0f-rbH" secondAttribute="trailing" constant="10" id="E3L-RV-jCp"/>
                                     <constraint firstItem="SCP-IR-cLT" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="GKL-dh-Gre"/>
                                     <constraint firstItem="uEZ-Vs-CLu" firstAttribute="top" secondItem="2xM-GT-Y0I" secondAttribute="bottom" constant="40" id="Hnv-KH-wQn"/>
                                     <constraint firstItem="QW8-La-LPp" firstAttribute="height" secondItem="Xab-Ha-pr7" secondAttribute="height" priority="250" id="Iux-BP-taI"/>
                                     <constraint firstItem="cjV-w6-LdP" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="24" id="J5t-8Z-JJX"/>
                                     <constraint firstItem="2xM-GT-Y0I" firstAttribute="top" secondItem="GgP-9s-qoN" secondAttribute="bottom" id="KFn-ph-1CB"/>
+                                    <constraint firstItem="MQG-0f-rbH" firstAttribute="top" secondItem="srU-5T-z4c" secondAttribute="bottom" constant="140" id="KjL-Rb-zV2"/>
                                     <constraint firstAttribute="trailing" secondItem="QW8-La-LPp" secondAttribute="trailing" id="L9i-iK-6bY"/>
                                     <constraint firstItem="tGx-ft-ywP" firstAttribute="top" secondItem="INr-3C-66i" secondAttribute="bottom" id="LlV-1c-TGx"/>
                                     <constraint firstItem="LTI-vV-Mff" firstAttribute="top" secondItem="rLK-MU-hLe" secondAttribute="bottom" constant="295" id="LsH-kq-7eu"/>
@@ -136,6 +144,7 @@
                                     <constraint firstItem="2xM-GT-Y0I" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="25" id="OKi-LT-54o"/>
                                     <constraint firstAttribute="bottom" secondItem="QW8-La-LPp" secondAttribute="bottom" id="QUc-Cj-gnh"/>
                                     <constraint firstItem="wX7-ew-MiB" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="25" id="RIa-ZH-FC8"/>
+                                    <constraint firstItem="MQG-0f-rbH" firstAttribute="centerX" secondItem="Xab-Ha-pr7" secondAttribute="centerX" id="Rd9-wZ-MJh"/>
                                     <constraint firstItem="SCP-IR-cLT" firstAttribute="top" secondItem="tGx-ft-ywP" secondAttribute="bottom" constant="40" id="TT8-TW-817"/>
                                     <constraint firstItem="ygz-DW-kFo" firstAttribute="top" secondItem="srU-5T-z4c" secondAttribute="bottom" constant="11" id="Tds-N7-1dw"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="xN6-0P-mEy" secondAttribute="trailing" constant="18" id="TlB-04-K3z"/>
@@ -158,6 +167,7 @@
                                     <constraint firstItem="m0X-gR-vqn" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="18" id="evh-TM-imQ"/>
                                     <constraint firstItem="GgV-KK-HXF" firstAttribute="top" secondItem="xN6-0P-mEy" secondAttribute="bottom" id="hiC-0d-Cpl"/>
                                     <constraint firstItem="mUw-fl-t0f" firstAttribute="trailing" secondItem="wX7-ew-MiB" secondAttribute="trailing" constant="25" id="hmC-GI-Kqm"/>
+                                    <constraint firstItem="MQG-0f-rbH" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="10" id="jGv-Km-e3B"/>
                                     <constraint firstItem="wX7-ew-MiB" firstAttribute="top" secondItem="ygz-DW-kFo" secondAttribute="bottom" id="jsE-FB-7nJ"/>
                                     <constraint firstItem="SCP-IR-cLT" firstAttribute="top" secondItem="uEZ-Vs-CLu" secondAttribute="bottom" constant="325" id="ldW-Wm-HVu"/>
                                     <constraint firstItem="tGx-ft-ywP" firstAttribute="leading" secondItem="mUw-fl-t0f" secondAttribute="leading" constant="25" id="le8-yE-dvj"/>
@@ -201,6 +211,7 @@
                         <outlet property="districtNewsPageControl" destination="GgV-KK-HXF" id="BcS-eF-toF"/>
                         <outlet property="districtNewsScrollView" destination="xN6-0P-mEy" id="lzf-8e-yZa"/>
                         <outlet property="featuredLabel" destination="fyR-VW-MkK" id="jzK-kq-sec"/>
+                        <outlet property="featuredMissingLabel" destination="MQG-0f-rbH" id="kNU-qK-bFl"/>
                         <outlet property="featuredPageControl" destination="wX7-ew-MiB" id="9Zh-pT-tam"/>
                         <outlet property="featuredScrollView" destination="ygz-DW-kFo" id="Ap3-eR-tN9"/>
                         <outlet property="mainScrollView" destination="Xab-Ha-pr7" id="Jdt-6E-T6h"/>

@@ -45,6 +45,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var districtLabel: UILabel!
 	@IBOutlet weak var asbLabel: UILabel!
 	
+	@IBOutlet weak var featuredMissingLabel: UILabel!
+	
 	let loading = "Loading... Please wait";
 	
 	let bookmarkImageVerticalInset = CGFloat(5);
@@ -64,26 +66,25 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	
 	var refreshControl = UIRefreshControl();
+	var featuredArticles = [articleData]();
 	
 	func getHomeArticleData(){
 		setUpConnection();
 		if (internetConnected){
 			print("ok -------- loading articles - home");
-			homeArticleList = [[articleData]](repeating: [articleData](), count: 4);
+			featuredArticles = [articleData]();
+			homeArticleList = [[articleData]](repeating: [articleData](), count: 3);
 			
-			for i in 0...3{
+			for i in 0...2{
 				var s: String; // path inside homepage
 				switch i {
-				case 0: // featured
-					s = "featured";
-					break;
-				case 1: // asb
+				case 0: // asb
 					s = "asb";
 					break;
-				case 2: // sports
+				case 1: // sports
 					s = "sports";
 					break;
-				case 3: // district
+				case 2: // district
 					s = "district";
 					break;
 				default:
@@ -133,7 +134,10 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 								
 								singleArticle.articleTitle = articleContent.value as? String;
 							}
-							//print(articleContent.key as? NSString);
+							else if (articleContent.key == "isFeatured"){
+								singleArticle.isFeatured = (articleContent.value as? Int == 0 ? false : true);
+							}
+							
 							
 						}
 						// print("append to main")
@@ -141,7 +145,10 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 						//print(singleArticle.articleTitle);
 						//print(singleArticle.articleImages);
 						temp.append(singleArticle);
-						
+						//print(singleArticle.isFeatured);
+						if (singleArticle.isFeatured == true){
+							self.featuredArticles.append(singleArticle);
+						}
 					}
 					homeArticleList[i] = temp;
 					self.setUpAllViews();
@@ -282,7 +289,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		//	print("home");
 		//	print(homeArticleList.count);
 		setUpConnection();
-		if (internetConnected && homeArticleList[0].count > 0 && homeArticleList[1].count > 0 && homeArticleList[2].count > 0 && homeArticleList[3].count > 0){
+		if (internetConnected && homeArticleList[0].count > 0 && homeArticleList[1].count > 0 && homeArticleList[2].count > 0){
 			
 			featuredLabel.text = "FEATURED";
 			asbLabel.text = "ASB NEWS";
@@ -291,10 +298,10 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
 			//print("home");
 			//print(homeArticleList)
-			let asbArticlePairs = arrayToPairs(a: homeArticleList[1]);
-			let sportsArticlePairs = arrayToPairs(a: homeArticleList[2]);
-			let districtArticlePairs = arrayToPairs(a: homeArticleList[3]);
-			featuredSize = homeArticleList[0].count;
+			let asbArticlePairs = arrayToPairs(a: homeArticleList[0]);
+			let sportsArticlePairs = arrayToPairs(a: homeArticleList[1]);
+			let districtArticlePairs = arrayToPairs(a: homeArticleList[2]);
+			featuredSize = featuredArticles.count;
 			asbNewsSize = asbArticlePairs.count;
 			sportsNewsSize = sportsArticlePairs.count;
 			districtNewsSize = districtArticlePairs.count;
@@ -327,90 +334,99 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				view.removeFromSuperview();
 			}
 			
-			// Featured News ----- NOTE - article is not created by smallArticle() func
-			featuredPageControl.numberOfPages = featuredSize;
-			featuredFrame.size = featuredScrollView.frame.size;
-			featuredFrame.size.width = UIScreen.main.bounds.size.width;
-			for aIndex in 0..<featuredSize{
-				featuredFrame.origin.x = (featuredFrame.size.width * CGFloat(aIndex));
-				
-				let currArticle = homeArticleList[0][aIndex];
-				
-				let outerContentView = CustomUIButton(frame: featuredFrame);
-				let articleTimeStampLength = CGFloat(60)
-				//outerContentView.backgroundColor = UIColor.gray;
-				
-				
-				let innerContentViewContraint = CGFloat(24);
-				let contentViewFrame = CGRect(x: innerContentViewContraint, y: 0, width: featuredFrame.size.width - (2*innerContentViewContraint), height: featuredFrame.size.height);
-				let contentView = CustomUIButton(frame: contentViewFrame);
-				
-				let articleImageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: contentViewFrame.size.height - 40); // add to contentView
-				let articleImageView = UIImageView(frame:articleImageViewFrame);
-				articleImageView.backgroundColor = articleDarkGreyBackground;
-	
-				articleImageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
-				articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
-				articleImageView.contentMode = .scaleAspectFit;
-				
-				
-				// time stamp
-				let articleTimestampFrame = CGRect(x: articleImageViewFrame.size.width - (10+articleTimeStampLength), y: articleImageViewFrame.size.height - 30, width: articleTimeStampLength, height: 20);
-				let articleTimestamp = UILabel(frame: articleTimestampFrame);
-				articleTimestamp.backgroundColor = makeColor(r: 197, g: 197, b: 197);
-				articleTimestamp.font = UIFont(name: "SFProDisplay-Regular", size: 10);
-				articleTimestamp.textAlignment = .center;
-				articleTimestamp.textColor = makeColor(r: 57, g: 57, b: 57);
-				articleTimestamp.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-				articleTimestamp.text = "1 hour ago"; // insert code here to get time of article
-				
-				
-				articleImageView.addSubview(articleTimestamp); // add timestamp to imageview
-				
-				
-				let articleTitleFrame = CGRect(x: 0, y: contentViewFrame.size.height - 30, width: contentViewFrame.size.width, height: 30);
-				let articleTitleLabel = UILabel(frame: articleTitleFrame);
-				articleTitleLabel.text = currArticle.articleTitle; // DATA
-				articleTitleLabel.textAlignment = .left;
-				articleTitleLabel.font = UIFont(name:"SFProText-Bold",size: 25);
-				
-				contentView.addSubview(articleImageView);
-				contentView.addSubview(articleTitleLabel);
-				
-				
-				let bookmarkFrame = CGRect(x: (featuredFrame.size.width - 40 - innerContentViewContraint) + (featuredFrame.size.width * CGFloat(aIndex)), y: 10, width: 30, height: 30);
-				let bookmarkButton = CustomUIButton(frame: bookmarkFrame);
-				bookmarkButton.backgroundColor = bookMarkBackground;
-				bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-				let bookmarkImage = bookmarkImageUI; // get system image
-				bookmarkButton.setImage(bookmarkImage, for: .normal);
-				//bookmarkButton.tintColor = bookMarkTint;
-				bookmarkButton.articleCompleteData = currArticle;
-				setUpColorOfBookmark(sender: bookmarkButton);
-				bookmarkButton.isSelected = false;
-				bookmarkButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
-				
-				
-				outerContentView.articleCompleteData = currArticle;
-				contentView.articleCompleteData = currArticle;
-				
-				contentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
-				
-				
-				outerContentView.addSubview(contentView);
-				
-				outerContentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
-				bookmarkButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
-				//articleImageView.layer.cornerRadius = 10;
-				
-				
-				self.featuredScrollView.addSubview(outerContentView);
-				self.featuredScrollView.addSubview(bookmarkButton);
+			if (featuredSize > 0){
+				// Featured News ----- NOTE - article is not created by smallArticle() func
+				featuredMissingLabel.isHidden = true;
+				featuredScrollView.isHidden = false;
+				featuredPageControl.isHidden = false;
+				featuredPageControl.numberOfPages = featuredSize;
+				featuredFrame.size = featuredScrollView.frame.size;
+				featuredFrame.size.width = UIScreen.main.bounds.size.width;
+				for aIndex in 0..<featuredSize{
+					featuredFrame.origin.x = (featuredFrame.size.width * CGFloat(aIndex));
+					
+					let currArticle = featuredArticles[aIndex];
+					
+					let outerContentView = CustomUIButton(frame: featuredFrame);
+					let articleTimeStampLength = CGFloat(60)
+					//outerContentView.backgroundColor = UIColor.gray;
+					
+					
+					let innerContentViewContraint = CGFloat(24);
+					let contentViewFrame = CGRect(x: innerContentViewContraint, y: 0, width: featuredFrame.size.width - (2*innerContentViewContraint), height: featuredFrame.size.height);
+					let contentView = CustomUIButton(frame: contentViewFrame);
+					
+					let articleImageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: contentViewFrame.size.height - 40); // add to contentView
+					let articleImageView = UIImageView(frame:articleImageViewFrame);
+					articleImageView.backgroundColor = articleDarkGreyBackground;
+					
+					articleImageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
+					articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
+					articleImageView.contentMode = .scaleAspectFit;
+					
+					
+					// time stamp
+					let articleTimestampFrame = CGRect(x: articleImageViewFrame.size.width - (10+articleTimeStampLength), y: articleImageViewFrame.size.height - 30, width: articleTimeStampLength, height: 20);
+					let articleTimestamp = UILabel(frame: articleTimestampFrame);
+					articleTimestamp.backgroundColor = makeColor(r: 197, g: 197, b: 197);
+					articleTimestamp.font = UIFont(name: "SFProDisplay-Regular", size: 10);
+					articleTimestamp.textAlignment = .center;
+					articleTimestamp.textColor = makeColor(r: 57, g: 57, b: 57);
+					articleTimestamp.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
+					articleTimestamp.text = "1 hour ago"; // insert code here to get time of article
+					
+					
+					articleImageView.addSubview(articleTimestamp); // add timestamp to imageview
+					
+					
+					let articleTitleFrame = CGRect(x: 0, y: contentViewFrame.size.height - 30, width: contentViewFrame.size.width, height: 30);
+					let articleTitleLabel = UILabel(frame: articleTitleFrame);
+					articleTitleLabel.text = currArticle.articleTitle; // DATA
+					articleTitleLabel.textAlignment = .left;
+					articleTitleLabel.font = UIFont(name:"SFProText-Bold",size: 25);
+					
+					contentView.addSubview(articleImageView);
+					contentView.addSubview(articleTitleLabel);
+					
+					
+					let bookmarkFrame = CGRect(x: (featuredFrame.size.width - 40 - innerContentViewContraint) + (featuredFrame.size.width * CGFloat(aIndex)), y: 10, width: 30, height: 30);
+					let bookmarkButton = CustomUIButton(frame: bookmarkFrame);
+					bookmarkButton.backgroundColor = bookMarkBackground;
+					bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
+					let bookmarkImage = bookmarkImageUI; // get system image
+					bookmarkButton.setImage(bookmarkImage, for: .normal);
+					//bookmarkButton.tintColor = bookMarkTint;
+					bookmarkButton.articleCompleteData = currArticle;
+					setUpColorOfBookmark(sender: bookmarkButton);
+					bookmarkButton.isSelected = false;
+					bookmarkButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
+					
+					
+					outerContentView.articleCompleteData = currArticle;
+					contentView.articleCompleteData = currArticle;
+					
+					contentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
+					
+					
+					outerContentView.addSubview(contentView);
+					
+					outerContentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
+					bookmarkButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
+					//articleImageView.layer.cornerRadius = 10;
+					
+					
+					self.featuredScrollView.addSubview(outerContentView);
+					self.featuredScrollView.addSubview(bookmarkButton);
+				}
+				// change horizontal size of scrollview
+				featuredScrollView.contentSize = CGSize(width: (featuredFrame.size.width * CGFloat(featuredSize)), height: featuredScrollView.frame.size.height);
+				featuredScrollView.delegate = self;
 			}
-			// change horizontal size of scrollview
-			featuredScrollView.contentSize = CGSize(width: (featuredFrame.size.width * CGFloat(featuredSize)), height: featuredScrollView.frame.size.height);
-			featuredScrollView.delegate = self;
-			
+			else{
+				featuredMissingLabel.isHidden = false;
+				featuredScrollView.isHidden = true;
+				featuredPageControl.isHidden = true;
+			}
 			
 			// ASB News -----
 			asbNewsPageControl.numberOfPages = asbNewsSize;
