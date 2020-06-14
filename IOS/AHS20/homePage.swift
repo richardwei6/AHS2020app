@@ -117,8 +117,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 							else if (articleContent.key == "articleBody"){
 								singleArticle.articleBody = articleContent.value as? String;
 							}
-							else if (articleContent.key == "articleDate"){
-								singleArticle.articleDate = articleContent.value as? Int;
+							else if (articleContent.key == "articleUnixEpoch"){
+								singleArticle.articleUnixEpoch = articleContent.value as? Int64;
 							}
 							else if (articleContent.key == "articleImages"){
 								
@@ -226,7 +226,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		timestamp.textAlignment = .left;
 		timestamp.textColor = makeColor(r: 57, g: 57, b: 57);
 		timestamp.font = UIFont(name: "SFProDisplay-Regular", size: 10);
-		timestamp.text = "1 hour ago";
+		timestamp.text = epochClass.epochToString(epoch: articleSingle.articleUnixEpoch ?? -1);
 		
 		
 		let articleTitleFrame = CGRect(x: 0, y: 10, width: articleTextWidth, height: height/2);
@@ -250,7 +250,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		let articleImageView = UIImageView(frame: articleImageFrame);
 		articleImageView.backgroundColor = makeColor(r: 143, g: 142, b: 142); // articleDarkGreyBackground
 		articleImageView.imgFromURL(sURL: articleSingle.articleImages?[0] ?? "");
-		articleImageView.contentMode = .scaleAspectFit;
+		articleImageView.contentMode = .scaleAspectFill;
 		
 		//articleImageView.layer.cornerRadius = 10;
 		articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
@@ -346,7 +346,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					let currArticle = featuredArticles[aIndex];
 					
 					let outerContentView = CustomUIButton(frame: featuredFrame);
-					let articleTimeStampLength = CGFloat(60)
+					let articleTimeStampLength = CGFloat(72)
 					//outerContentView.backgroundColor = UIColor.gray;
 					
 					
@@ -360,7 +360,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					
 					articleImageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
 					articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
-					articleImageView.contentMode = .scaleAspectFit;
+					articleImageView.contentMode = .scaleAspectFill;
 					
 					
 					// time stamp
@@ -371,7 +371,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					articleTimestamp.textAlignment = .center;
 					articleTimestamp.textColor = makeColor(r: 57, g: 57, b: 57);
 					articleTimestamp.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-					articleTimestamp.text = "1 hour ago"; // insert code here to get time of article
+					articleTimestamp.text = epochClass.epochToString(epoch: currArticle.articleUnixEpoch ?? -1); // insert code here to get time of article
 					
 					
 					articleImageView.addSubview(articleTimestamp); // add timestamp to imageview

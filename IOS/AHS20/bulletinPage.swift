@@ -25,7 +25,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     struct bulletinArticleData: Codable {
         var articleID: String?;
         var articleTitle: String?;
-        var articleDate: Int?; // unix epoch time stamp
+        var articleUnixEpoch: Int64?; // unix epoch time stamp
         var articleBody: String?;
         var articleAuthor: String?;
         var articleImages: [String]?; // list of image urls
@@ -33,6 +33,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     }
     
     let refreshControl = UIRefreshControl();
+    let seniorYearConst = "21";
     
     // padding variables
     let iconHorizontalPadding = CGFloat(20);
@@ -114,8 +115,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                             else if (articleContent.key == "articleBody"){
                                 singleArticle.articleBody = articleContent.value as? String;
                             }
-                            else if (articleContent.key == "articleDate"){
-                                singleArticle.articleDate = articleContent.value as? Int;
+                            else if (articleContent.key == "articleUnixEpoch"){
+                                singleArticle.articleUnixEpoch = articleContent.value as? Int64;
                             }
                             else if (articleContent.key == "articleImages"){
                                 
@@ -246,7 +247,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         var temp = articleData();
         temp.articleAuthor = data.articleAuthor;
         temp.articleBody = data.articleBody;
-        temp.articleDate = data.articleDate;
+        temp.articleUnixEpoch = data.articleUnixEpoch;
         temp.articleID = data.articleID;
         temp.articleImages = data.articleImages;
         temp.articleTitle = data.articleTitle;
@@ -302,7 +303,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 else{
                     let articleIconFrame = CGRect(x: 2, y: 7, width: 30, height: 50);
                     let articleIcon = UILabel(frame: articleIconFrame);
-                    articleIcon.text = "20\n21";
+                    articleIcon.text = "20\n" + seniorYearConst;
                     articleIcon.setLineSpacing(lineHeightMultiple: 0.7);
                     articleIcon.numberOfLines = 3;
                     articleIcon.textAlignment = .center;
@@ -337,7 +338,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 
                 let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
                 let dateText = UILabel(frame: dateTextFrame);
-                dateText.text = "99/99/99"; // insert date here -------- temporary
+                dateText.text = epochClass.epochToDateString(epoch: currentArticles[aIndex].articleUnixEpoch ?? -1); // insert date here -------- temporary
                 dateText.textColor = makeColor(r: 189, g: 151, b: 104);
                 dateText.textAlignment = .right;
                 
