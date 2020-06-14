@@ -10,13 +10,26 @@ import UIKit
 import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure();
+        if #available(iOS 10.0, *){
+            UNUserNotificationCenter.current().delegate = self
+
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+              options: authOptions,
+              completionHandler: {_, _ in })
+        }
+        else{
+            let settings: UIUserNotificationSettings =
+             UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+             application.registerUserNotificationSettings(settings)
+        }
         return true;
     }
 
