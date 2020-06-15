@@ -110,6 +110,12 @@ class CustomTabBarController: UIViewController {
         vc.didMove(toParent: self);
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        // set notification dot
+        loadNotificationPref();
+        notificationDot.isHidden = (notificationList[1].count == 0);
+    }
+    
     @IBAction func didPressTab(_ sender: UIButton) {
         let prevIndex = selectedIndex;
         selectedIndex = sender.tag;

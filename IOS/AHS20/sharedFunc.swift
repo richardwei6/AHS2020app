@@ -17,6 +17,54 @@ var resetUpArticles = false;
 
 // swift file with shared functions and extensions between files
 
+struct articleData: Codable {
+    var articleID: String?;
+    var articleTitle: String?;
+    var articleUnixEpoch: Int64?; // unix epoch time stamp
+    var articleBody: String?;
+    var articleAuthor: String?;
+    var articleImages: [String]?; // list of image urls
+    var isFeatured = false;
+}
+var internetConnected = false;
+var homeArticleList = [[articleData]](); // size of 4 rows, featured, asb, sports, district
+var bulletinArticleList = [[bulletinClass.bulletinArticleData]](); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
+
+struct notificationData: Codable{
+    var messageID: String?;
+    var notificationTitle: String?;
+    var notificationBody: String?;
+    var notificationUnixEpoch: Int64?;
+    var notificationArticleID: String?; // articleID pointer
+}
+
+var notificationList = [[notificationData]](repeating: [notificationData](), count: 2); // 0 is read notifications, 1 is unread
+
+func loadNotificationPref(){
+    if let data = UserDefaults.standard.data(forKey: "notificationList"){
+        do{
+            let decoder = JSONDecoder();
+            
+            notificationList = try decoder.decode([[notificationData]].self, from: data);
+            
+        }catch{
+            print("error decoding")
+        }
+    }
+    else{
+        print("default - no saved found");
+    }
+}
+
+func saveNotificationPref(){
+    do{
+        let encoder = JSONEncoder();
+        let data = try encoder.encode(notificationList);
+        UserDefaults.standard.set(data, forKey: "notificationList");
+    } catch{
+        print("error encoding object to save");
+    }
+}
 
 class savedArticleClass{
     static var savedArticles = [String: articleData]();
@@ -69,19 +117,6 @@ class savedArticleClass{
 }
     
 
-
-struct articleData: Codable {
-    var articleID: String?;
-    var articleTitle: String?;
-    var articleUnixEpoch: Int64?; // unix epoch time stamp
-    var articleBody: String?;
-    var articleAuthor: String?;
-    var articleImages: [String]?; // list of image urls
-    var isFeatured = false;
-}
-var internetConnected = false;
-var homeArticleList = [[articleData]](); // size of 4 rows, featured, asb, sports, district
-var bulletinArticleList = [[bulletinClass.bulletinArticleData]](); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
 
 var ref: DatabaseReference!; // database reference
 

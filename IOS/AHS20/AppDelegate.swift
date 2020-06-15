@@ -116,13 +116,46 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     // With swizzling disabled you must let Messaging know about the message, for Analytics
     // Messaging.messaging().appDidReceiveMessage(userInfo)
     // Print message ID.
-    if let messageID = userInfo[gcmMessageIDKey] {
+    /*if let messageID = userInfo[gcmMessageIDKey] {
       print("Message ID: \(messageID)")
     }
      print("Handled notifications reg");
     // Print full message.
-    print(userInfo)
-
+    print(userInfo)*/
+    
+    loadNotificationPref();
+    
+    var currNotif = notificationData();
+    if let aps = userInfo["aps"] as? NSDictionary{
+        if let alert = aps["alert"] as? NSDictionary{
+            
+            if let body = alert["body"] as? String{
+                currNotif.notificationBody = body;
+            }
+            
+            if let title = alert["title"] as? String{
+                currNotif.notificationTitle = title;
+            }
+        
+        }
+        else{
+            print("invalid notification");
+        }
+        if let messageID = userInfo[gcmMessageIDKey] as? String{
+            currNotif.messageID = messageID;
+        }
+    }
+    if let articleID = userInfo["articleID"] as? String{
+        currNotif.notificationArticleID = articleID;
+    }
+    
+    currNotif.notificationUnixEpoch =  Int64(NSDate().timeIntervalSince1970);
+    
+    //print("done - \(currNotif)")
+    
+    notificationList[1].append(currNotif);
+    
+    saveNotificationPref();
     // Change this to your preferred presentation option
     completionHandler([[.alert, .sound]])
   }
@@ -140,7 +173,39 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     
     // Print full message.
     print(userInfo)
-
+    loadNotificationPref();
+    
+    var currNotif = notificationData();
+    if let aps = userInfo["aps"] as? NSDictionary{
+        if let alert = aps["alert"] as? NSDictionary{
+            
+            if let body = alert["body"] as? String{
+                currNotif.notificationBody = body;
+            }
+            
+            if let title = alert["title"] as? String{
+                currNotif.notificationTitle = title;
+            }
+        
+        }
+        else{
+            print("invalid notification");
+        }
+        if let messageID = userInfo[gcmMessageIDKey] as? String{
+            currNotif.messageID = messageID;
+        }
+    }
+    if let articleID = userInfo["articleID"] as? String{
+        currNotif.notificationArticleID = articleID;
+    }
+    
+    currNotif.notificationUnixEpoch =  Int64(NSDate().timeIntervalSince1970);
+    
+  //  print("done - \(currNotif)")
+    
+    notificationList[1].append(currNotif);
+    
+    saveNotificationPref();
     completionHandler()
   }
 }
