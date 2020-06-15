@@ -328,6 +328,13 @@
                                     <action selector="openNotifications:" destination="er0-Fk-1NM" eventType="touchUpInside" id="4Np-Gr-JSe"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notificationsmdpi" translatesAutoresizingMaskIntoConstraints="NO" id="F4e-1j-nNa">
+                                <rect key="frame" x="372" y="47" width="5" height="5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="1zo-Rs-f5h"/>
+                                    <constraint firstAttribute="width" constant="5" id="lbb-Fo-hit"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -335,7 +342,9 @@
                             <constraint firstItem="nSs-7n-3QV" firstAttribute="leading" secondItem="re5-dC-xIv" secondAttribute="leading" constant="5" id="AWK-PD-7HL"/>
                             <constraint firstItem="m9h-Ju-R2A" firstAttribute="top" secondItem="re5-dC-xIv" secondAttribute="top" constant="58" id="C0s-BP-El9"/>
                             <constraint firstItem="re5-dC-xIv" firstAttribute="trailing" secondItem="HYY-fu-odz" secondAttribute="trailing" priority="250" constant="67" id="Jk1-PA-X0r"/>
+                            <constraint firstItem="F4e-1j-nNa" firstAttribute="top" secondItem="9yd-mX-HIh" secondAttribute="bottom" constant="2" id="OIC-ex-i8w"/>
                             <constraint firstItem="GDh-5f-hAD" firstAttribute="top" secondItem="re5-dC-xIv" secondAttribute="top" constant="6" id="Qqx-xh-bwt"/>
+                            <constraint firstItem="F4e-1j-nNa" firstAttribute="centerX" secondItem="9yd-mX-HIh" secondAttribute="centerX" id="RDv-47-nbq"/>
                             <constraint firstItem="Yex-nn-bGV" firstAttribute="top" secondItem="re5-dC-xIv" secondAttribute="top" constant="28" id="W1t-lC-gqc"/>
                             <constraint firstItem="Yex-nn-bGV" firstAttribute="leading" secondItem="re5-dC-xIv" secondAttribute="leading" constant="47" id="dAh-vi-5nE"/>
                             <constraint firstItem="m9h-Ju-R2A" firstAttribute="width" secondItem="oqJ-Lj-MFC" secondAttribute="width" id="fit-cp-D4H"/>
@@ -343,6 +352,7 @@
                             <constraint firstItem="m9h-Ju-R2A" firstAttribute="height" secondItem="oqJ-Lj-MFC" secondAttribute="height" priority="250" id="jFV-o4-2sE"/>
                             <constraint firstItem="9yd-mX-HIh" firstAttribute="top" secondItem="re5-dC-xIv" secondAttribute="top" constant="11" id="lp7-av-gjP"/>
                             <constraint firstItem="HYY-fu-odz" firstAttribute="centerX" secondItem="re5-dC-xIv" secondAttribute="centerX" id="oQC-zA-0Jz"/>
+                            <constraint firstItem="m9h-Ju-R2A" firstAttribute="top" secondItem="F4e-1j-nNa" secondAttribute="bottom" constant="6" id="t2o-Ch-lM7"/>
                             <constraint firstItem="re5-dC-xIv" firstAttribute="trailing" secondItem="m9h-Ju-R2A" secondAttribute="trailing" id="vHB-lu-pnr"/>
                             <constraint firstItem="GDh-5f-hAD" firstAttribute="leading" secondItem="re5-dC-xIv" secondAttribute="leading" constant="47" id="wtA-Uh-eu7"/>
                             <constraint firstItem="HYY-fu-odz" firstAttribute="leading" secondItem="re5-dC-xIv" secondAttribute="leading" priority="250" constant="67" id="xhj-0l-IEI"/>
@@ -354,6 +364,7 @@
                     <connections>
                         <outlet property="contentView" destination="m9h-Ju-R2A" id="xty-hC-CRL"/>
                         <outlet property="monthLabel" destination="Yex-nn-bGV" id="eSm-eP-yOc"/>
+                        <outlet property="notificationDot" destination="F4e-1j-nNa" id="W9d-En-2fI"/>
                         <outlet property="tabBarView" destination="HYY-fu-odz" id="483-ql-NSo"/>
                         <outletCollection property="buttons" destination="7gx-G2-ytR" collectionClass="NSMutableArray" id="lww-1e-bUk"/>
                         <outletCollection property="buttons" destination="gQX-ap-fFu" collectionClass="NSMutableArray" id="Eqt-4g-Ikt"/>
@@ -1392,6 +1403,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="featherldpiF" width="131" height="122"/>
         <image name="invertedbookmark" width="18.333333969116211" height="25.333333969116211"/>
+        <image name="notificationsmdpi" width="11" height="11"/>
         <image name="red barldpi" width="658" height="5"/>
         <image name="yellow barldpi" width="658" height="5"/>
     </resources>

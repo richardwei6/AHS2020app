@@ -17,6 +17,7 @@ class CustomTabBarController: UIViewController {
     
     @IBOutlet weak var tabBarView: UIView!
     
+    @IBOutlet weak var notificationDot: UIImageView!
     @IBOutlet var buttons: [UIButton]!
     
     var homeViewController: UIViewController!
@@ -58,18 +59,6 @@ class CustomTabBarController: UIViewController {
         }
     }
    
-    func setUpConnection(){
-        if (Reachability.isConnectedToNetwork()){
-            internetConnected = true;
-            Database.database().goOnline();
-            ref = Database.database().reference();
-        }
-        else{
-            internetConnected = false;
-            Database.database().goOffline();
-            ref = nil;
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad();
