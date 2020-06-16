@@ -142,7 +142,8 @@ class CustomUIButton: UIButton{
 }
 
 class notificationUIButton: CustomUIButton{
-    var unreadBool = false;
+    var alreadyRead = false;
+    var notificationCompleteData = notificationData();
 }
 
 func getTitleDateAndMonth() -> String {

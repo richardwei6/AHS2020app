@@ -15,14 +15,39 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
 
     @IBOutlet weak var notificationScrollView: UIScrollView!
     
+    var articleContentInSegue: articleData?;
+    
     @objc func openArticle(_ sender: notificationUIButton) {
         /*if (sender.unreadBool == true){
             unreadNotificationSize-=1;
             readNotificationSize+=1;
             sender.unreadBool = false;
         }*/
+        if (sender.alreadyRead == false){
+            notificationList[0].append(notificationList[1][sender.articleIndex]);
+            notificationList[1].remove(at: sender.articleIndex);
+            saveNotificationPref();
+        }
+        
+        findArticle(articleID: sender.notificationCompleteData.notificationArticleID ?? "");
         performSegue(withIdentifier: "notificationToArticle", sender: nil);
         loadScrollView();
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "notificationToArticle"){
+        //    print("segue");
+         //   print(articleContentInSegue)
+            let vc = segue.destination as! articlePageViewController;
+            vc.articleContent = articleContentInSegue;
+        }
+    }
+    
+    func findArticle(articleID: String){
+        if (articleID == ""){
+            return;
+        }
+        
     }
     
     var unreadNotificationSize = 0;
@@ -85,7 +110,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             let timeStampFrame = CGRect(x: notificationFrame.size.width - chevronWidth - timeStampLength + 10, y: 5, width: timeStampLength, height: 30);
             let timeStamp = UILabel(frame: timeStampFrame);
             timeStamp.text = epochClass.epochToString(epoch: currNotif.notificationUnixEpoch ?? -1);
-            timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 15);
+            timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 14);
             timeStamp.textAlignment = .right;
             timeStamp.textColor = UIColor.darkGray;
             
@@ -93,9 +118,9 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             
             readIndicator.backgroundColor = makeColor(r: 230, g: 205, b: 85);
             notificationButton.backgroundColor = UIColor.white;
-            notificationButton.unreadBool = true;
             
-            
+            notificationButton.notificationCompleteData = currNotif;
+            notificationButton.articleIndex = nIndex;
             
             notificationButton.addSubview(chevronImage);
             notificationButton.addSubview(readIndicator);
@@ -143,7 +168,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             let timeStampFrame = CGRect(x: notificationFrame.size.width - chevronWidth - timeStampLength + 10, y: 5, width: timeStampLength, height: 30);
             let timeStamp = UILabel(frame: timeStampFrame);
             timeStamp.text = epochClass.epochToString(epoch: currNotif.notificationUnixEpoch ?? -1);
-            timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 15);
+            timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 14);
             timeStamp.textAlignment = .right;
             timeStamp.textColor = UIColor.darkGray;
             
@@ -152,7 +177,9 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             readIndicator.backgroundColor = makeColor(r: 204, g: 204, b: 205);
             notificationButton.backgroundColor = makeColor(r: 244, g: 244, b: 245);
             
-            
+            notificationButton.notificationCompleteData = currNotif;
+            notificationButton.articleIndex = nIndex;
+            notificationButton.alreadyRead = true;
             
             notificationButton.addSubview(chevronImage);
             notificationButton.addSubview(readIndicator);
