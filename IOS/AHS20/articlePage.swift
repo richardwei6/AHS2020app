@@ -68,6 +68,16 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         }
     }
     
+    @objc func toggleZoom(sender: UIButton){
+        if (sender.isSelected){
+            sender.imageView?.contentMode = .scaleAspectFill;
+        }
+        else{
+            sender.imageView?.contentMode = .scaleAspectFit;
+        }
+        sender.isSelected = !sender.isSelected;
+    }
+    
     // ------------
     // TODO: Fix issue where long text gets cut off *completed, thank u for the reminder XD -em&kim
     // TODO: Fix issue where the imagescrollview doesn't allow you to go to the third image on real devices -fixed
@@ -108,15 +118,21 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             imageFrame.origin.x = (imageFrame.size.width * CGFloat(imageIndex));
             
            // let imageZoom = UIScrollView(frame: imageFrame);
-            let imageView = UIImageView(frame: imageFrame);
-            imageView.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
-            imageView.contentMode = .scaleAspectFit;
+            let buttonImage = UIButton(frame: imageFrame);
+            //imageView.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
+            //imageView.contentMode = .scaleAspectFit;
+            
+            buttonImage.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
+            buttonImage.imageView?.contentMode = .scaleAspectFit;
+            buttonImage.isSelected = true;
+            
+            buttonImage.addTarget(self, action: #selector(toggleZoom), for: .touchUpInside);
             
             //print("\(imageView.image != nil)" + " - " + (articleContent?.articleImages?[imageIndex] ?? ""))
            // imageZoom.addSubview(imageView);
             //imageZoom.delegate = self;
             
-            self.imageScrollView.addSubview(imageView);
+            self.imageScrollView.addSubview(buttonImage);
         }
         imageScrollView.contentSize = CGSize(width: (imageFrame.size.width * CGFloat(imageSize)), height: imageScrollView.frame.size.height);
         imageScrollView.delegate = self;

@@ -288,6 +288,12 @@ extension UIButton{
         mask.path = path.cgPath
         layer.mask = mask
     }
+    func imgFromURL(sURL: String) {
+        if (sURL == ""){
+            return;
+        }
+        self.sd_setImage(with: URL(string: sURL), for: .normal);
+    }
 }
 
 extension UIImageView {
