@@ -249,8 +249,10 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		let articleImageFrame = CGRect(x: articleTextWidth + 10, y: 10, width: width - (articleTextWidth + 18), height: height - 10);
 		let articleImageView = UIImageView(frame: articleImageFrame);
 		articleImageView.backgroundColor = makeColor(r: 143, g: 142, b: 142); // articleDarkGreyBackground
-		articleImageView.imgFromURL(sURL: articleSingle.articleImages?[0] ?? "");
-		articleImageView.contentMode = .scaleAspectFill;
+		if (articleSingle.articleImages?.count ?? 0 > 0){
+			articleImageView.imgFromURL(sURL: articleSingle.articleImages?[0] ?? "");
+			articleImageView.contentMode = .scaleAspectFill;
+		}
 		
 		//articleImageView.layer.cornerRadius = 10;
 		articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
@@ -358,9 +360,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					let articleImageView = UIImageView(frame:articleImageViewFrame);
 					articleImageView.backgroundColor = articleDarkGreyBackground;
 					
-					articleImageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
-					articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
-					articleImageView.contentMode = .scaleAspectFill;
+					if (currArticle.articleImages?.count ?? 0 > 0){
+						articleImageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
+						articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
+						articleImageView.contentMode = .scaleAspectFill;
+					}
 					
 					
 					// time stamp
