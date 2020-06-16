@@ -29,7 +29,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             saveNotificationPref();
         }
         
-        findArticle(articleID: sender.notificationCompleteData.notificationArticleID ?? "");
+        findArticle(id: sender.notificationCompleteData.notificationArticleID ?? "");
         performSegue(withIdentifier: "notificationToArticle", sender: nil);
         loadScrollView();
     }
@@ -43,22 +43,21 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         }
     }
     
-    func findArticle(articleID: String){
-        if (articleID == ""){
+    func findArticle(id: String){
+        if (id == ""){
             return;
         }
         for j in homeArticleList{
             for i in j{
-                if (i.articleID == articleID){
+                if (id == i.articleID){
                     articleContentInSegue = i;
                     return;
                 }
             }
         }
-        
         for j in bulletinArticleList{
             for i in j{
-                if (i.articleID == articleID){
+                if (id == i.articleID){
                     articleContentInSegue = bulletinDataToarticleData(data: i);
                     return;
                 }
