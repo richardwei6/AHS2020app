@@ -1191,14 +1191,14 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
             <objects>
                 <viewController modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="947-74-bR0" customClass="articlePageViewController" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jxm-w1-fgP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1455.6666666666665"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjk-rW-re5">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1455.6666666666667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wU-Tb-SE3" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1455.6666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ki3-E6-wIg">
                                                 <rect key="frame" x="0.0" y="58" width="414" height="523"/>
@@ -1207,7 +1207,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                                 <viewLayoutGuide key="frameLayoutGuide" id="fCS-Zg-oXI"/>
                                             </scrollView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fse-fh-VRV" userLabel="White BG">
-                                                <rect key="frame" x="0.0" y="525" width="414" height="930.66666666666652"/>
+                                                <rect key="frame" x="0.0" y="525" width="414" height="293"/>
                                                 <color key="backgroundColor" red="0.99657541510000003" green="0.99982887509999996" blue="0.99975782629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1240,9 +1240,9 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOg-EF-qjc" userLabel="ArticleText">
-                                                <rect key="frame" x="30" y="638" width="0.0" height="787.66666666666652"/>
+                                                <rect key="frame" x="30" y="638" width="0.0" height="150"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="787.66999999999996" id="nis-VK-MgW"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="nis-VK-MgW"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                 <color key="textColor" red="0.31217178699999998" green="0.3071726561" blue="0.31741493939999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1328,7 +1328,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1b-zf-jR1">
-                                        <rect key="frame" x="42.000000000000007" y="14" width="79.666666666666686" height="28"/>
+                                        <rect key="frame" x="42.000000000000007" y="14" width="67.666666666666686" height="28"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1374,7 +1374,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="7re-pu-26n"/>
-                    <size key="freeformSize" width="414" height="1455.6666666666665"/>
+                    <size key="freeformSize" width="414" height="820"/>
                     <connections>
                         <outlet property="articleAuthor" destination="hxm-7f-5JD" id="buJ-TA-ueG"/>
                         <outlet property="articleDate" destination="6lG-do-eYz" id="hwo-Jh-MRX"/>
@@ -1382,6 +1382,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                         <outlet property="articleTitle" destination="aWe-ZQ-wqV" id="wbg-jl-wBT"/>
                         <outlet property="bookmarkButton" destination="ui0-tM-hO3" id="rvU-qP-Lqj"/>
                         <outlet property="bookmarkOuter" destination="EBD-To-cbw" id="vLS-Pz-lv5"/>
+                        <outlet property="contentView" destination="0wU-Tb-SE3" id="tR7-0l-vEV"/>
                         <outlet property="imagePageControl" destination="cu9-hd-ekI" id="VeY-X6-Nfa"/>
                         <outlet property="imageScrollView" destination="ki3-E6-wIg" id="Vto-e8-89H"/>
                         <outlet property="mainScrollView" destination="yjk-rW-re5" id="wVV-aJ-Gja"/>
@@ -1403,7 +1404,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="featherldpiF" width="131" height="122"/>
         <image name="invertedbookmark" width="18.333333969116211" height="25.333333969116211"/>
-        <image name="notificationsmdpi" width="11" height="11"/>
+        <image name="notificationsmdpi" width="7" height="6.6666665077209473"/>
         <image name="red barldpi" width="658" height="5"/>
         <image name="yellow barldpi" width="658" height="5"/>
     </resources>

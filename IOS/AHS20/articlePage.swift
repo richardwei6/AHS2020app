@@ -25,6 +25,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imagePageControl: UIPageControl!
     @IBOutlet weak var whiteBackground: UIImageView!
+    @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var bookmarkButton: CustomUIButton!
     @IBOutlet weak var bookmarkOuter: CustomUIButton!
@@ -95,6 +96,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         
         mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
+
         
         
         articleText.text = articleContent?.articleBody;
