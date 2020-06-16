@@ -28,7 +28,7 @@ struct articleData: Codable {
 }
 var internetConnected = false;
 var homeArticleList = [[articleData]](); // size of 4 rows, featured, asb, sports, district
-var bulletinArticleList = [[bulletinClass.bulletinArticleData]](); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
+var bulletinArticleList = [[bulletinArticleData]](); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
 
 struct notificationData: Codable{
     var messageID: String?;
@@ -46,6 +46,15 @@ func loadNotificationPref(){
             let decoder = JSONDecoder();
             
             notificationList = try decoder.decode([[notificationData]].self, from: data);
+            
+            while(notificationList[0].count + notificationList[1].count > 20){
+                if (notificationList[0].count > 0){
+                    notificationList[0].removeLast();
+                }
+                else{
+                    notificationList[1].removeLast();
+                }
+            }
             
         }catch{
             print("error decoding")
@@ -349,6 +358,26 @@ class SegueFromRight: UIStoryboardSegue {
     }
 }
 
+struct bulletinArticleData: Codable {
+     var articleID: String?;
+     var articleTitle: String?;
+     var articleUnixEpoch: Int64?; // unix epoch time stamp
+     var articleBody: String?;
+     var articleAuthor: String?;
+     var articleImages: [String]?; // list of image urls
+     var articleType = -1;
+ }
+
+func bulletinDataToarticleData(data: bulletinArticleData) -> articleData{
+    var temp = articleData();
+    temp.articleAuthor = data.articleAuthor;
+    temp.articleBody = data.articleBody;
+    temp.articleUnixEpoch = data.articleUnixEpoch;
+    temp.articleID = data.articleID;
+    temp.articleImages = data.articleImages;
+    temp.articleTitle = data.articleTitle;
+    return temp;
+}
 
 func resetAllSettingsDefaults() {
     let defaults = UserDefaults.standard

@@ -22,15 +22,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     @IBOutlet weak var filterScrollViewHeightContraint: NSLayoutConstraint!
     
-    struct bulletinArticleData: Codable {
-        var articleID: String?;
-        var articleTitle: String?;
-        var articleUnixEpoch: Int64?; // unix epoch time stamp
-        var articleBody: String?;
-        var articleAuthor: String?;
-        var articleImages: [String]?; // list of image urls
-        var articleType = -1;
-    }
     
     let refreshControl = UIRefreshControl();
     let seniorYearConst = "21";
@@ -242,17 +233,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         bulletinScrollView.alwaysBounceVertical = true;
     }
     
-    
-    func bulletinDataToarticleData(data: bulletinArticleData) -> articleData{
-        var temp = articleData();
-        temp.articleAuthor = data.articleAuthor;
-        temp.articleBody = data.articleBody;
-        temp.articleUnixEpoch = data.articleUnixEpoch;
-        temp.articleID = data.articleID;
-        temp.articleImages = data.articleImages;
-        temp.articleTitle = data.articleTitle;
-        return temp;
-    }
     
     func generateBulletin(){ // TODO: implement filter ---------
         // set up bulletin

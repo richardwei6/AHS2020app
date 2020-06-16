@@ -47,7 +47,23 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         if (articleID == ""){
             return;
         }
+        for j in homeArticleList{
+            for i in j{
+                if (i.articleID == articleID){
+                    articleContentInSegue = i;
+                    return;
+                }
+            }
+        }
         
+        for j in bulletinArticleList{
+            for i in j{
+                if (i.articleID == articleID){
+                    articleContentInSegue = bulletinDataToarticleData(data: i);
+                    return;
+                }
+            }
+        }
     }
     
     var unreadNotificationSize = 0;
