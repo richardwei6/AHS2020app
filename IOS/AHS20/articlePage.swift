@@ -24,8 +24,9 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var articleText: UILabel!
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imagePageControl: UIPageControl!
-    @IBOutlet weak var whiteBackground: UIImageView!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var whiteBG: UIView!
+    @IBOutlet weak var articleBar: UIView!
     
     @IBOutlet weak var bookmarkButton: CustomUIButton!
     @IBOutlet weak var bookmarkOuter: CustomUIButton!
@@ -94,7 +95,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         
         bookmarkOuter.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 12);
         
-        mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
+       // mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
 
         
@@ -106,8 +107,9 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         articleAuthor.text = "By " + (articleContent?.articleAuthor ?? " NULL Author");
         
         
-        //rounded corners (bottom corners-> [.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
-        whiteBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        articleBar.layer.cornerRadius = 3;
+        whiteBG.layer.cornerRadius = 40;
+        whiteBG.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
 
         
         // TODO: add zoom feature here
