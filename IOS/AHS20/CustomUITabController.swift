@@ -66,6 +66,7 @@ class CustomTabBarController: UIViewController {
         setUpConnection();
         print("Connection Established");
 
+        getNotificationData();
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         
@@ -112,8 +113,7 @@ class CustomTabBarController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         // set notification dot
-        loadNotificationPref();
-        notificationDot.isHidden = (notificationList[1].count == 0);
+        notificationDot.isHidden = !unreadNotif;
     }
     
     @IBAction func didPressTab(_ sender: UIButton) {
