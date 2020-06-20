@@ -108,7 +108,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         
         
         articleBar.layer.cornerRadius = 3;
-        whiteBG.layer.cornerRadius = 40;
+        whiteBG.layer.cornerRadius = 35;
         whiteBG.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
 
         
@@ -141,6 +141,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         imageScrollView.contentSize = CGSize(width: (imageFrame.size.width * CGFloat(imageSize)), height: imageScrollView.frame.size.height);
         imageScrollView.delegate = self;
         articleTitle.text = articleContent?.articleTitle; // set article title herer
+        articleTitle.font = UIFont(name: articleTitle.font.fontName, size: CGFloat(fontSize));
     }
 
     
