@@ -21,7 +21,8 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public abstract class News_Template extends Fragment {
+
+public class News_Template extends Fragment {
 
     public News_Template() {
         // Required empty public constructor
@@ -34,47 +35,17 @@ public abstract class News_Template extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.template__news_layout, container, false);
 
+        if(getArguments() == null)
+            return view;
+
         TextView titleText = view.findViewById(R.id.template_news__TitleText);
-        titleText.setText(getTitleText());
+        titleText.setText(getArguments().getString(TITLE_KEY));
 
         ImageView titleBar = view.findViewById(R.id.template_news__rounded_bar);
-        titleBar.setColorFilter(getBarColor());
+        titleBar.setColorFilter(getArguments().getInt(COLOR_KEY));
 
-        String[][] data = getData();
-        //if(data.length == 0) return view;
-
-        int num_stacked = getNumStacked();
-        /*final int startID = getStartID();
-
-        Article_Display_Stacked[] display_frags = new Article_Display_Stacked[data.length/num_stacked];
-        Article_Display_Template[] frags = new Article_Display_Template[data.length];
-
-
-        for(int i = 0; i < frags.length; i++)
-        {
-            frags[i] = Article_Display_Template.newInstanceOf(
-                    getDate(""),
-                    data[i][0],
-                    data[i][1],
-                    getImageFilePath(""),
-                    isAlreadyBookmarked(""));
-            articles[i] = new Article(getDate(""),data[i][0],data[i][1],getImageFilePath(""),isAlreadyBookmarked(""));
-        }
-
-        int count = 0;
-        for(int i = 0; i < display_frags.length; i++)
-        {
-            Article_Display_Template[] frags_stacked = new Article_Display_Template[num_stacked];
-            for(int j = 0; j < frags_stacked.length; j++)
-            {
-                frags_stacked[j] = frags[count];
-                count++;
-                System.out.println("count:: " + count);
-            }
-            display_frags[i] = Article_Display_Stacked.newInstanceOf(frags_stacked,startID+i*1000);
-        }
-
-        System.out.println("length::" + display_frags.length);*/
+       /* String[][] data = getData();
+        if(data.length == 0) return view;
 
         Article[] articles = new Article[data.length];
         for(int i = 0; i < articles.length; i++)
@@ -85,19 +56,16 @@ public abstract class News_Template extends Fragment {
                     data[i][1],
                     getImageFilePath(""),
                     isAlreadyBookmarked(""));
-        }
+        }*/
+
+        Article[] articles = (Article[]) getArguments().getParcelableArray(ARTICLE_KEY); // cast is necessary
         EnhancedWrapContentViewPager viewPager = view.findViewById(R.id.template_news__ViewPager);
 
-       /* Date date = getDate("");
-
-        Article_Display_Template[] thisfrags = {Article_Display_Template.newInstanceOf(
-                date, "Lorem Ipsum a Long Title [][][]", "hello world what a nice day!","",false),
-                Article_Display_Template.newInstanceOf(
-                        date, "Lorem Ipsum a Long Title [][][]", "hello world what a nice day!","",false)};
-
-
-        display_frags = new Article_Display_Stacked[]{Article_Display_Stacked.newInstanceOf(thisfrags,getStartID())};*/
-        viewPager.setAdapter(new Article_Stacked_PagerAdapter(getChildFragmentManager(),articles,getNumStacked(), getStartID()));
+        viewPager.setAdapter(
+                (getArguments().getBoolean(IS_FEATURED))
+                ? new FeaturedArticle_PagerAdapter(getChildFragmentManager(),articles)
+                : new Article_Stacked_PagerAdapter(getChildFragmentManager(),articles,getNumStacked())
+                );
         TabLayout tabLayout = view.findViewById(R.id.template_news__TabLayout);
         tabLayout.setupWithViewPager(viewPager, true);
 
@@ -105,51 +73,28 @@ public abstract class News_Template extends Fragment {
         return view;
     }
 
-    abstract String[][] getData();
-    /*{
-        return new String[][]
-                {
-                        {"Lorem Ipsum a Very Long Title", "hello world what a nice day!"},
-                        {"Title2", "summaryText2"},
-                        {"Title3", "summaryText3"},
-                        {"Title4", "summaryText4"},
-                        {"Title5", "summaryText5"},
-                        {"Title6", "summaryText6"}
-                };
-    }*/
-
-    public Date getDate(String key)
+    private final static String // keys for bundle
+            ARTICLE_KEY = "1",
+            TITLE_KEY = "2",
+            COLOR_KEY = "3",
+            IS_FEATURED = "4";
+    public static News_Template newInstanceOf(Article[] articles, final String title, final int barColor, final boolean isFeatured)
     {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2020,3,22,9,7);
+        News_Template thisFrag = new News_Template();
+        Bundle args = new Bundle();
+        args.putParcelableArray(ARTICLE_KEY,articles);
+        args.putString(TITLE_KEY,title);
+        args.putInt(COLOR_KEY,barColor);
+        args.putBoolean(IS_FEATURED, isFeatured);
+        thisFrag.setArguments(args);
 
-        Date date = calendar.getTime();
-        return date;
+        return thisFrag;
     }
 
-    public Boolean isAlreadyBookmarked(String key)
-    {
-        return false;
-    }
-
-    public String getImageFilePath(String key)
-    {
-        return "";
-    }
 
     public int getNumStacked()
     {
         return 2;
     }
-
-    public int getStartID()
-    {
-        return 2000000;
-    }
-
-    abstract String getTitleText();
-
-    abstract int getBarColor();
-
 
 }

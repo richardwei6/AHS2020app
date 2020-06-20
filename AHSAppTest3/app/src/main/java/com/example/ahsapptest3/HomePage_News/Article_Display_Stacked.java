@@ -25,7 +25,7 @@ public class Article_Display_Stacked extends Fragment {
     public Article_Display_Stacked() {
         // Required empty public constructor
     }
-    private final static String FRAG_KEY = "1", ID_KEY = "2", ARTICLE_KEY = "3"; // keys for bundle
+    private final static String ARTICLE_KEY = "1"; // keys for bundle
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,17 +37,6 @@ public class Article_Display_Stacked extends Fragment {
         return view;
     }
 
-    public static Article_Display_Stacked newInstanceOf(Article_Display_Template[] frags, int startID)
-    {
-        Article_Display_Stacked thisFrag = new Article_Display_Stacked();
-        Bundle args = new Bundle();
-        args.putParcelableArray(FRAG_KEY,frags);
-        args.putInt(ID_KEY,startID);
-        thisFrag.setArguments(args);
-
-        return thisFrag;
-    }
-    
     public static Article_Display_Stacked newInstanceOf(Article[] articles)
     {
         Article_Display_Stacked thisFrag = new Article_Display_Stacked();

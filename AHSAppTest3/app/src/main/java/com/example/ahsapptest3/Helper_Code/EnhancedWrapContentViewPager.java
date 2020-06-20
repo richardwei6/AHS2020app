@@ -40,6 +40,4 @@ public class EnhancedWrapContentViewPager extends ViewPager{
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-
-
 }

@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
     android:paddingRight="@dimen/EveryPage_Side_Padding"
     android:paddingBottom="0dp"
-    tools:context=".HomePage_News.Featured_Template">
+    >
 
     <ImageView
         android:id="@+id/template_featured__ImageView"

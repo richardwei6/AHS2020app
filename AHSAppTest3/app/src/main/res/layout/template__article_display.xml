@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/EveryPage_Side_Padding"
     android:paddingRight="@dimen/EveryPage_Side_Padding"
-    tools:context=".HomePage_News.Article_Display_Template">
+    >
 
 
     <androidx.constraintlayout.widget.Guideline
