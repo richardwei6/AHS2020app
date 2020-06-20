@@ -17,6 +17,63 @@ var resetUpArticles = false;
 
 // swift file with shared functions and extensions between files
 
+struct articleData: Codable {
+    var articleID: String?;
+    var articleTitle: String?;
+    var articleUnixEpoch: Int64?; // unix epoch time stamp
+    var articleBody: String?;
+    var articleAuthor: String?;
+    var articleImages: [String]?; // list of image urls
+    var isFeatured = false;
+}
+var internetConnected = false;
+var homeArticleList = [[articleData]](); // size of 4 rows, featured, asb, sports, district
+var bulletinArticleList = [[bulletinArticleData]](); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
+
+struct notificationData: Codable{
+    var messageID: String?;
+    var notificationTitle: String?;
+    var notificationBody: String?;
+    var notificationUnixEpoch: Int64?;
+    var notificationArticleID: String?; // articleID pointer
+}
+
+var notificationList = [[notificationData]](repeating: [notificationData](), count: 2); // 0 is read notifications, 1 is unread
+
+func loadNotificationPref(){
+    if let data = UserDefaults.standard.data(forKey: "notificationList"){
+        do{
+            let decoder = JSONDecoder();
+            
+            notificationList = try decoder.decode([[notificationData]].self, from: data);
+            
+            while(notificationList[0].count + notificationList[1].count > 20){
+                if (notificationList[0].count > 0){
+                    notificationList[0].removeLast();
+                }
+                else{
+                    notificationList[1].removeLast();
+                }
+            }
+            
+        }catch{
+            print("error decoding")
+        }
+    }
+    else{
+        print("default - no saved found");
+    }
+}
+
+func saveNotificationPref(){
+    do{
+        let encoder = JSONEncoder();
+        let data = try encoder.encode(notificationList);
+        UserDefaults.standard.set(data, forKey: "notificationList");
+    } catch{
+        print("error encoding object to save");
+    }
+}
 
 class savedArticleClass{
     static var savedArticles = [String: articleData]();
@@ -70,18 +127,6 @@ class savedArticleClass{
     
 
 
-struct articleData: Codable {
-    var articleID: String?;
-    var articleTitle: String?;
-    var articleDate: Int?; // unix epoch time stamp
-    var articleBody: String?;
-    var articleAuthor: String?;
-    var articleImages: [String]?; // list of image urls
-}
-var internetConnected = false;
-var homeArticleList = [[articleData]](); // size of 4 rows, featured, asb, sports, district
-var bulletinArticleList = [[bulletinClass.bulletinArticleData]](); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
-
 var ref: DatabaseReference!; // database reference
 
 func setUpConnection(){
@@ -106,7 +151,8 @@ class CustomUIButton: UIButton{
 }
 
 class notificationUIButton: CustomUIButton{
-    var unreadBool = false;
+    var alreadyRead = false;
+    var notificationCompleteData = notificationData();
 }
 
 func getTitleDateAndMonth() -> String {
@@ -119,7 +165,52 @@ func getTitleDateAndMonth() -> String {
     return String(monthStr) + " " + String(dayInt);
 }
 
-
+class epochClass{
+    class func epochToString(epoch: Int64) -> String{ // 1 hour ago
+        if (epoch == -1){
+            return "NULL";
+        }
+        let currTime = Int64(NSDate().timeIntervalSince1970);
+        let diff = currTime - epoch;
+        let timePattern = [(1, "second"), (60, "minute"), (3600, "hour"), (86400, "day"), (604800, "week"), (2592000, "month"), (31536000, "year")];
+        var r = "NULL";
+        if (diff >= 0){
+            for i in 1...6{
+                if (floor(Double(diff) / Double(timePattern[i].0)) == 0){
+                    let prefix = Int(floor(Double(diff) / Double(timePattern[i-1].0)));
+                    r = "\(prefix) " + timePattern[i-1].1 + (prefix > 1 ? "s" : "") + " ago";
+                    break;
+                }
+            }
+        }
+        return r;
+    }
+    
+    class func epochToDateString(epoch: Int64) -> String{ // 99/99/99
+        if (epoch == -1){
+            return "NULL";
+        }
+        let date = Date(timeIntervalSince1970: TimeInterval(epoch));
+        let cal = Calendar.current;
+        let year = cal.component(.year, from: date);
+        let month = cal.component(.month, from: date);
+        let day = cal.component(.day, from: date);
+        return "\(month)/\(day)/\(year)";
+    }
+    
+    class func epochToFormatedDateString(epoch: Int64) -> String{ // Month 00, 2000
+        if (epoch == -1){
+            return "NULL";
+        }
+        let date = Date(timeIntervalSince1970: TimeInterval(epoch));
+        let cal = Calendar.current;
+        let year = cal.component(.year, from: date);
+        let month = cal.component(.month, from: date);
+        let day = cal.component(.day, from: date);
+        let monthStr = Calendar.current.monthSymbols[month-1];
+        return "\(monthStr) \(day), \(year)";
+    }
+}
 
 public class Reachability {
 
@@ -197,6 +288,12 @@ extension UIButton{
         mask.path = path.cgPath
         layer.mask = mask
     }
+    func imgFromURL(sURL: String) {
+        if (sURL == ""){
+            return;
+        }
+        self.sd_setImage(with: URL(string: sURL), for: .normal);
+    }
 }
 
 extension UIImageView {
@@ -220,7 +317,7 @@ extension UIImageView {
 }
 
 extension UIImage {
-
+    
     func maskWithColor(color: UIColor) -> UIImage? {
         let maskImage = cgImage!
 
@@ -267,6 +364,26 @@ class SegueFromRight: UIStoryboardSegue {
     }
 }
 
+struct bulletinArticleData: Codable {
+     var articleID: String?;
+     var articleTitle: String?;
+     var articleUnixEpoch: Int64?; // unix epoch time stamp
+     var articleBody: String?;
+     var articleAuthor: String?;
+     var articleImages: [String]?; // list of image urls
+     var articleType = -1;
+ }
+
+func bulletinDataToarticleData(data: bulletinArticleData) -> articleData{
+    var temp = articleData();
+    temp.articleAuthor = data.articleAuthor;
+    temp.articleBody = data.articleBody;
+    temp.articleUnixEpoch = data.articleUnixEpoch;
+    temp.articleID = data.articleID;
+    temp.articleImages = data.articleImages;
+    temp.articleTitle = data.articleTitle;
+    return temp;
+}
 
 func resetAllSettingsDefaults() {
     let defaults = UserDefaults.standard

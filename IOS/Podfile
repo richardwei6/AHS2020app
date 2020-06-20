@@ -11,6 +11,7 @@ target 'AHS20' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Database'
+  pod 'Firebase/Messaging'
   platform :ios, '8.0'
   pod 'SDWebImage'
 

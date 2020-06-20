@@ -17,6 +17,7 @@ class CustomTabBarController: UIViewController {
     
     @IBOutlet weak var tabBarView: UIView!
     
+    @IBOutlet weak var notificationDot: UIImageView!
     @IBOutlet var buttons: [UIButton]!
     
     var homeViewController: UIViewController!
@@ -58,18 +59,6 @@ class CustomTabBarController: UIViewController {
         }
     }
    
-    func setUpConnection(){
-        if (Reachability.isConnectedToNetwork()){
-            internetConnected = true;
-            Database.database().goOnline();
-            ref = Database.database().reference();
-        }
-        else{
-            internetConnected = false;
-            Database.database().goOffline();
-            ref = nil;
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -119,6 +108,12 @@ class CustomTabBarController: UIViewController {
         vc.view.frame = contentView.bounds;
         contentView.addSubview(vc.view);
         vc.didMove(toParent: self);
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // set notification dot
+        loadNotificationPref();
+        notificationDot.isHidden = (notificationList[1].count == 0);
     }
     
     @IBAction func didPressTab(_ sender: UIButton) {

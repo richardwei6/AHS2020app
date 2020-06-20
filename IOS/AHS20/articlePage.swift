@@ -24,7 +24,9 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var articleText: UILabel!
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imagePageControl: UIPageControl!
-    @IBOutlet weak var whiteBackground: UIImageView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var whiteBG: UIView!
+    @IBOutlet weak var articleBar: UIView!
     
     @IBOutlet weak var bookmarkButton: CustomUIButton!
     @IBOutlet weak var bookmarkOuter: CustomUIButton!
@@ -68,6 +70,16 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         }
     }
     
+    @objc func toggleZoom(sender: UIButton){
+        if (sender.isSelected){
+            sender.imageView?.contentMode = .scaleAspectFill;
+        }
+        else{
+            sender.imageView?.contentMode = .scaleAspectFit;
+        }
+        sender.isSelected = !sender.isSelected;
+    }
+    
     // ------------
     // TODO: Fix issue where long text gets cut off *completed, thank u for the reminder XD -em&kim
     // TODO: Fix issue where the imagescrollview doesn't allow you to go to the third image on real devices -fixed
@@ -83,58 +95,55 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         
         bookmarkOuter.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 12);
         
-        mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
+       // mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
+
         
         
         articleText.text = articleContent?.articleBody;
         articleText.font = UIFont(name: articleText.font.fontName, size: CGFloat(fontSize));
         articleTitle.text = "Loading images..."; // see func viewdidappear
-        articleDate.text = "\(articleContent?.articleDate ?? -1)"; // TODO: IMPLEMENT A FUNC TO GET INT TO STRING DATE
+        articleDate.text = epochClass.epochToFormatedDateString(epoch: articleContent?.articleUnixEpoch ?? -1); // TODO: IMPLEMENT A FUNC TO GET INT TO STRING DATE
         articleAuthor.text = "By " + (articleContent?.articleAuthor ?? " NULL Author");
         
         
-        //rounded corners (bottom corners-> [.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
-        whiteBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        articleBar.layer.cornerRadius = 3;
+        whiteBG.layer.cornerRadius = 35;
+        whiteBG.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+
         
-        //horizontal image scroll view
-        /* imageScrollView.delegate = self
-         
-         for imageIndex in 0..<imageSize{
-         let imageToDisplay = UIImage(named: "\(imageIndex).png")
-         let imageView = UIImageView(image: imageToDisplay)
-         
-         imageScrollView.addSubview(imageView)
-         
-         let xCoordinate = view.frame.midX + view.frame.width * CGFloat(imageIndex) // use UIScreen.main.bounds.width instead - view.frame.width is constant size across all devices while UIScreen is different
-         
-         contentWidth += view.frame.width
-         
-         imageView.frame = CGRect(x: xCoordinate, y: view.frame.height/2, width: 100, height: 100)
-         }
-         
-         imageScrollView.contentSize = CGSize(width: contentWidth, height: view.frame.height)*/
-    }
-    override func viewDidAppear(_ animated: Bool) {
+        // TODO: add zoom feature here
         imageSize = articleContent?.articleImages?.count ?? 0;
+        //print(imageSize);
         imagePageControl.numberOfPages = imageSize;
         imageFrame.size = imageScrollView.frame.size;
         imageFrame.size.width = UIScreen.main.bounds.size.width;
         for imageIndex in 0..<imageSize{
             imageFrame.origin.x = (imageFrame.size.width * CGFloat(imageIndex));
             
-            let imageView = UIImageView(frame: imageFrame);
-            //imageView.backgroundColor = UIColor.white;
-            // add image here
-            imageView.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
-            imageView.contentMode = .scaleAspectFit;
+           // let imageZoom = UIScrollView(frame: imageFrame);
+            let buttonImage = UIButton(frame: imageFrame);
+            //imageView.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
+            //imageView.contentMode = .scaleAspectFit;
             
-            self.imageScrollView.addSubview(imageView);
+            buttonImage.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
+            buttonImage.imageView?.contentMode = .scaleAspectFit;
+            buttonImage.isSelected = true;
+            
+            buttonImage.addTarget(self, action: #selector(toggleZoom), for: .touchUpInside);
+            
+            //print("\(imageView.image != nil)" + " - " + (articleContent?.articleImages?[imageIndex] ?? ""))
+           // imageZoom.addSubview(imageView);
+            //imageZoom.delegate = self;
+            
+            self.imageScrollView.addSubview(buttonImage);
         }
         imageScrollView.contentSize = CGSize(width: (imageFrame.size.width * CGFloat(imageSize)), height: imageScrollView.frame.size.height);
         imageScrollView.delegate = self;
         articleTitle.text = articleContent?.articleTitle; // set article title herer
+        articleTitle.font = UIFont(name: articleTitle.font.fontName, size: CGFloat(fontSize));
     }
+
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

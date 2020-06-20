@@ -40,6 +40,7 @@ class settingClass: UITableViewController {
             UserDefaults.standard.removeObject(forKey: "savedArticleDict");
             savedArticleClass.savedArticles = [String: articleData]();
             resetUpArticles = true;
+            resetAllSettingsDefaults();
         }));
         confirmPopup.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in }));
         present(confirmPopup, animated: true, completion: nil);
