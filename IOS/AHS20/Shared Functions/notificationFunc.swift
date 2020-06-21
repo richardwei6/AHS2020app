@@ -16,7 +16,7 @@ import SDWebImage
 
 // NOTIFICATION START
 var totalNotificationList = [notificationData]();
-var notificationReadDict = [String : Bool](); // Message ID : unread = true
+var notificationReadDict = [String : Bool](); // Message ID : Read = true
 var notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
 
 func getNotificationData(){
@@ -78,11 +78,10 @@ func saveNotifPref(){
     do{
         
         // combine only stuff that exists
-        
-        
         let encoder = JSONEncoder();
         let data = try encoder.encode(notificationReadDict);
         UserDefaults.standard.set(data, forKey: "notificationReadDict");
+        loadNotifPref();
     } catch{
         print("error encoding object to save");
     }
@@ -90,9 +89,8 @@ func saveNotifPref(){
 
 func filterTotalArticles(){ // inital
     notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
-    loadNotifPref();
     for notification in totalNotificationList{
-        notificationList[notificationReadDict[notification.notificationArticleID ?? ""] == true ? 1 : 0].append(notification);
+        notificationList[(notificationReadDict[notification.messageID ?? ""] == true ? 0 : 1)].append(notification);
     }
     unreadNotif = (notificationList[1].count > 0);
 }

@@ -109,6 +109,7 @@ class CustomTabBarController: UIViewController {
         vc.view.frame = contentView.bounds;
         contentView.addSubview(vc.view);
         vc.didMove(toParent: self);
+        notificationDot.isHidden = !unreadNotif;
     }
     
     override func viewDidAppear(_ animated: Bool) {

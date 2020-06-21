@@ -60,7 +60,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         else{
             //setUpAllViews();
             print("no network detected - notifications");
-
+            self.refreshControl.endRefreshing();
         }
     }
     
@@ -74,8 +74,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             notificationList[0].append(notificationList[1][sender.articleIndex]);
             notificationList[1].remove(at: sender.articleIndex);
           //  saveNotificationPref();
-            notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = nil;
-            filterTotalArticles();
+            notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = true;
             saveNotifPref();
         }
         
@@ -128,7 +127,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     func loadScrollView(){
         
-        print("load - \(unreadNotificationSize) + \(readNotificationSize)");
+        
         unreadNotificationSize = notificationList[1].count;
         readNotificationSize = notificationList[0].count;
         
@@ -268,6 +267,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     @objc func refreshNotifications(){
         // implement get data
       //  loadNotificationPref();
+        loadNotifPref();
         getLocalNotifications();
         
     }
@@ -280,6 +280,10 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         notificationScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
         refreshControl.addTarget(self, action: #selector(refreshNotifications), for: UIControl.Event.valueChanged);
+        notificationScrollView.addSubview(refreshControl);
+        notificationScrollView.isScrollEnabled = true;
+        notificationScrollView.alwaysBounceVertical = true;
+        loadNotifPref();
         getLocalNotifications();
         
     }
