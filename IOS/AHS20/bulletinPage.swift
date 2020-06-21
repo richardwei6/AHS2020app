@@ -376,7 +376,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             let iconView = CustomUIButton(frame: iconViewFrame!);
             iconView.layer.cornerRadius = filterIconSize/2;
             iconView.layer.borderColor = makeColor(r: 127, g: 47, b: 60).cgColor;
-            iconView.layer.borderWidth = 3;
+            iconView.layer.borderWidth = 2.2;
             iconView.articleIndex = buttonIndex;
             
             
