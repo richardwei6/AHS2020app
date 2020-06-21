@@ -88,6 +88,7 @@ func saveNotifPref(){
 }
 
 func filterTotalArticles(){ // inital
+    loadNotifPref();
     notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
     for notification in totalNotificationList{
         notificationList[(notificationReadDict[notification.messageID ?? ""] == true ? 0 : 1)].append(notification);

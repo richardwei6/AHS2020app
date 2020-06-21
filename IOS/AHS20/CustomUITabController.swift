@@ -59,6 +59,52 @@ class CustomTabBarController: UIViewController {
         }
     }
    
+    func setUpNotifDot(){
+        setUpConnection();
+        if (internetConnected){
+            print("ok -------- loading articles - notifications");
+            //print(s);
+            totalNotificationList = [notificationData]();
+            ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
+                let enumerator = snapshot.children;
+                while let article = enumerator.nextObject() as? DataSnapshot{ // each article
+                    let enumerator = article.children;
+                    var singleNotification = notificationData();
+                    while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
+                        
+                        if (notificationContent.key == "messageID"){
+                            singleNotification.messageID = notificationContent.value as? String;
+                        }
+                        else if (notificationContent.key == "notificationArticleID"){
+                            singleNotification.notificationArticleID  = notificationContent.value as? String;
+                        }
+                        else if (notificationContent.key == "notificationBody"){
+                            singleNotification.notificationBody  = notificationContent.value as? String;
+                        }
+                        else if (notificationContent.key == "notificationTitle"){
+                            singleNotification.notificationTitle  = notificationContent.value as? String;
+                        }
+                        else if (notificationContent.key == "notificationUnixEpoch"){
+                            singleNotification.notificationUnixEpoch  = notificationContent.value as? Int64;
+                        }
+                        
+                    }
+                    totalNotificationList.append(singleNotification);
+                    loadNotifPref();
+                    notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
+                    for notification in totalNotificationList{
+                        notificationList[(notificationReadDict[notification.messageID ?? ""] == true ? 0 : 1)].append(notification);
+                    }
+                    unreadNotif = (notificationList[1].count > 0);
+                    self.notificationDot.isHidden = !unreadNotif;
+                };
+            }
+        }
+        else{
+            //setUpAllViews();
+            print("no network detected - notifications");
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -66,7 +112,7 @@ class CustomTabBarController: UIViewController {
         setUpConnection();
         print("Connection Established");
 
-        getNotificationData();
+        setUpNotifDot();
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         
@@ -109,7 +155,7 @@ class CustomTabBarController: UIViewController {
         vc.view.frame = contentView.bounds;
         contentView.addSubview(vc.view);
         vc.didMove(toParent: self);
-        notificationDot.isHidden = !unreadNotif;
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
