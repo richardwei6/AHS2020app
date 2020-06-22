@@ -83,9 +83,21 @@ func loadNotifPref(){
 func saveNotifPref(){
     do{
         
+        var currDict = [String: Bool]();
+        for i in totalNotificationList{
+            currDict[i.messageID ?? ""] = true;
+        }
+        
+        var save = [String: Bool](); // messageid
+        for i in notificationReadDict{
+            if (currDict[i.key] == true){
+                save[i.key] = true;
+            }
+        }
+        
         // combine only stuff that exists
         let encoder = JSONEncoder();
-        let data = try encoder.encode(notificationReadDict);
+        let data = try encoder.encode(save);
         UserDefaults.standard.set(data, forKey: "notificationReadDict");
         loadNotifPref();
     } catch{
