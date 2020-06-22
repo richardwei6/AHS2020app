@@ -19,6 +19,9 @@ var totalNotificationList = [notificationData]();
 var notificationReadDict = [String : Bool](); // Message ID : Read = true
 var notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
 
+// notification settings
+var selectedNotifications = [Bool](repeating: false, count: 5); // true or false 0 - 4 0 is general
+
 func getNotificationData(){
     setUpConnection();
     if (internetConnected){
@@ -46,6 +49,9 @@ func getNotificationData(){
                     }
                     else if (notificationContent.key == "notificationUnixEpoch"){
                         singleNotification.notificationUnixEpoch  = notificationContent.value as? Int64;
+                    }
+                    else if (notificationContent.key == "notificationCatagory"){
+                        singleNotification.notificationCatagory = notificationContent.value as? Int;
                     }
                     
                 }
@@ -91,7 +97,9 @@ func filterTotalArticles(){ // inital
     loadNotifPref();
     notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
     for notification in totalNotificationList{
-        notificationList[(notificationReadDict[notification.messageID ?? ""] == true ? 0 : 1)].append(notification);
+        if (notification.notificationCatagory == 0 || selectedNotifications[notification.notificationCatagory!] == true || selectedNotifications[0] == true){
+            notificationList[(notificationReadDict[notification.messageID ?? ""] == true ? 0 : 1)].append(notification);
+        }
     }
     unreadNotif = (notificationList[1].count > 0);
 }

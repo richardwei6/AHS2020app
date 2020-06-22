@@ -37,6 +37,7 @@ struct notificationData: Codable{
     var notificationBody: String?;
     var notificationUnixEpoch: Int64?;
     var notificationArticleID: String?; // articleID pointer
+    var notificationCatagory: Int?; // 0 - 3 : 0 is sports 1 is asb 2 is district 3 is bulletin
 }
 
 class CustomUIButton: UIButton{

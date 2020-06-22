@@ -18,7 +18,6 @@ class notificationSettingsClass: UITableViewController{
     @IBOutlet weak var districtNews: UISwitch!
     @IBOutlet weak var bulletinNews: UISwitch!
     
-    var selectedNotifications = [Int]();
     
     
     override func viewDidLoad(){
@@ -26,45 +25,48 @@ class notificationSettingsClass: UITableViewController{
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Int] ?? [0];
         
-        for i in selectedNotifications{
+        for i in 0...4{
             switch i {
             case 0:
-                generalUpdates.isOn = true;
-                //break;
+                if (selectedNotifications[i] == true){
+                    generalUpdates.isOn = true;
+                }
             case 1:
-                sportsNews.isOn = true;
+                if (selectedNotifications[i] == true){
+                    sportsNews.isOn = true;
+                }
             case 2:
-                asbNews.isOn = true;
+                if (selectedNotifications[i] == true){
+                    asbNews.isOn = true;
+                }
             case 3:
-                districtNews.isOn = true;
+                if (selectedNotifications[i] == true){
+                    districtNews.isOn = true;
+                }
             case 4:
-                bulletinNews.isOn = true;
+                if (selectedNotifications[i] == true){
+                    bulletinNews.isOn = true;
+                }
             default:
                 break;
             }
         }
     }
     
-    func remove(element: Int){
-        if (selectedNotifications.firstIndex(of: element) != nil){
-            selectedNotifications.remove(at: selectedNotifications.firstIndex(of: element)!);
-        }
-    }
     
     @IBAction func changedSettings(_ sender: UISwitch) {
         if (sender.tag > 0){
             if (generalUpdates.isOn == true){
                 //print("false");
                 generalUpdates.isOn = false;
-                remove(element: 0);
+                selectedNotifications[0] = false;
             }
             if (sender.isOn == true){
-                selectedNotifications.append(sender.tag);
+                selectedNotifications[sender.tag] = true;
             }
             else{
-                remove(element: sender.tag);
+                selectedNotifications[sender.tag] = false;
             }
         }
         else{
@@ -73,10 +75,11 @@ class notificationSettingsClass: UITableViewController{
                 asbNews.isOn = false;
                 districtNews.isOn = false;
                 bulletinNews.isOn = false;
-                selectedNotifications = [0];
+                selectedNotifications = [Bool](repeating: false, count: 5);
+                selectedNotifications[0] = true;
             }
             else{
-                remove(element: sender.tag);
+                selectedNotifications[sender.tag] = false;
             }
         }
    
