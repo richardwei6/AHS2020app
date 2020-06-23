@@ -1,5 +1,6 @@
 package com.example.ahsapptest3.HomePage_News;
 
+
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -14,7 +15,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.ahsapptest3.Article;
+import com.example.ahsapptest3.Helper_Code.Helper;
 import com.example.ahsapptest3.R;
+
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -83,13 +87,15 @@ public class Article_Display_Stacked extends Fragment {
             else
             {
                 // set time updated
-                articles[i].setTime_Hours_UpdatedText_toView((TextView) inflated[i].findViewById(R.id.article_display__time_updated_Text));
+                Helper.setTimeText_toView((TextView) inflated[i].findViewById(R.id.article_display__time_updated_Text),
+                        Helper.TimeFromNow(articles[i].getTimeUpdated()),
+                        TimeUnit.HOURS);
 
                 // set title
-                articles[i].setTitleText_toView((TextView) inflated[i].findViewById(R.id.article_display__title_Text));
+                Helper.setText_toView((TextView) inflated[i].findViewById(R.id.article_display__title_Text),articles[i].getTitle());
 
                 // set summary/description
-                articles[i].setStoryText_toView((TextView) inflated[i].findViewById(R.id.article_display__summary_Text));
+                Helper.setText_toView((TextView) inflated[i].findViewById(R.id.article_display__summary_Text), articles[i].getStory());
 
                 // setImage
                 articles[i].setImage_toView((ImageView) inflated[i].findViewById(R.id.article_display__imageView));
