@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import AudioToolbox
+import Firebase
+import FirebaseDatabase
 
 class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
 
@@ -16,6 +18,54 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     @IBOutlet weak var notificationScrollView: UIScrollView!
     
     var articleContentInSegue: articleData?;
+    
+    func getLocalNotifications(){
+        setUpConnection();
+        if (internetConnected){
+            print("ok -------- loading articles - notifications");
+            //print(s);
+            
+            totalNotificationList = [notificationData]();
+            ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
+                let enumerator = snapshot.children;
+                while let article = enumerator.nextObject() as? DataSnapshot{ // each article
+                    let enumerator = article.children;
+                    var singleNotification = notificationData();
+                    while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
+                        
+                        if (notificationContent.key == "messageID"){
+                            singleNotification.messageID = notificationContent.value as? String;
+                        }
+                        else if (notificationContent.key == "notificationArticleID"){
+                            singleNotification.notificationArticleID  = notificationContent.value as? String;
+                        }
+                        else if (notificationContent.key == "notificationBody"){
+                            singleNotification.notificationBody  = notificationContent.value as? String;
+                        }
+                        else if (notificationContent.key == "notificationTitle"){
+                            singleNotification.notificationTitle  = notificationContent.value as? String;
+                        }
+                        else if (notificationContent.key == "notificationUnixEpoch"){
+                            singleNotification.notificationUnixEpoch  = notificationContent.value as? Int64;
+                        }
+                        else if (notificationContent.key == "notificationCatagory"){
+                            singleNotification.notificationCatagory = notificationContent.value as? Int;
+                        }
+                        
+                    }
+                    totalNotificationList.append(singleNotification);
+                    filterTotalArticles();
+                    self.loadScrollView();
+                    self.refreshControl.endRefreshing();
+                };
+            }
+        }
+        else{
+            //setUpAllViews();
+            print("no network detected - notifications");
+            self.refreshControl.endRefreshing();
+        }
+    }
     
     @objc func openArticle(_ sender: notificationUIButton) {
         /*if (sender.unreadBool == true){
@@ -26,7 +76,9 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         if (sender.alreadyRead == false){
             notificationList[0].append(notificationList[1][sender.articleIndex]);
             notificationList[1].remove(at: sender.articleIndex);
-            saveNotificationPref();
+          //  saveNotificationPref();
+            notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = true;
+            saveNotifPref();
         }
         
         findArticle(id: sender.notificationCompleteData.notificationArticleID ?? "");
@@ -36,8 +88,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "notificationToArticle"){
-        //    print("segue");
-         //   print(articleContentInSegue)
             let vc = segue.destination as! articlePageViewController;
             vc.articleContent = articleContentInSegue;
         }
@@ -79,6 +129,8 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
 
     
     func loadScrollView(){
+        
+        
         unreadNotificationSize = notificationList[1].count;
         readNotificationSize = notificationList[0].count;
         
@@ -95,7 +147,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             notificationFrame.origin.y = verticalPadding+((notificationFrame.size.height + verticalPadding)*CGFloat(nIndex));
             
             let notificationButton = notificationUIButton(frame: notificationFrame);
-            let currNotif = notificationList[1][nIndex];
+            let currNotif = notificationList[1][nIndex]; // TODO: import data
             
             let readIndicatorWidth = CGFloat(20);
             let readIndicatorFrame = CGRect(x: 0, y: 0, width: readIndicatorWidth, height: notificationFrame.size.height);
@@ -217,20 +269,25 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     @objc func refreshNotifications(){
         // implement get data
-        loadNotificationPref();
-        loadScrollView();
-        refreshControl.endRefreshing();
+      //  loadNotificationPref();
+        loadNotifPref();
+        getLocalNotifications();
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad();
         
         // set iphone x or above color below the safe area
-      
+        
         notificationScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
         refreshControl.addTarget(self, action: #selector(refreshNotifications), for: UIControl.Event.valueChanged);
-        loadScrollView();
+        notificationScrollView.addSubview(refreshControl);
+        notificationScrollView.isScrollEnabled = true;
+        notificationScrollView.alwaysBounceVertical = true;
+        loadNotifPref();
+        getLocalNotifications();
         
     }
     

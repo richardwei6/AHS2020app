@@ -47,7 +47,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	@IBOutlet weak var featuredMissingLabel: UILabel!
 	
-	let loading = "Loading... Please wait";
+	let loading = "Loading...";
 	
 	let bookmarkImageVerticalInset = CGFloat(5);
 	let bookmarkImageHorizontalInset = CGFloat(7);

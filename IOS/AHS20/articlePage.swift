@@ -127,8 +127,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             //imageView.contentMode = .scaleAspectFit;
             
             buttonImage.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
-            buttonImage.imageView?.contentMode = .scaleAspectFit;
-            buttonImage.isSelected = true;
+            buttonImage.imageView?.contentMode = .scaleAspectFill;
+            buttonImage.isSelected = false;
             
             buttonImage.addTarget(self, action: #selector(toggleZoom), for: .touchUpInside);
             

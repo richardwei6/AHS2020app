@@ -69,7 +69,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 let articleTitle = UILabel(frame: articleTitleFrame);
                 //articleTitle.numberOfLines = 1;
                 articleTitle.adjustsFontSizeToFitWidth = true;
-                articleTitle.minimumScaleFactor = 0.4;
+                articleTitle.minimumScaleFactor = 0.8;
                 articleTitle.text = savedArticles[aIndex].articleTitle; // DATA
                 articleTitle.font = UIFont(name: "SFProText-Bold",size: 25);
                 
