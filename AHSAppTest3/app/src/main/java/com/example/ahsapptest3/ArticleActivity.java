@@ -2,62 +2,84 @@ package com.example.ahsapptest3;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
+
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ahsapptest3.Helper_Code.Helper;
 import com.google.android.material.tabs.TabLayout;
 
 public class ArticleActivity extends AppCompatActivity {
 
-    private Article data;
+    private Article article;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_layout);
-        data = getIntent().getParcelableExtra("data");
+        article = getIntent().getParcelableExtra("data");
         TextView
                 dateText = findViewById(R.id.article_dateText),
                 titleText = findViewById(R.id.article_titleText),
                 authorText = findViewById(R.id.article_authorText),
                 bodyText = findViewById(R.id.article_bodyText);
-        data.setDateText_toView(dateText);
-        data.setTitleText_toView(titleText);
-        data.setAuthorText_toView(authorText);
-        data.setStoryText_toView(bodyText);
 
-        //TODO: delete the below, it's just filler example
-        bodyText.setText(data.getStory() + "\n\n" + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna fermentum iaculis eu non. Accumsan lacus vel facilisis volutpat. Sit amet porttitor eget dolor morbi non arcu risus quis. Iaculis urna id volutpat lacus laoreet non curabitur. Ut placerat orci nulla pellentesque dignissim enim sit. Praesent elementum facilisis leo vel. Malesuada nunc vel risus commodo viverra maecenas. Pharetra massa massa ultricies mi quis hendrerit dolor magna. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Sed risus ultricies tristique nulla aliquet. Dictum fusce ut placerat orci nulla pellentesque dignissim. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt. Aliquet nec ullamcorper sit amet risus nullam eget felis. At augue eget arcu dictum. Sed arcu non odio euismod.\n" +
-                "\n" +
-                "Nunc mi ipsum faucibus vitae. Velit scelerisque in dictum non consectetur a erat nam. Eget mi proin sed libero. Eu lobortis elementum nibh tellus molestie nunc. Ut tellus elementum sagittis vitae et leo. A iaculis at erat pellentesque adipiscing commodo elit. Risus nec feugiat in fermentum posuere urna nec tincidunt praesent. Feugiat scelerisque varius morbi enim nunc faucibus. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at. Libero enim sed faucibus turpis in. Quis auctor elit sed vulputate mi. Donec ac odio tempor orci dapibus ultrices in. At erat pellentesque adipiscing commodo elit. Semper risus in hendrerit gravida rutrum quisque. Et malesuada fames ac turpis.");
+        Helper.setText_toView(dateText,Helper.DateFromTime("MMMM dd, yyyy", article.getTimeUpdated()));
+        Helper.setText_toView(titleText,article.getTitle());
+        Helper.setText_toView(authorText,article.getAuthor());
+        Helper.setText_toView(bodyText,article.getStory());
 
         // set up viewpager and associated dots
         ViewPager viewPager = findViewById(R.id.article_viewPager);
-        viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager(),FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-            @NonNull
+
+        // TODO: ViewPager crashes for unknown reason when image is updated from database (this does not happen on other pages)
+        final String[] imagePaths = article.getImagePaths();
+        viewPager.setAdapter(new PagerAdapter() {
             @Override
-            public Fragment getItem(int position) {
-                // TODO: fix this, put image[] field in Article? Oh boy
-                return new ArticleImage();
+            public Object instantiateItem(@NonNull ViewGroup container, int position)
+            {
+                ImageView imageView = new ImageView(container.getContext());
+                Helper.setImage_toView_fromUrl(imageView, article.getImagePaths()[position]);
+                container.addView(imageView);
+                return imageView;
+
+            }
+
+            @Override
+            public void destroyItem(ViewGroup container, int position, Object view)
+            {
+                container.removeView((View) view);
             }
 
             @Override
             public int getCount() {
-                return 3;
+                return imagePaths.length;
+            }
+
+            @Override
+            public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+                return object == view;
             }
         });
+
         TabLayout tabLayout = findViewById(R.id.article_tabLayout);
         tabLayout.setupWithViewPager(viewPager, true);
+        tabLayout.bringToFront(); // necessary, otherwise viewpager will cover it
+        // using android:elevation attribute would be preferable but it is only available for API level 21+
 
         // set up bookmark button
         ImageButton bookmarkButton = findViewById(R.id.article_bookmarkButton);
-        data.setBookmarked_toView(bookmarkButton);
-        data.setBookMarkListener_toView(bookmarkButton);
+        bookmarkButton.bringToFront(); // necessary, otherwise viewpager will cover it
+
+        Helper.setBookmarked_toView(bookmarkButton,article.isBookmarked());
+        Helper.setBookMarkListener_toView(bookmarkButton, article);
 
         // set listener for back button
         ImageButton backButton = findViewById(R.id.article_header_back);

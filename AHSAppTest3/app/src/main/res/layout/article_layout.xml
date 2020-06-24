@@ -60,45 +60,55 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/article_tabLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tabBackground="@drawable/article_tab_selector"
+                    app:tabGravity="fill"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMode="fixed" />
 
                 <ImageButton
                     android:id="@+id/article_bookmarkButton"
-                    android:layout_width="@dimen/Article_Display_bookmarked_btn_size"
-                    android:layout_height="@dimen/Article_Display_bookmarked_btn_size"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:padding="10dp"
 
-                    android:layout_marginTop="@dimen/Article_Display_bookmarked_btn_padding"
+                    android:layout_marginTop="0dp"
 
-                    android:layout_marginEnd="@dimen/Article_Display_bookmarked_btn_padding"
+                    android:layout_marginEnd="0dp"
                     android:background="@drawable/bookmarked_button_background"
                     android:scaleType="fitCenter"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@color/Blank"
-                    android:layout_marginRight="@dimen/Article_Display_bookmarked_btn_padding" />
+                    android:layout_marginRight="@dimen/Article_Display_bookmarked_btn_padding"
+                    />
 
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/article_viewPager"
+                <FrameLayout
+                    android:id="@+id/frameLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
 
+                    android:layout_height="200dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                </androidx.viewpager.widget.ViewPager>
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/article_viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/article_tabLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:tabBackground="@drawable/article_tab_selector"
-                app:tabGravity="fill"
-                app:tabIndicatorHeight="0dp"
-                app:tabMode="fixed" />
 
             <LinearLayout
                 android:id="@+id/article_text_linearLayout"

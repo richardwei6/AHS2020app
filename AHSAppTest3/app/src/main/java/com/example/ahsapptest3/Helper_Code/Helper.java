@@ -11,15 +11,20 @@ import androidx.core.content.res.ResourcesCompat;
 import com.example.ahsapptest3.Article;
 import com.example.ahsapptest3.ArticleActivity;
 import com.example.ahsapptest3.R;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
+
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 
-// Alex Dang
+// Alex Dang 2020
 public class Helper {
 
     /*
@@ -35,7 +40,19 @@ public class Helper {
      * */
     public static void setImage_toView_fromUrl(ImageView view, String url)
     {
-        Picasso.with(view.getContext()).load(url).into(view);
+        Picasso.with(view.getContext()).load(url).fit().centerInside().into(view, new Callback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError() {
+                System.out.println("Picasso crashed");
+            }
+        });
+        // possibly centerinside(), centercrop() options
+        // you need fit() before centerinside(), centercrop() otherwise the app crashes with no logcat output
     }
 
     /*
@@ -112,10 +129,21 @@ public class Helper {
         }
     }
 
+    /*
+     *  Gets difference between time parameter passed and the time right now
+     * */
     public static long TimeFromNow(long time)
     {
         Date currentTime = new Date();
-        return currentTime.getTime()-time;
+        return currentTime.getTime()-time*1000L; // for interesting reasons, Date() uses seconds not milliseconds
+    }
+
+    /*
+     *  Because I forget how to use SimpleDateFormat()
+     * */
+    public static String DateFromTime(String pattern, long time)
+    {
+        return new SimpleDateFormat(pattern, Locale.US).format(time*1000L);
     }
 
 

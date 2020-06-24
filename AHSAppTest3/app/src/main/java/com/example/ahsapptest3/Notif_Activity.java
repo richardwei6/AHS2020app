@@ -10,6 +10,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import com.example.ahsapptest3.Helper_Code.Helper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -32,13 +36,10 @@ public class Notif_Activity extends AppCompatActivity {
             articles = new Article[data.length];
             for(int i = 0; i < articles.length; i++)
             {
-                articles[i] = new Article(
-                        getDate(""),
-                        data[i][0],
-                        data[i][1],
-                        getImageFilePath(""),
-                        isAlreadyBookmarked(""),
-                        i < 3); // change this later
+                articles[i] =
+
+                new Article(2342,238472394,data[i][0],"author",data[i][1],new String [] {"hello"},false,i < 3);
+                // change this later
             }
         }
         justNotified = new boolean[articles.length];
@@ -63,7 +64,7 @@ public class Notif_Activity extends AppCompatActivity {
             ));
             frameLayouts[i].setId(getIdRange()+i);
             listLayout.addView(frameLayouts[i],params);
-            articles[i].setArticleListener_toView(frameLayouts[i], this);
+            Helper.setArticleListener_toView(frameLayouts[i], articles[i]);
         }
 
         Notif_Template[] items = new Notif_Template[data.length];

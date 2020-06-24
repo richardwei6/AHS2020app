@@ -2,7 +2,7 @@ package com.example.ahsapptest3;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.ahsapptest3.Helper_Code.ValContainer;
 import com.example.ahsapptest3.HomePage_News.News_Template;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,8 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,23 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton home_btn, bulletin_btn, bookmarks_btn, settings_btn;
     private ImageButton[] nav_btns;
 
-    final String[] titles = {
-            "FEATURED",
-            "ASB NEWS",
-            "SPORTS NEWS",
-            "DISTRICT NEWS"
-    };
-
-    private int[] barColors;
-
-   /* final Article[][] articles = {
-            getFeatured_Articles(), //fix
-            getASB_Articles(),
-            getSports_Articles(),
-            getDistrict_Articles()
-    };*/
-
-    private View[] newsLayouts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,21 +46,109 @@ public class MainActivity extends AppCompatActivity {
                         home_btn,bulletin_btn,bookmarks_btn,settings_btn
                 };
 
-        barColors = new int[]{
-                ContextCompat.getColor(this, R.color.VomitYellow_DDCD3E__HOME), // featured
+        final String[] titles = {
+                "ASB NEWS",
+                "SPORTS NEWS",
+                "DISTRICT NEWS",
+                "FEATURED",
+        };
+
+        final int[] barColors = new int[]{
+
                 ContextCompat.getColor(this, R.color.Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF), // asb news
                 ContextCompat.getColor(this, R.color.VomitYellow_DDCD3E__HOME), // district news
-                ContextCompat.getColor(this, R.color.SeaBlue_364D9E__HOME)
+                ContextCompat.getColor(this, R.color.SeaBlue_364D9E__HOME), // sports news
+                ContextCompat.getColor(this, R.color.VomitYellow_DDCD3E__HOME), // featured
         };
 
-        newsLayouts = new View[] {
-                findViewById(R.id.home_featuredNews_placeholder),
+        final View[] newsLayouts = new View[] {
+
                 findViewById(R.id.home_asbNews_placeholder),
                 findViewById(R.id.home_sportsNews_placeholder),
-                findViewById(R.id.home_districtNews_placeholder)
+                findViewById(R.id.home_districtNews_placeholder),
+                findViewById(R.id.home_featuredNews_placeholder),
 
         };
-        getASB_Articles();
+
+        String [] data_ref = new String[] {
+                "asb",
+                "district",
+                "sports"
+        };
+        final ArrayList<Article> featured_articles = new ArrayList<>();
+
+        for(int i = 0; i < data_ref.length; i++)
+        {
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("homepage").child(data_ref[i]);
+
+            final int finalI = i; // necessary cause inner class
+
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    // use ArrayList b/c no idea how many articles
+                    ArrayList<Article> articles = new ArrayList<>();
+
+                    for (DataSnapshot child_sn: snapshot.getChildren()) {
+                        int ID = Integer.parseInt(child_sn.child("ID").getValue().toString());
+                        String author = child_sn.child("articleAuthor").getValue().toString();
+                        String title = child_sn.child("articleTitle").getValue().toString();
+                        String body = child_sn.child("articleBody").getValue().toString();
+
+                        ArrayList<String> imagePathsList = new ArrayList<>();
+                        for(DataSnapshot images_sn: child_sn.child("articleImages").getChildren())
+                        {
+                            imagePathsList.add(images_sn.getValue().toString());
+                        }
+                        String[] imagePaths = new String[imagePathsList.size()];
+                        // convert Arraylist to array, it's faster since no more modification is needed
+                        imagePathsList.toArray(imagePaths);
+
+                        long article_time = (long) child_sn.child("articleUnixEpoch").getValue();
+                        boolean is_featured = (boolean) child_sn.child("isFeatured").getValue();
+
+                        Article article = new Article(ID,article_time,title,author,body,imagePaths,false,false);
+
+                        // add Article to ArrayList
+                        articles.add(article); // default values for bookmark and notified
+
+                        if(is_featured)
+                            featured_articles.add(article);
+
+                    }
+
+                    // convert ArrayList to array, it's faster since no more modification is needed
+                    Article[] articles_array = new Article[articles.size()];
+                    articles.toArray(articles_array);
+
+                    // initialize the fragment
+                    News_Template newsFrag = News_Template.newInstanceOf(articles_array, titles[finalI], barColors[finalI], false);
+
+                    // add the fragment to the view
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(newsLayouts[finalI].getId(),newsFrag)
+                            .commit();
+
+                    int i = 3;
+                    // handle featured articles
+                    // initialize the fragment
+                    Article[] featured_array = new Article[featured_articles.size()];
+                    News_Template featuredFrag = News_Template.newInstanceOf(featured_articles.toArray(featured_array), titles[i], barColors[i], false);
+
+                    // add the fragment to the view
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(newsLayouts[i].getId(),featuredFrag)
+                            .commit();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
 
 
       /*  for(int i = 0; i < newsLayouts.length; i++)
@@ -260,128 +330,6 @@ String [][] data = new String[][]
 
     }
 
-    public Article[] getFeatured_Articles()
-    {
-        String[][] data = new String[][]
-                {
-                        {"Lorem Ipsum a Very Long Title", "hello world what a nice day!"},
-                        {"NEWS Title2", "summaryText2. This is a long sample summary. This should cut off at two lines, with an ellipsis."},
-                        {"Title3", "summaryText3"},
-                        {"Title4", "summaryText4"},
-                        {"Title5", "summaryText5"},
-                        {"Title6", "summaryText6"}
-                };
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2020,5,12,12,7);
-
-        Date date = calendar.getTime();
-
-        Article[] articles = new Article[data.length];
-        for(int i = 0; i < articles.length; i++)
-        {
-            articles[i] = new Article(
-                    date,
-                    data[i][0],
-                    data[i][1],
-                    "N/A",
-                    false);
-        }
-        return articles;
-    }
-
-    public void getASB_Articles()
-    {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2020,5,12,12,7);
-
-        final Date date = calendar.getTime();
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("homepage").child("asb");
-
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Article> articles = new ArrayList<>();
-                int i = 1;
-                for (DataSnapshot childSnapshot: snapshot.getChildren()) {
-                    String title = childSnapshot.child("articleTitle").getValue().toString();
-                    String summary = childSnapshot.child("articleBody").getValue().toString();
-                    articles.add(new Article(date,title,summary,"N/A",false));
-
-                }
-
-                Article[] articles_array = new Article[articles.size()];
-                articles.toArray(articles_array);
-                News_Template newsFrag = News_Template.newInstanceOf(articles_array, titles[i], barColors[i], false);
-
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(newsLayouts[i].getId(),newsFrag)
-                        .commit();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    public Article[] getSports_Articles()
-    {
-        String [][] data = new String[][]
-                {
-                        {"Lorem Ipsum a Very Long Title", "hello world what a nice day!"},
-                        {"Sports News Title2", "summaryText2"},
-                        {"Title3", "summaryText3"},
-                        {"Title4", "summaryText4"},
-                        {"Title5", "summaryText5"},
-                        {"Title6", "summaryText6"}
-                };
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2020,5,12,12,7);
-
-        Date date = calendar.getTime();
-        Article[] articles = new Article[data.length];
-        for(int i = 0; i < articles.length; i++)
-        {
-            articles[i] = new Article(
-                    date,
-                    data[i][0],
-                    data[i][1],
-                    "N/A",
-                    false);
-        }
-        return articles;
-    }
-
-    public Article[] getDistrict_Articles()
-    {
-        String [][] data = new String[][]
-                {
-                        {"Lorem Ipsum a Veryd Long Titled", "hello world what a nice day! This is the content inside the article."},
-                        {"Title2f", "summaryText2"},
-                        {"Title3", "summaryText3"},
-                        {"Title4", "summaryText4"},
-                        {"Title5", "summaryText5"},
-                        {"Title6", "summaryText6"}
-                };
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2020,5,12,12,7);
-
-        Date date = calendar.getTime();
-        Article[] articles = new Article[data.length];
-        for(int i = 0; i < articles.length; i++)
-        {
-            articles[i] = new Article(
-                    date,
-                    data[i][0],
-                    data[i][1],
-                    "N/A",
-                    false);
-        }
-        return articles;
-    }
     public void goToHome (View view)
     {
 

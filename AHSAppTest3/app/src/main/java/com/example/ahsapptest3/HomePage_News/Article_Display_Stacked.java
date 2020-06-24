@@ -75,7 +75,7 @@ public class Article_Display_Stacked extends Fragment {
             getContext().getTheme().resolveAttribute(R.attr.selectableItemBackground,outValue,true);
             inflated[i].setBackgroundResource(outValue.resourceId);
 
-            articles[i].setArticleListener_toView(inflated[i],this.getContext());
+            Helper.setArticleListener_toView(inflated[i], articles[i]);
         }
 
         for(int i = 0; i < inflated.length; i++)
@@ -98,12 +98,14 @@ public class Article_Display_Stacked extends Fragment {
                 Helper.setText_toView((TextView) inflated[i].findViewById(R.id.article_display__summary_Text), articles[i].getStory());
 
                 // setImage
-                articles[i].setImage_toView((ImageView) inflated[i].findViewById(R.id.article_display__imageView));
+                Helper.setImage_toView_fromUrl((ImageView) inflated[i].findViewById(R.id.article_display__imageView),articles[i].getImagePaths()[0]);
 
                 // set bookmarked button state
-                final ImageButton btn = inflated[i].findViewById(R.id.article_display__bookmarked_button);
-                articles[i].setBookmarked_toView(btn);
-                articles[i].setBookMarkListener_toView(btn);
+                final ImageButton bookmarkButton = inflated[i].findViewById(R.id.article_display__bookmarked_button);
+
+                Helper.setBookmarked_toView(bookmarkButton,articles[i].isBookmarked());
+                Helper.setBookMarkListener_toView(bookmarkButton, articles[i]);
+
             }
         }
 

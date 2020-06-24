@@ -59,6 +59,11 @@ public class News_Template extends Fragment {
         }*/
 
         Article[] articles = (Article[]) getArguments().getParcelableArray(ARTICLE_KEY); // cast is necessary
+
+        TextView goneText = view.findViewById(R.id.template_news_goneText);
+        if(articles.length != 0)
+            goneText.setVisibility(View.GONE);
+
         EnhancedWrapContentViewPager viewPager = view.findViewById(R.id.template_news__ViewPager);
 
         viewPager.setAdapter(

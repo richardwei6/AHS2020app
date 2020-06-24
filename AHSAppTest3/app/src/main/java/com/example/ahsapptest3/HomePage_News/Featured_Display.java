@@ -11,7 +11,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.ahsapptest3.Article;
+import com.example.ahsapptest3.Helper_Code.Helper;
 import com.example.ahsapptest3.R;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,13 +32,24 @@ public class Featured_Display extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.template__featured_display, container, false);
+        if (getArguments() == null)
+            return view;
+
         Article article = (Article) getArguments().getParcelable(ARTICLE_KEY);
-        article.setTitleText_toView( (TextView) view.findViewById(R.id.template_featured__title_Text));
-        article.setBookmarked_toView((ImageButton) view.findViewById(R.id.template_featured__bookmarked_button));
-        article.setBookMarkListener_toView((ImageButton) view.findViewById(R.id.template_featured__bookmarked_button));
-        article.setTime_Hours_UpdatedText_toView((TextView) view.findViewById(R.id.template_featured__updated_Text));
-        article.setImage_toView((ImageView) view.findViewById(R.id.template_featured__ImageView));
-    article.setArticleListener_toView(view, getContext());
+        Helper.setText_toView( (TextView) view.findViewById(R.id.template_featured__title_Text), article.getTitle());
+
+        ImageView bookmarkButton = view.findViewById(R.id.template_featured__bookmarked_button);
+        Helper.setBookmarked_toView(bookmarkButton,article.isBookmarked());
+        Helper.setBookMarkListener_toView(bookmarkButton, article);
+
+        Helper.setTimeText_toView((TextView) view.findViewById(R.id.article_display__time_updated_Text),
+                Helper.TimeFromNow(article.getTimeUpdated()),
+                TimeUnit.HOURS);
+
+        Helper.setImage_toView_fromUrl((ImageView) view.findViewById(R.id.template_featured__ImageView),article.getImagePaths()[0]);
+
+        Helper.setArticleListener_toView(view, article);
+
         return view;
     }
 

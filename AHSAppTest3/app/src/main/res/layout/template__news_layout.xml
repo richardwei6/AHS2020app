@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/blab" android:layout_height="wrap_content"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:id="@+id/template_news__LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -37,6 +36,14 @@
         android:layout_marginEnd="@dimen/EveryPage_Side_Padding"
         android:layout_marginRight="@dimen/EveryPage_Side_Padding"
         android:src="@drawable/news_template_rounded_bar" />
+
+    <TextView
+        android:id="@+id/template_news_goneText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_pro_display"
+        android:gravity="center_horizontal"
+        android:text="Nothing Here!" />
 
     <com.example.ahsapptest3.Helper_Code.EnhancedWrapContentViewPager
         android:id="@+id/template_news__ViewPager"

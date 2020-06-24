@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ahsapptest3.Helper_Code.Helper;
+
+import java.util.concurrent.TimeUnit;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -27,12 +31,17 @@ public class Notif_Template extends Fragment {
         View view = inflater.inflate(R.layout.template_notif_display, container, false);
         if(getArguments() == null)
             return view;
-        Article data = getArguments().getParcelable(ARTICLE_KEY);
-        data.setTitleText_toView((TextView) view.findViewById(R.id.notif_display_titleText));
-        data.setStoryText_toView((TextView) view.findViewById(R.id.notif_display_summaryText));
-        data.setTime_Minutes_UpdatedText_toView((TextView) view.findViewById(R.id.notif_display_timeUpdatedText));
+        Article article = getArguments().getParcelable(ARTICLE_KEY);
 
-        if(data.alreadyNotified())
+        Helper.setText_toView( (TextView) view.findViewById(R.id.notif_display_titleText), article.getTitle());
+
+        Helper.setText_toView( (TextView) view.findViewById(R.id.notif_display_summaryText), article.getStory());
+
+        Helper.setTimeText_toView((TextView) view.findViewById(R.id.notif_display_timeUpdatedText),
+                Helper.TimeFromNow(article.getTimeUpdated()),
+                TimeUnit.MINUTES);
+
+        if(article.alreadyNotified())
         {
             ImageView
                     indicator = view.findViewById(R.id.notif_display_indicatorImage),
