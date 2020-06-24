@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/EveryPage_Side_Padding"
     android:paddingRight="@dimen/EveryPage_Side_Padding"
-    tools:context=".HomePage_News.Article_Display_Template">
+    >
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -95,6 +95,8 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="@id/article_display__imageView"
         app:layout_constraintTop_toTopOf="@id/article_display__imageView"
-        app:srcCompat="@drawable/bookmarked_icon_inactive" />
+        app:srcCompat="@drawable/bookmarked_icon_inactive"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

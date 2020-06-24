@@ -6,37 +6,18 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.ahsapptest3.Article;
-import com.example.ahsapptest3.HomePage_News.Article_Display_Stacked;
-import com.example.ahsapptest3.HomePage_News.Article_Display_Template;
-
-import java.util.Date;
 
 public class Article_Stacked_PagerAdapter extends FragmentPagerAdapter
 {
     private int NUM_PAGES;
     private int num_stacked;
-    private int startID;
-//    private Article_Display_Template[] frags;
     private Article[] infos;
 
-
-    Date date;
-    public Article_Stacked_PagerAdapter(@NonNull FragmentManager fm, Article_Display_Template[] frags, int num_stacked, int startID) {
-        super(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        NUM_PAGES = frags.length/num_stacked+frags.length%num_stacked;
-        //this.frags = frags;
-        this.num_stacked = num_stacked;
-        this.startID = startID;
-
-
-    }
-
-    public Article_Stacked_PagerAdapter(@NonNull FragmentManager fm, Article[] frags, int num_stacked, int startID) {
+    public Article_Stacked_PagerAdapter(@NonNull FragmentManager fm, Article[] frags, int num_stacked) {
         super(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         NUM_PAGES = frags.length/num_stacked+frags.length%num_stacked;
         this.infos = frags;
         this.num_stacked = num_stacked;
-        this.startID = startID;
 
     }
 

@@ -26,7 +26,8 @@ public class FeaturedArticle_PagerAdapter extends FragmentPagerAdapter
     @NonNull
     @Override
     public Fragment getItem(int position) {
-
+        System.out.println(":::" + position);
+        System.out.println(":::" + articles[position]);
         return Featured_Display.newInstanceOf(articles[position]);
     }
 

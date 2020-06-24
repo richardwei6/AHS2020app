@@ -13,6 +13,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 
 public class Article implements Parcelable {
@@ -20,6 +21,8 @@ public class Article implements Parcelable {
     private long time_updated;
     private boolean is_bookmarked, notified;
     private String author, title, summary, imagePath, story;
+    private String [] imagePaths;
+    private int ID;
 
     private boolean blank; // false
 
@@ -85,7 +88,36 @@ public class Article implements Parcelable {
         //TODO: use this constructor instead
     }
 
-    public Article() //blank template
+    public Article(
+            int ID,
+            long time_updated,
+            String title,
+            String author,
+            String story,
+            String[] imagePaths,
+
+            // determined by current articles on phone.
+            // false by default
+            // (this must be determined on creation, creating overloaded constructor is too unwieldy)
+            boolean is_bookmarked,
+
+            // determined by current articles on phone.
+            // false by default
+            // for notification page only
+            boolean has_notified
+    )
+    {
+        this.ID = ID;
+        this.time_updated = time_updated;
+        this.title = title;
+        this.author = author;
+        this.story = story;
+        this.imagePaths = imagePaths;
+        this.is_bookmarked = is_bookmarked;
+        this.notified = has_notified;
+    }
+
+    public Article() //blank template, used to construct invisible articles for the purpose of getting the proper view height
     {
         blank = true;
     }
@@ -133,7 +165,7 @@ public class Article implements Parcelable {
         }
     };
 
-    private void swapBookmark()
+    public void swapBookmark()
     {
         is_bookmarked = !is_bookmarked;
     }
@@ -143,7 +175,7 @@ public class Article implements Parcelable {
         return time_updated;
     }
 
-    public String getAuthor(){return author;}
+    public String getAuthor() {return author;}
 
     public String getTitle()
     {
@@ -244,7 +276,6 @@ public class Article implements Parcelable {
 
             }
         });
-
     }
 
     public void setArticleListener_toView(View view, final Context context)
@@ -261,5 +292,11 @@ public class Article implements Parcelable {
 
             }
         });
+    }
+
+    @Override
+    public String toString()
+    {
+        return title;
     }
 }
