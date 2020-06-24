@@ -85,6 +85,9 @@ class notificationSettingsClass: UITableViewController{
    
         print(selectedNotifications);
         UserDefaults.standard.set(selectedNotifications, forKey: "selectedNotifications");
+        
+        filterTotalArticles();
+        unreadNotif = (notificationList[1].count > 0);
     }
     
     @IBAction func dismiss(_ sender: Any){
