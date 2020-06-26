@@ -91,10 +91,7 @@ class CustomTabBarController: UIViewController {
                     }
                     totalNotificationList.append(singleNotification);
                     loadNotifPref();
-                    notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
-                    for notification in totalNotificationList{
-                        notificationList[(notificationReadDict[notification.messageID ?? ""] == true ? 0 : 1)].append(notification);
-                    }
+                    filterTotalArticles();
                     unreadNotif = (notificationList[1].count > 0);
                     self.notificationDot.isHidden = !unreadNotif;
                 };
