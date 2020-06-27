@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                     // handle featured articles
                     // initialize the fragment
                     Article[] featured_array = new Article[featured_articles.size()];
-                    News_Template featuredFrag = News_Template.newInstanceOf(featured_articles.toArray(featured_array), titles[i], barColors[i], false);
+                    News_Template featuredFrag = News_Template.newInstanceOf(featured_articles.toArray(featured_array), titles[i], barColors[i], true);
 
                     // add the fragment to the view
                     getSupportFragmentManager()

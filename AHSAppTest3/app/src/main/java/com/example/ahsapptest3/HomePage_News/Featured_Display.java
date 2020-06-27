@@ -42,7 +42,7 @@ public class Featured_Display extends Fragment {
         Helper.setBookmarked_toView(bookmarkButton,article.isBookmarked());
         Helper.setBookMarkListener_toView(bookmarkButton, article);
 
-        Helper.setTimeText_toView((TextView) view.findViewById(R.id.article_display__time_updated_Text),
+        Helper.setTimeText_toView((TextView) view.findViewById(R.id.template_featured__updated_Text),
                 Helper.TimeFromNow(article.getTimeUpdated()),
                 TimeUnit.HOURS);
 
