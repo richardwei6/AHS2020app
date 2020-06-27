@@ -53,7 +53,7 @@ public class Article_Display_Stacked extends Fragment {
 
     public void displayFrags(View view)
     {
-        LinearLayout layout = view.findViewById(R.id.LinearLayout);
+        LinearLayout layout = view.findViewById(R.id.article_stacked_LinearLayout);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);

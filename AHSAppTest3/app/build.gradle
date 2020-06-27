@@ -39,5 +39,9 @@ dependencies {
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0' // for coordinator layout
     implementation 'me.relex:circleindicator:2.1.4'
     implementation 'com.google.android.material:material:1.1.0'// for circle indicator
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }

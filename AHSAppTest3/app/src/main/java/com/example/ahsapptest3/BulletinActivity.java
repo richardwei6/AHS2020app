@@ -349,15 +349,10 @@ public class BulletinActivity extends AppCompatActivity {
 
     }
 
-    public void goToBookmarks(View view)
+    public void goToSaved (View view)
     {
-        for(ImageButton i: nav_btns)
-        {
-            if(i.equals(bookmarks_btn))
-                i.setColorFilter(ContextCompat.getColor(this,R.color.LightGray_F2F2F3__HOME));
-            else
-                i.clearColorFilter();
-        }
+        Intent myIntent = new Intent(BulletinActivity.this,SavedActivity.class);
+        BulletinActivity.this.startActivity(myIntent);
     }
 
     public void goToSettings(View view)

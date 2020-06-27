@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.ahsapptest3.Article;
 import com.example.ahsapptest3.ArticleActivity;
+import com.example.ahsapptest3.BookmarkHandler;
 import com.example.ahsapptest3.R;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
@@ -40,7 +40,7 @@ public class Helper {
      * */
     public static void setImage_toView_fromUrl(ImageView view, String url)
     {
-        Picasso.with(view.getContext()).load(url).fit().centerInside().into(view, new Callback() {
+        /*Picasso.with(view.getContext()).load(url).fit().centerInside().into(view, new Callback() {
             @Override
             public void onSuccess() {
 
@@ -52,7 +52,13 @@ public class Helper {
             }
         });
         // possibly centerinside(), centercrop() options
-        // you need fit() before centerinside(), centercrop() otherwise the app crashes with no logcat output
+        // you need fit() before centerinside(), centercrop() otherwise the app crashes with no logcat output*/
+        Glide
+                .with(view.getContext())
+                .load(url)
+                .error(R.drawable.article_display_template__rounded_darkgray)
+                .centerInside()
+                .into(view);
     }
 
     /*
@@ -60,7 +66,13 @@ public class Helper {
      * */
     public static void setImage_toView_fromStorage(ImageView view, String filePath)
     {
-        Picasso.with(view.getContext()).load(new File(filePath)).into(view);
+        /*Picasso.with(view.getContext()).load(new File(filePath)).into(view);*/
+        Glide
+                .with(view.getContext())
+                .load(new File(filePath))
+                .error(R.drawable.article_display_template__rounded_darkgray)
+                .centerInside()
+                .into(view);
     }
 
     /*
@@ -103,15 +115,18 @@ public class Helper {
      * */
     public static void setBookMarkListener_toView(final ImageView view, final Article article)
     {
+        final BookmarkHandler bookmarkHandler = new BookmarkHandler(view.getContext());
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 article.swapBookmark();
                 setBookmarked_toView(view,article.isBookmarked());
-
+                bookmarkHandler.addData(article);
             }
         });
     }
+
 
     /*
      *  Sets time in a given unit to a TextView, formatted

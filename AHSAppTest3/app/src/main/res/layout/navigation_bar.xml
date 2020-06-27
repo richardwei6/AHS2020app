@@ -70,7 +70,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/Nav_Button_SideLength"
                 android:background="?attr/selectableItemBackground"
-                android:onClick="goToBookmarks"
+                android:onClick="goToSaved"
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
 

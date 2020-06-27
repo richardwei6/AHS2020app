@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.example.ahsapptest3.Helper_Code.ValContainer;
 import com.example.ahsapptest3.HomePage_News.News_Template;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton[] nav_btns;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         bulletin_btn = findViewById(R.id.bulletin_button);
         bookmarks_btn = findViewById(R.id.bookmarks_button);
         settings_btn = findViewById(R.id.settings_button);
+
 
         nav_btns = new ImageButton[]
                 {
@@ -150,160 +151,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-
-      /*  for(int i = 0; i < newsLayouts.length; i++)
-        {
-            News_Template newsFrag = News_Template.newInstanceOf(articles[i], titles[i], barColors[i], (i==0));
-
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(newsLayouts[i].getId(),newsFrag)
-                    .commit();
-        }*/
-
-
-
-
-/*
-
-        
-        for(int i = 0; i < newsLayouts.length; i++)
-        {
-            TextView titleText = newsLayouts[i].findViewById(R.id.template_news__TitleText);
-            titleText.setText(titles[i]);
-
-            ImageView titleBar = newsLayouts[i].findViewById(R.id.template_news__rounded_bar);
-            titleBar.setColorFilter(barColors[i]);
-
-
-        }
-int i = 1;
-        LinearLayout newsLinearLayout = newsLayouts[i].findViewById(R.id.template_news__LinearLayout);
-        if(newsLinearLayout==null) System.out.println(":::null");
-        ViewPager viewPager = new ViewPager(this);
-        viewPager.setId(newsLinearLayout.getId());
-        //if(i==0)
-        viewPager.setAdapter(new FeaturedArticle_PagerAdapter(getSupportFragmentManager(),articles[i]));
-            *//*else
-                {viewPager.setAdapter(new Article_Stacked_PagerAdapter(getSupportFragmentManager(),articles[i],getNumStacked()));
-                System.out.println("::: Reached article stacked");}*//*
-        viewPager.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        TabLayout tabLayout = newsLayouts[i].findViewById(R.id.template_news__TabLayout);
-        tabLayout.setupWithViewPager(viewPager, true);
-        newsLinearLayout.addView(viewPager,viewPager.getLayoutParams());
-
-        News_Template test = new News_Template() {
-            public Article[] getData()
-            {
-                return articles[0];
-            }
-
-            public String getTitleText()
-            {
-                return titles[0];
-            }
-
-            public int getBarColor()
-            {
-                return barColors[0];
-            }
-        }*/
-        /*for(int i = 0; i < newsLayouts.length; i++)
-        {
-            LinearLayout newsLinearLayout = newsLayouts[i].findViewById(R.id.template_news__LinearLayout);
-            if(newsLinearLayout==null) System.out.println(":::null");
-            EnhancedWrapContentViewPager viewPager = new EnhancedWrapContentViewPager(this);
-            viewPager.setId(newsLinearLayout.getId());
-        //if(i==0)
-        viewPager.setAdapter(new FeaturedArticle_PagerAdapter(getSupportFragmentManager(),articles[i]));
-            *//*else
-                {viewPager.setAdapter(new Article_Stacked_PagerAdapter(getSupportFragmentManager(),articles[i],getNumStacked()));
-                System.out.println("::: Reached article stacked");}*//*
-            viewPager.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        TabLayout tabLayout = newsLayouts[i].findViewById(R.id.template_news__TabLayout);
-        tabLayout.setupWithViewPager(viewPager, true);
-        newsLinearLayout.addView(viewPager,viewPager.getLayoutParams());
-        }*/
-
-        //TabLayout tabLayout = newsLayouts[1].findViewById(R.id.template_news__TabLayout);
-        //tabLayout.setupWithViewPager(viewPager, true);
-/*
-        View header = findViewById(R.id.home_header_test);
-        TextView titleText = header.findViewById(R.id.template_news__TitleText);
-        final String titletest = "FEATURED";
-        titleText.setText(titletest);
-
-        ImageView titleBar = header.findViewById(R.id.template_news__rounded_bar);
-        titleBar.setColorFilter(ContextCompat.getColor(this, R.color.VomitYellow_DDCD3E__HOME));
-
-        String[][] data = new String[][]
-                {
-                        {"Lorem Ipsum a Very Long Title", "hello world what a nice day!"},
-                        {"ASB NEWS Title2", "summaryText2. This is a long sample summary. This should cut off at two lines, with an ellipsis."},
-                        {"Title3", "summaryText3"},
-                        {"Title4", "summaryText4"},
-                        {"Title5", "summaryText5"},
-                        {"Title6", "summaryText6"}
-                };
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2020,5,12,12,7);
-
-        Date date = calendar.getTime();
-
-        Article[] articles = new Article[data.length];
-        for(int i = 0; i < articles.length; i++)
-        {
-            articles[i] = new Article(
-                    date,
-                    data[i][0],
-                    data[i][1],
-                    "N/A",
-                    false);
-        }
-
-        EnhancedWrapContentViewPager viewPager = header.findViewById(R.id.template_news__ViewPager);
-        viewPager.setAdapter(new FeaturedArticle_PagerAdapter(getSupportFragmentManager(),articles));
-        TabLayout tabLayout = header.findViewById(R.id.template_news__TabLayout);
-        tabLayout.setupWithViewPager(viewPager, true);
-//*
-        View header2 = findViewById(R.id.asbNewstest);
-        TextView titleText2 = header2.findViewById(R.id.template_news__TitleText);
-        titleText2.setText(titles[1]);
-
-        ImageView titleBar2 = header2.findViewById(R.id.template_news__rounded_bar);
-        titleBar2.setColorFilter(barColors[1]);
-
-        EnhancedWrapContentViewPager viewPager2 = header2.findViewById(R.id.template_news__ViewPager);
-String [][] data = new String[][]
-        {
-                {"Lorem Ipsum a Very Long Title", "hello world what a nice day! This is the content inside the article."},
-                {"ASB NEWS Title2", "summaryText2. This is a long sample summary. This should cut off at two lines, with an ellipsis."},
-                {"Title3", "summaryText3. Content inside article, but it will be truncated."},
-                {"Title4", "summaryText4"},
-                {"Title5", "summaryText5"},
-                {"Title6", "summaryText6"},
-                {"Title7", "summaryText7"}
-        };
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2020,5,12,12,7);
-
-        Date date = calendar.getTime();
-        Article[] articles2 = new Article[data.length];
-        for(int i = 0; i < articles.length; i++)
-        {
-            articles2[i] = new Article(
-                    date,
-                    data[i][0],
-                    data[i][1],
-                    "N/A",
-                    false);
-        }
-
-        viewPager2.setAdapter(new Article_Stacked_PagerAdapter(getSupportFragmentManager(),articles2,getNumStacked()));
-        TabLayout tabLayout2 = header2.findViewById(R.id.template_news__TabLayout);
-        tabLayout2.setupWithViewPager(viewPager2, true);
-*/
-
         // apply scrolling animation to navigation bar
 
         final FrameLayout navBar= findViewById(R.id.nav_bar_FrameLayout);
@@ -330,6 +177,7 @@ String [][] data = new String[][]
 
     }
 
+
     public void goToHome (View view)
     {
 
@@ -341,15 +189,10 @@ String [][] data = new String[][]
         MainActivity.this.startActivity(myIntent);
     }
 
-    public void goToBookmarks(View view)
+    public void goToSaved(View view)
     {
-        for(ImageButton i: nav_btns)
-        {
-            if(i.equals(bookmarks_btn))
-                i.setColorFilter(ContextCompat.getColor(this,R.color.LightGray_F2F2F3__HOME));
-            else
-                i.clearColorFilter();
-        }
+        Intent myIntent = new Intent(MainActivity.this,SavedActivity.class);
+        MainActivity.this.startActivity(myIntent);
     }
 
     public void goToSettings(View view)

@@ -54,15 +54,17 @@ public class Article implements Parcelable {
     {
         is_bookmarked = !is_bookmarked;
     }
+
+    public int getID() {return ID;}
     public long getTimeUpdated()
     {
         return time_updated;
     }
-    public String getAuthor() {return author;}
     public String getTitle()
     {
         return title;
     }
+    public String getAuthor() {return author;}
     public String getStory()
     {
         return story;
