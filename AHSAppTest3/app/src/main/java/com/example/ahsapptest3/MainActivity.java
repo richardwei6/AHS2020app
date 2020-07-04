@@ -1,19 +1,17 @@
 package com.example.ahsapptest3;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.ahsapptest3.HomePage_News.News_Template;
+import com.example.ahsapptest3.Settings.SettingsActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,30 +20,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-
-
-    private ImageButton home_btn, bulletin_btn, bookmarks_btn, settings_btn;
-    private ImageButton[] nav_btns;
-
+public class MainActivity extends AppCompatActivity implements Navigation{
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        home_btn = findViewById(R.id.home_button);
-        home_btn.setColorFilter(ContextCompat.getColor(this,R.color.LightGray_F2F2F3__HOME));
-        bulletin_btn = findViewById(R.id.bulletin_button);
-        bookmarks_btn = findViewById(R.id.bookmarks_button);
-        settings_btn = findViewById(R.id.settings_button);
-
-
-        nav_btns = new ImageButton[]
-                {
-                        home_btn,bulletin_btn,bookmarks_btn,settings_btn
-                };
 
         final String[] titles = {
                 "ASB NEWS",
@@ -77,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 "sports"
         };
         final ArrayList<Article> featured_articles = new ArrayList<>();
+        final Context context = this;
 
         for(int i = 0; i < data_ref.length; i++)
         {
@@ -108,7 +90,11 @@ public class MainActivity extends AppCompatActivity {
                         long article_time = (long) child_sn.child("articleUnixEpoch").getValue();
                         boolean is_featured = (boolean) child_sn.child("isFeatured").getValue();
 
-                        Article article = new Article(ID,article_time,title,author,body,imagePaths,false,false);
+                        // check if already bookmarked
+                        BookmarkHandler bookmarkHandler = new BookmarkHandler(context);
+                        boolean is_bookmarked = bookmarkHandler.alreadyBookmarked(ID);
+
+                        Article article = new Article(ID,article_time,title,author,body,imagePaths,is_bookmarked,false);
 
                         // add Article to ArrayList
                         articles.add(article); // default values for bookmark and notified
@@ -146,100 +132,40 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
+                    System.out.println(error.getDetails());
                 }
             });
         }
 
-        // apply scrolling animation to navigation bar
-
-        final FrameLayout navBar= findViewById(R.id.nav_bar_FrameLayout);
-        final ScrollView scrollView = findViewById(R.id.home_page__scrollView);
-        final int scrollAnimBuffer = 4; // so the animation doesn't repeat on overly slight changes
-
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            float y = 0;
-            @Override
-            public void onScrollChanged() {
-                if(scrollView.getScrollY() > y + scrollAnimBuffer) // scroll down, 2 is the buffer
-                {
-                    slideDown(navBar);
-                    is_nav_bar_up = false;
-                }
-                else if (scrollView.getScrollY() < y - scrollAnimBuffer)
-                {
-                    slideUp(navBar);
-                    is_nav_bar_up = true;
-                }
-                y= scrollView.getScrollY();
-            }
-        });
 
     }
 
 
-    public void goToHome (View view)
-    {
+    @Override
+    public void goToHome() {
 
     }
 
-    public void goToBulletin (View view)
-    {
+    @Override
+    public void goToBulletin() {
         Intent myIntent = new Intent(MainActivity.this,BulletinActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 
-    public void goToSaved(View view)
-    {
+    @Override
+    public void goToSaved() {
         Intent myIntent = new Intent(MainActivity.this,SavedActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 
-    public void goToSettings(View view)
-    {
-        for(ImageButton i: nav_btns)
-        {
-            if(i.equals(settings_btn))
-                i.setColorFilter(ContextCompat.getColor(this,R.color.LightGray_F2F2F3__HOME));
-            else
-                i.clearColorFilter();
-        }
+    @Override
+    public void goToSettings() {
+        Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
+        MainActivity.this.startActivity(myIntent);
     }
 
-    boolean is_nav_bar_up = true;
-    // slide the view from below itself to the current position
-    public void slideUp(View view){
-        if(!is_nav_bar_up)
-        {
-            view.animate().translationY(0).setDuration(500);
-            /*view.setVisibility(View.VISIBLE);
-            TranslateAnimation animate = new TranslateAnimation(
-                    0,                 // fromXDelta
-                    0,                 // toXDelta
-                    view.getHeight(),  // fromYDelta
-                    0);                // toYDelta
-            animate.setDuration(500);
-            animate.setFillAfter(true);
-            view.startAnimation(animate);*/
-        }
-
-    }
-
-
-    // slide the view from its current position to below itself
-    public void slideDown(View view){
-        if(is_nav_bar_up)
-        {
-            view.animate().translationY(view.getHeight()).setDuration(500);
-            /*TranslateAnimation animate = new TranslateAnimation(
-                    0,                 // fromXDelta
-                    0,                 // toXDelta
-                    0,                 // fromYDelta
-                    view.getHeight()); // toYDelta
-            animate.setDuration(500);
-            animate.setFillAfter(true);
-            view.startAnimation(animate);*/
-        }
-
+    @Override
+    public int getScrollingViewId() {
+        return R.id.home_page__scrollView;
     }
 }

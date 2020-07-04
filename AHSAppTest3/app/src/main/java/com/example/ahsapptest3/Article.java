@@ -79,6 +79,11 @@ public class Article implements Parcelable {
     }
     public boolean alreadyNotified() {return notified;}
 
+    public void setBookMarked(boolean is_bookmarked)
+    {
+        this.is_bookmarked = is_bookmarked;
+    }
+
     @Override
     public String toString()
     {

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/LightishGray_EFEDED__HOME_NOTIF"
+    android:orientation="vertical"
+    tools:context=".Settings.Notifications_Settings_Activity">
+
+    <LinearLayout
+        android:id="@+id/notif_settings_headerLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+
+        android:paddingRight="@dimen/EveryPage_Side_Padding_Half">
+
+        <ImageButton
+            android:id="@+id/notif_settings_header_back"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:adjustViewBounds="false"
+            android:background="?attr/selectableItemBackground"
+
+
+            android:padding="@dimen/EveryPage_Side_Padding_Half"
+
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/article_back_button" />
+
+        <TextView
+            android:id="@+id/notif_settings_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/sf_pro_compactbold"
+            android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+            android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+            android:text="NOTIFICATIONS SETTINGS"
+            android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/EveryPage_Side_Padding_Half">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:padding="@dimen/EveryPage_Side_Padding_Half"
+            android:background="@drawable/bulletin_template_rounded_white"
+            >
+
+            <Switch
+                android:id="@+id/notif_settings_general_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="General Updates" />
+        </FrameLayout>
+
+        <LinearLayout
+        android:id="@+id/notif_settings_indiv_LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/EveryPage_Side_Padding"
+        android:background="@drawable/bulletin_template_rounded_white"
+        android:orientation="vertical"
+        android:padding="@dimen/EveryPage_Side_Padding_Half">
+
+        <Switch
+            android:id="@+id/notif_settings_sports_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bulletin_template_rounded_white"
+            android:text="Sports News" />
+
+        <View style="@style/Divider" />
+
+        <Switch
+            android:id="@+id/notif_settings_asb_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bulletin_template_rounded_white"
+            android:text="ASB News" />
+
+        <View style="@style/Divider" />
+
+        <Switch
+            android:id="@+id/notif_settings_district_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bulletin_template_rounded_white"
+            android:text="District News" />
+
+        <View style="@style/Divider" />
+
+        <Switch
+            android:id="@+id/notif_settings_bulletin_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bulletin_template_rounded_white"
+            android:text="Bulletin" />
+
+    </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>
