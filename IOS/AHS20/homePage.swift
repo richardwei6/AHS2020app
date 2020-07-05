@@ -105,13 +105,14 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 						
 						let enumerator = article.children;
 						var singleArticle = articleData();
+						
+						singleArticle.articleID = article.key as! String;
+						
+						
 						while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
+						
 							
-							
-							if (articleContent.key == "ID"){
-								singleArticle.articleID = articleContent.value as? String;
-							}
-							else if (articleContent.key == "articleAuthor"){
+							if (articleContent.key == "articleAuthor"){
 								singleArticle.articleAuthor = articleContent.value as? String;
 							}
 							else if (articleContent.key == "articleBody"){
@@ -610,7 +611,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		districtLabel.text = loading;
 		
 	  	getHomeArticleData();
-		
+		refreshControl.setValue(5, forKey: "_snappingHeight")
 		refreshControl.addTarget(self, action: #selector(refreshAllArticles), for: UIControl.Event.valueChanged);
 		mainScrollView.addSubview(refreshControl);
 	}

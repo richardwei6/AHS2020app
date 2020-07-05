@@ -70,12 +70,12 @@ class CustomTabBarController: UIViewController {
                 while let article = enumerator.nextObject() as? DataSnapshot{ // each article
                     let enumerator = article.children;
                     var singleNotification = notificationData();
+                    
+                    singleNotification.notificationArticleID =  article.key as! String;
+                    
                     while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-                        
-                        if (notificationContent.key == "messageID"){
-                            singleNotification.messageID = notificationContent.value as? String;
-                        }
-                        else if (notificationContent.key == "notificationArticleID"){
+         
+                        if (notificationContent.key == "notificationArticleID"){
                             singleNotification.notificationArticleID  = notificationContent.value as? String;
                         }
                         else if (notificationContent.key == "notificationBody"){

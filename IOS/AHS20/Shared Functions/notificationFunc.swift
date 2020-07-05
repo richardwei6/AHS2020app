@@ -33,12 +33,12 @@ func getNotificationData(){
             while let article = enumerator.nextObject() as? DataSnapshot{ // each article
                 let enumerator = article.children;
                 var singleNotification = notificationData();
+                
+                singleNotification.messageID = article.key as! String;
+                
                 while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                     
-                    if (notificationContent.key == "messageID"){
-                        singleNotification.messageID = notificationContent.value as? String;
-                    }
-                    else if (notificationContent.key == "notificationArticleID"){
+                    if (notificationContent.key == "notificationArticleID"){
                         singleNotification.notificationArticleID  = notificationContent.value as? String;
                     }
                     else if (notificationContent.key == "notificationBody"){
@@ -99,7 +99,6 @@ func saveNotifPref(){
         let encoder = JSONEncoder();
         let data = try encoder.encode(save);
         UserDefaults.standard.set(data, forKey: "notificationReadDict");
-        loadNotifPref();
     } catch{
         print("error encoding object to save");
     }
