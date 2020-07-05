@@ -2,6 +2,7 @@ package com.example.ahsapptest3.HomePage_News;
 
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.example.ahsapptest3.Article;
 import com.example.ahsapptest3.Helper_Code.Helper;
 import com.example.ahsapptest3.R;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 
@@ -57,7 +59,12 @@ public class Article_Display_Stacked extends Fragment {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        Article[] articles = (Article[]) getArguments().getParcelableArray(ARTICLE_KEY);
+
+        Parcelable[] parcelables = getArguments().getParcelableArray(ARTICLE_KEY);
+
+        assert parcelables != null;
+        Article[] articles = Arrays.copyOf(parcelables,parcelables.length,Article[].class); // attempts to avoid classcastexception
+
         ViewStub[] stubs = new ViewStub[articles.length];
 
         View[] inflated = new View[stubs.length];

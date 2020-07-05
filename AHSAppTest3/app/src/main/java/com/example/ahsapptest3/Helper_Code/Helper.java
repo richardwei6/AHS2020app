@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 // Alex Dang 2020
 public class Helper {
 
-    /*
+    /**
     * Kind of unnecessary, but just for symmetry purposes
     * */
     public static void setText_toView(TextView view, String text)
@@ -35,7 +35,7 @@ public class Helper {
         view.setText(text);
     }
 
-    /*
+    /**
      *  Load image from the internet into an Image view (includes ImageButton, which extends ImageView)
      * */
     public static void setImage_toView_fromUrl(ImageView view, String url)
@@ -61,7 +61,7 @@ public class Helper {
                 .into(view);
     }
 
-    /*
+    /**
      * Load image from internal storage into Image view
      * */
     public static void setImage_toView_fromStorage(ImageView view, String filePath)
@@ -75,7 +75,7 @@ public class Helper {
                 .into(view);
     }
 
-    /*
+    /**
      * Sets onClick listener to a view, opening a corresponding Article Activity
      * */
     public static void setArticleListener_toView(final View view, final Article article)
@@ -87,11 +87,12 @@ public class Helper {
                 intent.putExtra("data", article);
                 view.getContext().startActivity(intent);
 
+
             }
         });
     }
 
-    /*
+    /**
      *  Sets the proper image background to an imageView that displays the bookmark
      *  Ideally, this would be unnecessary; rather the bookmark view would have a selector as a background
      *  But that kinda requires a TODO: BookmarkButton Fragment
@@ -109,7 +110,7 @@ public class Helper {
 
     }
 
-    /*
+    /**
      *  Set an onClick listener to a bookmark view based on the current status of the article
      *  TODO: call a BookmarkHandler that updates the internal files
      * */
@@ -122,7 +123,11 @@ public class Helper {
             public void onClick(View v) {
                 article.swapBookmark();
                 setBookmarked_toView(view,article.isBookmarked());
-                bookmarkHandler.addData(article);
+                if(!bookmarkHandler.alreadyBookmarked(article.getID()))
+                        bookmarkHandler.add(article);
+                else
+                    bookmarkHandler.delete(article);
+                BookmarkHandler.setBookmarkChanged();
             }
         });
     }

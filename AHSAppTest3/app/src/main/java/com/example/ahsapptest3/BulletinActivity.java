@@ -1,28 +1,53 @@
 package com.example.ahsapptest3;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-public class BulletinActivity extends AppCompatActivity {
+import com.example.ahsapptest3.Settings.SettingsActivity;
 
-    private ImageButton home_btn, bulletin_btn, bookmarks_btn, settings_btn;
+public class BulletinActivity extends AppCompatActivity implements Navigation{
+
     FrameLayout[] frameLayouts;
     private ImageView seniors_toggle, events_toggle, colleges_toggle, athletics_toggle,reference_toggle,others_toggle;
-    private ImageButton[] nav_btns;
+
     private Bulletin_Info [] data;
     private boolean[] is_active = new boolean[6];
+
+    @Override
+    public void goToHome() {
+        Intent myIntent = new Intent(BulletinActivity.this,MainActivity.class);
+        BulletinActivity.this.startActivity(myIntent);
+    }
+
+    @Override
+    public void goToBulletin() {
+
+    }
+
+    @Override
+    public void goToSaved() {
+        Intent myIntent = new Intent(BulletinActivity.this,SavedActivity.class);
+        BulletinActivity.this.startActivity(myIntent);
+    }
+
+    @Override
+    public void goToSettings() {
+        Intent myIntent = new Intent(BulletinActivity.this, SettingsActivity.class);
+        BulletinActivity.this.startActivity(myIntent);
+    }
+
+    @Override
+    public int getScrollingViewId() {
+        return R.id.bulletin__scrollView;
+    }
 
     enum BulletinType
     {
@@ -80,37 +105,8 @@ public class BulletinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_layout);
 
-        home_btn = findViewById(R.id.home_button);
-        bulletin_btn = findViewById(R.id.bulletin_button);
-        bulletin_btn.setColorFilter(ContextCompat.getColor(this,R.color.LightGray_F2F2F3__HOME));
-        bookmarks_btn = findViewById(R.id.bookmarks_button);
-        settings_btn = findViewById(R.id.settings_button);
-
-        nav_btns = new ImageButton[]
-                {
-                        home_btn,bulletin_btn,bookmarks_btn,settings_btn
-                };
-        final FrameLayout navBar= findViewById(R.id.nav_bar_FrameLayout);
         final ScrollView scrollView = findViewById(R.id.bulletin__scrollView);
-        final int scrollAnimBuffer = 4;
 
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            float y = 0;
-            @Override
-            public void onScrollChanged() {
-                if(scrollView.getScrollY() > y + scrollAnimBuffer) // scroll down, 2 is the buffer
-                {
-                    slideDown(navBar);
-                    is_nav_bar_up = false;
-                }
-                else if (scrollView.getScrollY() < y - scrollAnimBuffer)
-                {
-                    slideUp(navBar);
-                    is_nav_bar_up = true;
-                }
-                y= scrollView.getScrollY();
-            }
-        });
 
         seniors_toggle = scrollView.findViewById(R.id.bulletin_seniors_toggle_image);
         events_toggle = scrollView.findViewById(R.id.bulletin_events_toggle_image);
@@ -338,123 +334,5 @@ public class BulletinActivity extends AppCompatActivity {
         }
     }
 
-    public void goToHome (View view)
-    {
-        Intent myIntent = new Intent(BulletinActivity.this,MainActivity.class);
-        BulletinActivity.this.startActivity(myIntent);
-    }
-
-    public void goToBulletin (View view)
-    {
-
-    }
-
-    public void goToSaved (View view)
-    {
-        Intent myIntent = new Intent(BulletinActivity.this,SavedActivity.class);
-        BulletinActivity.this.startActivity(myIntent);
-    }
-
-    public void goToSettings(View view)
-    {
-        for(ImageButton i: nav_btns)
-        {
-            if(i.equals(settings_btn))
-                i.setColorFilter(ContextCompat.getColor(this,R.color.LightGray_F2F2F3__HOME));
-            else
-                i.clearColorFilter();
-        }
-    }
-
-    boolean is_nav_bar_up = true;
-    // slide the view from below itself to the current position
-    public void slideUp(View view){
-        if(!is_nav_bar_up)
-        {
-            view.setVisibility(View.VISIBLE);
-            TranslateAnimation animate = new TranslateAnimation(
-                    0,                 // fromXDelta
-                    0,                 // toXDelta
-                    view.getHeight(),  // fromYDelta
-                    0);                // toYDelta
-            animate.setDuration(500);
-            animate.setFillAfter(true);
-            view.startAnimation(animate);
-        }
-    }
-
-
-    // slide the view from its current position to below itself
-    public void slideDown(View view){
-        if(is_nav_bar_up)
-        {
-            TranslateAnimation animate = new TranslateAnimation(
-                    0,                 // fromXDelta
-                    0,                 // toXDelta
-                    0,                 // fromYDelta
-                    view.getHeight()); // toYDelta
-            animate.setDuration(500);
-            animate.setFillAfter(true);
-            view.startAnimation(animate);
-        }
-
-    }
-/*
-    public static void expand(View view) {
-        Animation animation = expandAction(view);
-        view.startAnimation(animation);
-    }
-
-    private static Animation expandAction(final View view) {
-
-        view.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        final int actualheight = view.getMeasuredHeight();
-
-        view.getLayoutParams().height = 0;
-        view.setVisibility(View.VISIBLE);
-
-        Animation animation = new Animation() {
-            @Override
-            protected void applyTransformation(float interpolatedTime, Transformation t) {
-
-                view.getLayoutParams().height = interpolatedTime == 1
-                        ? ViewGroup.LayoutParams.WRAP_CONTENT
-                        : (int) (actualheight * interpolatedTime);
-                view.requestLayout();
-            }
-        };
-
-
-        animation.setDuration((long) (actualheight / view.getContext().getResources().getDisplayMetrics().density));
-
-        view.startAnimation(animation);
-
-        return animation;
-
-
-    }
-
-    public static void collapse(final View view) {
-
-        final int actualHeight = view.getMeasuredHeight();
-
-        Animation animation = new Animation() {
-            @Override
-            protected void applyTransformation(float interpolatedTime, Transformation t) {
-
-                if (interpolatedTime == 1) {
-                    view.setVisibility(View.GONE);
-                } else {
-                    view.getLayoutParams().height = actualHeight - (int) (actualHeight * interpolatedTime);
-                    view.requestLayout();
-
-                }
-            }
-        };
-
-        animation.setDuration((long) (actualHeight/ view.getContext().getResources().getDisplayMetrics().density));
-        view.startAnimation(animation);
-    }
-    */
 
 }

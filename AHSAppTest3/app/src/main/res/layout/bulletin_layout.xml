@@ -292,10 +292,16 @@
         </LinearLayout>
     </ScrollView>
 
-    <include
-        android:id="@+id/bulletin__navigation_bar"
-        layout="@layout/navigation_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <fragment
+        android:id="@+id/bulletin_navBar"
+        android:name="com.example.ahsapptest3.Navigation_Bar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/navigation_bar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

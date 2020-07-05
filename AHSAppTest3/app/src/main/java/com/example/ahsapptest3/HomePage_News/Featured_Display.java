@@ -64,5 +64,5 @@ public class Featured_Display extends Fragment {
         return thisFrag;
     }
 
-
+// this java
 }

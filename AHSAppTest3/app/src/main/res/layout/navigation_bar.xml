@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_height="wrap_content" android:layout_width="match_parent">
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/nav_bar_guideline_left"
         android:layout_width="wrap_content"
@@ -34,60 +34,60 @@
             android:paddingRight="20dp">
 
             <ImageButton
-                android:id="@+id/home_button"
+                android:id="@+id/nav_bar_home_button"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/Nav_Button_SideLength"
                 android:background="?attr/selectableItemBackground"
-                android:onClick="goToHome"
+
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
                 android:scaleType="fitCenter"
                 
 
-                app:layout_constraintEnd_toStartOf="@+id/bulletin_button"
+                app:layout_constraintEnd_toStartOf="@+id/nav_bar_bulletin_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/icon_home" />
 
             <ImageButton
-                android:id="@+id/bulletin_button"
+                android:id="@+id/nav_bar_bulletin_button"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/Nav_Button_SideLength"
                 android:background="?attr/selectableItemBackground"
-                android:onClick="goToBulletin"
+
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
                 android:scaleType="fitCenter"
 
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/bookmarks_button"
-                app:layout_constraintStart_toEndOf="@+id/home_button"
+                app:layout_constraintEnd_toStartOf="@+id/nav_bar_bookmarks_button"
+                app:layout_constraintStart_toEndOf="@+id/nav_bar_home_button"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/icon_bulletin" />
 
             <ImageButton
-                android:id="@+id/bookmarks_button"
+                android:id="@+id/nav_bar_bookmarks_button"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/Nav_Button_SideLength"
                 android:background="?attr/selectableItemBackground"
-                android:onClick="goToSaved"
+
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
 
                 android:scaleType="fitCenter"
 
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/settings_button"
-                app:layout_constraintStart_toEndOf="@+id/bulletin_button"
+                app:layout_constraintEnd_toStartOf="@+id/nav_bar_settings_button"
+                app:layout_constraintStart_toEndOf="@+id/nav_bar_bulletin_button"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/icon_bookmark" />
 
             <ImageButton
-                android:id="@+id/settings_button"
+                android:id="@+id/nav_bar_settings_button"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/Nav_Button_SideLength"
                 android:background="?attr/selectableItemBackground"
-                android:onClick="goToSettings"
+
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
                 android:scaleType="fitCenter"
@@ -95,9 +95,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
 
-                app:layout_constraintStart_toEndOf="@+id/bookmarks_button"
+                app:layout_constraintStart_toEndOf="@+id/nav_bar_bookmarks_button"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/icon_settings" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
-</merge>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,28 +6,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.database.Cursor;
+import android.content.Intent;
+
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ahsapptest3.Helper_Code.Helper;
+import com.example.ahsapptest3.Settings.SettingsActivity;
 
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class SavedActivity extends AppCompatActivity {
+public class SavedActivity extends AppCompatActivity implements Navigation{
 
     private static final String TAG = "SavedActivity";
-    BookmarkHandler bookmarkHandler;
+    private BookmarkHandler bookmarkHandler;
+    private ArticleRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,44 +41,68 @@ public class SavedActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.saved_recyclerView);
         bookmarkHandler = new BookmarkHandler(this);
 
-        ArticleRecyclerAdapter adapter= new ArticleRecyclerAdapter(this, getSavedArticles());
+        adapter = new ArticleRecyclerAdapter(this, bookmarkHandler.getAllArticles());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
-    public ArrayList<Article> getSavedArticles()
+    @Override
+    public void onResume()
     {
-        /*Cursor data = bookmarkHandler.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext())
+        super.onResume();
+
+        if(BookmarkHandler.hasBookmarksChanged())
+            updateBookmarkIcons();
+    }
+
+    public void updateBookmarkIcons()
+    {
+        BookmarkHandler bookmarkHandler = new BookmarkHandler(this);
+
+        ArrayList<Article> articles = adapter.articles;
+        for(int i = articles.size()-1; i >= 0; i--) // backwards loop cause remove
         {
-            listData.add(data.getString(1));
+            if(!bookmarkHandler.alreadyBookmarked(articles.get(i).getID()))
+                articles.remove(i);
         }
 
-        ArrayList<Article> articles = new ArrayList<>();
-        for(int i = 0; i < listData.size(); i++)
-            articles.add(
-                new Article(
-                    1000,
-                        202347384,
-                        listData.get(i),
-                        "Alex Dang",
-                        "story story story story",
-                        new String[] {"https://i1.sndcdn.com/artworks-UEyYbq12Fo3y4yoR-1rMSdQ-t500x500.jpg"},
-                        true,
-                        true
-
-                )
-            );
-*/
-        return bookmarkHandler.getAllArticles();
+        adapter.notifyDataSetChanged();
     }
 
-    public class ArticleRecyclerAdapter extends RecyclerView.Adapter<ArticleRecyclerAdapter.ViewHolder>
+    @Override
+    public void goToHome() {
+        Intent myIntent = new Intent(SavedActivity.this,MainActivity.class);
+        SavedActivity.this.startActivity(myIntent);
+    }
+
+    @Override
+    public void goToBulletin() {
+        Intent myIntent = new Intent(SavedActivity.this,BulletinActivity.class);
+        SavedActivity.this.startActivity(myIntent);
+    }
+
+    @Override
+    public void goToSaved() {
+
+    }
+
+    @Override
+    public void goToSettings() {
+        Intent myIntent = new Intent(SavedActivity.this, SettingsActivity.class);
+        SavedActivity.this.startActivity(myIntent);
+    }
+
+    @Override
+    public int getScrollingViewId() {
+        return R.id.saved_recyclerView;
+    }
+
+    public static class ArticleRecyclerAdapter extends RecyclerView.Adapter<ArticleRecyclerAdapter.ViewHolder>
     {
         private static final String TAG = "ArticleRecyclerAdapter";
 
-        private ArrayList<Article> articles; // ArrayList instead of array in case we want to add or remove stuff (which will happen!)
+        public ArrayList<Article> articles; // ArrayList instead of array in case we want to add or remove stuff (which will happen!)
         private android.content.Context context;
 
         public ArticleRecyclerAdapter(android.content.Context context, ArrayList<Article> articles) {
@@ -91,8 +119,9 @@ public class SavedActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             // change this later, just for sample
+
 
             LinearLayout parentLayout = holder.parentLayout;
             ViewStub stub = new ViewStub(context);
@@ -109,26 +138,46 @@ public class SavedActivity extends AppCompatActivity {
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground,outValue,true);
             inflated.setBackgroundResource(outValue.resourceId);
 
-            Helper.setArticleListener_toView(inflated, articles.get(position));
+            final Article article = articles.get(position);
+            
+            Helper.setArticleListener_toView(inflated, article);
 
             Helper.setTimeText_toView((TextView) inflated.findViewById(R.id.article_display__time_updated_Text),
-                    Helper.TimeFromNow(articles.get(position).getTimeUpdated()),
+                    Helper.TimeFromNow(article.getTimeUpdated()),
                     TimeUnit.HOURS);
 
             // set title
-            Helper.setText_toView((TextView) inflated.findViewById(R.id.article_display__title_Text),articles.get(position).getTitle());
+            Helper.setText_toView((TextView) inflated.findViewById(R.id.article_display__title_Text),article.getTitle());
 
             // set summary/description
-            Helper.setText_toView((TextView) inflated.findViewById(R.id.article_display__summary_Text), articles.get(position).getStory());
+            Helper.setText_toView((TextView) inflated.findViewById(R.id.article_display__summary_Text), article.getStory());
 
             // setImage
-            Helper.setImage_toView_fromUrl((ImageView) inflated.findViewById(R.id.article_display__imageView),articles.get(position).getImagePaths()[0]);
+            Helper.setImage_toView_fromUrl((ImageView) inflated.findViewById(R.id.article_display__imageView),article.getImagePaths()[0]);
 
             // set bookmarked button state
             final ImageButton bookmarkButton = inflated.findViewById(R.id.article_display__bookmarked_button);
 
-            Helper.setBookmarked_toView(bookmarkButton,articles.get(position).isBookmarked());
-            Helper.setBookMarkListener_toView(bookmarkButton, articles.get(position));
+            Helper.setBookmarked_toView(bookmarkButton,article.isBookmarked());
+            Helper.setBookMarkListener_toView(bookmarkButton, article);
+
+            // must use custom method rather than using Helper as we need to notifyDataSetChanged()
+            final BookmarkHandler bookmarkHandler = new BookmarkHandler(this.context);
+
+            bookmarkButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    article.swapBookmark();
+                    Helper.setBookmarked_toView(bookmarkButton,article.isBookmarked());
+                    if(!bookmarkHandler.alreadyBookmarked(article.getID()))
+                        bookmarkHandler.add(article);
+                    else
+                        {bookmarkHandler.delete(article);
+                        articles.remove(position);
+                        notifyItemRemoved(position);
+                        BookmarkHandler.setBookmarkChanged();}
+                }
+            });
         }
 
         @Override
@@ -145,5 +194,6 @@ public class SavedActivity extends AppCompatActivity {
                 parentLayout = itemView.findViewById(R.id.article_stacked_LinearLayout);
             }
         }
+
     }
 }

@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SavedActivity"></activity>
+        <activity android:name=".Settings.Notifications_Settings_Activity"></activity>
+        <activity android:name=".Settings.Credits_Activity" />
+        <activity android:name=".Settings.Terms_And_Agreements_Activity" />
+        <activity android:name=".Settings.SettingsActivity" />
+        <activity android:name=".SavedActivity" />
         <activity android:name=".Notif_Activity" />
         <activity android:name=".ArticleActivity" />
         <activity android:name=".BulletinActivity" />
