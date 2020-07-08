@@ -71,7 +71,7 @@ class CustomTabBarController: UIViewController {
                     let enumerator = article.children;
                     var singleNotification = notificationData();
                     
-                    singleNotification.notificationArticleID =  article.key as! String;
+                    singleNotification.messageID =  article.key as! String;
                     
                     while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
          
@@ -86,6 +86,9 @@ class CustomTabBarController: UIViewController {
                         }
                         else if (notificationContent.key == "notificationUnixEpoch"){
                             singleNotification.notificationUnixEpoch  = notificationContent.value as? Int64;
+                        }
+                        else if (notificationContent.key == "notificationCategory"){
+                            singleNotification.notificationCatagory = notificationContent.value as? Int;
                         }
                         
                     }

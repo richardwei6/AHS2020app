@@ -51,7 +51,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                         else if (notificationContent.key == "notificationUnixEpoch"){
                             singleNotification.notificationUnixEpoch  = notificationContent.value as? Int64;
                         }
-                        else if (notificationContent.key == "notificationCatagory"){
+                        else if (notificationContent.key == "notificationCategory"){
                             singleNotification.notificationCatagory = notificationContent.value as? Int;
                         }
                         
