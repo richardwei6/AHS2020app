@@ -38,6 +38,8 @@ extension UILabel {
     }
 }
 
+
+
 extension UILabel{ // add setRoundedEdge func to UILabel
     func setRoundedEdge(corners:UIRectCorner, radius: CGFloat){ // label.setRoundedEdge([.TopLeft, . TopRight], radius: 10)
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
@@ -81,6 +83,8 @@ extension UIImageView {
         layer.mask = mask
     }
 }
+
+
 
 extension UIImage {
     
