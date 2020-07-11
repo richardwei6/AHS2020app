@@ -24,7 +24,9 @@ class CustomTabBarController: UIViewController {
     @IBOutlet weak var topBar: UIView!
     @IBOutlet weak var topBarHeightContraint: NSLayoutConstraint!
     
+    @IBOutlet weak var topBarPageName: UILabel!
     @IBOutlet weak var homeTopBarContent: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var homeViewController: UIViewController!
     var bulletinViewController: UIViewController!
@@ -166,9 +168,16 @@ class CustomTabBarController: UIViewController {
         topBar.layer.cornerRadius = homeTopCornerRadius;
         topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
         topBar.layer.shadowColor = UIColor.gray.cgColor;
-        topBar.layer.shadowOpacity = 0.1;
+        topBar.layer.shadowOpacity = 0.07;
         topBar.layer.shadowRadius = 5;
         topBar.layer.shadowOffset = CGSize(width: 0 , height:10);
+        tabBarView.layer.shadowColor = UIColor.gray.cgColor;
+        tabBarView.layer.shadowOpacity = 0.07;
+        tabBarView.layer.shadowRadius = 5;
+        tabBarView.layer.shadowOffset = CGSize(width: 0, height: -10);
+        
+        dateLabel.text = getTitleDateAndMonth();
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -224,16 +233,25 @@ class CustomTabBarController: UIViewController {
                 print("home")
                 topBar.layer.cornerRadius = homeTopCornerRadius;
                 topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
-                topBar.layer.shadowColor = UIColor.gray.cgColor;
-                topBarHeightContraint.constant = 60;
+                topBarHeightContraint.constant = 62;
                 homeTopBarContent.isHidden = false;
+                topBarPageName.isHidden = true;
             }
             else{
                 topBar.layer.cornerRadius = 0;
                 topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
-                topBar.layer.shadowColor = UIColor.white.cgColor;
-                topBarHeightContraint.constant = 55;
+                topBarHeightContraint.constant = 60;
                 homeTopBarContent.isHidden = true;
+                topBarPageName.isHidden = false;
+                if (sender.tag == 1){
+                    topBarPageName.text = "Student Bulletin";
+                }
+                else if (sender.tag == 2){
+                    topBarPageName.text = "Saved Articles";
+                }
+                else if (sender.tag == 3){
+                    topBarPageName.text = "Settings";
+                }
             }
             
         }
