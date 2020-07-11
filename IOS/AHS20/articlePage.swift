@@ -25,11 +25,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imagePageControl: UIPageControl!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var whiteBG: UIView!
-    @IBOutlet weak var articleBar: UIView!
     
     @IBOutlet weak var bookmarkButton: CustomUIButton!
-    @IBOutlet weak var bookmarkOuter: CustomUIButton!
     
     @IBOutlet weak var articleCatagoryLabel: UILabel!
     
@@ -91,14 +88,11 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         super.viewDidLoad();
         
         bookmarkButton.articleCompleteData = articleContent ?? articleData();
-        bookmarkOuter.articleCompleteData = articleContent ?? articleData();
         
         setBookmarkColor();
         
         articleCatagoryLabel.text = articleContent?.articleCatagory ?? "NO Cata.";
         articleCatagoryLabel.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
-        
-        bookmarkOuter.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 12);
         
        // mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
@@ -109,20 +103,15 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         articleText.font = UIFont(name: articleText.font.fontName, size: CGFloat(fontSize));
         articleTitle.text = "Loading images..."; // see func viewdidappear
         articleDate.text = epochClass.epochToFormatedDateString(epoch: articleContent?.articleUnixEpoch ?? -1); // TODO: IMPLEMENT A FUNC TO GET INT TO STRING DATE
-        articleAuthor.text = "By " + (articleContent?.articleAuthor ?? " NULL Author");
+        articleAuthor.text = "By " + (articleContent?.articleAuthor ?? " No Author");
         
-        
-        articleBar.layer.cornerRadius = 3;
-        whiteBG.layer.cornerRadius = 35;
-        whiteBG.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
 
-        
         // TODO: add zoom feature here
         imageSize = articleContent?.articleImages?.count ?? 0;
         //print(imageSize);
         imagePageControl.numberOfPages = imageSize;
         imageFrame.size = imageScrollView.frame.size;
-        imageFrame.size.width = UIScreen.main.bounds.size.width;
+        imageFrame.size.width = UIScreen.main.bounds.size.width - 42;
         for imageIndex in 0..<imageSize{
             imageFrame.origin.x = (imageFrame.size.width * CGFloat(imageIndex));
             
@@ -145,6 +134,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         }
         imageScrollView.contentSize = CGSize(width: (imageFrame.size.width * CGFloat(imageSize)), height: imageScrollView.frame.size.height);
         imageScrollView.delegate = self;
+        imageScrollView.layer.cornerRadius = 10;
+        
         articleTitle.text = articleContent?.articleTitle; // set article title herer
         articleTitle.font = UIFont(name: articleTitle.font.fontName, size: CGFloat(fontSize));
     }
