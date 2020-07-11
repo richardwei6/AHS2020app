@@ -94,13 +94,13 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                         
                         let enumerator = article.children;
                         var singleArticle = bulletinArticleData();
+                        
+                        singleArticle.articleID = article.key as! String;
+                        
                         while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                             
                             
-                            if (articleContent.key == "ID"){
-                                singleArticle.articleID = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleAuthor"){
+                            if (articleContent.key == "articleAuthor"){
                                 singleArticle.articleAuthor = articleContent.value as? String;
                             }
                             else if (articleContent.key == "articleBody"){

@@ -33,12 +33,13 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 while let article = enumerator.nextObject() as? DataSnapshot{ // each article
                     let enumerator = article.children;
                     var singleNotification = notificationData();
+                    
+                    singleNotification.messageID = article.key as! String;
+                    
+                    
                     while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                         
-                        if (notificationContent.key == "messageID"){
-                            singleNotification.messageID = notificationContent.value as? String;
-                        }
-                        else if (notificationContent.key == "notificationArticleID"){
+                        if (notificationContent.key == "notificationArticleID"){
                             singleNotification.notificationArticleID  = notificationContent.value as? String;
                         }
                         else if (notificationContent.key == "notificationBody"){
@@ -50,7 +51,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                         else if (notificationContent.key == "notificationUnixEpoch"){
                             singleNotification.notificationUnixEpoch  = notificationContent.value as? Int64;
                         }
-                        else if (notificationContent.key == "notificationCatagory"){
+                        else if (notificationContent.key == "notificationCategory"){
                             singleNotification.notificationCatagory = notificationContent.value as? Int;
                         }
                         

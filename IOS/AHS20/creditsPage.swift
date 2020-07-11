@@ -76,7 +76,7 @@ class creditsPage: UIViewController {
         gradientChangeAnimation.toValue = gradientSet[currentgradient]
         gradientChangeAnimation.fillMode = .forwards
         gradientChangeAnimation.isRemovedOnCompletion = false
-            gradientChangeAnimation.delegate = self;
+        gradientChangeAnimation.delegate = self;
         gradient.add(gradientChangeAnimation, forKey: "colorChange")
     }
     

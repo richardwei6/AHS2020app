@@ -18,18 +18,25 @@ class CustomTabBarController: UIViewController {
     @IBOutlet weak var tabBarView: UIView!
     
     @IBOutlet weak var notificationDot: UIImageView!
+    @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet var buttons: [UIButton]!
+    
+    @IBOutlet weak var topBar: UIView!
+    @IBOutlet weak var topBarHeightContraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var homeTopBarContent: UIView!
     
     var homeViewController: UIViewController!
     var bulletinViewController: UIViewController!
     var savedViewController: UIViewController!
     var settingsViewController: UIViewController!
     
-    @IBOutlet weak var monthLabel: UILabel!
     
     var viewControllers: [UIViewController]!
     
     var selectedIndex: Int = 0;
+    
+    let homeTopCornerRadius = CGFloat(15);
 
     let iconImagePath = ["invertedhome", "invertedbulletin", "invertedbookmark", "invertedsettings"];
     let iconImagePathInv = ["homeInv", "bulletinInv", "BookmarkInv", "GearInv"];
@@ -70,12 +77,12 @@ class CustomTabBarController: UIViewController {
                 while let article = enumerator.nextObject() as? DataSnapshot{ // each article
                     let enumerator = article.children;
                     var singleNotification = notificationData();
+                    
+                    singleNotification.messageID =  article.key as! String;
+                    
                     while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-                        
-                        if (notificationContent.key == "messageID"){
-                            singleNotification.messageID = notificationContent.value as? String;
-                        }
-                        else if (notificationContent.key == "notificationArticleID"){
+         
+                        if (notificationContent.key == "notificationArticleID"){
                             singleNotification.notificationArticleID  = notificationContent.value as? String;
                         }
                         else if (notificationContent.key == "notificationBody"){
@@ -86,6 +93,9 @@ class CustomTabBarController: UIViewController {
                         }
                         else if (notificationContent.key == "notificationUnixEpoch"){
                             singleNotification.notificationUnixEpoch  = notificationContent.value as? Int64;
+                        }
+                        else if (notificationContent.key == "notificationCategory"){
+                            singleNotification.notificationCatagory = notificationContent.value as? Int;
                         }
                         
                     }
@@ -115,20 +125,19 @@ class CustomTabBarController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         
-        monthLabel.text = getTitleDateAndMonth();
-        monthLabel.adjustsFontSizeToFitWidth = true;
-        monthLabel.minimumScaleFactor = 0.8;
         
        // getSavedArticles(); // load default saved articles
         savedArticleClass.getSavedArticles();
         
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
         
+        //contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
+        //contentView.topAnchor.constraint(equalTo: view.topAnchor, constant: -1).isActive = true;
         
-        contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
+        //tabBarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true;
         
-        tabBarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true;
-        tabBarView.layer.cornerRadius = 25;
+        
+    
        // tabBarView.frame.size.height = CGFloat(70);
         
 
@@ -137,7 +146,7 @@ class CustomTabBarController: UIViewController {
             let image = UIImage(named: iconImagePath[index]);
             //image = image?.maskWithColor(color: UIColor.white);
             buttons[index].setImage(image, for: .normal);
-            buttons[index].tintColor = UIColor.white;
+            buttons[index].tintColor = UIColor.black;
         }
         
         
@@ -149,12 +158,17 @@ class CustomTabBarController: UIViewController {
         viewControllers = [homeViewController, bulletinViewController, savedViewController, settingsViewController];
         buttons[selectedIndex].setImage(UIImage(named: iconImagePathInv[selectedIndex]), for: .normal);
         //buttons[selectedIndex].tintColor = selectedColor;
-        let vc = viewControllers[selectedIndex];
+       let vc = viewControllers[selectedIndex];
         addChild(vc);
         vc.view.frame = contentView.bounds;
         contentView.addSubview(vc.view);
         vc.didMove(toParent: self);
-
+        topBar.layer.cornerRadius = homeTopCornerRadius;
+        topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
+        topBar.layer.shadowColor = UIColor.gray.cgColor;
+        topBar.layer.shadowOpacity = 0.1;
+        topBar.layer.shadowRadius = 5;
+        topBar.layer.shadowOffset = CGSize(width: 0 , height:10);
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -187,7 +201,7 @@ class CustomTabBarController: UIViewController {
         else{
         // remove prev view controller
         //buttons[prevIndex].isSelected = false;
-            buttons[prevIndex].setImage(UIImage(named: iconImagePath[prevIndex]), for: .normal);
+           // buttons[prevIndex].setImage(UIImage(named: iconImagePath[prevIndex]), for: .normal);
         //buttons[prevIndex].tintColor = UIColor.white;
         
             let prevVC = viewControllers[prevIndex];
@@ -198,12 +212,30 @@ class CustomTabBarController: UIViewController {
         // add current view controller
        // sender.isSelected = true;
        // sender.tintColor = selectedColor;
-            sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
+            //sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
             let vc = viewControllers[selectedIndex];
             addChild(vc);
             vc.view.frame = contentView.bounds;
             contentView.addSubview(vc.view);
             vc.didMove(toParent: self);
+            
+            
+            if (sender.tag == 0){
+                print("home")
+                topBar.layer.cornerRadius = homeTopCornerRadius;
+                topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
+                topBar.layer.shadowColor = UIColor.gray.cgColor;
+                topBarHeightContraint.constant = 60;
+                homeTopBarContent.isHidden = false;
+            }
+            else{
+                topBar.layer.cornerRadius = 0;
+                topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
+                topBar.layer.shadowColor = UIColor.white.cgColor;
+                topBarHeightContraint.constant = 55;
+                homeTopBarContent.isHidden = true;
+            }
+            
         }
             
     }
