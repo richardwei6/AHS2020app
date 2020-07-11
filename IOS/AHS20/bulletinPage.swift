@@ -391,7 +391,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad();
-
+        
         setUpFilters();
         // set up bulletin for the first time before any filters
         getBulletinArticleData();
