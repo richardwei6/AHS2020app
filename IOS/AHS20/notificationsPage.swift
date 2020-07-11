@@ -130,6 +130,23 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     var refreshControl = UIRefreshControl();
 
+    func typeIDToString(id: Int) -> String{
+        if (id == 0){
+            return "Alerts";
+        }
+        else if (id == 1){
+            return "Sports";
+        }
+        else if (id == 2){
+            return "ASB";
+        }
+        else if (id == 3){
+            return "District";
+        }
+        else{
+            return "Bulletin";
+        }
+    }
     
     func loadScrollView(){
         
@@ -148,7 +165,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             noNotificationLabel.isHidden = true;
             
             notificationFrame.size.width = UIScreen.main.bounds.size.width - (2 * horizontalPadding);
-            notificationFrame.size.height = 110;
+            notificationFrame.size.height = 140;
             // add notification label at start
             for nIndex in 0..<unreadNotificationSize{
                 notificationFrame.origin.x = horizontalPadding;
@@ -157,53 +174,70 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 let notificationButton = notificationUIButton(frame: notificationFrame);
                 let currNotif = notificationList[1][nIndex]; // TODO: import data
                 
-                let readIndicatorWidth = CGFloat(20);
-                let readIndicatorFrame = CGRect(x: 0, y: 0, width: readIndicatorWidth, height: notificationFrame.size.height);
-                let readIndicator = UIView(frame: readIndicatorFrame);
-                
                 let chevronWidth = CGFloat(22);
                 let chevronFrame = CGRect(x: notificationFrame.size.width-chevronWidth-15, y: (notificationFrame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
                 let chevronImage = UIImageView(frame: chevronFrame);
                 chevronImage.image = UIImage(systemName: "chevron.right");
                 chevronImage.tintColor = UIColor.gray;
                 
+                let notificationCatagoryLabelHeight = CGFloat(20);
+                let notificationCatagoryLabelFrame = CGRect(x: 10, y: 12, width: 65, height: notificationCatagoryLabelHeight);
+                let notificationCatagoryLabel = UILabel(frame: notificationCatagoryLabelFrame);
+                notificationCatagoryLabel.backgroundColor = makeColor(r: 159, g: 12, b: 12);
+                notificationCatagoryLabel.text = typeIDToString(id: currNotif.notificationCatagory ?? 0);
+                notificationCatagoryLabel.textAlignment = .center;
+                notificationCatagoryLabel.textColor = UIColor.white;
+                notificationCatagoryLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+                notificationCatagoryLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
+                 //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
                 
-                let notificationTitleFrame = CGRect(x: readIndicatorWidth + 7, y: 0, width: notificationFrame.size.width - readIndicatorWidth - chevronWidth - timeStampLength, height: 50);
+                let readLabelFrame = CGRect(x: 15 + notificationCatagoryLabelFrame.size.width, y: 12, width: 40, height: notificationCatagoryLabelHeight);
+                let readLabel = UILabel(frame: readLabelFrame);
+                readLabel.text = "New";
+                readLabel.backgroundColor = UIColor.systemYellow;
+                readLabel.textAlignment = .center;
+                readLabel.textColor = UIColor.white;
+                readLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+                readLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
+                
+                let notificationTitleFrame = CGRect(x: 10, y: notificationCatagoryLabelHeight + 15, width: notificationFrame.size.width - chevronWidth - timeStampLength, height: 30);
                 let notificationTitle = UILabel(frame: notificationTitleFrame);
                 notificationTitle.text = currNotif.notificationTitle;
-                notificationTitle.font = UIFont(name:"SFProText-Bold",size: 22);
+                notificationTitle.font = UIFont(name:"SFProText-Bold",size: 18);
                 notificationTitle.adjustsFontSizeToFitWidth = true;
                 notificationTitle.minimumScaleFactor = 0.2;
                 
-                let notificationBodyFrame = CGRect(x: readIndicatorWidth + 10, y: notificationTitleFrame.size.height-15, width: notificationFrame.size.width - readIndicatorWidth - chevronWidth - 27, height: notificationFrame.size.height - (notificationTitleFrame.size.height-11));
+                let notificationBodyFrame = CGRect(x: 10, y: notificationTitleFrame.size.height + 10 + notificationCatagoryLabelFrame.size.height, width: notificationFrame.size.width  - chevronWidth - 27, height: notificationFrame.size.height - (notificationCatagoryLabel.frame.size.height + 5 + notificationTitle.frame.size.height + 5));
                 let notificationBodyText = UILabel(frame: notificationBodyFrame);
                 notificationBodyText.text = currNotif.notificationBody;
                 notificationBodyText.numberOfLines = 3;
-                notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 16);
+                notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 14);
                 
                 
                 let timeStampFrame = CGRect(x: notificationFrame.size.width - chevronWidth - timeStampLength + 10, y: 5, width: timeStampLength, height: 30);
                 let timeStamp = UILabel(frame: timeStampFrame);
                 timeStamp.text = epochClass.epochToString(epoch: currNotif.notificationUnixEpoch ?? -1);
-                timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 14);
+                timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 12);
                 timeStamp.textAlignment = .right;
                 timeStamp.textColor = UIColor.darkGray;
                 
-                
-                
-                readIndicator.backgroundColor = makeColor(r: 230, g: 205, b: 85);
                 notificationButton.backgroundColor = UIColor.white;
+                
+                notificationButton.layer.shadowColor = UIColor.black.cgColor;
+                notificationButton.layer.shadowOpacity = 0.1;
+                notificationButton.layer.shadowRadius = 5;
+                notificationButton.layer.shadowOffset = CGSize(width: 0 , height:4);
                 
                 notificationButton.notificationCompleteData = currNotif;
                 notificationButton.articleIndex = nIndex;
                 
+                notificationButton.addSubview(readLabel);
+                notificationButton.addSubview(notificationCatagoryLabel);
                 notificationButton.addSubview(chevronImage);
-                notificationButton.addSubview(readIndicator);
                 notificationButton.addSubview(notificationTitle);
                 notificationButton.addSubview(notificationBodyText);
                 notificationButton.addSubview(timeStamp);
                 
-                notificationButton.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 15);
                 notificationButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
                 notificationScrollView.addSubview(notificationButton);
             }
@@ -214,59 +248,65 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 let notificationButton = notificationUIButton(frame: notificationFrame);
                 let currNotif = notificationList[0][nIndex];
                 
-                let readIndicatorWidth = CGFloat(20);
-                let readIndicatorFrame = CGRect(x: 0, y: 0, width: readIndicatorWidth, height: notificationFrame.size.height);
-                let readIndicator = UIView(frame: readIndicatorFrame);
-                
                 let chevronWidth = CGFloat(22);
                 let chevronFrame = CGRect(x: notificationFrame.size.width-chevronWidth-15, y: (notificationFrame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
                 let chevronImage = UIImageView(frame: chevronFrame);
                 chevronImage.image = UIImage(systemName: "chevron.right");
                 chevronImage.tintColor = UIColor.gray;
                 
+                let notificationCatagoryLabelHeight = CGFloat(20);
+                let notificationCatagoryLabelFrame = CGRect(x: 10, y: 12, width: 65, height: notificationCatagoryLabelHeight);
+                let notificationCatagoryLabel = UILabel(frame: notificationCatagoryLabelFrame);
+                notificationCatagoryLabel.backgroundColor = makeColor(r: 159, g: 12, b: 12);
+                notificationCatagoryLabel.layer.cornerRadius = 5;
+                notificationCatagoryLabel.text = typeIDToString(id: currNotif.notificationCatagory ?? 0);
+                notificationCatagoryLabel.textAlignment = .center;
+                notificationCatagoryLabel.textColor = UIColor.white;
+                notificationCatagoryLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+                notificationCatagoryLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
+                 //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
                 
-                let notificationTitleFrame = CGRect(x: readIndicatorWidth + 7, y: 0, width: notificationFrame.size.width - readIndicatorWidth - chevronWidth - timeStampLength, height: 50);
+                let notificationTitleFrame = CGRect(x: 10, y: notificationCatagoryLabelHeight + 15, width: notificationFrame.size.width - chevronWidth - timeStampLength, height: 30);
                 let notificationTitle = UILabel(frame: notificationTitleFrame);
                 notificationTitle.text = currNotif.notificationTitle;
-                notificationTitle.font = UIFont(name:"SFProText-Bold",size: 22);
+                notificationTitle.font = UIFont(name:"SFProText-Bold",size: 18);
                 notificationTitle.adjustsFontSizeToFitWidth = true;
                 notificationTitle.minimumScaleFactor = 0.2;
                 
-                
-                let notificationBodyFrame = CGRect(x: readIndicatorWidth + 10, y: notificationTitleFrame.size.height-15, width: notificationFrame.size.width - readIndicatorWidth - chevronWidth - 27, height: notificationFrame.size.height - (notificationTitleFrame.size.height-11));
+                let notificationBodyFrame = CGRect(x: 10, y: notificationTitleFrame.size.height + 10 + notificationCatagoryLabelFrame.size.height, width: notificationFrame.size.width  - chevronWidth - 27, height: notificationFrame.size.height - (notificationCatagoryLabel.frame.size.height + 5 + notificationTitle.frame.size.height + 5));
                 let notificationBodyText = UILabel(frame: notificationBodyFrame);
                 notificationBodyText.text = currNotif.notificationBody;
                 notificationBodyText.numberOfLines = 3;
-                notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 16);
+                notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 14);
                 
                 
                 let timeStampFrame = CGRect(x: notificationFrame.size.width - chevronWidth - timeStampLength + 10, y: 5, width: timeStampLength, height: 30);
                 let timeStamp = UILabel(frame: timeStampFrame);
                 timeStamp.text = epochClass.epochToString(epoch: currNotif.notificationUnixEpoch ?? -1);
-                timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 14);
+                timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 12);
                 timeStamp.textAlignment = .right;
                 timeStamp.textColor = UIColor.darkGray;
                 
+                notificationButton.backgroundColor = makeColor(r: 250, g: 250, b: 250);
                 
+                notificationButton.layer.shadowColor = UIColor.black.cgColor;
+                notificationButton.layer.shadowOpacity = 0.1;
+                notificationButton.layer.shadowRadius = 5;
+                notificationButton.layer.shadowOffset = CGSize(width: 0 , height:4);
                 
-                readIndicator.backgroundColor = makeColor(r: 204, g: 204, b: 205);
-                notificationButton.backgroundColor = makeColor(r: 244, g: 244, b: 245);
-                
-                notificationButton.notificationCompleteData = currNotif;
-                notificationButton.articleIndex = nIndex;
                 notificationButton.alreadyRead = true;
+                notificationButton.notificationCompleteData = currNotif;
+                notificationButton.articleIndex = nIndex+unreadNotificationSize;
                 
+                notificationButton.addSubview(notificationCatagoryLabel);
                 notificationButton.addSubview(chevronImage);
-                notificationButton.addSubview(readIndicator);
                 notificationButton.addSubview(notificationTitle);
                 notificationButton.addSubview(notificationBodyText);
                 notificationButton.addSubview(timeStamp);
                 
-                notificationButton.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 15);
                 notificationButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
                 notificationScrollView.addSubview(notificationButton);
             }
-            notificationScrollView.backgroundColor = makeColor(r: 230, g: 230, b: 230);
             notificationScrollView.contentSize = CGSize(width: notificationFrame.size.width, height: (2*verticalPadding)+((notificationFrame.size.height+verticalPadding)*CGFloat(unreadNotificationSize+readNotificationSize)));
             notificationScrollView.delegate = self;
         }
