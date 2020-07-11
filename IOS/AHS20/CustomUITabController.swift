@@ -178,7 +178,6 @@ class CustomTabBarController: UIViewController {
         buttons[0].tintColor = mainThemeColor;
         dateLabel.text = getTitleDateAndMonth();
         
-        printFontFamilies();
         
     }
     
