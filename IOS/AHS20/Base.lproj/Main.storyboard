@@ -364,8 +364,9 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxG-mm-MkH">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="chevron.left" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
                                 </state>
                                 <connections>
@@ -373,9 +374,14 @@
                                     <action selector="exitPopup:" destination="iaA-pd-aga" eventType="touchUpInside" id="xX5-7h-Odc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgT-rI-5cM">
-                                <rect key="frame" x="42.000000000000007" y="14" width="79.666666666666686" height="28"/>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Athletics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgT-rI-5cM">
+                                <rect key="frame" x="42" y="13.999999999999998" width="105" height="26.333333333333329"/>
+                                <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26.329999999999998" id="TNC-pH-q9Y"/>
+                                    <constraint firstAttribute="width" constant="105" id="Ygc-JH-ebd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -390,7 +396,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gLJ-tt-5t4" firstAttribute="trailing" secondItem="8vf-rb-I3g" secondAttribute="trailing" id="FZs-eq-22l"/>
                             <constraint firstItem="DgT-rI-5cM" firstAttribute="leading" secondItem="8vf-rb-I3g" secondAttribute="leading" constant="42" id="HnP-5P-zge"/>
@@ -411,6 +417,7 @@
                     <connections>
                         <outlet property="articleAuthor" destination="FF8-sD-ZfC" id="e0v-5Y-wsd"/>
                         <outlet property="articleBar" destination="qav-91-Smr" id="mAH-nP-Frf"/>
+                        <outlet property="articleCatagoryLabel" destination="DgT-rI-5cM" id="DR7-CD-fcx"/>
                         <outlet property="articleDate" destination="Axu-yg-wTC" id="4j9-SK-55C"/>
                         <outlet property="articleText" destination="w38-mR-bIO" id="0A6-XT-SSW"/>
                         <outlet property="articleTitle" destination="NQf-Zz-avA" id="vSo-yn-tgV"/>

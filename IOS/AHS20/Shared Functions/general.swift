@@ -25,8 +25,10 @@ struct articleData: Codable {
     var articleBody: String?;
     var articleAuthor: String?;
     var articleImages: [String]?; // list of image urls
+    var articleCatagory: String?;
     var isFeatured = false;
 }
+
 var internetConnected = false;
 var homeArticleList = [[articleData]](); // size of 4 rows, featured, asb, sports, district
 var bulletinArticleList = [[bulletinArticleData]](); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
@@ -57,6 +59,7 @@ struct bulletinArticleData: Codable {
     var articleBody: String?;
     var articleAuthor: String?;
     var articleImages: [String]?; // list of image urls
+    var articleCatagory: String?;
     var articleType = -1;
 }
 
@@ -147,6 +150,7 @@ func bulletinDataToarticleData(data: bulletinArticleData) -> articleData{
     temp.articleID = data.articleID;
     temp.articleImages = data.articleImages;
     temp.articleTitle = data.articleTitle;
+    temp.articleCatagory = data.articleCatagory;
     return temp;
 }
 
@@ -172,6 +176,12 @@ func printFontFamilies(){
         for name in UIFont.fontNames(forFamilyName: sName) {
             print("name: \(name as String)")
         }
+    }
+}
+
+class InsetLabel: UILabel {
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.inset(by: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)))
     }
 }
 

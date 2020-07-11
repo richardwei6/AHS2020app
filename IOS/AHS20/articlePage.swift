@@ -31,6 +31,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var bookmarkButton: CustomUIButton!
     @IBOutlet weak var bookmarkOuter: CustomUIButton!
     
+    @IBOutlet weak var articleCatagoryLabel: UILabel!
+    
     var contentWidth: CGFloat = 0.0
     var imageFrame = CGRect(x: 0, y:0, width: 0, height: 0);
     var imageSize = 1;
@@ -92,6 +94,9 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         bookmarkOuter.articleCompleteData = articleContent ?? articleData();
         
         setBookmarkColor();
+        
+        articleCatagoryLabel.text = articleContent?.articleCatagory ?? "NO Cata.";
+        articleCatagoryLabel.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
         
         bookmarkOuter.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 12);
         

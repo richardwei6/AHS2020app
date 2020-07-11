@@ -252,7 +252,7 @@ class CustomTabBarController: UIViewController {
                 }
                 else if (sender.tag == 2){
                     topBarPageName.text = "Saved Articles";
-                    topBar.layer.shadowColor = UIColor.gray.cgColor;
+                    topBar.layer.shadowColor = UIColor.white.cgColor;
                 }
                 else if (sender.tag == 3){
                     topBarPageName.text = "Settings";

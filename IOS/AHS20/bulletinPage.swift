@@ -127,6 +127,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                         // print(temp.count);
                         //print(singleArticle.articleTitle);
                         //print(singleArticle.articleImages);
+                        singleArticle.articleCatagory = s.prefix(1).capitalized + s.dropFirst();
                         singleArticle.articleType = i;
                         temp.append(singleArticle);
                         
@@ -289,8 +290,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 
                 let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
                 let dateText = UILabel(frame: dateTextFrame);
-                //dateText.text = epochClass.epochToString(epoch: currentArticles[aIndex].articleUnixEpoch ?? -1); // insert date here -------- temporary
-                dateText.text = "12 months ago";
+                dateText.text = epochClass.epochToString(epoch: currentArticles[aIndex].articleUnixEpoch ?? -1); // insert date here -------- temporary
+                //dateText.text = "12 months ago";
                 dateText.textColor = makeColor(r: 156, g: 0, b: 0);
                 dateText.textAlignment = .right;
                 dateText.font = UIFont(name: "SFProDisplay-Regular", size: 12);
