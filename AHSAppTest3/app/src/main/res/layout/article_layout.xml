@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/article_frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ArticleActivity">
+
+    <ScrollView
+        android:id="@+id/article_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF">
+
+        <LinearLayout
+            android:id="@+id/article_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/DarkestGray_555555__HOME_ARTICLE"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/article_headerLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+
+                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                >
+
+                <ImageButton
+                    android:id="@+id/article_header_back"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/EveryPage_Side_Padding_Half"
+
+
+                    android:scaleType="centerInside"
+
+                    app:srcCompat="@drawable/article_back_button" />
+
+                <TextView
+                    android:id="@+id/article_header_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                    android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sf_pro_compactbold"
+                    android:text="ARTICLE"
+                    android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/article_tabLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tabBackground="@drawable/article_tab_selector"
+                    app:tabGravity="fill"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMode="fixed" />
+
+                <ImageButton
+                    android:id="@+id/article_bookmarkButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:padding="10dp"
+
+                    android:layout_marginTop="0dp"
+
+                    android:layout_marginEnd="0dp"
+                    android:background="@drawable/bookmarked_button_background"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@color/Blank"
+                    android:layout_marginRight="@dimen/Article_Display_bookmarked_btn_padding"
+                    />
+
+                <FrameLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="200dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/article_viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/article_text_linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/article_background_rounded"
+
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/EveryPage_Side_Padding"
+                android:paddingTop="@dimen/EveryPage_Side_Padding"
+                android:paddingRight="@dimen/EveryPage_Side_Padding"
+                android:paddingBottom="@dimen/EveryPage_Side_Padding">
+
+                <ImageView
+                    android:id="@+id/article_roundedBar_Image"
+                    android:layout_width="150dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/article_roundedbar" />
+
+                <TextView
+                    android:id="@+id/article_dateText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/EveryPage_Side_Padding_Quarter"
+                    android:layout_marginRight="@dimen/EveryPage_Side_Padding_Quarter"
+                    android:fontFamily="@font/din_alternate_bold"
+                    android:gravity="right"
+                    android:text="Month 00, 0000"
+                    android:textColor="@color/BetweenGray_ADADAD__ARTICLE"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/article_titleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/din_alternate_bold"
+                    android:text="Title Lorem Ipsum"
+                    android:textColor="@color/DarkerGray_656668__HOME_ARTICLE_NOTIF"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/article_authorText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/din_alternate_bold"
+                    android:text="Author"
+                    android:textColor="@color/BetweenGray_ADADAD__ARTICLE"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/article_bodyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Body"
+                    android:textColor="@color/DarkestGray_555555__HOME_ARTICLE"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

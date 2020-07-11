@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settings_outerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings.SettingsActivity">
+
+    <ScrollView
+        android:id="@+id/settings_ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/LightishGray_EFEDED__HOME_NOTIF">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/settings_scrollConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <fragment
+                android:id="@+id/settings_header"
+                android:name="com.example.ahsapptest3.Header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout="@layout/header_layout" />
+
+            <TextView
+                android:id="@+id/settings_GeneralText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginEnd="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
+                android:text="General"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/settings_header" />
+
+            <LinearLayout
+                android:id="@+id/settings_GeneralLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginEnd="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
+                android:background="@drawable/bulletin_template_rounded_white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/settings_GeneralText">
+
+                <TextView
+                    android:id="@+id/settings_FontSize_Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Font Size"
+                    android:textSize="18sp" />
+
+                <SeekBar
+                    android:id="@+id/settings_FontSize_SeekBar"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="3"
+                    android:progress="1"/>
+
+                <!--https://stackoverflow.com/questions/5049852/android-drawing-separator-divider-line-in-layout-->
+
+
+                <View style="@style/Divider" />
+
+                <LinearLayout
+                    android:id="@+id/settings_notif_LinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:id="@+id/settings_notifText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Notifications"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/settings_notif_ArrowImage"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/notif_forward_button" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/settings_InfoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginEnd="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
+                android:text="Info"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/settings_GeneralLinearLayout" />
+
+            <LinearLayout
+                android:id="@+id/settings_InfoLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginEnd="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
+                android:background="@drawable/bulletin_template_rounded_white"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/settings_InfoText">
+
+
+                <LinearLayout
+                    android:id="@+id/settings_terms_LinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:id="@+id/settings_termsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Terms and Agreements"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/settings_terms_ArrowImage"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/notif_forward_button" />
+                </LinearLayout>
+
+                <View style="@style/Divider" />
+
+                <LinearLayout
+                    android:id="@+id/settings_credits_LinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:id="@+id/settings_creditsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Credits"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/settings_credits_ArrowImage"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/notif_forward_button" />
+                </LinearLayout>
+
+                <View style="@style/Divider" />
+
+                <LinearLayout
+                    android:id="@+id/settings_version_LinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/settings_versionText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="App Version"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/settings_versionNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0"
+                        android:scaleType="centerInside"
+                        android:text="0.0.0" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <fragment
+        android:id="@+id/settings_navBar"
+        android:name="com.example.ahsapptest3.Navigation_Bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/navigation_bar"
+        android:layout_gravity="bottom"/>
+
+</FrameLayout>

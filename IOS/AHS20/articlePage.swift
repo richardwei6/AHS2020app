@@ -12,53 +12,72 @@ import AudioToolbox
 
 class articlePageViewController: UIViewController, UIScrollViewDelegate{
     /*@IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var articleText: UILabel!
-    @IBOutlet weak var imageScrollView: UIScrollView!
-    @IBOutlet weak var imagePageControl: UIPageControl!
-    @IBOutlet weak var whiteBackground: UIImageView!*/    //@IBOutlet weak var notificationBellButton: UIButton!
-   
+     @IBOutlet weak var articleText: UILabel!
+     @IBOutlet weak var imageScrollView: UIScrollView!
+     @IBOutlet weak var imagePageControl: UIPageControl!
+     @IBOutlet weak var whiteBackground: UIImageView!*/    //@IBOutlet weak var notificationBellButton: UIButton!
+    
+    @IBOutlet weak var articleAuthor: UILabel!
+    @IBOutlet weak var articleDate: UILabel!
+    @IBOutlet weak var articleTitle: UILabel!
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var articleText: UILabel!
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imagePageControl: UIPageControl!
-    @IBOutlet weak var whiteBackground: UIImageView!
+    @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var bookmarkButton: CustomUIButton!
-    @IBOutlet weak var bookmarkOuter: CustomUIButton!
+    
+    @IBOutlet weak var articleCatagoryLabel: UILabel!
     
     var contentWidth: CGFloat = 0.0
     var imageFrame = CGRect(x: 0, y:0, width: 0, height: 0);
-    var imageSize = 3;
+    var imageSize = 1;
+    var articleContent: articleData?;
     
-    func setUpColorOfBookmark(sender: CustomUIButton){
-        if (isSavedCurrentArticle(articleID: sender.articleID ?? "") == true){ // TODO: implement sender.articleID
-            sender.tintColor = mainThemeColor;
-        //    sender.backgroundColor = mainThemeColor;
-        }
-        else{
-            sender.tintColor = UIColor.white;
-        //    sender.backgroundColor = nil; // clear bacgkround color
-        }
-    }
     
     @IBAction func saveArticle(sender: CustomUIButton){
         print("Bookmark");
-        if (sender.isSelected == false){
-            sender.tintColor = mainThemeColor;
-            saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+        if (sender.articleCompleteData.articleID != nil){
+            if (sender.isSelected == false){
+                // saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+                savedArticleClass.saveCurrArticle(articleID: sender.articleCompleteData.articleID!, article: sender.articleCompleteData);
+            }
+            else{
+                //  removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
+                savedArticleClass.removeCurrArticle(articleID: sender.articleCompleteData.articleID!);
+            }
+            // TODO: FIX
+            sender.isSelected = !sender.isSelected;
+            setBookmarkColor();
+            resetUpArticles = true;
         }
-        else{
-            sender.tintColor = UIColor.white;
-            removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
-        }
-        sender.isSelected = !sender.isSelected;
     }
     
     @IBAction func exitArticle(_ sender: UIButton){
         dismiss(animated: true);
-       AudioServicesPlaySystemSound(1519);
     }
     
+    func setBookmarkColor(){
+        if (articleContent?.articleID != nil && savedArticleClass.isSavedCurrentArticle(articleID: (articleContent?.articleID)!)){
+            bookmarkButton.tintColor = mainThemeColor;
+            bookmarkButton.isSelected = true;
+        }
+        else{
+            bookmarkButton.tintColor = UIColor.white;
+            bookmarkButton.isSelected = false;
+        }
+    }
+    
+    @objc func toggleZoom(sender: UIButton){
+        if (sender.isSelected){
+            sender.imageView?.contentMode = .scaleAspectFill;
+        }
+        else{
+            sender.imageView?.contentMode = .scaleAspectFit;
+        }
+        sender.isSelected = !sender.isSelected;
+    }
     
     // ------------
     // TODO: Fix issue where long text gets cut off *completed, thank u for the reminder XD -em&kim
@@ -68,52 +87,59 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        bookmarkOuter.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 12);
+        bookmarkButton.articleCompleteData = articleContent ?? articleData();
         
-        mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
+        setBookmarkColor();
+        
+        articleCatagoryLabel.text = articleContent?.articleCatagory ?? "NO Cata.";
+        articleCatagoryLabel.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
+        
+       // mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
+
         
-        setUpColorOfBookmark(sender: bookmarkButton);
-    
-        articleText.text = "Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via.Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via. Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via.Opera nullo ratio an libet de tangi sequi. Im me gurgitem quadrati connivet experiar de fatendum quatenus. Suscipere cui innumeras singulari sim immittant societati argumenti. Proponere concipiam evidentia purgantur to ne vereorque ac. Corpo to nihil nolim prima et et ad. Verti est supra imo omnem sic sitas Cum facultate supersunt objective spectatum nul meditatio jam suo. Possum sacras initia rea ita. Illud ferre sub gustu tes agi solum. Rem cogitari mutuatur pla attentum. Me quandiu ac is id intueor ineptum. Prorsus fraudem certius agnosco eo sirenes dicitur gi. Nulli tangi is omnem ei ex at. Vos conservet via existendi nia conflatum admiserim eas dubitavit. To et existat quosdam equidem ac affirmo formali accepit.Viderer totaque ineptum id ac et. Eaedem vi fueram to du at mentes. Confirmari praesertim praecipuis ex externarum ac at satyriscos to. Vitae etc lumen lus solam novas lapis. Ha exhibentur occasionem credidique si sufficeret. Creatus idearum admonet reducit ne si in quandam cognitu. Quid veat mens eas cui rem.Hactenus animalia existimo potentia rea ita perpauca existens. Existimo reductis nonnihil fal inficior sui his via."
         
-        //rounded corners (bottom corners-> [.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
-        whiteBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        articleText.text = articleContent?.articleBody;
+        articleText.font = UIFont(name: articleText.font.fontName, size: CGFloat(fontSize));
+        articleTitle.text = "Loading images..."; // see func viewdidappear
+        articleDate.text = epochClass.epochToFormatedDateString(epoch: articleContent?.articleUnixEpoch ?? -1); // TODO: IMPLEMENT A FUNC TO GET INT TO STRING DATE
+        articleAuthor.text = "By " + (articleContent?.articleAuthor ?? " No Author");
         
-        //horizontal image scroll view
-       /* imageScrollView.delegate = self
-        
-        for imageIndex in 0..<imageSize{
-            let imageToDisplay = UIImage(named: "\(imageIndex).png")
-            let imageView = UIImageView(image: imageToDisplay)
-            
-            imageScrollView.addSubview(imageView)
-            
-            let xCoordinate = view.frame.midX + view.frame.width * CGFloat(imageIndex) // use UIScreen.main.bounds.width instead - view.frame.width is constant size across all devices while UIScreen is different
-            
-            contentWidth += view.frame.width
-            
-            imageView.frame = CGRect(x: xCoordinate, y: view.frame.height/2, width: 100, height: 100)
-        }
-        
-        imageScrollView.contentSize = CGSize(width: contentWidth, height: view.frame.height)*/
-        
+
+        // TODO: add zoom feature here
+        imageSize = articleContent?.articleImages?.count ?? 0;
+        //print(imageSize);
         imagePageControl.numberOfPages = imageSize;
         imageFrame.size = imageScrollView.frame.size;
-        imageFrame.size.width = UIScreen.main.bounds.size.width;
+        imageFrame.size.width = UIScreen.main.bounds.size.width - 42;
         for imageIndex in 0..<imageSize{
             imageFrame.origin.x = (imageFrame.size.width * CGFloat(imageIndex));
             
-            let imageView = UIImageView(frame: imageFrame);
-            //imageView.backgroundColor = UIColor.white;
-            // add image here
+           // let imageZoom = UIScrollView(frame: imageFrame);
+            let buttonImage = UIButton(frame: imageFrame);
+            //imageView.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
+            //imageView.contentMode = .scaleAspectFit;
             
-            self.imageScrollView.addSubview(imageView);
+            buttonImage.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
+            buttonImage.imageView?.contentMode = .scaleAspectFill;
+            buttonImage.isSelected = false;
+            
+            buttonImage.addTarget(self, action: #selector(toggleZoom), for: .touchUpInside);
+            
+            //print("\(imageView.image != nil)" + " - " + (articleContent?.articleImages?[imageIndex] ?? ""))
+           // imageZoom.addSubview(imageView);
+            //imageZoom.delegate = self;
+            
+            self.imageScrollView.addSubview(buttonImage);
         }
         imageScrollView.contentSize = CGSize(width: (imageFrame.size.width * CGFloat(imageSize)), height: imageScrollView.frame.size.height);
         imageScrollView.delegate = self;
+        imageScrollView.layer.cornerRadius = 10;
         
+        articleTitle.text = articleContent?.articleTitle; // set article title herer
+        articleTitle.font = UIFont(name: articleTitle.font.fontName, size: CGFloat(fontSize));
     }
+
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

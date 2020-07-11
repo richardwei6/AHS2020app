@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <fragment
                 android:id="@+id/home_header"
                 android:name="com.example.ahsapptest3.Header"
@@ -58,42 +59,101 @@
                 android:layout_height="wrap_content"
                 tools:layout="@layout/header_layout" />
 
-            <fragment
+            <FrameLayout
+                android:id="@+id/home_featuredNews_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@+id/home_asbNews_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@+id/home_sportsNews_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@+id/home_districtNews_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <!--
+                        <include
+                            android:id="@+id/home_header_test"
+                            layout="@layout/template__news_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <include
+                            android:id="@+id/asbNewstest"
+                            layout = "@layout/template__news_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <include
+                            android:id="@+id/sportsNewstest"
+                            layout = "@layout/template__news_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <include
+                        android:id="@+id/districtNewstest"
+                        layout = "@layout/template__news_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>-->
+            <!--<fragment
                 android:id="@+id/fragment"
-                android:name="com.example.ahsapptest3.Featured_News"
+                android:name="com.example.ahsapptest3.HomePage_News.Featured_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout="@layout/template__featured_display"/>
+                tools:layout="@layout/template__featured_display" />
 
+-->
+<!--
             <fragment
                 android:id="@+id/asbNews"
-                android:name="com.example.ahsapptest3.Asb_News"
+                android:name="com.example.ahsapptest3.HomePage_News.Asb_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout="@layout/template__news_layout"/>
+                tools:layout="@layout/template__news_layout"/>-->
+
+
+
+<!--
 
             <fragment
                 android:id="@+id/sportsNews"
-                android:name="com.example.ahsapptest3.Sports_News"
+                android:name="com.example.ahsapptest3.HomePage_News.Sports_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout="@layout/template__news_layout"/>
 
             <fragment
                 android:id="@+id/districtNews"
-                android:name="com.example.ahsapptest3.District_News"
+                android:name="com.example.ahsapptest3.HomePage_News.District_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout="@layout/template__news_layout"/>
-
+                tools:layout="@layout/template__news_layout"/>-->
         </LinearLayout>
     </ScrollView>
 
-    <include
+    <fragment
+        android:id="@+id/home_navBar"
+        android:name="com.example.ahsapptest3.Navigation_Bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        tools:layout="@layout/navigation_bar"/>
+
+    <!--<include
         android:id="@+id/home_page__navigation_bar"
-        layout="@layout/navigation_bar"
+        layout="@layout/navigation_bar2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

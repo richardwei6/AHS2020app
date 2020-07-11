@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/EveryPage_Side_Padding"
     android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
     android:paddingRight="@dimen/EveryPage_Side_Padding"
-    tools:context=".Featured_Template">
+    android:paddingBottom="0dp"
+    >
 
     <ImageView
         android:id="@+id/template_featured__ImageView"
@@ -27,7 +28,7 @@
         android:layout_marginTop="@dimen/Article_Display_padding"
         android:layout_marginEnd="@dimen/Article_Display_padding"
         android:layout_marginRight="@dimen/Article_Display_padding"
-        android:background="@color/Blank"
+        android:background="@drawable/bookmarked_button_background"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="@id/template_featured__ImageView"
         app:layout_constraintTop_toTopOf="@id/template_featured__ImageView"
@@ -39,12 +40,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
         android:layout_weight="1"
+        android:ellipsize="end"
         android:fontFamily="@font/sf_pro_semibold"
         android:lines="1"
         android:text="Lorum Ipsum the Long Title"
         android:textColor="@color/Black_000000__HOME"
-        android:textSize="30sp"
-        app:autoSizeTextType="uniform"
+        android:textSize="22sp"
+        app:autoSizeTextType="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +64,7 @@
         android:lines="1"
         android:padding="5dp"
         android:text="Updated 5 hours ago"
+        android:textColor="@color/DarkestGray_555555__HOME_ARTICLE"
         app:layout_constraintBottom_toBottomOf="@+id/template_featured__ImageView"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

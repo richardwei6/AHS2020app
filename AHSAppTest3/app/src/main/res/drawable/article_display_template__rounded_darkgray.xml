@@ -3,6 +3,6 @@
     <solid android:color="@color/DarkGray_8D898D__HOME_BULLETIN"
         />
     <corners
-        android:radius="2dp"
+        android:radius="@dimen/Rounded_Background_Radius"
         />
 </shape>

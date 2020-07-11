@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Settings.Terms_And_Agreements_Activity">
+
+    <LinearLayout
+        android:id="@+id/terms_headerLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+
+        android:paddingRight="@dimen/EveryPage_Side_Padding_Half">
+
+        <ImageButton
+            android:id="@+id/terms_header_back"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:adjustViewBounds="false"
+            android:background="?attr/selectableItemBackground"
+
+
+            android:padding="@dimen/EveryPage_Side_Padding_Half"
+
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/article_back_button" />
+
+        <TextView
+            android:id="@+id/terms_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/sf_pro_compactbold"
+            android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+            android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+            android:text="TERMS AND AGREEMENTS"
+            android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</LinearLayout>

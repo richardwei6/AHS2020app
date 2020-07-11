@@ -7,11 +7,11 @@
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/EveryPage_Side_Padding"
     android:paddingRight="@dimen/EveryPage_Side_Padding"
-    tools:context=".Article_Display_Template">
+    >
 
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/article_display__guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -21,15 +21,17 @@
         android:id="@+id/article_display__time_updated_Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:fontFamily="@font/sf_pro_display"
         android:maxLines="1"
         android:text="time updated"
-        android:textColor="@color/DarkerGray_6F7073__HOME"
+        android:textColor="@color/DarkestGray_555555__HOME_ARTICLE"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/article_display__title_Text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/article_display__title_Text" />
+        app:layout_constraintEnd_toEndOf="@id/article_display__guideline"
+        app:layout_constraintStart_toStartOf="@+id/article_display__title_Text"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/article_display__title_Text"
@@ -39,16 +41,15 @@
         android:layout_marginRight="@dimen/Article_Display_middle_spacing"
         android:layout_weight="1"
         android:fontFamily="@font/sf_pro_semibold"
-        android:lines="2"
+        android:maxLines="2"
         android:text="Lorum Ipsum the Long Title"
         android:textColor="@color/Black_000000__HOME"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:autoSizeTextType="none"
-        app:layout_constraintBottom_toTopOf="@+id/article_display__summary_Text"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/article_display__guideline"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/article_display__imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/article_display__time_updated_Text" />
 
     <TextView
         android:id="@+id/article_display__summary_Text"
@@ -59,11 +60,11 @@
         android:layout_weight="0"
         android:ellipsize="end"
         android:fontFamily="@font/sf_pro_display"
-        android:lines="2"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        android:textColor="@color/DarkerGray_6F7073__HOME"
-        app:autoSizeTextType="none"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        android:maxLines="2"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "
+        android:textColor="@color/DarkerGray_656668__HOME_ARTICLE_NOTIF"
+        app:layout_constraintBottom_toBottomOf="@+id/article_display__imageView"
+        app:layout_constraintEnd_toStartOf="@+id/article_display__guideline"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/article_display__title_Text" />
@@ -74,24 +75,28 @@
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/Article_Display_middle_spacing"
         android:layout_marginLeft="@dimen/Article_Display_middle_spacing"
-        android:layout_marginTop="@dimen/EveryPage_Side_Padding"
+        android:layout_marginTop="5dp"
         android:src="@drawable/article_display_template__rounded_darkgray"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1.33"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/article_display__guideline"
+        app:layout_constraintTop_toTopOf="@id/article_display__time_updated_Text" />
 
     <ImageButton
         android:id="@+id/article_display__bookmarked_button"
-        android:layout_width="@dimen/Article_Display_bookmarked_btn_size"
-        android:layout_height="@dimen/Article_Display_bookmarked_btn_size"
-        android:layout_marginTop="@dimen/Article_Display_padding"
-        android:layout_marginEnd="@dimen/Article_Display_padding"
-        android:layout_marginRight="@dimen/Article_Display_padding"
-        android:background="@color/Blank"
+        android:layout_width="@dimen/Article_Display_bookmarked_btn_size_homepage"
+        android:layout_height="@dimen/Article_Display_bookmarked_btn_size_homepage"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/bookmarked_button_background"
+        android:padding="@dimen/Article_Display_bookmarked_btn_padding_homepage"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="@id/article_display__imageView"
         app:layout_constraintTop_toTopOf="@id/article_display__imageView"
-        app:srcCompat="@drawable/bookmarked_icon_inactive" />
+        app:srcCompat="@drawable/bookmarked_icon_inactive"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

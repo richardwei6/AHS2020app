@@ -16,7 +16,8 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
     
     @objc func openArticle(sender: CustomUIButton){
        // print("Button pressed");
-        performSegue(withIdentifier: "articleSegue", sender: nil);
+       let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
+       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
     }
     
     override func viewDidLoad() {
@@ -25,7 +26,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
-        getSavedArticles();
+        let savedArticles =  savedArticleClass.getSavedArticles();
         
 //        print("got saved");
 //        print(savedArticles.count);
@@ -34,7 +35,6 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
             view.removeFromSuperview();
         }
                 
-            
         if (savedArticles.count != 0){
             let articleHeight = CGFloat(130);
             let articleHorizontalPadding = CGFloat(11);
@@ -51,7 +51,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 articleFrame.origin.x = articleHorizontalPadding;
                 articleFrame.origin.y = articleVerticalPadding+(articleFrame.size.height+articleVerticalPadding)*CGFloat(aIndex);
                 
-                let articleButton = UIButton(frame: articleFrame);
+                let articleButton = CustomUIButton(frame: articleFrame);
                 //articleButton.backgroundColor = UIColor.gray;
                 
                 // content inside article variables
@@ -60,25 +60,29 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 
                 let articleImageFrame = CGRect(x:0, y:0, width: articleImageFrameWidth, height: articleFrame.size.height);
                 let articleImage = UIImageView(frame: articleImageFrame);
-                articleImage.backgroundColor = UIColor.gray;
-                articleImage.layer.cornerRadius = 20;
+                articleImage.backgroundColor = makeColor(r: 143, g: 142, b: 142);
+                articleImage.imgFromURL(sURL: savedArticles[aIndex].articleImages?[0] ?? "");
+                articleImage.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 20);
+                articleImage.contentMode = .scaleAspectFill;
                 
                 let articleTitleFrame = CGRect(x: articleImageFrameWidth + 20, y: 10, width: articleFrame.size.width - articleImageFrameWidth - 20, height: 30);
                 let articleTitle = UILabel(frame: articleTitleFrame);
                 //articleTitle.numberOfLines = 1;
                 articleTitle.adjustsFontSizeToFitWidth = true;
-                articleTitle.minimumScaleFactor = 0.4;
-                articleTitle.text = "Article Title Article Title";
+                articleTitle.minimumScaleFactor = 0.8;
+                articleTitle.text = savedArticles[aIndex].articleTitle; // DATA
                 articleTitle.font = UIFont(name: "SFProText-Bold",size: 25);
                 
                 
                 let articleDescriptionFrame = CGRect(x: articleImageFrameWidth + 20, y: 45, width: articleFrame.size.width - articleImageFrameWidth - 20, height: articleFrame.size.height - 50);
                 let articleDescription = UILabel(frame: articleDescriptionFrame);
                 articleDescription.numberOfLines = 3;
-                articleDescription.text = "This is the content inside the article. What you are seeing is a preview of such article.";
+                articleDescription.text = savedArticles[aIndex].articleBody; // DATA
                 articleDescription.textColor = makeColor(r: 143, g: 135, b: 135);
                 articleDescription.font = UIFont(name: "SFProText-Bold",size: 13);
                 articleDescription.textAlignment = .left;
+                
+                articleButton.articleCompleteData = savedArticles[aIndex];
                 
                 articleButton.addSubview(articleImage);
                 articleButton.addSubview(articleTitle);
@@ -90,6 +94,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
             }
             mainScrollView.contentSize = CGSize(width: articleFrame.size.width, height: 2*articleVerticalPadding+(articleFrame.size.height+articleVerticalPadding) * CGFloat(savedArticles.count)+85);
             mainScrollView.delegate = self;
+ 
         }
         else{
             mainScrollView.isHidden = true;

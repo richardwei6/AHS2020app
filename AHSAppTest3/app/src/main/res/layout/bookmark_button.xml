@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageButton
+            android:id="@+id/article_bookmarkButton"
+            android:layout_width="@dimen/Article_Display_bookmarked_btn_size"
+            android:layout_height="@dimen/Article_Display_bookmarked_btn_size"
+            android:layout_margin="@dimen/Article_Display_bookmarked_btn_padding"
+            android:background="@color/Blank"
+            android:scaleType="fitCenter"
+            app:srcCompat="@color/Blank" />
+    </FrameLayout>
+</merge>

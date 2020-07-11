@@ -1,134 +1,182 @@
 package com.example.ahsapptest3;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.animation.TranslateAnimation;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ScrollView;
 
+import android.util.Log;
+import android.view.View;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.ahsapptest3.HomePage_News.News_Template;
+import com.example.ahsapptest3.Settings.SettingsActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 
-    private ImageButton home_btn, bulletin_btn, bookmarks_btn, settings_btn;
-    private ImageButton[] nav_btns;
+public class MainActivity extends AppCompatActivity implements Navigation{
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        home_btn = findViewById(R.id.home_button);
-        home_btn.setColorFilter(ContextCompat.getColor(this,R.color.LightGray_F2F2F3__HOME));
-        bulletin_btn = findViewById(R.id.bulletin_button);
-        bookmarks_btn = findViewById(R.id.bookmarks_button);
-        settings_btn = findViewById(R.id.settings_button);
+        final String[] titles = {
+                "ASB NEWS",
+                "SPORTS NEWS",
+                "DISTRICT NEWS",
+                "FEATURED",
+        };
 
-        nav_btns = new ImageButton[]
-                {
-                        home_btn,bulletin_btn,bookmarks_btn,settings_btn
-                };
+        final int[] barColors = new int[]{
 
-        /*testPager = findViewById(R.id.test_viewpager);
-        testPager.setAdapter(new ScreenSlidePagerAdapter(getSupportFragmentManager()));
+                ContextCompat.getColor(this, R.color.Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF), // asb news
+                ContextCompat.getColor(this, R.color.VomitYellow_DDCD3E__HOME), // district news
+                ContextCompat.getColor(this, R.color.SeaBlue_364D9E__HOME), // sports news
+                ContextCompat.getColor(this, R.color.VomitYellow_DDCD3E__HOME), // featured
+        };
 
-        TabLayout testTab = findViewById(R.id.test_tablayout);
-        testTab.setupWithViewPager(testPager,true);*/
-        final FrameLayout navBar= findViewById(R.id.nav_bar_FrameLayout);
-        final ScrollView scrollView = findViewById(R.id.home_page__scrollView);
-        final int scrollAnimBuffer = 4;
+        final View[] newsLayouts = new View[] {
 
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            float y = 0;
-            @Override
-            public void onScrollChanged() {
-                if(scrollView.getScrollY() > y + scrollAnimBuffer) // scroll down, 2 is the buffer
-                {
-                    slideDown(navBar);
-                    is_nav_bar_up = false;
+                findViewById(R.id.home_asbNews_placeholder),
+                findViewById(R.id.home_sportsNews_placeholder),
+                findViewById(R.id.home_districtNews_placeholder),
+                findViewById(R.id.home_featuredNews_placeholder),
+
+        };
+
+        String [] data_ref = new String[] {
+                "asb",
+                "district",
+                "sports"
+        };
+        final ArrayList<Article> featured_articles = new ArrayList<>();
+        final Context context = this;
+        final ArticleDatabase currentDatabase= new ArticleDatabase(context, ArticleDatabase.Option.CURRENT);
+
+        for(int i = 0; i < data_ref.length; i++)
+        {
+            final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("homepage").child(data_ref[i]);
+
+            final int finalI = i; // necessary cause inner class
+
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    // use ArrayList b/c no idea how many articles
+                    ArrayList<Article> articles = new ArrayList<>();
+
+
+                    for (DataSnapshot child_sn: snapshot.getChildren()) {
+
+                        String ID = child_sn.getKey();
+
+                        String author = child_sn.child("articleAuthor").getValue().toString();
+                        String title = child_sn.child("articleTitle").getValue().toString();
+                        String body = child_sn.child("articleBody").getValue().toString();
+
+                        ArrayList<String> imagePathsList = new ArrayList<>();
+                        for(DataSnapshot images_sn: child_sn.child("articleImages").getChildren())
+                        {
+                            imagePathsList.add(images_sn.getValue().toString());
+                        }
+                        String[] imagePaths = new String[imagePathsList.size()];
+                        // convert Arraylist to array, it's faster since no more modification is needed
+                        imagePathsList.toArray(imagePaths);
+
+                        long article_time = (long) child_sn.child("articleUnixEpoch").getValue();
+                        boolean is_featured = (boolean) child_sn.child("isFeatured").getValue();
+
+                        // check if already bookmarked
+                        ArticleDatabase bookMarkDatabase = new ArticleDatabase(context, ArticleDatabase.Option.BOOKMARK);
+                        boolean is_bookmarked = bookMarkDatabase.alreadyAdded(ID);
+
+                        Article article = new Article(ID,article_time,title,author,body,imagePaths,is_bookmarked,false);
+
+                        // add Article to ArrayList
+                        articles.add(article); // default values for bookmark and notified
+
+                        // add Article to current article database
+                        if(!currentDatabase.alreadyAdded(ID))
+                            currentDatabase.add(article);
+
+                        if(is_featured)
+                            featured_articles.add(article);
+
+                    }
+
+                    // convert ArrayList to array, it's faster since no more modification is needed
+                    Article[] articles_array = new Article[articles.size()];
+                    articles.toArray(articles_array);
+
+                    // initialize the fragment
+                    News_Template newsFrag = News_Template.newInstanceOf(articles_array, titles[finalI], barColors[finalI], false);
+
+                    // add the fragment to the view
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(newsLayouts[finalI].getId(),newsFrag)
+                            .commitAllowingStateLoss();
+
+                    int i = 3;
+                    // handle featured articles
+                    // initialize the fragment
+                    Article[] featured_array = new Article[featured_articles.size()];
+                    News_Template featuredFrag = News_Template.newInstanceOf(featured_articles.toArray(featured_array), titles[i], barColors[i], true);
+
+                    // add the fragment to the view
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(newsLayouts[i].getId(),featuredFrag)
+                            .commitAllowingStateLoss();
+
+
                 }
-                else if (scrollView.getScrollY() < y - scrollAnimBuffer)
-                {
-                    slideUp(navBar);
-                    is_nav_bar_up = true;
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.i(TAG, error.getDetails());
                 }
-                y= scrollView.getScrollY();
-            }
-        });
+            });
+        }
 
     }
 
-    public void goToHome (View view)
-    {
+
+    @Override
+    public void goToHome() {
 
     }
 
-    public void goToBulletin (View view)
-    {
+    @Override
+    public void goToBulletin() {
         Intent myIntent = new Intent(MainActivity.this,BulletinActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 
-    public void goToBookmarks(View view)
-    {
-        for(ImageButton i: nav_btns)
-        {
-            if(i.equals(bookmarks_btn))
-                i.setColorFilter(ContextCompat.getColor(this,R.color.LightGray_F2F2F3__HOME));
-            else
-                i.clearColorFilter();
-        }
+    @Override
+    public void goToSaved() {
+        Intent myIntent = new Intent(MainActivity.this,SavedActivity.class);
+        MainActivity.this.startActivity(myIntent);
     }
 
-    public void goToSettings(View view)
-    {
-        for(ImageButton i: nav_btns)
-        {
-            if(i.equals(settings_btn))
-                i.setColorFilter(ContextCompat.getColor(this,R.color.LightGray_F2F2F3__HOME));
-            else
-                i.clearColorFilter();
-        }
+    @Override
+    public void goToSettings() {
+        Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
+        MainActivity.this.startActivity(myIntent);
     }
 
-    boolean is_nav_bar_up = true;
-    // slide the view from below itself to the current position
-    public void slideUp(View view){
-        if(!is_nav_bar_up)
-        {
-            view.setVisibility(View.VISIBLE);
-            TranslateAnimation animate = new TranslateAnimation(
-                    0,                 // fromXDelta
-                    0,                 // toXDelta
-                    view.getHeight(),  // fromYDelta
-                    0);                // toYDelta
-            animate.setDuration(500);
-            animate.setFillAfter(true);
-            view.startAnimation(animate);
-        }
+    @Override
+    public int getScrollingViewId() {
+        return R.id.home_page__scrollView;
     }
-
-
-    // slide the view from its current position to below itself
-    public void slideDown(View view){
-        if(is_nav_bar_up)
-        {
-            TranslateAnimation animate = new TranslateAnimation(
-                    0,                 // fromXDelta
-                    0,                 // toXDelta
-                    0,                 // fromYDelta
-                    view.getHeight()); // toYDelta
-            animate.setDuration(500);
-            animate.setFillAfter(true);
-            view.startAnimation(animate);
-        }
-
-    }
-
 }
-

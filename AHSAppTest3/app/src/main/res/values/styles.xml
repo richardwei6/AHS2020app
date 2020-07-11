@@ -4,8 +4,16 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/Crimson_992938__HOME_BULLETIN</item> <!--The color of the top bar thingy on your phone-->
+        <item name="colorPrimaryDark">@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF</item> <!--The color of the top bar thingy on your phone-->
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
+        <item name ="android:layout_marginTop">@dimen/EveryPage_Side_Padding_Half</item>
+        <item name ="android:layout_marginBottom">@dimen/EveryPage_Side_Padding_Half</item>
     </style>
 
 </resources>
