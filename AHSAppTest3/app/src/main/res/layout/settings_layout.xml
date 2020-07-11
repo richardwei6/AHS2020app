@@ -71,12 +71,15 @@
 
                 <SeekBar
                     android:id="@+id/settings_FontSize_SeekBar"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:max = "100"
-                    />
+                    android:max="3"
+                    android:progress="1"/>
 
                 <!--https://stackoverflow.com/questions/5049852/android-drawing-separator-divider-line-in-layout-->
+
+
                 <View style="@style/Divider" />
 
                 <LinearLayout
@@ -226,7 +229,8 @@
         android:id="@+id/settings_navBar"
         android:name="com.example.ahsapptest3.Navigation_Bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/navigation_bar" />
+        android:layout_height="wrap_content"
+        tools:layout="@layout/navigation_bar"
+        android:layout_gravity="bottom"/>
 
 </FrameLayout>

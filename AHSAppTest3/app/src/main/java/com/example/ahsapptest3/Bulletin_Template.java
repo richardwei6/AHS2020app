@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.ahsapptest3.Helper_Code.Helper;
+
 public class Bulletin_Template extends Fragment {
 
     private final static String BULLETIN_INFO_KEY = "1";
@@ -24,10 +26,13 @@ public class Bulletin_Template extends Fragment {
         if(getArguments()==null)
             return view;
         Bulletin_Info info = getArguments().getParcelable(BULLETIN_INFO_KEY);
-        info.setTitle_toView((TextView) view.findViewById(R.id.bulletin_template_TitleText));
-        info.setBodyText_toView((TextView) view.findViewById(R.id.bulletin_template_BodyText));
-        info.setDate_toView((TextView) view.findViewById(R.id.bulletin_template_DateText));
-        info.setImageType_toView((ImageView) view.findViewById(R.id.bulletin_template_ImageView));
+        /*info.setTitle_toView((TextView) ));
+        info.setBodyText_toView((TextView) view.findViewById());*/
+
+        TextView titleText = view.findViewById(R.id.bulletin_template_TitleText), bodyText = view.findViewById(R.id.bulletin_template_BodyText);
+        titleText.setText(info.getTitle());
+        bodyText.setText(info.getBodyText());
+        Helper.setTimeText_toView((TextView) view.findViewById(R.id.bulletin_template_DateText), info.getTime());
 
         return view;
     }

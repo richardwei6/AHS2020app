@@ -95,8 +95,8 @@ public class Article_Display_Stacked extends Fragment {
             {
                 // set time updated
                 Helper.setTimeText_toView((TextView) inflated[i].findViewById(R.id.article_display__time_updated_Text),
-                        Helper.TimeFromNow(articles[i].getTimeUpdated()),
-                        TimeUnit.HOURS);
+                        Helper.TimeFromNow(articles[i].getTimeUpdated())
+                        );
 
                 // set title
                 Helper.setText_toView((TextView) inflated[i].findViewById(R.id.article_display__title_Text),articles[i].getTitle());

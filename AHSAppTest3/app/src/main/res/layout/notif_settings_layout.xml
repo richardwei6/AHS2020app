@@ -65,6 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
+                android:checked="true"
                 android:text="General Updates" />
         </FrameLayout>
 
@@ -77,43 +78,47 @@
         android:orientation="vertical"
         android:padding="@dimen/EveryPage_Side_Padding_Half">
 
-        <Switch
-            android:id="@+id/notif_settings_sports_switch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/bulletin_template_rounded_white"
-            android:text="Sports News" />
+            <Switch
+                android:id="@+id/notif_settings_sports_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bulletin_template_rounded_white"
+                android:checked="true"
+                android:text="Sports News" />
 
         <View style="@style/Divider" />
 
-        <Switch
-            android:id="@+id/notif_settings_asb_switch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/bulletin_template_rounded_white"
-            android:text="ASB News" />
+            <Switch
+                android:id="@+id/notif_settings_asb_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bulletin_template_rounded_white"
+                android:checked="true"
+                android:text="ASB News" />
 
         <View style="@style/Divider" />
 
-        <Switch
-            android:id="@+id/notif_settings_district_switch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/bulletin_template_rounded_white"
-            android:text="District News" />
+            <Switch
+                android:id="@+id/notif_settings_district_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bulletin_template_rounded_white"
+                android:checked="true"
+                android:text="District News" />
 
         <View style="@style/Divider" />
 
-        <Switch
-            android:id="@+id/notif_settings_bulletin_switch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/bulletin_template_rounded_white"
-            android:text="Bulletin" />
+            <Switch
+                android:id="@+id/notif_settings_bulletin_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bulletin_template_rounded_white"
+                android:checked="true"
+                android:text="Bulletin" />
 
     </LinearLayout>
     </LinearLayout>

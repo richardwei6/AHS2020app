@@ -1,73 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bulletin_template_ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bulletin_template_rounded_white"
-    android:paddingLeft="@dimen/EveryPage_Side_Padding"
-    android:paddingRight="@dimen/EveryPage_Side_Padding"
-    android:paddingBottom="@dimen/EveryPage_Side_Padding"
-    tools:context=".Bulletin_Template">
+    app:cardCornerRadius="2dp"
+    app:cardElevation="3dp"
+    app:cardBackgroundColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+    app:cardUseCompatPadding="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <ImageView
-        android:id="@+id/bulletin_template_ImageView"
-        android:layout_width="@dimen/Bulletin_Image_Size"
-        android:layout_height="@dimen/Bulletin_Image_Size"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bulletin_template_TitleText"
-        tools:srcCompat="@drawable/ic_launcher_foreground" />
-
-    <TextView
-        android:id="@+id/bulletin_template_TitleText"
-        android:layout_width="0dp"
+        android:id="@+id/bulletin_template_ConstraintLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
-        android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-        android:text="Title Text"
-        android:textColor="@color/DarkGray_8D898D__HOME_BULLETIN"
-        android:textSize="18sp"
-        app:fontFamily="@font/sf_pro_semibold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bulletin_template_ImageView"
-        app:layout_constraintTop_toBottomOf="@+id/bulletin_template_DateText" />
 
-    <TextView
-        android:id="@+id/bulletin_template_BodyText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/Bulletin_Item_Inside_Margin"
-        android:text="Sample Text"
-        android:textColor="@color/DarkGray_8D898D__HOME_BULLETIN"
-        app:fontFamily="@font/sf_pro_display"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier" />
+        android:paddingLeft="@dimen/EveryPage_Side_Padding"
+        android:paddingRight="@dimen/EveryPage_Side_Padding"
+        android:paddingBottom="@dimen/EveryPage_Side_Padding"
+        >
 
-    <TextView
-        android:id="@+id/bulletin_template_DateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Date"
-        android:textColor="@color/MoldyGolden_BD9768__BULLETIN"
-        android:textSize="14sp"
-        app:fontFamily="@font/sf_pro_display"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Space
+            android:id="@+id/space2"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/EveryPage_Side_Padding"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="bulletin_template_TitleText,bulletin_template_ImageView"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="67dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/bulletin_template_TitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_semibold"
+            android:text="TITLE TEXT"
+            android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+            android:textSize="18sp"
+            app:fontFamily="@font/sf_pro_display"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bulletin_display_barrier"
+            tools:layout_editor_absoluteY="20dp" />
+
+        <TextView
+            android:id="@+id/bulletin_template_BodyText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+            android:text="Description of the Article"
+            android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+            android:textSize="12sp"
+            app:fontFamily="@font/sf_pro_display"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bulletin_template_TitleText" />
+
+        <TextView
+            android:id="@+id/bulletin_template_DateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="Date"
+            android:textColor="@color/NEW_AngryRed_9F0C0C__BULLETIN"
+            android:textSize="12sp"
+            app:fontFamily="@font/sf_pro_display"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/bulletin_display_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="space2,bulletin_template_DateText"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="71dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

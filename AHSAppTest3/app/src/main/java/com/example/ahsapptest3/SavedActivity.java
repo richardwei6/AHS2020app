@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 public class SavedActivity extends AppCompatActivity implements Navigation{
 
     private static final String TAG = "SavedActivity";
-    private BookmarkHandler bookmarkHandler;
+    private ArticleDatabase articleDatabase;
     private ArticleRecyclerAdapter adapter;
 
     @Override
@@ -39,9 +39,9 @@ public class SavedActivity extends AppCompatActivity implements Navigation{
         setContentView(R.layout.saved_layout);
 
         RecyclerView recyclerView = findViewById(R.id.saved_recyclerView);
-        bookmarkHandler = new BookmarkHandler(this);
+        articleDatabase = new ArticleDatabase(this, ArticleDatabase.Option.BOOKMARK);
 
-        adapter = new ArticleRecyclerAdapter(this, bookmarkHandler.getAllArticles());
+        adapter = new ArticleRecyclerAdapter(this, articleDatabase.getAllArticles());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -52,18 +52,18 @@ public class SavedActivity extends AppCompatActivity implements Navigation{
     {
         super.onResume();
 
-        if(BookmarkHandler.hasBookmarksChanged())
+        if(ArticleDatabase.hasBookmarksChanged())
             updateBookmarkIcons();
     }
 
     public void updateBookmarkIcons()
     {
-        BookmarkHandler bookmarkHandler = new BookmarkHandler(this);
+        ArticleDatabase articleDatabase = new ArticleDatabase(this, ArticleDatabase.Option.BOOKMARK);
 
         ArrayList<Article> articles = adapter.articles;
         for(int i = articles.size()-1; i >= 0; i--) // backwards loop cause remove
         {
-            if(!bookmarkHandler.alreadyBookmarked(articles.get(i).getID()))
+            if(!articleDatabase.alreadyAdded(articles.get(i).getID()))
                 articles.remove(i);
         }
 
@@ -143,8 +143,8 @@ public class SavedActivity extends AppCompatActivity implements Navigation{
             Helper.setArticleListener_toView(inflated, article);
 
             Helper.setTimeText_toView((TextView) inflated.findViewById(R.id.article_display__time_updated_Text),
-                    Helper.TimeFromNow(article.getTimeUpdated()),
-                    TimeUnit.HOURS);
+                    Helper.TimeFromNow(article.getTimeUpdated())
+            );
 
             // set title
             Helper.setText_toView((TextView) inflated.findViewById(R.id.article_display__title_Text),article.getTitle());
@@ -162,20 +162,21 @@ public class SavedActivity extends AppCompatActivity implements Navigation{
             Helper.setBookMarkListener_toView(bookmarkButton, article);
 
             // must use custom method rather than using Helper as we need to notifyDataSetChanged()
-            final BookmarkHandler bookmarkHandler = new BookmarkHandler(this.context);
+            final ArticleDatabase articleDatabase = new ArticleDatabase(this.context, ArticleDatabase.Option.BOOKMARK);
 
             bookmarkButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     article.swapBookmark();
                     Helper.setBookmarked_toView(bookmarkButton,article.isBookmarked());
-                    if(!bookmarkHandler.alreadyBookmarked(article.getID()))
-                        bookmarkHandler.add(article);
+                    if(!articleDatabase.alreadyAdded(article.getID()))
+                        articleDatabase.add(article);
                     else
-                        {bookmarkHandler.delete(article);
+                        {
+                            articleDatabase.delete(article);
                         articles.remove(position);
                         notifyItemRemoved(position);
-                        BookmarkHandler.setBookmarkChanged();}
+                        ArticleDatabase.setBookmarkChanged();}
                 }
             });
         }

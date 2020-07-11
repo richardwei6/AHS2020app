@@ -28,4 +28,9 @@
     <color name = "SeaBlue_364D9E__HOME">#364D9E</color>
 
     <color name = "Transparent_22FFFFFF__HOME">#2FFF</color>
+
+    <color name = "NEW_DarkCrimson_1A0303__BULLETIN">#1A0303</color>
+    <color name = "NEW_GraniteRed_7E6E6A__BULLETIN">#7E6E6A</color>
+    <color name = "NEW_AngryRed_9F0C0C__BULLETIN">#9F0C0C</color>
+    <!--<color name = "NEW_GraniteRed_9C0000__BULLETIN">#9C0000</color>-->
 </resources>

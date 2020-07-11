@@ -1,28 +1,37 @@
 package com.example.ahsapptest3;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.ahsapptest3.Helper_Code.Helper;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Notif_Activity extends AppCompatActivity {
 
-    private static Article[] articles;
+    private static final String TAG = "Notif_Activity";
+    private static ArrayList<Article> articles = new ArrayList<>();
     private FrameLayout[] frameLayouts;
     private LinearLayout listLayout;
-    private boolean[] justNotified;
+    /*private boolean[] justNotified;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +39,7 @@ public class Notif_Activity extends AppCompatActivity {
         setContentView(R.layout.notif_layout);
 
         listLayout = findViewById(R.id.notif_linearLayout);
-        String[][] data = getData();
+        /*String[][] data = getData();
         if(articles == null)
         {
             articles = new Article[data.length];
@@ -38,49 +47,94 @@ public class Notif_Activity extends AppCompatActivity {
             {
                 articles[i] =
 
-                new Article(2342,238472394,data[i][0],"author",data[i][1],new String [] {"hello"},false,i < 3);
+                new Article("2342",238472394,data[i][0],"author",data[i][1],new String [] {"hello"},false,i < 3);
                 // change this later
             }
-        }
-        justNotified = new boolean[articles.length];
+        }*/
+
+        final ArticleDatabase articleDatabase = new ArticleDatabase(this, ArticleDatabase.Option.CURRENT);
+        final Context context = this;
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("notifications");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot child_sn: snapshot.getChildren())
+                {
+                    String ID = child_sn.child("notificationArticleID").getValue().toString();
+                    Log.d(TAG, child_sn.getKey());
+                    Log.d(TAG, "tried once, ID:" + ID);
+                    if(articleDatabase.alreadyAdded(ID))
+                    {
+                        Log.d(TAG,"found articles");
+                        Article article = articleDatabase.getArticleById(ID);
+                        articles.add(articleDatabase.getArticleById(ID));
+                    }
+                }
+
+
+                Log.d(TAG, String.valueOf(articles.size()));
+                frameLayouts = new FrameLayout[articles.size()];
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+
+                params.setMargins(0,0,0,0);
+
+                for(int i = 0; i < frameLayouts.length; i++) {
+                    frameLayouts[i] = new FrameLayout(context);
+                    frameLayouts[i].setLayoutParams(new FrameLayout.LayoutParams(
+                            FrameLayout.LayoutParams.MATCH_PARENT,  //width
+                            FrameLayout.LayoutParams.WRAP_CONTENT   //height
+                    ));
+                    frameLayouts[i].setId(getIdRange()+i);
+                    listLayout.addView(frameLayouts[i],params);
+
+                    final View view = frameLayouts[i];
+                    final Article article = articles.get(i);
+                    view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(view.getContext(), ArticleActivity.class);
+                            intent.putExtra("data", article);
+                            view.getContext().startActivity(intent);
+                            articleDatabase.updateNotified(article.getID(),true);
+
+                        }
+                    });
+                }
+
+                Notif_Template[] items = new Notif_Template[articles.size()];
+                for (int i = 0; i < items.length; i++)
+                {
+                    items[i] = Notif_Template.newInstanceOf(articles.get(i));
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(frameLayouts[i].getId(),items[i])
+                            .commit();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, error.getDetails());
+            }
+        });
+
+
+        /*justNotified = new boolean[articles.length];
         for(int i = 0; i < articles.length; i++)
         {
             justNotified[i] = articles[i].alreadyNotified();
-        }
+        }*/
 
-        frameLayouts = new FrameLayout[data.length];
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
 
-        params.setMargins(0,0,0,0);
-
-        for(int i = 0; i < frameLayouts.length; i++) {
-            frameLayouts[i] = new FrameLayout(this);
-            frameLayouts[i].setLayoutParams(new FrameLayout.LayoutParams(
-                    FrameLayout.LayoutParams.MATCH_PARENT,  //width
-                    FrameLayout.LayoutParams.WRAP_CONTENT   //height
-            ));
-            frameLayouts[i].setId(getIdRange()+i);
-            listLayout.addView(frameLayouts[i],params);
-            Helper.setArticleListener_toView(frameLayouts[i], articles[i]);
-        }
-
-        Notif_Template[] items = new Notif_Template[data.length];
-        for (int i = 0; i < items.length; i++)
-        {
-            items[i] = Notif_Template.newInstanceOf(articles[i]);
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(frameLayouts[i].getId(),items[i])
-                    .commit();
-
-        }
 
         // set listener for back button
         ImageButton backButton = findViewById(R.id.notif_header_back);
-        final Context context = this;
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +158,9 @@ public class Notif_Activity extends AppCompatActivity {
     @Override
     public void onRestart(){
         super.onRestart();
+        articles.clear();
         this.recreate(); // see comment above, only this actually works; maybe fix the listener to change flag variable to recreate? maybe sharedpreferences?
+        // note, use recycler view and finagle with notifyDataSetChanged
         /*for(FrameLayout fl: frameLayouts)
         {
             /*fl.requestLayout(); // doesn't work
@@ -149,22 +205,4 @@ public class Notif_Activity extends AppCompatActivity {
                 };
     }
 
-    public Date getDate(String key)
-    {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2020,3,22,9,7);
-
-        Date date = calendar.getTime();
-        return date;
-    }
-
-    public Boolean isAlreadyBookmarked(String key)
-    {
-        return false;
-    }
-
-    public String getImageFilePath(String key)
-    {
-        return "";
-    }
 }

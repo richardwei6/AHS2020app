@@ -43,8 +43,8 @@ public class Featured_Display extends Fragment {
         Helper.setBookMarkListener_toView(bookmarkButton, article);
 
         Helper.setTimeText_toView((TextView) view.findViewById(R.id.template_featured__updated_Text),
-                Helper.TimeFromNow(article.getTimeUpdated()),
-                TimeUnit.HOURS);
+                Helper.TimeFromNow(article.getTimeUpdated())
+        );
 
         Helper.setImage_toView_fromUrl((ImageView) view.findViewById(R.id.template_featured__ImageView),article.getImagePaths()[0]);
 

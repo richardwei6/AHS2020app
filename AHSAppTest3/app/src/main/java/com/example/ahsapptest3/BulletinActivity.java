@@ -1,20 +1,40 @@
 package com.example.ahsapptest3;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
+import com.example.ahsapptest3.Helper_Code.Helper;
 import com.example.ahsapptest3.Settings.SettingsActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class BulletinActivity extends AppCompatActivity implements Navigation{
 
+    private static final String TAG = "BulletinActivity";
     FrameLayout[] frameLayouts;
     private ImageView seniors_toggle, events_toggle, colleges_toggle, athletics_toggle,reference_toggle,others_toggle;
 
@@ -46,15 +66,15 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
 
     @Override
     public int getScrollingViewId() {
-        return R.id.bulletin__scrollView;
+        return R.id.bulletin_RecyclerView;
     }
 
-    enum BulletinType
+    enum Type
     {
         SENIORS, EVENTS, COLLEGES, REFERENCE, ATHLETICS, OTHERS;
     }
 
-    public boolean is_Type_Layout_Active(BulletinType type) //"Translates" enum to is_active array location
+    public boolean is_Type_Layout_Active(Type type) //"Translates" enum to is_active array location
     {
         switch(type)
         {
@@ -75,7 +95,7 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
         }
     }
 
-    public void switch_Type_Layout_Active(BulletinType type)
+    public void switch_Type_Layout_Active(Type type)
     {
         switch(type)
         {
@@ -99,24 +119,151 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
                 break;
         }
     }
+    
+    private boolean seniors_active, colleges_active, events_active, athletics_active, reference_active, others_active;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_layout);
 
-        final ScrollView scrollView = findViewById(R.id.bulletin__scrollView);
+        final String[] categories = new String[]
+                {
+                        "athletics",
+                        "colleges",
+                        "events",
+                        "others",
+                        "reference",
+                        "seniors"
+                };
+        final Type[] types = new Type[]
+                {
+                        Type.ATHLETICS,
+                        Type.COLLEGES,
+                        Type.EVENTS,
+                        Type.OTHERS,
+                        Type.REFERENCE,
+                        Type.SENIORS
+                };
+
+        final ArrayList<Bulletin_Info> data = new ArrayList<>();
+
+        final RecyclerView recyclerView = findViewById(R.id.bulletin_RecyclerView);
+        final BulletinRecyclerAdapter adapter = new BulletinRecyclerAdapter(this, data);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        final int margin = (int) getResources().getDimension(R.dimen.EveryPage_Side_Padding);
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.onDraw(c, parent, state);
+            }
+
+            @Override
+            public void onDrawOver(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.onDrawOver(c, parent, state);
+            }
+
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                outRect.right = margin;
+                outRect.left = margin;
+                outRect.top = margin/8;
+                outRect.bottom = margin/8;
+
+            }
+        });
+        recyclerView.requestLayout();
+
+        final
+        TextView seniors_toggle =findViewById(R.id.bulletin_seniors_text),
+                events_toggle = findViewById(R.id.bulletin_events_text),
+                colleges_toggle = findViewById(R.id.bulletin_colleges_text),
+                reference_toggle = findViewById(R.id.bulletin_reference_text),
+                athletics_toggle = findViewById(R.id.bulletin_athletics_text),
+                others_toggle = findViewById(R.id.bulletin_others_text);
+
+        seniors_toggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seniors_active = !seniors_active;
+                adapter.filterItems();
+            }
+        });
+
+        colleges_toggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                colleges_active = !colleges_active;
+                adapter.filterItems();
+            }
+        });
+
+        events_toggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                events_active = !events_active;
+                adapter.filterItems();
+            }
+        });
+
+        reference_toggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reference_active = !reference_active;
+                adapter.filterItems();
+            }
+        });
+
+        others_toggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                others_active = !others_active;
+                adapter.filterItems();
+            }
+        });
+
+        athletics_toggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                athletics_active = !athletics_active;
+                adapter.filterItems();
+            }
+        });
+
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("bulletin");
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data.clear(); // so it doesn't just keep adding should the data change
+                for(int i = 0; i < categories.length; i++)
+                    {
+                    Log.d(TAG, categories[i]);
+                    DataSnapshot snapshot1 = snapshot.child(categories[i]);
+
+                    for (DataSnapshot dataSnapshot : snapshot1.getChildren()) {
+                        String title = dataSnapshot.child("articleTitle").getValue().toString();
+                        String body = dataSnapshot.child("articleBody").getValue().toString();
+                        long time = (long) dataSnapshot.child("articleUnixEpoch").getValue();
+                        data.add(new Bulletin_Info(time, title, body, types[i]));
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, error.getDetails());
+            }
+        });
 
 
-        seniors_toggle = scrollView.findViewById(R.id.bulletin_seniors_toggle_image);
-        events_toggle = scrollView.findViewById(R.id.bulletin_events_toggle_image);
-        colleges_toggle = scrollView.findViewById(R.id.bulletin_colleges_toggle_image);
-        reference_toggle = scrollView.findViewById(R.id.bulletin_reference_toggle_image);
-        athletics_toggle = scrollView.findViewById(R.id.bulletin_athletics_toggle_image);
-        others_toggle = scrollView.findViewById(R.id.bulletin_others_toggle_image);
 
-        data = getData();
-        frameLayouts = new FrameLayout[data.length];
+
+
+        /*frameLayouts = new FrameLayout[data.size()];
 
         LinearLayout bulletin_item_LinearLayout = findViewById(R.id.bulletin__LinearLayout);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -135,15 +282,85 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
             bulletin_item_LinearLayout.addView(frameLayouts[i],params);
         }
 
-        Bulletin_Template[] items = new Bulletin_Template[data.length];
+        Bulletin_Template[] items = new Bulletin_Template[data.size()];
         for (int i = 0; i < items.length; i++)
         {
-            items[i] = Bulletin_Template.newInstanceOf(data[i]);
+            items[i] = Bulletin_Template.newInstanceOf(data.get(i));
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(frameLayouts[i].getId(),items[i])
                     .commit();
 
+        }*/
+    }
+
+    public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecyclerAdapter.ViewHolder>
+    {
+        private static final String TAG = "BulletinRecyclerAdapter";
+
+        public ArrayList<Bulletin_Info> bulletin_infos;
+        private ArrayList<Bulletin_Info> copy;
+        private Context context;
+
+        public BulletinRecyclerAdapter(Context context, ArrayList<Bulletin_Info> bulletin_infos) {
+            this.bulletin_infos = bulletin_infos;
+            this.context = context;
+            copy = new ArrayList<>(bulletin_infos);
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater
+                    .from(parent.getContext())
+                    .inflate(R.layout.template__bulletin_display, parent, false)
+                    ;
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+            Bulletin_Info info = copy.get(position);
+            holder.titleText.setText(info.getTitle());
+            holder.bodyText.setText(info.getBodyText());
+            Helper.setTimeText_toView(holder.dateText, info.getTime());
+        }
+
+        @Override
+        public int getItemCount() {
+            return copy.size();
+        }
+
+        public void filterItems()
+        {
+            copy = new ArrayList<>(bulletin_infos);
+            for(int i = copy.size() -1; i >= 0; i--)
+            {
+                if(!seniors_active && copy.get(i).getType() == Type.SENIORS)
+                    copy.remove(i);
+                if(!colleges_active && copy.get(i).getType() == Type.COLLEGES)
+                    copy.remove(i);
+                if(!athletics_active && copy.get(i).getType() == Type.ATHLETICS)
+                    copy.remove(i);
+                if(!others_active && copy.get(i).getType() == Type.OTHERS)
+                    copy.remove(i);
+                if(!reference_active && copy.get(i).getType() == Type.REFERENCE)
+                    copy.remove(i);
+                if(!events_active && copy.get(i).getType() == Type.EVENTS)
+                    copy.remove(i);
+            }
+            this.notifyDataSetChanged();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder
+        {
+            TextView titleText, bodyText, dateText;
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                titleText = itemView.findViewById(R.id.bulletin_template_TitleText);
+                bodyText = itemView.findViewById(R.id.bulletin_template_BodyText);
+                dateText = itemView.findViewById(R.id.bulletin_template_DateText);
+            }
         }
     }
 
@@ -152,7 +369,7 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
         return 2000000;
     }
 
-    private Bulletin_Info[] getData()
+    /*private Bulletin_Info[] getData()
     {
         return new Bulletin_Info[]
                 {
@@ -160,27 +377,27 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
                             "Bio, AP Chem, AP Physics, Earth & Space Sciences, Statistics, Math Analysis, Calculus. Candidates\n" +
                             "ideally should have taken an AP class and show subject mastery. No need to know all subjects. Team\n" +
                             "members typically show content mastery of a specific subject, not all of the subjects. Check out\n" +
-                            "the link to watch a regional match, finals round. For questions email cmynster@ausd.net\n", BulletinType.SENIORS),
+                            "the link to watch a regional match, finals round. For questions email cmynster@ausd.net\n", Type.SENIORS),
                     new Bulletin_Info("Arcadia's Got Talent- AEF Video Contest","3/25/2020", "- Open until 3/25/2020. Click on the link to access further\n" +
-                            "details.", BulletinType.EVENTS),
-                    new Bulletin_Info("Blind Date with a Book is Back!","","Come to the library to check out a surprise book. Read and review\n" +
+                            "details.", Type.EVENTS),
+                    new Bulletin_Info("Blind Date with a Book is Back!","2/5/2012","Come to the library to check out a surprise book. Read and review\n" +
                             "the book, and you can win prizes! With over 50 excellent books wrapped up for a delicious\n" +
-                            "surprise, you're bound to find something you love!",BulletinType.EVENTS),
-                    new Bulletin_Info("Title1","4/6/2938","sampleText",BulletinType.ATHLETICS),
-                    new Bulletin_Info("Title1","4/6/2938","sampleText",BulletinType.EVENTS),
-                    new Bulletin_Info("Title1","4/6/2938","sampleText",BulletinType.ATHLETICS),
-                    new Bulletin_Info("Title1","4/6/2938","sampleText",BulletinType.COLLEGES),
-                    new Bulletin_Info("Title1","4/6/2938","sampleText",BulletinType.SENIORS),
-                    new Bulletin_Info("Title1","4/6/2938","sampleText",BulletinType.REFERENCE),
-                    new Bulletin_Info("Title1","4/6/2938","sampleText",BulletinType.OTHERS),
-                    new Bulletin_Info("Title1","4/6/2938","sampleText",BulletinType.REFERENCE),
-                    new Bulletin_Info("Title1","4/6/2938","sampleText",BulletinType.ATHLETICS),
+                            "surprise, you're bound to find something you love!", Type.EVENTS),
+                    new Bulletin_Info("Title1","4/6/2938","sampleText", Type.ATHLETICS),
+                    new Bulletin_Info("Title1","4/6/2938","sampleText", Type.EVENTS),
+                    new Bulletin_Info("Title1","4/6/2938","sampleText", Type.ATHLETICS),
+                    new Bulletin_Info("Title1","4/6/2938","sampleText", Type.COLLEGES),
+                    new Bulletin_Info("Title1","4/6/2938","sampleText", Type.SENIORS),
+                    new Bulletin_Info("Title1","4/6/2938","sampleText", Type.REFERENCE),
+                    new Bulletin_Info("Title1","4/6/2938","sampleText", Type.OTHERS),
+                    new Bulletin_Info("Title1","4/6/2938","sampleText", Type.REFERENCE),
+                    new Bulletin_Info("Title1","4/6/2938","sampleText", Type.ATHLETICS),
 
 
 
                 };
-    }
-
+    }*/
+/*
     public void onSeniorsClick(View view)
     {
         if(!is_Type_Layout_Active(BulletinType.SENIORS))
@@ -299,7 +516,7 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
         }
         switch_Type_Layout_Active(BulletinType.OTHERS);
         filterItems();
-    }
+    }*/
 
     public void filterItems()
     {
