@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BulletinActivity"
-    android:animateLayoutChanges="true">
+    >
 
 
     <!--<ScrollView
@@ -24,56 +24,50 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">-->
 
-    <LinearLayout
-        android:id="@+id/bulletin_header_LinearLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="@dimen/EveryPage_Side_Padding"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/bulletin_titleText"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/bulletin_header_LinearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/sf_pro_display"
-            android:text="Student Bulletin"
-            android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:padding="@dimen/EveryPage_Side_Padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/bulletin_notif_Image"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:adjustViewBounds="true"
-            android:tint="@color/NEW_DarkCrimson_1A0303__BULLETIN"
-            app:srcCompat="@drawable/icon_notifications" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/bulletin_titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Student Bulletin"
+                android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/bulletin_notif_Image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:adjustViewBounds="true"
+                android:tint="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                app:srcCompat="@drawable/icon_notifications" />
+        </LinearLayout>
+
+
 
     <HorizontalScrollView
         android:id="@+id/bulletin_bar_ScrollView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:scrollbarStyle="outsideInset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bulletin_header_LinearLayout">
+        app:layout_constraintTop_toBottomOf="@id/bulletin_header_LinearLayout">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/Blank"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/Bulletin_Selector_padding"
-            android:paddingTop="@dimen/Bulletin_Selector_padding"
-            android:paddingRight="@dimen/Bulletin_Selector_padding"
-            android:paddingBottom="@dimen/Bulletin_Selector_padding">
 
-            <!--<ImageView
+        <!--<ImageView
                         android:id="@+id/bulletin_seniors_toggle_image"
                         android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
                         android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
@@ -102,26 +96,37 @@
                         app:srcCompat="@drawable/bulletin_seniors" />-->
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/bulletin_seniors_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-                    android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:text="Seniors"
-                    android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
-                    android:textSize="18sp" />
-                <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_seniors_toggle_image"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bulletin_seniors_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="?attr/selectableItemBackground"
+                android:fontFamily="@font/sf_pro_display"
+                android:paddingStart="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingTop="@dimen/EveryPage_Side_Padding"
+                android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingBottom="@dimen/EveryPage_Side_Padding"
+                android:text="Seniors"
+                android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_absoluteHeight="65dp"
+                tools:layout_conversion_absoluteWidth="76dp" />
+            <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_seniors_toggle_image"
                             app:layout_constraintStart_toStartOf="@+id/bulletin_seniors_toggle_image"
                             app:layout_constraintTop_toBottomOf="@id/bulletin_seniors_toggle_image"-->
 
 
-                <!--<ImageView
+            <!--<ImageView
                             android:id="@+id/bulletin_colleges_toggle_image"
                             android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
                             android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
@@ -149,22 +154,47 @@
                             app:layout_constraintTop_toTopOf="@+id/bulletin_colleges_toggle_image"
                             app:srcCompat="@drawable/bulletin_colleges" />-->
 
-                <TextView
-                    android:id="@+id/bulletin_colleges_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-                    android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:text="Colleges"
-                    android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
-                    android:textSize="18sp" />
-                <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_colleges_toggle_image"
+            <ImageView
+                android:id="@+id/bulletin_seniors_underline"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                app:layout_constraintEnd_toEndOf="@id/bulletin_seniors_text"
+                app:layout_constraintStart_toStartOf="@id/bulletin_seniors_text"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_seniors_text"
+                app:srcCompat="@drawable/bulletin_red_underline" />
+
+            <TextView
+                android:id="@+id/bulletin_colleges_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:fontFamily="@font/sf_pro_display"
+                android:paddingStart="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingTop="@dimen/EveryPage_Side_Padding"
+                android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingBottom="@dimen/EveryPage_Side_Padding"
+                android:text="Colleges"
+                android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/bulletin_seniors_text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_absoluteHeight="65dp"
+                tools:layout_conversion_absoluteWidth="85dp" />
+
+            <ImageView
+                android:id="@+id/bulletin_colleges_underline"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                app:layout_constraintEnd_toEndOf="@id/bulletin_colleges_text"
+                app:layout_constraintStart_toStartOf="@id/bulletin_colleges_text"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_colleges_text"
+                app:srcCompat="@drawable/bulletin_red_underline" />
+            <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_colleges_toggle_image"
                             app:layout_constraintStart_toStartOf="@+id/bulletin_colleges_toggle_image"
                             app:layout_constraintTop_toBottomOf="@id/bulletin_colleges_toggle_image"-->
 
 
-                <!--<ImageView
+            <!--<ImageView
                             android:id="@+id/bulletin_events_toggle_image"
                             android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
                             android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
@@ -192,21 +222,37 @@
                             app:layout_constraintTop_toTopOf="@+id/bulletin_events_toggle_image"
                             app:srcCompat="@drawable/bulletin_events" />-->
 
-                <TextView
-                    android:id="@+id/bulletin_events_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-                    android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:text="Events"
-                    android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
-                    android:textSize="18sp" />
-                <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_events_toggle_image"
+            <TextView
+                android:id="@+id/bulletin_events_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:fontFamily="@font/sf_pro_display"
+                android:paddingStart="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingTop="@dimen/EveryPage_Side_Padding"
+                android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingBottom="@dimen/EveryPage_Side_Padding"
+                android:text="Events"
+                android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/bulletin_colleges_text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_absoluteHeight="65dp"
+                tools:layout_conversion_absoluteWidth="71dp" />
+
+            <ImageView
+                android:id="@+id/bulletin_events_underline"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                app:layout_constraintEnd_toEndOf="@id/bulletin_events_text"
+                app:layout_constraintStart_toStartOf="@id/bulletin_events_text"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_events_text"
+                app:srcCompat="@drawable/bulletin_red_underline" />
+            <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_events_toggle_image"
                             app:layout_constraintStart_toStartOf="@+id/bulletin_events_toggle_image"
                             app:layout_constraintTop_toBottomOf="@id/bulletin_events_toggle_image" -->
 
-                <!--<ImageView
+            <!--<ImageView
                             android:id="@+id/bulletin_athletics_toggle_image"
                             android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
                             android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
@@ -234,22 +280,12 @@
                             app:layout_constraintTop_toTopOf="@+id/bulletin_athletics_toggle_image"
                             app:srcCompat="@drawable/bulletin_athletics" />-->
 
-                <TextView
-                    android:id="@+id/bulletin_athletics_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-                    android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:text="Athletics"
-                    android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
-                    android:textSize="18sp" />
-                <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_athletics_toggle_image"
+            <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_athletics_toggle_image"
                             app:layout_constraintStart_toStartOf="@+id/bulletin_athletics_toggle_image"
                             app:layout_constraintTop_toBottomOf="@id/bulletin_athletics_toggle_image"-->
 
 
-                <!--<ImageView
+            <!--<ImageView
                             android:id="@+id/bulletin_reference_toggle_image"
                             android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
                             android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
@@ -277,22 +313,65 @@
                             app:layout_constraintTop_toTopOf="@+id/bulletin_reference_toggle_image"
                             app:srcCompat="@drawable/bulletin_reference" />-->
 
-                <TextView
-                    android:id="@+id/bulletin_reference_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-                    android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:text="Reference"
-                    android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
-                    android:textSize="18sp" />
-                <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_reference_toggle_image"
+            <TextView
+                android:id="@+id/bulletin_athletics_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:fontFamily="@font/sf_pro_display"
+                android:paddingStart="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingTop="@dimen/EveryPage_Side_Padding"
+                android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingBottom="@dimen/EveryPage_Side_Padding"
+                android:text="Athletics"
+                android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/bulletin_events_text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_absoluteHeight="65dp"
+                tools:layout_conversion_absoluteWidth="86dp" />
+
+            <ImageView
+                android:id="@+id/bulletin_athletics_underline"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                app:layout_constraintEnd_toEndOf="@id/bulletin_athletics_text"
+                app:layout_constraintStart_toStartOf="@id/bulletin_athletics_text"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_athletics_text"
+                app:srcCompat="@drawable/bulletin_red_underline" />
+
+            <TextView
+                android:id="@+id/bulletin_reference_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:fontFamily="@font/sf_pro_display"
+                android:paddingStart="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingTop="@dimen/EveryPage_Side_Padding"
+                android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingBottom="@dimen/EveryPage_Side_Padding"
+                android:text="Reference"
+                android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/bulletin_athletics_text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_absoluteHeight="65dp"
+                tools:layout_conversion_absoluteWidth="95dp" />
+
+            <ImageView
+                android:id="@+id/bulletin_reference_underline"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                app:layout_constraintEnd_toEndOf="@id/bulletin_reference_text"
+                app:layout_constraintStart_toStartOf="@id/bulletin_reference_text"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_reference_text"
+                app:srcCompat="@drawable/bulletin_red_underline" />
+            <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_reference_toggle_image"
                             app:layout_constraintStart_toStartOf="@+id/bulletin_reference_toggle_image"
                             app:layout_constraintTop_toBottomOf="@id/bulletin_reference_toggle_image" -->
 
 
-                <!--<ImageView
+            <!--<ImageView
                             android:id="@+id/bulletin_others_toggle_image"
                             android:layout_width="@dimen/Bulletin_Icon_Selector_Size"
                             android:layout_height="@dimen/Bulletin_Icon_Selector_Size"
@@ -323,24 +402,38 @@
                             app:layout_constraintTop_toTopOf="@+id/bulletin_others_toggle_image"
                             app:srcCompat="@drawable/bulletin_others" />-->
 
-                <TextView
-                    android:id="@+id/bulletin_others_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-                    android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:text="Others"
-                    android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
-                    android:textSize="18sp" />
-                <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_others_toggle_image"
+            <TextView
+                android:id="@+id/bulletin_others_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:fontFamily="@font/sf_pro_display"
+                android:paddingStart="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingTop="@dimen/EveryPage_Side_Padding"
+                android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingBottom="@dimen/EveryPage_Side_Padding"
+                android:text="Others"
+                android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/bulletin_reference_text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_absoluteHeight="65dp"
+                tools:layout_conversion_absoluteWidth="71dp"
+                tools:layout_editor_absoluteX="422dp" />
+
+            <ImageView
+                android:id="@+id/bulletin_others_underline"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                app:layout_constraintEnd_toEndOf="@id/bulletin_others_text"
+                app:layout_constraintStart_toStartOf="@id/bulletin_others_text"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_others_text"
+                app:srcCompat="@drawable/bulletin_red_underline" />
+            <!--app:layout_constraintEnd_toEndOf="@+id/bulletin_others_toggle_image"
                             app:layout_constraintStart_toStartOf="@+id/bulletin_others_toggle_image"
                             app:layout_constraintTop_toBottomOf="@id/bulletin_others_toggle_image"-->
-            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-        </LinearLayout>
     </HorizontalScrollView>
 <!--
         </LinearLayout>

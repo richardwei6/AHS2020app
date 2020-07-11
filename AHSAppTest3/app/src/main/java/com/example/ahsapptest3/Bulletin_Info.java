@@ -137,4 +137,10 @@ public class Bulletin_Info implements Parcelable {
         dest.writeString(body);
         dest.writeSerializable(type);
     }
+
+    @Override
+    public String toString()
+    {
+        return "Title:\t" + title;
+    }
 }

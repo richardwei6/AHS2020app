@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.example.ahsapptest3.Helper_Code.Helper;
 import com.example.ahsapptest3.Settings.SettingsActivity;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,8 +37,7 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
 
     private static final String TAG = "BulletinActivity";
     FrameLayout[] frameLayouts;
-    private ImageView seniors_toggle, events_toggle, colleges_toggle, athletics_toggle,reference_toggle,others_toggle;
-
+    
     private Bulletin_Info [] data;
     private boolean[] is_active = new boolean[6];
 
@@ -120,12 +120,52 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
         }
     }
     
-    private boolean seniors_active, colleges_active, events_active, athletics_active, reference_active, others_active;
+    private boolean seniors_active = false, colleges_active = false, events_active = false, athletics_active = false, reference_active = false, others_active = false;
 
+    private ImageView seniors_underline, colleges_underline, events_underline, athletics_underline, reference_underline, others_underline;
+    
+    public void setTabUnderline()
+    {
+        if(seniors_active)
+            seniors_underline.setVisibility(View.VISIBLE);
+        else
+            seniors_underline.setVisibility(View.INVISIBLE);
+        if(colleges_active)
+            colleges_underline.setVisibility(View.VISIBLE);
+        else
+            colleges_underline.setVisibility(View.INVISIBLE);
+        if(events_active)
+            events_underline.setVisibility(View.VISIBLE);
+        else
+            events_underline.setVisibility(View.INVISIBLE);
+        if(athletics_active)
+            athletics_underline.setVisibility(View.VISIBLE);
+        else
+            athletics_underline.setVisibility(View.INVISIBLE);
+        if(reference_active)
+            reference_underline.setVisibility(View.VISIBLE);
+        else
+            reference_underline.setVisibility(View.INVISIBLE);
+        if(others_active)
+            others_underline.setVisibility(View.VISIBLE);
+        else
+            others_underline.setVisibility(View.INVISIBLE);
+    }
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_layout);
+
+        seniors_underline = findViewById(R.id.bulletin_seniors_underline);
+        colleges_underline = findViewById(R.id.bulletin_colleges_underline);
+        events_underline = findViewById(R.id.bulletin_events_underline);
+        athletics_underline = findViewById(R.id.bulletin_athletics_underline);
+        reference_underline = findViewById(R.id.bulletin_reference_underline);
+        others_underline = findViewById(R.id.bulletin_others_underline);
+        
+        setTabUnderline();
+        
 
         final String[] categories = new String[]
                 {
@@ -189,6 +229,7 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
             public void onClick(View v) {
                 seniors_active = !seniors_active;
                 adapter.filterItems();
+                setTabUnderline();
             }
         });
 
@@ -197,6 +238,7 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
             public void onClick(View v) {
                 colleges_active = !colleges_active;
                 adapter.filterItems();
+                setTabUnderline();
             }
         });
 
@@ -205,6 +247,7 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
             public void onClick(View v) {
                 events_active = !events_active;
                 adapter.filterItems();
+                setTabUnderline();
             }
         });
 
@@ -213,6 +256,7 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
             public void onClick(View v) {
                 reference_active = !reference_active;
                 adapter.filterItems();
+                setTabUnderline();
             }
         });
 
@@ -221,6 +265,7 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
             public void onClick(View v) {
                 others_active = !others_active;
                 adapter.filterItems();
+                setTabUnderline();
             }
         });
 
@@ -229,6 +274,7 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
             public void onClick(View v) {
                 athletics_active = !athletics_active;
                 adapter.filterItems();
+                setTabUnderline();
             }
         });
 
@@ -248,7 +294,7 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
                         String body = dataSnapshot.child("articleBody").getValue().toString();
                         long time = (long) dataSnapshot.child("articleUnixEpoch").getValue();
                         data.add(new Bulletin_Info(time, title, body, types[i]));
-                        adapter.notifyDataSetChanged();
+                        adapter.notifyDataCopyChanged();
                     }
                 }
             }
@@ -305,7 +351,15 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
         public BulletinRecyclerAdapter(Context context, ArrayList<Bulletin_Info> bulletin_infos) {
             this.bulletin_infos = bulletin_infos;
             this.context = context;
+            Log.d(TAG, this.bulletin_infos.toString());
+            copy = new ArrayList<>(this.bulletin_infos);
+            Log.d(TAG, copy.toString());
+        }
+
+        public void notifyDataCopyChanged()
+        {
             copy = new ArrayList<>(bulletin_infos);
+            this.notifyDataSetChanged();
         }
 
         @NonNull
@@ -334,21 +388,25 @@ public class BulletinActivity extends AppCompatActivity implements Navigation{
         public void filterItems()
         {
             copy = new ArrayList<>(bulletin_infos);
-            for(int i = copy.size() -1; i >= 0; i--)
-            {
-                if(!seniors_active && copy.get(i).getType() == Type.SENIORS)
-                    copy.remove(i);
-                if(!colleges_active && copy.get(i).getType() == Type.COLLEGES)
-                    copy.remove(i);
-                if(!athletics_active && copy.get(i).getType() == Type.ATHLETICS)
-                    copy.remove(i);
-                if(!others_active && copy.get(i).getType() == Type.OTHERS)
-                    copy.remove(i);
-                if(!reference_active && copy.get(i).getType() == Type.REFERENCE)
-                    copy.remove(i);
-                if(!events_active && copy.get(i).getType() == Type.EVENTS)
-                    copy.remove(i);
-            }
+            Log.d(TAG,seniors_active + "" + colleges_active + athletics_active + others_active + reference_active + events_active);
+            if(seniors_active || colleges_active || athletics_active || others_active || reference_active || events_active)
+                for(int i = copy.size() -1; i >= 0; i--)
+                {
+
+                    if(!seniors_active && copy.get(i).getType() == Type.SENIORS)
+                        copy.remove(i);
+                    else if(!colleges_active && copy.get(i).getType() == Type.COLLEGES)
+                        copy.remove(i);
+                    else if(!athletics_active && copy.get(i).getType() == Type.ATHLETICS)
+                        copy.remove(i);
+                    else if(!others_active && copy.get(i).getType() == Type.OTHERS)
+                        copy.remove(i);
+                    else if(!reference_active && copy.get(i).getType() == Type.REFERENCE)
+                        copy.remove(i);
+                    else if(!events_active && copy.get(i).getType() == Type.EVENTS)
+                        copy.remove(i);
+                }
+            Log.d(TAG, copy.toString());
             this.notifyDataSetChanged();
         }
 
