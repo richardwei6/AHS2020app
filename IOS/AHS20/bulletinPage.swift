@@ -158,7 +158,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     @objc func addFilter(sender: CustomUIButton){
         sender.isSelected = !sender.isSelected;
-              print("\(sender.articleIndex) = \(sender.isSelected)")
         selectedFilters[sender.articleIndex] = sender.isSelected;
         setUpFilters();
         generateBulletin();
@@ -257,40 +256,22 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 let articleButton = UIView(frame: bulletinFrame);
                 articleButton.backgroundColor = UIColor.white;
                 
+                
+                
                 // content inside button
                 let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding), height: bulletinFrame.size.height - 10);
                 let mainView = CustomUIButton(frame: mainViewFrame);
                 
                 
-                if (currentArticles[aIndex].articleType != 0){
-                    let articleIconFrame = CGRect(x: 2, y: 7, width: imageArticleSize, height: imageArticleSize);
-                    let articleIcon = UIImageView(frame: articleIconFrame);
-                    articleIcon.image = UIImage(named: filterIconPicturePath[currentArticles[aIndex].articleType-1]); // temporary------
-                    articleIcon.contentMode = .scaleAspectFit;
-                    articleIcon.setImageColor(color: mainThemeColor);
-                    mainView.addSubview(articleIcon);
-                }
-                else{
-                    let articleIconFrame = CGRect(x: 2, y: 7, width: 30, height: 50);
-                    let articleIcon = UILabel(frame: articleIconFrame);
-                    articleIcon.text = "20\n" + seniorYearConst;
-                    articleIcon.setLineSpacing(lineHeightMultiple: 0.7);
-                    articleIcon.numberOfLines = 3;
-                    articleIcon.textAlignment = .center;
-                    articleIcon.font = UIFont(name: "HarlowSolid", size: 22);
-                    articleIcon.textColor = mainThemeColor;
-                    mainView.addSubview(articleIcon);
-                }
-                //articleIcon.setImageColor(color: mainThemeColor);
                 
-                let articleTitleFrame = CGRect(x: 45, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 100, height: 25);
+                let articleTitleFrame = CGRect(x: 0, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 55, height: 34);
                 let articleTitleText = UILabel(frame: articleTitleFrame);
                 articleTitleText.text = currentArticles[aIndex].articleTitle; // insert title text here ------ temporary
-                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 20);
+                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 30);
                 //articleTitleText.numberOfLines = 1;
                 //articleTitleText.backgroundColor = UIColor.gray;
                 articleTitleText.adjustsFontSizeToFitWidth = true;
-                articleTitleText.minimumScaleFactor = 0.5;
+                articleTitleText.minimumScaleFactor = 0.4;
                 
                 
                 
@@ -308,15 +289,20 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 
                 let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
                 let dateText = UILabel(frame: dateTextFrame);
-                dateText.text = epochClass.epochToDateString(epoch: currentArticles[aIndex].articleUnixEpoch ?? -1); // insert date here -------- temporary
-                dateText.textColor = makeColor(r: 189, g: 151, b: 104);
+                //dateText.text = epochClass.epochToString(epoch: currentArticles[aIndex].articleUnixEpoch ?? -1); // insert date here -------- temporary
+                dateText.text = "12 months ago";
+                dateText.textColor = makeColor(r: 156, g: 0, b: 0);
                 dateText.textAlignment = .right;
+                dateText.font = UIFont(name: "SFProDisplay-Regular", size: 12);
                 
                 
                 articleButton.addSubview(dateText);
                 articleButton.addSubview(mainView);
                 
-                articleButton.layer.cornerRadius = 10;
+                articleButton.layer.shadowColor = UIColor.black.cgColor;
+                articleButton.layer.shadowOpacity = 0.1;
+                articleButton.layer.shadowRadius = 5;
+                articleButton.layer.shadowOffset = CGSize(width: 0 , height:4);
                 
                 mainView.articleCompleteData = bulletinDataToarticleData(data: currentArticles[aIndex]);
                 
@@ -398,10 +384,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         let shadowViewFrame = CGRect(x: -500, y: filterScrollView.frame.size.height-shadowViewHeight, width: filterScrollView.contentSize.width+1000, height: shadowViewHeight);
         let shadowView = UIView(frame: shadowViewFrame);
         shadowView.backgroundColor = UIColor.black;
-        
         filterScrollView.addSubview(shadowView);
-        
-        
         filterScrollView.delegate = self;
     }
     
