@@ -32,7 +32,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var districtNewsPageControl: UIPageControl!*/
 	@IBOutlet weak var mainScrollView: UIScrollView!
 	@IBOutlet weak var featuredScrollView: UIScrollView!
-	@IBOutlet weak var featuredPageControl: UIPageControl!
 	@IBOutlet weak var asbNewsScrollView: UIScrollView!
 	@IBOutlet weak var asbNewsPageControl: UIPageControl!
 	@IBOutlet weak var sportsNewsScrollView: UIScrollView!
@@ -340,8 +339,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				// Featured News ----- NOTE - article is not created by smallArticle() func
 				featuredMissingLabel.isHidden = true;
 				featuredScrollView.isHidden = false;
-				featuredPageControl.isHidden = false;
-				featuredPageControl.numberOfPages = featuredSize;
 				featuredFrame.size = featuredScrollView.frame.size;
 				featuredFrame.size.width = UIScreen.main.bounds.size.width;
 				for aIndex in 0..<featuredSize{
@@ -429,7 +426,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			else{
 				featuredMissingLabel.isHidden = false;
 				featuredScrollView.isHidden = true;
-				featuredPageControl.isHidden = true;
 			}
 			
 			// ASB News -----
@@ -627,7 +623,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	func  scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if (scrollView.tag != -1){
-			featuredPageControl.currentPage = Int(featuredScrollView.contentOffset.x / featuredFrame.size.width);
 			
 			asbNewsPageControl.currentPage = Int(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width);
 			
