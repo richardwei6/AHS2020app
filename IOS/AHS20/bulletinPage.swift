@@ -27,7 +27,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     let seniorYearConst = "21";
     
     // padding variables
-    let iconHorizontalPadding = CGFloat(20);
     let articleHorizontalPadding = CGFloat(10);
     let articleVerticalPadding = CGFloat(10);
     let articleVerticalSize = CGFloat(130);
@@ -35,11 +34,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     let filterSize = 6;
     var filterFrame = CGRect(x:0,y:0,width: 0, height: 0);
-    var filterIconImageSize = CGFloat(40);
-    
     
     let filterIconPicturePath = ["Group 51.png","Path 275.png","Group 34.png","Path 276.png","Path 277.png"];
-    let filterIconName = ["Seniors", "Colleges", "Events", "Athletics", "Reference", "Others"];
+    let filterName = ["Seniors", "Colleges", "Events", "Athletics", "Reference", "Others"];
     
     var selectedFilters: [Bool] = [false, false, false, false, false, false]; // selected types in this order - seniors, colleges, events, athletics, reference, and others
     
@@ -160,18 +157,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     }
     
     @objc func addFilter(sender: CustomUIButton){
-        removeAllSubViews(sender: sender);
-        if (sender.isSelected){ // selected to unselected
-            sender.backgroundColor = nil;
-        }else{ // unselected to selected
-            sender.backgroundColor = makeColor(r: 127, g: 47, b: 60);
-        }
         sender.isSelected = !sender.isSelected;
+              print("\(sender.articleIndex) = \(sender.isSelected)")
         selectedFilters[sender.articleIndex] = sender.isSelected;
-        //print(sender.isSelected);
-        generateIconImage(iconView: sender);
+        setUpFilters();
         generateBulletin();
-        // AudioServicesPlaySystemSound(1519);
         UIImpactFeedbackGenerator(style: .light).impactOccurred();
     }
     
@@ -182,7 +172,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     }
     
     
-    func generateIconImage(iconView: CustomUIButton){
+    /*func generateIconImage(iconView: CustomUIButton){
         if (iconView.articleIndex != 0){
             let imageIconPadding = CGFloat(5);
             let iconImageFrame = CGRect(x:(iconViewFrame!.size.width/2) - (filterIconImageSize/2) + imageIconPadding, y: (iconViewFrame!.size.height/2) - (filterIconImageSize/2)+imageIconPadding, width: filterIconImageSize-(2*imageIconPadding), height: filterIconImageSize-(2*imageIconPadding));
@@ -212,7 +202,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             yearText.font = UIFont(name: "HarlowSolid", size: 20);
             iconView.addSubview(yearText);
         }
-    }
+    }*/
     
     
     func filterArticles() -> [bulletinArticleData]{
@@ -345,64 +335,80 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         getBulletinArticleData();
     }
     
+    func setUpFilters(){
+        
+        for view in filterScrollView.subviews{
+            view.removeFromSuperview();
+        }
+        
+        let betweenMargin = CGFloat(3);
+        
+        let buttonFrameWidth = CGFloat(80);
+        let filterFrameHorizontalPadding = CGFloat(20);
+        
+        
+        //filterFrame.size = filterScrollView.frame.size;
+        filterFrame.size.height = filterScrollView.frame.size.height;
+        filterFrame.size.width = buttonFrameWidth; //
+        
+        let shadowViewHeight = CGFloat(1);
+        var originX = CGFloat(16);
+        
+        for buttonIndex in 0..<filterSize{
+            
+            filterFrame.origin.x = originX;
+            let filterButton = CustomUIButton(frame: filterFrame);
+            
+            //filterButton.backgroundColor = UIColor.gray;
+            filterButton.setTitle(filterName[buttonIndex], for: .normal);
+            filterButton.setTitleColor(UIColor.black, for: .normal);
+            filterButton.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 20);
+            filterButton.contentVerticalAlignment = .top;
+            filterButton.sizeToFit();
+            //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
+            
+            
+            //mainView.backgroundColor = UIColor.red;
+            /*let filterTextFrame = CGRect(x: 0, y: 0, width: filterFrame.size.width, height: 30);
+             let filterText = UILabel(frame: filterTextFrame);
+             filterText.text = filterName[buttonIndex];
+             filterText.textAlignment = .center;
+             
+             filterButton.addSubview(filterText);*/
+            
+            filterFrame.size.width = filterButton.frame.size.width;
+            let selectedBarHeight = CGFloat(2);
+            let selectedBarFrame = CGRect(x: originX, y: filterFrame.size.height-selectedBarHeight-shadowViewHeight, width: filterFrame.size.width, height: selectedBarHeight);
+            let selectedBar = UIView(frame: selectedBarFrame);
+            selectedBar.backgroundColor = makeColor(r: 159, g: 12, b: 12);
+            selectedBar.layer.cornerRadius = 1;
+            selectedBar.isHidden = !selectedFilters[buttonIndex];
+            
+            filterButton.isSelected = selectedFilters[buttonIndex];
+            
+            filterButton.articleIndex = buttonIndex;
+            filterButton.addTarget(self, action: #selector(self.addFilter), for: .touchUpInside);
+            
+            self.filterScrollView.addSubview(selectedBar);
+            self.filterScrollView.addSubview(filterButton);
+            originX += filterButton.frame.size.width + filterFrameHorizontalPadding;
+        }
+        filterScrollView.contentSize = CGSize(width: originX, height: filterScrollView.frame.size.height);
+        
+        let shadowViewFrame = CGRect(x: -500, y: filterScrollView.frame.size.height-shadowViewHeight, width: filterScrollView.contentSize.width+1000, height: shadowViewHeight);
+        let shadowView = UIView(frame: shadowViewFrame);
+        shadowView.backgroundColor = UIColor.black;
+        
+        filterScrollView.addSubview(shadowView);
+        
+        
+        filterScrollView.delegate = self;
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad();
 
-        
-        filterScrollViewMaxHeight = 89;
-        filterScrollViewMinHeight = 20;
-        
-        // set up both scrollviews here
-        
-        let textMargin = CGFloat(20);
-        let topMargin = CGFloat(10);
-        let betweenMargin = CGFloat(3);
-        
-        
-        let filterIconSize = filterScrollView.frame.size.height-textMargin-topMargin-betweenMargin;
-        iconViewFrame = CGRect(x:0, y:topMargin, width: filterIconSize, height: filterIconSize);
-        
-        //filterFrame.size = filterScrollView.frame.size;
-        filterFrame.size.height = filterScrollView.frame.size.height;
-        filterFrame.size.width = filterScrollView.frame.size.height; //
-        
-        for buttonIndex in 0..<filterSize{
-            filterFrame.origin.x = 15+((filterIconSize+iconHorizontalPadding) * CGFloat(buttonIndex));
-            
-            
-            let mainView = UIView(frame: filterFrame);
-            
-            let iconView = CustomUIButton(frame: iconViewFrame!);
-            iconView.layer.cornerRadius = filterIconSize/2;
-            iconView.layer.borderColor = makeColor(r: 127, g: 47, b: 60).cgColor;
-            iconView.layer.borderWidth = 2.2;
-            iconView.articleIndex = buttonIndex;
-            
-            
-            generateIconImage(iconView: iconView);
-            
-            
-            let iconTextFrame = CGRect(x:0, y: filterIconSize+topMargin+betweenMargin, width: filterIconSize, height: textMargin);
-            let iconText = UILabel(frame: iconTextFrame);
-            iconText.text = filterIconName[buttonIndex];
-            iconText.numberOfLines = 1;
-            iconText.font = UIFont(name: "SFProDisplay-Regular", size: 13);
-            iconText.textAlignment = .center;
-            
-            
-            iconView.addTarget(self, action: #selector(self.addFilter), for: .touchUpInside);
-            
-            mainView.addSubview(iconView);
-            mainView.addSubview(iconText);
-            
-            
-            self.filterScrollView.addSubview(mainView);
-        }
-        filterScrollView.contentSize = CGSize(width: (filterIconSize+iconHorizontalPadding) * CGFloat(filterSize)+15, height: filterScrollView.frame.size.height);
-        filterScrollView.delegate = self;
-        
-        
+        setUpFilters();
         // set up bulletin for the first time before any filters
         getBulletinArticleData();
         

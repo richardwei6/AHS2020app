@@ -175,8 +175,10 @@ class CustomTabBarController: UIViewController {
         tabBarView.layer.shadowOpacity = 0.07;
         tabBarView.layer.shadowRadius = 5;
         tabBarView.layer.shadowOffset = CGSize(width: 0, height: -10);
-        
+        buttons[0].tintColor = mainThemeColor;
         dateLabel.text = getTitleDateAndMonth();
+        
+        printFontFamilies();
         
     }
     
@@ -211,8 +213,8 @@ class CustomTabBarController: UIViewController {
         // remove prev view controller
         //buttons[prevIndex].isSelected = false;
            // buttons[prevIndex].setImage(UIImage(named: iconImagePath[prevIndex]), for: .normal);
-        //buttons[prevIndex].tintColor = UIColor.white;
-        
+            buttons[prevIndex].tintColor = UIColor.black;
+            
             let prevVC = viewControllers[prevIndex];
             prevVC.willMove(toParent: nil);
             prevVC.view.removeFromSuperview();
@@ -220,7 +222,7 @@ class CustomTabBarController: UIViewController {
         
         // add current view controller
        // sender.isSelected = true;
-       // sender.tintColor = selectedColor;
+            sender.tintColor = mainThemeColor;
             //sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
             let vc = viewControllers[selectedIndex];
             addChild(vc);
@@ -234,6 +236,7 @@ class CustomTabBarController: UIViewController {
                 topBar.layer.cornerRadius = homeTopCornerRadius;
                 topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
                 topBarHeightContraint.constant = 62;
+                topBar.layer.shadowColor = UIColor.gray.cgColor;
                 homeTopBarContent.isHidden = false;
                 topBarPageName.isHidden = true;
             }
@@ -245,12 +248,15 @@ class CustomTabBarController: UIViewController {
                 topBarPageName.isHidden = false;
                 if (sender.tag == 1){
                     topBarPageName.text = "Student Bulletin";
+                    topBar.layer.shadowColor = UIColor.white.cgColor;
                 }
                 else if (sender.tag == 2){
                     topBarPageName.text = "Saved Articles";
+                    topBar.layer.shadowColor = UIColor.gray.cgColor;
                 }
                 else if (sender.tag == 3){
                     topBarPageName.text = "Settings";
+                    topBar.layer.shadowColor = UIColor.gray.cgColor;
                 }
             }
             
