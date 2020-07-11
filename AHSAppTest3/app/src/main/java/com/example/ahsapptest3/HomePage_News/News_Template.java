@@ -11,14 +11,11 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.ahsapptest3.Article;
-import com.example.ahsapptest3.BookmarkHandler;
 import com.example.ahsapptest3.Helper_Code.EnhancedWrapContentViewPager;
 import com.example.ahsapptest3.R;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 
 
 /**

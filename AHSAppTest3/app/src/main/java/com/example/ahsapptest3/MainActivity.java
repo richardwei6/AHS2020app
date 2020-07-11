@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements Navigation{
 
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +61,11 @@ public class MainActivity extends AppCompatActivity implements Navigation{
         };
         final ArrayList<Article> featured_articles = new ArrayList<>();
         final Context context = this;
+        final ArticleDatabase currentDatabase= new ArticleDatabase(context, ArticleDatabase.Option.CURRENT);
 
         for(int i = 0; i < data_ref.length; i++)
         {
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("homepage").child(data_ref[i]);
+            final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("homepage").child(data_ref[i]);
 
             final int finalI = i; // necessary cause inner class
 
@@ -72,8 +75,11 @@ public class MainActivity extends AppCompatActivity implements Navigation{
                     // use ArrayList b/c no idea how many articles
                     ArrayList<Article> articles = new ArrayList<>();
 
+
                     for (DataSnapshot child_sn: snapshot.getChildren()) {
-                        int ID = Integer.parseInt(child_sn.child("ID").getValue().toString());
+
+                        String ID = child_sn.getKey();
+
                         String author = child_sn.child("articleAuthor").getValue().toString();
                         String title = child_sn.child("articleTitle").getValue().toString();
                         String body = child_sn.child("articleBody").getValue().toString();
@@ -91,13 +97,17 @@ public class MainActivity extends AppCompatActivity implements Navigation{
                         boolean is_featured = (boolean) child_sn.child("isFeatured").getValue();
 
                         // check if already bookmarked
-                        BookmarkHandler bookmarkHandler = new BookmarkHandler(context);
-                        boolean is_bookmarked = bookmarkHandler.alreadyBookmarked(ID);
+                        ArticleDatabase bookMarkDatabase = new ArticleDatabase(context, ArticleDatabase.Option.BOOKMARK);
+                        boolean is_bookmarked = bookMarkDatabase.alreadyAdded(ID);
 
                         Article article = new Article(ID,article_time,title,author,body,imagePaths,is_bookmarked,false);
 
                         // add Article to ArrayList
                         articles.add(article); // default values for bookmark and notified
+
+                        // add Article to current article database
+                        if(!currentDatabase.alreadyAdded(ID))
+                            currentDatabase.add(article);
 
                         if(is_featured)
                             featured_articles.add(article);
@@ -115,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements Navigation{
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(newsLayouts[finalI].getId(),newsFrag)
-                            .commit();
+                            .commitAllowingStateLoss();
 
                     int i = 3;
                     // handle featured articles
@@ -127,16 +137,17 @@ public class MainActivity extends AppCompatActivity implements Navigation{
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(newsLayouts[i].getId(),featuredFrag)
-                            .commit();
+                            .commitAllowingStateLoss();
+
+
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    System.out.println(error.getDetails());
+                    Log.i(TAG, error.getDetails());
                 }
             });
         }
-
 
     }
 

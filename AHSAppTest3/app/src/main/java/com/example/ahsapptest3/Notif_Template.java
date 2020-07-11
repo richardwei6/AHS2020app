@@ -28,20 +28,20 @@ public class Notif_Template extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.template_notif_display, container, false);
+        View view = inflater.inflate(R.layout.template__notif_display, container, false);
         if(getArguments() == null)
             return view;
         Article article = getArguments().getParcelable(ARTICLE_KEY);
+
 
         Helper.setText_toView( (TextView) view.findViewById(R.id.notif_display_titleText), article.getTitle());
 
         Helper.setText_toView( (TextView) view.findViewById(R.id.notif_display_summaryText), article.getStory());
 
         Helper.setTimeText_toView((TextView) view.findViewById(R.id.notif_display_timeUpdatedText),
-                Helper.TimeFromNow(article.getTimeUpdated()),
-                TimeUnit.MINUTES);
+                Helper.TimeFromNow(article.getTimeUpdated()));
 
-        if(article.alreadyNotified())
+        if(!article.alreadyNotified()) // article not yet notified
         {
             ImageView
                     indicator = view.findViewById(R.id.notif_display_indicatorImage),

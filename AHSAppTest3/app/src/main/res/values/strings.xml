@@ -3,6 +3,7 @@
 
     <string name="time_hours_updated_placeholder">%1$d hours ago</string>
     <string name="time_minutes_updated_placeholder">%1$d min ago</string>
+    <string name="time_days_updated_placeholder">%1$d days ago</string>
     <string name="author_placeholder">By %1$s</string>
 
     <!-- TODO: Remove or change this placeholder text -->

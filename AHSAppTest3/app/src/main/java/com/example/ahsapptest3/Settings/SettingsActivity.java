@@ -89,7 +89,7 @@ public class SettingsActivity extends AppCompatActivity implements Navigation {
 
     public static int SeekBarProgress_ToFontSize(int seekBar_progress)
     {
-        return (int)(26*(seekBar_progress/100.0) + 10);
+        return (int)(26*(seekBar_progress/4.0) + 10);
     }
 
     @Override

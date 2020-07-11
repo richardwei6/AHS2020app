@@ -4,7 +4,7 @@ import android.os.Parcelable;
 
 public class Article implements Parcelable {
 
-    private int ID;
+    private String ID;
     private long time_updated;
     private String title, author, story;
     private String [] imagePaths;
@@ -13,7 +13,7 @@ public class Article implements Parcelable {
     private boolean blank; // false
 
     public Article(
-            int ID,
+            String ID,
             long time_updated,
             String title,
             String author,
@@ -55,7 +55,7 @@ public class Article implements Parcelable {
         is_bookmarked = !is_bookmarked;
     }
 
-    public int getID() {return ID;}
+    public String getID() {return ID;}
     public long getTimeUpdated()
     {
         return time_updated;
@@ -102,7 +102,7 @@ public class Article implements Parcelable {
     // The following methods are for the purpose of extending Parcelable
     // make sure to update methods should a new field be added
     protected Article(Parcel in) {
-        ID = in.readInt();
+        ID = in.readString();
         time_updated = in.readLong();
         title = in.readString();
         author = in.readString();
@@ -132,7 +132,7 @@ public class Article implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(ID);
+        dest.writeString(ID);
         dest.writeLong(time_updated);
         dest.writeString(title);
         dest.writeString(author);

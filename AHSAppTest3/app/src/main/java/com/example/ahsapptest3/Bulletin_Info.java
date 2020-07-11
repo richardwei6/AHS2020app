@@ -10,30 +10,39 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Bulletin_Info implements Parcelable {
-    private String title, bodyText;
-    private Date time;
+    private long time;
+    private String title, body;
+    private Date Datetime;
     private String dateString;
-    private BulletinActivity.BulletinType type;
+    private BulletinActivity.Type type;
 
-    public Bulletin_Info(String title, String dateString, String bodyText, BulletinActivity.BulletinType type)
+    public Bulletin_Info(String title, String dateString, String bodyText, BulletinActivity.Type type)
     {
         this.title = title;
         this.dateString = dateString;
-        this.bodyText = bodyText;
+        this.body = bodyText;
         this.type = type;
         SimpleDateFormat dateStringFormat = new SimpleDateFormat("dd:mm:yy");
         try {
-            this.time = dateStringFormat.parse(dateString);
+            this.Datetime = dateStringFormat.parse(dateString);
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
 
+    public Bulletin_Info(long time, String title, String body, BulletinActivity.Type type)
+    {
+        this.time = time;
+        this.title = title;
+        this.body = body;
+        this.type = type;
+    }
+
     protected Bulletin_Info(Parcel in) {
+        time = in.readLong();
         title = in.readString();
-        bodyText = in.readString();
-        dateString = in.readString();
-        type = (BulletinActivity.BulletinType) in.readSerializable();
+        body = in.readString();
+        type = (BulletinActivity.Type) in.readSerializable();
     }
 
     public static final Creator<Bulletin_Info> CREATOR = new Creator<Bulletin_Info>() {
@@ -48,27 +57,29 @@ public class Bulletin_Info implements Parcelable {
         }
     };
 
+    public long getTime() { return time; }
+
     public String getTitle()
     {
         return title;
     }
 
-    public String getDate()
+    public String getTimeString()
     {
         return dateString;
     }
 
     public String getBodyText()
     {
-        return bodyText;
+        return body;
     }
 
-    public Date getTime()
+    public Date getDateTime()
     {
-        return time;
+        return Datetime;
     }
 
-    public BulletinActivity.BulletinType getType() {
+    public BulletinActivity.Type getType() {
         return type;
     }
 
@@ -79,7 +90,7 @@ public class Bulletin_Info implements Parcelable {
 
     public void setBodyText_toView(TextView view)
     {
-        view.setText(this.bodyText);
+        view.setText(this.body);
     }
 
     public void setDate_toView(TextView view)
@@ -121,9 +132,9 @@ public class Bulletin_Info implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(time);
         dest.writeString(title);
-        dest.writeString(bodyText);
-        dest.writeString(dateString);
+        dest.writeString(body);
         dest.writeSerializable(type);
     }
 }

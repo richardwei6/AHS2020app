@@ -52,7 +52,7 @@ public class Notifications_Settings_Activity extends AppCompatActivity {
                 editor.putBoolean(GENERAL_SETTING,isChecked).apply();
             }
         });
-        general_switch.setChecked(sharedPrefs.getBoolean(GENERAL_SETTING,false));
+        general_switch.setChecked(sharedPrefs.getBoolean(GENERAL_SETTING,true));
 
         sports_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -61,7 +61,7 @@ public class Notifications_Settings_Activity extends AppCompatActivity {
                 editor.putBoolean(SPORTS_SETTING,isChecked).apply();
             }
         });
-        sports_switch.setChecked(sharedPrefs.getBoolean(SPORTS_SETTING,false));
+        sports_switch.setChecked(sharedPrefs.getBoolean(SPORTS_SETTING,true));
 
         asb_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -70,7 +70,7 @@ public class Notifications_Settings_Activity extends AppCompatActivity {
                 editor.putBoolean(ASB_SETTING,isChecked).apply();
             }
         });
-        asb_switch.setChecked(sharedPrefs.getBoolean(ASB_SETTING,false));
+        asb_switch.setChecked(sharedPrefs.getBoolean(ASB_SETTING,true));
 
         district_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -79,7 +79,7 @@ public class Notifications_Settings_Activity extends AppCompatActivity {
                 editor.putBoolean(DISTRICT_SETTING,isChecked).apply();
             }
         });
-        district_switch.setChecked(sharedPrefs.getBoolean(DISTRICT_SETTING,false));
+        district_switch.setChecked(sharedPrefs.getBoolean(DISTRICT_SETTING,true));
 
         bulletin_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -88,6 +88,6 @@ public class Notifications_Settings_Activity extends AppCompatActivity {
                 editor.putBoolean(BULLETIN_SETTING,isChecked).apply();
             }
         });
-        bulletin_switch.setChecked(sharedPrefs.getBoolean(BULLETIN_SETTING,false));
+        bulletin_switch.setChecked(sharedPrefs.getBoolean(BULLETIN_SETTING,true));
     }
 }

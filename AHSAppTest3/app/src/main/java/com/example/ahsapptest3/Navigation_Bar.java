@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +31,7 @@ public class Navigation_Bar extends Fragment {
         // Required empty public constructor
     }
 
-    Navigation navigation;
+    private Navigation navigation;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -76,13 +77,13 @@ public class Navigation_Bar extends Fragment {
             }
         });
         if(getActivity() instanceof MainActivity)
-            homeBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.LightGray_F2F2F3__HOME));
+            homeBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_AngryRed_9F0C0C__BULLETIN));
         else if (getActivity() instanceof BulletinActivity)
-            bulletinBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.LightGray_F2F2F3__HOME));
+            bulletinBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_AngryRed_9F0C0C__BULLETIN));
         else if (getActivity() instanceof SavedActivity)
-            savedBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.LightGray_F2F2F3__HOME));
+            savedBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_AngryRed_9F0C0C__BULLETIN));
         else if (getActivity() instanceof SettingsActivity)
-            settingsBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.LightGray_F2F2F3__HOME));
+            settingsBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_AngryRed_9F0C0C__BULLETIN));
 
         return view;
     }
@@ -93,11 +94,11 @@ public class Navigation_Bar extends Fragment {
      */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        System.out.println("it's nul on activity created");
+
         super.onActivityCreated(savedInstanceState);
         final View scrollingView = getActivity().findViewById(navigation.getScrollingViewId());
 
-        final FrameLayout navBar= view.findViewById(R.id.nav_bar_FrameLayout);
+        final ConstraintLayout navBar= view.findViewById(R.id.nav_bar_ConstraintLayout);
 
         if (scrollingView instanceof ScrollView)
         {

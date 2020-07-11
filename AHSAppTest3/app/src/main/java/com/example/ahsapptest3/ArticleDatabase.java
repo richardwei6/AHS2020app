@@ -15,16 +15,17 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import android.database.DatabaseUtils;
 
 // important note: if there is a weird error (column not found when it exists, for ex) , try clearing all storage on the device/ emulator
 // especially when you change the columns somehow in the database
 // By Alex Dang
 
-public class BookmarkHandler extends SQLiteOpenHelper {
+public class ArticleDatabase extends SQLiteOpenHelper {
 
     private static final String TAG = "BookmarkHandler";
 
-    private static final String TABLE_NAME = "bookmark_table";
+
     private static final String COL0 = "ID";
 
     private static final String ART_ID = "ART_ID";
@@ -44,17 +45,36 @@ public class BookmarkHandler extends SQLiteOpenHelper {
     private static final String NOTIF = "NOTIF";
     static final int NOTIF_COL = 8;
 
+    public enum Option {
+        BOOKMARK, CURRENT;
+    }
+    private static final String BOOKMARK_TABLE = "bookmark_table"; // bookmakred articles stored locally
+    private static final String CURRENT_ART_TABLE = "current_table"; // current articles stored locally
 
-    public BookmarkHandler(@Nullable Context context) {
-        super(context, TABLE_NAME, null,1);
+    private String current_Table;
+    public ArticleDatabase(@Nullable Context context, Option selection) {
+        super(context, getTableID_FromEnum(selection), null,1);
+        current_Table = getTableID_FromEnum(selection);
+    }
+
+    private static String getTableID_FromEnum (Option selection)
+    {
+        switch(selection)
+        {
+            case BOOKMARK:
+                return BOOKMARK_TABLE;
+            case CURRENT:
+                return CURRENT_ART_TABLE;
+        }
+        throw new IllegalStateException(); // hah
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable =
-                "CREATE TABLE " + TABLE_NAME +
+                "CREATE TABLE " + current_Table +
                         "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        ART_ID + " INTEGER," +
+                        ART_ID + " TEXT," +
                         TIME + " INTEGER," + // "INTEGER" different from ints, no overflow despite time being long
                         TITLE + " TEXT," +
                         AUTHOR + " TEXT," +
@@ -64,12 +84,12 @@ public class BookmarkHandler extends SQLiteOpenHelper {
                         NOTIF + " INTEGER);"
         ;
         db.execSQL(createTable);
-        System.out.println("created table");
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + current_Table);
         onCreate(db);
     }
 
@@ -92,24 +112,23 @@ public class BookmarkHandler extends SQLiteOpenHelper {
         contentValues.put(BMARKED, (article.isBookmarked()) ? 1 : 0);
         contentValues.put(NOTIF, (article.alreadyNotified()) ? 1 : 0);
 
-        long result = db.insert(TABLE_NAME, null, contentValues);
+        long result = db.insert(current_Table, null, contentValues);
 
         // if inserted incorrectly -1 is the return value
         return result != -1;
     }
 
     /**
-     * updates a particular article in the database; not complete yet but you get the idea
-     * @param article   The new article to replace the old one
-     * @param oldId     The id of the old article
+     * updates a particular article's notified status
+     * @param ID   The article to be updated
+     * @param notified     Whether it is notified or not
      */
-    public void update(Article article, int oldId)
+    public void updateNotified(String ID, boolean notified)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "UPDATE " + TABLE_NAME
-                + " SET " + ART_ID + " = '" + article.getID()
-                + "' SET " + TIME + " = '" + article.getTimeUpdated()
-                + "'' WHERE " + ART_ID + " = '" + article.getID() + "'";
+        String query = "UPDATE " + current_Table
+                + " SET " + NOTIF + " = '" + ((notified) ? 1 : 0)
+                + "' WHERE " + ART_ID + " = '" + ID + "'";
         db.execSQL(query);
     }
 
@@ -120,9 +139,50 @@ public class BookmarkHandler extends SQLiteOpenHelper {
     public void delete(Article article)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + TABLE_NAME + " WHERE "
+        String query = "DELETE FROM " + current_Table + " WHERE "
                 + ART_ID + " = '" + article.getID() + "'";
         db.execSQL(query);
+    }
+
+    /**
+     * Deletes all articles from the database while leaving the database intact
+     */
+    public void deleteAll()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + current_Table;
+        db.execSQL(query);
+    }
+
+    /**
+     * Self Explanatory, but note if for whatever reason there are duplicate ids, it returns the first article only
+     * @param ID the id of the article to search for
+     * @return null if Article not found, Article if it is found
+     */
+    public Article getArticleById(String ID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + current_Table
+                + " WHERE  " + ART_ID + " = '" + ID + "'";
+        Cursor data = db.rawQuery(query, null);
+
+        /*Log.d(TAG, DatabaseUtils.dumpCursorToString(data));*/
+        if(data.getCount()<1)
+            return null;
+        data.moveToFirst();
+
+        Article article = new Article(
+                data.getString(ID_COL),
+                data.getLong(TIME_COL),
+                data.getString(TITLE_COL),
+                data.getString(AUTHOR_COL),
+                data.getString(STORY_COL),
+                convertStringToArray(data.getString(IPATHS_COL)),
+                (data.getInt(BMARKED_COL) == 1),
+                (data.getInt(NOTIF_COL) == 1)
+        );
+
+        return article;
     }
 
     /**
@@ -131,7 +191,7 @@ public class BookmarkHandler extends SQLiteOpenHelper {
     public Cursor getAllData()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + current_Table;
         Cursor data = db.rawQuery(query, null);
         return data;
     }
@@ -143,7 +203,7 @@ public class BookmarkHandler extends SQLiteOpenHelper {
         while(data.moveToNext())
         {
             articles.add(new Article(
-                    data.getInt(ID_COL),
+                    data.getString(ID_COL),
                     data.getLong(TIME_COL),
                     data.getString(TITLE_COL),
                     data.getString(AUTHOR_COL),
@@ -161,10 +221,10 @@ public class BookmarkHandler extends SQLiteOpenHelper {
      * @param id: article ID
      * @return true if bookmark already exists
      */
-    public boolean alreadyBookmarked(int id)
+    public boolean alreadyAdded(String id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String selectQuery = "SELECT "+ ART_ID +" FROM " + TABLE_NAME + " WHERE  " + ART_ID + " = '" + id + "'";
+        String selectQuery = "SELECT "+ ART_ID +" FROM " + current_Table + " WHERE  " + ART_ID + " = '" + id + "'";
         Cursor cursor = db.rawQuery(selectQuery,null);
         return cursor.getCount() > 0;
     }

@@ -11,7 +11,7 @@ import androidx.core.content.res.ResourcesCompat;
 import com.bumptech.glide.Glide;
 import com.example.ahsapptest3.Article;
 import com.example.ahsapptest3.ArticleActivity;
-import com.example.ahsapptest3.BookmarkHandler;
+import com.example.ahsapptest3.ArticleDatabase;
 import com.example.ahsapptest3.R;
 
 import java.io.File;
@@ -116,18 +116,18 @@ public class Helper {
      * */
     public static void setBookMarkListener_toView(final ImageView view, final Article article)
     {
-        final BookmarkHandler bookmarkHandler = new BookmarkHandler(view.getContext());
+        final ArticleDatabase articleDatabase = new ArticleDatabase(view.getContext(), ArticleDatabase.Option.BOOKMARK);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 article.swapBookmark();
                 setBookmarked_toView(view,article.isBookmarked());
-                if(!bookmarkHandler.alreadyBookmarked(article.getID()))
-                        bookmarkHandler.add(article);
+                if(!articleDatabase.alreadyAdded(article.getID()))
+                        articleDatabase.add(article);
                 else
-                    bookmarkHandler.delete(article);
-                BookmarkHandler.setBookmarkChanged();
+                    articleDatabase.delete(article);
+                ArticleDatabase.setBookmarkChanged();
             }
         });
     }
@@ -136,17 +136,23 @@ public class Helper {
     /*
      *  Sets time in a given unit to a TextView, formatted
      * */
-    public static void setTimeText_toView(TextView view, long time, TimeUnit unit)
+    public static void setTimeText_toView(TextView view, long time)
     {
+        TimeUnit unit = getLogicalTimeUnit(time);
         long time_val = unit.convert(time, TimeUnit.MILLISECONDS);
         if(unit.equals(TimeUnit.MINUTES))
         {
             view.setText(view.getContext().getString(R.string.time_minutes_updated_placeholder, time_val));
         }
-        if(unit.equals(TimeUnit.HOURS))
+        else if(unit.equals(TimeUnit.HOURS))
         {
             view.setText(view.getContext().getString(R.string.time_hours_updated_placeholder, time_val));
         }
+        else if(unit.equals(TimeUnit.DAYS))
+        {
+            view.setText(view.getContext().getString(R.string.time_days_updated_placeholder, time_val));
+        }
+
     }
 
     /*
@@ -166,5 +172,27 @@ public class Helper {
         return new SimpleDateFormat(pattern, Locale.US).format(time*1000L);
     }
 
+    /**
+     * Converts a long time to a time unit based on the reasonable unit for the length of time
+     * to avoid overly large number of hours, minutes, etc.
+     * @param time_difference The long time to be converted
+     * @return the proper TimeUnit in Hours, minutes, etc.
+     */
+    public static TimeUnit getLogicalTimeUnit(long time_difference)
+    {
+        TimeUnit unit = TimeUnit.DAYS; // most reasonale to start with this
+        int time_in_units = (int) unit.convert(time_difference, TimeUnit.MILLISECONDS);
+        if(time_in_units < 1) // less than one day, use hours
+        {
+            unit = TimeUnit.HOURS;
+            time_in_units = (int) unit.convert(time_difference, TimeUnit.MILLISECONDS);
+            if(time_in_units < 1) // fresh! less than one hour!
+            {
+                return TimeUnit.MINUTES; // stop here, unreasonable to go below this unit
+            }
+            return TimeUnit.HOURS;
+        }
+        return TimeUnit.DAYS;
+    }
 
 }
