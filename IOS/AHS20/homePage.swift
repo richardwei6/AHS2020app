@@ -226,14 +226,14 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleImageView.backgroundColor = UIColor.gray;
 	    articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
 		
-		let spacing = CGFloat(6);
+		let spacing = CGFloat(10);
 		
 		let articleTitleFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: 0, width: articleTextWidth-spacing, height: 50);
 		let articleTitle = UILabel(frame: articleTitleFrame);
 		articleTitle.text = articleSingle.articleTitle ?? "";
 		articleTitle.textAlignment = .left;
 		articleTitle.font = UIFont(name: "SFProDisplay-Semibold", size: 18);
-		articleTitle.lineBreakMode = .byWordWrapping;
+	//	articleTitle.lineBreakMode = .byWordWrapping;
 		articleTitle.numberOfLines = 2;
 		
 		let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: 50, width: articleTextWidth-spacing, height: 70);
@@ -241,7 +241,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleBody.text = articleSingle.articleBody ?? "";
 		articleBody.textAlignment = .left;
 		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
-		articleTitle.lineBreakMode = .byWordWrapping;
+	//	articleTitle.lineBreakMode = .byWordWrapping;
 		articleBody.numberOfLines = 3;
 		
 		let timeStampFrame = CGRect(x: 7, y: height - 25, width: 55, height: 15);
