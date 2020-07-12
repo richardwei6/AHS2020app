@@ -222,6 +222,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		let articleImageView = UIImageView(frame: articleImageViewFrame);
 		if (articleSingle.articleImages?.count ?? 0 >= 1){
 			articleImageView.imgFromURL(sURL: articleSingle.articleImages?[0] ?? "");
+			articleImageView.contentMode = .scaleAspectFill;
 		}
 		articleImageView.backgroundColor = UIColor.gray;
 	    articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
@@ -360,6 +361,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					let imageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: contentViewFrame.size.height - 60);
 					let imageView = UIImageView(frame: imageViewFrame);
 					imageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
+					imageView.contentMode = .scaleAspectFill;
 					imageView.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
 					
 					let titleLabelFrame = CGRect(x: 0, y: imageViewFrame.size.height, width: contentViewFrame.size.width, height: 38);
