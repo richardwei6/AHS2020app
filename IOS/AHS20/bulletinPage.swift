@@ -301,9 +301,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 articleButton.addSubview(mainView);
                 
                 articleButton.layer.shadowColor = UIColor.black.cgColor;
-                articleButton.layer.shadowOpacity = 0.1;
+                articleButton.layer.shadowOpacity = 0.2;
                 articleButton.layer.shadowRadius = 5;
-                articleButton.layer.shadowOffset = CGSize(width: 0 , height:4);
+                articleButton.layer.shadowOffset = CGSize(width: 0 , height:3);
                 
                 mainView.articleCompleteData = bulletinDataToarticleData(data: currentArticles[aIndex]);
                 

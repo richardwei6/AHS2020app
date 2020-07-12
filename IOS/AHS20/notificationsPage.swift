@@ -224,9 +224,9 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationButton.backgroundColor = UIColor.white;
                 
                 notificationButton.layer.shadowColor = UIColor.black.cgColor;
-                notificationButton.layer.shadowOpacity = 0.1;
+                notificationButton.layer.shadowOpacity = 0.2;
                 notificationButton.layer.shadowRadius = 5;
-                notificationButton.layer.shadowOffset = CGSize(width: 0 , height:4);
+                notificationButton.layer.shadowOffset = CGSize(width: 0 , height:3);
                 
                 notificationButton.notificationCompleteData = currNotif;
                 notificationButton.articleIndex = nIndex;
@@ -290,9 +290,9 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationButton.backgroundColor = makeColor(r: 250, g: 250, b: 250);
                 
                 notificationButton.layer.shadowColor = UIColor.black.cgColor;
-                notificationButton.layer.shadowOpacity = 0.1;
+                notificationButton.layer.shadowOpacity = 0.2;
                 notificationButton.layer.shadowRadius = 5;
-                notificationButton.layer.shadowOffset = CGSize(width: 0 , height:4);
+                notificationButton.layer.shadowOffset = CGSize(width: 0 , height:3);
                 
                 notificationButton.alreadyRead = true;
                 notificationButton.notificationCompleteData = currNotif;
