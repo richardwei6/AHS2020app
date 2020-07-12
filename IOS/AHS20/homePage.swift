@@ -292,10 +292,10 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		setUpConnection();
 		if (internetConnected && homeArticleList[0].count > 0 && homeArticleList[1].count > 0 && homeArticleList[2].count > 0){
 			
-			featuredLabel.text = "FEATURED";
-			asbLabel.text = "ASB NEWS";
-			sportsLabel.text = "SPORTS NEWS";
-			districtLabel.text = "DISTRICT NEWS";
+			featuredLabel.text = "Featured";
+			asbLabel.text = "ASB News";
+			sportsLabel.text = "Sports News";
+			districtLabel.text = "District News";
 			
 			//print("home");
 			//print(homeArticleList)
@@ -341,6 +341,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				featuredScrollView.isHidden = false;
 				featuredFrame.size = featuredScrollView.frame.size;
 				featuredFrame.size.width = UIScreen.main.bounds.size.width;
+				featuredScrollView.contentSize = CGSize(width: (featuredFrame.size.width * CGFloat(featuredSize)), height: featuredScrollView.frame.size.height);
 				for aIndex in 0..<featuredSize{
 					featuredFrame.origin.x = (featuredFrame.size.width * CGFloat(aIndex));
 					
@@ -351,57 +352,44 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					//outerContentView.backgroundColor = UIColor.gray;
 					
 					
-					let innerContentViewContraint = CGFloat(24);
+					let innerContentViewContraint = CGFloat(20);
 					let contentViewFrame = CGRect(x: innerContentViewContraint, y: 0, width: featuredFrame.size.width - (2*innerContentViewContraint), height: featuredFrame.size.height);
 					let contentView = CustomUIButton(frame: contentViewFrame);
 					
-					let articleImageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: contentViewFrame.size.height - 40); // add to contentView
-					let articleImageView = UIImageView(frame:articleImageViewFrame);
-					articleImageView.backgroundColor = articleDarkGreyBackground;
 					
-					if (currArticle.articleImages?.count ?? 0 > 0){
-						articleImageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
-						articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
-						articleImageView.contentMode = .scaleAspectFill;
-					}
+					let imageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: contentViewFrame.size.height - 60);
+					let imageView = UIImageView(frame: imageViewFrame);
+					imageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
+					imageView.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
 					
+					let titleLabelFrame = CGRect(x: 0, y: imageViewFrame.size.height, width: contentViewFrame.size.width, height: 38);
+					let titleLabel = UILabel(frame: titleLabelFrame);
+					titleLabel.text = currArticle.articleTitle ?? "";
+					titleLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 22);
+					titleLabel.textAlignment = .left;
+					titleLabel.textColor = UIColor.black;
+					//SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
 					
-					// time stamp
-					let articleTimestampFrame = CGRect(x: articleImageViewFrame.size.width - (10+articleTimeStampLength), y: articleImageViewFrame.size.height - 30, width: articleTimeStampLength, height: 20);
-					let articleTimestamp = UILabel(frame: articleTimestampFrame);
-					articleTimestamp.backgroundColor = makeColor(r: 197, g: 197, b: 197);
-					articleTimestamp.font = UIFont(name: "SFProDisplay-Regular", size: 10);
-					articleTimestamp.textAlignment = .center;
-					articleTimestamp.textColor = makeColor(r: 57, g: 57, b: 57);
-					articleTimestamp.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-					articleTimestamp.text = epochClass.epochToString(epoch: currArticle.articleUnixEpoch ?? -1); // insert code here to get time of article
+					let articleCatagoryFrame = CGRect(x: 0, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: 80, height: 20);
+					let articleCatagory = UILabel(frame: articleCatagoryFrame);
+					articleCatagory.text = (currArticle.articleCatagory ?? "No Cata.") + " News";
+					articleCatagory.textAlignment = .center;
+					articleCatagory.textColor = .white;
+					articleCatagory.backgroundColor = makeColor(r: 159, g: 12, b: 12);
+					articleCatagory.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+					articleCatagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
 					
+					let timeStampFrame = CGRect(x: 80, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: 120, height: 20);
+					let timeStamp = UILabel(frame: timeStampFrame);
+					timeStamp.text = "   ∙   " + epochClass.epochToString(epoch: currArticle.articleUnixEpoch ?? -1);
+					timeStamp.textAlignment = .left;
+					timeStamp.textColor = UIColor.lightGray;
+					timeStamp.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
 					
-					articleImageView.addSubview(articleTimestamp); // add timestamp to imageview
-					
-					
-					let articleTitleFrame = CGRect(x: 0, y: contentViewFrame.size.height - 30, width: contentViewFrame.size.width, height: 30);
-					let articleTitleLabel = UILabel(frame: articleTitleFrame);
-					articleTitleLabel.text = currArticle.articleTitle; // DATA
-					articleTitleLabel.textAlignment = .left;
-					articleTitleLabel.font = UIFont(name:"SFProText-Bold",size: 25);
-					
-					contentView.addSubview(articleImageView);
-					contentView.addSubview(articleTitleLabel);
-					
-					
-					let bookmarkFrame = CGRect(x: (featuredFrame.size.width - 40 - innerContentViewContraint) + (featuredFrame.size.width * CGFloat(aIndex)), y: 10, width: 30, height: 30);
-					var bookmarkButton = CustomUIButton(frame: bookmarkFrame);
-					bookmarkButton.backgroundColor = bookMarkBackground;
-					bookmarkButton.setRoundedEdge(corners: [.topRight,.topLeft,.bottomLeft,.bottomRight], radius: 6);
-					let bookmarkImage = bookmarkImageUI; // get system image
-					bookmarkButton.setImage(bookmarkImage, for: .normal);
-					//bookmarkButton.tintColor = bookMarkTint;
-					bookmarkButton.articleCompleteData = currArticle;
-					setUpColorOfBookmark(sender: &bookmarkButton);
-					bookmarkButton.isSelected = false;
-					bookmarkButton.imageEdgeInsets = UIEdgeInsets(top: bookmarkImageVerticalInset, left: bookmarkImageHorizontalInset, bottom: bookmarkImageVerticalInset, right: bookmarkImageHorizontalInset);
-					
+					contentView.addSubview(timeStamp);
+					contentView.addSubview(articleCatagory);
+					contentView.addSubview(titleLabel);
+					contentView.addSubview(imageView);
 					
 					outerContentView.articleCompleteData = currArticle;
 					contentView.articleCompleteData = currArticle;
@@ -412,16 +400,16 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					outerContentView.addSubview(contentView);
 					
 					outerContentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
-					bookmarkButton.addTarget(self, action: #selector(bookmarkCurrentArticle), for: .touchUpInside);
 					//articleImageView.layer.cornerRadius = 10;
 					
 					
 					self.featuredScrollView.addSubview(outerContentView);
-					self.featuredScrollView.addSubview(bookmarkButton);
 				}
 				// change horizontal size of scrollview
-				featuredScrollView.contentSize = CGSize(width: (featuredFrame.size.width * CGFloat(featuredSize)), height: featuredScrollView.frame.size.height);
 				featuredScrollView.delegate = self;
+				featuredScrollView.showsHorizontalScrollIndicator = true;
+				featuredScrollView.backgroundColor = UIColor.white;
+				
 			}
 			else{
 				featuredMissingLabel.isHidden = false;

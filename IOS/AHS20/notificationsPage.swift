@@ -165,7 +165,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             noNotificationLabel.isHidden = true;
             
             notificationFrame.size.width = UIScreen.main.bounds.size.width - (2 * horizontalPadding);
-            notificationFrame.size.height = 140;
+            notificationFrame.size.height = 130;
             // add notification label at start
             for nIndex in 0..<unreadNotificationSize{
                 notificationFrame.origin.x = horizontalPadding;
