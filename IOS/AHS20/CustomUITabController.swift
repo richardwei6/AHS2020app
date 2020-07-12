@@ -175,10 +175,8 @@ class CustomTabBarController: UIViewController {
         tabBarView.layer.shadowOpacity = 0.07;
         tabBarView.layer.shadowRadius = 5;
         tabBarView.layer.shadowOffset = CGSize(width: 0, height: -10);
-        buttons[0].tintColor = UIColor.lightGray;
+        buttons[0].tintColor = mainThemeColor;
         dateLabel.text = getTitleDateAndMonth();
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -221,7 +219,7 @@ class CustomTabBarController: UIViewController {
         
         // add current view controller
        // sender.isSelected = true;
-            sender.tintColor = UIColor.gray;
+            sender.tintColor = mainThemeColor;
             //sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
             let vc = viewControllers[selectedIndex];
             addChild(vc);

@@ -185,6 +185,6 @@ class InsetLabel: UILabel {
     }
 }
 
-let mainThemeColor = makeColor(r: 153, g: 41, b: 56);
+let mainThemeColor = makeColor(r: 159, g: 12, b: 12);
 
 var fontSize = 20;
