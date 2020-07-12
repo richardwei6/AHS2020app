@@ -33,11 +33,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1340"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38h-M3-Qey" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="-1" width="414" height="1341.3333333333333"/>
+                                        <rect key="frame" x="0.0" y="-1" width="414" height="1341"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Featured" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XT-od-jzj">
-                                                <rect key="frame" x="19.999999999999993" y="9.9999999999999982" width="99.333333333333314" height="26.333333333333329"/>
-                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="22"/>
+                                                <rect key="frame" x="19.999999999999993" y="10.000000000000002" width="108.33333333333331" height="27.666666666666671"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -47,11 +47,14 @@
                                                 <viewLayoutGuide key="frameLayoutGuide" id="6HT-cQ-dII"/>
                                             </scrollView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IgX-UF-qaB">
-                                                <rect key="frame" x="0.0" y="346" width="414" height="1.3333333333333144"/>
+                                                <rect key="frame" x="0.0" y="346" width="414" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="ba2-0f-WK6"/>
+                                                </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YX-jQ-HJz">
-                                                <rect key="frame" x="20" y="357.33333333333331" width="108" height="26"/>
+                                                <rect key="frame" x="20" y="358.66666666666669" width="108" height="26"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -62,14 +65,14 @@
                                                 <viewLayoutGuide key="frameLayoutGuide" id="qK8-7W-9zV"/>
                                             </scrollView>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="hFL-pT-fxA">
-                                                <rect key="frame" x="188" y="635.33333333333337" width="39" height="37"/>
+                                                <rect key="frame" x="188" y="635" width="39" height="37"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pageControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOl-JA-13r">
-                                                <rect key="frame" x="0.0" y="672.33333333333337" width="414" height="1"/>
+                                                <rect key="frame" x="0.0" y="672" width="414" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2a-Ch-t7Y">
@@ -78,24 +81,24 @@
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Rmm-pj-VGU"/>
                                             </scrollView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7St-u3-tL8">
-                                                <rect key="frame" x="21" y="683.33333333333337" width="142" height="26"/>
+                                                <rect key="frame" x="21" y="684.66666666666663" width="142" height="26"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iD6-UZ-DlH">
-                                                <rect key="frame" x="188" y="961.33333333333337" width="39" height="37"/>
+                                                <rect key="frame" x="188" y="961" width="39" height="37"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pageControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZM-au-9Gd">
-                                                <rect key="frame" x="0.0" y="998.33333333333337" width="414" height="1"/>
+                                                <rect key="frame" x="0.0" y="998" width="414" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sports News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BR2-Jb-vl0">
-                                                <rect key="frame" x="22" y="1009.3333333333334" width="135" height="26.000000000000114"/>
+                                                <rect key="frame" x="22" y="1010.6666666666666" width="135" height="24.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -106,14 +109,14 @@
                                                 <viewLayoutGuide key="frameLayoutGuide" id="fnV-HE-OJk"/>
                                             </scrollView>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="x8m-5V-ULZ">
-                                                <rect key="frame" x="188" y="1292.3333333333333" width="39" height="37"/>
+                                                <rect key="frame" x="188" y="1292" width="39" height="37"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pageControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Featured Articles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aJ-vf-lyx">
-                                                <rect key="frame" x="98" y="175.33333333333334" width="218" height="26"/>
+                                                <rect key="frame" x="98" y="176.66666666666666" width="218" height="26"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -122,21 +125,20 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="Q2a-Ch-t7Y" firstAttribute="top" secondItem="7St-u3-tL8" secondAttribute="bottom" constant="9" id="2DL-gA-Dmv"/>
-                                            <constraint firstItem="hOl-JA-13r" firstAttribute="top" secondItem="IgX-UF-qaB" secondAttribute="bottom" constant="325" id="6wH-7c-OJp"/>
                                             <constraint firstAttribute="trailing" secondItem="hOl-JA-13r" secondAttribute="trailing" id="70k-ju-Lc2"/>
+                                            <constraint firstItem="7St-u3-tL8" firstAttribute="top" secondItem="hOl-JA-13r" secondAttribute="bottom" constant="11.67" id="7rA-KH-6Z5"/>
                                             <constraint firstAttribute="trailing" secondItem="hFL-pT-fxA" secondAttribute="trailing" constant="187" id="823-8o-lHe"/>
                                             <constraint firstItem="WnD-gz-8Ls" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="19" id="85M-I8-NKw"/>
                                             <constraint firstItem="7St-u3-tL8" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="21" id="8h6-8c-Bab"/>
+                                            <constraint firstItem="vrP-oM-pep" firstAttribute="top" secondItem="BR2-Jb-vl0" secondAttribute="bottom" constant="9" id="AhT-HU-E25"/>
                                             <constraint firstItem="4YX-jQ-HJz" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="20" id="BP2-qK-tsG"/>
-                                            <constraint firstItem="IgX-UF-qaB" firstAttribute="top" secondItem="38h-M3-Qey" secondAttribute="top" constant="346" id="BjG-9i-7RK"/>
                                             <constraint firstItem="IgX-UF-qaB" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" id="ClQ-As-Mbn"/>
+                                            <constraint firstItem="4YX-jQ-HJz" firstAttribute="top" secondItem="IgX-UF-qaB" secondAttribute="bottom" constant="11.67" id="Dm1-Qx-LKv"/>
                                             <constraint firstItem="hOl-JA-13r" firstAttribute="top" secondItem="hFL-pT-fxA" secondAttribute="bottom" id="E3p-rY-PyH"/>
-                                            <constraint firstItem="7St-u3-tL8" firstAttribute="top" secondItem="hOl-JA-13r" secondAttribute="bottom" constant="10" id="Eoc-DT-xdJ"/>
                                             <constraint firstAttribute="trailing" secondItem="IgX-UF-qaB" secondAttribute="trailing" id="FNS-QM-rt7"/>
                                             <constraint firstItem="vrP-oM-pep" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="19" id="GXg-eb-FPw"/>
                                             <constraint firstAttribute="bottom" secondItem="x8m-5V-ULZ" secondAttribute="bottom" constant="12" id="GjC-CT-PCg"/>
                                             <constraint firstItem="qZM-au-9Gd" firstAttribute="top" secondItem="iD6-UZ-DlH" secondAttribute="bottom" id="Gz0-UD-yr6"/>
-                                            <constraint firstItem="vrP-oM-pep" firstAttribute="top" secondItem="BR2-Jb-vl0" secondAttribute="bottom" constant="9" id="HRR-es-QQk"/>
                                             <constraint firstItem="WnD-gz-8Ls" firstAttribute="top" secondItem="4YX-jQ-HJz" secondAttribute="bottom" constant="9" id="I4d-xv-wXA"/>
                                             <constraint firstItem="iD6-UZ-DlH" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="188" id="N3x-Wa-RbL"/>
                                             <constraint firstAttribute="trailing" secondItem="vrP-oM-pep" secondAttribute="trailing" constant="19" id="OnR-Ba-CxE"/>
@@ -145,9 +147,9 @@
                                             <constraint firstItem="BR2-Jb-vl0" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="22" id="PuN-Zt-eQM"/>
                                             <constraint firstItem="iD6-UZ-DlH" firstAttribute="top" secondItem="Q2a-Ch-t7Y" secondAttribute="bottom" constant="3" id="QYW-1B-5eC"/>
                                             <constraint firstItem="hOl-JA-13r" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" id="TuX-vy-GQP"/>
-                                            <constraint firstItem="BR2-Jb-vl0" firstAttribute="top" secondItem="qZM-au-9Gd" secondAttribute="bottom" constant="10" id="V5z-Sl-eHX"/>
                                             <constraint firstItem="Q2a-Ch-t7Y" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="19" id="WVx-T4-i2r"/>
                                             <constraint firstItem="Vgb-UA-GmW" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" id="X2u-Ea-aoD"/>
+                                            <constraint firstItem="hOl-JA-13r" firstAttribute="top" secondItem="IgX-UF-qaB" secondAttribute="bottom" constant="325" id="Ygw-VZ-Ujp"/>
                                             <constraint firstItem="hFL-pT-fxA" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="188" id="adP-k7-2bM"/>
                                             <constraint firstAttribute="trailing" secondItem="qZM-au-9Gd" secondAttribute="trailing" id="aqR-TK-8uG"/>
                                             <constraint firstAttribute="trailing" secondItem="Q2a-Ch-t7Y" secondAttribute="trailing" constant="19" id="av6-xQ-j7V"/>
@@ -158,18 +160,19 @@
                                             <constraint firstItem="5XT-od-jzj" firstAttribute="top" secondItem="38h-M3-Qey" secondAttribute="top" constant="10" id="gTC-L0-Qpl"/>
                                             <constraint firstAttribute="bottom" secondItem="BR2-Jb-vl0" secondAttribute="bottom" constant="306" id="ga9-EU-cDJ"/>
                                             <constraint firstItem="BR2-Jb-vl0" firstAttribute="top" secondItem="7St-u3-tL8" secondAttribute="bottom" constant="300" id="gbD-Ex-RR5"/>
-                                            <constraint firstItem="4YX-jQ-HJz" firstAttribute="top" secondItem="5XT-od-jzj" secondAttribute="bottom" constant="321" id="hZj-CG-3SK"/>
                                             <constraint firstItem="Vgb-UA-GmW" firstAttribute="top" secondItem="5XT-od-jzj" secondAttribute="bottom" constant="10" id="iTy-5s-G0D"/>
+                                            <constraint firstItem="4YX-jQ-HJz" firstAttribute="top" secondItem="5XT-od-jzj" secondAttribute="bottom" constant="321" id="j5s-xc-5Sb"/>
                                             <constraint firstAttribute="trailing" secondItem="iD6-UZ-DlH" secondAttribute="trailing" constant="187" id="l0W-Jg-Ixt"/>
                                             <constraint firstItem="hFL-pT-fxA" firstAttribute="top" secondItem="WnD-gz-8Ls" secondAttribute="bottom" constant="3" id="mNG-qp-Hc4"/>
                                             <constraint firstAttribute="trailing" secondItem="Vgb-UA-GmW" secondAttribute="trailing" id="nvy-H7-2Hr"/>
                                             <constraint firstAttribute="bottom" secondItem="qZM-au-9Gd" secondAttribute="bottom" constant="342" id="oyC-5n-RHL"/>
                                             <constraint firstItem="qZM-au-9Gd" firstAttribute="top" secondItem="hOl-JA-13r" secondAttribute="bottom" constant="325" id="pKs-O9-3oJ"/>
-                                            <constraint firstItem="4YX-jQ-HJz" firstAttribute="top" secondItem="IgX-UF-qaB" secondAttribute="bottom" constant="10" id="qkN-yv-Vee"/>
                                             <constraint firstItem="x8m-5V-ULZ" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="188" id="s2g-AJ-tsP"/>
+                                            <constraint firstItem="IgX-UF-qaB" firstAttribute="top" secondItem="Vgb-UA-GmW" secondAttribute="bottom" constant="15" id="tFy-XY-Thl"/>
                                             <constraint firstItem="7St-u3-tL8" firstAttribute="top" secondItem="4YX-jQ-HJz" secondAttribute="bottom" constant="300" id="urx-uQ-9Ln"/>
+                                            <constraint firstItem="IgX-UF-qaB" firstAttribute="top" secondItem="38h-M3-Qey" secondAttribute="top" constant="346" id="wy9-71-bwK"/>
                                             <constraint firstAttribute="trailing" secondItem="x8m-5V-ULZ" secondAttribute="trailing" constant="187" id="y5c-TN-kQW"/>
-                                            <constraint firstItem="IgX-UF-qaB" firstAttribute="top" secondItem="Vgb-UA-GmW" secondAttribute="bottom" constant="15" id="yvz-63-GNU"/>
+                                            <constraint firstItem="BR2-Jb-vl0" firstAttribute="top" secondItem="qZM-au-9Gd" secondAttribute="bottom" constant="11.67" id="ztf-Yx-hQi"/>
                                         </constraints>
                                     </view>
                                 </subviews>

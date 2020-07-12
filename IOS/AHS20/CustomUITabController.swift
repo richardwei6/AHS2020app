@@ -221,7 +221,7 @@ class CustomTabBarController: UIViewController {
         
         // add current view controller
        // sender.isSelected = true;
-            sender.tintColor = UIColor.lightGray;
+            sender.tintColor = UIColor.gray;
             //sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
             let vc = viewControllers[selectedIndex];
             addChild(vc);
