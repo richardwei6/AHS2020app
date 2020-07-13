@@ -263,7 +263,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationCatagoryLabel.text = typeIDToString(id: currNotif.notificationCatagory ?? 0);
                 notificationCatagoryLabel.textAlignment = .center;
                 notificationCatagoryLabel.textColor = UIColor.white;
-                notificationCatagoryLabel.font = UIFont(name: "SFProDisplay-Black", size: 12);
+                notificationCatagoryLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
                 notificationCatagoryLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                  //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
                 

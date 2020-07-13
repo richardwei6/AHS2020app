@@ -372,16 +372,16 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					titleLabel.textColor = UIColor.black;
 					//SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
 					
-					let articleCatagoryFrame = CGRect(x: 0, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: 80, height: 20);
+					let articleCatagoryFrame = CGRect(x: 0, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: 87, height: 20);
 					let articleCatagory = UILabel(frame: articleCatagoryFrame);
 					articleCatagory.text = (currArticle.articleCatagory ?? "No Cata.") + " News";
 					articleCatagory.textAlignment = .center;
 					articleCatagory.textColor = .white;
 					articleCatagory.backgroundColor = makeColor(r: 159, g: 12, b: 12);
-					articleCatagory.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+					articleCatagory.font = UIFont(name: "SFProText-Bold", size: 12);
 					articleCatagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
 					
-					let timeStampFrame = CGRect(x: 80, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: 120, height: 20);
+					let timeStampFrame = CGRect(x: 87, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: 120, height: 20);
 					let timeStamp = UILabel(frame: timeStampFrame);
 					timeStamp.text = "   ∙   " + epochClass.epochToString(epoch: currArticle.articleUnixEpoch ?? -1);
 					timeStamp.textAlignment = .left;
