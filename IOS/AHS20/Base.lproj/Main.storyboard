@@ -432,7 +432,7 @@
                                                 <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Layer 4.png" translatesAutoresizingMaskIntoConstraints="NO" id="je2-C8-5Hq">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Layer 4" translatesAutoresizingMaskIntoConstraints="NO" id="je2-C8-5Hq">
                                                 <rect key="frame" x="8" y="9" width="45" height="45"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -573,6 +573,7 @@
                     <connections>
                         <outlet property="contentView" destination="m9h-Ju-R2A" id="xty-hC-CRL"/>
                         <outlet property="dateLabel" destination="U86-L8-TFj" id="YPa-ka-0EW"/>
+                        <outlet property="featherImage" destination="je2-C8-5Hq" id="iF4-qm-LTj"/>
                         <outlet property="homeTopBarContent" destination="xR7-JS-TMx" id="Zl8-9R-g1Q"/>
                         <outlet property="notificationButton" destination="9yd-mX-HIh" id="WnQ-5O-ZhG"/>
                         <outlet property="notificationDot" destination="bdm-ca-Vej" id="aD1-YP-x7U"/>
@@ -683,7 +684,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No saved articles found. Click on the bookmark icon to save an article." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rh-dO-soH">
-                                <rect key="frame" x="10" y="455.33333333333331" width="394" height="89.666666666666686"/>
+                                <rect key="frame" x="10" y="456.33333333333331" width="394" height="87.666666666666686"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1527,7 +1528,7 @@ Content Editors:
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
-        <image name="Layer 4.png" width="885.33331298828125" height="901"/>
+        <image name="Layer 4" width="885.33331298828125" height="901"/>
         <image name="bell.fill" catalog="system" width="128" height="124"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>

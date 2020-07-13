@@ -29,6 +29,8 @@ class CustomTabBarController: UIViewController {
     @IBOutlet weak var homeTopBarContent: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var featherImage: UIImageView!
+    
     var homeViewController: UIViewController!
     var bulletinViewController: UIViewController!
     var savedViewController: UIViewController!
@@ -159,9 +161,9 @@ class CustomTabBarController: UIViewController {
         savedViewController = storyboard.instantiateViewController(withIdentifier: "savedViewController") as! savedClass;
         settingsViewController = storyboard.instantiateViewController(withIdentifier: "settingsViewController") as! settingClass;
         viewControllers = [homeViewController, bulletinViewController, savedViewController, settingsViewController];
-        buttons[selectedIndex].setImage(UIImage(named: iconImagePathInv[selectedIndex]), for: .normal);
+        //buttons[selectedIndex].setImage(UIImage(named: iconImagePathInv[selectedIndex]), for: .normal);
         //buttons[selectedIndex].tintColor = selectedColor;
-       let vc = viewControllers[selectedIndex];
+        let vc = viewControllers[selectedIndex];
         addChild(vc);
         vc.view.frame = contentView.bounds;
         contentView.addSubview(vc.view);
@@ -248,8 +250,8 @@ class CustomTabBarController: UIViewController {
                     topBar.layer.shadowColor = UIColor.white.cgColor;
                 }
                 else if (sender.tag == 2){
-                    topBarPageName.text = "Saved Articles";
-                    topBar.layer.shadowColor = UIColor.white.cgColor;
+                    topBarPageName.text = "Saved";
+                    topBar.layer.shadowColor = UIColor.gray.cgColor;
                 }
                 else if (sender.tag == 3){
                     topBarPageName.text = "Settings";

@@ -52,42 +52,58 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 articleFrame.origin.y = articleVerticalPadding+(articleFrame.size.height+articleVerticalPadding)*CGFloat(aIndex);
                 
                 let articleButton = CustomUIButton(frame: articleFrame);
-                //articleButton.backgroundColor = UIColor.gray;
+                articleButton.backgroundColor = UIColor.white;
+            
+                let chevronWidth = CGFloat(22);
+                let chevronFrame = CGRect(x: articleFrame.size.width-chevronWidth-15, y: 50, width: chevronWidth-5, height: chevronWidth);
+                let chevronImage = UIImageView(frame: chevronFrame);
+                chevronImage.image = UIImage(systemName: "chevron.right");
+                chevronImage.tintColor = UIColor.gray;
                 
-                // content inside article variables
-                let articleImageFrameWidth = CGFloat((articleFrame.size.width / 2) - 20);
+                let articleCatagoryFrame = CGRect(x: 10, y: 8, width: 65, height: 20);
+                let articleCatagory = UILabel(frame: articleCatagoryFrame);
+                articleCatagory.backgroundColor = mainThemeColor;
+                articleCatagory.text = savedArticles[aIndex].articleCatagory;
+                articleCatagory.textAlignment = .center;
+                articleCatagory.textColor = UIColor.white;
+                articleCatagory.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+                articleCatagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                 
-                
-                let articleImageFrame = CGRect(x:0, y:0, width: articleImageFrameWidth, height: articleFrame.size.height);
-                let articleImage = UIImageView(frame: articleImageFrame);
-                articleImage.backgroundColor = makeColor(r: 143, g: 142, b: 142);
-                articleImage.imgFromURL(sURL: savedArticles[aIndex].articleImages?[0] ?? "");
-                articleImage.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 20);
-                articleImage.contentMode = .scaleAspectFill;
-                
-                let articleTitleFrame = CGRect(x: articleImageFrameWidth + 20, y: 10, width: articleFrame.size.width - articleImageFrameWidth - 20, height: 30);
+                let articleTitleFrame = CGRect(x: 10, y: 30, width: articleFrame.size.width-35-chevronFrame.size.width, height: 30);
                 let articleTitle = UILabel(frame: articleTitleFrame);
-                //articleTitle.numberOfLines = 1;
-                articleTitle.adjustsFontSizeToFitWidth = true;
-                articleTitle.minimumScaleFactor = 0.8;
-                articleTitle.text = savedArticles[aIndex].articleTitle; // DATA
-                articleTitle.font = UIFont(name: "SFProText-Bold",size: 25);
+                articleTitle.text = savedArticles[aIndex].articleTitle;
+                articleTitle.contentMode = .left;
+                //articleTitle.backgroundColor = UIColor.gray;
+                articleTitle.font = UIFont(name: "SFProDisplay-Semibold", size: 18);
                 
+                let articleBodyFrame = CGRect(x: 10, y: 50, width: articleFrame.size.width-35-chevronFrame.size.width, height: articleFrame.size.height - 55);
+                let articleBody = UILabel(frame: articleBodyFrame);
+                articleBody.text = savedArticles[aIndex].articleBody;
+                articleBody.numberOfLines = 3;
+                articleBody.font = UIFont(name:"SFProDisplay-Regular",size: 14);
+                articleBody.textColor = UIColor.black;
                 
-                let articleDescriptionFrame = CGRect(x: articleImageFrameWidth + 20, y: 45, width: articleFrame.size.width - articleImageFrameWidth - 20, height: articleFrame.size.height - 50);
-                let articleDescription = UILabel(frame: articleDescriptionFrame);
-                articleDescription.numberOfLines = 3;
-                articleDescription.text = savedArticles[aIndex].articleBody; // DATA
-                articleDescription.textColor = makeColor(r: 143, g: 135, b: 135);
-                articleDescription.font = UIFont(name: "SFProText-Bold",size: 13);
-                articleDescription.textAlignment = .left;
+                let timeStampWidth = CGFloat(100);
+                let timeStampFrame = CGRect(x: articleFrame.size.width - 10 - timeStampWidth, y: 8, width: timeStampWidth, height: 20);
+                let timeStamp = UILabel(frame: timeStampFrame);
+                //timeStamp.text = epochClass.epochToString(epoch: savedArticles[aIndex].articleUnixEpoch ?? -1);
+                timeStamp.text = "12 months ago";
+                timeStamp.textAlignment = .right;
+                timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 12);
+                timeStamp.textColor = UIColor.darkGray;
+                
+                articleButton.addSubview(chevronImage);
+                articleButton.addSubview(timeStamp);
+                articleButton.addSubview(articleCatagory);
+                articleButton.addSubview(articleTitle);
+                articleButton.addSubview(articleBody);
+                
+                articleButton.layer.shadowColor = UIColor.black.cgColor;
+                articleButton.layer.shadowOpacity = 0.2;
+                articleButton.layer.shadowRadius = 5;
+                articleButton.layer.shadowOffset = CGSize(width: 0 , height:3);
                 
                 articleButton.articleCompleteData = savedArticles[aIndex];
-                
-                articleButton.addSubview(articleImage);
-                articleButton.addSubview(articleTitle);
-                articleButton.addSubview(articleDescription);
-                
                 articleButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
                 
                 self.mainScrollView.addSubview(articleButton);
