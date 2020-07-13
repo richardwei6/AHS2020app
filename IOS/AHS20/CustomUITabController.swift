@@ -169,7 +169,7 @@ class CustomTabBarController: UIViewController {
         topBar.layer.cornerRadius = homeTopCornerRadius;
         topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
         topBar.layer.shadowColor = UIColor.gray.cgColor;
-        topBar.layer.shadowOpacity = 0.07;
+        topBar.layer.shadowOpacity = 0.1;
         topBar.layer.shadowRadius = 5;
         topBar.layer.shadowOffset = CGSize(width: 0 , height:10);
         tabBarView.layer.shadowColor = UIColor.gray.cgColor;

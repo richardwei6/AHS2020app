@@ -422,14 +422,6 @@
                                                 <color key="textColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="featherldpi.png" translatesAutoresizingMaskIntoConstraints="NO" id="je2-C8-5Hq">
-                                                <rect key="frame" x="-8" y="-3" width="68" height="63"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="63" id="0vQ-h6-Ff7"/>
-                                                    <constraint firstAttribute="width" constant="68" id="e1X-9l-aYE"/>
-                                                </constraints>
-                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="U86-L8-TFj">
                                                 <rect key="frame" x="51" y="31" width="88" height="21"/>
                                                 <constraints>
@@ -440,19 +432,27 @@
                                                 <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Layer 4.png" translatesAutoresizingMaskIntoConstraints="NO" id="je2-C8-5Hq">
+                                                <rect key="frame" x="8" y="9" width="45" height="45"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="45" id="75b-09-fhm"/>
+                                                    <constraint firstAttribute="height" constant="45" id="m8F-T3-Hif"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="je2-C8-5Hq" firstAttribute="top" secondItem="xR7-JS-TMx" secondAttribute="top" constant="9" id="5kJ-wD-BsB"/>
+                                            <constraint firstItem="je2-C8-5Hq" firstAttribute="leading" secondItem="xR7-JS-TMx" secondAttribute="leading" constant="8" id="7ru-Jp-cCQ"/>
                                             <constraint firstItem="U86-L8-TFj" firstAttribute="leading" secondItem="xR7-JS-TMx" secondAttribute="leading" constant="51" id="94E-kh-wWd"/>
                                             <constraint firstItem="ay2-jf-MOk" firstAttribute="leading" secondItem="xR7-JS-TMx" secondAttribute="leading" constant="50" id="S8f-hq-FOE"/>
                                             <constraint firstAttribute="width" constant="200" id="c1b-tg-Cun"/>
                                             <constraint firstItem="U86-L8-TFj" firstAttribute="top" secondItem="xR7-JS-TMx" secondAttribute="top" constant="31" id="cAt-Dl-DDa"/>
                                             <constraint firstItem="ay2-jf-MOk" firstAttribute="top" secondItem="xR7-JS-TMx" secondAttribute="top" constant="6" id="cG5-fw-Egw"/>
-                                            <constraint firstItem="je2-C8-5Hq" firstAttribute="leading" secondItem="xR7-JS-TMx" secondAttribute="leading" constant="-8" id="nHZ-ht-Xey"/>
-                                            <constraint firstItem="je2-C8-5Hq" firstAttribute="top" secondItem="xR7-JS-TMx" secondAttribute="top" constant="-3" id="vM2-n3-9EY"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdm-ca-Vej">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdm-ca-Vej">
                                         <rect key="frame" x="377" y="46.666666666666664" width="5" height="5"/>
                                         <color key="backgroundColor" red="0.62352941179999999" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -1527,9 +1527,9 @@ Content Editors:
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
+        <image name="Layer 4.png" width="885.33331298828125" height="901"/>
         <image name="bell.fill" catalog="system" width="128" height="124"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
-        <image name="featherldpi.png" width="131" height="122"/>
     </resources>
 </document>

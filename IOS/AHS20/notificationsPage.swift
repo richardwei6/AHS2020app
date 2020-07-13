@@ -18,6 +18,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     @IBOutlet weak var notificationScrollView: UIScrollView!
     
     @IBOutlet weak var noNotificationLabel: UILabel!
+
     
     var articleContentInSegue: articleData?;
     
@@ -257,12 +258,12 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 let notificationCatagoryLabelHeight = CGFloat(20);
                 let notificationCatagoryLabelFrame = CGRect(x: 10, y: 12, width: 65, height: notificationCatagoryLabelHeight);
                 let notificationCatagoryLabel = UILabel(frame: notificationCatagoryLabelFrame);
-                notificationCatagoryLabel.backgroundColor = makeColor(r: 159, g: 12, b: 12);
+                notificationCatagoryLabel.backgroundColor = UIColor.gray;
                 notificationCatagoryLabel.layer.cornerRadius = 5;
                 notificationCatagoryLabel.text = typeIDToString(id: currNotif.notificationCatagory ?? 0);
                 notificationCatagoryLabel.textAlignment = .center;
                 notificationCatagoryLabel.textColor = UIColor.white;
-                notificationCatagoryLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+                notificationCatagoryLabel.font = UIFont(name: "SFProDisplay-Black", size: 12);
                 notificationCatagoryLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                  //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
                 
