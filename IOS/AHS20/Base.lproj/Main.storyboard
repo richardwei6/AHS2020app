@@ -410,7 +410,7 @@
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAGE NAME HERE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvS-bp-55Q">
                                         <rect key="frame" x="15" y="16.666666666666664" width="215.66666666666666" height="28.666666666666664"/>
                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.62352941176470589" green="0.047058823529411764" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xR7-JS-TMx">
@@ -452,6 +452,31 @@
                                             <constraint firstItem="je2-C8-5Hq" firstAttribute="top" secondItem="xR7-JS-TMx" secondAttribute="top" constant="-3" id="vM2-n3-9EY"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdm-ca-Vej">
+                                        <rect key="frame" x="377" y="46.666666666666664" width="5" height="5"/>
+                                        <color key="backgroundColor" red="0.62352941179999999" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="5" id="MRF-vv-Y8r"/>
+                                            <constraint firstAttribute="height" constant="5" id="beG-tN-5QT"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yd-mX-HIh">
+                                        <rect key="frame" x="366.66666666666669" y="13.666666666666663" width="25" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30.670000000000002" id="2LS-tS-gfi"/>
+                                            <constraint firstAttribute="width" constant="25" id="uuq-q0-Oiy"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="bell.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="openNotifications:" destination="er0-Fk-1NM" eventType="touchUpInside" id="4Np-Gr-JSe"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -459,8 +484,12 @@
                                     <constraint firstItem="rvS-bp-55Q" firstAttribute="centerY" secondItem="hWQ-Aq-Bwe" secondAttribute="centerY" id="30w-GL-8xh"/>
                                     <constraint firstItem="xR7-JS-TMx" firstAttribute="top" secondItem="hWQ-Aq-Bwe" secondAttribute="top" id="9M4-E1-qQ2"/>
                                     <constraint firstItem="xR7-JS-TMx" firstAttribute="leading" secondItem="hWQ-Aq-Bwe" secondAttribute="leading" id="JLl-fH-xcf"/>
+                                    <constraint firstItem="9yd-mX-HIh" firstAttribute="top" secondItem="hWQ-Aq-Bwe" secondAttribute="top" constant="13" id="b9z-lq-Uvh"/>
                                     <constraint firstAttribute="bottom" secondItem="xR7-JS-TMx" secondAttribute="bottom" id="k4F-7H-Don"/>
+                                    <constraint firstAttribute="trailing" secondItem="9yd-mX-HIh" secondAttribute="trailing" constant="22.399999999999999" id="ldX-l6-Kl0"/>
                                     <constraint firstItem="xR7-JS-TMx" firstAttribute="height" secondItem="hWQ-Aq-Bwe" secondAttribute="height" id="ncr-Bk-NFh"/>
+                                    <constraint firstItem="bdm-ca-Vej" firstAttribute="top" secondItem="9yd-mX-HIh" secondAttribute="bottom" constant="3" id="pxk-o7-rwa"/>
+                                    <constraint firstAttribute="trailing" secondItem="bdm-ca-Vej" secondAttribute="trailing" constant="32" id="rCh-0t-eva"/>
                                     <constraint firstAttribute="height" constant="62" id="vZo-Kf-C2A"/>
                                 </constraints>
                             </view>
@@ -523,24 +552,6 @@
                                     <constraint firstAttribute="trailing" secondItem="7G2-qF-bJP" secondAttribute="trailing" id="zOC-BY-f29"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notificationsmdpi" translatesAutoresizingMaskIntoConstraints="NO" id="F4e-1j-nNa">
-                                <rect key="frame" x="383" y="45" width="5" height="5"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="5" id="1zo-Rs-f5h"/>
-                                    <constraint firstAttribute="width" constant="5" id="lbb-Fo-hit"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yd-mX-HIh">
-                                <rect key="frame" x="372" y="9" width="27" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="npP-c8-itf"/>
-                                    <constraint firstAttribute="width" constant="27" id="sde-eE-56s"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="Icon ionic-ios-notifications.png"/>
-                                <connections>
-                                    <action selector="openNotifications:" destination="er0-Fk-1NM" eventType="touchUpInside" id="4Np-Gr-JSe"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -549,16 +560,11 @@
                             <constraint firstItem="m9h-Ju-R2A" firstAttribute="width" secondItem="oqJ-Lj-MFC" secondAttribute="width" id="How-8x-tlB"/>
                             <constraint firstItem="re5-dC-xIv" firstAttribute="bottom" secondItem="HYY-fu-odz" secondAttribute="bottom" id="Inp-Y3-Dht"/>
                             <constraint firstItem="HYY-fu-odz" firstAttribute="trailing" secondItem="re5-dC-xIv" secondAttribute="trailing" id="OGQ-Eh-cGt"/>
-                            <constraint firstItem="F4e-1j-nNa" firstAttribute="top" secondItem="9yd-mX-HIh" secondAttribute="bottom" constant="2" id="OIC-ex-i8w"/>
-                            <constraint firstItem="re5-dC-xIv" firstAttribute="trailing" secondItem="9yd-mX-HIh" secondAttribute="trailing" constant="15" id="PAb-1B-rnZ"/>
                             <constraint firstItem="HYY-fu-odz" firstAttribute="top" secondItem="m9h-Ju-R2A" secondAttribute="bottom" id="Pgs-f4-9lP"/>
                             <constraint firstItem="hWQ-Aq-Bwe" firstAttribute="trailing" secondItem="re5-dC-xIv" secondAttribute="trailing" id="T5G-Cs-fNJ"/>
-                            <constraint firstItem="9yd-mX-HIh" firstAttribute="top" secondItem="re5-dC-xIv" secondAttribute="top" constant="9" id="XU3-M1-2PB"/>
                             <constraint firstItem="hWQ-Aq-Bwe" firstAttribute="top" secondItem="re5-dC-xIv" secondAttribute="top" id="YbS-Bg-CzC"/>
                             <constraint firstItem="HYY-fu-odz" firstAttribute="leading" secondItem="re5-dC-xIv" secondAttribute="leading" id="YlP-iJ-GBy"/>
                             <constraint firstItem="m9h-Ju-R2A" firstAttribute="leading" secondItem="re5-dC-xIv" secondAttribute="leading" id="aqp-6a-3De"/>
-                            <constraint firstItem="re5-dC-xIv" firstAttribute="trailing" secondItem="F4e-1j-nNa" secondAttribute="trailing" constant="26" id="oky-4g-q9d"/>
-                            <constraint firstItem="F4e-1j-nNa" firstAttribute="top" secondItem="9yd-mX-HIh" secondAttribute="bottom" constant="2" id="wAh-kc-Xbg"/>
                             <constraint firstItem="m9h-Ju-R2A" firstAttribute="top" secondItem="hWQ-Aq-Bwe" secondAttribute="bottom" id="yrQ-oN-StE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="re5-dC-xIv"/>
@@ -569,7 +575,7 @@
                         <outlet property="dateLabel" destination="U86-L8-TFj" id="YPa-ka-0EW"/>
                         <outlet property="homeTopBarContent" destination="xR7-JS-TMx" id="Zl8-9R-g1Q"/>
                         <outlet property="notificationButton" destination="9yd-mX-HIh" id="WnQ-5O-ZhG"/>
-                        <outlet property="notificationDot" destination="F4e-1j-nNa" id="W9d-En-2fI"/>
+                        <outlet property="notificationDot" destination="bdm-ca-Vej" id="aD1-YP-x7U"/>
                         <outlet property="tabBarView" destination="HYY-fu-odz" id="483-ql-NSo"/>
                         <outlet property="topBar" destination="hWQ-Aq-Bwe" id="uot-in-5V2"/>
                         <outlet property="topBarHeightContraint" destination="vZo-Kf-C2A" id="vWa-oQ-GhA"/>
@@ -633,7 +639,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="4Il-EP-tky" firstAttribute="width" secondItem="pm9-GY-9Nm" secondAttribute="width" id="33x-uv-jeQ"/>
                                     <constraint firstItem="4Il-EP-tky" firstAttribute="leading" secondItem="pm9-GY-9Nm" secondAttribute="leading" id="7zw-ls-MRW"/>
@@ -646,7 +652,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="k9N-8z-u9O"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pm9-GY-9Nm" firstAttribute="top" secondItem="QWa-7E-gcV" secondAttribute="top" id="Aq3-7E-u3u"/>
                             <constraint firstItem="pm9-GY-9Nm" firstAttribute="bottom" secondItem="QWa-7E-gcV" secondAttribute="bottom" id="Eyf-R4-cwN"/>
@@ -1521,10 +1527,9 @@ Content Editors:
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
-        <image name="Icon ionic-ios-notifications.png" width="27" height="34"/>
+        <image name="bell.fill" catalog="system" width="128" height="124"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="featherldpi.png" width="131" height="122"/>
-        <image name="notificationsmdpi" width="7" height="6.6666665077209473"/>
     </resources>
 </document>
