@@ -17,7 +17,8 @@ class CustomTabBarController: UIViewController {
     
     @IBOutlet weak var tabBarView: UIView!
     
-    @IBOutlet weak var notificationDot: UIImageView!
+
+    @IBOutlet weak var notificationDot: UIView!
     @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet var buttons: [UIButton]!
     
