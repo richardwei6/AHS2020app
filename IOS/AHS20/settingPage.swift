@@ -17,7 +17,7 @@ class settingClass: UITableViewController {
     @IBOutlet weak var fontSizeSlider: UISlider!
     @IBOutlet weak var fontSizeLabel: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
-    
+ 
     @IBOutlet weak var clearSavedArticleCell: UITableViewCell!
     
     override func viewDidLoad() {

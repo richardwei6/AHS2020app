@@ -723,9 +723,9 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="singleLineEtched" sectionIndexMinimumDisplayRowCount="3" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="FSw-qv-3z5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
-                            <tableViewSection headerTitle="General:" id="lgx-ZT-Fgj">
+                            <tableViewSection headerTitle="General" id="lgx-ZT-Fgj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="1Ap-jT-gvq">
                                         <rect key="frame" x="20" y="55.333332061767578" width="374" height="43.666667938232422"/>
@@ -837,7 +837,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Info:" id="uBA-q5-ewT">
+                            <tableViewSection headerTitle="Info" id="uBA-q5-ewT">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" tag="2" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" editingAccessoryType="disclosureIndicator" id="ops-iE-psR">
                                         <rect key="frame" x="20" y="242.33333587646484" width="374" height="43.666667938232422"/>
@@ -946,7 +946,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAq-mj-Ifb">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="chevron.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
                                 </state>
@@ -956,8 +956,9 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFK-Rj-RZJ">
                                 <rect key="frame" x="41.999999999999986" y="14" width="244.66666666666663" height="28"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VND-nr-sKV">
@@ -976,7 +977,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hAq-mj-Ifb" firstAttribute="leading" secondItem="t72-7N-Wcb" secondAttribute="leading" constant="15" id="35D-iK-J1n"/>
                             <constraint firstItem="VND-nr-sKV" firstAttribute="trailing" secondItem="t72-7N-Wcb" secondAttribute="trailing" id="A4h-Qb-ui1"/>
@@ -1197,7 +1198,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L4h-zQ-vYc">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="chevron.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
                                 </state>
@@ -1208,18 +1209,18 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsF-GI-9Jv">
                                 <rect key="frame" x="42" y="14" width="272.33333333333331" height="28"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5cx-Le-tUN">
                                 <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naw-Mp-di2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="5011"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="4706.666666666667"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ddp-ER-vDU">
-                                                <rect key="frame" x="5" y="0.0" width="404" height="5011"/>
-                                                <string key="text">Welcome to Arcadia High Mobile!
+                                                <rect key="frame" x="5" y="0.0" width="404" height="4706.666666666667"/>
+                                                <mutableString key="text">Welcome to Arcadia High Mobile!
 
 These terms and conditions outline the rules and regulations for the use of Arcadia High App Dev's Website, located at https://hsappdev.wixsite.com/ahsappdev.
 
@@ -1313,8 +1314,8 @@ limit any of our or your liabilities in any way that is not permitted under appl
 exclude any of our or your liabilities that may not be excluded under applicable law.
 The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.
 
-As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature. Arcadia High Mobile or Arcadia High School app is not affiliated in any to Arcadia Unified School District nor are we sponsored by them. This project is student run. </mutableString>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1348,7 +1349,7 @@ As long as the website and the information and services on the website are provi
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WsF-GI-9Jv" firstAttribute="leading" secondItem="EFY-5Y-bX7" secondAttribute="leading" constant="42" id="F2n-ob-faC"/>
                             <constraint firstItem="4I7-DN-mXq" firstAttribute="top" secondItem="EFY-5Y-bX7" secondAttribute="top" id="Fbc-He-pbU"/>
