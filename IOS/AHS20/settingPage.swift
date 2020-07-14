@@ -24,7 +24,7 @@ class settingClass: UITableViewController {
         super.viewDidLoad();
         fontSizeSlider.value = Float(fontSize);
         fontSizeLabel.text = String(fontSize);
-        appVersionLabel.text = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0") + ".0";
+        appVersionLabel.text = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0") + "." +  (Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0");
     }
     
     @IBAction func sliderChange(_ sender: Any) {
