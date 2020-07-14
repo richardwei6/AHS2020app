@@ -22,6 +22,32 @@ class notificationSettingsClass: UITableViewController{
     
     override func viewDidLoad(){
         super.viewDidLoad();
+        for i in 0...4{
+            switch i {
+            case 0:
+                if (selectedNotifications[i] == true){
+                    generalUpdates.isOn = true;
+                }
+            case 1:
+                if (selectedNotifications[i] == true){
+                    sportsNews.isOn = true;
+                }
+            case 2:
+                if (selectedNotifications[i] == true){
+                    asbNews.isOn = true;
+                }
+            case 3:
+                if (selectedNotifications[i] == true){
+                    districtNews.isOn = true;
+                }
+            case 4:
+                if (selectedNotifications[i] == true){
+                    bulletinNews.isOn = true;
+                }
+            default:
+                break;
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,6 +118,7 @@ class notificationSettingsClass: UITableViewController{
     
     @IBAction func dismiss(_ sender: Any){
         dismiss(animated: true);
+        UIImpactFeedbackGenerator(style: .light).impactOccurred();
     }
     
 }
