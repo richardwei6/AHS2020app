@@ -145,7 +145,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         }
         else{
             print("no network detected - bulletin");
-            refreshControl.endRefreshing();
+            let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
+            infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                self.refreshControl.endRefreshing();
+            }));
+            present(infoPopup, animated: true, completion: nil);
             addRefreshCTRL();
         }
         

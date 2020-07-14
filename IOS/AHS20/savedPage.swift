@@ -86,8 +86,8 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 let timeStampWidth = CGFloat(100);
                 let timeStampFrame = CGRect(x: articleFrame.size.width - 10 - timeStampWidth, y: 8, width: timeStampWidth, height: 20);
                 let timeStamp = UILabel(frame: timeStampFrame);
-                //timeStamp.text = epochClass.epochToString(epoch: savedArticles[aIndex].articleUnixEpoch ?? -1);
-                timeStamp.text = "12 months ago";
+                timeStamp.text = epochClass.epochToString(epoch: savedArticles[aIndex].articleUnixEpoch ?? -1);
+                //timeStamp.text = "12 months ago";
                 timeStamp.textAlignment = .right;
                 timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 12);
                 timeStamp.textColor = UIColor.darkGray;
