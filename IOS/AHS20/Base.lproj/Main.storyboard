@@ -232,10 +232,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="crg-tJ-0rO">
-                                <rect key="frame" x="0.0" y="57.999999999999972" width="414" height="437.33333333333326"/>
+                                <rect key="frame" x="0.0" y="57.999999999999972" width="414" height="453.33333333333326"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8XL-MZ-PN7" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="437.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="453.33333333333331"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Name Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FF8-sD-ZfC">
                                                 <rect key="frame" x="19.999999999999993" y="101" width="118.33333333333331" height="20.333333333333329"/>
@@ -258,12 +258,6 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="jUN-qP-krU"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="UtA-Ph-Jk9"/>
                                             </scrollView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the article text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w38-mR-bIO">
-                                                <rect key="frame" x="21" y="387" width="372" height="20.333333333333314"/>
-                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="OY4-AK-tlL">
                                                 <rect key="frame" x="187.66666666666666" y="329" width="39" height="37"/>
                                             </pageControl>
@@ -281,6 +275,14 @@
                                                     <action selector="saveArticleWithSender:" destination="08X-4I-yxB" eventType="touchUpInside" id="Kij-jL-Xcu"/>
                                                 </connections>
                                             </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="This is some text" translatesAutoresizingMaskIntoConstraints="NO" id="2L5-Op-wjm">
+                                                <rect key="frame" x="21" y="387" width="372" height="36.333333333333314"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -288,19 +290,19 @@
                                             <constraint firstItem="OY4-AK-tlL" firstAttribute="centerX" secondItem="T5e-VU-bBi" secondAttribute="centerX" id="3yv-aM-zad"/>
                                             <constraint firstItem="zOr-I7-9c6" firstAttribute="trailing" secondItem="T5e-VU-bBi" secondAttribute="trailing" id="4Ia-w1-zqs"/>
                                             <constraint firstItem="NQf-Zz-avA" firstAttribute="top" secondItem="8XL-MZ-PN7" secondAttribute="top" id="8z7-ib-vE3"/>
+                                            <constraint firstAttribute="bottom" secondItem="2L5-Op-wjm" secondAttribute="bottom" constant="30" id="9wk-Tt-4By"/>
                                             <constraint firstItem="OY4-AK-tlL" firstAttribute="bottom" secondItem="T5e-VU-bBi" secondAttribute="bottom" id="AfM-Zl-kZR"/>
                                             <constraint firstItem="zOr-I7-9c6" firstAttribute="top" secondItem="T5e-VU-bBi" secondAttribute="top" id="Ehc-UN-h5N"/>
-                                            <constraint firstAttribute="trailing" secondItem="w38-mR-bIO" secondAttribute="trailing" constant="21" id="EtB-FN-YsI"/>
                                             <constraint firstAttribute="trailing" secondItem="NQf-Zz-avA" secondAttribute="trailing" constant="21" id="FmQ-f3-C6t"/>
+                                            <constraint firstItem="2L5-Op-wjm" firstAttribute="top" secondItem="T5e-VU-bBi" secondAttribute="bottom" constant="21" id="HTw-l1-Bk8"/>
                                             <constraint firstAttribute="trailing" secondItem="T5e-VU-bBi" secondAttribute="trailing" constant="21" id="ImS-7X-Vqs"/>
                                             <constraint firstItem="FF8-sD-ZfC" firstAttribute="leading" secondItem="8XL-MZ-PN7" secondAttribute="leading" constant="20" id="Rkz-TF-28Y"/>
-                                            <constraint firstItem="w38-mR-bIO" firstAttribute="top" secondItem="OY4-AK-tlL" secondAttribute="bottom" constant="21" id="Uba-0z-SFY"/>
                                             <constraint firstItem="T5e-VU-bBi" firstAttribute="leading" secondItem="8XL-MZ-PN7" secondAttribute="leading" constant="21" id="WDe-Sh-WEG"/>
-                                            <constraint firstAttribute="bottom" secondItem="w38-mR-bIO" secondAttribute="bottom" constant="30" id="YNV-Na-Uik"/>
+                                            <constraint firstAttribute="trailing" secondItem="2L5-Op-wjm" secondAttribute="trailing" constant="21" id="XwJ-Gp-49W"/>
                                             <constraint firstItem="FF8-sD-ZfC" firstAttribute="top" secondItem="NQf-Zz-avA" secondAttribute="bottom" constant="7.6666666666666714" id="ZlO-hu-xF5"/>
-                                            <constraint firstItem="w38-mR-bIO" firstAttribute="leading" secondItem="8XL-MZ-PN7" secondAttribute="leading" constant="21" id="c0f-6S-2rY"/>
                                             <constraint firstItem="NQf-Zz-avA" firstAttribute="leading" secondItem="8XL-MZ-PN7" secondAttribute="leading" constant="20" id="h2N-qt-SAh"/>
                                             <constraint firstItem="T5e-VU-bBi" firstAttribute="top" secondItem="FF8-sD-ZfC" secondAttribute="bottom" constant="14.67" id="hMi-E8-1NM"/>
+                                            <constraint firstItem="2L5-Op-wjm" firstAttribute="leading" secondItem="8XL-MZ-PN7" secondAttribute="leading" constant="21" id="nWb-vl-6uK"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -379,7 +381,7 @@
                         <outlet property="articleAuthor" destination="FF8-sD-ZfC" id="e0v-5Y-wsd"/>
                         <outlet property="articleCatagoryLabel" destination="DgT-rI-5cM" id="DR7-CD-fcx"/>
                         <outlet property="articleDate" destination="Axu-yg-wTC" id="4j9-SK-55C"/>
-                        <outlet property="articleText" destination="w38-mR-bIO" id="0A6-XT-SSW"/>
+                        <outlet property="articleText" destination="2L5-Op-wjm" id="9Oy-IA-qFA"/>
                         <outlet property="articleTitle" destination="NQf-Zz-avA" id="vSo-yn-tgV"/>
                         <outlet property="bookmarkButton" destination="zOr-I7-9c6" id="bbQ-bp-wmW"/>
                         <outlet property="contentView" destination="8XL-MZ-PN7" id="G9S-Sy-ycb"/>
