@@ -1,5 +1,5 @@
 //
-//  hrefFunctions.swift
+//  htmlFunctions.swift
 //  AHS20
 //
 //  Created by Richard Wei on 7/15/20.
@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 func parseHref(h: String) -> (String, URL){ // txt, https://
     var i = 0;
@@ -66,12 +66,24 @@ func replaceString(t: String) -> (String, [((Int, Int),URL)]) { // replace all <
 }
 
 func parseHTML(s: String) -> NSMutableAttributedString{
-    let t = replaceString(t: s);
+    /*let t = replaceString(t: s);
     //print("final string - \(t.0)")
     let out = NSMutableAttributedString(string: t.0);
     for i in t.1{
     //    print("final ranges - \(i.0.0) to \(i.0.1) : \(out.length)")
         out.setAttributes([.link: i.1], range: NSRange(location: i.0.0, length: i.0.1-i.0.0+1));
     }
-    return out;
+    return out;*/
+    let htmlData = NSString(string: s).data(using: String.Encoding.unicode.rawValue);
+    let options = [NSAttributedString.DocumentReadingOptionKey.documentType:
+        NSAttributedString.DocumentType.html];
+    do{
+        let t = try NSMutableAttributedString(data: htmlData ?? Data(), options: options, documentAttributes: nil);
+        t.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize)) as Any, range: NSMakeRange(0, t.length));
+        return t;
+    }
+    catch let error{
+        print(error);
+        return NSMutableAttributedString(string: s);
+    }
 }
