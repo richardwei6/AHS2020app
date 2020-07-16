@@ -96,12 +96,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
 
         
         
-       if (articleContent?.hasHTML == true){
-            articleText.attributedText = parseHTML(s: articleContent?.articleBody ?? "");
-        }
-        else{
-            articleText.attributedText = NSAttributedString(string: articleContent?.articleBody ?? "");
-        }
+        articleText.attributedText = (articleContent?.hasHTML == true ? parseHTML(s: articleContent?.articleBody ?? "") : NSAttributedString(string: articleContent?.articleBody ?? ""));
         articleText.font = UIFont(name: articleText.font!.fontName, size: CGFloat(fontSize));
         articleText.sizeToFit();
         articleText.isScrollEnabled = false;
