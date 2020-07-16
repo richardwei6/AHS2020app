@@ -96,8 +96,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
 
         
         
-       if (articleContent?.isBulletin == true){
-            articleText.attributedText = parseHrefString(s: articleContent?.articleBody ?? "");
+       if (articleContent?.hasHTML == true){
+            articleText.attributedText = parseHTML(s: articleContent?.articleBody ?? "");
         }
         else{
             articleText.attributedText = NSAttributedString(string: articleContent?.articleBody ?? "");

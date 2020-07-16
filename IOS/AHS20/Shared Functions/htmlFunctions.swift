@@ -65,7 +65,7 @@ func replaceString(t: String) -> (String, [((Int, Int),URL)]) { // replace all <
     return (s, out);
 }
 
-func parseHrefString(s: String) -> NSMutableAttributedString{
+func parseHTML(s: String) -> NSMutableAttributedString{
     let t = replaceString(t: s);
     //print("final string - \(t.0)")
     let out = NSMutableAttributedString(string: t.0);

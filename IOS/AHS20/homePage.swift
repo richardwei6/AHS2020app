@@ -137,6 +137,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 							else if (articleContent.key == "isFeatured"){
 								singleArticle.isFeatured = (articleContent.value as? Int == 0 ? false : true);
 							}
+							else if (articleContent.key == "hasHTML"){
+								singleArticle.hasHTML = (articleContent.value as? Int == 0 ? false : true);
+							}
 							
 							
 						}
@@ -239,7 +242,12 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		
 		let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: 50, width: articleTextWidth-spacing, height: 70);
 		let articleBody = UILabel(frame: articleBodyFrame);
-		articleBody.text = articleSingle.articleBody ?? "";
+		if (articleSingle.hasHTML){
+			articleBody.text = parseHTML(s: articleSingle.articleBody ?? "").string;
+		}
+		else{
+			articleBody.text = (articleSingle.articleBody ?? "");
+		}
 		articleBody.textAlignment = .left;
 		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
 	//	articleTitle.lineBreakMode = .byWordWrapping;
@@ -517,7 +525,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		districtLabel.text = loading;
 		
 	  	getHomeArticleData();
-		refreshControl.setValue(5, forKey: "_snappingHeight")
 		refreshControl.addTarget(self, action: #selector(refreshAllArticles), for: UIControl.Event.valueChanged);
 		mainScrollView.addSubview(refreshControl);
 	}

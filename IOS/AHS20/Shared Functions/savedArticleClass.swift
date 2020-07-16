@@ -13,7 +13,7 @@ import SystemConfiguration
 import FirebaseDatabase
 import SDWebImage
 
-class savedArticleClass{
+final class savedArticleClass{
     static var savedArticles = [String: articleData]();
     class func getSavedArticles() -> [articleData]{ // get saved articles from phone local storage
         //savedArticles = ( UserDefaults.standard.dictionary(forKey: "savedArticles") ?? [String: articleData]() ) as! [String : articleData];

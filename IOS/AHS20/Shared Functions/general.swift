@@ -27,7 +27,7 @@ struct articleData: Codable {
     var articleImages: [String]?; // list of image urls
     var articleCatagory: String?;
     var isFeatured = false;
-    var isBulletin = false;
+    var hasHTML = false;
 }
 
 var internetConnected = false;
@@ -62,6 +62,7 @@ struct bulletinArticleData: Codable {
     var articleImages: [String]?; // list of image urls
     var articleCatagory: String?;
     var articleType = -1;
+    var hasHTML = false;
 }
 
 
@@ -91,7 +92,7 @@ func getTitleDateAndMonth() -> String {
 }
 
 
-public class Reachability {
+final public class Reachability {
 
     class func isConnectedToNetwork() -> Bool {
 
@@ -121,7 +122,7 @@ public class Reachability {
 
 
 
-class SegueFromRight: UIStoryboardSegue {
+final class SegueFromRight: UIStoryboardSegue {
     override func perform() {
         let src = self.source
         let dst = self.destination
@@ -152,7 +153,7 @@ func bulletinDataToarticleData(data: bulletinArticleData) -> articleData{
     temp.articleImages = data.articleImages;
     temp.articleTitle = data.articleTitle;
     temp.articleCatagory = data.articleCatagory;
-    temp.isBulletin = true;
+    temp.hasHTML = data.hasHTML;
     return temp;
 }
 
@@ -181,7 +182,7 @@ func printFontFamilies(){
     }
 }
 
-class InsetLabel: UILabel {
+final class InsetLabel: UILabel {
     override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)))
     }

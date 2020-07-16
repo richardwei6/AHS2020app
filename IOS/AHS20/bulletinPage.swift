@@ -107,20 +107,19 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                                 singleArticle.articleUnixEpoch = articleContent.value as? Int64;
                             }
                             else if (articleContent.key == "articleImages"){
-                                
                                 var tempImage = [String]();
                                 let imageIt = articleContent.children;
                                 while let image = imageIt.nextObject() as? DataSnapshot{
                                     tempImage.append(image.value as! String);
                                 }
-                                //print(tempImage)
                                 singleArticle.articleImages = tempImage;
                             }
                             else if (articleContent.key == "articleTitle"){
-                                
                                 singleArticle.articleTitle = articleContent.value as? String;
                             }
-                            //print(articleContent.key as? NSString);
+                            else if (articleContent.key == "hasHTML"){
+                                singleArticle.hasHTML = (articleContent.value as? Int == 0 ? false : true);
+                            }
                             
                         }
                         // print("append to main")
@@ -303,7 +302,12 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 
                 let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
                 let articleBodyText = UILabel(frame: articleBodyFrame);
-                articleBodyText.text = parseHrefString(s: article.articleBody ?? "").string;// insert body text here ------- temporary
+                if (article.hasHTML == true){
+                    articleBodyText.text = parseHTML(s: article.articleBody ?? "").string;
+                }
+                else{
+                    articleBodyText.text = (article.articleBody ?? "");
+                }// insert body text here ------- temporary
                 articleBodyText.numberOfLines = 4;
                 articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
                 
@@ -382,7 +386,12 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 
                 let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
                 let articleBodyText = UILabel(frame: articleBodyFrame);
-                articleBodyText.text = parseHrefString(s: article.articleBody ?? "").string;// insert body text here ------- temporary
+                if (article.hasHTML == true){
+                    articleBodyText.text = parseHTML(s: article.articleBody ?? "").string;
+                }
+                else{
+                    articleBodyText.text = (article.articleBody ?? "");
+                }// insert body text here ------- temporary
                 //articleBodyText.text = parseHrefString(s: article.articleBody ?? "").string;
                 articleBodyText.numberOfLines = 4;
                 articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
