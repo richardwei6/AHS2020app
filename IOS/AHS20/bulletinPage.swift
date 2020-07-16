@@ -303,7 +303,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 
                 let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
                 let articleBodyText = UILabel(frame: articleBodyFrame);
-                articleBodyText.text = article.articleBody;// insert body text here ------- temporary
+                articleBodyText.text = parseHrefString(s: article.articleBody ?? "").string;// insert body text here ------- temporary
                 articleBodyText.numberOfLines = 4;
                 articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
                 
@@ -382,7 +382,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 
                 let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
                 let articleBodyText = UILabel(frame: articleBodyFrame);
-                articleBodyText.text = article.articleBody;// insert body text here ------- temporary
+                articleBodyText.text = parseHrefString(s: article.articleBody ?? "").string;// insert body text here ------- temporary
+                //articleBodyText.text = parseHrefString(s: article.articleBody ?? "").string;
                 articleBodyText.numberOfLines = 4;
                 articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
                 

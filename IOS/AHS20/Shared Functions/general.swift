@@ -27,6 +27,7 @@ struct articleData: Codable {
     var articleImages: [String]?; // list of image urls
     var articleCatagory: String?;
     var isFeatured = false;
+    var isBulletin = false;
 }
 
 var internetConnected = false;
@@ -151,6 +152,7 @@ func bulletinDataToarticleData(data: bulletinArticleData) -> articleData{
     temp.articleImages = data.articleImages;
     temp.articleTitle = data.articleTitle;
     temp.articleCatagory = data.articleCatagory;
+    temp.isBulletin = true;
     return temp;
 }
 
