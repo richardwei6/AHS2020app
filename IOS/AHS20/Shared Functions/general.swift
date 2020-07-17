@@ -31,8 +31,8 @@ struct articleData: Codable {
 }
 
 var internetConnected = false;
-var homeArticleList = [[articleData]](); // size of 4 rows, featured, asb, sports, district
-var bulletinArticleList = [[bulletinArticleData]](); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
+var homeArticleList = [[articleData]](repeating: [articleData](), count: 3); // size of 4 rows, featured, asb, sports, district
+var bulletinArticleList = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 6); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
 
 struct notificationData: Codable{
     var messageID: String?;
