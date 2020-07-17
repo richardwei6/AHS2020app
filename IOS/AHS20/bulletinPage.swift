@@ -49,10 +49,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     func getBulletinArticleData() {
         setUpConnection();
+        bulletinArticleList = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 6);
         if (internetConnected){
             print("ok -------- loading articles - bulletin");
-            
-            bulletinArticleList = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 6);
             for i in 0..<6{
                 var s: String; // path inside homepage
                 switch i {
