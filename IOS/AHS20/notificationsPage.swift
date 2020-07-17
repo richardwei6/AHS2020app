@@ -156,7 +156,9 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         
         // remove prev subviews
         for subview in notificationScrollView.subviews{
-            subview.removeFromSuperview();
+            if (subview != refreshControl){
+                subview.removeFromSuperview();  
+            }
         }
         
         
@@ -316,9 +318,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             noNotificationLabel.isHidden = false;
         }
         
-        notificationScrollView.addSubview(refreshControl);
-        notificationScrollView.isScrollEnabled = true;
-        notificationScrollView.alwaysBounceVertical = true;
+      //  notificationScrollView.addSubview(refreshControl)
     }
     
     @objc func refreshNotifications(){
@@ -333,7 +333,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         super.viewDidLoad();
         
         // set iphone x or above color below the safe area
-        
         notificationScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
         totalNotificationList = [notificationData]();
@@ -350,6 +349,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     
     @IBAction func exitPopup(_ sender: UIButton) {
+        
         unreadNotif = (notificationList[1].count > 0);
         dismiss(animated: true);
     }
