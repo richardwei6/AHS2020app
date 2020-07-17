@@ -39,6 +39,10 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var districtNewsScrollView: UIScrollView!
 	@IBOutlet weak var districtNewsPageControl: UIPageControl!
 	
+	@IBOutlet weak var loadingASBView: UIView!
+	@IBOutlet weak var loadingDistrictView: UIView!
+	@IBOutlet weak var loadingSportsView: UIView!
+	
 	@IBOutlet weak var featuredLabel: UILabel!
 	@IBOutlet weak var sportsLabel: UILabel!
 	@IBOutlet weak var districtLabel: UILabel!
@@ -154,6 +158,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 							self.featuredArticles.append(singleArticle);
 						}
 					}
+					self.loadingASBView.isHidden = true;
+					self.loadingDistrictView.isHidden = true;
+					self.loadingSportsView.isHidden = true;
 					homeArticleList[i] = temp;
 					self.setUpAllViews();
 					self.refreshControl.endRefreshing();
@@ -523,6 +530,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		asbLabel.text = loading;
 		sportsLabel.text = loading;
 		districtLabel.text = loading;
+		
 		
 	  	getHomeArticleData();
 		refreshControl.addTarget(self, action: #selector(refreshAllArticles), for: UIControl.Event.valueChanged);
