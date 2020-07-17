@@ -906,10 +906,10 @@
                     </view>
                     <size key="freeformSize" width="414" height="1340"/>
                     <connections>
-                        <outlet property="asbLabel" destination="BR2-Jb-vl0" id="gJ6-34-lWB"/>
+                        <outlet property="asbLabel" destination="4YX-jQ-HJz" id="XNp-cC-h89"/>
                         <outlet property="asbNewsPageControl" destination="hFL-pT-fxA" id="ALw-Nm-hhC"/>
                         <outlet property="asbNewsScrollView" destination="WnD-gz-8Ls" id="lCm-cr-oCj"/>
-                        <outlet property="districtLabel" destination="7St-u3-tL8" id="Nfp-Qw-Wod"/>
+                        <outlet property="districtLabel" destination="7St-u3-tL8" id="aBn-Z5-9Xg"/>
                         <outlet property="districtNewsPageControl" destination="iD6-UZ-DlH" id="DWj-nA-RCV"/>
                         <outlet property="districtNewsScrollView" destination="Q2a-Ch-t7Y" id="AJ9-NY-Pnx"/>
                         <outlet property="featuredLabel" destination="5XT-od-jzj" id="zZO-NS-gaf"/>
@@ -919,7 +919,7 @@
                         <outlet property="loadingDistrictView" destination="alZ-v7-9ZZ" id="jH3-Rv-ehk"/>
                         <outlet property="loadingSportsView" destination="HwD-Wo-mKv" id="IoV-DO-dRY"/>
                         <outlet property="mainScrollView" destination="Xab-Ha-pr7" id="Jdt-6E-T6h"/>
-                        <outlet property="sportsLabel" destination="4YX-jQ-HJz" id="DaU-QN-Mdj"/>
+                        <outlet property="sportsLabel" destination="BR2-Jb-vl0" id="Cat-Ab-vLb"/>
                         <outlet property="sportsNewsPageControl" destination="x8m-5V-ULZ" id="3fe-P0-OKC"/>
                         <outlet property="sportsNewsScrollView" destination="vrP-oM-pep" id="rLq-Pq-mGl"/>
                     </connections>

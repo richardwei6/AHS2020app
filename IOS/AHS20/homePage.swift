@@ -44,9 +44,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	@IBOutlet weak var loadingSportsView: UIView!
 	
 	@IBOutlet weak var featuredLabel: UILabel!
+	@IBOutlet weak var asbLabel: UILabel!
 	@IBOutlet weak var sportsLabel: UILabel!
 	@IBOutlet weak var districtLabel: UILabel!
-	@IBOutlet weak var asbLabel: UILabel!
+	
+	
 	
 	@IBOutlet weak var featuredMissingLabel: UILabel!
 	
