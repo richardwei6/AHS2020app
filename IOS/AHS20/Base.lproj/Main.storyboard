@@ -43,29 +43,28 @@
                                             </label>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-UA-GmW">
                                                 <rect key="frame" x="0.0" y="46" width="414" height="285"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="285" id="SqJ-a4-Wfh"/>
+                                                </constraints>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="hKM-UH-tIK"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="6HT-cQ-dII"/>
                                             </scrollView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IgX-UF-qaB" userLabel="bar1">
-                                                <rect key="frame" x="0.0" y="346" width="414" height="1"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="1" id="ba2-0f-WK6"/>
-                                                </constraints>
-                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YX-jQ-HJz">
-                                                <rect key="frame" x="20.000000000000007" y="358.66666666666669" width="107.66666666666669" height="25"/>
+                                                <rect key="frame" x="20.000000000000007" y="358.66666666666669" width="107.66666666666669" height="26"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnD-gz-8Ls">
                                                 <rect key="frame" x="19" y="392" width="376" height="240"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="240" id="qOi-KY-IOs"/>
+                                                </constraints>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="Ugi-DN-K4J"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="qK8-7W-9zV"/>
                                             </scrollView>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="hFL-pT-fxA">
-                                                <rect key="frame" x="188" y="635" width="39" height="37"/>
+                                                <rect key="frame" x="188" y="636.66666666666663" width="39" height="35.333333333333371"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -297,23 +296,22 @@
                                                     <constraint firstItem="Q0j-7K-QnK" firstAttribute="leading" secondItem="YYQ-kZ-sr8" secondAttribute="leading" constant="19" id="zle-DO-1Bu"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOl-JA-13r" userLabel="bar2">
-                                                <rect key="frame" x="0.0" y="672" width="414" height="0.0"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2a-Ch-t7Y">
                                                 <rect key="frame" x="19" y="718" width="376" height="240"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="240" id="gdl-73-WKC"/>
+                                                </constraints>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="IOz-6r-x1z"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Rmm-pj-VGU"/>
                                             </scrollView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7St-u3-tL8">
-                                                <rect key="frame" x="21" y="683.66666666666663" width="142" height="25"/>
+                                                <rect key="frame" x="21" y="684.66666666666663" width="142" height="25"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iD6-UZ-DlH">
-                                                <rect key="frame" x="188" y="960" width="39" height="37"/>
+                                                <rect key="frame" x="188" y="961.66666666666663" width="39" height="35.333333333333371"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -545,23 +543,22 @@
                                                     <constraint firstItem="Ob0-fb-L5o" firstAttribute="leading" secondItem="alZ-v7-9ZZ" secondAttribute="leading" constant="25" id="sRn-RM-PFW"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZM-au-9Gd" userLabel="bar3">
-                                                <rect key="frame" x="0.0" y="997" width="414" height="0.0"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sports News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BR2-Jb-vl0">
-                                                <rect key="frame" x="22" y="1008.6666666666666" width="134.33333333333334" height="24.333333333333371"/>
+                                                <rect key="frame" x="22" y="1009.6666666666666" width="134.33333333333334" height="23.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrP-oM-pep">
                                                 <rect key="frame" x="19" y="1044" width="376" height="240"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="240" id="hvs-Qd-CRq"/>
+                                                </constraints>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="WEQ-Gu-FCM"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="fnV-HE-OJk"/>
                                             </scrollView>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="x8m-5V-ULZ">
-                                                <rect key="frame" x="188" y="1290" width="39" height="37"/>
+                                                <rect key="frame" x="188" y="1285" width="39" height="42"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -799,6 +796,21 @@
                                                     <constraint firstAttribute="bottom" secondItem="qj6-ys-JLd" secondAttribute="bottom" constant="40" id="zBU-qe-3Dr"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IgX-UF-qaB" userLabel="bar1">
+                                                <rect key="frame" x="0.0" y="346" width="414" height="1"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="ba2-0f-WK6"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOl-JA-13r" userLabel="bar2">
+                                                <rect key="frame" x="0.0" y="672" width="414" height="1"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZM-au-9Gd" userLabel="bar3">
+                                                <rect key="frame" x="0.0" y="997" width="414" height="1"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -815,6 +827,7 @@
                                             <constraint firstItem="alZ-v7-9ZZ" firstAttribute="top" secondItem="hFL-pT-fxA" secondAttribute="bottom" id="8mS-Hk-iZp"/>
                                             <constraint firstItem="qZM-au-9Gd" firstAttribute="top" secondItem="alZ-v7-9ZZ" secondAttribute="bottom" id="956-s1-FD8"/>
                                             <constraint firstItem="vrP-oM-pep" firstAttribute="top" secondItem="BR2-Jb-vl0" secondAttribute="bottom" constant="9" id="AhT-HU-E25"/>
+                                            <constraint firstItem="Vgb-UA-GmW" firstAttribute="top" secondItem="5XT-od-jzj" secondAttribute="bottom" constant="8.3300000000000001" id="Ao0-WD-gDW"/>
                                             <constraint firstItem="4YX-jQ-HJz" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="20" id="BP2-qK-tsG"/>
                                             <constraint firstItem="IgX-UF-qaB" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" id="ClQ-As-Mbn"/>
                                             <constraint firstItem="YYQ-kZ-sr8" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" id="DlJ-i4-EA1"/>
@@ -848,14 +861,13 @@
                                             <constraint firstAttribute="bottom" secondItem="BR2-Jb-vl0" secondAttribute="bottom" constant="306" id="ga9-EU-cDJ"/>
                                             <constraint firstItem="BR2-Jb-vl0" firstAttribute="top" secondItem="7St-u3-tL8" secondAttribute="bottom" constant="300" id="gbD-Ex-RR5"/>
                                             <constraint firstAttribute="trailing" secondItem="HwD-Wo-mKv" secondAttribute="trailing" id="grF-BH-9ZC"/>
-                                            <constraint firstItem="Vgb-UA-GmW" firstAttribute="top" secondItem="5XT-od-jzj" secondAttribute="bottom" constant="10" id="iTy-5s-G0D"/>
                                             <constraint firstItem="4YX-jQ-HJz" firstAttribute="top" secondItem="5XT-od-jzj" secondAttribute="bottom" constant="321" id="j5s-xc-5Sb"/>
                                             <constraint firstItem="YYQ-kZ-sr8" firstAttribute="top" secondItem="IgX-UF-qaB" secondAttribute="bottom" id="jbe-Wg-Dkd"/>
                                             <constraint firstAttribute="trailing" secondItem="iD6-UZ-DlH" secondAttribute="trailing" constant="187" id="l0W-Jg-Ixt"/>
                                             <constraint firstItem="hFL-pT-fxA" firstAttribute="top" secondItem="WnD-gz-8Ls" secondAttribute="bottom" constant="3" id="mNG-qp-Hc4"/>
                                             <constraint firstAttribute="trailing" secondItem="Vgb-UA-GmW" secondAttribute="trailing" id="nvy-H7-2Hr"/>
-                                            <constraint firstAttribute="bottom" secondItem="qZM-au-9Gd" secondAttribute="bottom" constant="342" id="oyC-5n-RHL"/>
-                                            <constraint firstItem="qZM-au-9Gd" firstAttribute="top" secondItem="hOl-JA-13r" secondAttribute="bottom" constant="325" id="pKs-O9-3oJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="qZM-au-9Gd" secondAttribute="bottom" constant="341" id="oyC-5n-RHL"/>
+                                            <constraint firstItem="qZM-au-9Gd" firstAttribute="top" secondItem="hOl-JA-13r" secondAttribute="bottom" constant="324" id="pKs-O9-3oJ"/>
                                             <constraint firstItem="x8m-5V-ULZ" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="188" id="s2g-AJ-tsP"/>
                                             <constraint firstItem="alZ-v7-9ZZ" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" id="spg-zl-f9I"/>
                                             <constraint firstItem="IgX-UF-qaB" firstAttribute="top" secondItem="Vgb-UA-GmW" secondAttribute="bottom" constant="15" id="tFy-XY-Thl"/>

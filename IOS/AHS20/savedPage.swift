@@ -78,7 +78,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 
                 let articleBodyFrame = CGRect(x: 10, y: 50, width: articleFrame.size.width-35-chevronFrame.size.width, height: articleFrame.size.height - 55);
                 let articleBody = UILabel(frame: articleBodyFrame);
-                articleBody.text = savedArticles[aIndex].articleBody;
+                articleBody.text = (savedArticles[aIndex].hasHTML == true ? parseHTML(s: savedArticles[aIndex].articleBody ?? "").string : savedArticles[aIndex].articleBody);
                 articleBody.numberOfLines = 3;
                 articleBody.font = UIFont(name:"SFProDisplay-Regular",size: 14);
                 articleBody.textColor = UIColor.black;
