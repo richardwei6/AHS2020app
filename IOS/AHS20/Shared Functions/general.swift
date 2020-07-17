@@ -18,6 +18,8 @@ var unreadNotif = false;
 
 // swift file with shared functions and extensions between files
 
+var notificationArticleData: articleData? = nil; // for when clicking on notifications
+
 struct articleData: Codable {
     var articleID: String?;
     var articleTitle: String?;

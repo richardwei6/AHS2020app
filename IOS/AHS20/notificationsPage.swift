@@ -157,7 +157,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         // remove prev subviews
         for subview in notificationScrollView.subviews{
             if (subview != refreshControl){
-                subview.removeFromSuperview();  
+                subview.removeFromSuperview();
             }
         }
         
@@ -169,10 +169,12 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             
             notificationFrame.size.width = UIScreen.main.bounds.size.width - (2 * horizontalPadding);
             notificationFrame.size.height = 130;
+            
+            var yPos = verticalPadding;
             // add notification label at start
             for nIndex in 0..<unreadNotificationSize{
                 notificationFrame.origin.x = horizontalPadding;
-                notificationFrame.origin.y = verticalPadding+((notificationFrame.size.height + verticalPadding)*CGFloat(nIndex));
+                notificationFrame.origin.y = yPos;
                 
                 let notificationButton = notificationUIButton(frame: notificationFrame);
                 let currNotif = notificationList[1][nIndex]; // TODO: import data
@@ -233,6 +235,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 
                 notificationButton.notificationCompleteData = currNotif;
                 notificationButton.articleIndex = nIndex;
+    
                 
                 notificationButton.addSubview(readLabel);
                 notificationButton.addSubview(notificationCatagoryLabel);
@@ -241,12 +244,14 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationButton.addSubview(notificationBodyText);
                 notificationButton.addSubview(timeStamp);
                 
+                yPos += notificationButton.frame.size.height + verticalPadding;
+                
                 notificationButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
                 notificationScrollView.addSubview(notificationButton);
             }
             for nIndex in 0..<readNotificationSize{
                 notificationFrame.origin.x = horizontalPadding;
-                notificationFrame.origin.y = verticalPadding+((notificationFrame.size.height + verticalPadding)*CGFloat(nIndex + unreadNotificationSize));
+                notificationFrame.origin.y = yPos;
                 
                 let notificationButton = notificationUIButton(frame: notificationFrame);
                 let currNotif = notificationList[0][nIndex];
@@ -307,10 +312,13 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationButton.addSubview(notificationBodyText);
                 notificationButton.addSubview(timeStamp);
                 
+                yPos += notificationButton.frame.size.height + verticalPadding;
+
+                
                 notificationButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
                 notificationScrollView.addSubview(notificationButton);
             }
-            notificationScrollView.contentSize = CGSize(width: notificationFrame.size.width, height: (2*verticalPadding)+((notificationFrame.size.height+verticalPadding)*CGFloat(unreadNotificationSize+readNotificationSize)));
+            notificationScrollView.contentSize = CGSize(width: notificationFrame.size.width, height: yPos + verticalPadding);
             notificationScrollView.delegate = self;
         }
         else{
