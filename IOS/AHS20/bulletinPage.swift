@@ -134,9 +134,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     //print("append to main - ")
                     //print(temp)
                     bulletinArticleList[i] = temp;
-                    self.generateBulletin();
                     self.refreshControl.endRefreshing();
-                    self.addRefreshCTRL();
+                    self.generateBulletin();
+                  //  self.addRefreshCTRL();
                 };
                 
             }
@@ -149,7 +149,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 self.refreshControl.endRefreshing();
             }));
             present(infoPopup, animated: true, completion: nil);
-            addRefreshCTRL();
+            //addRefreshCTRL();
+            
         }
         
     }
@@ -172,46 +173,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         generateBulletin();
         UIImpactFeedbackGenerator(style: .light).impactOccurred();
     }
-    
-    func removeAllSubViews(sender: CustomUIButton){
-        for view in sender.subviews{
-            view.removeFromSuperview();
-        }
-    }
-    
-    
-    /*func generateIconImage(iconView: CustomUIButton){
-        if (iconView.articleIndex != 0){
-            let imageIconPadding = CGFloat(5);
-            let iconImageFrame = CGRect(x:(iconViewFrame!.size.width/2) - (filterIconImageSize/2) + imageIconPadding, y: (iconViewFrame!.size.height/2) - (filterIconImageSize/2)+imageIconPadding, width: filterIconImageSize-(2*imageIconPadding), height: filterIconImageSize-(2*imageIconPadding));
-            let iconImageView = UIImageView(frame: iconImageFrame);
-            iconImageView.image = UIImage(named: filterIconPicturePath[iconView.articleIndex-1]);
-            iconImageView.contentMode = .scaleAspectFit;
-            if (iconView.isSelected == true){
-                iconImageView.setImageColor(color: UIColor.white);
-            }
-            else{
-                iconImageView.setImageColor(color: mainThemeColor);
-            }
-            iconView.addSubview(iconImageView);
-        }else{
-            let yearTextFrame = CGRect(x: 0, y: 5, width: iconViewFrame!.size.width, height: iconViewFrame!.size.height);
-            let yearText = UILabel(frame: yearTextFrame);
-            yearText.text = "20\n21";
-            yearText.setLineSpacing(lineHeightMultiple: 0.7);
-            if (iconView.isSelected == true){
-                yearText.textColor = UIColor.white;
-            }
-            else{
-                yearText.textColor = mainThemeColor;
-            }
-            yearText.numberOfLines = 2;
-            yearText.textAlignment = .center;
-            yearText.font = UIFont(name: "HarlowSolid", size: 20);
-            iconView.addSubview(yearText);
-        }
-    }*/
-    
+
     
     func filterArticles() -> [[bulletinArticleData]]{
         var copy = [bulletinArticleData]();
@@ -238,12 +200,13 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         return output;
     }
     
-    func addRefreshCTRL(){
+    /*func addRefreshCTRL(){
+      //  refreshControl.endRefreshing();
         refreshControl.addTarget(self, action: #selector(refreshBulletin), for: UIControl.Event.valueChanged);
         bulletinScrollView.addSubview(refreshControl);
         bulletinScrollView.isScrollEnabled = true;
         bulletinScrollView.alwaysBounceVertical = true;
-    }
+    }*/
     
     
     func generateBulletin(){ // TODO: implement filter ---------
@@ -260,7 +223,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             }
             
             for subview in bulletinScrollView.subviews{
-                subview.removeFromSuperview();
+                if (subview != refreshControl){
+                    subview.removeFromSuperview();
+                }
             }
             
             currentArticles = filterArticles();
@@ -435,7 +400,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             }
             bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: CGFloat(currY));
             bulletinScrollView.delegate = self;
-            addRefreshCTRL();
+          //  addRefreshCTRL();
         }
     }
     
@@ -516,7 +481,10 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
+        refreshControl.addTarget(self, action: #selector(refreshBulletin), for: UIControl.Event.valueChanged);
+        bulletinScrollView.addSubview(refreshControl);
+        bulletinScrollView.isScrollEnabled = true;
+        bulletinScrollView.alwaysBounceVertical = true;
         setUpFilters();
         // set up bulletin for the first time before any filters
         getBulletinArticleData();
