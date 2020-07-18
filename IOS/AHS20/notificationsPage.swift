@@ -180,10 +180,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 let currNotif = notificationList[1][nIndex]; // TODO: import data
                 
                 let chevronWidth = CGFloat(22);
-                let chevronFrame = CGRect(x: notificationFrame.size.width-chevronWidth-15, y: (notificationFrame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
-                let chevronImage = UIImageView(frame: chevronFrame);
-                chevronImage.image = UIImage(systemName: "chevron.right");
-                chevronImage.tintColor = UIColor.gray;
                 
                 let notificationCatagoryLabelHeight = CGFloat(20);
                 let notificationCatagoryLabelFrame = CGRect(x: 10, y: 12, width: 65, height: notificationCatagoryLabelHeight);
@@ -212,13 +208,16 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationTitle.adjustsFontSizeToFitWidth = true;
                 notificationTitle.minimumScaleFactor = 0.2;
                 
-                let notificationBodyFrame = CGRect(x: 10, y: notificationTitleFrame.size.height + 10 + notificationCatagoryLabelFrame.size.height, width: notificationFrame.size.width  - chevronWidth - 27, height: notificationFrame.size.height - (notificationCatagoryLabel.frame.size.height + 5 + notificationTitle.frame.size.height + 5));
+                let bodyVerticalPadding = CGFloat(10);
+                
+                let notificationBodyWidth = CGFloat(notificationFrame.size.width  - chevronWidth - 27);
+                let notificationBodyFrame = CGRect(x: 10, y: notificationTitleFrame.size.height + 10 + notificationCatagoryLabelFrame.size.height + bodyVerticalPadding, width: notificationBodyWidth, height: currNotif.notificationBody?.getHeight(withConstrainedWidth: notificationBodyWidth, font: UIFont(name:"SFProDisplay-Regular",size: 14)!) ?? 0);
                 let notificationBodyText = UILabel(frame: notificationBodyFrame);
                 notificationBodyText.text = currNotif.notificationBody;
-                notificationBodyText.numberOfLines = 3;
+                notificationBodyText.numberOfLines = 0;
                 notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 14);
-                
-                
+               // notificationBodyText.backgroundColor = UIColor.lightGray;
+
                 let timeStampFrame = CGRect(x: notificationFrame.size.width - chevronWidth - timeStampLength + 10, y: 5, width: timeStampLength, height: 30);
                 let timeStamp = UILabel(frame: timeStampFrame);
                 timeStamp.text = epochClass.epochToString(epoch: currNotif.notificationUnixEpoch ?? -1);
@@ -239,10 +238,17 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 
                 notificationButton.addSubview(readLabel);
                 notificationButton.addSubview(notificationCatagoryLabel);
-                notificationButton.addSubview(chevronImage);
                 notificationButton.addSubview(notificationTitle);
                 notificationButton.addSubview(notificationBodyText);
                 notificationButton.addSubview(timeStamp);
+                
+                notificationButton.frame.size.height = notificationBodyText.frame.maxY + bodyVerticalPadding + 10;
+
+                let chevronFrame = CGRect(x: notificationButton.frame.size.width-chevronWidth-15, y: (notificationButton.frame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
+                let chevronImage = UIImageView(frame: chevronFrame);
+                chevronImage.image = UIImage(systemName: "chevron.right");
+                chevronImage.tintColor = UIColor.gray;
+                notificationButton.addSubview(chevronImage);
                 
                 yPos += notificationButton.frame.size.height + verticalPadding;
                 
@@ -257,10 +263,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 let currNotif = notificationList[0][nIndex];
                 
                 let chevronWidth = CGFloat(22);
-                let chevronFrame = CGRect(x: notificationFrame.size.width-chevronWidth-15, y: (notificationFrame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
-                let chevronImage = UIImageView(frame: chevronFrame);
-                chevronImage.image = UIImage(systemName: "chevron.right");
-                chevronImage.tintColor = UIColor.gray;
                 
                 let notificationCatagoryLabelHeight = CGFloat(20);
                 let notificationCatagoryLabelFrame = CGRect(x: 10, y: 12, width: 65, height: notificationCatagoryLabelHeight);
@@ -281,12 +283,14 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationTitle.adjustsFontSizeToFitWidth = true;
                 notificationTitle.minimumScaleFactor = 0.2;
                 
-                let notificationBodyFrame = CGRect(x: 10, y: notificationTitleFrame.size.height + 10 + notificationCatagoryLabelFrame.size.height, width: notificationFrame.size.width  - chevronWidth - 27, height: notificationFrame.size.height - (notificationCatagoryLabel.frame.size.height + 5 + notificationTitle.frame.size.height + 5));
+                let bodyVerticalPadding = CGFloat(10);
+                
+                let notificationBodyWidth = CGFloat(notificationFrame.size.width  - chevronWidth - 27);
+                let notificationBodyFrame = CGRect(x: 10, y: notificationTitleFrame.size.height + 10 + notificationCatagoryLabelFrame.size.height + bodyVerticalPadding, width: notificationBodyWidth, height: currNotif.notificationBody?.getHeight(withConstrainedWidth: notificationBodyWidth, font: UIFont(name:"SFProDisplay-Regular",size: 14)!) ?? 0);
                 let notificationBodyText = UILabel(frame: notificationBodyFrame);
                 notificationBodyText.text = currNotif.notificationBody;
-                notificationBodyText.numberOfLines = 3;
+                notificationBodyText.numberOfLines = 0;
                 notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 14);
-                
                 
                 let timeStampFrame = CGRect(x: notificationFrame.size.width - chevronWidth - timeStampLength + 10, y: 5, width: timeStampLength, height: 30);
                 let timeStamp = UILabel(frame: timeStampFrame);
@@ -307,10 +311,17 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationButton.articleIndex = nIndex+unreadNotificationSize;
                 
                 notificationButton.addSubview(notificationCatagoryLabel);
-                notificationButton.addSubview(chevronImage);
                 notificationButton.addSubview(notificationTitle);
                 notificationButton.addSubview(notificationBodyText);
                 notificationButton.addSubview(timeStamp);
+                
+                notificationButton.frame.size.height = notificationBodyText.frame.maxY + bodyVerticalPadding + 10;
+                
+                let chevronFrame = CGRect(x: notificationButton.frame.size.width-chevronWidth-15, y: (notificationButton.frame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
+                let chevronImage = UIImageView(frame: chevronFrame);
+                chevronImage.image = UIImage(systemName: "chevron.right");
+                chevronImage.tintColor = UIColor.gray;
+                notificationButton.addSubview(chevronImage);
                 
                 yPos += notificationButton.frame.size.height + verticalPadding;
 
