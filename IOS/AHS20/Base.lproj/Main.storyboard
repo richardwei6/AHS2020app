@@ -29,7 +29,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1340"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="-1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-Ha-pr7">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="-1" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-Ha-pr7">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1340"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38h-M3-Qey" userLabel="ContentView">
@@ -1250,9 +1250,9 @@
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerX" secondItem="HYY-fu-odz" secondAttribute="centerX" id="9hc-cb-8Hd"/>
                                     <constraint firstAttribute="bottom" secondItem="7G2-qF-bJP" secondAttribute="bottom" id="CJO-2E-URD"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerY" secondItem="HYY-fu-odz" secondAttribute="centerY" id="J5E-hc-zGD"/>
+                                    <constraint firstAttribute="width" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="207:25" id="Msx-tQ-eGU"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerY" secondItem="HYY-fu-odz" secondAttribute="centerY" id="gFj-iB-rCk"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="top" secondItem="HYY-fu-odz" secondAttribute="top" id="kDT-Kg-Jo3"/>
-                                    <constraint firstAttribute="height" constant="50" id="kJO-Vz-Sjj"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" id="kXB-sJ-cAC"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="leading" secondItem="HYY-fu-odz" secondAttribute="leading" id="ny5-Zs-1Gb"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="width" secondItem="HYY-fu-odz" secondAttribute="width" id="svX-gX-1EO"/>

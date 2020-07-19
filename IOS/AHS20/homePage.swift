@@ -531,12 +531,16 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		sportsLabel.text = loading;
 		districtLabel.text = loading;
 		
-		
+		mainScrollView.alwaysBounceVertical = true;
 	  	getHomeArticleData();
 		refreshControl.addTarget(self, action: #selector(refreshAllArticles), for: UIControl.Event.valueChanged);
-		mainScrollView.addSubview(refreshControl);
+		mainScrollView.refreshControl = refreshControl;
+		mainScrollView.delegate = self;
 	}
 	
+	override func viewDidAppear(_ animated: Bool) {
+		mainScrollView.refreshControl?.didMoveToSuperview();
+	}
 	
 	func  scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if (scrollView.tag != -1){
