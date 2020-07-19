@@ -104,9 +104,11 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
        // articleText.translatesAutoresizingMaskIntoConstraints = true;
         
         
-        articleTitle.text = "Loading images..."; // see func viewdidappear
+        articleTitle.text = articleContent?.articleTitle; // set article title herer
+        articleTitle.font = UIFont(name: articleTitle.font.fontName, size: CGFloat(fontSize+5));
         articleDate.text = epochClass.epochToFormatedDateString(epoch: articleContent?.articleUnixEpoch ?? -1); // TODO: IMPLEMENT A FUNC TO GET INT TO STRING DATE
         articleAuthor.text = "By " + (articleContent?.articleAuthor ?? " No Author");
+        articleAuthor.font = UIFont(name: articleAuthor.font.fontName, size: CGFloat(fontSize));
 
         // TODO: add zoom feature here
         imageSize = articleContent?.articleImages?.count ?? 0;
@@ -138,8 +140,6 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         imageScrollView.delegate = self;
         imageScrollView.layer.cornerRadius = 10;
         
-        articleTitle.text = articleContent?.articleTitle; // set article title herer
-        articleTitle.font = UIFont(name: articleTitle.font.fontName, size: CGFloat(fontSize));
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

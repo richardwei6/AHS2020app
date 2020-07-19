@@ -185,6 +185,10 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         return copy.count == 0 ? filterRead(copy: totalArticles) : filterRead(copy: copy);
     }
     
+    func articleSorting(a: bulletinArticleData, b: bulletinArticleData)->Bool{
+        return (a.articleUnixEpoch ?? INT64_MAX) > (b.articleUnixEpoch ?? INT64_MAX);
+    }
+    
     func filterRead(copy: [bulletinArticleData]) -> [[bulletinArticleData]]{ // 0th row is unread 1st is read
         var output = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 2);
         loadBullPref();
@@ -194,6 +198,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             }
             else{
                 output[0].append(i);
+            }
+        }
+        for subview in bulletinScrollView.subviews{
+            if (subview != refreshControl){
+                subview.removeFromSuperview();
             }
         }
         return output;
@@ -220,12 +229,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     totalArticles.append(c);
                 }
             }
-            
-            for subview in bulletinScrollView.subviews{
-                if (subview != refreshControl){
-                    subview.removeFromSuperview();
-                }
-            }
+            totalArticles = totalArticles.sorted(by: articleSorting);
             
             currentArticles = filterArticles();
            // print(currentArticles);
