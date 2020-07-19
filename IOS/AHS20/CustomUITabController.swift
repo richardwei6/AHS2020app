@@ -17,7 +17,8 @@ class CustomTabBarController: UIViewController {
     
     @IBOutlet weak var tabBarView: UIView!
     
-    @IBOutlet weak var notificationDot: UIImageView!
+
+    @IBOutlet weak var notificationDot: UIView!
     @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet var buttons: [UIButton]!
     
@@ -27,6 +28,8 @@ class CustomTabBarController: UIViewController {
     @IBOutlet weak var topBarPageName: UILabel!
     @IBOutlet weak var homeTopBarContent: UIView!
     @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var featherImage: UIImageView!
     
     var homeViewController: UIViewController!
     var bulletinViewController: UIViewController!
@@ -117,9 +120,7 @@ class CustomTabBarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-      
         selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
-        
         setUpConnection();
         print("Connection Established");
 
@@ -158,9 +159,9 @@ class CustomTabBarController: UIViewController {
         savedViewController = storyboard.instantiateViewController(withIdentifier: "savedViewController") as! savedClass;
         settingsViewController = storyboard.instantiateViewController(withIdentifier: "settingsViewController") as! settingClass;
         viewControllers = [homeViewController, bulletinViewController, savedViewController, settingsViewController];
-        buttons[selectedIndex].setImage(UIImage(named: iconImagePathInv[selectedIndex]), for: .normal);
+        //buttons[selectedIndex].setImage(UIImage(named: iconImagePathInv[selectedIndex]), for: .normal);
         //buttons[selectedIndex].tintColor = selectedColor;
-       let vc = viewControllers[selectedIndex];
+        let vc = viewControllers[selectedIndex];
         addChild(vc);
         vc.view.frame = contentView.bounds;
         contentView.addSubview(vc.view);
@@ -168,7 +169,7 @@ class CustomTabBarController: UIViewController {
         topBar.layer.cornerRadius = homeTopCornerRadius;
         topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
         topBar.layer.shadowColor = UIColor.gray.cgColor;
-        topBar.layer.shadowOpacity = 0.07;
+        topBar.layer.shadowOpacity = 0.1;
         topBar.layer.shadowRadius = 5;
         topBar.layer.shadowOffset = CGSize(width: 0 , height:10);
         tabBarView.layer.shadowColor = UIColor.gray.cgColor;
@@ -177,8 +178,6 @@ class CustomTabBarController: UIViewController {
         tabBarView.layer.shadowOffset = CGSize(width: 0, height: -10);
         buttons[0].tintColor = mainThemeColor;
         dateLabel.text = getTitleDateAndMonth();
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -231,7 +230,6 @@ class CustomTabBarController: UIViewController {
             
             
             if (sender.tag == 0){
-                print("home")
                 topBar.layer.cornerRadius = homeTopCornerRadius;
                 topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
                 topBarHeightContraint.constant = 62;
@@ -250,8 +248,8 @@ class CustomTabBarController: UIViewController {
                     topBar.layer.shadowColor = UIColor.white.cgColor;
                 }
                 else if (sender.tag == 2){
-                    topBarPageName.text = "Saved Articles";
-                    topBar.layer.shadowColor = UIColor.white.cgColor;
+                    topBarPageName.text = "Saved";
+                    topBar.layer.shadowColor = UIColor.gray.cgColor;
                 }
                 else if (sender.tag == 3){
                     topBarPageName.text = "Settings";

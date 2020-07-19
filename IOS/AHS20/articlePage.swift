@@ -21,7 +21,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var articleDate: UILabel!
     @IBOutlet weak var articleTitle: UILabel!
     @IBOutlet weak var mainScrollView: UIScrollView!
-    @IBOutlet weak var articleText: UILabel!
+    @IBOutlet weak var articleText: UITextView!
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imagePageControl: UIPageControl!
     @IBOutlet weak var contentView: UIView!
@@ -79,11 +79,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         sender.isSelected = !sender.isSelected;
     }
     
-    // ------------
-    // TODO: Fix issue where long text gets cut off *completed, thank u for the reminder XD -em&kim
-    // TODO: Fix issue where the imagescrollview doesn't allow you to go to the third image on real devices -fixed
-    // TODO: Fix issue on Storyboard where the Bookmark button gets blurry - use the system bookmark image and put a circular background behind it *completed
-    // ------------
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -99,12 +96,17 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
 
         
         
-        articleText.text = articleContent?.articleBody;
-        articleText.font = UIFont(name: articleText.font.fontName, size: CGFloat(fontSize));
+        articleText.attributedText = (articleContent?.hasHTML == true ? parseHTML(s: articleContent?.articleBody ?? "") : NSAttributedString(string: articleContent?.articleBody ?? ""));
+        articleText.font = UIFont(name: articleText.font!.fontName, size: CGFloat(fontSize));
+        articleText.sizeToFit();
+        articleText.isScrollEnabled = false;
+        articleText.tintColor = UIColor.systemBlue;
+       // articleText.translatesAutoresizingMaskIntoConstraints = true;
+        
+        
         articleTitle.text = "Loading images..."; // see func viewdidappear
         articleDate.text = epochClass.epochToFormatedDateString(epoch: articleContent?.articleUnixEpoch ?? -1); // TODO: IMPLEMENT A FUNC TO GET INT TO STRING DATE
         articleAuthor.text = "By " + (articleContent?.articleAuthor ?? " No Author");
-        
 
         // TODO: add zoom feature here
         imageSize = articleContent?.articleImages?.count ?? 0;
@@ -139,8 +141,6 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         articleTitle.text = articleContent?.articleTitle; // set article title herer
         articleTitle.font = UIFont(name: articleTitle.font.fontName, size: CGFloat(fontSize));
     }
-
-    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         imagePageControl.currentPage = Int(imageScrollView.contentOffset.x / imageFrame.size.width);

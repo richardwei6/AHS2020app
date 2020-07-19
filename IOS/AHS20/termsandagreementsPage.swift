@@ -16,6 +16,7 @@ class termsandagreementsPage: UIViewController {
     
     @IBAction func exitPage(_ sender: Any) {
         dismiss(animated: true);
+        UIImpactFeedbackGenerator(style: .light).impactOccurred();
     }
     
 }

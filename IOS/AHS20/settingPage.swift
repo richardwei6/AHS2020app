@@ -17,14 +17,14 @@ class settingClass: UITableViewController {
     @IBOutlet weak var fontSizeSlider: UISlider!
     @IBOutlet weak var fontSizeLabel: UILabel!
     @IBOutlet weak var appVersionLabel: UILabel!
-    
+ 
     @IBOutlet weak var clearSavedArticleCell: UITableViewCell!
     
     override func viewDidLoad() {
         super.viewDidLoad();
         fontSizeSlider.value = Float(fontSize);
         fontSizeLabel.text = String(fontSize);
-        appVersionLabel.text = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0") + ".0";
+        appVersionLabel.text = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0") + "." +  (Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0");
     }
     
     @IBAction func sliderChange(_ sender: Any) {

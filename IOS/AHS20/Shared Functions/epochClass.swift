@@ -13,8 +13,8 @@ import SystemConfiguration
 import FirebaseDatabase
 import SDWebImage
 
-class epochClass{
-    class func epochToString(epoch: Int64) -> String{ // 1 hour ago
+final class epochClass{
+    final class func epochToString(epoch: Int64) -> String{ // 1 hour ago
         if (epoch == -1){
             return "NULL";
         }
@@ -34,7 +34,7 @@ class epochClass{
         return r;
     }
     
-    class func epochToDateString(epoch: Int64) -> String{ // 99/99/99
+    final class func epochToDateString(epoch: Int64) -> String{ // 99/99/99
         if (epoch == -1){
             return "NULL";
         }
@@ -46,7 +46,7 @@ class epochClass{
         return "\(month)/\(day)/\(year)";
     }
     
-    class func epochToFormatedDateString(epoch: Int64) -> String{ // Month 00, 2000
+    final class func epochToFormatedDateString(epoch: Int64) -> String{ // Month 00, 2000
         if (epoch == -1){
             return "NULL";
         }
