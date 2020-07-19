@@ -212,7 +212,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         // set up bulletin
         
         // remove all prev views
-        if (bulletinArticleList[0].count > 0 && bulletinArticleList[1].count > 0 && bulletinArticleList[2].count > 0 && bulletinArticleList[3].count > 0 && bulletinArticleList[4].count > 0 && bulletinArticleList[5].count > 0){
+        if (bulletinArticleList[0].count > 0 || bulletinArticleList[1].count > 0 || bulletinArticleList[2].count > 0 || bulletinArticleList[3].count > 0 || bulletinArticleList[4].count > 0 || bulletinArticleList[5].count > 0){
       
             totalArticles = [bulletinArticleData]();
             for i in 0...5{
