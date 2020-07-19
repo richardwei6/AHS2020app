@@ -133,18 +133,16 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               withCompletionHandler completionHandler: @escaping () -> Void) { // handle tapping on notification
     let userInfo = response.notification.request.content.userInfo
     // Print message ID.
-    if let messageID = userInfo[gcmMessageIDKey] {
+    /*if let messageID = userInfo[gcmMessageIDKey] {
       print("Message ID: \(messageID)")
-    }
+    }*/
 
     print("tapped on notification");
     
     // Print full message.
-    print(userInfo)
-    
+    print(userInfo["articleID"])
     // TODO: GOTO ARTICLE from  articleID
-    
-    
+    findArticleFromIDAndSegue(id: userInfo["articleID"] as? String ?? "");
     completionHandler()
   }
 }
