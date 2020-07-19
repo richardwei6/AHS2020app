@@ -16,4 +16,5 @@
         <item name ="android:layout_marginBottom">@dimen/EveryPage_Side_Padding_Half</item>
     </style>
 
+
 </resources>

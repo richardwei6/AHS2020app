@@ -1,19 +1,9 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
-    android:width="53.7dp"
-    android:height="74.78dp"
-    android:viewportWidth="53.7"
-    android:viewportHeight="74.78">
+    android:width="16.632dp"
+    android:height="21.385dp"
+    android:viewportWidth="16.632"
+    android:viewportHeight="21.385">
   <path
-      android:pathData="M52.2,2.5V72.27a1,1 0,0 1,-1.59 0.82L27.44,56.46a1,1 0,0 0,-1.18 0L3.09,73.09a1,1 0,0 1,-1.59 -0.82V2.5a1,1 0,0 1,1 -1H51.2A1,1 0,0 1,52.2 2.5Z"
-      android:strokeWidth="3"
-      android:fillColor="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF">
-    <aapt:attr name="android:strokeColor">
-      <gradient
-          >
-        <item android:offset="0" android:color="@color/LightGray_F2F2F3__HOME"/>
-        <item android:offset="1" android:color="@color/LightGray_F2F2F3__HOME"/>
-      </gradient>
-    </aapt:attr>
-  </path>
+      android:fillColor="#FF000000"
+      android:pathData="M14.256,0L2.376,0A2.373,2.373 0,0 0,0.012 2.376L0,21.385l8.316,-3.564 8.316,3.564L16.632,2.376A2.383,2.383 0,0 0,14.256 0Z"/>
 </vector>

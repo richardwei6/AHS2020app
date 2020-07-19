@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 import com.example.ahsapptest3.Helper_Code.Helper;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -28,7 +26,7 @@ public class Notif_Template extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.template__notif_display, container, false);
+        View view = inflater.inflate(R.layout.notif_template, container, false);
         if(getArguments() == null)
             return view;
         Article article = getArguments().getParcelable(ARTICLE_KEY);

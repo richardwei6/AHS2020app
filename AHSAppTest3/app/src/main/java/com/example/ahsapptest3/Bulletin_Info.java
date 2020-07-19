@@ -3,46 +3,41 @@ package com.example.ahsapptest3;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Bulletin_Info implements Parcelable {
     private long time;
     private String title, body;
-    private Date Datetime;
-    private String dateString;
-    private BulletinActivity.Type type;
+    private Bulletin.Type type;
+    private int pos;
 
-    public Bulletin_Info(String title, String dateString, String bodyText, BulletinActivity.Type type)
-    {
-        this.title = title;
-        this.dateString = dateString;
-        this.body = bodyText;
-        this.type = type;
-        SimpleDateFormat dateStringFormat = new SimpleDateFormat("dd:mm:yy");
-        try {
-            this.Datetime = dateStringFormat.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public Bulletin_Info(long time, String title, String body, BulletinActivity.Type type)
+    /**
+     * for use with SortedList in Bulletin Activity and related comparisons only
+     * @param time
+     * @param title
+     * @param body
+     * @param type
+     * @param pos
+     */
+    public Bulletin_Info(long time, String title, String body, Bulletin.Type type, int pos)
     {
         this.time = time;
         this.title = title;
         this.body = body;
         this.type = type;
+        this.pos = pos;
+    }
+
+    public int getPos()
+    {
+        return pos;
     }
 
     protected Bulletin_Info(Parcel in) {
         time = in.readLong();
         title = in.readString();
         body = in.readString();
-        type = (BulletinActivity.Type) in.readSerializable();
+        type = (Bulletin.Type) in.readSerializable();
     }
 
     public static final Creator<Bulletin_Info> CREATOR = new Creator<Bulletin_Info>() {
@@ -64,38 +59,15 @@ public class Bulletin_Info implements Parcelable {
         return title;
     }
 
-    public String getTimeString()
-    {
-        return dateString;
-    }
 
     public String getBodyText()
     {
         return body;
     }
 
-    public Date getDateTime()
-    {
-        return Datetime;
-    }
 
-    public BulletinActivity.Type getType() {
+    public Bulletin.Type getType() {
         return type;
-    }
-
-    public void setTitle_toView(TextView view)
-    {
-        view.setText(this.title);
-    }
-
-    public void setBodyText_toView(TextView view)
-    {
-        view.setText(this.body);
-    }
-
-    public void setDate_toView(TextView view)
-    {
-        view.setText(this.dateString);
     }
 
     public void setImageType_toView(ImageView view)

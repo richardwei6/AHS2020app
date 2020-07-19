@@ -26,7 +26,7 @@ public class Notifications_Settings_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notif_settings_layout);
+        setContentView(R.layout.settings_notif_layout);
 
         ImageView backButton = findViewById(R.id.notif_settings_header_back);
         backButton.setOnClickListener(new View.OnClickListener() {

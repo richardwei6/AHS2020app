@@ -5,8 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 
@@ -45,7 +44,7 @@ public class Navigation_Bar extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.navigation_bar, container, false);
+        view = inflater.inflate(R.layout.nav_bar, container, false);
         ImageView
                 homeBtn = view.findViewById(R.id.nav_bar_home_button),
                 bulletinBtn = view.findViewById(R.id.nav_bar_bulletin_button),
@@ -76,14 +75,14 @@ public class Navigation_Bar extends Fragment {
                 navigation.goToSettings();
             }
         });
-        if(getActivity() instanceof MainActivity)
-            homeBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_AngryRed_9F0C0C__BULLETIN));
-        else if (getActivity() instanceof BulletinActivity)
-            bulletinBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_AngryRed_9F0C0C__BULLETIN));
-        else if (getActivity() instanceof SavedActivity)
-            savedBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_AngryRed_9F0C0C__BULLETIN));
+        if(getActivity() instanceof News)
+            homeBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_DarkCrimson_1A0303__BULLETIN));
+        else if (getActivity() instanceof Bulletin)
+            bulletinBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_DarkCrimson_1A0303__BULLETIN));
+        else if (getActivity() instanceof Saved)
+            savedBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_DarkCrimson_1A0303__BULLETIN));
         else if (getActivity() instanceof SettingsActivity)
-            settingsBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_AngryRed_9F0C0C__BULLETIN));
+            settingsBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_DarkCrimson_1A0303__BULLETIN));
 
         return view;
     }
@@ -98,9 +97,9 @@ public class Navigation_Bar extends Fragment {
         super.onActivityCreated(savedInstanceState);
         final View scrollingView = getActivity().findViewById(navigation.getScrollingViewId());
 
-        final ConstraintLayout navBar= view.findViewById(R.id.nav_bar_ConstraintLayout);
+        final ViewGroup navBar= view.findViewById(R.id.nav_bar_ConstraintLayout);
 
-        if (scrollingView instanceof ScrollView)
+        if (scrollingView instanceof ScrollView || scrollingView instanceof NestedScrollView)
         {
 
             scrollingView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
@@ -123,7 +122,7 @@ public class Navigation_Bar extends Fragment {
         }
         else if (scrollingView instanceof RecyclerView)
         {
-            final Context context = this.getContext();
+
             ((RecyclerView) scrollingView).addOnScrollListener(new RecyclerView.OnScrollListener() {
                 float y = 0;
                 @Override
@@ -144,6 +143,7 @@ public class Navigation_Bar extends Fragment {
                 }
             });
         }
+
     }
 
     public void slideUp(View view){

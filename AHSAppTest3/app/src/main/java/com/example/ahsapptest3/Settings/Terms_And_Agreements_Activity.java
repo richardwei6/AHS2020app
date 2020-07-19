@@ -13,7 +13,7 @@ public class Terms_And_Agreements_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.terms_layout);
+        setContentView(R.layout.settings_terms);
 
         ImageView backButton = findViewById(R.id.terms_header_back);
         backButton.setOnClickListener(new View.OnClickListener() {

@@ -13,7 +13,7 @@ public class Credits_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.credits_layout);
+        setContentView(R.layout.settings_credits_layout);
 
         ImageView backButton = findViewById(R.id.credits_header_back);
         backButton.setOnClickListener(new View.OnClickListener() {

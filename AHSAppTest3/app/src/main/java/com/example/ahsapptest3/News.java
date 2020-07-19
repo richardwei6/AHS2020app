@@ -21,20 +21,29 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements Navigation{
+public class News extends AppCompatActivity implements Navigation{
+
+    /**
+     * Be extremely!!! careful when changing these types! May cause problems with type conversion in ArticleDatabase
+     * Also ArticleActivity since it uses toString() of type rather than having a conversion table
+     * Need to be careful even when refactoring
+     */
+    public enum TYPE {
+        ASB, SPORTS, DISTRICT
+    }
 
     private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.news_layout);
 
         final String[] titles = {
-                "ASB NEWS",
-                "SPORTS NEWS",
-                "DISTRICT NEWS",
-                "FEATURED",
+                "ASB News",
+                "Sports News",
+                "District News",
+                "Featured",
         };
 
         final int[] barColors = new int[]{
@@ -56,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements Navigation{
 
         String [] data_ref = new String[] {
                 "asb",
+                "sports",
                 "district",
-                "sports"
         };
         final ArrayList<Article> featured_articles = new ArrayList<>();
         final Context context = this;
@@ -100,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements Navigation{
                         ArticleDatabase bookMarkDatabase = new ArticleDatabase(context, ArticleDatabase.Option.BOOKMARK);
                         boolean is_bookmarked = bookMarkDatabase.alreadyAdded(ID);
 
-                        Article article = new Article(ID,article_time,title,author,body,imagePaths,is_bookmarked,false);
+                        Article article = new Article(ID,article_time,title,author,body,imagePaths,is_bookmarked,false, TYPE.values()[finalI]);
 
                         // add Article to ArrayList
                         articles.add(article); // default values for bookmark and notified
@@ -159,20 +168,20 @@ public class MainActivity extends AppCompatActivity implements Navigation{
 
     @Override
     public void goToBulletin() {
-        Intent myIntent = new Intent(MainActivity.this,BulletinActivity.class);
-        MainActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(News.this, Bulletin.class);
+        News.this.startActivity(myIntent);
     }
 
     @Override
     public void goToSaved() {
-        Intent myIntent = new Intent(MainActivity.this,SavedActivity.class);
-        MainActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(News.this, Saved.class);
+        News.this.startActivity(myIntent);
     }
 
     @Override
     public void goToSettings() {
-        Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
-        MainActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(News.this, SettingsActivity.class);
+        News.this.startActivity(myIntent);
     }
 
     @Override

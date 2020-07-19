@@ -18,6 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <Button
+                android:id="@+id/settings_tester_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tester"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_InfoLinearLayout" />
+
             <fragment
                 android:id="@+id/settings_header"
                 android:name="com.example.ahsapptest3.Header"
@@ -230,7 +238,7 @@
         android:name="com.example.ahsapptest3.Navigation_Bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout="@layout/navigation_bar"
+        tools:layout="@layout/nav_bar"
         android:layout_gravity="bottom"/>
 
 </FrameLayout>

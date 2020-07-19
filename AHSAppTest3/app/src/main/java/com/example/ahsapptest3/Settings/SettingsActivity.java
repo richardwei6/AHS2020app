@@ -6,15 +6,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.ahsapptest3.BulletinActivity;
-import com.example.ahsapptest3.MainActivity;
+import com.example.ahsapptest3.Bulletin;
+import com.example.ahsapptest3.News;
 import com.example.ahsapptest3.Navigation;
 import com.example.ahsapptest3.R;
-import com.example.ahsapptest3.SavedActivity;
+import com.example.ahsapptest3.Saved;
+import com.example.ahsapptest3.Tester;
 
 public class SettingsActivity extends AppCompatActivity implements Navigation {
 
@@ -85,6 +87,15 @@ public class SettingsActivity extends AppCompatActivity implements Navigation {
                 SettingsActivity.this.startActivity(myIntent);
             }
         });
+
+        Button goToTester = findViewById(R.id.settings_tester_button);
+        goToTester.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(SettingsActivity.this, Tester.class);
+                SettingsActivity.this.startActivity(myIntent);
+            }
+        });
     }
 
     public static int SeekBarProgress_ToFontSize(int seekBar_progress)
@@ -94,19 +105,19 @@ public class SettingsActivity extends AppCompatActivity implements Navigation {
 
     @Override
     public void goToHome() {
-        Intent myIntent = new Intent(SettingsActivity.this, MainActivity.class);
+        Intent myIntent = new Intent(SettingsActivity.this, News.class);
         SettingsActivity.this.startActivity(myIntent);
     }
 
     @Override
     public void goToBulletin() {
-        Intent myIntent = new Intent(SettingsActivity.this, BulletinActivity.class);
+        Intent myIntent = new Intent(SettingsActivity.this, Bulletin.class);
         SettingsActivity.this.startActivity(myIntent);
     }
 
     @Override
     public void goToSaved() {
-        Intent myIntent = new Intent(SettingsActivity.this, SavedActivity.class);
+        Intent myIntent = new Intent(SettingsActivity.this, Saved.class);
         SettingsActivity.this.startActivity(myIntent);
     }
 

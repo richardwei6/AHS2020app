@@ -20,7 +20,6 @@ import com.example.ahsapptest3.Helper_Code.Helper;
 import com.example.ahsapptest3.R;
 
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -37,7 +36,7 @@ public class Article_Display_Stacked extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.template__stacked_article_display, container, false);
+        View view = inflater.inflate(R.layout.news_stacked_display, container, false);
 
         displayFrags(view);
         return view;

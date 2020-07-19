@@ -5,7 +5,7 @@
     android:id="@+id/saved_outerConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SavedActivity">
+    tools:context=".Saved">
 
     <fragment
         android:id="@+id/saved_header_fragment"
@@ -35,5 +35,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
-        tools:layout="@layout/navigation_bar" />
+        tools:layout="@layout/nav_bar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
