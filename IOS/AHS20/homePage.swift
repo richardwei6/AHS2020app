@@ -525,7 +525,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	override func viewDidLoad() { // setup function
 		super.viewDidLoad();
 		
-		
 		featuredLabel.text = loading;
 		asbLabel.text = loading;
 		sportsLabel.text = loading;
@@ -534,12 +533,12 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		mainScrollView.alwaysBounceVertical = true;
 	  	getHomeArticleData();
 		refreshControl.addTarget(self, action: #selector(refreshAllArticles), for: UIControl.Event.valueChanged);
-		mainScrollView.refreshControl = refreshControl;
+		mainScrollView.addSubview(refreshControl);
 		mainScrollView.delegate = self;
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
-		mainScrollView.refreshControl?.didMoveToSuperview();
+		refreshControl.didMoveToSuperview();
 	}
 	
 	func  scrollViewDidScroll(_ scrollView: UIScrollView) {
