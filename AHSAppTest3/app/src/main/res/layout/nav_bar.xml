@@ -2,12 +2,19 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:paddingTop="5dp"
+    >
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_bar_ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF">
+    android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+    android:elevation="5dp"
+
+    >
 
     <ImageButton
         android:id="@+id/nav_bar_home_button"
@@ -18,12 +25,13 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:scaleType="fitCenter"
-        android:tint="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+        android:tint="@color/NEW_GraniteRed_7E6E6A__BULLETIN"
 
         app:layout_constraintEnd_toStartOf="@+id/nav_bar_bulletin_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_home" />
+        app:srcCompat="@drawable/icon_home"
+        />
 
     <ImageButton
         android:id="@+id/nav_bar_bulletin_button"
@@ -34,7 +42,7 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:scaleType="fitCenter"
-        android:tint="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+        android:tint="@color/NEW_GraniteRed_7E6E6A__BULLETIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nav_bar_bookmarks_button"
         app:layout_constraintStart_toEndOf="@+id/nav_bar_home_button"
@@ -50,7 +58,7 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:scaleType="fitCenter"
-        android:tint="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+        android:tint="@color/NEW_GraniteRed_7E6E6A__BULLETIN"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nav_bar_settings_button"
@@ -67,7 +75,7 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:scaleType="fitCenter"
-        android:tint="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+        android:tint="@color/NEW_GraniteRed_7E6E6A__BULLETIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 

@@ -1,20 +1,9 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
-    android:width="84.21dp"
-    android:height="76.8dp"
-    android:viewportWidth="84.21"
-    android:viewportHeight="76.8">
+    android:width="21dp"
+    android:height="19.385dp"
+    android:viewportWidth="21"
+    android:viewportHeight="19.385">
   <path
-      android:pathData="M82,37.38 L43.53,2h0a2,2 0,0 0,-1.4 -0.53,2.09 2.09,0 0,0 -0.72,0.13L2.13,37.68C0.71,39 1.83,41 4,41.06l12.07,0.22V72c0,1.81 1.83,3.28 4.09,3.28H64.51c2.16,0 3.91,-1.41 3.91,-3.14V41.28L80,41.07C82.35,41 83.57,38.8 82,37.38Z"
-      android:strokeWidth="3"
-      android:fillColor="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF">
-    <aapt:attr name="android:strokeColor">
-      <gradient
-          >
-        <item android:offset="0" android:color="@color/LightGray_F2F2F3__HOME"/>
-        <item android:offset="1" android:color="@color/LightGray_F2F2F3__HOME"/>
-      </gradient>
-    </aapt:attr>
-
-  </path>
+      android:fillColor="#FF000000"
+      android:pathData="M8.077,19.385L8.077,12.923L12.925,12.923v6.462h4.927L17.852,9.692h3.15L10.5,0l-10.5,9.692h3.15v9.692Z"/>
 </vector>

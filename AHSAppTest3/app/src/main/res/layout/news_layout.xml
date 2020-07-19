@@ -5,7 +5,7 @@
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".News">
 
 
     <!--
@@ -83,22 +83,22 @@
             <!--
                         <include
                             android:id="@+id/home_header_test"
-                            layout="@layout/template__news_layout"
+                            layout="@layout/news_template"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <include
                             android:id="@+id/asbNewstest"
-                            layout = "@layout/template__news_layout"
+                            layout = "@layout/news_template"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <include
                             android:id="@+id/sportsNewstest"
-                            layout = "@layout/template__news_layout"
+                            layout = "@layout/news_template"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                         <include
                         android:id="@+id/districtNewstest"
-                        layout = "@layout/template__news_layout"
+                        layout = "@layout/news_template"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>-->
             <!--<fragment
@@ -106,7 +106,7 @@
                 android:name="com.example.ahsapptest3.HomePage_News.Featured_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout="@layout/template__featured_display" />
+                tools:layout="@layout/news_featured_template" />
 
 -->
 <!--
@@ -115,7 +115,7 @@
                 android:name="com.example.ahsapptest3.HomePage_News.Asb_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout="@layout/template__news_layout"/>-->
+                tools:layout="@layout/news_template"/>-->
 
 
 
@@ -126,14 +126,14 @@
                 android:name="com.example.ahsapptest3.HomePage_News.Sports_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout="@layout/template__news_layout"/>
+                tools:layout="@layout/news_template"/>
 
             <fragment
                 android:id="@+id/districtNews"
                 android:name="com.example.ahsapptest3.HomePage_News.District_News"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout="@layout/template__news_layout"/>-->
+                tools:layout="@layout/news_template"/>-->
         </LinearLayout>
     </ScrollView>
 
@@ -146,7 +146,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
-        tools:layout="@layout/navigation_bar"/>
+        tools:layout="@layout/nav_bar"/>
 
     <!--<include
         android:id="@+id/home_page__navigation_bar"

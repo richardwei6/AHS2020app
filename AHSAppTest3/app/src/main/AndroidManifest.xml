@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Tester"></activity>
+
         <service
             android:name=".NotifService"
             android:enabled="true"
@@ -20,14 +22,15 @@
         <activity android:name=".Settings.Credits_Activity" />
         <activity android:name=".Settings.Terms_And_Agreements_Activity" />
         <activity android:name=".Settings.SettingsActivity" />
-        <activity android:name=".SavedActivity" />
+        <activity android:name=".Saved" />
         <activity android:name=".Notif_Activity" />
         <activity android:name=".ArticleActivity" />
-        <activity android:name=".BulletinActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Bulletin" />
+        <activity android:name=".News">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

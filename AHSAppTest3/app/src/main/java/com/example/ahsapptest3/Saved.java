@@ -25,9 +25,8 @@ import com.example.ahsapptest3.Settings.SettingsActivity;
 
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
-public class SavedActivity extends AppCompatActivity implements Navigation{
+public class Saved extends AppCompatActivity implements Navigation{
 
     private static final String TAG = "SavedActivity";
     private ArticleDatabase articleDatabase;
@@ -72,14 +71,14 @@ public class SavedActivity extends AppCompatActivity implements Navigation{
 
     @Override
     public void goToHome() {
-        Intent myIntent = new Intent(SavedActivity.this,MainActivity.class);
-        SavedActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(Saved.this, News.class);
+        Saved.this.startActivity(myIntent);
     }
 
     @Override
     public void goToBulletin() {
-        Intent myIntent = new Intent(SavedActivity.this,BulletinActivity.class);
-        SavedActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(Saved.this, Bulletin.class);
+        Saved.this.startActivity(myIntent);
     }
 
     @Override
@@ -89,8 +88,8 @@ public class SavedActivity extends AppCompatActivity implements Navigation{
 
     @Override
     public void goToSettings() {
-        Intent myIntent = new Intent(SavedActivity.this, SettingsActivity.class);
-        SavedActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(Saved.this, SettingsActivity.class);
+        Saved.this.startActivity(myIntent);
     }
 
     @Override
@@ -113,7 +112,7 @@ public class SavedActivity extends AppCompatActivity implements Navigation{
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.template__stacked_article_display, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_stacked_display, parent, false);
             ViewHolder holder = new ViewHolder(view);
             return holder;
         }

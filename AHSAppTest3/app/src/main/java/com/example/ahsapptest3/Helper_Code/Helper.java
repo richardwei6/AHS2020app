@@ -1,12 +1,14 @@
 package com.example.ahsapptest3.Helper_Code;
 
 import android.content.Intent;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.text.HtmlCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.ahsapptest3.Article;
@@ -33,6 +35,12 @@ public class Helper {
     public static void setText_toView(TextView view, String text)
     {
         view.setText(text);
+    }
+
+    public static void setHtmlParsedText_toView(TextView view, String text)
+    {
+        view.setMovementMethod(LinkMovementMethod.getInstance());
+        view.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_OPTION_USE_CSS_COLORS));
     }
 
     /**

@@ -9,6 +9,7 @@ public class Article implements Parcelable {
     private String title, author, story;
     private String [] imagePaths;
     private boolean is_bookmarked, notified;
+    private News.TYPE type;
 
     private boolean blank; // false
 
@@ -28,7 +29,8 @@ public class Article implements Parcelable {
             // determined by current articles on phone.
             // false by default
             // for notification page only
-            boolean has_notified
+            boolean has_notified,
+            News.TYPE type
     )
     {
         this.ID = ID;
@@ -39,12 +41,27 @@ public class Article implements Parcelable {
         this.imagePaths = imagePaths;
         this.is_bookmarked = is_bookmarked;
         this.notified = has_notified;
+        this.type = type;
     }
 
     public Article() //blank template, used to construct invisible articles for the purpose of getting the proper view height
     {
         blank = true;
     }
+
+
+
+    public static final Creator<Article> CREATOR = new Creator<Article>() {
+        @Override
+        public Article createFromParcel(Parcel in) {
+            return new Article(in);
+        }
+
+        @Override
+        public Article[] newArray(int size) {
+            return new Article[size];
+        }
+    };
 
     public boolean isBlank()
     {
@@ -78,11 +95,7 @@ public class Article implements Parcelable {
         return is_bookmarked;
     }
     public boolean alreadyNotified() {return notified;}
-
-    public void setBookMarked(boolean is_bookmarked)
-    {
-        this.is_bookmarked = is_bookmarked;
-    }
+    public News.TYPE getType() { return type;}
 
     @Override
     public String toString()
@@ -94,10 +107,13 @@ public class Article implements Parcelable {
                 "author::\t" + author + "\n" +
                 "story::\t" + ((story.length() > 40) ? story.substring(0,40) : story) + "\n" + // so output might not be overly long
                 "bookmarked?\t" + is_bookmarked + "\n" +
-                "notified?\t" + notified
+                "notified?\t" + notified + "\n" +
+                "type::\t" + type.toString()
                 ;
         return returner;
     }
+
+
 
     // The following methods are for the purpose of extending Parcelable
     // make sure to update methods should a new field be added
@@ -110,20 +126,9 @@ public class Article implements Parcelable {
         imagePaths = in.createStringArray();
         is_bookmarked = in.readByte() != 0;
         notified = in.readByte() != 0;
+        type = (News.TYPE) in.readSerializable();
         blank = in.readByte() != 0;
     }
-
-    public static final Creator<Article> CREATOR = new Creator<Article>() {
-        @Override
-        public Article createFromParcel(Parcel in) {
-            return new Article(in);
-        }
-
-        @Override
-        public Article[] newArray(int size) {
-            return new Article[size];
-        }
-    };
 
     @Override
     public int describeContents() {
@@ -140,6 +145,7 @@ public class Article implements Parcelable {
         dest.writeStringArray(imagePaths);
         dest.writeByte((byte) (is_bookmarked ? 1 : 0));
         dest.writeByte((byte) (notified ? 1 : 0));
+        dest.writeSerializable(type);
         dest.writeByte((byte) (blank ? 1 : 0));
     }
 }

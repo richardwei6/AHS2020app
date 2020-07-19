@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -34,7 +35,7 @@ public class ArticleActivity extends AppCompatActivity {
         Helper.setText_toView(dateText,Helper.DateFromTime("MMMM dd, yyyy", article.getTimeUpdated()));
         Helper.setText_toView(titleText,article.getTitle());
         Helper.setText_toView(authorText,article.getAuthor());
-        Helper.setText_toView(bodyText,article.getStory());
+        Helper.setHtmlParsedText_toView(bodyText, article.getStory());
 
         // set up viewpager and associated dots
         ViewPager viewPager = findViewById(R.id.article_viewPager);
@@ -80,6 +81,8 @@ public class ArticleActivity extends AppCompatActivity {
 
         Helper.setBookmarked_toView(bookmarkButton,article.isBookmarked());
         Helper.setBookMarkListener_toView(bookmarkButton, article);
+        TextView typeText = findViewById(R.id.article_type_text);
+        typeText.setText(article.getType().toString());
 
         // set listener for back button
         ImageButton backButton = findViewById(R.id.article_header_back);

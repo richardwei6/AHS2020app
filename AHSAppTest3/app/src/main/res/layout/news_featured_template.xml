@@ -9,6 +9,9 @@
     android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
     android:paddingRight="@dimen/EveryPage_Side_Padding"
     android:paddingBottom="0dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     >
 
     <ImageView
@@ -21,19 +24,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/article_display_template__rounded_darkgray" />
 
-    <ImageButton
-        android:id="@+id/template_featured__bookmarked_button"
-        android:layout_width="@dimen/Article_Display_bookmarked_btn_size"
-        android:layout_height="@dimen/Article_Display_bookmarked_btn_size"
-        android:layout_marginTop="@dimen/Article_Display_padding"
-        android:layout_marginEnd="@dimen/Article_Display_padding"
-        android:layout_marginRight="@dimen/Article_Display_padding"
-        android:background="@drawable/bookmarked_button_background"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="@id/template_featured__ImageView"
-        app:layout_constraintTop_toTopOf="@id/template_featured__ImageView"
-        app:srcCompat="@drawable/bookmarked_icon_inactive" />
-
     <TextView
         android:id="@+id/template_featured__title_Text"
         android:layout_width="0dp"
@@ -42,10 +32,10 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:fontFamily="@font/sf_pro_semibold"
-        android:lines="1"
+        android:maxLines="2"
         android:text="Lorum Ipsum the Long Title"
         android:textColor="@color/Black_000000__HOME"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:autoSizeTextType="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -53,18 +43,50 @@
         app:layout_constraintTop_toBottomOf="@+id/template_featured__ImageView" />
 
     <TextView
+        android:id="@+id/news_featured_typeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+        android:background="@drawable/bulletin_template_type_rounded_background"
+        android:fontFamily="@font/sf_pro_display"
+        android:paddingLeft="7dp"
+        android:paddingTop="3dp"
+        android:paddingRight="7dp"
+        android:paddingBottom="3dp"
+        android:text="Type"
+        android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/template_featured__title_Text" />
+
+    <TextView
         android:id="@+id/template_featured__updated_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/EveryPage_Side_Padding_Quarter"
         android:layout_marginEnd="@dimen/Article_Display_padding"
-        android:layout_marginRight="@dimen/Article_Display_padding"
-        android:layout_marginBottom="@dimen/Article_Display_padding"
         android:background="@drawable/template_featured__rounded_transparent"
         android:fontFamily="@font/sf_pro_display"
         android:lines="1"
         android:padding="5dp"
-        android:text="Updated 5 hours ago"
+        android:text="00m ago"
         android:textColor="@color/DarkestGray_555555__HOME_ARTICLE"
-        app:layout_constraintBottom_toBottomOf="@+id/template_featured__ImageView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/news_featured_smalldot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/news_featured_smalldot"
+        app:layout_constraintTop_toTopOf="@+id/news_featured_smalldot" />
+
+    <ImageView
+        android:id="@+id/news_featured_smalldot"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
+        app:layout_constraintBottom_toBottomOf="@+id/news_featured_typeText"
+        app:layout_constraintStart_toEndOf="@+id/news_featured_typeText"
+        app:layout_constraintTop_toTopOf="@+id/news_featured_typeText"
+        app:srcCompat="@drawable/news_featured_smalldot" />
 </androidx.constraintlayout.widget.ConstraintLayout>

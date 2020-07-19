@@ -36,7 +36,7 @@ public class News_Template extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.template__news_layout, container, false);
+        View view = inflater.inflate(R.layout.news_template, container, false);
 
         if(getArguments() == null)
             return view;
@@ -44,8 +44,8 @@ public class News_Template extends Fragment {
         TextView titleText = view.findViewById(R.id.template_news__TitleText);
         titleText.setText(getArguments().getString(TITLE_KEY));
 
-        ImageView titleBar = view.findViewById(R.id.template_news__rounded_bar);
-        titleBar.setColorFilter(getArguments().getInt(COLOR_KEY));
+        /*ImageView titleBar = view.findViewById(R.id.template_news__rounded_bar);
+        titleBar.setColorFilter(getArguments().getInt(COLOR_KEY));*/
 
        /* String[][] data = getData();
         if(data.length == 0) return view;

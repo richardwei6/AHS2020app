@@ -44,6 +44,8 @@ public class ArticleDatabase extends SQLiteOpenHelper {
     static final int BMARKED_COL = 7;
     private static final String NOTIF = "NOTIF";
     static final int NOTIF_COL = 8;
+    private static final String TYPE = "TYPE";
+    static final int TYPE_COL = 9;
 
     public enum Option {
         BOOKMARK, CURRENT;
@@ -81,7 +83,8 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                         STORY + " TEXT," +
                         IPATHS + " TEXT," +
                         BMARKED + " INTEGER," + // No booleans in sqlite, store them as integers instead (0 or 1)
-                        NOTIF + " INTEGER);"
+                        NOTIF + " INTEGER," +
+                        TYPE + " TEXT);"
         ;
         db.execSQL(createTable);
 
@@ -111,6 +114,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
         contentValues.put(IPATHS, convertArrayToString(article.getImagePaths()));
         contentValues.put(BMARKED, (article.isBookmarked()) ? 1 : 0);
         contentValues.put(NOTIF, (article.alreadyNotified()) ? 1 : 0);
+        contentValues.put(TYPE, article.getType().toString());
 
         long result = db.insert(current_Table, null, contentValues);
 
@@ -179,7 +183,8 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                 data.getString(STORY_COL),
                 convertStringToArray(data.getString(IPATHS_COL)),
                 (data.getInt(BMARKED_COL) == 1),
-                (data.getInt(NOTIF_COL) == 1)
+                (data.getInt(NOTIF_COL) == 1),
+                News.TYPE.valueOf(data.getString(TYPE_COL))
         );
 
         return article;
@@ -210,7 +215,8 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                     data.getString(STORY_COL),
                     convertStringToArray(data.getString(IPATHS_COL)),
                     (data.getInt(BMARKED_COL) == 1),
-                    (data.getInt(NOTIF_COL) == 1)
+                    (data.getInt(NOTIF_COL) == 1),
+                    News.TYPE.valueOf(data.getString(TYPE_COL))
             ));
         }
         return articles;
