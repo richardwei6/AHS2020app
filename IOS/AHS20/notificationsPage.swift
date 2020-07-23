@@ -166,6 +166,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             }
         }
         
+        UIApplication.shared.applicationIconBadgeNumber = unreadNotificationSize;
         
         if (unreadNotificationSize != 0 || readNotificationSize != 0){
             

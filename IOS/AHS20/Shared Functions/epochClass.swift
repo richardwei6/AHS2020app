@@ -19,19 +19,19 @@ final class epochClass{
             return "NULL";
         }
         let currTime = Int64(NSDate().timeIntervalSince1970);
-        let diff = currTime - epoch;
+        let diff = abs(currTime - epoch);
         let timePattern = [(1, "second"), (60, "minute"), (3600, "hour"), (86400, "day"), (604800, "week"), (2592000, "month"), (31536000, "year")];
         var r = "NULL";
-        if (diff >= 0){
-            for i in 1...6{
-                if (floor(Double(diff) / Double(timePattern[i].0)) == 0){
-                    let prefix = Int(floor(Double(diff) / Double(timePattern[i-1].0)));
-                    r = "\(prefix) " + timePattern[i-1].1 + (prefix > 1 ? "s" : "") + " ago";
-                    break;
-                }
+        
+        for i in 1...6{
+            if (floor(Double(diff) / Double(timePattern[i].0)) == 0){
+                let prefix = Int(floor(Double(diff) / Double(timePattern[i-1].0)));
+                r = "\(prefix) " + timePattern[i-1].1 + (prefix > 1 ? "s" : "");
+                break;
             }
         }
-        return r;
+        
+        return currTime - epoch < 0 ? "in " + r : r + " ago";
     }
     
     final class func epochToDateString(epoch: Int64) -> String{ // 99/99/99

@@ -246,7 +246,21 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	//	articleTitle.lineBreakMode = .byWordWrapping;
 		articleTitle.numberOfLines = 0;
 		
-		let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.size.height);
+		var text = "";
+		if (articleSingle.hasHTML){
+			text = parseHTML(s: articleSingle.articleBody ?? "").string;
+		}
+		else{
+			text = (articleSingle.articleBody ?? "");
+		}
+		let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: min(mainArticleView.frame.height - articleTitleFrame.size.height, text.getHeight(withConstrainedWidth: articleTextWidth-spacing, font: UIFont(name: "SFProDisplay-Regular", size: 14)!)));
+		let articleBody = UILabel(frame: articleBodyFrame);
+		articleBody.text = text;
+		articleBody.textAlignment = .left;
+		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
+		articleBody.numberOfLines = 0;
+		
+		/*let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.size.height);
 		let articleBody = UILabel(frame: articleBodyFrame);
 		if (articleSingle.hasHTML){
 			articleBody.text = parseHTML(s: articleSingle.articleBody ?? "").string;
@@ -256,9 +270,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		}
 		articleBody.textAlignment = .left;
 		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
-	//	articleTitle.lineBreakMode = .byWordWrapping;
-		articleBody.numberOfLines = 0;
-		//articleBody.backgroundColor = UIColor.gray;
+		articleBody.numberOfLines = 0;*/
 		
 		let timeStampFrame = CGRect(x: 7, y: height - 25, width: 55, height: 15);
 		let timeStamp = UILabel(frame: timeStampFrame);
@@ -525,7 +537,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	override func viewDidLoad() { // setup function
 		super.viewDidLoad();
 		
-		
 		featuredLabel.text = loading;
 		asbLabel.text = loading;
 		sportsLabel.text = loading;
@@ -534,12 +545,12 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		mainScrollView.alwaysBounceVertical = true;
 	  	getHomeArticleData();
 		refreshControl.addTarget(self, action: #selector(refreshAllArticles), for: UIControl.Event.valueChanged);
-		mainScrollView.refreshControl = refreshControl;
+		mainScrollView.addSubview(refreshControl);
 		mainScrollView.delegate = self;
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
-		mainScrollView.refreshControl?.didMoveToSuperview();
+		refreshControl.didMoveToSuperview();
 	}
 	
 	func  scrollViewDidScroll(_ scrollView: UIScrollView) {

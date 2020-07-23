@@ -260,12 +260,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 let articleTitleFrame = CGRect(x: 0, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 55, height: 34);
                 let articleTitleText = UILabel(frame: articleTitleFrame);
                 articleTitleText.text = article.articleTitle; // insert title text here ------ temporary
-                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 30);
-                //articleTitleText.numberOfLines = 1;
+                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 16);
+                articleTitleText.numberOfLines = 1;
                 //articleTitleText.backgroundColor = UIColor.gray;
-                articleTitleText.adjustsFontSizeToFitWidth = true;
-                articleTitleText.minimumScaleFactor = 0.4;
-                
                 
                 
                 let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
@@ -344,11 +341,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 let articleTitleFrame = CGRect(x: 0, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 55, height: 34);
                 let articleTitleText = UILabel(frame: articleTitleFrame);
                 articleTitleText.text = article.articleTitle; // insert title text here ------ temporary
-                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 30);
+                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 16);
                 //articleTitleText.numberOfLines = 1;
                 //articleTitleText.backgroundColor = UIColor.gray;
-                articleTitleText.adjustsFontSizeToFitWidth = true;
-                articleTitleText.minimumScaleFactor = 0.4;
+                //articleTitleText.adjustsFontSizeToFitWidth = true;
+                //articleTitleText.minimumScaleFactor = 0.4;
                 
                 
                 
