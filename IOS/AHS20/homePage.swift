@@ -246,7 +246,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	//	articleTitle.lineBreakMode = .byWordWrapping;
 		articleTitle.numberOfLines = 0;
 		
-		/*var text = "";
+		var text = "";
 		if (articleSingle.hasHTML){
 			text = parseHTML(s: articleSingle.articleBody ?? "").string;
 		}
@@ -258,9 +258,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleBody.text = text;
 		articleBody.textAlignment = .left;
 		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
-		articleBody.numberOfLines = 0;*/
+		articleBody.numberOfLines = 0;
 		
-		let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.size.height);
+		/*let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.size.height);
 		let articleBody = UILabel(frame: articleBodyFrame);
 		if (articleSingle.hasHTML){
 			articleBody.text = parseHTML(s: articleSingle.articleBody ?? "").string;
@@ -270,7 +270,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		}
 		articleBody.textAlignment = .left;
 		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
-		articleBody.numberOfLines = 0;
+		articleBody.numberOfLines = 0;*/
 		
 		let timeStampFrame = CGRect(x: 7, y: height - 25, width: 55, height: 15);
 		let timeStamp = UILabel(frame: timeStampFrame);
