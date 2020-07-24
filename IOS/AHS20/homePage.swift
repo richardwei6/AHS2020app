@@ -154,6 +154,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 						//print(singleArticle.articleTitle);
 						//print(singleArticle.articleImages);
 						singleArticle.articleCatagory = s.prefix(1).capitalized + s.dropFirst();
+						if (singleArticle.articleCatagory == "Asb"){
+							singleArticle.articleCatagory = "ASB";
+						}
 						temp.append(singleArticle);
 						//print(singleArticle.isFeatured);
 						if (singleArticle.isFeatured == true){
