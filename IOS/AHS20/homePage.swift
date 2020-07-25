@@ -249,7 +249,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	//	articleTitle.lineBreakMode = .byWordWrapping;
 		articleTitle.numberOfLines = 0;
 		
-		var text = "";
+		/*var text = "";
 		if (articleSingle.hasHTML){
 			text = parseHTML(s: articleSingle.articleBody ?? "").string;
 		}
@@ -261,9 +261,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleBody.text = text;
 		articleBody.textAlignment = .left;
 		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
-		articleBody.numberOfLines = 0;
+		articleBody.numberOfLines = 0;*/
 		
-		/*let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.size.height);
+		let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.size.height);
 		let articleBody = UILabel(frame: articleBodyFrame);
 		if (articleSingle.hasHTML){
 			articleBody.text = parseHTML(s: articleSingle.articleBody ?? "").string;
@@ -273,11 +273,12 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		}
 		articleBody.textAlignment = .left;
 		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
-		articleBody.numberOfLines = 0;*/
+		articleBody.numberOfLines = 0;
 		
-		let timeStampFrame = CGRect(x: 7, y: height - 25, width: 55, height: 15);
+		let timeStampText = epochClass.epochToString(epoch: articleSingle.articleUnixEpoch ?? -1);
+		let timeStampFrame = CGRect(x: 7, y: height - 25, width: timeStampText.getWidth(withConstrainedHeight: 15, font: UIFont(name: "SFProDisplay-Semibold", size: 8)!) + 10, height: 15);
 		let timeStamp = UILabel(frame: timeStampFrame);
-		timeStamp.text = epochClass.epochToString(epoch: articleSingle.articleUnixEpoch ?? -1);
+		timeStamp.text = timeStampText;
 		//timeStamp.text = "12 months ago";
 		timeStamp.textAlignment = .center;
 		timeStamp.textColor = UIColor.gray;
@@ -402,16 +403,17 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					titleLabel.textColor = UIColor.black;
 					//SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
 					
-					let articleCatagoryFrame = CGRect(x: 0, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: 87, height: 20);
+					let articleCatagorytext = (currArticle.articleCatagory ?? "No Cata.") + " News";
+					let articleCatagoryFrame = CGRect(x: 0, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: articleCatagorytext.getWidth(withConstrainedHeight: 20, font: UIFont(name: "SFProText-Bold", size: 12)!) + 12, height: 20);
 					let articleCatagory = UILabel(frame: articleCatagoryFrame);
-					articleCatagory.text = (currArticle.articleCatagory ?? "No Cata.") + " News";
+					articleCatagory.text = articleCatagorytext;
 					articleCatagory.textAlignment = .center;
 					articleCatagory.textColor = .white;
 					articleCatagory.backgroundColor = makeColor(r: 159, g: 12, b: 12);
 					articleCatagory.font = UIFont(name: "SFProText-Bold", size: 12);
 					articleCatagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
 					
-					let timeStampFrame = CGRect(x: 87, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: 120, height: 20);
+					let timeStampFrame = CGRect(x: articleCatagoryFrame.size.width, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: 120, height: 20);
 					let timeStamp = UILabel(frame: timeStampFrame);
 					timeStamp.text = "   ∙   " + epochClass.epochToString(epoch: currArticle.articleUnixEpoch ?? -1);
 					timeStamp.textAlignment = .left;
