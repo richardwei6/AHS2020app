@@ -60,8 +60,6 @@ struct bulletinArticleData: Codable {
     var articleTitle: String?;
     var articleUnixEpoch: Int64?; // unix epoch time stamp
     var articleBody: String?;
-    var articleAuthor: String?;
-    var articleImages: [String]?; // list of image urls
     var articleCatagory: String?;
     var articleType = -1;
     var hasHTML = false;
@@ -148,11 +146,11 @@ final class SegueFromRight: UIStoryboardSegue {
 
 func bulletinDataToarticleData(data: bulletinArticleData) -> articleData{
     var temp = articleData();
-    temp.articleAuthor = data.articleAuthor;
+    temp.articleAuthor = nil;
     temp.articleBody = data.articleBody;
     temp.articleUnixEpoch = data.articleUnixEpoch;
     temp.articleID = data.articleID;
-    temp.articleImages = data.articleImages;
+    temp.articleImages = [];
     temp.articleTitle = data.articleTitle;
     temp.articleCatagory = data.articleCatagory;
     temp.hasHTML = data.hasHTML;
@@ -351,22 +349,12 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
                         var singleArticle = bulletinArticleData();
                         singleArticle.articleID = article.key as! String;
                         while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-                            if (articleContent.key == "articleAuthor"){
-                                singleArticle.articleAuthor = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleBody"){
+                            
+                            if (articleContent.key == "articleBody"){
                                 singleArticle.articleBody = articleContent.value as? String;
                             }
                             else if (articleContent.key == "articleUnixEpoch"){
                                 singleArticle.articleUnixEpoch = articleContent.value as? Int64;
-                            }
-                            else if (articleContent.key == "articleImages"){
-                                var tempImage = [String]();
-                                let imageIt = articleContent.children;
-                                while let image = imageIt.nextObject() as? DataSnapshot{
-                                    tempImage.append(image.value as! String);
-                                }
-                                singleArticle.articleImages = tempImage;
                             }
                             else if (articleContent.key == "articleTitle"){
                                 singleArticle.articleTitle = articleContent.value as? String;

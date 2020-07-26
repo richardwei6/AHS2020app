@@ -22,9 +22,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     @IBOutlet weak var filterScrollViewHeightContraint: NSLayoutConstraint!
     
-    
     let refreshControl = UIRefreshControl();
-    let seniorYearConst = "21";
     
     // padding variables
     let articleHorizontalPadding = CGFloat(10);
@@ -95,24 +93,14 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                         
                         while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                             
-                            
-                            if (articleContent.key == "articleAuthor"){
-                                singleArticle.articleAuthor = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleBody"){
+                 
+                            if (articleContent.key == "articleBody"){
                                 singleArticle.articleBody = articleContent.value as? String;
                             }
                             else if (articleContent.key == "articleUnixEpoch"){
                                 singleArticle.articleUnixEpoch = articleContent.value as? Int64;
                             }
-                            else if (articleContent.key == "articleImages"){
-                                var tempImage = [String]();
-                                let imageIt = articleContent.children;
-                                while let image = imageIt.nextObject() as? DataSnapshot{
-                                    tempImage.append(image.value as! String);
-                                }
-                                singleArticle.articleImages = tempImage;
-                            }
+                            
                             else if (articleContent.key == "articleTitle"){
                                 singleArticle.articleTitle = articleContent.value as? String;
                             }
