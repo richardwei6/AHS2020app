@@ -247,7 +247,7 @@ public class Helper{
      * */
     public static void setBookMarkListener_toView(final ImageView view, final Article article)
     {
-        final ArticleDatabase articleDatabase = new ArticleDatabase(view.getContext(), ArticleDatabase.Option.BOOKMARK);
+        final ArticleDatabase articleDatabase = ArticleDatabase.getInstance(view.getContext(), ArticleDatabase.Option.BOOKMARK);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
