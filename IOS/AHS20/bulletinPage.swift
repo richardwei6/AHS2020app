@@ -485,6 +485,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         bulletinScrollView.addSubview(refreshControl);
         bulletinScrollView.isScrollEnabled = true;
         bulletinScrollView.alwaysBounceVertical = true;
+        refreshControl.beginRefreshing();
         setUpFilters();
         // set up bulletin for the first time before any filters
         getBulletinArticleData();

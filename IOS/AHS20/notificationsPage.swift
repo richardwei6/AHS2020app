@@ -367,6 +367,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         notificationScrollView.addSubview(refreshControl);
         notificationScrollView.isScrollEnabled = true;
         notificationScrollView.alwaysBounceVertical = true;
+        refreshControl.beginRefreshing();
         loadNotifPref();
         getLocalNotifications();
         
