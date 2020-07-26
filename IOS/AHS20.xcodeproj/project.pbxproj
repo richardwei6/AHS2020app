@@ -18,6 +18,7 @@
 		330D3E27241D5E8D007D0628 /* AHS20Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E26241D5E8D007D0628 /* AHS20Tests.swift */; };
 		330D3E32241D5E8D007D0628 /* AHS20UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E31241D5E8D007D0628 /* AHS20UITests.swift */; };
 		331793F22464FEF5007CF7B7 /* notificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331793F12464FEF5007CF7B7 /* notificationSettings.swift */; };
+		333C082824CD004900E236CD /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C082724CD004900E236CD /* UIImageColors.swift */; };
 		3343E25D244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */; };
 		3343E25E244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */; };
 		3343E25F244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */; };
@@ -101,6 +102,7 @@
 		330D3E33241D5E8D007D0628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		331793F12464FEF5007CF7B7 /* notificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationSettings.swift; sourceTree = "<group>"; };
 		333AD720161C30D24A5F236D /* Pods_AHS20Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AHS20Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		333C082724CD004900E236CD /* UIImageColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Black.ttf"; sourceTree = "<group>"; };
 		3343E260244D0DD30009D136 /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
 		3343E264244D0DD80009D136 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Bold.ttf"; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				33B77F2F249ED2B200A74B3A /* epochClass.swift */,
 				33B77F31249ED2E500A74B3A /* extensions.swift */,
 				33CB33CC24BC0F11005BB736 /* bulletinFunc.swift */,
+				333C082724CD004900E236CD /* UIImageColors.swift */,
 			);
 			path = "Shared Functions";
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				330D3E12241D5E8C007D0628 /* SceneDelegate.swift in Sources */,
 				330B4D4D2484CA4C001087E9 /* NotificationSettingsWrapper.swift in Sources */,
 				331793F22464FEF5007CF7B7 /* notificationSettings.swift in Sources */,
+				333C082824CD004900E236CD /* UIImageColors.swift in Sources */,
 				33E69204243AD1F20004E2F1 /* bulletinPage.swift in Sources */,
 				33B77F2E249ED26F00A74B3A /* savedArticleClass.swift in Sources */,
 			);

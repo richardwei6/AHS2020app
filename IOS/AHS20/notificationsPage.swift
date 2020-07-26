@@ -149,11 +149,16 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         }
     }
     
+    func notificationSort(a: notificationData, b: notificationData)->Bool{
+        return a.notificationUnixEpoch ?? INT64_MAX > b.notificationUnixEpoch ?? INT64_MAX;
+    }
+    
     func loadScrollView(){
         
         unreadNotificationSize = notificationList[1].count;
         readNotificationSize = notificationList[0].count;
-        
+        notificationList[1] = notificationList[1].sorted(by: notificationSort);
+        notificationList[0] = notificationList[0].sorted(by: notificationSort);
         // remove prev subviews
         for subview in notificationScrollView.subviews{
             if (subview != refreshControl){
@@ -161,6 +166,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             }
         }
         
+        UIApplication.shared.applicationIconBadgeNumber = unreadNotificationSize;
         
         if (unreadNotificationSize != 0 || readNotificationSize != 0){
             
@@ -361,6 +367,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         notificationScrollView.addSubview(refreshControl);
         notificationScrollView.isScrollEnabled = true;
         notificationScrollView.alwaysBounceVertical = true;
+        refreshControl.beginRefreshing();
         loadNotifPref();
         getLocalNotifications();
         

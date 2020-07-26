@@ -185,6 +185,10 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         return copy.count == 0 ? filterRead(copy: totalArticles) : filterRead(copy: copy);
     }
     
+    func articleSorting(a: bulletinArticleData, b: bulletinArticleData)->Bool{
+        return (a.articleUnixEpoch ?? INT64_MAX) > (b.articleUnixEpoch ?? INT64_MAX);
+    }
+    
     func filterRead(copy: [bulletinArticleData]) -> [[bulletinArticleData]]{ // 0th row is unread 1st is read
         var output = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 2);
         loadBullPref();
@@ -194,6 +198,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             }
             else{
                 output[0].append(i);
+            }
+        }
+        for subview in bulletinScrollView.subviews{
+            if (subview != refreshControl){
+                subview.removeFromSuperview();
             }
         }
         return output;
@@ -212,7 +221,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         // set up bulletin
         
         // remove all prev views
-        if (bulletinArticleList[0].count > 0 && bulletinArticleList[1].count > 0 && bulletinArticleList[2].count > 0 && bulletinArticleList[3].count > 0 && bulletinArticleList[4].count > 0 && bulletinArticleList[5].count > 0){
+        if (bulletinArticleList[0].count > 0 || bulletinArticleList[1].count > 0 || bulletinArticleList[2].count > 0 || bulletinArticleList[3].count > 0 || bulletinArticleList[4].count > 0 || bulletinArticleList[5].count > 0){
       
             totalArticles = [bulletinArticleData]();
             for i in 0...5{
@@ -220,12 +229,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     totalArticles.append(c);
                 }
             }
-            
-            for subview in bulletinScrollView.subviews{
-                if (subview != refreshControl){
-                    subview.removeFromSuperview();
-                }
-            }
+            totalArticles = totalArticles.sorted(by: articleSorting);
             
             currentArticles = filterArticles();
            // print(currentArticles);
@@ -256,12 +260,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 let articleTitleFrame = CGRect(x: 0, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 55, height: 34);
                 let articleTitleText = UILabel(frame: articleTitleFrame);
                 articleTitleText.text = article.articleTitle; // insert title text here ------ temporary
-                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 30);
-                //articleTitleText.numberOfLines = 1;
+                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 16);
+                articleTitleText.numberOfLines = 1;
                 //articleTitleText.backgroundColor = UIColor.gray;
-                articleTitleText.adjustsFontSizeToFitWidth = true;
-                articleTitleText.minimumScaleFactor = 0.4;
-                
                 
                 
                 let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
@@ -340,11 +341,11 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 let articleTitleFrame = CGRect(x: 0, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 55, height: 34);
                 let articleTitleText = UILabel(frame: articleTitleFrame);
                 articleTitleText.text = article.articleTitle; // insert title text here ------ temporary
-                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 30);
+                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 16);
                 //articleTitleText.numberOfLines = 1;
                 //articleTitleText.backgroundColor = UIColor.gray;
-                articleTitleText.adjustsFontSizeToFitWidth = true;
-                articleTitleText.minimumScaleFactor = 0.4;
+                //articleTitleText.adjustsFontSizeToFitWidth = true;
+                //articleTitleText.minimumScaleFactor = 0.4;
                 
                 
                 
@@ -484,6 +485,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         bulletinScrollView.addSubview(refreshControl);
         bulletinScrollView.isScrollEnabled = true;
         bulletinScrollView.alwaysBounceVertical = true;
+        refreshControl.beginRefreshing();
         setUpFilters();
         // set up bulletin for the first time before any filters
         getBulletinArticleData();
