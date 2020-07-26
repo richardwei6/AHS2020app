@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/template__featured_ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,8 +10,7 @@
     android:paddingBottom="0dp"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    >
+    android:foreground="?android:attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/template_featured__ImageView"
@@ -22,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/article_display_template__rounded_darkgray" />
+        app:srcCompat="@drawable/image_bg" />
 
     <TextView
         android:id="@+id/template_featured__title_Text"
@@ -48,7 +46,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-        android:background="@drawable/bulletin_template_type_rounded_background"
+        android:background="@drawable/type_rounded_bg"
         android:fontFamily="@font/sf_pro_display"
         android:paddingLeft="7dp"
         android:paddingTop="3dp"
@@ -66,9 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/EveryPage_Side_Padding_Quarter"
         android:layout_marginEnd="@dimen/Article_Display_padding"
-        android:background="@drawable/template_featured__rounded_transparent"
         android:fontFamily="@font/sf_pro_display"
-        android:lines="1"
         android:padding="5dp"
         android:text="00m ago"
         android:textColor="@color/DarkestGray_555555__HOME_ARTICLE"
@@ -77,7 +73,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/news_featured_smalldot"
-        app:layout_constraintTop_toTopOf="@+id/news_featured_smalldot" />
+        app:layout_constraintTop_toTopOf="@+id/news_featured_smalldot"
+        android:layout_marginRight="@dimen/Article_Display_padding"
+        android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Quarter" />
 
     <ImageView
         android:id="@+id/news_featured_smalldot"

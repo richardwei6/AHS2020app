@@ -5,9 +5,9 @@
     android:id="@+id/header__ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF"
+    android:background="@drawable/news_header_bg"
+    android:elevation="5dp"
     android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
-    android:paddingRight="@dimen/EveryPage_Side_Padding"
     android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
     tools:context=".Header">
 
@@ -15,11 +15,11 @@
         android:id="@+id/header__TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
-        android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_marginStart="@dimen/EveryPage_Side_Padding_Quarter"
+        android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Quarter"
         android:fontFamily="@font/sf_pro_semibold"
         android:text="Arcadia"
-        android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+        android:textColor="@color/NEW_AngryRed_9F0C0C__ALL"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/header__image"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,13 +28,11 @@
         android:id="@+id/header__timeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
-        android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-        android:fontFamily="@font/sf_pro_display"
+        android:fontFamily="@font/sf_pro_semibold"
         android:text="Month 00"
-        android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+        android:textColor="@color/NEW_GoldenYellow_DCD33D__HOME_BULLETIN"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@id/header__image"
+        app:layout_constraintStart_toStartOf="@+id/header__TitleText"
         app:layout_constraintTop_toBottomOf="@+id/header__TitleText" />
 
     <ImageView
@@ -43,38 +41,36 @@
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
         android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-        android:scaleType="fitCenter"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:src="@drawable/feather"
+        android:scaleType="centerInside"
+        android:src="@mipmap/feather"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio=".75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+<!--
     <ImageButton
         android:id="@+id/header__notifications_icon"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/EveryPage_Side_Padding"
+        android:layout_marginRight="@dimen/EveryPage_Side_Padding"
+        android:adjustViewBounds="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="@id/header_75horz_guideline"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/header_25horz_guideline"
-        app:srcCompat="@drawable/icon_notifications"
-        android:background="?attr/selectableItemBackground"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_notifications" />-->
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/header_25horz_guideline"
+    <fragment
+        android:id="@+id/header__notifications_icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".20" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/header_75horz_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".80" />
+        android:layout_height="0dp"
+        android:name="com.example.ahsapptest3.NotifBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/notif_btn"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

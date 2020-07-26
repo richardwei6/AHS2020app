@@ -1,7 +1,5 @@
 package com.example.ahsapptest3.Settings;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,14 +9,18 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.ahsapptest3.Bulletin;
-import com.example.ahsapptest3.News;
 import com.example.ahsapptest3.Navigation;
+import com.example.ahsapptest3.News;
+import com.example.ahsapptest3.NotifBtn;
+import com.example.ahsapptest3.Notif_Activity;
 import com.example.ahsapptest3.R;
 import com.example.ahsapptest3.Saved;
 import com.example.ahsapptest3.Tester;
 
-public class SettingsActivity extends AppCompatActivity implements Navigation {
+public class SettingsActivity extends AppCompatActivity implements Navigation, NotifBtn.Navigation {
 
     private static final String FONT_SETTING = "font_setting";
     private static final String FONT_SIZE = "1";
@@ -129,5 +131,11 @@ public class SettingsActivity extends AppCompatActivity implements Navigation {
     @Override
     public int getScrollingViewId() {
         return R.id.settings_ScrollView;
+    }
+
+    @Override
+    public void goToNotif() {
+        Intent myIntent = new Intent(SettingsActivity.this, Notif_Activity.class);
+        SettingsActivity.this.startActivity(myIntent);
     }
 }

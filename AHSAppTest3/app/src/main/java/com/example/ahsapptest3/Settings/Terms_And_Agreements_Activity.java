@@ -1,10 +1,10 @@
 package com.example.ahsapptest3.Settings;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ahsapptest3.R;
 

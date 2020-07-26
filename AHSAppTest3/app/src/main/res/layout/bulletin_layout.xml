@@ -36,24 +36,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
                 android:paddingStart="@dimen/EveryPage_Side_Padding"
-                android:paddingTop="@dimen/EveryPage_Side_Padding"
-                android:paddingEnd="@dimen/EveryPage_Side_Padding"
-                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingLeft="@dimen/EveryPage_Side_Padding"
+                android:paddingRight="@dimen/EveryPage_Side_Padding_Half">
 
                 <TextView
                     android:id="@+id/bulletin_titleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+
+                    android:layout_marginBottom="@dimen/EveryPage_Side_Padding_Half"
                     android:fontFamily="@font/din_alternate_bold"
                     android:text="Student Bulletin"
                     android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                     />
+<!--
 
                 <ImageView
                     android:id="@+id/bulletin_notif_Image"
@@ -61,9 +67,23 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0"
                     android:adjustViewBounds="true"
-                    android:padding="@dimen/EveryPage_Side_Padding_Quarter"
+
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:paddingLeft="@dimen/EveryPage_Side_Padding"
+                    android:paddingRight="@dimen/EveryPage_Side_Padding"
                     android:tint="@color/NEW_DarkCrimson_1A0303__BULLETIN"
                     app:srcCompat="@drawable/icon_notifications" />
+-->
+
+                <fragment
+                    android:id="@+id/bulletin_notifbtn"
+                    android:name="com.example.ahsapptest3.NotifBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+
+                    android:adjustViewBounds="true"
+                    tools:layout="@layout/notif_btn" />
             </LinearLayout>
 
 

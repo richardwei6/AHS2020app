@@ -2,11 +2,11 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape
-            android:innerRadius="0dp"
+            android:innerRadius="3dp"
             android:shape="ring"
-            android:thickness="@dimen/Selector_Dot_Radius_unselected"
+            android:thickness="1dp"
             android:useLevel="false">
-            <solid android:color="@color/DarkGray_8D898D__HOME_BULLETIN"/>
+            <solid android:color="@color/NEW_Gray_707070__HOME_ARTICLE"/>
         </shape>
     </item>
 </layer-list>

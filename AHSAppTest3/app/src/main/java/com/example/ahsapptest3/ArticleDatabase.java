@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -15,7 +14,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import android.database.DatabaseUtils;
 
 // important note: if there is a weird error (column not found when it exists, for ex) , try clearing all storage on the device/ emulator
 // especially when you change the columns somehow in the database
@@ -25,6 +23,21 @@ public class ArticleDatabase extends SQLiteOpenHelper {
 
     private static final String TAG = "BookmarkHandler";
 
+    private static ArticleDatabase[] mInstances = new ArticleDatabase[Option.values().length];
+    public static ArticleDatabase getInstance(Context context, Option selection)
+    {
+        Option[] allOptions = Option.values();
+        int pos = -1;
+        for(int i = 0; i < allOptions.length; i++)
+            if (selection == allOptions[i])
+                pos = i;
+
+        if(mInstances[pos] == null)
+        {
+            mInstances[pos] = new ArticleDatabase(context.getApplicationContext(), allOptions[pos]);
+        }
+        return mInstances[pos];
+    }
 
     private static final String COL0 = "ID";
 
@@ -54,9 +67,15 @@ public class ArticleDatabase extends SQLiteOpenHelper {
     private static final String CURRENT_ART_TABLE = "current_table"; // current articles stored locally
 
     private String current_Table;
-    public ArticleDatabase(@Nullable Context context, Option selection) {
+    private Option currentOption;
+    public Option getCurrentOption() {
+        return currentOption;
+    }
+
+    private ArticleDatabase(@Nullable Context context, Option selection) {
         super(context, getTableID_FromEnum(selection), null,1);
         current_Table = getTableID_FromEnum(selection);
+        currentOption = selection;
     }
 
     private static String getTableID_FromEnum (Option selection)
@@ -98,28 +117,34 @@ public class ArticleDatabase extends SQLiteOpenHelper {
 
     /**
      * Adds a new article to the database
-     * @param article Article
+     * @param articles Article
      * @return whether it added successfully to the database
      */
-    public boolean add(Article article)
+    public boolean add(Article... articles)
     {
+        boolean succeeded = true;
+
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
+        for(Article article: articles)
+        {
+            ContentValues contentValues = new ContentValues();
 
-        contentValues.put(ART_ID, article.getID());
-        contentValues.put(TIME, article.getTimeUpdated());
-        contentValues.put(TITLE, article.getTitle());
-        contentValues.put(AUTHOR, article.getAuthor());
-        contentValues.put(STORY, article.getStory());
-        contentValues.put(IPATHS, convertArrayToString(article.getImagePaths()));
-        contentValues.put(BMARKED, (article.isBookmarked()) ? 1 : 0);
-        contentValues.put(NOTIF, (article.alreadyNotified()) ? 1 : 0);
-        contentValues.put(TYPE, article.getType().toString());
+            contentValues.put(ART_ID, article.getID());
+            contentValues.put(TIME, article.getTimeUpdated());
+            contentValues.put(TITLE, article.getTitle());
+            contentValues.put(AUTHOR, article.getAuthor());
+            contentValues.put(STORY, article.getStory());
+            contentValues.put(IPATHS, convertArrayToString(article.getImagePaths()));
+            contentValues.put(BMARKED, (article.isBookmarked()) ? 1 : 0);
+            contentValues.put(NOTIF, (article.alreadyNotified()) ? 1 : 0);
+            contentValues.put(TYPE, article.getType().toString());
 
-        long result = db.insert(current_Table, null, contentValues);
+            long result = db.insert(current_Table, null, contentValues);
+            succeeded = succeeded && (result != -1);
+        }
 
         // if inserted incorrectly -1 is the return value
-        return result != -1;
+        return succeeded;
     }
 
     /**
@@ -127,7 +152,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
      * @param ID   The article to be updated
      * @param notified     Whether it is notified or not
      */
-    public void updateNotified(String ID, boolean notified)
+    public void updateNotifiedStatus(String ID, boolean notified)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE " + current_Table
@@ -186,6 +211,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                 (data.getInt(NOTIF_COL) == 1),
                 News.TYPE.valueOf(data.getString(TYPE_COL))
         );
+        data.close();
 
         return article;
     }
@@ -197,8 +223,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + current_Table;
-        Cursor data = db.rawQuery(query, null);
-        return data;
+        return db.rawQuery(query, null);
     }
 
     public ArrayList<Article> getAllArticles()
@@ -219,6 +244,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                     News.TYPE.valueOf(data.getString(TYPE_COL))
             ));
         }
+        data.close();
         return articles;
     }
 
@@ -232,7 +258,9 @@ public class ArticleDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String selectQuery = "SELECT "+ ART_ID +" FROM " + current_Table + " WHERE  " + ART_ID + " = '" + id + "'";
         Cursor cursor = db.rawQuery(selectQuery,null);
-        return cursor.getCount() > 0;
+        boolean alreadyAdded = cursor.getCount() > 0;
+        cursor.close();
+        return alreadyAdded;
     }
 
     /**

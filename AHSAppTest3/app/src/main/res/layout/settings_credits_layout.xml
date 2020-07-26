@@ -29,7 +29,7 @@
             android:padding="@dimen/EveryPage_Side_Padding_Half"
 
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/article_back_button" />
+            app:srcCompat="@drawable/arrow_back" />
 
         <TextView
             android:id="@+id/credits_header_text"

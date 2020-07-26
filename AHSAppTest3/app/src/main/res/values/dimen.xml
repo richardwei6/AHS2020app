@@ -28,4 +28,5 @@
     <dimen name = "Selector_Dot_Radius_selected">4dp</dimen>
 
     <dimen name = "Rounded_Background_Radius">10dp</dimen>
+    <dimen name = "SmallRound_BG_Radius">5dp</dimen>
 </resources>

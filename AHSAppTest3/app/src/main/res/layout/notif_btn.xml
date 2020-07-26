@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".NotifBtn">
+
+    <ImageButton
+        android:id="@+id/notif_btn"
+        android:layout_width="wrap_content"
+        android:paddingLeft="@dimen/EveryPage_Side_Padding"
+        android:paddingRight="@dimen/EveryPage_Side_Padding"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/icon_notifications" />
+
+</FrameLayout>

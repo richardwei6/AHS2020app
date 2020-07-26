@@ -3,7 +3,7 @@ package com.example.ahsapptest3;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
@@ -21,7 +21,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class News extends AppCompatActivity implements Navigation{
+public class News extends AppCompatActivity implements Navigation, NotifBtn.Navigation{
+
+    @Override
+    public void goToNotif() {
+        Intent myIntent = new Intent(News.this, Notif_Activity.class);
+        News.this.startActivity(myIntent);
+    }
 
     /**
      * Be extremely!!! careful when changing these types! May cause problems with type conversion in ArticleDatabase
@@ -63,14 +69,22 @@ public class News extends AppCompatActivity implements Navigation{
 
         };
 
-        String [] data_ref = new String[] {
+        final String [] data_ref = new String[] {
                 "asb",
                 "sports",
                 "district",
         };
+
+        final ArrayList<Article> allArticles = new ArrayList<>();
         final ArrayList<Article> featured_articles = new ArrayList<>();
         final Context context = this;
-        final ArticleDatabase currentDatabase= new ArticleDatabase(context, ArticleDatabase.Option.CURRENT);
+        final ArticleDatabase currentDatabase = ArticleDatabase.getInstance(context, ArticleDatabase.Option.CURRENT);
+
+        /*for(Article article: currentDatabase.getAllArticles())
+            Log.d(TAG, article.toString());*/
+
+        final boolean[] firsttime = new boolean[1];
+        firsttime[0] = true;
 
         for(int i = 0; i < data_ref.length; i++)
         {
@@ -81,6 +95,12 @@ public class News extends AppCompatActivity implements Navigation{
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(firsttime[0])
+                    {
+                        currentDatabase.deleteAll();
+                        firsttime[0] = false;
+                    }
+
                     // use ArrayList b/c no idea how many articles
                     ArrayList<Article> articles = new ArrayList<>();
 
@@ -106,13 +126,14 @@ public class News extends AppCompatActivity implements Navigation{
                         boolean is_featured = (boolean) child_sn.child("isFeatured").getValue();
 
                         // check if already bookmarked
-                        ArticleDatabase bookMarkDatabase = new ArticleDatabase(context, ArticleDatabase.Option.BOOKMARK);
+                        ArticleDatabase bookMarkDatabase = ArticleDatabase.getInstance(context, ArticleDatabase.Option.BOOKMARK);
                         boolean is_bookmarked = bookMarkDatabase.alreadyAdded(ID);
 
                         Article article = new Article(ID,article_time,title,author,body,imagePaths,is_bookmarked,false, TYPE.values()[finalI]);
 
                         // add Article to ArrayList
                         articles.add(article); // default values for bookmark and notified
+
 
                         // add Article to current article database
                         if(!currentDatabase.alreadyAdded(ID))
@@ -133,21 +154,27 @@ public class News extends AppCompatActivity implements Navigation{
                     // add the fragment to the view
                     getSupportFragmentManager()
                             .beginTransaction()
+                            .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out)
                             .replace(newsLayouts[finalI].getId(),newsFrag)
                             .commitAllowingStateLoss();
 
-                    int i = 3;
+                    final int i = 3;
                     // handle featured articles
                     // initialize the fragment
                     Article[] featured_array = new Article[featured_articles.size()];
-                    News_Template featuredFrag = News_Template.newInstanceOf(featured_articles.toArray(featured_array), titles[i], barColors[i], true);
+                    final News_Template featuredFrag = News_Template.newInstanceOf(featured_articles.toArray(featured_array), titles[i], barColors[i], true);
 
                     // add the fragment to the view
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(newsLayouts[i].getId(),featuredFrag)
-                            .commitAllowingStateLoss();
-
+                    new Handler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out)
+                                    .replace(newsLayouts[i].getId(),featuredFrag)
+                                    .commitAllowingStateLoss();
+                        }
+                    });
 
                 }
 

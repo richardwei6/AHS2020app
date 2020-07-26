@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <gradient
-        android:type="linear"
-        android:startColor="@color/LightGray_F2F2F3__HOME"
-        android:endColor="@color/LightishGray_EFEDED__HOME_NOTIF"
-        android:angle="270"/>
-</shape>

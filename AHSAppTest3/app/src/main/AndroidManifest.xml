@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Tester"></activity>
+        <activity android:name=".Bulletin_Item_Activity"></activity>
+        <activity android:name=".Tester" />
 
         <service
             android:name=".NotifService"

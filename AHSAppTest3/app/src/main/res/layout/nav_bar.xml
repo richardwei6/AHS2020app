@@ -12,7 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
-    android:elevation="5dp"
+    android:elevation="15dp"
 
     >
 
@@ -20,7 +20,7 @@
         android:id="@+id/nav_bar_home_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/Nav_Button_SideLength"
-        android:background="?attr/selectableItemBackground"
+        android:background="?attr/selectableItemBackgroundBorderless"
 
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
@@ -37,7 +37,7 @@
         android:id="@+id/nav_bar_bulletin_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/Nav_Button_SideLength"
-        android:background="?attr/selectableItemBackground"
+        android:background="?attr/selectableItemBackgroundBorderless"
 
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
@@ -53,7 +53,7 @@
         android:id="@+id/nav_bar_bookmarks_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/Nav_Button_SideLength"
-        android:background="?attr/selectableItemBackground"
+        android:background="?attr/selectableItemBackgroundBorderless"
 
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
@@ -70,7 +70,7 @@
         android:id="@+id/nav_bar_settings_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/Nav_Button_SideLength"
-        android:background="?attr/selectableItemBackground"
+        android:background="?attr/selectableItemBackgroundBorderless"
 
         android:paddingTop="12dp"
         android:paddingBottom="12dp"

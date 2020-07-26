@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@color/NEW_GraniteRed_7E6E6A__BULLETIN</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimaryDark">@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF</color>
     <color name="colorAccent">@color/MoldyGolden_BD9768__BULLETIN</color>
 
     <color name = "Blank">#0000</color>
@@ -31,6 +31,10 @@
 
     <color name = "NEW_DarkCrimson_1A0303__BULLETIN">#1A0303</color>
     <color name = "NEW_GraniteRed_7E6E6A__BULLETIN">#7E6E6A</color>
-    <color name = "NEW_AngryRed_9F0C0C__BULLETIN">#9F0C0C</color>
+    <color name = "NEW_AngryRed_9F0C0C__ALL">#9F0C0C</color>
+    <color name = "NEW_GoldenYellow_DCD33D__HOME_BULLETIN">#DCD33D</color>
+    <color name = "NEW_LightGray_EAEAEA__HOME">#EAEAEA</color>
+    <color name = "NEW_Gray_707070__HOME_ARTICLE">#707070</color>
+    <color name = "NEW_CoffeeRed_473D3D__HOME_ARTICLE_SAVED">#473D3D</color>
     <!--<color name = "NEW_GraniteRed_9C0000__BULLETIN">#9C0000</color>-->
 </resources>

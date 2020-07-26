@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">AHSAppTest3</string>
 
-    <string name="time_hours_updated_placeholder">%1$d hours ago</string>
-    <string name="time_minutes_updated_placeholder">%1$d min ago</string>
-    <string name="time_days_updated_placeholder">%1$d days ago</string>
+    <string name="time_hours_updated_placeholder">%1$d hours %2$s</string>
+    <string name="time_minutes_updated_placeholder">%1$d min %2$s</string>
+    <string name="time_days_updated_placeholder">%1$d days %2$s</string>
+    <string name="ago">ago</string>
+    <string name="from_now">from now</string>
+
     <string name="author_placeholder">By %1$s</string>
 
     <!-- TODO: Remove or change this placeholder text -->

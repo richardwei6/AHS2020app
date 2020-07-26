@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/notif_display_background_rounded" />
+        app:srcCompat="@drawable/loading_rounded_bg" />
 
     <ImageView
         android:id="@+id/notif_display_indicatorImage"
@@ -80,7 +80,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notif_forward_button" />
+        app:srcCompat="@drawable/arrow_forward" />
 
     <TextView
         android:id="@+id/notif_display_timeUpdatedText"

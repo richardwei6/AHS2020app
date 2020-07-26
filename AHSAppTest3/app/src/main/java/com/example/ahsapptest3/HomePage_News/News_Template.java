@@ -5,7 +5,6 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -66,9 +65,6 @@ public class News_Template extends Fragment {
         assert parcelables != null;
         articles = Arrays.copyOf(parcelables,parcelables.length,Article[].class); // attempts to avoid classcastexception
 
-        TextView goneText = view.findViewById(R.id.template_news_goneText);
-        if(articles.length != 0)
-            goneText.setVisibility(View.GONE);
 
         viewPager = view.findViewById(R.id.template_news__ViewPager);
 

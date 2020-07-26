@@ -1,19 +1,16 @@
 package com.example.ahsapptest3;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
-
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.ahsapptest3.Helper_Code.Helper;
 import com.google.android.material.tabs.TabLayout;
@@ -34,7 +31,7 @@ public class ArticleActivity extends AppCompatActivity {
 
         Helper.setText_toView(dateText,Helper.DateFromTime("MMMM dd, yyyy", article.getTimeUpdated()));
         Helper.setText_toView(titleText,article.getTitle());
-        Helper.setText_toView(authorText,article.getAuthor());
+        authorText.setText(this.getString(R.string.author_placeholder, article.getAuthor()));
         Helper.setHtmlParsedText_toView(bodyText, article.getStory());
 
         // set up viewpager and associated dots
@@ -48,6 +45,7 @@ public class ArticleActivity extends AppCompatActivity {
             {
                 ImageView imageView = new ImageView(container.getContext());
                 Helper.setImage_toView_fromUrl(imageView, article.getImagePaths()[position]);
+
                 container.addView(imageView);
                 return imageView;
 

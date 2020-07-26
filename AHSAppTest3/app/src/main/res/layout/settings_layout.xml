@@ -112,7 +112,7 @@
                         android:layout_weight="0"
                         android:adjustViewBounds="true"
                         android:scaleType="centerInside"
-                        app:srcCompat="@drawable/notif_forward_button" />
+                        app:srcCompat="@drawable/arrow_forward" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -174,7 +174,7 @@
                         android:layout_weight="0"
                         android:adjustViewBounds="true"
                         android:scaleType="centerInside"
-                        app:srcCompat="@drawable/notif_forward_button" />
+                        app:srcCompat="@drawable/arrow_forward" />
                 </LinearLayout>
 
                 <View style="@style/Divider" />
@@ -201,7 +201,7 @@
                         android:layout_weight="0"
                         android:adjustViewBounds="true"
                         android:scaleType="centerInside"
-                        app:srcCompat="@drawable/notif_forward_button" />
+                        app:srcCompat="@drawable/arrow_forward" />
                 </LinearLayout>
 
                 <View style="@style/Divider" />

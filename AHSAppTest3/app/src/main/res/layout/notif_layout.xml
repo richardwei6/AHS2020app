@@ -43,7 +43,7 @@
 
                     android:scaleType="fitCenter"
                     android:scrollbarFadeDuration="15000"
-                    app:srcCompat="@drawable/article_back_button" />
+                    app:srcCompat="@drawable/arrow_back" />
 
                 <TextView
                     android:id="@+id/notif_header_text"

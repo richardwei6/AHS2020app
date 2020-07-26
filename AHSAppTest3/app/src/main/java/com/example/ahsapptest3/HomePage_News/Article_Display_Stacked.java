@@ -3,12 +3,10 @@ package com.example.ahsapptest3.HomePage_News;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,11 +33,9 @@ public class Article_Display_Stacked extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.news_stacked_display, container, false);
-
-        displayFrags(view);
-        return view;
+        LinearLayout outerLayout = new LinearLayout(container.getContext());
+        displayFrags(outerLayout);
+        return outerLayout;
     }
 
     public static Article_Display_Stacked newInstanceOf(Article[] articles)
@@ -52,9 +48,11 @@ public class Article_Display_Stacked extends Fragment {
         return thisFrag;
     }
 
-    public void displayFrags(View view)
+    public void displayFrags(LinearLayout layout)
     {
-        LinearLayout layout = view.findViewById(R.id.article_stacked_LinearLayout);
+        /*LinearLayout layout = view;*///.findViewById(R.id.article_stacked_LinearLayout);
+        layout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        layout.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -73,13 +71,13 @@ public class Article_Display_Stacked extends Fragment {
         {
             stubs[i] = new ViewStub(this.getContext());
             layout.addView(stubs[i],params);
-            stubs[i].setLayoutResource(R.layout.template__article_display);
+            stubs[i].setLayoutResource(R.layout.news_article_template);
             inflated[i] = stubs[i].inflate();
 
-            // this creates that ripple effect on default button
+            /*// this creates that ripple effect on default button
             TypedValue outValue = new TypedValue();
             getContext().getTheme().resolveAttribute(R.attr.selectableItemBackground,outValue,true);
-            inflated[i].setBackgroundResource(outValue.resourceId);
+            inflated[i].setBackgroundResource(outValue.resourceId);*/
 
             Helper.setArticleListener_toView(inflated[i], articles[i]);
         }
@@ -101,41 +99,14 @@ public class Article_Display_Stacked extends Fragment {
                 Helper.setText_toView((TextView) inflated[i].findViewById(R.id.article_display__title_Text),articles[i].getTitle());
 
                 // set summary/description
-                Helper.setText_toView((TextView) inflated[i].findViewById(R.id.article_display__summary_Text), articles[i].getStory());
+                Helper.setHtmlParsedText_toView((TextView) inflated[i].findViewById(R.id.article_display__summary_Text), articles[i].getStory());
+                Helper.setArticleListener_toView(inflated[i].findViewById(R.id.article_display__summary_Text), articles[i]);
 
                 // setImage
                 Helper.setImage_toView_fromUrl((ImageView) inflated[i].findViewById(R.id.article_display__imageView),articles[i].getImagePaths()[0]);
 
-                // set bookmarked button state
-                final ImageButton bookmarkButton = inflated[i].findViewById(R.id.article_display__bookmarked_button);
-
-                Helper.setBookmarked_toView(bookmarkButton,articles[i].isBookmarked());
-                Helper.setBookMarkListener_toView(bookmarkButton, articles[i]);
 
             }
         }
-
-        /*FrameLayout[] frameLayouts = new FrameLayout[frags.length];
-        int startID = getArguments().getInt(ID_KEY);
-
-        for(int i = 0; i <frameLayouts.length; i++)
-        {
-            frameLayouts[i] = new FrameLayout(this.getContext());
-            frameLayouts[i].setLayoutParams(new FrameLayout.LayoutParams(
-                    FrameLayout.LayoutParams.WRAP_CONTENT,  //width
-                    FrameLayout.LayoutParams.WRAP_CONTENT   //height
-            ));
-            frameLayouts[i].setId(startID+i);
-            layout.addView(frameLayouts[i],params);
-        }
-
-        for(int i = 0; i < frags.length; i++)
-        {
-            getFragmentManager()
-                    .beginTransaction()
-                    .add(frameLayouts[i].getId(),frags[i])
-                    .commit();
-        }*/
-
     }
 }

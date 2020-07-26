@@ -41,6 +41,7 @@ public class Featured_Display extends Fragment {
 
         Helper.setImage_toView_fromUrl((ImageView) view.findViewById(R.id.template_featured__ImageView),article.getImagePaths()[0]);
 
+
         Helper.setArticleListener_toView(view, article);
 
         TextView typeText = view.findViewById(R.id.news_featured_typeText);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/blab" android:layout_height="wrap_content"
+    android:id="@+id/blab"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -12,7 +12,7 @@
         android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
         android:orientation="vertical"
         android:paddingLeft="0dp"
-        android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+        android:paddingTop="@dimen/EveryPage_Side_Padding"
         android:paddingRight="0dp">
 
         <TextView
@@ -23,7 +23,7 @@
             android:layout_marginLeft="@dimen/EveryPage_Side_Padding"
             android:fontFamily="@font/sf_pro_semibold"
             android:text="SOMETHING NEWS"
-            android:textColor="@color/Black_000000__HOME"
+            android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
             android:textSize="24sp" />
 
         <!--<ImageView
@@ -37,13 +37,6 @@
             android:layout_marginRight="@dimen/EveryPage_Side_Padding"
             android:src="@drawable/news_template_rounded_bar" />-->
 
-        <TextView
-            android:id="@+id/template_news_goneText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_display"
-            android:gravity="center_horizontal"
-            android:text="Nothing Here!" />
 
         <com.example.ahsapptest3.Helper_Code.EnhancedWrapContentViewPager
             android:id="@+id/template_news__ViewPager"

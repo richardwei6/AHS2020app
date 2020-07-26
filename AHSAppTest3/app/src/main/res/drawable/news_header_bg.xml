@@ -3,7 +3,7 @@
     <solid android:color="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
         />
     <corners
-        android:topLeftRadius="40dp"
-        android:topRightRadius="40dp"
+        android:bottomLeftRadius="@dimen/EveryPage_Side_Padding"
+        android:bottomRightRadius="@dimen/EveryPage_Side_Padding"
         />
 </shape>

@@ -1,11 +1,5 @@
 package com.example.ahsapptest3;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SortedList;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -17,6 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SortedList;
 
 import com.example.ahsapptest3.Helper_Code.Bulletin_SelectorView;
 import com.example.ahsapptest3.Helper_Code.Helper;
@@ -80,7 +80,7 @@ public class Tester extends AppCompatActivity {
                         athletics_selector ,
                         others_selector
                 };
-        final ArrayList<Bulletin_Info> data = new ArrayList<>();
+        final ArrayList<Bulletin_Data> data = new ArrayList<>();
 
         final RecyclerView recyclerView = findViewById(R.id.bulletin_RecyclerView);
         final BulletinRecyclerAdapter adapter = new BulletinRecyclerAdapter(this, data);
@@ -147,7 +147,7 @@ public class Tester extends AppCompatActivity {
                         String title = dataSnapshot.child("articleTitle").getValue().toString();
                         String body = dataSnapshot.child("articleBody").getValue().toString();
                         long time = (long) dataSnapshot.child("articleUnixEpoch").getValue();
-                        Bulletin_Info info = new Bulletin_Info(time, title, body, types[i], pos++);
+                        Bulletin_Data info = new Bulletin_Data("huck", time, title, body, types[i], false);
 
 
                         data.add(info);
@@ -167,20 +167,20 @@ public class Tester extends AppCompatActivity {
 
     public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecyclerAdapter.ViewHolder> {
         private static final String TAG = "BulletinRecyclerAdapter";
-        private SortedList<Bulletin_Info> list;
+        private SortedList<Bulletin_Data> list;
 
-        public ArrayList<Bulletin_Info> bulletin_infos;
+        public ArrayList<Bulletin_Data> bulletin_data;
 
         private Context context;
 
-        public BulletinRecyclerAdapter(Context context, ArrayList<Bulletin_Info> data) {
-            this.bulletin_infos = new ArrayList<>(data);
+        public BulletinRecyclerAdapter(Context context, ArrayList<Bulletin_Data> data) {
+            this.bulletin_data = new ArrayList<>(data);
             this.context = context;
 
-            list = new SortedList<>(Bulletin_Info.class, new SortedList.Callback<Bulletin_Info>() {
+            list = new SortedList<>(Bulletin_Data.class, new SortedList.Callback<Bulletin_Data>() {
                 @Override
-                public int compare(Bulletin_Info o1, Bulletin_Info o2) {
-                    return o1.getPos() - o2.getPos();
+                public int compare(Bulletin_Data o1, Bulletin_Data o2) {
+                    return 0;
                 }
 
                 @Override
@@ -189,12 +189,12 @@ public class Tester extends AppCompatActivity {
                 }
 
                 @Override
-                public boolean areContentsTheSame(Bulletin_Info oldItem, Bulletin_Info newItem) {
+                public boolean areContentsTheSame(Bulletin_Data oldItem, Bulletin_Data newItem) {
                     return oldItem.getTitle().equals(newItem.getTitle());
                 }
 
                 @Override
-                public boolean areItemsTheSame(Bulletin_Info item1, Bulletin_Info item2) {
+                public boolean areItemsTheSame(Bulletin_Data item1, Bulletin_Data item2) {
                     return item1.getTitle().equals(item2.getTitle()); // sus but okay
                 }
 
@@ -213,13 +213,13 @@ public class Tester extends AppCompatActivity {
                     notifyItemMoved(fromPosition, toPosition);
                 }
             });
-            for (Bulletin_Info info : data) {
+            for (Bulletin_Data info : data) {
                 list.add(info);
             }
         }
 
-        public void addItem(Bulletin_Info item) {
-            bulletin_infos.add(item);
+        public void addItem(Bulletin_Data item) {
+            bulletin_data.add(item);
             list.add(item);
             /*Log.d(TAG, item.toString());*/
         }
@@ -239,7 +239,7 @@ public class Tester extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull BulletinRecyclerAdapter.ViewHolder holder, int position) {
-            Bulletin_Info info = list.get(position);
+            Bulletin_Data info = list.get(position);
             holder.titleText.setText(info.getTitle());
             holder.bodyText.setMovementMethod(LinkMovementMethod.getInstance());
             holder.bodyText.setText(Html.fromHtml(info.getBodyText()));
@@ -276,7 +276,7 @@ public class Tester extends AppCompatActivity {
 
         public void filterItems() {
             list.beginBatchedUpdates();
-            ArrayList<Bulletin_Info> copy = new ArrayList<>(bulletin_infos);
+            ArrayList<Bulletin_Data> copy = new ArrayList<>(bulletin_data);
             boolean hasTrue = false;
             for (boolean selector : selectors_active)
                 hasTrue = hasTrue || selector;
@@ -306,14 +306,14 @@ public class Tester extends AppCompatActivity {
 
             for (int i = list.size() - 1; i >= 0; i--) {
                 boolean alreadyHas = false;
-                for (Bulletin_Info info : copy)
+                for (Bulletin_Data info : copy)
                     if (list.get(i).getTitle().equals(info.getTitle()))
                         alreadyHas = true;
                 if (!alreadyHas)
                     list.removeItemAt(i);
 
             }
-            for (Bulletin_Info info : copy) {
+            for (Bulletin_Data info : copy) {
                 boolean alreadyHas = false;
                 for (int i = list.size() - 1; i >= 0; i--) {
                     if (list.get(i).getTitle().equals(info.getTitle()))

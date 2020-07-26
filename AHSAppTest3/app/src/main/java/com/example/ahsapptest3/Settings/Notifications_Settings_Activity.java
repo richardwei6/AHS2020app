@@ -1,13 +1,13 @@
 package com.example.ahsapptest3.Settings;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ahsapptest3.R;
 

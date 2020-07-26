@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +16,7 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Header extends Fragment {
+public class Header extends Fragment implements NotifBtn.Navigation{
 
     public Header() {
         // Required empty public constructor
@@ -36,17 +35,14 @@ public class Header extends Fragment {
         String date = (String) android.text.format.DateFormat.format("dd", new Date());
         timeText.setText(month+" "+date);
 
-        ImageButton notifButton = view.findViewById(R.id.header__notifications_icon);
-        final Context context = this.getContext();
-
-        notifButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, Notif_Activity.class);
-                context.startActivity(intent);
-            }
-        });
 
         return view;
+    }
+
+    @Override
+    public void goToNotif() {
+        final Context context = this.getContext();
+        Intent intent = new Intent(context, Notif_Activity.class);
+        context.startActivity(intent);
     }
 }

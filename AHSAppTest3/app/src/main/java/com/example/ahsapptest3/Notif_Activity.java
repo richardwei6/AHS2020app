@@ -1,8 +1,5 @@
 package com.example.ahsapptest3;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,18 +9,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import com.example.ahsapptest3.Helper_Code.Helper;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class Notif_Activity extends AppCompatActivity {
 
@@ -52,7 +47,7 @@ public class Notif_Activity extends AppCompatActivity {
             }
         }*/
 
-        final ArticleDatabase articleDatabase = new ArticleDatabase(this, ArticleDatabase.Option.CURRENT);
+        final ArticleDatabase articleDatabase = ArticleDatabase.getInstance(this, ArticleDatabase.Option.CURRENT);
         final Context context = this;
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("notifications");
@@ -63,18 +58,18 @@ public class Notif_Activity extends AppCompatActivity {
                 for(DataSnapshot child_sn: snapshot.getChildren())
                 {
                     String ID = child_sn.child("notificationArticleID").getValue().toString();
-                    Log.d(TAG, child_sn.getKey());
-                    Log.d(TAG, "tried once, ID:" + ID);
+                    //Log.d(TAG, child_sn.getKey());
+                    //Log.d(TAG, "tried once, ID:" + ID);
                     if(articleDatabase.alreadyAdded(ID))
                     {
-                        Log.d(TAG,"found articles");
+                        /*Log.d(TAG,"found articles");*/
                         Article article = articleDatabase.getArticleById(ID);
                         articles.add(articleDatabase.getArticleById(ID));
                     }
                 }
 
 
-                Log.d(TAG, String.valueOf(articles.size()));
+                //Log.d(TAG, String.valueOf(articles.size()));
                 frameLayouts = new FrameLayout[articles.size()];
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
@@ -100,7 +95,8 @@ public class Notif_Activity extends AppCompatActivity {
                             Intent intent = new Intent(view.getContext(), ArticleActivity.class);
                             intent.putExtra("data", article);
                             view.getContext().startActivity(intent);
-                            articleDatabase.updateNotified(article.getID(),true);
+                            if(!article.alreadyNotified())
+                                articleDatabase.updateNotifiedStatus(article.getID(),true);
 
                         }
                     });
@@ -113,7 +109,7 @@ public class Notif_Activity extends AppCompatActivity {
                     getSupportFragmentManager()
                             .beginTransaction()
                             .add(frameLayouts[i].getId(),items[i])
-                            .commit();
+                            .commitAllowingStateLoss();
 
                 }
             }
@@ -161,48 +157,12 @@ public class Notif_Activity extends AppCompatActivity {
         articles.clear();
         this.recreate(); // see comment above, only this actually works; maybe fix the listener to change flag variable to recreate? maybe sharedpreferences?
         // note, use recycler view and finagle with notifyDataSetChanged
-        /*for(FrameLayout fl: frameLayouts)
-        {
-            /*fl.requestLayout(); // doesn't work
-            fl.invalidate();
-            fl.forceLayout();*7/
-
-
-        }*/
-        /*int position = -1;
-        for(int i = 0; i < articles.length; i++)
-        {
-            if(justNotified[i] ^ articles[i].alreadyNotified()) //xor
-            {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(frameLayouts[i].getId(),Notif_Template.newInstanceOf(articles[i]));
-                System.out.println("::: replace" + i);
-                frameLayouts[i].invalidate();
-                //position = i+2; // there are two elements in the linearlayout before the frameLayouts. actually prob better to make a whole separate layout now
-            }
-        }*/
-
-
 
     }
 
     private int getIdRange()
     {
         return 2000000;
-    }
-
-    public String[][] getData() {
-        return new String[][]
-                {
-                        {"Lorem Ipsum a Very Long Title", "hello world what a nice day! This is the content inside the article."},
-                        {"ASB NEWS Title2", "summaryText2. This is a long sample summary. This should cut off at two lines, with an ellipsis."},
-                        {"Title3", "summaryText3. Content inside article, but it will be truncated."},
-                        {"Title4", "summaryText4"},
-                        {"Title5", "summaryText5"},
-                        {"Title6", "summaryText6"},
-                        {"Title7", "summaryText7"}
-                };
     }
 
 }

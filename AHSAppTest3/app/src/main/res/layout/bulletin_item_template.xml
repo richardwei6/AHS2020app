@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bulletin_template_CardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
     app:cardCornerRadius="2dp"
     app:cardElevation="3dp"
-    app:cardBackgroundColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
     app:cardUseCompatPadding="true">
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:id="@+id/bulletin_template_ConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:background="?attr/selectableItemBackground"
         android:paddingLeft="@dimen/EveryPage_Side_Padding"
         android:paddingRight="@dimen/EveryPage_Side_Padding"
-        android:paddingBottom="@dimen/EveryPage_Side_Padding"
-        >
+        android:paddingBottom="@dimen/EveryPage_Side_Padding">
 
         <TextView
             android:id="@+id/bulletin_template_typeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-            android:background="@drawable/bulletin_template_type_rounded_background"
+            android:background="@drawable/type_rounded_bg"
             android:fontFamily="@font/sf_pro_display"
             android:paddingLeft="7dp"
             android:paddingTop="3dp"
@@ -36,6 +39,26 @@
             android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/bulletin_template_newText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
+            android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
+            android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+            android:background="@drawable/type_rounded_bg"
+            android:backgroundTint="@color/NEW_GoldenYellow_DCD33D__HOME_BULLETIN"
+            android:fontFamily="@font/sf_pro_display"
+            android:paddingLeft="7dp"
+            android:paddingTop="3dp"
+            android:paddingRight="7dp"
+            android:paddingBottom="3dp"
+            android:text="New"
+            android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/bulletin_template_typeText"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -71,7 +94,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display"
             android:text="Date"
-            android:textColor="@color/NEW_AngryRed_9F0C0C__BULLETIN"
+            android:textColor="@color/NEW_AngryRed_9F0C0C__ALL"
             android:textSize="12sp"
             app:fontFamily="@font/sf_pro_display"
             app:layout_constraintBottom_toBottomOf="@+id/bulletin_template_typeText"
