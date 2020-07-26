@@ -249,21 +249,22 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	//	articleTitle.lineBreakMode = .byWordWrapping;
 		articleTitle.numberOfLines = 0;
 		
-		/*var text = "";
+		var text = "";
 		if (articleSingle.hasHTML){
 			text = parseHTML(s: articleSingle.articleBody ?? "").string;
 		}
 		else{
 			text = (articleSingle.articleBody ?? "");
 		}
-		let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: min(mainArticleView.frame.height - articleTitleFrame.size.height, text.getHeight(withConstrainedWidth: articleTextWidth-spacing, font: UIFont(name: "SFProDisplay-Regular", size: 14)!)));
+		let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: min(mainArticleView.frame.height - articleTitleFrame.maxY, text.getHeight(withConstrainedWidth: articleTextWidth-spacing, font: UIFont(name: "SFProDisplay-Regular", size: 14)!)));
 		let articleBody = UILabel(frame: articleBodyFrame);
 		articleBody.text = text;
 		articleBody.textAlignment = .left;
 		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
-		articleBody.numberOfLines = 0;*/
+		articleBody.numberOfLines = 0;
+		//articleBody.backgroundColor = UIColor.gray;
 		
-		let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.size.height);
+		/*let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.size.height);
 		let articleBody = UILabel(frame: articleBodyFrame);
 		if (articleSingle.hasHTML){
 			articleBody.text = parseHTML(s: articleSingle.articleBody ?? "").string;
@@ -273,7 +274,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		}
 		articleBody.textAlignment = .left;
 		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
-		articleBody.numberOfLines = 0;
+		articleBody.numberOfLines = 0;*/
 		
 		let timeStampText = epochClass.epochToString(epoch: articleSingle.articleUnixEpoch ?? -1);
 		let timeStampFrame = CGRect(x: 7, y: height - 25, width: timeStampText.getWidth(withConstrainedHeight: 15, font: UIFont(name: "SFProDisplay-Semibold", size: 8)!) + 10, height: 15);

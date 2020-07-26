@@ -34,7 +34,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     var imageFrame = CGRect(x: 0, y:0, width: 0, height: 0);
     var imageSize = 1;
     var articleContent: articleData?;
-    
+    var imageAvgColors = [Int:UIColor]();
     
     @IBAction func saveArticle(sender: CustomUIButton){
         print("Bookmark");
@@ -55,6 +55,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     }
     
     @IBAction func exitArticle(_ sender: UIButton){
+        imageAvgColors = [Int:UIColor]();
         dismiss(animated: true);
     }
     
@@ -84,6 +85,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad();
         
+        imageAvgColors = [Int:UIColor]();
         bookmarkButton.articleCompleteData = articleContent ?? articleData();
         
         setBookmarkColor();
@@ -113,6 +115,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         // TODO: add zoom feature here
         imageSize = articleContent?.articleImages?.count ?? 0;
         //print(imageSize);
+        
         imagePageControl.numberOfPages = imageSize;
         imageFrame.size = imageScrollView.frame.size;
         imageFrame.size.width = UIScreen.main.bounds.size.width - 42;
@@ -126,23 +129,23 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             
             buttonImage.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
             buttonImage.imageView?.contentMode = .scaleAspectFill;
+            buttonImage.imageView?.image?.getColors({ (colors) -> Void in
+                self.imageAvgColors[imageIndex] = colors?.primary ?? UIColor.lightGray;
+                if (imageIndex == 0){
+                    self.imageScrollView.backgroundColor = self.imageAvgColors[0];
+                }
+            });
             buttonImage.isSelected = false;
-            
             buttonImage.addTarget(self, action: #selector(toggleZoom), for: .touchUpInside);
-            
-            //print("\(imageView.image != nil)" + " - " + (articleContent?.articleImages?[imageIndex] ?? ""))
-           // imageZoom.addSubview(imageView);
-            //imageZoom.delegate = self;
-            
             self.imageScrollView.addSubview(buttonImage);
         }
         imageScrollView.contentSize = CGSize(width: (imageFrame.size.width * CGFloat(imageSize)), height: imageScrollView.frame.size.height);
         imageScrollView.delegate = self;
         imageScrollView.layer.cornerRadius = 10;
-        
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         imagePageControl.currentPage = Int(imageScrollView.contentOffset.x / imageFrame.size.width);
+        UIScrollView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {self.imageScrollView.backgroundColor = self.imageAvgColors[self.imagePageControl.currentPage] != nil ? self.imageAvgColors[self.imagePageControl.currentPage] : UIColor.lightGray;}, completion: nil);
     }
 }
