@@ -357,7 +357,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			let scrollViewHorizontalConstraints = CGFloat(38);
 			
 			for view in featuredScrollView.subviews{
-				view.removeFromSuperview();
+				if (view.tag == 1){
+					view.removeFromSuperview();
+				}
 			}
 			for view in asbNewsScrollView.subviews{
 				view.removeFromSuperview();
@@ -371,9 +373,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
 			if (featuredSize > 0){
 				// Featured News ----- NOTE - article is not created by smallArticle() func
+				featuredScrollView.flashScrollIndicators();
 				featuredMissingLabel.isHidden = true;
 				featuredScrollView.isHidden = false;
 				featuredFrame.size = featuredScrollView.frame.size;
+				featuredFrame.size.height -= 15;
 				featuredFrame.size.width = UIScreen.main.bounds.size.width;
 				featuredScrollView.contentSize = CGSize(width: (featuredFrame.size.width * CGFloat(featuredSize)), height: featuredScrollView.frame.size.height);
 				for aIndex in 0..<featuredSize{
@@ -437,6 +441,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					outerContentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
 					//articleImageView.layer.cornerRadius = 10;
 					
+					outerContentView.tag = 1;
 					
 					self.featuredScrollView.addSubview(outerContentView);
 				}
@@ -562,11 +567,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	func  scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if (scrollView.tag != -1){
 			
-			asbNewsPageControl.currentPage = Int(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width);
+			asbNewsPageControl.currentPage = Int(round(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width));
 			
-			sportsNewsPageControl.currentPage = Int(sportsNewsScrollView.contentOffset.x / sportsNewsFrame.size.width);
+			sportsNewsPageControl.currentPage = Int(round(sportsNewsScrollView.contentOffset.x / sportsNewsFrame.size.width));
 			
-			districtNewsPageControl.currentPage = Int(districtNewsScrollView.contentOffset.x / districtNewsFrame.size.width);
+			districtNewsPageControl.currentPage = Int(round(districtNewsScrollView.contentOffset.x / districtNewsFrame.size.width));
 		}
 	}
 	
