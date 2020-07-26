@@ -13,6 +13,10 @@ import SystemConfiguration
 import FirebaseDatabase
 import SDWebImage
 
+func sortArticlesByTime(a: articleData, b: articleData)->Bool{
+    return (a.articleUnixEpoch ?? INT64_MAX) > (b.articleUnixEpoch ?? INT64_MAX);
+}
+
 final class savedArticleClass{
     static var savedArticles = [String: articleData]();
     class func getSavedArticles() -> [articleData]{ // get saved articles from phone local storage
@@ -22,7 +26,7 @@ final class savedArticleClass{
         for i in savedArticles{
             temp.append(i.value);
         }
-        return temp;
+        return temp.sorted(by: sortArticlesByTime);
     }
     class func saveCurrArticle(articleID: String, article: articleData){
         savedArticles[articleID] = article;

@@ -173,7 +173,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         return copy.count == 0 ? filterRead(copy: totalArticles) : filterRead(copy: copy);
     }
     
-    func articleSorting(a: bulletinArticleData, b: bulletinArticleData)->Bool{
+    func sortArticlesByTime(a: bulletinArticleData, b: bulletinArticleData)->Bool{
         return (a.articleUnixEpoch ?? INT64_MAX) > (b.articleUnixEpoch ?? INT64_MAX);
     }
     
@@ -217,7 +217,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     totalArticles.append(c);
                 }
             }
-            totalArticles = totalArticles.sorted(by: articleSorting);
+            totalArticles = totalArticles.sorted(by: sortArticlesByTime);
             
             currentArticles = filterArticles();
            // print(currentArticles);

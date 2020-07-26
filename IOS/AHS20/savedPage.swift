@@ -24,10 +24,10 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
         super.viewDidLoad();
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
         let savedArticles =  savedArticleClass.getSavedArticles();
-        
 //        print("got saved");
 //        print(savedArticles.count);
         
