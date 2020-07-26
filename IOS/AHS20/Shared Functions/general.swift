@@ -27,6 +27,7 @@ struct articleData: Codable {
     var articleBody: String?;
     var articleAuthor: String?;
     var articleImages: [String]?; // list of image urls
+    var articleVideoIDs: [String]?;
     var articleCatagory: String?;
     var isFeatured = false;
     var hasHTML = false;

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AudioToolbox
+import youtube_ios_player_helper
 
 class articlePageViewController: UIViewController, UIScrollViewDelegate{
     /*@IBOutlet weak var backButton: UIButton!
@@ -33,6 +34,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     var contentWidth: CGFloat = 0.0
     var imageFrame = CGRect(x: 0, y:0, width: 0, height: 0);
     var imageSize = 1;
+    var videoSize = 1;
     var articleContent: articleData?;
     var imageAvgColors = [Int:UIColor]();
     
@@ -114,19 +116,19 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
 
         // TODO: add zoom feature here
         imageSize = articleContent?.articleImages?.count ?? 0;
-        //print(imageSize);
+        videoSize = articleContent?.articleVideoIDs?.count ?? 0;
         
-        imagePageControl.numberOfPages = imageSize;
+        imagePageControl.numberOfPages = imageSize + videoSize;
         imageFrame.size = imageScrollView.frame.size;
         imageFrame.size.width = UIScreen.main.bounds.size.width - 42;
+        var origX = CGFloat(0);
         for imageIndex in 0..<imageSize{
-            imageFrame.origin.x = (imageFrame.size.width * CGFloat(imageIndex));
+            imageFrame.origin.x = origX;
             
            // let imageZoom = UIScrollView(frame: imageFrame);
             let buttonImage = UIButton(frame: imageFrame);
             //imageView.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
             //imageView.contentMode = .scaleAspectFit;
-            
             buttonImage.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
             buttonImage.imageView?.contentMode = .scaleAspectFill;
             buttonImage.imageView?.image?.getColors({ (colors) -> Void in
@@ -138,8 +140,16 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             buttonImage.isSelected = false;
             buttonImage.addTarget(self, action: #selector(toggleZoom), for: .touchUpInside);
             self.imageScrollView.addSubview(buttonImage);
+            origX += imageFrame.size.width;
         }
-        imageScrollView.contentSize = CGSize(width: (imageFrame.size.width * CGFloat(imageSize)), height: imageScrollView.frame.size.height);
+        for videoIndex in 0..<videoSize{
+            imageFrame.origin.x = origX;
+            let videoPlayer = YTPlayerView(frame: imageFrame);
+            videoPlayer.load(withVideoId: articleContent?.articleVideoIDs?[videoIndex] ?? "");
+            self.imageScrollView.addSubview(videoPlayer);
+            origX += imageFrame.size.width;
+        }
+        imageScrollView.contentSize = CGSize(width: origX, height: imageScrollView.frame.size.height);
         imageScrollView.delegate = self;
         imageScrollView.layer.cornerRadius = 10;
     }

@@ -136,6 +136,14 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 								//print(tempImage)
 								singleArticle.articleImages = tempImage;
 							}
+							else if (articleContent.key == "articleVideoIDs"){
+								var tempArr = [String]();
+								let idIt = articleContent.children;
+								while let id = idIt.nextObject() as? DataSnapshot{
+									tempArr.append(id.value as! String);
+								}
+								singleArticle.articleVideoIDs = tempArr;
+							}
 							else if (articleContent.key == "articleTitle"){
 								
 								singleArticle.articleTitle = articleContent.value as? String;

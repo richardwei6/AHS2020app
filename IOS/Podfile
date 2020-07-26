@@ -12,8 +12,8 @@ target 'AHS20' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Database'
   pod 'Firebase/Messaging'
-  platform :ios, '8.0'
   pod 'SDWebImage'
+  pod "youtube-ios-player-helper", "~> 1.0.2"
 
   target 'AHS20Tests' do
     inherit! :search_paths
