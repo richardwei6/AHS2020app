@@ -256,12 +256,17 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		else{
 			text = (articleSingle.articleBody ?? "");
 		}
-		let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: min(mainArticleView.frame.height - articleTitleFrame.maxY, text.getHeight(withConstrainedWidth: articleTextWidth-spacing, font: UIFont(name: "SFProDisplay-Regular", size: 14)!)));
-		let articleBody = UILabel(frame: articleBodyFrame);
+		let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.maxY - 5);
+		let articleBody = UITextView(frame: articleBodyFrame);
 		articleBody.text = text;
 		articleBody.textAlignment = .left;
 		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
-		articleBody.numberOfLines = 0;
+		articleBody.isEditable = false;
+		articleBody.isSelectable = false;
+		articleBody.isUserInteractionEnabled = false;
+		articleBody.isScrollEnabled = false;
+		articleBody.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0);
+		articleBody.textContainer.lineBreakMode = .byTruncatingTail;
 		//articleBody.backgroundColor = UIColor.gray;
 		
 		/*let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.size.height);
