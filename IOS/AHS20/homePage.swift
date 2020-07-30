@@ -407,22 +407,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					let contentView = CustomUIButton(frame: contentViewFrame);
 					
 					
-					let imageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: contentViewFrame.size.height - 60);
-					let imageView = UIImageView(frame: imageViewFrame);
-					imageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
-					imageView.contentMode = .scaleAspectFill;
-					imageView.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
-					
-					let titleLabelFrame = CGRect(x: 0, y: imageViewFrame.size.height, width: contentViewFrame.size.width, height: 38);
-					let titleLabel = UILabel(frame: titleLabelFrame);
-					titleLabel.text = currArticle.articleTitle ?? "";
-					titleLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 22);
-					titleLabel.textAlignment = .left;
-					titleLabel.textColor = UIColor.black;
-					//SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
-					
 					let articleCatagorytext = (currArticle.articleCatagory ?? "No Cata.") + " News";
-					let articleCatagoryFrame = CGRect(x: 0, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: articleCatagorytext.getWidth(withConstrainedHeight: 20, font: UIFont(name: "SFProText-Bold", size: 12)!) + 12, height: 20);
+					let articleCatagoryFrame = CGRect(x: 0, y: contentViewFrame.size.height - 20, width: articleCatagorytext.getWidth(withConstrainedHeight: 20, font: UIFont(name: "SFProText-Bold", size: 12)!) + 12, height: 20);
 					let articleCatagory = UILabel(frame: articleCatagoryFrame);
 					articleCatagory.text = articleCatagorytext;
 					articleCatagory.textAlignment = .center;
@@ -431,12 +417,32 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					articleCatagory.font = UIFont(name: "SFProText-Bold", size: 12);
 					articleCatagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
 					
-					let timeStampFrame = CGRect(x: articleCatagoryFrame.size.width, y: titleLabelFrame.size.height + imageViewFrame.size.height, width: 120, height: 20);
+					let timeStampFrame = CGRect(x: articleCatagoryFrame.size.width, y: contentViewFrame.size.height - 20, width: 120, height: 20);
 					let timeStamp = UILabel(frame: timeStampFrame);
 					timeStamp.text = "   ∙   " + epochClass.epochToString(epoch: currArticle.articleUnixEpoch ?? -1);
 					timeStamp.textAlignment = .left;
 					timeStamp.textColor = UIColor.lightGray;
 					timeStamp.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+					
+					let title = currArticle.articleTitle ?? "";
+					let height = min(53, title.getHeight(withConstrainedWidth: contentViewFrame.size.width, font: UIFont(name: "SFProDisplay-Semibold", size: 22)!))+5;
+					let titleLabelFrame = CGRect(x: 0, y: contentViewFrame.size.height-20-height, width: contentViewFrame.size.width, height: height);
+					let titleLabel = UILabel(frame: titleLabelFrame);
+					titleLabel.text = title;
+					//titleLabel.text = "super long long long long long long long long long long long long long long"
+					titleLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 22);
+					titleLabel.textAlignment = .left;
+					titleLabel.textColor = UIColor.black;
+					//titleLabel.backgroundColor = UIColor.lightGray
+					titleLabel.numberOfLines = 2;
+					//SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
+			
+					let imageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: titleLabelFrame.minY);
+					let imageView = UIImageView(frame: imageViewFrame);
+					imageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
+					imageView.contentMode = .scaleAspectFill;
+					imageView.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
+					imageView.backgroundColor = UIColor.lightGray;
 					
 					contentView.addSubview(timeStamp);
 					contentView.addSubview(articleCatagory);
