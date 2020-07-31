@@ -60,6 +60,10 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 chevronImage.image = UIImage(systemName: "chevron.right");
                 chevronImage.tintColor = UIColor.gray;
                 
+                /*let imageViewFrame = CGRect(x: 0, y: 0, width: 100, height: 130);
+                let imageView = UIImageView(frame: imageViewFrame);
+                imageView.imgFromURL(sURL: )*/
+                
                 let articleCatagoryFrame = CGRect(x: 10, y: 8, width: 65, height: 20);
                 let articleCatagory = UILabel(frame: articleCatagoryFrame);
                 articleCatagory.backgroundColor = mainThemeColor;
