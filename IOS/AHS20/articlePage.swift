@@ -60,11 +60,12 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     
     func setBookmarkColor(){
         if (articleContent?.articleID != nil && savedArticleClass.isSavedCurrentArticle(articleID: (articleContent?.articleID)!)){
-            bookmarkButton.tintColor = mainThemeColor;
+            bookmarkButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal);
+            
             bookmarkButton.isSelected = true;
         }
         else{
-            bookmarkButton.tintColor = UIColor.white;
+            bookmarkButton.setImage(UIImage(systemName: "bookmark"), for: .normal);
             bookmarkButton.isSelected = false;
         }
     }
@@ -87,6 +88,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         imageAvgColors = [Int:UIColor]();
         bookmarkButton.articleCompleteData = articleContent ?? articleData();
         
+        bookmarkButton.tintColor = mainThemeColor;
         setBookmarkColor();
                 
         articleCatagoryLabel.text = articleContent?.articleCatagory ?? "NO Cata.";
@@ -96,17 +98,16 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
         var nextY = CGFloat(0);
-        let padding = CGFloat(10);
+        let padding = CGFloat(12);
         let universalWidth = UIScreen.main.bounds.width - 2 * padding;
         
         
         if (articleContent?.articleAuthor != nil){ // bulletin
             let imageScrollViewFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: 250);
             imageScrollView.frame = imageScrollViewFrame;
-            imageScrollView.backgroundColor = UIColor.lightGray;
-            
             imageSize = articleContent?.articleImages?.count ?? 0;
             videoSize = articleContent?.articleVideoIDs?.count ?? 0;
+            imageScrollView.backgroundColor = UIColor.lightGray;
             
             //imagePageControl.numberOfPages = imageSize + videoSize;
             imageFrame.size = imageScrollView.frame.size;
@@ -145,6 +146,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             imageScrollView.showsHorizontalScrollIndicator = false;
             
            // imagePageControl.frame = CGRect(x: imagePageControl.size(forNumberOfPages: imageSize + videoSize))
+
             imagePageControl.currentPage = 0;
             imagePageControl.numberOfPages = imageSize + videoSize;
             imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: imageScrollViewFrame.size.height - 15);
@@ -154,7 +156,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             nextY += imageScrollViewFrame.size.height;
         }
         
-        nextY += 5;
+        nextY += 7;
         let articleTitleText = articleContent?.articleTitle;
         let articleTitleFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleTitleText?.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Semibold", size: CGFloat(fontSize+5))!) ?? 0);
         let articleTitle = UILabel(frame: articleTitleFrame);
@@ -164,6 +166,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         mainScrollView.addSubview(articleTitle);
         nextY += articleTitleFrame.height;
         
+        nextY += 5;
         if (articleContent?.articleAuthor != nil){
             let articleAuthorText = "By " + (articleContent?.articleAuthor ?? "No Author");
             let articleAuthorFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleAuthorText.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize-3))!))
@@ -184,6 +187,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         mainScrollView.addSubview(articleDate);
         nextY += articleDateFrame.size.height;
         
+        nextY += 5;
      //   nextY += padding;
         let articleBodyText = (articleContent?.hasHTML == true ? parseHTML(s: articleContent?.articleBody ?? "") : NSAttributedString(string: articleContent?.articleBody ?? ""));
         let articleBodyFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleBodyText.string.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize))!));
@@ -212,8 +216,16 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
          */
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if (articleContent?.articleAuthor != nil){
+            
+        }
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (articleContent?.articleAuthor != nil){
         imagePageControl.currentPage = Int(round(imageScrollView.contentOffset.x / imageFrame.size.width));
         UIScrollView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {self.imageScrollView.backgroundColor = self.imageAvgColors[self.imagePageControl.currentPage] != nil ? self.imageAvgColors[self.imagePageControl.currentPage] : UIColor.lightGray;}, completion: nil);
+        }
     }
 }
