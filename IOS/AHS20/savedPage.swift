@@ -54,11 +54,11 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 let articleButton = CustomUIButton(frame: articleFrame);
                 articleButton.backgroundColor = UIColor.white;
             
-                let chevronWidth = CGFloat(22);
+                /*let chevronWidth = CGFloat(22);
                 let chevronFrame = CGRect(x: articleFrame.size.width-chevronWidth-15, y: 50, width: chevronWidth-5, height: chevronWidth);
                 let chevronImage = UIImageView(frame: chevronFrame);
                 chevronImage.image = UIImage(systemName: "chevron.right");
-                chevronImage.tintColor = UIColor.gray;
+                chevronImage.tintColor = UIColor.gray;*/
                 
                 var leftEdge = CGFloat(0);
                 
@@ -81,14 +81,14 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 articleCatagory.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
                 articleCatagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                 
-                let articleTitleFrame = CGRect(x: leftEdge + 10, y: 30, width: articleFrame.size.width-35-chevronFrame.size.width-leftEdge, height: 30);
+                let articleTitleFrame = CGRect(x: leftEdge + 10, y: 30, width: articleFrame.size.width-35-leftEdge, height: 30);
                 let articleTitle = UILabel(frame: articleTitleFrame);
                 articleTitle.text = savedArticles[aIndex].articleTitle;
                 articleTitle.contentMode = .left;
                 //articleTitle.backgroundColor = UIColor.gray;
                 articleTitle.font = UIFont(name: "SFProDisplay-Semibold", size: 18);
                 
-                let articleBodyFrame = CGRect(x: leftEdge + 10, y: 50, width: articleFrame.size.width-35-chevronFrame.size.width-leftEdge, height: articleFrame.size.height - 55);
+                let articleBodyFrame = CGRect(x: leftEdge + 10, y: 50, width: articleFrame.size.width-35-leftEdge, height: articleFrame.size.height - 55);
                 let articleBody = UILabel(frame: articleBodyFrame);
                 articleBody.text = (savedArticles[aIndex].hasHTML == true ? parseHTML(s: savedArticles[aIndex].articleBody ?? "").string : savedArticles[aIndex].articleBody);
                 articleBody.numberOfLines = 3;
@@ -104,7 +104,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 12);
                 timeStamp.textColor = UIColor.darkGray;
                 
-                articleButton.addSubview(chevronImage);
+                //articleButton.addSubview(chevronImage);
                 articleButton.addSubview(timeStamp);
                 articleButton.addSubview(articleCatagory);
                 articleButton.addSubview(articleTitle);
