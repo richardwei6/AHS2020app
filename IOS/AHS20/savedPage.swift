@@ -60,11 +60,19 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 chevronImage.image = UIImage(systemName: "chevron.right");
                 chevronImage.tintColor = UIColor.gray;
                 
-                /*let imageViewFrame = CGRect(x: 0, y: 0, width: 100, height: 130);
-                let imageView = UIImageView(frame: imageViewFrame);
-                imageView.imgFromURL(sURL: )*/
+                var leftEdge = CGFloat(0);
                 
-                let articleCatagoryFrame = CGRect(x: 10, y: 8, width: 65, height: 20);
+                if (savedArticles[aIndex].articleImages?.count ?? 0 > 0){
+                    let imageViewFrame = CGRect(x: 0, y: 0, width: 100, height: 130);
+                    let imageView = UIImageView(frame: imageViewFrame);
+                    imageView.imgFromURL(sURL: savedArticles[aIndex].articleImages?[0] ?? "");
+                    imageView.contentMode = .scaleAspectFill;
+                    leftEdge += imageViewFrame.size.width;
+                    imageView.clipsToBounds = true;
+                    articleButton.addSubview(imageView);
+                }
+                
+                let articleCatagoryFrame = CGRect(x: leftEdge + 10, y: 8, width: 65, height: 20);
                 let articleCatagory = UILabel(frame: articleCatagoryFrame);
                 articleCatagory.backgroundColor = mainThemeColor;
                 articleCatagory.text = savedArticles[aIndex].articleCatagory;
@@ -73,14 +81,14 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 articleCatagory.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
                 articleCatagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                 
-                let articleTitleFrame = CGRect(x: 10, y: 30, width: articleFrame.size.width-35-chevronFrame.size.width, height: 30);
+                let articleTitleFrame = CGRect(x: leftEdge + 10, y: 30, width: articleFrame.size.width-35-chevronFrame.size.width-leftEdge, height: 30);
                 let articleTitle = UILabel(frame: articleTitleFrame);
                 articleTitle.text = savedArticles[aIndex].articleTitle;
                 articleTitle.contentMode = .left;
                 //articleTitle.backgroundColor = UIColor.gray;
                 articleTitle.font = UIFont(name: "SFProDisplay-Semibold", size: 18);
                 
-                let articleBodyFrame = CGRect(x: 10, y: 50, width: articleFrame.size.width-35-chevronFrame.size.width, height: articleFrame.size.height - 55);
+                let articleBodyFrame = CGRect(x: leftEdge + 10, y: 50, width: articleFrame.size.width-35-chevronFrame.size.width-leftEdge, height: articleFrame.size.height - 55);
                 let articleBody = UILabel(frame: articleBodyFrame);
                 articleBody.text = (savedArticles[aIndex].hasHTML == true ? parseHTML(s: savedArticles[aIndex].articleBody ?? "").string : savedArticles[aIndex].articleBody);
                 articleBody.numberOfLines = 3;
