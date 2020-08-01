@@ -112,6 +112,13 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             //imagePageControl.numberOfPages = imageSize + videoSize;
             imageFrame.size = imageScrollView.frame.size;
             var origX = CGFloat(0);
+            for videoIndex in 0..<videoSize{
+                imageFrame.origin.x = origX;
+                let videoPlayer = YTPlayerView(frame: imageFrame);
+                videoPlayer.load(withVideoId: articleContent?.articleVideoIDs?[videoIndex] ?? "");
+                imageScrollView.addSubview(videoPlayer);
+                origX += imageFrame.size.width;
+            }
             for imageIndex in 0..<imageSize{
                 imageFrame.origin.x = origX;
                 
@@ -122,21 +129,14 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
                 buttonImage.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
                 buttonImage.imageView?.contentMode = .scaleAspectFill;
                 buttonImage.imageView?.image?.getColors({ (colors) -> Void in
-                    self.imageAvgColors[imageIndex] = colors?.primary ?? UIColor.lightGray;
+                    self.imageAvgColors[imageIndex+self.videoSize] = colors?.primary ?? UIColor.lightGray;
                     if (imageIndex == 0){
-                        self.imageScrollView.backgroundColor = self.imageAvgColors[0];
+                        self.imageScrollView.backgroundColor = self.imageAvgColors[self.videoSize];
                     }
                 });
                 buttonImage.isSelected = false;
                 buttonImage.addTarget(self, action: #selector(toggleZoom), for: .touchUpInside);
                 imageScrollView.addSubview(buttonImage);
-                origX += imageFrame.size.width;
-            }
-            for videoIndex in 0..<videoSize{
-                imageFrame.origin.x = origX;
-                let videoPlayer = YTPlayerView(frame: imageFrame);
-                videoPlayer.load(withVideoId: articleContent?.articleVideoIDs?[videoIndex] ?? "");
-                imageScrollView.addSubview(videoPlayer);
                 origX += imageFrame.size.width;
             }
             imageScrollView.contentSize = CGSize(width: origX, height: imageScrollView.frame.size.height);
@@ -149,13 +149,18 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
 
             imagePageControl.currentPage = 0;
             imagePageControl.numberOfPages = imageSize + videoSize;
-            imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: imageScrollViewFrame.size.height - 15);
+            imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: imageScrollViewFrame.size.height + 15);
+           // imagePageControl.setCustomColors
+            //imagePageControl.setCustomColors(dotFillColor: UIColor.darkGray, dotBorderColor: UIColor.darkGray, dotBorderWidth: 100);
+            imagePageControl.pageIndicatorTintColor = UIColor.lightGray;
+            imagePageControl.currentPageIndicatorTintColor = UIColor.black;
             
             mainScrollView.addSubview(imageScrollView);
             mainScrollView.addSubview(imagePageControl);
-            nextY += imageScrollViewFrame.size.height;
+            //nextY += imagePageControl.frame.height;
+            nextY += imageScrollViewFrame.size.height + 15;
         }
-        
+
         nextY += 7;
         let articleTitleText = articleContent?.articleTitle;
         let articleTitleFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleTitleText?.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Semibold", size: CGFloat(fontSize+5))!) ?? 0);
