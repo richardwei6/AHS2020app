@@ -9,6 +9,6 @@
       android:strokeAlpha="0.9"
       android:strokeWidth="2"
       android:fillColor="#00000000"
-      android:strokeColor="#fffeff"
-      android:fillAlpha="0.9"/>
+      android:strokeColor="@color/NEW_AngryRed_9F0C0C__ALL"
+      />
 </vector>

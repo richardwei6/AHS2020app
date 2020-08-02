@@ -3,13 +3,13 @@ package com.example.ahsapptest3;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ahsapptest3.Settings.SettingsActivity;
+import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
+import com.example.ahsapptest3.Setting_Activities.Settings;
 
-public class Saved extends AppCompatActivity implements Navigation, ArticleRecyclerAdapter.OnItemClick, NotifBtn.Navigation {
+public class Saved extends FullScreenActivity implements Navigation, ArticleRecyclerAdapter.OnItemClick, NotifBtn.Navigation {
 
     private static final String TAG = "SavedActivity";
     private ArticleDatabase articleDatabase;
@@ -72,7 +72,7 @@ public class Saved extends AppCompatActivity implements Navigation, ArticleRecyc
 
     @Override
     public void goToSettings() {
-        Intent myIntent = new Intent(Saved.this, SettingsActivity.class);
+        Intent myIntent = new Intent(Saved.this, Settings.class);
         Saved.this.startActivity(myIntent);
     }
 

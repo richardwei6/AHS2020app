@@ -1,6 +1,7 @@
 package com.example.ahsapptest3;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
 
     private static SortedList<Bulletin_Data> list;
     public ArrayList<Bulletin_Data> bulletin_data;
-    private static Context context;
+
     boolean[] selectors_active = new boolean[6];
     private final Bulletin.Type[] types = Bulletin.Type.values();
 
@@ -27,14 +28,19 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
 
     public BulletinRecyclerAdapter(Context context, ArrayList<Bulletin_Data> data, OnItemClick onItemClick) {
         this.bulletin_data = new ArrayList<>(data);
-        BulletinRecyclerAdapter.context = context;
+
         this.onItemClick = onItemClick;
 
         list = new SortedList<>(Bulletin_Data.class, new SortedList.Callback<Bulletin_Data>() {
             @Override
             public int compare(Bulletin_Data o1, Bulletin_Data o2) {
+                if(o1.isAlready_read() && !o2.isAlready_read())
+                    return 1;
+                if(!o1.isAlready_read() && o2.isAlready_read())
+                    return -1;
+
                 long time_diff = o1.getTime()- o2.getTime();
-                if(time_diff < 0)
+                if(time_diff < 0) // o2 time greater than o1, so o2 after o1,
                     return -1;
                 if(time_diff > 0)
                     return 1;
@@ -49,12 +55,14 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
 
             @Override
             public boolean areContentsTheSame(Bulletin_Data oldItem, Bulletin_Data newItem) {
-                return oldItem.getTitle().equals(newItem.getTitle());
+                if(oldItem.isAlready_read() != newItem.isAlready_read())
+                    return false;
+                return oldItem.getID().equals(newItem.getID());
             }
 
             @Override
             public boolean areItemsTheSame(Bulletin_Data item1, Bulletin_Data item2) {
-                return item1.getTitle().equals(item2.getTitle()); // sus but okay
+                return item1.getID().equals(item2.getID());
             }
 
             @Override
@@ -70,6 +78,11 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
             @Override
             public void onMoved(int fromPosition, int toPosition) {
                 notifyItemMoved(fromPosition,toPosition);
+            }
+
+            @Override
+            public void onChanged(int position, int count, Object payload) {
+                notifyItemRangeChanged(position, count, payload);
             }
         });
         for(Bulletin_Data info: data)
@@ -87,6 +100,7 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
 
     public void clearAll()
     {
+        bulletin_data.clear();
         list.clear();
     }
 
@@ -191,6 +205,18 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
         list.endBatchedUpdates();
     }
 
+    public void updateReadItemPosition(int position)
+    {
+        list.get(position).setAlready_read(true);
+        notifyItemChanged(position);
+        list.recalculatePositionOfItemAt(position);
+/*
+        Log.d(TAG, "updating");
+
+        list.beginBatchedUpdates();
+        list.endBatchedUpdates();*/
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         TextView titleText, bodyText, dateText, typeText, readText;
@@ -218,12 +244,12 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
 
         @Override
         public void onClick(View v) {
-            onItemClick.onClick(list.get(getAdapterPosition()));
+            onItemClick.onClick(list.get(getAdapterPosition()), getAdapterPosition());
         }
     }
 
     public interface OnItemClick
     {
-        void onClick(Bulletin_Data data);
+        void onClick(Bulletin_Data data, int position);
     }
 }

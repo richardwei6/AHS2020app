@@ -39,7 +39,7 @@ public class Featured_Display extends Fragment {
                 Helper.TimeFromNow(article.getTimeUpdated())
         );
 
-        Helper.setImage_toView_fromUrl((ImageView) view.findViewById(R.id.template_featured__ImageView),article.getImagePaths()[0]);
+        Helper.setImageFromUrl_CenterCrop((ImageView) view.findViewById(R.id.template_featured__ImageView),article.getImagePaths()[0], false);
 
 
         Helper.setArticleListener_toView(view, article);

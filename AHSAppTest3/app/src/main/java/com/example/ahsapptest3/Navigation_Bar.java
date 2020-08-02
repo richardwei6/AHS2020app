@@ -16,7 +16,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ahsapptest3.Settings.SettingsActivity;
+import com.example.ahsapptest3.Setting_Activities.Settings;
 
 
 public class Navigation_Bar extends Fragment {
@@ -80,7 +80,7 @@ public class Navigation_Bar extends Fragment {
             bulletinBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_DarkCrimson_1A0303__BULLETIN));
         else if (getActivity() instanceof Saved)
             savedBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_DarkCrimson_1A0303__BULLETIN));
-        else if (getActivity() instanceof SettingsActivity)
+        else if (getActivity() instanceof Settings)
             settingsBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_DarkCrimson_1A0303__BULLETIN));
 
         return view;

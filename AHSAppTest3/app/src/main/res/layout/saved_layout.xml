@@ -46,7 +46,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/din_alternate_bold"
                     android:text="Saved"
-                    android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                    android:textColor="@color/NEW_AngryRed_9F0C0C__ALL"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 

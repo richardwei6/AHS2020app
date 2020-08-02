@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -53,15 +54,17 @@ public class ArticleDatabase extends SQLiteOpenHelper {
     static final int STORY_COL = 5;
     private static final String IPATHS = "IPATHS";
     static final int IPATHS_COL = 6;
+    private static final String V_IDS = "V_IDS";
+    static final int V_IDS_COL = 7;
     private static final String BMARKED = "BMARKED";
-    static final int BMARKED_COL = 7;
+    static final int BMARKED_COL = 8;
     private static final String NOTIF = "NOTIF";
-    static final int NOTIF_COL = 8;
+    static final int NOTIF_COL = 9;
     private static final String TYPE = "TYPE";
-    static final int TYPE_COL = 9;
+    static final int TYPE_COL = 10;
 
     public enum Option {
-        BOOKMARK, CURRENT;
+        BOOKMARK, CURRENT
     }
     private static final String BOOKMARK_TABLE = "bookmark_table"; // bookmakred articles stored locally
     private static final String CURRENT_ART_TABLE = "current_table"; // current articles stored locally
@@ -86,8 +89,9 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                 return BOOKMARK_TABLE;
             case CURRENT:
                 return CURRENT_ART_TABLE;
+            default:
+                throw new IllegalStateException(); // hah
         }
-        throw new IllegalStateException(); // hah
     }
 
     @Override
@@ -101,6 +105,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                         AUTHOR + " TEXT," +
                         STORY + " TEXT," +
                         IPATHS + " TEXT," +
+                        V_IDS + " TEXT," +
                         BMARKED + " INTEGER," + // No booleans in sqlite, store them as integers instead (0 or 1)
                         NOTIF + " INTEGER," +
                         TYPE + " TEXT);"
@@ -127,19 +132,20 @@ public class ArticleDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         for(Article article: articles)
         {
-            ContentValues contentValues = new ContentValues();
+            ContentValues values = new ContentValues();
 
-            contentValues.put(ART_ID, article.getID());
-            contentValues.put(TIME, article.getTimeUpdated());
-            contentValues.put(TITLE, article.getTitle());
-            contentValues.put(AUTHOR, article.getAuthor());
-            contentValues.put(STORY, article.getStory());
-            contentValues.put(IPATHS, convertArrayToString(article.getImagePaths()));
-            contentValues.put(BMARKED, (article.isBookmarked()) ? 1 : 0);
-            contentValues.put(NOTIF, (article.alreadyNotified()) ? 1 : 0);
-            contentValues.put(TYPE, article.getType().toString());
+            values.put(ART_ID, article.getID());
+            values.put(TIME, article.getTimeUpdated());
+            values.put(TITLE, article.getTitle());
+            values.put(AUTHOR, article.getAuthor());
+            values.put(STORY, article.getStory());
+            values.put(IPATHS, convertArrayToString(article.getImagePaths()));
+            values.put(V_IDS, convertArrayToString(article.getVideoIDS()));
+            values.put(BMARKED, (article.isBookmarked()) ? 1 : 0);
+            values.put(NOTIF, (article.isNotified()) ? 1 : 0);
+            values.put(TYPE, article.getType().toString());
 
-            long result = db.insert(current_Table, null, contentValues);
+            long result = db.insert(current_Table, null, values);
             succeeded = succeeded && (result != -1);
         }
 
@@ -159,6 +165,8 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                 + " SET " + NOTIF + " = '" + ((notified) ? 1 : 0)
                 + "' WHERE " + ART_ID + " = '" + ID + "'";
         db.execSQL(query);
+        Log.d(TAG, getArticleById(ID).toString());
+        Log.d(TAG, current_Table);
     }
 
     /**
@@ -188,8 +196,11 @@ public class ArticleDatabase extends SQLiteOpenHelper {
      * @param ID the id of the article to search for
      * @return null if Article not found, Article if it is found
      */
+    @Nullable
     public Article getArticleById(String ID)
     {
+        Log.d(TAG, current_Table);
+
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + current_Table
                 + " WHERE  " + ART_ID + " = '" + ID + "'";
@@ -207,6 +218,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                 data.getString(AUTHOR_COL),
                 data.getString(STORY_COL),
                 convertStringToArray(data.getString(IPATHS_COL)),
+                convertStringToArray(data.getString(V_IDS_COL)),
                 (data.getInt(BMARKED_COL) == 1),
                 (data.getInt(NOTIF_COL) == 1),
                 News.TYPE.valueOf(data.getString(TYPE_COL))
@@ -239,6 +251,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                     data.getString(AUTHOR_COL),
                     data.getString(STORY_COL),
                     convertStringToArray(data.getString(IPATHS_COL)),
+                    convertStringToArray(data.getString(V_IDS_COL)),
                     (data.getInt(BMARKED_COL) == 1),
                     (data.getInt(NOTIF_COL) == 1),
                     News.TYPE.valueOf(data.getString(TYPE_COL))

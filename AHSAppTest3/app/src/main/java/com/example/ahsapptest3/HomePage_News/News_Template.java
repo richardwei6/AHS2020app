@@ -83,15 +83,13 @@ public class News_Template extends Fragment {
     private final static String // keys for bundle
             ARTICLE_KEY = "1",
             TITLE_KEY = "2",
-            COLOR_KEY = "3",
-            IS_FEATURED = "4";
-    public static News_Template newInstanceOf(Article[] articles, final String title, final int barColor, final boolean isFeatured)
+            IS_FEATURED = "3";
+    public static News_Template newInstanceOf(Article[] articles, final String title, final boolean isFeatured)
     {
         News_Template thisFrag = new News_Template();
         Bundle args = new Bundle();
         args.putParcelableArray(ARTICLE_KEY,articles);
         args.putString(TITLE_KEY,title);
-        args.putInt(COLOR_KEY,barColor);
         args.putBoolean(IS_FEATURED, isFeatured);
         thisFrag.setArguments(args);
 
@@ -103,25 +101,5 @@ public class News_Template extends Fragment {
     {
         return 2;
     }
-
-    /*public void updateBookmarkIcons()
-    {
-        BookmarkHandler bookmarkHandler = new BookmarkHandler(this.getContext());
-        for(Article article: articles)
-        {
-            article.setBookMarked(bookmarkHandler.alreadyBookmarked(article.getID()));
-        }
-        viewPager.getAdapter().notifyDataSetChanged();
-    }
-
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        System.out.println(TAG+ " " +BookmarkHandler.hasBookmarksChanged());
-        if(BookmarkHandler.hasBookmarksChanged())
-            updateBookmarkIcons();
-
-    }*/
 
 }

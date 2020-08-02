@@ -1,21 +1,33 @@
 package com.example.ahsapptest3;
 
+import android.content.Context;
+
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
 import com.example.ahsapptest3.Helper_Code.Helper;
+import com.example.ahsapptest3.Helper_Code.MediaYoutubeFragment;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.android.material.tabs.TabLayout;
 
-public class ArticleActivity extends AppCompatActivity {
+
+public class ArticleActivity extends FullScreenActivity {
+    private static final String TAG = "ArticleActivity";
 
     private Article article;
     @Override
@@ -34,48 +46,36 @@ public class ArticleActivity extends AppCompatActivity {
         authorText.setText(this.getString(R.string.author_placeholder, article.getAuthor()));
         Helper.setHtmlParsedText_toView(bodyText, article.getStory());
 
-        // set up viewpager and associated dots
-        ViewPager viewPager = findViewById(R.id.article_viewPager);
-
-        // TODO: ViewPager crashes for unknown reason when image is updated from database (this does not happen on other pages)
         final String[] imagePaths = article.getImagePaths();
-        viewPager.setAdapter(new PagerAdapter() {
-            @Override
-            public Object instantiateItem(@NonNull ViewGroup container, int position)
-            {
-                ImageView imageView = new ImageView(container.getContext());
-                Helper.setImage_toView_fromUrl(imageView, article.getImagePaths()[position]);
-
-                container.addView(imageView);
-                return imageView;
-
-            }
-
-            @Override
-            public void destroyItem(ViewGroup container, int position, Object view)
-            {
-                container.removeView((View) view);
-            }
-
-            @Override
-            public int getCount() {
-                return imagePaths.length;
-            }
-
-            @Override
-            public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-                return object == view;
-            }
-        });
+        final String[] videoIDs = article.getVideoIDS();//Arrays.copyOfRange(article.getVideoIDS(),0,1);//
 
         TabLayout tabLayout = findViewById(R.id.article_tabLayout);
-        tabLayout.setupWithViewPager(viewPager, true);
-        tabLayout.bringToFront(); // necessary, otherwise viewpager will cover it
-        // using android:elevation attribute would be preferable but it is only available for API level 21+
+
+        ViewPager2 viewPager2 =findViewById(R.id.article_viewPager2);
+        final MultipleVideoImagePagerAdapter adapter = new MultipleVideoImagePagerAdapter(this, videoIDs, imagePaths);
+        viewPager2.setAdapter(adapter);
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            int oldPosition = -1; // so on load it's "changed" and method is called
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                /*Log.d(TAG, "selected page\t"+position);*/
+                adapter.onPageChanged(oldPosition, position);
+                oldPosition = position;
+
+            }
+        });
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, true, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+
+            }
+        });
+        tabLayoutMediator.attach();
 
         // set up bookmark button
-        ImageButton bookmarkButton = findViewById(R.id.article_bookmarkButton);
-        bookmarkButton.bringToFront(); // necessary, otherwise viewpager will cover it
+        ImageView bookmarkButton = findViewById(R.id.article_bookmarkButton);
+
 
         Helper.setBookmarked_toView(bookmarkButton,article.isBookmarked());
         Helper.setBookMarkListener_toView(bookmarkButton, article);
@@ -83,12 +83,107 @@ public class ArticleActivity extends AppCompatActivity {
         typeText.setText(article.getType().toString());
 
         // set listener for back button
-        ImageButton backButton = findViewById(R.id.article_header_back);
+        ImageView backButton = findViewById(R.id.article_header_back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+    }
+
+    /**
+     * A FragmentStateAdapter that supports a mix of youtube videos and images
+     */
+    public static class MultipleVideoImagePagerAdapter extends FragmentStateAdapter implements  MediaYoutubeFragment.MediaFullScreenListener
+    {
+        String[] videoIDs, imagePaths;
+        MediaYoutubeFragment.InitializeListener[] initializeListeners;
+        public MultipleVideoImagePagerAdapter(@NonNull FragmentActivity fragmentActivity, String[] videoIDs, String[] imagePaths) {
+            super(fragmentActivity);
+            this.videoIDs = videoIDs;
+            this.imagePaths = imagePaths;
+            initializeListeners = new MediaYoutubeFragment.InitializeListener[videoIDs.length];
+        }
+
+        public boolean inVideosRange(int position)
+        {
+            return position >= 0 && position < videoIDs.length;
+        }
+
+        @NonNull
+        @Override
+        public Fragment createFragment(final int position) {
+            if(inVideosRange(position)){
+                MediaYoutubeFragment fragment = MediaYoutubeFragment.newInstance(videoIDs[position], this);
+                initializeListeners[position] = fragment.getmInitializeListener();
+                return fragment;
+            } else { // images
+                return ImageFragment.newInstance(imagePaths[position-videoIDs.length]);
+            }
+        }
+
+        public void onPageChanged( int oldPosition, int newPosition)
+        {
+            if(!inVideosRange(oldPosition) && inVideosRange(newPosition)) // first time, or coming back from position without video
+            {
+                initializeListeners[newPosition].startVideo();
+                return;
+            }
+            boolean pageHasChanged = oldPosition != newPosition;
+            /*Log.d(TAG, "pageChanged\t" + pageHasChanged);*/
+            if(pageHasChanged) // page changed
+            {
+                if(inVideosRange(oldPosition))
+                    initializeListeners[oldPosition].stopVideo();
+                if(inVideosRange(newPosition))
+                    initializeListeners[newPosition].startVideo();
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return videoIDs.length + imagePaths.length;
+        }
+
+        @Override
+        public void startFullScreen() {
+
+        }
+    }
+
+    /**
+     * A simple Image holder compatible with FragmentPagerAdapters solely for use in viewPagers in articles
+     */
+    public static class ImageFragment extends Fragment {
+
+        private static final String imagePath_KEY = "1";
+        private String imagePath;
+        public static ImageFragment newInstance(String imagePath) {
+            ImageFragment thisFrag = new ImageFragment();
+            Bundle args = new Bundle();
+            args.putString(imagePath_KEY, imagePath);
+            thisFrag.setArguments(args);
+            return thisFrag;
+        }
+
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            if(getArguments() != null)
+                imagePath = getArguments().getString(imagePath_KEY);
+        }
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.article_image, container, false);
+            /*if(container == null) // apparently, it always is in the viewpager
+                Log.d(TAG, "help, the container is null");*/
+            ImageView imageView = view.findViewById(R.id.article_image);
+            /*container.addView(imageView);*/
+            Helper.setImageFromUrl(imageView, imagePath, false);
+            return imageView;
+        }
     }
 }

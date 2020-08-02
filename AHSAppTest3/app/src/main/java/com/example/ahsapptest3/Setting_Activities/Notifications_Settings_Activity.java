@@ -1,4 +1,4 @@
-package com.example.ahsapptest3.Settings;
+package com.example.ahsapptest3.Setting_Activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

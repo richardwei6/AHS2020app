@@ -19,26 +19,30 @@
             android:layout_height="wrap_content"
 
             android:orientation="vertical"
-            android:paddingLeft="@dimen/EveryPage_Side_Padding"
+
             android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
-            android:paddingRight="@dimen/EveryPage_Side_Padding"
+
             android:paddingBottom="@dimen/EveryPage_Side_Padding_Half">
 
             <LinearLayout
                 android:id="@+id/bulletin_article_headerLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingEnd="@dimen/EveryPage_Side_Padding"
+                android:paddingRight="@dimen/EveryPage_Side_Padding">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/bulletin_article_header_back"
-                    android:layout_width="20dp"
+                    android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:adjustViewBounds="true"
-                    android:background="?attr/selectableItemBackground"
-                    android:paddingStart="0dp"
-                    android:paddingLeft="0dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:paddingStart="@dimen/EveryPage_Side_Padding_Half"
+                    android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
                     android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
                     android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
                     android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
@@ -60,44 +64,78 @@
                     android:paddingTop="3dp"
                     android:paddingRight="7dp"
                     android:paddingBottom="3dp"
-                    android:text="ARTICLE"
+                    android:text="TYPE"
                     android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
-                    android:textSize="12sp"
-                    />
+                    android:textSize="12sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/bulletin_article_bookmarkButton"
+                    android:padding="@dimen/EveryPage_Side_Padding_Quarter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:scaleType="fitCenter"
+                    tools:srcCompat="@drawable/bookmarked_icon_inactive"
+                    android:background="?attr/selectableItemBackgroundBorderless"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+
+                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingBottom="@dimen/EveryPage_Side_Padding"
+                android:paddingLeft="@dimen/EveryPage_Side_Padding"
+                android:paddingRight="@dimen/EveryPage_Side_Padding">
+                
+                <!--
+                                <fragment
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:name="com.google.android.youtube.player.YouTubePlayerSupportFragmentX"
+                                    android:id="@+id/youtube_player"/>-->
 
                 <TextView
                     android:id="@+id/bulletin_article_dateText"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
 
                     android:fontFamily="@font/sf_pro_display"
-                    android:gravity="center_vertical|end"
+                    android:gravity="start|center_vertical"
 
                     android:text="Month 00, 0000"
-                    android:textColor="@color/BetweenGray_ADADAD__ARTICLE"
+                    android:textColor="@color/NEW_Gray_707070__HOME_ARTICLE"
                     android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/bulletin_article_titleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/EveryPage_Side_Padding_Quarter"
+                    android:fontFamily="@font/sf_pro_semibold"
+                    android:text="Title Lorem Ipsum"
+                    android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/bulletin_article_bodyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Body"
+                    android:textColor="@color/NEW_Gray_707070__HOME_ARTICLE"
+                    android:textSize="16sp" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/bulletin_article_titleText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-                android:fontFamily="@font/sf_pro_semibold"
-                android:text="Title Lorem Ipsum"
-                android:textColor="@color/DarkerGray_656668__HOME_ARTICLE_NOTIF"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/bulletin_article_bodyText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-                android:fontFamily="@font/sf_pro_display"
-                android:text="Body"
-                android:textColor="@color/DarkestGray_555555__HOME_ARTICLE"
-                android:textSize="16sp" />
 
         </LinearLayout>
     </ScrollView>

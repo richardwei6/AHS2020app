@@ -5,232 +5,303 @@
     android:id="@+id/settings_outerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Settings.SettingsActivity">
+    tools:context=".Setting_Activities.Settings">
 
     <ScrollView
         android:id="@+id/settings_ScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/LightishGray_EFEDED__HOME_NOTIF">
+        android:fillViewport="true"
+        >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/settings_scrollConstraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/settings_tester_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tester"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/settings_InfoLinearLayout" />
-
-            <fragment
-                android:id="@+id/settings_header"
-                android:name="com.example.ahsapptest3.Header"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout="@layout/header_layout" />
-
-            <TextView
-                android:id="@+id/settings_GeneralText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginEnd="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-                android:text="General"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/settings_header" />
+            android:layout_height="wrap_content"
+            android:background="?android:windowBackground"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/settings_GeneralLinearLayout"
+                android:id="@+id/settings_header_LinearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginEnd="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-                android:background="@drawable/bulletin_template_rounded_white"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                android:layout_height="wrap_content"
+                android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+                android:elevation="3dp"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/EveryPage_Side_Padding"
+                android:paddingLeft="@dimen/EveryPage_Side_Padding"
                 android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
                 android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
-                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/settings_GeneralText">
+                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half">
 
                 <TextView
-                    android:id="@+id/settings_FontSize_Text"
-                    android:layout_width="match_parent"
+                    android:id="@+id/settings_titleText"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Font Size"
-                    android:textSize="18sp" />
+                    android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+                    android:layout_marginBottom="@dimen/EveryPage_Side_Padding_Half"
 
-                <SeekBar
-                    android:id="@+id/settings_FontSize_SeekBar"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:max="3"
-                    android:progress="1"/>
+                    android:layout_weight="1"
+                    android:fontFamily="@font/din_alternate_bold"
+                    android:text="Settings"
+                    android:textColor="@color/NEW_AngryRed_9F0C0C__ALL"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-                <!--https://stackoverflow.com/questions/5049852/android-drawing-separator-divider-line-in-layout-->
+                <fragment
+                    android:id="@+id/settings_notifbtn"
+                    android:name="com.example.ahsapptest3.NotifBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
 
-
-                <View style="@style/Divider" />
-
-                <LinearLayout
-                    android:id="@+id/settings_notif_LinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="?attr/selectableItemBackground">
-
-                    <TextView
-                        android:id="@+id/settings_notifText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Notifications"
-                        android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/settings_notif_ArrowImage"
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/arrow_forward" />
-                </LinearLayout>
-
+                    android:adjustViewBounds="true"
+                    tools:layout="@layout/notif_btn" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/settings_InfoText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginEnd="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-                android:text="Info"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/settings_GeneralLinearLayout" />
 
             <LinearLayout
-                android:id="@+id/settings_InfoLinearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginEnd="@dimen/EveryPage_Side_Padding_Half"
-                android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-                android:background="@drawable/bulletin_template_rounded_white"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
                 android:orientation="vertical"
-                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
-                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
-                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
-                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/settings_InfoText">
+                android:paddingLeft="@dimen/EveryPage_Side_Padding"
+                android:paddingRight="@dimen/EveryPage_Side_Padding">
 
-
-                <LinearLayout
-                    android:id="@+id/settings_terms_LinearLayout"
+                <TextView
+                    android:id="@+id/settings_GeneralText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="?attr/selectableItemBackground">
+                    android:fontFamily="@font/sf_pro_semibold"
+                    android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                    android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                    android:text="General"
+                    android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                    android:textSize="18sp" />
 
-                    <TextView
-                        android:id="@+id/settings_termsText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Terms and Agreements"
-                        android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/settings_terms_ArrowImage"
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/arrow_forward" />
-                </LinearLayout>
-
-                <View style="@style/Divider" />
-
-                <LinearLayout
-                    android:id="@+id/settings_credits_LinearLayout"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="?attr/selectableItemBackground">
+                    app:cardCornerRadius="@dimen/EveryPage_Side_Padding_Quarter"
+                    app:cardElevation="3dp">
 
-                    <TextView
-                        android:id="@+id/settings_creditsText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Credits"
-                        android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/settings_credits_ArrowImage"
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/arrow_forward" />
-                </LinearLayout>
-
-                <View style="@style/Divider" />
-
-                <LinearLayout
-                    android:id="@+id/settings_version_LinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/settings_versionText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="App Version"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/settings_versionNumber"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/settings_GeneralLinearLayout"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="0"
-                        android:scaleType="centerInside"
-                        android:text="0.0.0" />
-                </LinearLayout>
 
+                        android:orientation="vertical"
+
+                        >
+
+                        <TextView
+                            android:id="@+id/settings_FontSize_Text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_pro_semibold"
+                            android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                            android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                            android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                            android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                            android:text="Font Size"
+                            android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                            android:textSize="18sp" />
+
+                        <SeekBar
+                            android:id="@+id/settings_FontSize_SeekBar"
+                            style="@style/SeekBarWithoutSteps"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="3"
+                            android:progress="1"
+                            android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                            android:progressDrawable="@drawable/seekbar_progress_bg"
+                            />
+
+                        <!--https://stackoverflow.com/questions/5049852/android-drawing-separator-divider-line-in-layout-->
+
+
+                        <View style="@style/Divider" />
+
+                        <LinearLayout
+                            android:id="@+id/settings_notif_LinearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/settings_notifText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sf_pro_semibold"
+                                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                                android:text="Notifications"
+                                android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:id="@+id/settings_notif_ArrowImage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:adjustViewBounds="true"
+                                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                                android:scaleType="centerInside"
+                                android:tint="@color/NEW_Gray_707070__HOME_ARTICLE"
+                                app:srcCompat="@drawable/arrow_forward" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/settings_InfoText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_semibold"
+                    android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                    android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+
+                    android:text="Info"
+                    android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                    android:textSize="18sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/EveryPage_Side_Padding_Quarter"
+                    app:cardElevation="3dp">
+
+                    <LinearLayout
+                        android:id="@+id/settings_InfoLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/bulletin_template_rounded_white"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:id="@+id/settings_terms_LinearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/settings_termsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sf_pro_semibold"
+                                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                                android:text="Terms and Agreements"
+                                android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:id="@+id/settings_terms_ArrowImage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                                android:layout_weight="0"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:tint="@color/NEW_Gray_707070__HOME_ARTICLE"
+                                app:srcCompat="@drawable/arrow_forward" />
+                        </LinearLayout>
+
+                        <View style="@style/Divider" />
+
+                        <LinearLayout
+                            android:id="@+id/settings_credits_LinearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/settings_creditsText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sf_pro_semibold"
+                                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                                android:text="Credits"
+                                android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:id="@+id/settings_credits_ArrowImage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                                android:layout_weight="0"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:tint="@color/NEW_Gray_707070__HOME_ARTICLE"
+                                app:srcCompat="@drawable/arrow_forward" />
+                        </LinearLayout>
+
+                        <View style="@style/Divider" />
+
+                        <LinearLayout
+                            android:id="@+id/settings_version_LinearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/settings_versionText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sf_pro_semibold"
+                                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                                android:text="App Version"
+                                android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/settings_versionNumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+                                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                                android:layout_weight="0"
+                                android:gravity="center"
+                                android:fontFamily="@font/sf_pro_display"
+                                android:scaleType="centerInside"
+                                android:text="@string/app_version" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/settings_tester_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tester" />
             </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 
     <fragment

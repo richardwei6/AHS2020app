@@ -103,9 +103,10 @@ public class Article_Display_Stacked extends Fragment {
                 Helper.setArticleListener_toView(inflated[i].findViewById(R.id.article_display__summary_Text), articles[i]);
 
                 // setImage
-                Helper.setImage_toView_fromUrl((ImageView) inflated[i].findViewById(R.id.article_display__imageView),articles[i].getImagePaths()[0]);
-
-
+                Helper.setImageFromUrl_CenterCrop(
+                        (ImageView) inflated[i].findViewById(R.id.article_display__imageView),
+                        articles[i].getImagePaths()[0],
+                        false);
             }
         }
     }

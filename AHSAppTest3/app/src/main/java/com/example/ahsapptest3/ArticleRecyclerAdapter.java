@@ -22,9 +22,14 @@ public class ArticleRecyclerAdapter extends RecyclerView.Adapter<ArticleRecycler
     private OnItemClick onItemClick;
 
     public ArticleRecyclerAdapter(android.content.Context context, ArrayList<Article> articles, OnItemClick onItemClick) {
-        ArticleRecyclerAdapter.articles = articles;
+        ArticleRecyclerAdapter.articles = new ArrayList<>(articles);
         this.context = context;
         this.onItemClick = onItemClick;
+    }
+
+    public void clearAll()
+    {
+        articles.clear();
     }
 
     @NonNull
@@ -47,7 +52,7 @@ public class ArticleRecyclerAdapter extends RecyclerView.Adapter<ArticleRecycler
 
         Helper.setHtmlParsedText_toView(holder.summaryText, article.getStory());
         // setImage
-        Helper.setImage_toView_fromUrl(holder.image,article.getImagePaths()[0]);
+        Helper.setImageFromUrl(holder.image,article.getImagePaths()[0], false);
 
 
 /*

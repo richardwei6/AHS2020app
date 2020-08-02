@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/LightishGray_EFEDED__HOME_NOTIF"
     android:orientation="vertical"
-    tools:context=".Settings.Notifications_Settings_Activity">
+    tools:context=".Setting_Activities.Notifications_Settings_Activity">
 
     <LinearLayout
         android:id="@+id/notif_settings_headerLinearLayout"

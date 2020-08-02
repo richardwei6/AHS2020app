@@ -7,15 +7,14 @@
     android:orientation="vertical"
     tools:context=".News"
     android:paddingLeft="@dimen/EveryPage_Side_Padding"
-    android:paddingTop="@dimen/EveryPage_Side_Padding"
+    android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
     android:paddingRight="@dimen/EveryPage_Side_Padding"
     android:paddingBottom="40dp">
     <TextView
         android:id="@+id/template_news__TitleText"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-
-        android:fontFamily="@font/sf_pro_semibold"
+        android:layout_marginTop="@dimen/EveryPage_Side_Padding_Quarter"
         android:text=""
         android:background="@drawable/loading_rounded_bg"
         android:textSize="24sp" />
@@ -23,7 +22,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="5dp">
 
         <ImageView
             android:layout_width="0dp"
@@ -38,22 +37,31 @@
 
 
     <TextView
-        android:id="@+id/template_featured__title_Text"
+
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-        android:fontFamily="@font/sf_pro_semibold"
+
         android:text=""
         android:textSize="20sp"
         android:background="@drawable/loading_rounded_bg"
         />
 
     <TextView
-        android:id="@+id/textView"
+
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/loading_rounded_bg"
+        android:includeFontPadding="false"
+        android:text=""
+        android:textSize="20sp" />
+
+    <TextView
+
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-        android:fontFamily="@font/sf_pro_display"
+
         android:padding="5dp"
         android:text=""
         android:textSize="12sp"
