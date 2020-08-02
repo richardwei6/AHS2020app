@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Settings.Credits_Activity">
+    tools:context=".Setting_Activities.Credits_Activity">
 
     <LinearLayout
         android:id="@+id/credits_headerLinearLayout"

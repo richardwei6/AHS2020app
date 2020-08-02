@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Tester extends AppCompatActivity {
 
@@ -47,10 +48,7 @@ public class Tester extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tester);
 
-        for(int i = 0; i < selectors_active.length; i++)
-        {
-            selectors_active[i] = false;
-        }
+        Arrays.fill(selectors_active, false);
 
         final String[] categories = new String[]
                 {

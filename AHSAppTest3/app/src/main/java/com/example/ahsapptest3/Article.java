@@ -7,7 +7,7 @@ public class Article implements Parcelable {
     private String ID;
     private long time_updated;
     private String title, author, story;
-    private String [] imagePaths;
+    private String [] imagePaths, videoIDS;
     private boolean is_bookmarked, notified;
     private News.TYPE type;
 
@@ -20,7 +20,7 @@ public class Article implements Parcelable {
             String author,
             String story,
             String[] imagePaths,
-
+            String[] videoIDS,
             // determined by current articles on phone.
             // false by default
             // (this must be determined on creation, creating overloaded constructor is too unwieldy)
@@ -39,6 +39,7 @@ public class Article implements Parcelable {
         this.author = author;
         this.story = story;
         this.imagePaths = imagePaths;
+        this.videoIDS = videoIDS;
         this.is_bookmarked = is_bookmarked;
         this.notified = has_notified;
         this.type = type;
@@ -48,8 +49,6 @@ public class Article implements Parcelable {
     {
         blank = true;
     }
-
-
 
     public static final Creator<Article> CREATOR = new Creator<Article>() {
         @Override
@@ -90,11 +89,12 @@ public class Article implements Parcelable {
     {
         return imagePaths;
     }
+    public String[] getVideoIDS() {return videoIDS;}
     public boolean isBookmarked()
     {
         return is_bookmarked;
     }
-    public boolean alreadyNotified() {return notified;}
+    public boolean isNotified() {return notified;}
     public News.TYPE getType() { return type;}
 
     @Override
@@ -124,6 +124,7 @@ public class Article implements Parcelable {
         author = in.readString();
         story = in.readString();
         imagePaths = in.createStringArray();
+        videoIDS = in.createStringArray();
         is_bookmarked = in.readByte() != 0;
         notified = in.readByte() != 0;
         type = (News.TYPE) in.readSerializable();
@@ -143,6 +144,7 @@ public class Article implements Parcelable {
         dest.writeString(author);
         dest.writeString(story);
         dest.writeStringArray(imagePaths);
+        dest.writeStringArray(videoIDS);
         dest.writeByte((byte) (is_bookmarked ? 1 : 0));
         dest.writeByte((byte) (notified ? 1 : 0));
         dest.writeSerializable(type);

@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/EveryPage_Side_Padding"
-    android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
     android:paddingRight="@dimen/EveryPage_Side_Padding"
-    android:paddingBottom="0dp"
+    android:paddingTop="@dimen/EveryPage_Side_Padding_Quarter"
+    android:paddingBottom="@dimen/EveryPage_Side_Padding_Quarter"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground">
+    android:background="?android:attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/template_featured__ImageView"
@@ -24,13 +24,14 @@
 
     <TextView
         android:id="@+id/template_featured__title_Text"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
         android:layout_weight="1"
         android:ellipsize="end"
         android:fontFamily="@font/sf_pro_semibold"
-        android:maxLines="2"
+        android:lines="2"
         android:text="Lorum Ipsum the Long Title"
         android:textColor="@color/Black_000000__HOME"
         android:textSize="20sp"
@@ -67,7 +68,7 @@
         android:fontFamily="@font/sf_pro_display"
         android:padding="5dp"
         android:text="00m ago"
-        android:textColor="@color/DarkestGray_555555__HOME_ARTICLE"
+        android:textColor="@color/NEW_Gray_707070__HOME_ARTICLE"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/news_featured_smalldot"
         app:layout_constraintEnd_toEndOf="parent"

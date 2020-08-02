@@ -7,36 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".News">
 
-
-    <!--
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/test_tablayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/test_viewpager"
-        app:tabBackground="@drawable/tab_selector"
-        app:tabGravity="fill"
-        app:tabIndicatorHeight="0dp"
-
-        app:tabMode="fixed"
-        />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/test_viewpager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.viewpager.widget.ViewPager>
-
-    -->
-
-
     <ScrollView
         android:id="@+id/home_page__scrollView"
         android:layout_width="match_parent"
@@ -141,7 +111,7 @@
                 android:layout_height="wrap_content" >
 
                 <include
-                    layout="@layout/news_loading_layout"
+                    layout="@layout/news_featured_loading"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </FrameLayout>

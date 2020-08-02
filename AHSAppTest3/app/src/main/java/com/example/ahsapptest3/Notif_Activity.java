@@ -2,16 +2,18 @@ package com.example.ahsapptest3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
+import com.example.ahsapptest3.Setting_Activities.Settings;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,98 +22,86 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Notif_Activity extends AppCompatActivity {
+public class Notif_Activity extends FullScreenActivity implements Navigation, ArticleRecyclerAdapter.OnItemClick, NotifRecyclerAdapter.OnItemClick {
 
     private static final String TAG = "Notif_Activity";
     private static ArrayList<Article> articles = new ArrayList<>();
-    private FrameLayout[] frameLayouts;
-    private LinearLayout listLayout;
-    /*private boolean[] justNotified;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notif_layout);
 
-        listLayout = findViewById(R.id.notif_linearLayout);
-        /*String[][] data = getData();
-        if(articles == null)
-        {
-            articles = new Article[data.length];
-            for(int i = 0; i < articles.length; i++)
-            {
-                articles[i] =
+        /*listLayout = findViewById(R.id.notif_linearLayout);*/
 
-                new Article("2342",238472394,data[i][0],"author",data[i][1],new String [] {"hello"},false,i < 3);
-                // change this later
+        RecyclerView recyclerView = findViewById(R.id.notif_recyclerView);
+        // create recyclerview margins
+        final int margin = (int) getResources().getDimension(R.dimen.EveryPage_Side_Padding_Half);
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                outRect.left = margin;
+                outRect.right = margin;
+
+                // account for special margins for first and last children
+                int position = parent.getChildLayoutPosition(view);
+
+                // first item
+                outRect.top = (position == 0) ? margin : margin/4;
+                // last item
+                outRect.bottom = (position == state.getItemCount()-1) ? margin : margin/4;
+
             }
-        }*/
+        });
+        recyclerView.requestLayout();
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        /*final ArticleRecyclerAdapter adapter = new ArticleRecyclerAdapter(this, articles,this);
+        recyclerView.setAdapter(adapter);*/
+
 
         final ArticleDatabase articleDatabase = ArticleDatabase.getInstance(this, ArticleDatabase.Option.CURRENT);
+
+        final ArrayList<Notif_Data> dataArrayList = new ArrayList<>();
+        final NotifRecyclerAdapter adapter = new NotifRecyclerAdapter(this, dataArrayList, this);
+        recyclerView.setAdapter(adapter);
         final Context context = this;
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("notifications");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                articles.clear();
+                adapter.clearAll();
                 for(DataSnapshot child_sn: snapshot.getChildren())
                 {
-                    String ID = child_sn.child("notificationArticleID").getValue().toString();
+                    String articleID = child_sn.child("notificationArticleID").getValue().toString();
+                    String body = child_sn.child("notificationBody").getValue().toString();
+                    String title = child_sn.child("notificationTitle").getValue().toString();
+                    long time = (long) child_sn.child("notificationUnixEpoch").getValue();
+                    int category = ((Long)child_sn.child("notificationCategory").getValue()).intValue();
+                    Notif_Data data = new Notif_Data(time, title, body, category,
+                            articleDatabase.getArticleById(articleID));
+                    if (data.getArticle() != null) {
+                        Log.d(TAG, "from database" + ArticleDatabase.getInstance(context, ArticleDatabase.Option.CURRENT).getArticleById(articleID).toString());
+                        Log.d(TAG, "from object" + data.getArticle().toString());
+                    }
+                    dataArrayList.add(data);
+                    adapter.addItem(data);
                     //Log.d(TAG, child_sn.getKey());
                     //Log.d(TAG, "tried once, ID:" + ID);
-                    if(articleDatabase.alreadyAdded(ID))
+                    /*if(articleDatabase.alreadyAdded(articleID))
                     {
-                        /*Log.d(TAG,"found articles");*/
-                        Article article = articleDatabase.getArticleById(ID);
-                        articles.add(articleDatabase.getArticleById(ID));
-                    }
+                        *//*Log.d(TAG,"found articles");*//*
+                        Article article = articleDatabase.getArticleById(articleID);
+                        articles.add(article);
+                        ArticleRecyclerAdapter.articles.add(article);
+                        adapter.notifyDataSetChanged();
+                    }*/
                 }
 
-
-                //Log.d(TAG, String.valueOf(articles.size()));
-                frameLayouts = new FrameLayout[articles.size()];
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-
-                params.setMargins(0,0,0,0);
-
-                for(int i = 0; i < frameLayouts.length; i++) {
-                    frameLayouts[i] = new FrameLayout(context);
-                    frameLayouts[i].setLayoutParams(new FrameLayout.LayoutParams(
-                            FrameLayout.LayoutParams.MATCH_PARENT,  //width
-                            FrameLayout.LayoutParams.WRAP_CONTENT   //height
-                    ));
-                    frameLayouts[i].setId(getIdRange()+i);
-                    listLayout.addView(frameLayouts[i],params);
-
-                    final View view = frameLayouts[i];
-                    final Article article = articles.get(i);
-                    view.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(view.getContext(), ArticleActivity.class);
-                            intent.putExtra("data", article);
-                            view.getContext().startActivity(intent);
-                            if(!article.alreadyNotified())
-                                articleDatabase.updateNotifiedStatus(article.getID(),true);
-
-                        }
-                    });
-                }
-
-                Notif_Template[] items = new Notif_Template[articles.size()];
-                for (int i = 0; i < items.length; i++)
-                {
-                    items[i] = Notif_Template.newInstanceOf(articles.get(i));
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .add(frameLayouts[i].getId(),items[i])
-                            .commitAllowingStateLoss();
-
-                }
             }
 
             @Override
@@ -119,50 +109,56 @@ public class Notif_Activity extends AppCompatActivity {
                 Log.e(TAG, error.getDetails());
             }
         });
-
-
-        /*justNotified = new boolean[articles.length];
-        for(int i = 0; i < articles.length; i++)
-        {
-            justNotified[i] = articles[i].alreadyNotified();
-        }*/
-
-
-
-        // set listener for back button
-        ImageButton backButton = findViewById(R.id.notif_header_back);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
     }
 
-    /*@Override
-    public void onResume()
-    {
-        super.onResume();
-
-        for(FrameLayout fl: frameLayouts) // slightly janky solution to the problem that when article back button pressed, android doesn't redraw the notif page,
-        {
-            fl.setVisibility(View.GONE); //thus changing notified boolean seems to have no effect, until you click back on notif then go back to notif again
-            fl.setVisibility(View.VISIBLE);
-        }
-    }*/
     @Override
-    public void onRestart(){
-        super.onRestart();
-        articles.clear();
-        this.recreate(); // see comment above, only this actually works; maybe fix the listener to change flag variable to recreate? maybe sharedpreferences?
-        // note, use recycler view and finagle with notifyDataSetChanged
-
+    public void goToHome() {
+        Intent intent = new Intent(Notif_Activity.this, News.class);
+        startActivity(intent);
     }
 
-    private int getIdRange()
-    {
-        return 2000000;
+    @Override
+    public void goToBulletin() {
+        Intent intent = new Intent(Notif_Activity.this, Bulletin.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void goToSaved() {
+        Intent intent = new Intent(Notif_Activity.this, Saved.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void goToSettings() {
+        Intent intent = new Intent(Notif_Activity.this, Settings.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public int getScrollingViewId() {
+        return R.id.notif_scrollView;
+    }
+
+    @Override
+    public void onClick(Article data) {
+        if(!data.isNotified())
+            ArticleDatabase.getInstance(this, ArticleDatabase.Option.CURRENT).updateNotifiedStatus(data.getID(),true);
+        Intent intent = new Intent(Notif_Activity.this, ArticleActivity.class);
+        intent.putExtra("data", data);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(@Nullable Article article, int position) {
+        if(article!= null)
+        {
+            ArticleDatabase.getInstance(this, ArticleDatabase.Option.CURRENT).updateNotifiedStatus(article.getID(),true);
+
+            Intent intent = new Intent(Notif_Activity.this, ArticleActivity.class);
+            intent.putExtra("data", article);
+            startActivity(intent);
+        }
     }
 
 }

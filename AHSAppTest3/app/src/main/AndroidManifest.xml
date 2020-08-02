@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <activity android:name=".Bulletin_Item_Activity"></activity>
         <activity android:name=".Tester" />
 
@@ -19,13 +20,16 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".Settings.Notifications_Settings_Activity" />
-        <activity android:name=".Settings.Credits_Activity" />
-        <activity android:name=".Settings.Terms_And_Agreements_Activity" />
-        <activity android:name=".Settings.SettingsActivity" />
+        <activity android:name=".Setting_Activities.Notifications_Settings_Activity"
+            />
+        <activity android:name=".Setting_Activities.Credits_Activity" />
+        <activity android:name=".Setting_Activities.Terms_And_Agreements_Activity" />
+        <activity android:name=".Setting_Activities.Settings" />
         <activity android:name=".Saved" />
         <activity android:name=".Notif_Activity" />
-        <activity android:name=".ArticleActivity" />
+        <activity android:name=".ArticleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Bulletin" />
         <activity android:name=".News">
             <intent-filter>

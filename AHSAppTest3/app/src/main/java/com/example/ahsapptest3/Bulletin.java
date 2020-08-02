@@ -1,5 +1,6 @@
 package com.example.ahsapptest3;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -7,12 +8,13 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ahsapptest3.Helper_Code.Bulletin_SelectorView;
-import com.example.ahsapptest3.Settings.SettingsActivity;
+import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
+import com.example.ahsapptest3.Setting_Activities.Settings;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,51 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
-public class Bulletin extends AppCompatActivity implements Navigation, BulletinRecyclerAdapter.OnItemClick, NotifBtn.Navigation{
+public class Bulletin extends FullScreenActivity implements Navigation, BulletinRecyclerAdapter.OnItemClick, NotifBtn.Navigation{
 
     private static final String TAG = "BulletinActivity";
-
-    @Override
-    public void goToHome() {
-        Intent myIntent = new Intent(Bulletin.this, News.class);
-        Bulletin.this.startActivity(myIntent);
-    }
-    @Override
-    public void goToBulletin() {
-
-    }
-    @Override
-    public void goToSaved() {
-        Intent myIntent = new Intent(Bulletin.this, Saved.class);
-        Bulletin.this.startActivity(myIntent);
-    }
-    @Override
-    public void goToSettings() {
-        Intent myIntent = new Intent(Bulletin.this, SettingsActivity.class);
-        Bulletin.this.startActivity(myIntent);
-    }
-    @Override
-    public int getScrollingViewId() {
-        return R.id.bulletin_outerScrollView;
-    }
-
-    @Override
-    public void onClick(Bulletin_Data data) {
-        data.setAlready_read(true);
-        BulletinDatabase db = new BulletinDatabase(this);
-        db.updateReadStatus(data);
-
-        Intent intent = new Intent(Bulletin.this, Bulletin_Item_Activity.class);
-        intent.putExtra("data", data);
-        Bulletin.this.startActivity(intent);
-    }
-
-    @Override
-    public void goToNotif() {
-        Intent intent = new Intent(Bulletin.this, Notif_Activity.class);
-        startActivity(intent);
-    }
+    private BulletinRecyclerAdapter adapter;
 
     public enum Type
     {
@@ -127,7 +88,7 @@ public class Bulletin extends AppCompatActivity implements Navigation, BulletinR
 
         final RecyclerView recyclerView = findViewById(R.id.bulletin_RecyclerView);
         recyclerView.setNestedScrollingEnabled(false);
-        final BulletinRecyclerAdapter adapter = new BulletinRecyclerAdapter(this, data, this);
+        adapter = new BulletinRecyclerAdapter(this, data, this);
 
 
         for(int i = 0; i < selectors.length; i++)
@@ -211,5 +172,64 @@ public class Bulletin extends AppCompatActivity implements Navigation, BulletinR
             }
         });
 
+    }
+
+    @Override
+    public void goToHome() {
+        Intent myIntent = new Intent(Bulletin.this, News.class);
+        Bulletin.this.startActivity(myIntent);
+    }
+    @Override
+    public void goToBulletin() {
+
+    }
+    @Override
+    public void goToSaved() {
+        Intent myIntent = new Intent(Bulletin.this, Saved.class);
+        Bulletin.this.startActivity(myIntent);
+    }
+    @Override
+    public void goToSettings() {
+        Intent myIntent = new Intent(Bulletin.this, Settings.class);
+        Bulletin.this.startActivity(myIntent);
+    }
+    @Override
+    public int getScrollingViewId() {
+        return R.id.bulletin_outerScrollView;
+    }
+
+
+    public static final int REQUEST_CODE = 1;
+    public static final String read_KEY = "1";
+    private int position;
+    @Override
+    public void onClick(Bulletin_Data data, int position) {
+        data.setAlready_read(true);
+        BulletinDatabase db = new BulletinDatabase(this);
+        db.updateReadStatus(data);
+        this.position = position;
+
+        Intent intent = new Intent(Bulletin.this, Bulletin_Item_Activity.class);
+        intent.putExtra("data", data);
+        Bulletin.this.startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                boolean thing = data.getBooleanExtra(read_KEY, true);
+                adapter.updateReadItemPosition(position);
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                // some stuff that will happen if there's no result
+            }
+        }
+    }
+
+    @Override
+    public void goToNotif() {
+        Intent intent = new Intent(Bulletin.this, Notif_Activity.class);
+        startActivity(intent);
     }
 }

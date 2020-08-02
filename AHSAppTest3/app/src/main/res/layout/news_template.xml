@@ -12,7 +12,7 @@
         android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
         android:orientation="vertical"
         android:paddingLeft="0dp"
-        android:paddingTop="@dimen/EveryPage_Side_Padding"
+        android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
         android:paddingRight="0dp">
 
         <TextView
@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/EveryPage_Side_Padding"
             android:layout_marginLeft="@dimen/EveryPage_Side_Padding"
+
             android:fontFamily="@font/sf_pro_semibold"
             android:text="SOMETHING NEWS"
             android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
@@ -41,15 +42,14 @@
         <com.example.ahsapptest3.Helper_Code.EnhancedWrapContentViewPager
             android:id="@+id/template_news__ViewPager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp" />
+            android:layout_height="wrap_content" />
 
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/template_news__TabLayout"
             android:layout_width="wrap_content"
 
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             app:tabBackground="@drawable/tab_selector"
             app:tabGravity="fill"

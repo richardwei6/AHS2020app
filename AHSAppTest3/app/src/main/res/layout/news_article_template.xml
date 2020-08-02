@@ -8,7 +8,8 @@
     android:paddingRight="@dimen/EveryPage_Side_Padding"
     android:paddingTop="@dimen/EveryPage_Side_Padding_Quarter"
     android:paddingBottom="@dimen/EveryPage_Side_Padding_Quarter"
-    android:background="?attr/selectableItemBackground">
+    android:background="?attr/selectableItemBackground"
+    >
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -26,6 +27,7 @@
         android:layout_weight="1"
         android:fontFamily="@font/sf_pro_semibold"
         android:maxLines="2"
+        android:ellipsize="end"
         android:text="Lorum Ipsum the Long Title"
         android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
         android:textSize="20sp"
@@ -34,16 +36,16 @@
         app:layout_constraintStart_toStartOf="@+id/article_display__guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.example.ahsapptest3.Helper_Code.AdaptingTextView
         android:id="@+id/article_display__summary_Text"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="0"
         android:ellipsize="end"
         android:fontFamily="@font/sf_pro_display"
-        android:maxLines="2"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "
-        android:textColor="@color/DarkerGray_656668__HOME_ARTICLE_NOTIF"
+        android:textColor="@color/NEW_Gray_707070__HOME_ARTICLE"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/article_display__title_Text"
@@ -55,7 +57,7 @@
         android:layout_height="0dp"
         android:layout_marginEnd="@dimen/EveryPage_Side_Padding_Half"
         android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-        android:background="@drawable/image_bg"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1.5"
         app:layout_constraintEnd_toStartOf="@+id/article_display__guideline"

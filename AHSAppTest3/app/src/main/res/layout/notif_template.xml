@@ -1,96 +1,124 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/notif_display_outerConstraintLayout"
+    android:id="@+id/notif_template_CardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
-    android:paddingTop="@dimen/EveryPage_Side_Padding_Quarter"
-    android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
-    android:paddingBottom="@dimen/EveryPage_Side_Padding_Quarter"
-    android:background="?attr/selectableItemBackground"
-    tools:context=".Notif_Template">
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
 
-    <ImageView
-        android:id="@+id/notif_display_backgroundImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/loading_rounded_bg" />
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <ImageView
-        android:id="@+id/notif_display_indicatorImage"
-        android:layout_width="@dimen/EveryPage_Side_Padding_Half"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notif_display_indicator_rounded" />
-
-    <TextView
-        android:id="@+id/notif_display_titleText"
-        android:layout_width="0dp"
+        android:id="@+id/notif_template_ConstraintLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
-        android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-        android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-        android:fontFamily="@font/sf_pro_semibold"
-        android:text="Title"
-        android:textColor="@color/Black_000000__HOME"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/notif_display_timeUpdatedText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/notif_display_indicatorImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingLeft="@dimen/EveryPage_Side_Padding"
+        android:paddingRight="@dimen/EveryPage_Side_Padding">
 
-    <TextView
-        android:id="@+id/notif_display_summaryText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
-        android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
-        android:layout_marginTop="@dimen/EveryPage_Side_Padding_Quarter"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-        android:layout_marginBottom="@dimen/EveryPage_Side_Padding_Half"
-        android:fontFamily="@font/sf_pro_display"
-        android:maxLines="3"
-        android:text="Summary"
-        android:textColor="@color/Black_000000__HOME"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/notif_display_forwardImage"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/notif_display_indicatorImage"
-        app:layout_constraintTop_toBottomOf="@+id/notif_display_titleText" />
+        <TextView
+            android:id="@+id/notif_template_typeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+            android:background="@drawable/type_rounded_bg"
+            android:fontFamily="@font/sf_pro_display"
+            android:paddingLeft="7dp"
+            android:paddingTop="3dp"
+            android:paddingRight="7dp"
+            android:paddingBottom="3dp"
+            android:text="Type"
+            android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/notif_display_forwardImage"
-        android:layout_width="20dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
-        android:background="@color/Blank"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_forward" />
+        <TextView
+            android:id="@+id/notif_template_newText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/EveryPage_Side_Padding_Half"
+            android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Half"
+            android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+            android:background="@drawable/type_rounded_bg"
+            android:backgroundTint="@color/NEW_GoldenYellow_DCD33D__HOME_BULLETIN"
+            android:fontFamily="@font/sf_pro_display"
+            android:paddingLeft="7dp"
+            android:paddingTop="3dp"
+            android:paddingRight="7dp"
+            android:paddingBottom="3dp"
+            android:text="New"
+            android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/notif_template_typeText"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/notif_display_timeUpdatedText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-        android:fontFamily="@font/sf_pro_display"
-        android:text="00 min ago"
-        android:textColor="@color/DarkerGray_656668__HOME_ARTICLE_NOTIF"
-        app:layout_constraintEnd_toEndOf="@+id/notif_display_summaryText"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/notif_template_forward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/NEW_Gray_707070__HOME_ARTICLE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/arrow_forward" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/notif_template_TitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/EveryPage_Side_Padding_Quarter"
+            android:layout_marginEnd="@dimen/EveryPage_Side_Padding_Quarter"
+            android:layout_marginRight="@dimen/EveryPage_Side_Padding_Quarter"
+            android:fontFamily="@font/sf_pro_semibold"
+            android:text="TITLE TEXT"
+            android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+            android:textSize="18sp"
+            app:fontFamily="@font/sf_pro_display"
+            app:layout_constraintEnd_toStartOf="@+id/notif_template_forward"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notif_template_typeText" />
+
+        <TextView
+            android:id="@+id/notif_template_BodyText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+            android:layout_marginBottom="@dimen/EveryPage_Side_Padding"
+            android:text="Description of the Article"
+            android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+            android:textSize="12sp"
+            app:fontFamily="@font/sf_pro_display"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/notif_template_TitleText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notif_template_TitleText" />
+
+        <TextView
+            android:id="@+id/notif_template_DateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="Date"
+            android:textColor="@color/NEW_AngryRed_9F0C0C__ALL"
+            android:textSize="12sp"
+            app:fontFamily="@font/sf_pro_display"
+            app:layout_constraintBottom_toBottomOf="@+id/notif_template_typeText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/notif_template_typeText" />
+
+        <!-- <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/notif_display_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="notif_template_DateText,notif_template_typeText"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="71dp" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

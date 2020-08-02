@@ -3,7 +3,9 @@ package com.example.ahsapptest3.Helper_Code;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +19,7 @@ import androidx.core.text.HtmlCompat;
 import androidx.palette.graphics.Palette;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomTarget;
@@ -35,6 +38,7 @@ import java.util.concurrent.TimeUnit;
 
 // Alex Dang 2020
 public class Helper{
+    private static final String TAG = "Helper";
 
     /**
     * Kind of unnecessary, but just for symmetry purposes
@@ -47,7 +51,7 @@ public class Helper{
     public static void setHtmlParsedText_toView(TextView view, String text)
     {
 
-        view.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_OPTION_USE_CSS_COLORS));
+        view.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY));
         view.setMovementMethod(LinkMovementMethod.getInstance());
     }
 /*
@@ -58,34 +62,12 @@ public class Helper{
     }*/
 
     /**
-     *  Load image from the internet into an Image view (includes ImageButton, which extends ImageView)
+     *  Load image from the internet or internal storage into an ImageView
      * */
-    public static void setImage_toView_fromUrl(final ImageView view, String url)
+    public static void setImageFromUrl(final ImageView view, String url, boolean fromStorage)
     {
-        /*Picasso.with(view.getContext()).load(url).fit().centerInside().into(view, new Callback() {
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError() {
-                System.out.println("Picasso crashed");
-            }
-        });
-        // possibly centerinside(), centercrop() options
-        // you need fit() before centerinside(), centercrop() otherwise the app crashes with no logcat output*/
-        /*final ViewTreeObserver vto = view.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                vto.removeOnGlobalLayoutListener(this);
-                int width = view.getWidth();
-                int height = view.getHeight();
-            }
-        });*/
-
-        Glide
+        if(!fromStorage)
+        {Glide
                 .with(view.getContext())
                 .load(url)
                 .error(R.drawable.image_bg)
@@ -120,79 +102,68 @@ public class Helper{
 
                     }
                 });
-        /*Glide
-                .with(view.getContext())
-                .asBitmap()
-                .load(url)
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        *//*Palette.from(resource).generate(new Palette.PaletteAsyncListener()
-                        {
-                            @Override
-                            public void onGenerated(@Nullable Palette palette) {
-                                int mutedColor = palette.getMutedColor(ContextCompat.getColor(view.getContext(),R.color.NEW_CoffeeRed_473D3D__HOME_ARTICLE_SAVED));
+        } else {
+            Glide
+                    .with(view.getContext())
+                    .load(Uri.parse(url))
+                    .error(R.drawable.image_bg)
+                    .centerInside()
+                    .into(view);
 
-                                Drawable drawable = ContextCompat.getDrawable(view.getContext(), R.drawable.image_bg);
-                                DrawableCompat.setTint(drawable,mutedColor);
-                                view.setBackgroundResource(R.drawable.image_bg);
+            Glide
+                    .with(view.getContext())
+                    .asBitmap()
+                    .load(Uri.parse(url))
+                    .into(new CustomTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            Palette.from(resource).generate(new Palette.PaletteAsyncListener()
+                            {
+                                @Override
+                                public void onGenerated(@Nullable Palette palette) {
+                                    int mutedColor = palette.getMutedColor(ContextCompat.getColor(view.getContext(),R.color.NEW_CoffeeRed_473D3D__HOME_ARTICLE_SAVED));
+                                    view.setColorFilter(mutedColor);
+                                    view.setBackgroundResource(R.drawable.image_bg);
+                                }
+                            });
+                        }
 
-                            }
-                        });*//*
-                        Palette palette = Palette.from(resource).generate();
-                        int mutedColor = palette.getMutedColor(ContextCompat.getColor(view.getContext(),R.color.NEW_CoffeeRed_473D3D__HOME_ARTICLE_SAVED));
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
 
-                        Drawable drawable = ContextCompat.getDrawable(view.getContext(), R.drawable.image_bg);
-                        DrawableCompat.setTint(drawable,mutedColor);
-                        view.setBackgroundResource(R.drawable.image_bg);
-                    }
-
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                    }
-                });*/
+                        }
+                    });
+        }
     }
 
     /**
-     * Load image from internal storage into Image view
-     * Also sets Palette API
-     * */
-    public static void setImage_toView_fromStorage(final ImageView view, String filePath)
+     * same as above but with centercrop() option
+     * @param view
+     * @param url
+     * @param fromStorage
+     */
+    public static void setImageFromUrl_CenterCrop(final ImageView view, String url, boolean fromStorage)
     {
-        /*Picasso.with(view.getContext()).load(new File(filePath)).into(view);*/
-        Glide
-                .with(view.getContext())
-                .load(new File(filePath))
-                .error(R.drawable.image_bg)
-                .centerInside()
-                .into(view);
+        if(!fromStorage) {
+            Glide
+                    .with(view.getContext())
+                    .load(url)
+                    .error(R.drawable.image_bg)
+                    .transform(new CenterCrop(), new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
+                    .into(view);
+        } else {
+            Glide
+                    .with(view.getContext())
+                    .load(Uri.parse(url))
+                    .error(R.drawable.image_bg)
+                    .transform(new CenterCrop(), new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
+                    .into(view);
+        }
 
-        Glide
-                .with(view.getContext())
-                .asBitmap()
-                .load(filePath)
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        Palette.from(resource).generate(new Palette.PaletteAsyncListener()
-                        {
-                            @Override
-                            public void onGenerated(@Nullable Palette palette) {
-                                int mutedColor = palette.getMutedColor(ContextCompat.getColor(view.getContext(),R.color.NEW_CoffeeRed_473D3D__HOME_ARTICLE_SAVED));
-                                view.setColorFilter(mutedColor);
-                                view.setBackgroundResource(R.drawable.image_bg);
-                            }
-                        });
-                    }
 
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                    }
-                });
 
     }
+
 
     /**
      * Sets the default background to an imageView
@@ -202,7 +173,6 @@ public class Helper{
      */
     public static void setDefaultBackground_toView(ImageView view)
     {
-
         view.setBackgroundResource(R.drawable.image_bg);
     }
 
@@ -270,6 +240,8 @@ public class Helper{
     public static void setTimeText_toView(TextView view, long time)
     {
         TimeUnit unit = getLogicalTimeUnit(time);
+        //Log.d(TAG, unit.toString());
+
         long time_val = unit.convert(time, TimeUnit.MILLISECONDS);
         String after;
         if(time_val < 0)
@@ -324,7 +296,8 @@ public class Helper{
         if(time_in_units < 1) // less than one day, use hours
         {
             unit = TimeUnit.HOURS;
-            time_in_units = (int) unit.convert(time_difference, TimeUnit.MILLISECONDS);
+            time_in_units = Math.abs((int) unit.convert(time_difference, TimeUnit.MILLISECONDS));
+            //Log.d(TAG, String.valueOf(time_in_units));
             if(time_in_units < 1) // fresh! less than one hour!
             {
                 return TimeUnit.MINUTES; // stop here, unreasonable to go below this unit

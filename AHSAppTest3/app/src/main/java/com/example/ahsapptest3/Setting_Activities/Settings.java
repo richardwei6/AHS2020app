@@ -1,4 +1,4 @@
-package com.example.ahsapptest3.Settings;
+package com.example.ahsapptest3.Setting_Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,9 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.ahsapptest3.Bulletin;
+import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
 import com.example.ahsapptest3.Navigation;
 import com.example.ahsapptest3.News;
 import com.example.ahsapptest3.NotifBtn;
@@ -20,7 +19,7 @@ import com.example.ahsapptest3.R;
 import com.example.ahsapptest3.Saved;
 import com.example.ahsapptest3.Tester;
 
-public class SettingsActivity extends AppCompatActivity implements Navigation, NotifBtn.Navigation {
+public class Settings extends FullScreenActivity implements Navigation, NotifBtn.Navigation {
 
     private static final String FONT_SETTING = "font_setting";
     private static final String FONT_SIZE = "1";
@@ -50,6 +49,7 @@ public class SettingsActivity extends AppCompatActivity implements Navigation, N
                 font_size = SeekBarProgress_ToFontSize(progress);
                 String fontStr = "Font Size: \t" + font_size;
                 fontText.setText(fontStr);
+                fontText.setTextSize(font_size);
             }
 
             @Override
@@ -67,8 +67,8 @@ public class SettingsActivity extends AppCompatActivity implements Navigation, N
         notifLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(SettingsActivity.this, Notifications_Settings_Activity.class);
-                SettingsActivity.this.startActivity(myIntent);
+                Intent myIntent = new Intent(Settings.this, Notifications_Settings_Activity.class);
+                Settings.this.startActivity(myIntent);
             }
         });
 
@@ -76,8 +76,8 @@ public class SettingsActivity extends AppCompatActivity implements Navigation, N
         creditsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(SettingsActivity.this, Credits_Activity.class);
-                SettingsActivity.this.startActivity(myIntent);
+                Intent myIntent = new Intent(Settings.this, Credits_Activity.class);
+                Settings.this.startActivity(myIntent);
             }
         });
 
@@ -85,8 +85,8 @@ public class SettingsActivity extends AppCompatActivity implements Navigation, N
         termsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(SettingsActivity.this, Terms_And_Agreements_Activity.class);
-                SettingsActivity.this.startActivity(myIntent);
+                Intent myIntent = new Intent(Settings.this, Terms_And_Agreements_Activity.class);
+                Settings.this.startActivity(myIntent);
             }
         });
 
@@ -94,8 +94,8 @@ public class SettingsActivity extends AppCompatActivity implements Navigation, N
         goToTester.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(SettingsActivity.this, Tester.class);
-                SettingsActivity.this.startActivity(myIntent);
+                Intent myIntent = new Intent(Settings.this, Tester.class);
+                Settings.this.startActivity(myIntent);
             }
         });
     }
@@ -107,20 +107,20 @@ public class SettingsActivity extends AppCompatActivity implements Navigation, N
 
     @Override
     public void goToHome() {
-        Intent myIntent = new Intent(SettingsActivity.this, News.class);
-        SettingsActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(Settings.this, News.class);
+        Settings.this.startActivity(myIntent);
     }
 
     @Override
     public void goToBulletin() {
-        Intent myIntent = new Intent(SettingsActivity.this, Bulletin.class);
-        SettingsActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(Settings.this, Bulletin.class);
+        Settings.this.startActivity(myIntent);
     }
 
     @Override
     public void goToSaved() {
-        Intent myIntent = new Intent(SettingsActivity.this, Saved.class);
-        SettingsActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(Settings.this, Saved.class);
+        Settings.this.startActivity(myIntent);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class SettingsActivity extends AppCompatActivity implements Navigation, N
 
     @Override
     public void goToNotif() {
-        Intent myIntent = new Intent(SettingsActivity.this, Notif_Activity.class);
-        SettingsActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(Settings.this, Notif_Activity.class);
+        Settings.this.startActivity(myIntent);
     }
 }

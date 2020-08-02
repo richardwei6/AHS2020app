@@ -7,59 +7,72 @@
     android:layout_height="match_parent"
     tools:context=".Notif_Activity">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/notif_scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF">
+        android:fillViewport="true">
 
         <LinearLayout
             android:id="@+id/notif_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/LightishGray_EFEDED__HOME_NOTIF"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/EveryPage_Side_Padding_Quarter">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/notif_headerLinearLayout"
+                android:id="@+id/notif_header_LinearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/EveryPage_Side_Padding_Quarter"
-                android:background="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF"
+                android:layout_height="wrap_content"
+                android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+                android:elevation="3dp"
                 android:orientation="horizontal"
-
-                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
-                android:paddingRight="@dimen/EveryPage_Side_Padding_Half">
-
-                <ImageButton
-                    android:id="@+id/notif_header_back"
-                    android:layout_width="20dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.05"
-                    android:background="?attr/selectableItemBackground"
-                    android:padding="@dimen/EveryPage_Side_Padding_Half"
-
-
-                    android:scaleType="fitCenter"
-                    android:scrollbarFadeDuration="15000"
-                    app:srcCompat="@drawable/arrow_back" />
+                android:paddingStart="@dimen/EveryPage_Side_Padding"
+                android:paddingLeft="@dimen/EveryPage_Side_Padding"
+                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
+                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half">
 
                 <TextView
-                    android:id="@+id/notif_header_text"
+                    android:id="@+id/notif_titleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+                    android:layout_marginBottom="@dimen/EveryPage_Side_Padding_Half"
+
                     android:layout_weight="1"
-                    android:fontFamily="@font/sf_pro_compactbold"
-                    android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
-                    android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
-                    android:text="NOTIFICATIONS"
-                    android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/din_alternate_bold"
+                    android:text="Notifications"
+                    android:textColor="@color/NEW_AngryRed_9F0C0C__ALL"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <!--<fragment
+                    android:id="@+id/notif_notifbtn"
+                    android:name="com.example.ahsapptest3.NotifBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+
+                    android:adjustViewBounds="true"
+                    tools:layout="@layout/notif_btn" />-->
             </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notif_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    <fragment
+        android:id="@+id/notif_navBar"
+        android:name="com.example.ahsapptest3.Navigation_Bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        tools:layout="@layout/nav_bar" />
 
 </FrameLayout>
