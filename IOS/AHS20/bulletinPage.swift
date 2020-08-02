@@ -25,8 +25,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     let refreshControl = UIRefreshControl();
     
     // padding variables
-    let articleHorizontalPadding = CGFloat(10);
-    let articleVerticalPadding = CGFloat(10);
+    let articleHorizontalPadding = CGFloat(12);
+    let articleVerticalPadding = CGFloat(12);
     let articleVerticalSize = CGFloat(130);
     
     
@@ -174,7 +174,13 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     }
     
     func sortArticlesByTime(a: bulletinArticleData, b: bulletinArticleData)->Bool{
-        return (a.articleUnixEpoch ?? INT64_MAX) > (b.articleUnixEpoch ?? INT64_MAX);
+        var currTime = Int64(NSDate().timeIntervalSince1970);
+        if (a.articleUnixEpoch ?? INT64_MAX > currTime && b.articleUnixEpoch ?? INT64_MAX > currTime){
+            return (a.articleUnixEpoch ?? INT64_MAX) < (b.articleUnixEpoch ?? INT64_MAX);
+        }
+        else{
+            return (a.articleUnixEpoch ?? INT64_MAX) > (b.articleUnixEpoch ?? INT64_MAX);
+        }
     }
     
     func filterRead(copy: [bulletinArticleData]) -> [[bulletinArticleData]]{ // 0th row is unread 1st is read

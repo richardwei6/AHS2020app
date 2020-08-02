@@ -98,7 +98,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
         var nextY = CGFloat(0);
-        let padding = CGFloat(12);
+        let padding = CGFloat(15);
         let universalWidth = UIScreen.main.bounds.width - 2 * padding;
         
         

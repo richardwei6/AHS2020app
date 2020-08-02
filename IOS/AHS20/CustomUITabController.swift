@@ -41,7 +41,7 @@ class CustomTabBarController: UIViewController {
     
     var selectedIndex: Int = 0;
     
-    let homeTopCornerRadius = CGFloat(15);
+//    let homeTopCornerRadius = CGFloat(15);
 
     let iconImagePath = ["invertedhome", "invertedbulletin", "invertedbookmark", "invertedsettings"];
     let iconImagePathInv = ["homeInv", "bulletinInv", "BookmarkInv", "GearInv"];
@@ -166,8 +166,8 @@ class CustomTabBarController: UIViewController {
         vc.view.frame = contentView.bounds;
         contentView.addSubview(vc.view);
         vc.didMove(toParent: self);
-        topBar.layer.cornerRadius = homeTopCornerRadius;
-        topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
+//        topBar.layer.cornerRadius = homeTopCornerRadius;
+//        topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
         topBar.layer.shadowColor = UIColor.gray.cgColor;
         topBar.layer.shadowOpacity = 0.1;
         topBar.layer.shadowRadius = 5;
@@ -230,8 +230,8 @@ class CustomTabBarController: UIViewController {
             
             
             if (sender.tag == 0){
-                topBar.layer.cornerRadius = homeTopCornerRadius;
-                topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
+ //               topBar.layer.cornerRadius = homeTopCornerRadius;
+                //topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
                 topBarHeightContraint.constant = 62;
                 topBar.layer.shadowColor = UIColor.gray.cgColor;
                 homeTopBarContent.isHidden = false;

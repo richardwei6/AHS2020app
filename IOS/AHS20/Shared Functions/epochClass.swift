@@ -20,10 +20,10 @@ final class epochClass{
         }
         let currTime = Int64(NSDate().timeIntervalSince1970);
         let diff = abs(currTime - epoch);
-        let timePattern = [(1, "second"), (60, "minute"), (3600, "hour"), (86400, "day"), (604800, "week"), (2592000, "month"), (31536000, "year")];
+        let timePattern = [(1, "second"), (60, "minute"), (3600, "hour"), (86400, "day"), (604800, "week"), (2592000, "month"), (31536000, "year"), (315360000, "decade"), (3153600000, "century")];
         var r = "NULL";
         
-        for i in 1...6{
+        for i in 1...8{
             if (floor(Double(diff) / Double(timePattern[i].0)) == 0){
                 let prefix = Int(floor(Double(diff) / Double(timePattern[i-1].0)));
                 r = "\(prefix) " + timePattern[i-1].1 + (prefix > 1 ? "s" : "");
