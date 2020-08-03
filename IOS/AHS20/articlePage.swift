@@ -171,7 +171,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         mainScrollView.addSubview(articleTitle);
         nextY += articleTitleFrame.height;
         
-        nextY += 5;
+        nextY += 7;
         if (articleContent?.articleAuthor != nil){
             let articleAuthorText = "By " + (articleContent?.articleAuthor ?? "No Author");
             let articleAuthorFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleAuthorText.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize-3))!))
@@ -180,7 +180,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             articleAuthor.font = UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize-3));
             articleAuthor.numberOfLines = 0;
             mainScrollView.addSubview(articleAuthor);
-            nextY += articleAuthorFrame.size.height;
+            nextY += articleAuthorFrame.size.height+3;
         }
         
         let articleDateText = epochClass.epochToFormatedDateString(epoch: articleContent?.articleUnixEpoch ?? -1);
@@ -192,7 +192,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         mainScrollView.addSubview(articleDate);
         nextY += articleDateFrame.size.height;
         
-        nextY += 5;
+        nextY += 7;
      //   nextY += padding;
         let articleBodyText = (articleContent?.hasHTML == true ? parseHTML(s: articleContent?.articleBody ?? "") : NSAttributedString(string: articleContent?.articleBody ?? ""));
         let articleBodyFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleBodyText.string.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize))!));
