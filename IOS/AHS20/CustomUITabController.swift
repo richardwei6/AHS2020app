@@ -150,7 +150,7 @@ class CustomTabBarController: UIViewController {
             let image = UIImage(named: iconImagePath[index]);
             //image = image?.maskWithColor(color: UIColor.white);
             buttons[index].setImage(image, for: .normal);
-            buttons[index].tintColor = UIColor.black;
+            buttons[index].tintColor = UIColor.gray;
         }
         
         
@@ -177,7 +177,7 @@ class CustomTabBarController: UIViewController {
         tabBarView.layer.shadowOpacity = 0.07;
         tabBarView.layer.shadowRadius = 5;
         tabBarView.layer.shadowOffset = CGSize(width: 0, height: -10);
-        buttons[0].tintColor = mainThemeColor;
+        buttons[0].tintColor = UIColor.black;
         dateLabel.text = getTitleDateAndMonth();
     }
     
@@ -212,7 +212,7 @@ class CustomTabBarController: UIViewController {
         // remove prev view controller
         //buttons[prevIndex].isSelected = false;
            // buttons[prevIndex].setImage(UIImage(named: iconImagePath[prevIndex]), for: .normal);
-            buttons[prevIndex].tintColor = UIColor.black;
+            buttons[prevIndex].tintColor = UIColor.gray;
             
             let prevVC = viewControllers[prevIndex];
             prevVC.willMove(toParent: nil);
@@ -221,7 +221,7 @@ class CustomTabBarController: UIViewController {
         
         // add current view controller
        // sender.isSelected = true;
-            sender.tintColor = mainThemeColor;
+            sender.tintColor = UIColor.black;
             //sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
             let vc = viewControllers[selectedIndex];
             addChild(vc);

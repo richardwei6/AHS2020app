@@ -102,12 +102,13 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         let universalWidth = UIScreen.main.bounds.width - 2 * padding;
         
         
-        if (articleContent?.articleAuthor != nil){ // bulletin
+        if ((articleContent?.articleVideoIDs?.count ?? 0) + (articleContent?.articleImages?.count ?? 0) > 0){ // bulletin
             let imageScrollViewFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: 250);
             imageScrollView.frame = imageScrollViewFrame;
+            
             imageSize = articleContent?.articleImages?.count ?? 0;
             videoSize = articleContent?.articleVideoIDs?.count ?? 0;
-            imageScrollView.backgroundColor = UIColor.lightGray;
+            imageScrollView.backgroundColor = UIColor.clear;
             
             //imagePageControl.numberOfPages = imageSize + videoSize;
             imageFrame.size = imageScrollView.frame.size;

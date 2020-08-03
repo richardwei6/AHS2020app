@@ -1974,6 +1974,9 @@ As long as the website and the information and services on the website are provi
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4I7-DN-mXq">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="exitPage:" destination="rhr-QV-yw3" eventType="touchUpInside" id="e6t-OB-9wp"/>
                                 </connections>
