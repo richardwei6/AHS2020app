@@ -120,7 +120,8 @@ class CustomTabBarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
+        
+        
         setUpConnection();
         print("Connection Established");
 

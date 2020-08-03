@@ -112,6 +112,8 @@ class notificationSettingsClass: UITableViewController{
         print(selectedNotifications);
         UserDefaults.standard.set(selectedNotifications, forKey: "selectedNotifications");
         
+        updateSubscriptionNotifs();
+        
         filterTotalArticles();
         unreadNotif = (notificationList[1].count > 0);
     }
