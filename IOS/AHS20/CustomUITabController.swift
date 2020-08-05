@@ -43,8 +43,8 @@ class CustomTabBarController: UIViewController {
     
 //    let homeTopCornerRadius = CGFloat(15);
 
-    let iconImagePath = ["invertedhome", "invertedbulletin", "invertedbookmark", "invertedsettings"];
-    let iconImagePathInv = ["homeInv", "bulletinInv", "BookmarkInv", "GearInv"];
+    let iconImagePath = ["home", "bulletin", "saved", "settings"];
+    //let iconImagePathInv = ["homeInv", "bulletinInv", "BookmarkInv", "GearInv"];
     let selectedColor = makeColor(r: 243, g: 149, b: 143);
     
     var articleContentInSegue: articleData?;
@@ -148,9 +148,11 @@ class CustomTabBarController: UIViewController {
         // set up buttons
         for index in 0..<buttons.count{
             let image = UIImage(named: iconImagePath[index]);
-            //image = image?.maskWithColor(color: UIColor.white);
             buttons[index].setImage(image, for: .normal);
             buttons[index].tintColor = UIColor.gray;
+            buttons[index].imageView?.contentMode = .scaleAspectFit;
+            buttons[index].contentVerticalAlignment = .fill;
+            buttons[index].contentHorizontalAlignment = .fill;
         }
         
         

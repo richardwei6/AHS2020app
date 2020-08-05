@@ -1128,8 +1128,8 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7G2-qF-bJP">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gx-G2-ytR">
-                                                <rect key="frame" x="0.0" y="10" width="103.66666666666667" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gx-G2-ytR">
+                                                <rect key="frame" x="0.0" y="11.333333333333369" width="103.66666666666667" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1138,7 +1138,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQX-ap-fFu">
-                                                <rect key="frame" x="103.66666666666669" y="10" width="103.33333333333331" height="30"/>
+                                                <rect key="frame" x="103.66666666666669" y="11.333333333333369" width="103.33333333333331" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1147,7 +1147,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rd3-Ho-FeZ">
-                                                <rect key="frame" x="206.99999999999997" y="10" width="103.66666666666666" height="30"/>
+                                                <rect key="frame" x="206.99999999999997" y="11.333333333333369" width="103.66666666666666" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1156,7 +1156,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBQ-ay-oxj">
-                                                <rect key="frame" x="310.66666666666669" y="10" width="103.33333333333331" height="30"/>
+                                                <rect key="frame" x="310.66666666666669" y="11.333333333333369" width="103.33333333333331" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1169,10 +1169,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="PBQ-ay-oxj" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="7qR-hD-G32"/>
+                                    <constraint firstItem="7gx-G2-ytR" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="8Fn-3W-foe"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerX" secondItem="HYY-fu-odz" secondAttribute="centerX" id="9hc-cb-8Hd"/>
                                     <constraint firstAttribute="bottom" secondItem="7G2-qF-bJP" secondAttribute="bottom" id="CJO-2E-URD"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerY" secondItem="HYY-fu-odz" secondAttribute="centerY" id="J5E-hc-zGD"/>
+                                    <constraint firstItem="rd3-Ho-FeZ" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="KKo-Tb-PGM"/>
                                     <constraint firstAttribute="width" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="207:25" id="Msx-tQ-eGU"/>
+                                    <constraint firstItem="gQX-ap-fFu" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="XcQ-hP-zAc"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerY" secondItem="HYY-fu-odz" secondAttribute="centerY" id="gFj-iB-rCk"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="top" secondItem="HYY-fu-odz" secondAttribute="top" id="kDT-Kg-Jo3"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" id="kXB-sJ-cAC"/>
