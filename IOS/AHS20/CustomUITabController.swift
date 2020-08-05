@@ -12,12 +12,12 @@ import Firebase
 
 
 class CustomTabBarController: UIViewController {
-
+    
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var tabBarView: UIView!
     
-
+    
     @IBOutlet weak var notificationDot: UIView!
     @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet var buttons: [UIButton]!
@@ -41,8 +41,8 @@ class CustomTabBarController: UIViewController {
     
     var selectedIndex: Int = 0;
     
-//    let homeTopCornerRadius = CGFloat(15);
-
+    //    let homeTopCornerRadius = CGFloat(15);
+    
     let iconImagePath = ["home", "bulletin", "saved", "settings"];
     //let iconImagePathInv = ["homeInv", "bulletinInv", "BookmarkInv", "GearInv"];
     let selectedColor = makeColor(r: 243, g: 149, b: 143);
@@ -56,21 +56,21 @@ class CustomTabBarController: UIViewController {
     
     @objc func articleSelector(notification: NSNotification){
         articleContentInSegue = notification.userInfo?["articleContent"] as? articleData;
-     //   print("pre segue");
-      //  print(articleContentInSegue)
+        //   print("pre segue");
+        //  print(articleContentInSegue)
         //prepare(for: "articleSegue", sender: articleContentInSegue)
         performSegue(withIdentifier: "articleSegue", sender: nil);
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "articleSegue"){
-        //    print("segue");
-         //   print(articleContentInSegue)
+            //    print("segue");
+            //   print(articleContentInSegue)
             let vc = segue.destination as! articlePageViewController;
             vc.articleContent = articleContentInSegue;
         }
     }
-   
+    
     func setUpNotifDot(){
         setUpConnection();
         if (internetConnected){
@@ -86,7 +86,7 @@ class CustomTabBarController: UIViewController {
                     singleNotification.messageID =  article.key as! String;
                     
                     while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-         
+                        
                         if (notificationContent.key == "notificationArticleID"){
                             singleNotification.notificationArticleID  = notificationContent.value as? String;
                         }
@@ -124,13 +124,13 @@ class CustomTabBarController: UIViewController {
         
         setUpConnection();
         print("Connection Established");
-
+        
         setUpNotifDot();
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         
         
-       // getSavedArticles(); // load default saved articles
+        // getSavedArticles(); // load default saved articles
         savedArticleClass.getSavedArticles();
         
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
@@ -141,10 +141,10 @@ class CustomTabBarController: UIViewController {
         //tabBarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true;
         
         
-    
-       // tabBarView.frame.size.height = CGFloat(70);
         
-
+        // tabBarView.frame.size.height = CGFloat(70);
+        
+        
         // set up buttons
         for index in 0..<buttons.count{
             let image = UIImage(named: iconImagePath[index]);
@@ -169,8 +169,6 @@ class CustomTabBarController: UIViewController {
         vc.view.frame = contentView.bounds;
         contentView.addSubview(vc.view);
         vc.didMove(toParent: self);
-//        topBar.layer.cornerRadius = homeTopCornerRadius;
-//        topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
         topBar.layer.shadowColor = UIColor.gray.cgColor;
         topBar.layer.shadowOpacity = 0.1;
         topBar.layer.shadowRadius = 5;
@@ -211,18 +209,15 @@ class CustomTabBarController: UIViewController {
             }
         }
         else{
-        // remove prev view controller
-        //buttons[prevIndex].isSelected = false;
-           // buttons[prevIndex].setImage(UIImage(named: iconImagePath[prevIndex]), for: .normal);
+            // remove prev view controller
             buttons[prevIndex].tintColor = UIColor.gray;
             
             let prevVC = viewControllers[prevIndex];
             prevVC.willMove(toParent: nil);
             prevVC.view.removeFromSuperview();
             prevVC.removeFromParent();
-        
-        // add current view controller
-       // sender.isSelected = true;
+            
+            // add current view controller
             sender.tintColor = UIColor.black;
             //sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
             let vc = viewControllers[selectedIndex];
@@ -233,7 +228,7 @@ class CustomTabBarController: UIViewController {
             
             
             if (sender.tag == 0){
- //               topBar.layer.cornerRadius = homeTopCornerRadius;
+                //               topBar.layer.cornerRadius = homeTopCornerRadius;
                 //topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
                 topBarHeightContraint.constant = 62;
                 topBar.layer.shadowColor = UIColor.gray.cgColor;
@@ -261,7 +256,7 @@ class CustomTabBarController: UIViewController {
             }
             
         }
-            
+        
     }
     
     

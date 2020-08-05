@@ -19,6 +19,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     @IBOutlet weak var noNotificationLabel: UILabel!
 
+    var articleDictionary = [String: articleData]();
     
     var articleContentInSegue: articleData?;
     
@@ -26,18 +27,13 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         setUpConnection();
         if (internetConnected){
             print("ok -------- loading articles - notifications");
-            //print(s);
-            
             totalNotificationList = [notificationData]();
             ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
                 let enumerator = snapshot.children;
                 while let article = enumerator.nextObject() as? DataSnapshot{ // each article
                     let enumerator = article.children;
                     var singleNotification = notificationData();
-                    
                     singleNotification.messageID = article.key as! String;
-                    
-                    
                     while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                         
                         if (notificationContent.key == "notificationArticleID"){
@@ -55,7 +51,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                         else if (notificationContent.key == "notificationCategory"){
                             singleNotification.notificationCatagory = notificationContent.value as? Int;
                         }
-                        
                     }
                     totalNotificationList.append(singleNotification);
                     filterTotalArticles();
@@ -63,6 +58,8 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                     self.refreshControl.endRefreshing();
                 };
             }
+            
+            
         }
         else{
             //setUpAllViews();
@@ -71,22 +68,149 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         }
     }
     
+    func setUpArticleDictionary(){
+        setUpConnection();
+        if (internetConnected){
+            for i in 0...2{
+                var s: String; // path inside homepage
+                switch i {
+                case 0: // asb
+                    s = "asb";
+                    break;
+                case 1: // sports
+                    s = "sports";
+                    break;
+                case 2: // district
+                    s = "district";
+                    break;
+                default:
+                    s = "";
+                    break;
+                }
+                ref.child("homepage").child(s).observeSingleEvent(of: .value) { (snapshot) in
+                    let enumerator = snapshot.children;
+                    while let article = enumerator.nextObject() as? DataSnapshot{ // each article
+                        let enumerator = article.children;
+                        var singleArticle = articleData();
+                        singleArticle.articleID = article.key as! String;
+                        while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
+                            if (articleContent.key == "articleAuthor"){
+                                singleArticle.articleAuthor = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "articleBody"){
+                                singleArticle.articleBody = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "articleUnixEpoch"){
+                                singleArticle.articleUnixEpoch = articleContent.value as? Int64;
+                            }
+                            else if (articleContent.key == "articleImages"){
+                                
+                                var tempImage = [String]();
+                                let imageIt = articleContent.children;
+                                while let image = imageIt.nextObject() as? DataSnapshot{
+                                    tempImage.append(image.value as! String);
+                                }
+                                //print(tempImage)
+                                singleArticle.articleImages = tempImage;
+                            }
+                            else if (articleContent.key == "articleVideoIDs"){
+                                var tempArr = [String]();
+                                let idIt = articleContent.children;
+                                while let id = idIt.nextObject() as? DataSnapshot{
+                                    tempArr.append(id.value as! String);
+                                }
+                                singleArticle.articleVideoIDs = tempArr;
+                            }
+                            else if (articleContent.key == "articleTitle"){
+                                singleArticle.articleTitle = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "isFeatured"){
+                                singleArticle.isFeatured = (articleContent.value as? Int == 0 ? false : true);
+                            }
+                            else if (articleContent.key == "hasHTML"){
+                                singleArticle.hasHTML = (articleContent.value as? Int == 0 ? false : true);
+                            }
+                        }
+                        singleArticle.articleCatagory = s.prefix(1).capitalized + s.dropFirst();
+                        if (singleArticle.articleCatagory == "Asb"){
+                            singleArticle.articleCatagory = "ASB";
+                        }
+                        self.articleDictionary[singleArticle.articleID ?? ""] = singleArticle;
+                    }
+                };
+            }
+            
+            for i in 0..<6{
+                var s: String; // path inside homepage
+                switch i {
+                case 0: // seniors
+                    s = "seniors";
+                    break;
+                case 1: // colleges
+                    s = "colleges";
+                    break;
+                case 2: // events
+                    s = "events";
+                    break;
+                case 3: // athletics
+                    s = "athletics";
+                    break;
+                case 4: // reference
+                    s = "reference";
+                    break;
+                case 5: // others
+                    s = "others";
+                    break;
+                default:
+                    s = "";
+                    break;
+                }
+                ref.child("bulletin").child(s).observeSingleEvent(of: .value) { (snapshot) in
+                    let enumerator = snapshot.children;
+                    while let article = enumerator.nextObject() as? DataSnapshot{ // each article
+                        let enumerator = article.children;
+                        var singleArticle = bulletinArticleData();
+                        
+                        singleArticle.articleID = article.key as! String;
+                        
+                        while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
+                            
+                 
+                            if (articleContent.key == "articleBody"){
+                                singleArticle.articleBody = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "articleUnixEpoch"){
+                                singleArticle.articleUnixEpoch = articleContent.value as? Int64;
+                            }
+                            
+                            else if (articleContent.key == "articleTitle"){
+                                singleArticle.articleTitle = articleContent.value as? String;
+                            }
+                            else if (articleContent.key == "hasHTML"){
+                                singleArticle.hasHTML = (articleContent.value as? Int == 0 ? false : true);
+                            }
+                            
+                        }
+                        singleArticle.articleCatagory = s.prefix(1).capitalized + s.dropFirst();
+                        singleArticle.articleType = i;
+                        self.articleDictionary[singleArticle.articleID ?? ""] = bulletinDataToarticleData(data: singleArticle);
+                    }
+                };
+            }
+        }
+    }
+    
     @objc func openArticle(_ sender: notificationUIButton) {
-        /*if (sender.unreadBool == true){
-            unreadNotificationSize-=1;
-            readNotificationSize+=1;
-            sender.unreadBool = false;
-        }*/
         if (sender.alreadyRead == false){
             notificationList[0].append(notificationList[1][sender.articleIndex]);
             notificationList[1].remove(at: sender.articleIndex);
-          //  saveNotificationPref();
             notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = true;
             saveNotifPref();
         }
-        
-        findArticle(id: sender.notificationCompleteData.notificationArticleID ?? "");
-        performSegue(withIdentifier: "notificationToArticle", sender: nil);
+        if (articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""] != nil){
+            articleContentInSegue = articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""];
+            performSegue(withIdentifier: "notificationToArticle", sender: nil);
+        }
         loadScrollView();
     }
     
@@ -94,28 +218,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         if (segue.identifier == "notificationToArticle"){
             let vc = segue.destination as! articlePageViewController;
             vc.articleContent = articleContentInSegue;
-        }
-    }
-    
-    func findArticle(id: String){
-        if (id == ""){
-            return;
-        }
-        for j in homeArticleList{
-            for i in j{
-                if (id == i.articleID){
-                    articleContentInSegue = i;
-                    return;
-                }
-            }
-        }
-        for j in bulletinArticleList{
-            for i in j{
-                if (id == i.articleID){
-                    articleContentInSegue = bulletinDataToarticleData(data: i);
-                    return;
-                }
-            }
         }
     }
     
@@ -240,7 +342,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 
                 notificationButton.notificationCompleteData = currNotif;
                 notificationButton.articleIndex = nIndex;
-    
                 
                 notificationButton.addSubview(readLabel);
                 notificationButton.addSubview(notificationCatagoryLabel);
@@ -249,12 +350,15 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationButton.addSubview(timeStamp);
                 
                 notificationButton.frame.size.height = notificationBodyText.frame.maxY + bodyVerticalPadding + 10;
-
-                let chevronFrame = CGRect(x: notificationButton.frame.size.width-chevronWidth-15, y: (notificationButton.frame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
-                let chevronImage = UIImageView(frame: chevronFrame);
-                chevronImage.image = UIImage(systemName: "chevron.right");
-                chevronImage.tintColor = UIColor.gray;
-                notificationButton.addSubview(chevronImage);
+                
+                if (articleDictionary[currNotif.notificationArticleID ?? ""] != nil && currNotif.notificationArticleID != nil){
+                 //   print("id - \(currNotif.notificationArticleID) & title = \(articleDictionary[currNotif.notificationArticleID ?? ""]?.articleTitle)")
+                    let chevronFrame = CGRect(x: notificationButton.frame.size.width-chevronWidth-15, y: (notificationButton.frame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
+                    let chevronImage = UIImageView(frame: chevronFrame);
+                    chevronImage.image = UIImage(systemName: "chevron.right");
+                    chevronImage.tintColor = UIColor.gray;
+                    notificationButton.addSubview(chevronImage);
+                }
                 
                 yPos += notificationButton.frame.size.height + verticalPadding;
                 
@@ -323,11 +427,14 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 
                 notificationButton.frame.size.height = notificationBodyText.frame.maxY + bodyVerticalPadding + 10;
                 
-                let chevronFrame = CGRect(x: notificationButton.frame.size.width-chevronWidth-15, y: (notificationButton.frame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
-                let chevronImage = UIImageView(frame: chevronFrame);
-                chevronImage.image = UIImage(systemName: "chevron.right");
-                chevronImage.tintColor = UIColor.gray;
-                notificationButton.addSubview(chevronImage);
+                if (articleDictionary[currNotif.notificationArticleID ?? ""] != nil && currNotif.notificationArticleID != nil){
+                  //  print("id - \(currNotif.notificationArticleID) & title = \(articleDictionary[currNotif.notificationArticleID ?? ""]?.articleTitle)")
+                    let chevronFrame = CGRect(x: notificationButton.frame.size.width-chevronWidth-15, y: (notificationButton.frame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
+                    let chevronImage = UIImageView(frame: chevronFrame);
+                    chevronImage.image = UIImage(systemName: "chevron.right");
+                    chevronImage.tintColor = UIColor.gray;
+                    notificationButton.addSubview(chevronImage);
+                }
                 
                 yPos += notificationButton.frame.size.height + verticalPadding;
 
@@ -368,6 +475,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         notificationScrollView.isScrollEnabled = true;
         notificationScrollView.alwaysBounceVertical = true;
         refreshControl.beginRefreshing();
+        setUpArticleDictionary();
         loadNotifPref();
         getLocalNotifications();
         
