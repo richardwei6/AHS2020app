@@ -76,7 +76,6 @@ class CustomTabBarController: UIViewController {
         if (internetConnected){
             print("ok -------- loading articles - notifications");
             //print(s);
-            totalNotificationList = [notificationData]();
             ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
                 let enumerator = snapshot.children;
                 while let article = enumerator.nextObject() as? DataSnapshot{ // each article
@@ -104,10 +103,11 @@ class CustomTabBarController: UIViewController {
                         }
                         
                     }
-                    totalNotificationList.append(singleNotification);
                     loadNotifPref();
-                    filterTotalArticles();
-                    unreadNotif = (notificationList[1].count > 0);
+                    if (notificationReadDict[singleNotification.messageID ?? ""] == nil){
+                        unreadNotif = true;
+                    }
+                   //print("debug --- \(notificationReadDict[singleNotification.messageID ?? ""]) for \(singleNotification.notificationTitle)")
                     self.notificationDot.isHidden = !unreadNotif;
                 };
             }
