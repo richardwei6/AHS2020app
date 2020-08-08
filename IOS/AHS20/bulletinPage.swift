@@ -30,13 +30,12 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     let articleVerticalSize = CGFloat(130);
     
     
-    let filterSize = 6;
+    let filterSize = 5;
     var filterFrame = CGRect(x:0,y:0,width: 0, height: 0);
     
-    let filterIconPicturePath = ["Group 51.png","Path 275.png","Group 34.png","Path 276.png","Path 277.png"];
-    let filterName = ["Seniors", "Colleges", "Events", "Athletics", "Reference", "Others"];
+    let filterName = ["Academics", "Athletics", "Clubs", "Colleges", "Reference"];
     
-    var selectedFilters: [Bool] = [false, false, false, false, false, false]; // selected types in this order - seniors, colleges, events, athletics, reference, and others
+    var selectedFilters: [Bool] = [false, false, false, false, false]; // selected types in this order - seniors, colleges, events, athletics, reference, and others
     
     var currentArticles = [[bulletinArticleData]]();
     
@@ -49,27 +48,24 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         setUpConnection();
         if (internetConnected){
             //print("ok -------- loading articles - bulletin");
-            bulletinArticleList = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 6);
-            for i in 0..<6{
+            bulletinArticleList = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 5);
+            for i in 0...4{
                 var s: String; // path inside homepage
                 switch i {
                 case 0: // seniors
-                    s = "seniors";
+                    s = "Academics";
                     break;
                 case 1: // colleges
-                    s = "colleges";
+                    s = "Athletics";
                     break;
                 case 2: // events
-                    s = "events";
+                    s = "Clubs";
                     break;
                 case 3: // athletics
-                    s = "athletics";
+                    s = "Colleges";
                     break;
                 case 4: // reference
-                    s = "reference";
-                    break;
-                case 5: // others
-                    s = "others";
+                    s = "Reference";
                     break;
                 default:
                     s = "";
@@ -82,7 +78,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                         let enumerator = article.children;
                         var singleArticle = bulletinArticleData();
                         
-                        singleArticle.articleID = article.key as! String;
+                        singleArticle.articleID = article.key;
                         
                         while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                             if (articleContent.key == "articleBody"){
@@ -99,7 +95,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                                 singleArticle.hasHTML = (articleContent.value as? Int == 0 ? false : true);
                             }
                         }
-                        singleArticle.articleCatagory = s.prefix(1).capitalized + s.dropFirst();
+                        singleArticle.articleCatagory = s;
                         singleArticle.articleType = i;
                         temp.append(singleArticle);
                     }
@@ -107,9 +103,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     self.refreshControl.endRefreshing();
                     self.generateBulletin();
                 };
-                
             }
-            
         }
         else{
             let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
@@ -142,7 +136,6 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     func filterArticles() -> [[bulletinArticleData]]{
         var copy = [bulletinArticleData]();
-        
         for i in 0..<totalArticles.count{
             if (selectedFilters[totalArticles[i].articleType] == true){
                 copy.append(totalArticles[i]);
@@ -182,9 +175,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     
     func generateBulletin(){
-        if (bulletinArticleList[0].count > 0 || bulletinArticleList[1].count > 0 || bulletinArticleList[2].count > 0 || bulletinArticleList[3].count > 0 || bulletinArticleList[4].count > 0 || bulletinArticleList[5].count > 0){
+        if (bulletinArticleList[0].count > 0 || bulletinArticleList[1].count > 0 || bulletinArticleList[2].count > 0 || bulletinArticleList[3].count > 0 || bulletinArticleList[4].count > 0){
             totalArticles = [bulletinArticleData]();
-            for i in 0...5{
+            for i in 0...4{
                 for c in bulletinArticleList[i]{
                     totalArticles.append(c);
                 }
@@ -196,7 +189,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             bulletinFrame.size.height = articleVerticalSize;
             bulletinFrame.size.width = UIScreen.main.bounds.size.width - (2*articleHorizontalPadding);
             
-            let imageArticleSize = CGFloat(35);
+       //     let imageArticleSize = CGFloat(35);
+            let catagoryFrameWidth = CGFloat(70);
             
             var currY = articleVerticalPadding;
             
@@ -238,7 +232,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 dateText.textAlignment = .right;
                 dateText.font = UIFont(name: "SFProDisplay-Regular", size: 12);
                 
-                let catagoryFrame = CGRect(x: 8, y: 12, width: 65, height: 20);
+                let catagoryFrame = CGRect(x: 8, y: 12, width: catagoryFrameWidth, height: 20);
                 let catagory = UILabel(frame: catagoryFrame);
                 catagory.text = article.articleCatagory ?? "No Cata.";
                 catagory.backgroundColor = mainThemeColor;
@@ -311,7 +305,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 dateText.textAlignment = .right;
                 dateText.font = UIFont(name: "SFProDisplay-Regular", size: 12);
                 
-                let catagoryFrame = CGRect(x: 8, y: 12, width: 65, height: 20);
+                let catagoryFrame = CGRect(x: 8, y: 12, width: catagoryFrameWidth, height: 20);
                 let catagory = UILabel(frame: catagoryFrame);
                 catagory.text = article.articleCatagory ?? "No Cata.";
                 catagory.backgroundColor = UIColor.gray;

@@ -134,14 +134,17 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             imageScrollView.layer.cornerRadius = 5;
             imageScrollView.isPagingEnabled = true;
             imageScrollView.showsHorizontalScrollIndicator = false;
-            imagePageControl.currentPage = 0;
-            imagePageControl.numberOfPages = imageSize + videoSize;
-            imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: imageScrollViewFrame.size.height + 15);
-            imagePageControl.pageIndicatorTintColor = UIColor.lightGray;
-            imagePageControl.currentPageIndicatorTintColor = UIColor.black;
+            
+            if (imageSize + videoSize > 1){
+                imagePageControl.currentPage = 0;
+                imagePageControl.numberOfPages = imageSize + videoSize;
+                imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: imageScrollViewFrame.size.height + 15);
+                imagePageControl.pageIndicatorTintColor = UIColor.lightGray;
+                imagePageControl.currentPageIndicatorTintColor = UIColor.black;
+                mainScrollView.addSubview(imagePageControl);
+            }
             
             mainScrollView.addSubview(imageScrollView);
-            mainScrollView.addSubview(imagePageControl);
             //nextY += imagePageControl.frame.height;
             nextY += imageScrollViewFrame.size.height + 15;
         }

@@ -141,7 +141,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 							
 							
 						}
-						singleArticle.articleCatagory = i == 1 ? "General Info" : s;
+						singleArticle.articleCatagory = i == 0 ? "General Info" : s;
 						temp.append(singleArticle);
 						//print(singleArticle.isFeatured);
 						if (singleArticle.isFeatured == true){
