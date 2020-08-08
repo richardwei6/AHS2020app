@@ -127,7 +127,7 @@ class CustomTabBarController: UIViewController {
         
         
         // getSavedArticles(); // load default saved articles
-        //savedArticleClass.getArticleDictionary();
+        savedArticleClass.getArticleDictionary();
         
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
         
