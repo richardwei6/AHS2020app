@@ -13,12 +13,12 @@ import Firebase
 import FirebaseDatabase
 
 class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
-
-
+    
+    
     @IBOutlet weak var notificationScrollView: UIScrollView!
     
     @IBOutlet weak var noNotificationLabel: UILabel!
-
+    
     var articleDictionary = [String: articleData]();
     
     var articleContentInSegue: articleData?;
@@ -26,14 +26,13 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     func getLocalNotifications(){
         setUpConnection();
         if (internetConnected){
-            print("ok -------- loading articles - notifications");
             totalNotificationList = [notificationData]();
             ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
                 let enumerator = snapshot.children;
                 while let article = enumerator.nextObject() as? DataSnapshot{ // each article
                     let enumerator = article.children;
                     var singleNotification = notificationData();
-                    singleNotification.messageID = article.key as! String;
+                    singleNotification.messageID = article.key;
                     while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                         
                         if (notificationContent.key == "notificationArticleID"){
@@ -59,12 +58,13 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 };
             }
             
-            
         }
         else{
-            //setUpAllViews();
-            print("no network detected - notifications");
-            self.refreshControl.endRefreshing();
+            let infoPopup = UIAlertController(title: "No internet connection detected", message: "No notifications were loaded", preferredStyle: UIAlertController.Style.alert);
+            infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                self.refreshControl.endRefreshing();
+            }));
+            present(infoPopup, animated: true, completion: nil);
         }
     }
     
@@ -92,7 +92,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                     while let article = enumerator.nextObject() as? DataSnapshot{ // each article
                         let enumerator = article.children;
                         var singleArticle = articleData();
-                        singleArticle.articleID = article.key as! String;
+                        singleArticle.articleID = article.key;
                         while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                             if (articleContent.key == "articleAuthor"){
                                 singleArticle.articleAuthor = articleContent.value as? String;
@@ -171,18 +171,18 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                         let enumerator = article.children;
                         var singleArticle = bulletinArticleData();
                         
-                        singleArticle.articleID = article.key as! String;
+                        singleArticle.articleID = article.key;
                         
                         while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                             
-                 
+                            
                             if (articleContent.key == "articleBody"){
                                 singleArticle.articleBody = articleContent.value as? String;
                             }
                             else if (articleContent.key == "articleUnixEpoch"){
                                 singleArticle.articleUnixEpoch = articleContent.value as? Int64;
                             }
-                            
+                                
                             else if (articleContent.key == "articleTitle"){
                                 singleArticle.articleTitle = articleContent.value as? String;
                             }
@@ -232,7 +232,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     let timeStampLength = CGFloat(100);
     
     var refreshControl = UIRefreshControl();
-
+    
     func typeIDToString(id: Int) -> String{
         if (id == 0){
             return "Alerts";
@@ -298,7 +298,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationCatagoryLabel.textColor = UIColor.white;
                 notificationCatagoryLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
                 notificationCatagoryLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
-                 //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
+                //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
                 
                 let readLabelFrame = CGRect(x: 15 + notificationCatagoryLabelFrame.size.width, y: 12, width: 40, height: notificationCatagoryLabelHeight);
                 let readLabel = UILabel(frame: readLabelFrame);
@@ -324,8 +324,8 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationBodyText.text = currNotif.notificationBody;
                 notificationBodyText.numberOfLines = 0;
                 notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 14);
-               // notificationBodyText.backgroundColor = UIColor.lightGray;
-
+                // notificationBodyText.backgroundColor = UIColor.lightGray;
+                
                 let timeStampFrame = CGRect(x: notificationFrame.size.width - chevronWidth - timeStampLength + 10, y: 5, width: timeStampLength, height: 30);
                 let timeStamp = UILabel(frame: timeStampFrame);
                 timeStamp.text = epochClass.epochToString(epoch: currNotif.notificationUnixEpoch ?? -1);
@@ -352,7 +352,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationButton.frame.size.height = notificationBodyText.frame.maxY + bodyVerticalPadding + 10;
                 
                 if (articleDictionary[currNotif.notificationArticleID ?? ""] != nil && currNotif.notificationArticleID != nil){
-                 //   print("id - \(currNotif.notificationArticleID) & title = \(articleDictionary[currNotif.notificationArticleID ?? ""]?.articleTitle)")
+                    //   print("id - \(currNotif.notificationArticleID) & title = \(articleDictionary[currNotif.notificationArticleID ?? ""]?.articleTitle)")
                     let chevronFrame = CGRect(x: notificationButton.frame.size.width-chevronWidth-15, y: (notificationButton.frame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
                     let chevronImage = UIImageView(frame: chevronFrame);
                     chevronImage.image = UIImage(systemName: "chevron.right");
@@ -384,7 +384,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationCatagoryLabel.textColor = UIColor.white;
                 notificationCatagoryLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
                 notificationCatagoryLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
-                 //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
+                //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
                 
                 let notificationTitleFrame = CGRect(x: 10, y: notificationCatagoryLabelHeight + 15, width: notificationFrame.size.width - chevronWidth - timeStampLength, height: 30);
                 let notificationTitle = UILabel(frame: notificationTitleFrame);
@@ -428,7 +428,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationButton.frame.size.height = notificationBodyText.frame.maxY + bodyVerticalPadding + 10;
                 
                 if (articleDictionary[currNotif.notificationArticleID ?? ""] != nil && currNotif.notificationArticleID != nil){
-                  //  print("id - \(currNotif.notificationArticleID) & title = \(articleDictionary[currNotif.notificationArticleID ?? ""]?.articleTitle)")
+                    //  print("id - \(currNotif.notificationArticleID) & title = \(articleDictionary[currNotif.notificationArticleID ?? ""]?.articleTitle)")
                     let chevronFrame = CGRect(x: notificationButton.frame.size.width-chevronWidth-15, y: (notificationButton.frame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
                     let chevronImage = UIImageView(frame: chevronFrame);
                     chevronImage.image = UIImage(systemName: "chevron.right");
@@ -437,7 +437,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 }
                 
                 yPos += notificationButton.frame.size.height + verticalPadding;
-
+                
                 
                 notificationButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
                 notificationScrollView.addSubview(notificationButton);
@@ -450,12 +450,12 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             noNotificationLabel.isHidden = false;
         }
         
-      //  notificationScrollView.addSubview(refreshControl)
+        //  notificationScrollView.addSubview(refreshControl)
     }
     
     @objc func refreshNotifications(){
         // implement get data
-      //  loadNotificationPref();
+        //  loadNotificationPref();
         loadNotifPref();
         getLocalNotifications();
         

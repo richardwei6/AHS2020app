@@ -348,7 +348,7 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
                     while let article = enumerator.nextObject() as? DataSnapshot{ // each article
                         let enumerator = article.children;
                         var singleArticle = bulletinArticleData();
-                        singleArticle.articleID = article.key as! String;
+                        singleArticle.articleID = article.key;
                         while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                             
                             if (articleContent.key == "articleBody"){

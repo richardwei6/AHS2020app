@@ -108,7 +108,7 @@ class notificationSettingsClass: UITableViewController{
                 selectedNotifications[sender.tag] = false;
             }
         }
-   
+        
         print(selectedNotifications);
         UserDefaults.standard.set(selectedNotifications, forKey: "selectedNotifications");
         

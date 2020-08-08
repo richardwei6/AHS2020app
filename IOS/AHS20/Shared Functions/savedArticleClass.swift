@@ -14,7 +14,13 @@ import FirebaseDatabase
 import SDWebImage
 
 func sortArticlesByTime(a: articleData, b: articleData)->Bool{
-    return (a.articleUnixEpoch ?? INT64_MAX) > (b.articleUnixEpoch ?? INT64_MAX);
+    let currTime = Int64(NSDate().timeIntervalSince1970);
+    if (a.articleUnixEpoch ?? INT64_MAX > currTime && b.articleUnixEpoch ?? INT64_MAX > currTime){
+        return (a.articleUnixEpoch ?? INT64_MAX) < (b.articleUnixEpoch ?? INT64_MAX);
+    }
+    else{
+        return (a.articleUnixEpoch ?? INT64_MAX) > (b.articleUnixEpoch ?? INT64_MAX);
+    }
 }
 
 final class savedArticleClass{

@@ -34,7 +34,7 @@ func getNotificationData(){
                 let enumerator = article.children;
                 var singleNotification = notificationData();
                 
-                singleNotification.messageID = article.key as! String;
+                singleNotification.messageID = article.key;
                 
                 while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                     

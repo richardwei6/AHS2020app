@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
-
+    
     @IBOutlet weak var mainScrollView: UIScrollView!
     
     
     @objc func openArticle(sender: CustomUIButton){
-       // print("Button pressed");
-       let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
-       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
+        // print("Button pressed");
+        let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
     }
     
     override func viewDidLoad() {
@@ -28,13 +28,11 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
         let savedArticles =  savedArticleClass.getSavedArticles();
-//        print("got saved");
-//        print(savedArticles.count);
         
         for view in mainScrollView.subviews{
             view.removeFromSuperview();
         }
-                
+        
         if (savedArticles.count != 0){
             let articleHeight = CGFloat(130);
             let articleHorizontalPadding = CGFloat(11);
@@ -94,7 +92,6 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 let articleTitle = UILabel(frame: articleTitleFrame);
                 articleTitle.text = savedArticles[aIndex].articleTitle;
                 articleTitle.contentMode = .left;
-                //articleTitle.backgroundColor = UIColor.gray;
                 articleTitle.font = UIFont(name: "SFProDisplay-Semibold", size: 18);
                 
                 let articleBodyFrame = CGRect(x: leftEdge + 1, y: 50, width: articleFrame.size.width-rightEdge-leftEdge, height: articleFrame.size.height - 55);
@@ -108,7 +105,6 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 let timeStampFrame = CGRect(x: articleFrame.size.width - 10 - timeStampWidth, y: 8, width: timeStampWidth, height: 20);
                 let timeStamp = UILabel(frame: timeStampFrame);
                 timeStamp.text = epochClass.epochToString(epoch: savedArticles[aIndex].articleUnixEpoch ?? -1);
-                //timeStamp.text = "12 months ago";
                 timeStamp.textAlignment = .right;
                 timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 12);
                 timeStamp.textColor = UIColor.darkGray;
@@ -131,7 +127,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
             }
             mainScrollView.contentSize = CGSize(width: articleFrame.size.width, height: 2*articleVerticalPadding+(articleFrame.size.height+articleVerticalPadding) * CGFloat(savedArticles.count));
             mainScrollView.delegate = self;
- 
+            
         }
         else{
             mainScrollView.isHidden = true;

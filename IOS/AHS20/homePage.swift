@@ -76,7 +76,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	func getHomeArticleData(){
 		setUpConnection();
 		if (internetConnected){
-			print("ok -------- loading articles - home");
 			featuredArticles = [articleData]();
 			homeArticleList = [[articleData]](repeating: [articleData](), count: 3);
 			
@@ -97,25 +96,19 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					break;
 				}
 				
-				//print(s);
 				ref.child("homepage").child(s).observeSingleEvent(of: .value) { (snapshot) in
-					//print(s);
-					
-					//print(snapshot.childrenCount)
 					let enumerator = snapshot.children;
 					var temp = [articleData](); // temporary array
 					while let article = enumerator.nextObject() as? DataSnapshot{ // each article
-						//print(article);
-						
 						
 						let enumerator = article.children;
 						var singleArticle = articleData();
 						
-						singleArticle.articleID = article.key as! String;
+						singleArticle.articleID = article.key;
 						
 						
 						while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-						
+							
 							
 							if (articleContent.key == "articleAuthor"){
 								singleArticle.articleAuthor = articleContent.value as? String;
@@ -133,7 +126,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 								while let image = imageIt.nextObject() as? DataSnapshot{
 									tempImage.append(image.value as! String);
 								}
-								//print(tempImage)
 								singleArticle.articleImages = tempImage;
 							}
 							else if (articleContent.key == "articleVideoIDs"){
@@ -157,10 +149,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 							
 							
 						}
-						// print("append to main")
-						// print(temp.count);
-						//print(singleArticle.articleTitle);
-						//print(singleArticle.articleImages);
 						singleArticle.articleCatagory = s.prefix(1).capitalized + s.dropFirst();
 						if (singleArticle.articleCatagory == "Asb"){
 							singleArticle.articleCatagory = "ASB";
@@ -181,12 +169,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			}
 		}
 		else{
-			//setUpAllViews();
-			print("no network detected - home");
-			featuredLabel.text = "NO Connection";
-			asbLabel.text = "NO Connection";
-			sportsLabel.text = "NO Connection";
-			districtLabel.text = "NO Connection";
+			featuredLabel.text = "No Connection";
 			let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
 			infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
 				self.refreshControl.endRefreshing();
@@ -210,11 +193,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
 		NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
 	}
-
+	
 	
 	@objc func bookmarkCurrentArticle(sender: CustomUIButton){
-		//print("bookmark - \(savedArticleClass.isSavedCurrentArticle(articleID: sender.articleCompleteData.articleID!))")
-		//print("Bookmark Button - \(sender.articleCompleteData)");
 		if (savedArticleClass.isSavedCurrentArticle(articleID: sender.articleCompleteData.articleID!) == false){
 			sender.tintColor = mainThemeColor;
 			savedArticleClass.saveCurrArticle(articleID: sender.articleCompleteData.articleID!, article: sender.articleCompleteData);
@@ -245,7 +226,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			articleImageView.contentMode = .scaleAspectFill;
 		}
 		articleImageView.backgroundColor = UIColor.gray;
-	    articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
+		articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
 		
 		let spacing = CGFloat(10);
 		
@@ -254,7 +235,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleTitle.text = articleSingle.articleTitle ?? "";
 		articleTitle.textAlignment = .left;
 		articleTitle.font = UIFont(name: "SFProDisplay-Semibold", size: 18);
-	//	articleTitle.lineBreakMode = .byWordWrapping;
 		articleTitle.numberOfLines = 0;
 		
 		var text = "";
@@ -275,19 +255,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleBody.isScrollEnabled = false;
 		articleBody.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0);
 		articleBody.textContainer.lineBreakMode = .byTruncatingTail;
-		//articleBody.backgroundColor = UIColor.gray;
 		
-		/*let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.size.height);
-		let articleBody = UILabel(frame: articleBodyFrame);
-		if (articleSingle.hasHTML){
-			articleBody.text = parseHTML(s: articleSingle.articleBody ?? "").string;
-		}
-		else{
-			articleBody.text = (articleSingle.articleBody ?? "");
-		}
-		articleBody.textAlignment = .left;
-		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
-		articleBody.numberOfLines = 0;*/
 		
 		let timeStampText = epochClass.epochToString(epoch: articleSingle.articleUnixEpoch ?? -1);
 		let timeStampFrame = CGRect(x: 7, y: height - 25, width: timeStampText.getWidth(withConstrainedHeight: 15, font: UIFont(name: "SFProDisplay-Semibold", size: 8)!) + 10, height: 15);
@@ -334,8 +302,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	func setUpAllViews(){
 		
-		//	print("home");
-		//	print(homeArticleList.count);
 		setUpConnection();
 		if (internetConnected && (homeArticleList[0].count > 0 || homeArticleList[1].count > 0 || homeArticleList[2].count > 0)){
 			
@@ -344,8 +310,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			sportsLabel.text = "Sports News";
 			districtLabel.text = "District News";
 			
-			//print("home");
-			//print(homeArticleList)
 			let asbArticlePairs = arrayToPairs(a: homeArticleList[0]);
 			let sportsArticlePairs = arrayToPairs(a: homeArticleList[1]);
 			let districtArticlePairs = arrayToPairs(a: homeArticleList[2]);
@@ -353,19 +317,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			asbNewsSize = asbArticlePairs.count;
 			sportsNewsSize = sportsArticlePairs.count;
 			districtNewsSize = districtArticlePairs.count;
-			/*print(asbArticlePairs);
-			print(sportsArticlePairs);
-			print(districtArticlePairs);
-			print("home")
-			print(featuredSize);
-			print(asbNewsSize);
-			print(sportsNewsSize);
-			print(districtNewsSize);*/
 			
-			//let bookMarkBackground = makeColor(r: 165, g: 165, b: 165);
-			
-			
-			//let articleDarkGreyBackground = makeColor(r: 143, g: 142, b: 142);
 			// scrollview variables
 			let scrollViewHorizontalConstraints = CGFloat(38);
 			
@@ -399,8 +351,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					let currArticle = featuredArticles[aIndex];
 					
 					let outerContentView = CustomUIButton(frame: featuredFrame);
-					//outerContentView.backgroundColor = UIColor.gray;
-					
 					
 					let innerContentViewContraint = CGFloat(20);
 					let contentViewFrame = CGRect(x: innerContentViewContraint, y: 0, width: featuredFrame.size.width - (2*innerContentViewContraint), height: featuredFrame.size.height);
@@ -429,14 +379,12 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					let titleLabelFrame = CGRect(x: 0, y: contentViewFrame.size.height-20-height, width: contentViewFrame.size.width, height: height);
 					let titleLabel = UILabel(frame: titleLabelFrame);
 					titleLabel.text = title;
-					//titleLabel.text = "super long long long long long long long long long long long long long long"
 					titleLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 22);
 					titleLabel.textAlignment = .left;
 					titleLabel.textColor = UIColor.black;
-					//titleLabel.backgroundColor = UIColor.lightGray
 					titleLabel.numberOfLines = 2;
 					//SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
-			
+					
 					let imageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: titleLabelFrame.minY);
 					let imageView = UIImageView(frame: imageViewFrame);
 					imageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
@@ -458,7 +406,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					outerContentView.addSubview(contentView);
 					
 					outerContentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
-					//articleImageView.layer.cornerRadius = 10;
 					
 					outerContentView.tag = 1;
 					
@@ -480,8 +427,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			asbNewsFrame.size = asbNewsScrollView.frame.size;
 			asbNewsFrame.size.width = UIScreen.main.bounds.width - scrollViewHorizontalConstraints;
 			for aIndex in 0..<asbNewsSize{
-				//districtNewsFrame.origin.x = (UIScreen.main.bounds.size.width-52) * CGFloat(aIndex);
-				//districtNewsFrame.size = UIScreen.main.bounds.size;
 				asbNewsFrame.origin.x = (asbNewsFrame.size.width * CGFloat(aIndex));
 				
 				
@@ -515,7 +460,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				
 				// create content in scrollview
 				let contentView = UIView(frame: sportsNewsFrame); // wrapper for article
-			
+				
 				contentView.addSubview(smallArticle(x: 0, y: 0, width: sportsNewsFrame.size.width, height: 120, articleSingle: sportsArticlePairs[aIndex][0]));
 				
 				if (sportsArticlePairs[aIndex].count == 2){
@@ -573,7 +518,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		districtLabel.text = loading;
 		
 		mainScrollView.alwaysBounceVertical = true;
-	  	getHomeArticleData();
+		getHomeArticleData();
 		refreshControl.addTarget(self, action: #selector(refreshAllArticles), for: UIControl.Event.valueChanged);
 		mainScrollView.addSubview(refreshControl);
 		mainScrollView.delegate = self;

@@ -74,7 +74,7 @@ class CustomTabBarController: UIViewController {
     func setUpNotifDot(){
         setUpConnection();
         if (internetConnected){
-            print("ok -------- loading articles - notifications");
+            // print("ok -------- loading articles - notifications");
             //print(s);
             ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
                 let enumerator = snapshot.children;
@@ -82,7 +82,7 @@ class CustomTabBarController: UIViewController {
                     let enumerator = article.children;
                     var singleNotification = notificationData();
                     
-                    singleNotification.messageID =  article.key as! String;
+                    singleNotification.messageID =  article.key;
                     
                     while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                         
@@ -107,14 +107,10 @@ class CustomTabBarController: UIViewController {
                     if (notificationReadDict[singleNotification.messageID ?? ""] == nil){
                         unreadNotif = true;
                     }
-                   //print("debug --- \(notificationReadDict[singleNotification.messageID ?? ""]) for \(singleNotification.notificationTitle)")
+                    //print("debug --- \(notificationReadDict[singleNotification.messageID ?? ""]) for \(singleNotification.notificationTitle)")
                     self.notificationDot.isHidden = !unreadNotif;
                 };
             }
-        }
-        else{
-            //setUpAllViews();
-            print("no network detected - notifications");
         }
     }
     
@@ -123,7 +119,7 @@ class CustomTabBarController: UIViewController {
         
         
         setUpConnection();
-        print("Connection Established");
+        //  print("Connection Established");
         
         setUpNotifDot();
         
@@ -131,18 +127,9 @@ class CustomTabBarController: UIViewController {
         
         
         // getSavedArticles(); // load default saved articles
-        savedArticleClass.getSavedArticles();
+        //savedArticleClass.getArticleDictionary();
         
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
-        
-        //contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
-        //contentView.topAnchor.constraint(equalTo: view.topAnchor, constant: -1).isActive = true;
-        
-        //tabBarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true;
-        
-        
-        
-        // tabBarView.frame.size.height = CGFloat(70);
         
         
         // set up buttons

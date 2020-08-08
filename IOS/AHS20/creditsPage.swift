@@ -64,7 +64,6 @@ class creditsPage: UIViewController {
     }
     
     func animateGradient() {
-       // print(currentgradient)
         if currentgradient < gradientSet.count - 1 {
             currentgradient += 1
         } else {

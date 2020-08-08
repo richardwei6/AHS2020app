@@ -36,17 +36,13 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     let imageScrollView = UIScrollView();
     
     @IBAction func saveArticle(sender: CustomUIButton){
-        print("Bookmark");
         if (sender.articleCompleteData.articleID != nil){
             if (sender.isSelected == false){
-                // saveCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
                 savedArticleClass.saveCurrArticle(articleID: sender.articleCompleteData.articleID!, article: sender.articleCompleteData);
             }
             else{
-                //  removeCurrentArticle(articleID: sender.articleID ?? ""); // TODO: change ?? to ! instead
                 savedArticleClass.removeCurrArticle(articleID: sender.articleCompleteData.articleID!);
             }
-            // TODO: FIX
             sender.isSelected = !sender.isSelected;
             setBookmarkColor();
             resetUpArticles = true;
@@ -90,11 +86,9 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         
         bookmarkButton.tintColor = mainThemeColor;
         setBookmarkColor();
-                
+        
         articleCatagoryLabel.text = articleContent?.articleCatagory ?? "NO Cata.";
         articleCatagoryLabel.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
-        
-        // mainScrollView.topAnchor.constraint(equalToSystemSpacingBelow: view.topAnchor, multiplier: 1).isActive = true;
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
         var nextY = CGFloat(0);
@@ -110,7 +104,6 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             videoSize = articleContent?.articleVideoIDs?.count ?? 0;
             imageScrollView.backgroundColor = UIColor.clear;
             
-            //imagePageControl.numberOfPages = imageSize + videoSize;
             imageFrame.size = imageScrollView.frame.size;
             var origX = CGFloat(0);
             for videoIndex in 0..<videoSize{
@@ -122,11 +115,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             }
             for imageIndex in 0..<imageSize{
                 imageFrame.origin.x = origX;
-                
-                // let imageZoom = UIScrollView(frame: imageFrame);
                 let buttonImage = UIButton(frame: imageFrame);
-                //imageView.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
-                //imageView.contentMode = .scaleAspectFit;
                 buttonImage.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
                 buttonImage.imageView?.contentMode = .scaleAspectFill;
                 buttonImage.imageView?.image?.getColors({ (colors) -> Void in
@@ -145,14 +134,9 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             imageScrollView.layer.cornerRadius = 5;
             imageScrollView.isPagingEnabled = true;
             imageScrollView.showsHorizontalScrollIndicator = false;
-            
-           // imagePageControl.frame = CGRect(x: imagePageControl.size(forNumberOfPages: imageSize + videoSize))
-
             imagePageControl.currentPage = 0;
             imagePageControl.numberOfPages = imageSize + videoSize;
             imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: imageScrollViewFrame.size.height + 15);
-           // imagePageControl.setCustomColors
-            //imagePageControl.setCustomColors(dotFillColor: UIColor.darkGray, dotBorderColor: UIColor.darkGray, dotBorderWidth: 100);
             imagePageControl.pageIndicatorTintColor = UIColor.lightGray;
             imagePageControl.currentPageIndicatorTintColor = UIColor.black;
             
@@ -161,7 +145,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             //nextY += imagePageControl.frame.height;
             nextY += imageScrollViewFrame.size.height + 15;
         }
-
+        
         nextY += 7;
         let articleTitleText = articleContent?.articleTitle;
         let articleTitleFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleTitleText?.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Semibold", size: CGFloat(fontSize+5))!) ?? 0);
@@ -194,44 +178,25 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         nextY += articleDateFrame.size.height;
         
         nextY += 7;
-     //   nextY += padding;
         let articleBodyText = (articleContent?.hasHTML == true ? parseHTML(s: articleContent?.articleBody ?? "") : NSAttributedString(string: articleContent?.articleBody ?? ""));
         let articleBodyFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleBodyText.string.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize))!));
         let articleBody = UITextView(frame: articleBodyFrame);
         articleBody.attributedText = articleBodyText;
         articleBody.font = UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize));
         articleBody.isScrollEnabled = false;
-       // articleBody.isSelectable = false;
         articleBody.isEditable = false;
         articleBody.tintColor = UIColor.systemBlue;
         articleBody.contentInset = UIEdgeInsets(top: -7, left: -5, bottom: 0, right: 0);
         articleBody.sizeToFit();
-        //articleBody.backgroundColor = UIColor.lightGray;
         mainScrollView.addSubview(articleBody);
         nextY += articleBody.frame.size.height;
-        // articleText.translatesAutoresizingMaskIntoConstraints = true;
         mainScrollView.contentSize = CGSize(width: universalWidth, height: nextY + 30);
-        
-         /*articleTitle.text = articleContent?.articleTitle; // set article title herer
-         articleTitle.font = UIFont(name: articleTitle.font.fontName, size: CGFloat(fontSize+5));
-         articleDate.text = epochClass.epochToFormatedDateString(epoch: articleContent?.articleUnixEpoch ?? -1); // TODO: IMPLEMENT A FUNC TO GET INT TO STRING DATE
-         articleAuthor.text = "By " + (articleContent?.articleAuthor ?? " No Author");
-         articleAuthor.font = UIFont(name: articleAuthor.font.fontName, size: CGFloat(fontSize));
-         
-         // TODO: add zoom feature here
-         */
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if (articleContent?.articleAuthor != nil){
-            
-        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (articleContent?.articleAuthor != nil){
-        imagePageControl.currentPage = Int(round(imageScrollView.contentOffset.x / imageFrame.size.width));
-        UIScrollView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {self.imageScrollView.backgroundColor = self.imageAvgColors[self.imagePageControl.currentPage] != nil ? self.imageAvgColors[self.imagePageControl.currentPage] : UIColor.lightGray;}, completion: nil);
+            imagePageControl.currentPage = Int(round(imageScrollView.contentOffset.x / imageFrame.size.width));
+            UIScrollView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {self.imageScrollView.backgroundColor = self.imageAvgColors[self.imagePageControl.currentPage] != nil ? self.imageAvgColors[self.imagePageControl.currentPage] : UIColor.lightGray;}, completion: nil);
         }
     }
 }
