@@ -49,8 +49,8 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="hKM-UH-tIK"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="6HT-cQ-dII"/>
                                             </scrollView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YX-jQ-HJz">
-                                                <rect key="frame" x="20.000000000000007" y="358.66666666666669" width="107.66666666666669" height="26"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YX-jQ-HJz">
+                                                <rect key="frame" x="20" y="358.66666666666669" width="128.66666666666666" height="26"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pageControl>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYQ-kZ-sr8" userLabel="loadingASBView">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYQ-kZ-sr8" userLabel="loadingGeneralView">
                                                 <rect key="frame" x="0.0" y="347" width="414" height="325"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q0j-7K-QnK">
@@ -296,6 +296,12 @@
                                                     <constraint firstItem="Q0j-7K-QnK" firstAttribute="leading" secondItem="YYQ-kZ-sr8" secondAttribute="leading" constant="19" id="zle-DO-1Bu"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7St-u3-tL8">
+                                                <rect key="frame" x="21" y="684.66666666666663" width="142" height="25"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2a-Ch-t7Y">
                                                 <rect key="frame" x="19" y="718" width="376" height="240"/>
                                                 <constraints>
@@ -304,12 +310,6 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="IOz-6r-x1z"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Rmm-pj-VGU"/>
                                             </scrollView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7St-u3-tL8">
-                                                <rect key="frame" x="21" y="684.66666666666663" width="142" height="25"/>
-                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iD6-UZ-DlH">
                                                 <rect key="frame" x="188" y="961.66666666666663" width="39" height="35.333333333333371"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -543,8 +543,8 @@
                                                     <constraint firstItem="Ob0-fb-L5o" firstAttribute="leading" secondItem="alZ-v7-9ZZ" secondAttribute="leading" constant="25" id="sRn-RM-PFW"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sports News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BR2-Jb-vl0">
-                                                <rect key="frame" x="22" y="1009.6666666666666" width="134.33333333333334" height="23.333333333333371"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BR2-Jb-vl0">
+                                                <rect key="frame" x="22.000000000000007" y="1009.6666666666666" width="107.66666666666669" height="23.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -570,7 +570,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HwD-Wo-mKv" userLabel="loadingSportsNews">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HwD-Wo-mKv" userLabel="loadingASBNews">
                                                 <rect key="frame" x="0.0" y="997" width="414" height="325"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qj6-ys-JLd">
@@ -910,22 +910,22 @@
                     </view>
                     <size key="freeformSize" width="414" height="1340"/>
                     <connections>
-                        <outlet property="asbLabel" destination="4YX-jQ-HJz" id="XNp-cC-h89"/>
-                        <outlet property="asbNewsPageControl" destination="hFL-pT-fxA" id="ALw-Nm-hhC"/>
-                        <outlet property="asbNewsScrollView" destination="WnD-gz-8Ls" id="lCm-cr-oCj"/>
-                        <outlet property="districtLabel" destination="7St-u3-tL8" id="aBn-Z5-9Xg"/>
-                        <outlet property="districtNewsPageControl" destination="iD6-UZ-DlH" id="DWj-nA-RCV"/>
-                        <outlet property="districtNewsScrollView" destination="Q2a-Ch-t7Y" id="AJ9-NY-Pnx"/>
-                        <outlet property="featuredLabel" destination="5XT-od-jzj" id="zZO-NS-gaf"/>
+                        <outlet property="asbLabel" destination="BR2-Jb-vl0" id="5Mj-lA-DJq"/>
+                        <outlet property="asbNewsPageControl" destination="x8m-5V-ULZ" id="RSX-pQ-kFu"/>
+                        <outlet property="asbNewsScrollView" destination="vrP-oM-pep" id="3ea-Ve-47F"/>
+                        <outlet property="districtLabel" destination="7St-u3-tL8" id="5fu-kB-fHN"/>
+                        <outlet property="districtNewsPageControl" destination="iD6-UZ-DlH" id="bFX-QT-Oe9"/>
+                        <outlet property="districtNewsScrollView" destination="Q2a-Ch-t7Y" id="fx9-SU-meh"/>
+                        <outlet property="featuredLabel" destination="5XT-od-jzj" id="phg-7C-ITP"/>
                         <outlet property="featuredMissingLabel" destination="7aJ-vf-lyx" id="h2y-RD-Tk5"/>
-                        <outlet property="featuredScrollView" destination="Vgb-UA-GmW" id="sSw-jg-caJ"/>
-                        <outlet property="loadingASBView" destination="YYQ-kZ-sr8" id="gi6-HX-ZA7"/>
-                        <outlet property="loadingDistrictView" destination="alZ-v7-9ZZ" id="jH3-Rv-ehk"/>
-                        <outlet property="loadingSportsView" destination="HwD-Wo-mKv" id="IoV-DO-dRY"/>
+                        <outlet property="featuredScrollView" destination="Vgb-UA-GmW" id="6nl-rw-Gpt"/>
+                        <outlet property="generalInfoPageControl" destination="hFL-pT-fxA" id="Rz1-kB-Gcd"/>
+                        <outlet property="generalInfoScrollView" destination="WnD-gz-8Ls" id="Mnn-8F-Y3m"/>
+                        <outlet property="generalLabel" destination="4YX-jQ-HJz" id="kBM-tw-HdW"/>
+                        <outlet property="loadingASBView" destination="HwD-Wo-mKv" id="QLb-Ri-IVx"/>
+                        <outlet property="loadingDistrictView" destination="alZ-v7-9ZZ" id="Yi4-Zo-RGL"/>
+                        <outlet property="loadingGeneralView" destination="YYQ-kZ-sr8" id="gaw-Mb-GJc"/>
                         <outlet property="mainScrollView" destination="Xab-Ha-pr7" id="Jdt-6E-T6h"/>
-                        <outlet property="sportsLabel" destination="BR2-Jb-vl0" id="Cat-Ab-vLb"/>
-                        <outlet property="sportsNewsPageControl" destination="x8m-5V-ULZ" id="3fe-P0-OKC"/>
-                        <outlet property="sportsNewsScrollView" destination="vrP-oM-pep" id="rLq-Pq-mGl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4C-W9-Pl9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -973,11 +973,11 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Athletics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgT-rI-5cM">
-                                <rect key="frame" x="42" y="13.999999999999998" width="105" height="26.333333333333329"/>
+                                <rect key="frame" x="42" y="13.999999999999998" width="110" height="26.333333333333329"/>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26.329999999999998" id="TNC-pH-q9Y"/>
-                                    <constraint firstAttribute="width" constant="105" id="Ygc-JH-ebd"/>
+                                    <constraint firstAttribute="width" constant="110" id="Ygc-JH-ebd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1658,8 +1658,8 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Updates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzu-8e-Q6j">
-                                                    <rect key="frame" x="20" y="8.9999999999999982" width="148.33333333333334" height="24.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe to all" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzu-8e-Q6j">
+                                                    <rect key="frame" x="20" y="8.9999999999999982" width="135" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
