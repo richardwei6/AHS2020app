@@ -77,6 +77,9 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                     articleButton.addSubview(imageView);
                     leftEdge += imageViewFrame.size.width + 2 * leftPadding;
                 }
+                else{
+                    leftEdge += leftPadding + 2;
+                }
                 
                 let articleCatagoryFrame = CGRect(x: leftEdge + 1, y: 8, width: 65, height: 20);
                 let articleCatagory = UILabel(frame: articleCatagoryFrame);
