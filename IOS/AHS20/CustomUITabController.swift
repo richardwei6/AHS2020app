@@ -56,16 +56,11 @@ class CustomTabBarController: UIViewController {
     
     @objc func articleSelector(notification: NSNotification){
         articleContentInSegue = notification.userInfo?["articleContent"] as? articleData;
-        //   print("pre segue");
-        //  print(articleContentInSegue)
-        //prepare(for: "articleSegue", sender: articleContentInSegue)
         performSegue(withIdentifier: "articleSegue", sender: nil);
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "articleSegue"){
-            //    print("segue");
-            //   print(articleContentInSegue)
             let vc = segue.destination as! articlePageViewController;
             vc.articleContent = articleContentInSegue;
         }
@@ -76,6 +71,7 @@ class CustomTabBarController: UIViewController {
         if (internetConnected){
             // print("ok -------- loading articles - notifications");
             //print(s);
+            totalNotificationList = [notificationData]();
             ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
                 let enumerator = snapshot.children;
                 while let article = enumerator.nextObject() as? DataSnapshot{ // each article
@@ -103,11 +99,8 @@ class CustomTabBarController: UIViewController {
                         }
                         
                     }
-                    loadNotifPref();
-                    if (notificationReadDict[singleNotification.messageID ?? ""] == nil){
-                        unreadNotif = true;
-                    }
-                    //print("debug --- \(notificationReadDict[singleNotification.messageID ?? ""]) for \(singleNotification.notificationTitle)")
+                    totalNotificationList.append(singleNotification);
+                    filterTotalNotificationArticles();
                     self.notificationDot.isHidden = !unreadNotif;
                 };
             }

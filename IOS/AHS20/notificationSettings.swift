@@ -114,7 +114,7 @@ class notificationSettingsClass: UITableViewController{
         
         updateSubscriptionNotifs();
         
-        filterTotalArticles();
+        filterTotalNotificationArticles();
         unreadNotif = (notificationList[1].count > 0);
     }
     

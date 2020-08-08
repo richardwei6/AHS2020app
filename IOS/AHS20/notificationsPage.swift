@@ -52,7 +52,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                         }
                     }
                     totalNotificationList.append(singleNotification);
-                    filterTotalArticles();
+                    filterTotalNotificationArticles();
                     self.loadScrollView();
                     self.refreshControl.endRefreshing();
                 };
@@ -74,19 +74,20 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             for i in 0...2{
                 var s: String; // path inside homepage
                 switch i {
-                case 0: // asb
-                    s = "asb";
+                case 0: // general info
+                    s = "General_Info";
                     break;
-                case 1: // sports
-                    s = "sports";
+                case 1: // district
+                    s = "District";
                     break;
-                case 2: // district
-                    s = "district";
+                case 2: // asb
+                    s = "ASB";
                     break;
                 default:
                     s = "";
                     break;
                 }
+                
                 ref.child("homepage").child(s).observeSingleEvent(of: .value) { (snapshot) in
                     let enumerator = snapshot.children;
                     while let article = enumerator.nextObject() as? DataSnapshot{ // each article
@@ -131,35 +132,29 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                                 singleArticle.hasHTML = (articleContent.value as? Int == 0 ? false : true);
                             }
                         }
-                        singleArticle.articleCatagory = s.prefix(1).capitalized + s.dropFirst();
-                        if (singleArticle.articleCatagory == "Asb"){
-                            singleArticle.articleCatagory = "ASB";
-                        }
+                        singleArticle.articleCatagory = i == 0 ? "General Info" : s;
                         self.articleDictionary[singleArticle.articleID ?? ""] = singleArticle;
                     }
                 };
             }
             
-            for i in 0..<6{
+            for i in 0...4{
                 var s: String; // path inside homepage
                 switch i {
                 case 0: // seniors
-                    s = "seniors";
+                    s = "Academics";
                     break;
                 case 1: // colleges
-                    s = "colleges";
+                    s = "Athletics";
                     break;
                 case 2: // events
-                    s = "events";
+                    s = "Clubs";
                     break;
                 case 3: // athletics
-                    s = "athletics";
+                    s = "Colleges";
                     break;
                 case 4: // reference
-                    s = "reference";
-                    break;
-                case 5: // others
-                    s = "others";
+                    s = "Reference";
                     break;
                 default:
                     s = "";
@@ -191,7 +186,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                             }
                             
                         }
-                        singleArticle.articleCatagory = s.prefix(1).capitalized + s.dropFirst();
+                        singleArticle.articleCatagory = s;
                         singleArticle.articleType = i;
                         self.articleDictionary[singleArticle.articleID ?? ""] = bulletinDataToarticleData(data: singleArticle);
                     }
@@ -235,7 +230,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     func typeIDToString(id: Int) -> String{
         if (id == 0){
-            return "Alerts";
+            return "Mandatory";
         }
         else if (id == 1){
             return "Sports";

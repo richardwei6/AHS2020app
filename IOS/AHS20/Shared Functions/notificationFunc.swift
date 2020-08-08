@@ -56,7 +56,7 @@ func getNotificationData(){
                     
                 }
                 totalNotificationList.append(singleNotification);
-                filterTotalArticles();
+                filterTotalNotificationArticles();
             };
         }
     }
@@ -104,15 +104,15 @@ func saveNotifPref(){
     }
 }
 
-func filterTotalArticles(){ // inital
+func filterTotalNotificationArticles(){ // inital
     loadNotifPref();
     notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
     for notification in totalNotificationList{
         if (notification.notificationCatagory == 0 || selectedNotifications[notification.notificationCatagory ?? 0] == true || selectedNotifications[0] == true){
-            
             notificationList[(notificationReadDict[notification.messageID ?? ""] == true ? 0 : 1)].append(notification);
         }
     }
+  //  print("change - \(notificationList)")
     unreadNotif = (notificationList[1].count > 0);
 }
 
