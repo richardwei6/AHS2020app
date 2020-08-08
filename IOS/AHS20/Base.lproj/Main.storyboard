@@ -1854,105 +1854,149 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naw-Mp-di2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="4706.666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="6350"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ddp-ER-vDU">
-                                                <rect key="frame" x="5" y="0.0" width="404" height="4706.666666666667"/>
-                                                <string key="text">Welcome to Arcadia High Mobile!
+                                                <rect key="frame" x="5" y="0.0" width="404" height="6350"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES" staticText="YES"/>
+                                                </accessibility>
+                                                <mutableString key="text">END USER LICENSE AGREEMENT
 
-These terms and conditions outline the rules and regulations for the use of Arcadia High App Dev's Website, located at https://hsappdev.wixsite.com/ahsappdev.
+Last updated August 08, 2020
 
-By accessing this website we assume you accept these terms and conditions. Do not continue to use Arcadia High Mobile if you do not agree to take all of the terms and conditions stated on this page. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Free Terms &amp; Conditions Generator.
 
-The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.
 
-Cookies
-We employ the use of cookies. By accessing Arcadia High Mobile, you agreed to use cookies in agreement with the Arcadia High App Dev's Privacy Policy.
+Arcadia High Mobile App is licensed to You (End-User) by Arcadia High Mobile, located at 180 Campus Dr, Arcadia, California 91006, United States (hereinafter: Licensor), for use only under the terms of this License Agreement.
 
-Most interactive websites use cookies to let us retrieve the user’s details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.
+By downloading the Application from the Apple AppStore, and any update thereto (as permitted by this License Agreement), You indicate that You agree to be bound by all of the terms and conditions of this License Agreement, and that You accept this License Agreement.
 
-License
-Unless otherwise stated, Arcadia High App Dev and/or its licensors own the intellectual property rights for all material on Arcadia High Mobile. All intellectual property rights are reserved. You may access this from Arcadia High Mobile for your own personal use subjected to restrictions set in these terms and conditions.
+The parties of this License Agreement acknowledge that Apple is not a Party to this License Agreement and is not bound by any provisions or obligations with regard to the Application, such as warranty, liability, maintenance and support thereof. Arcadia High Mobile, not Apple, is solely responsible for the licensed Application and the content thereof.
 
-You must not:
+This License Agreement may not provide for usage rules for the Application that are in conflict with the latest https://www.apple.com/legal/internet-services/itunes/us/terms.html. Arcadia High Mobile acknowledges that it had the opportunity to review said terms and this License Agreement is not conflicting with them.
 
-Republish material from Arcadia High Mobile
-Sell, rent or sub-license material from Arcadia High Mobile
-Reproduce, duplicate or copy material from Arcadia High Mobile
-Redistribute content from Arcadia High Mobile
-This Agreement shall begin on the date hereof.
+All rights not expressly granted to You are reserved.
 
-Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. Arcadia High App Dev does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of Arcadia High App Dev,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, Arcadia High App Dev shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.
 
-Arcadia High App Dev reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.
+1. THE APPLICATION
 
-You warrant and represent that:
+Arcadia High Mobile App (hereinafter: Application) is a piece of software created to provide school and district news to students and parents through a mobile application - and customized for Apple mobile devices. It is used to allow student and parents to have convenient access to school news and resources.
 
-You are entitled to post the Comments on our website and have all necessary licenses and consents to do so;
-The Comments do not invade any intellectual property right, including without limitation copyright, patent or trademark of any third party;
-The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material which is an invasion of privacy
-The Comments will not be used to solicit or promote business or custom or present commercial activities or unlawful activity.
-You hereby grant Arcadia High App Dev a non-exclusive license to use, reproduce, edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats or media.
+The Application is not tailored to comply with industry-specific regulations (Health Insurance Portability and Accountability Act (HIPAA), Federal Information Security Management Act (FISMA), etc.), so if your interactions would be subjected to such laws, you may not use this Application. You may not use the Application in a way that would violate the Gramm-Leach-Bliley Act (GLBA).
 
-Hyperlinking to our Content
-The following organizations may link to our Website without prior written approval:
 
-Government agencies;
-Search engines;
-News organizations;
-Online directory distributors may link to our Website in the same manner as they hyperlink to the Websites of other listed businesses; and
-System wide Accredited Businesses except soliciting non-profit organizations, charity shopping malls, and charity fundraising groups which may not hyperlink to our Web site.
-These organizations may link to our home page, to publications or to other Website information so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products and/or services; and (c) fits within the context of the linking party’s site.
+2. SCOPE OF LICENSE
 
-We may consider and approve other link requests from the following types of organizations:
+2.1  You are given a non-transferable, non-exclusive, non-sublicensable license to install and use the Licensed Application on any Apple-branded Products that You (End-User) own or control and as permitted by the Usage Rules set forth in this section and the App Store Terms of Service, with the exception that such licensed Application may be accessed and used by other accounts associated with You (End-User, The Purchaser) via Family Sharing or volume purchasing.
 
-commonly-known consumer and/or business information sources;
-dot.com community sites;
-associations or other groups representing charities;
-online directory distributors;
-internet portals;
-accounting, law and consulting firms; and
-educational institutions and trade associations.
-We will approve link requests from these organizations if we decide that: (a) the link would not make us look unfavorably to ourselves or to our accredited businesses; (b) the organization does not have any negative records with us; (c) the benefit to us from the visibility of the hyperlink compensates the absence of Arcadia High App Dev; and (d) the link is in the context of general resource information.
+2.2  This license will also govern any updates of the Application provided by Licensor that replace, repair, and/or supplement the first Application, unless a separate license is provided for such update in which case the terms of that new license will govern.
 
-These organizations may link to our home page so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products or services; and (c) fits within the context of the linking party’s site.
+2.3  You may not share or make the Application available to third parties (unless to the degree allowed by the Apple Terms and Conditions, and with Arcadia High Mobile's prior written consent), sell, rent, lend, lease or otherwise redistribute the Application.
 
-If you are one of the organizations listed in paragraph 2 above and are interested in linking to our website, you must inform us by sending an e-mail to Arcadia High App Dev. Please include your name, your organization name, contact information as well as the URL of your site, a list of any URLs from which you intend to link to our Website, and a list of the URLs on our site to which you would like to link. Wait 2-3 weeks for a response.
+2.4  You may not reverse engineer, translate, disassemble, integrate, decompile, integrate, remove, modify, combine, create derivative works or updates of, adapt, or attempt to derive the source code of the Application, or any part thereof (except with Arcadia High Mobile's prior written consent).
 
-Approved organizations may hyperlink to our Website as follows:
+2.5  You may not copy (excluding when expressly authorized by this license and the Usage Rules) or alter the Application or portions thereof. You may create and store copies only on devices that You own or control for backup keeping under the terms of this license, the App Store Terms of Service, and any other terms and conditions that apply to the device or software used. You may not remove any intellectual property notices. You acknowledge that no unauthorized third parties may gain access to these copies at any time.
 
-By use of our corporate name; or
-By use of the uniform resource locator being linked to; or
-By use of any other description of our Website being linked to that makes sense within the context and format of content on the linking party’s site.
-No use of Arcadia High App Dev's logo or other artwork will be allowed for linking absent a trademark license agreement.
+2.6  Violations of the obligations mentioned above, as well as the attempt of such infringement, may be subject to prosecution and damages.
 
-iFrames
-Without prior approval and written permission, you may not create frames around our Webpages that alter in any way the visual presentation or appearance of our Website.
+2.7  Licensor reserves the right to modify the terms and conditions of licensing.
 
-Content Liability
-We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.
+2.8  Nothing in this license should be interpreted to restrict third-party terms. When using the Application, You must ensure that You comply with applicable third-party terms and conditions.
 
-Your Privacy
-Please read Privacy Policy
 
-Reservation of Rights
-We reserve the right to request that you remove all links or any particular link to our Website. You approve to immediately remove all links to our Website upon request. We also reserve the right to amen these terms and conditions and it’s linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.
+3. TECHNICAL REQUIREMENTS
 
-Removal of links from our website
-If you find any link on our Website that is offensive for any reason, you are free to contact and inform us any moment. We will consider requests to remove links but we are not obligated to or so or to respond to you directly.
+3.1  The Application requires a firmware version 1.0.0 or higher. Licensor recommends using the latest version of the firmware.
 
-We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up to date.
+3.2  Licensor attempts to keep the Application updated so that it complies with modified/new versions of the firmware and new hardware. You are not granted rights to claim such an update.
 
-Disclaimer
-To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:
+3.3  You acknowledge that it is Your responsibility to confirm and determine that the app end-user device on which You intend to use the Application satisfies the technical  specifications mentioned above.
 
-limit or exclude our or your liability for death or personal injury;
-limit or exclude our or your liability for fraud or fraudulent misrepresentation;
-limit any of our or your liabilities in any way that is not permitted under applicable law; or
-exclude any of our or your liabilities that may not be excluded under applicable law.
-The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.
+3.4  Licensor reserves the right to modify the technical specifications as it sees appropriate at any time.
 
-As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature. Arcadia High Mobile or Arcadia High School app is not affiliated in any to Arcadia Unified School District nor are we sponsored by them. This project is student run. </string>
+
+4. MAINTENANCE AND SUPPORT
+
+4.1  The Licensor is solely responsible for providing any maintenance and support services for this licensed Application. You can reach the Licensor at the email address listed in the App Store Overview for this licensed Application.
+
+4.2  Arcadia High Mobile and the End-User acknowledge that Apple has no obligation whatsoever to furnish any maintenance and support services with respect to the licensed Application.
+
+
+5. LIABILITY
+
+5.1  Licensor's responsibility in the case of violation of obligations and tort shall be limited to intent and gross negligence. Only in case of a breach of essential contractual duties (cardinal obligations), Licensor shall also be liable in case of slight negligence. In any case, liability shall be limited to the foreseeable, contractually typical damages. The limitation mentioned above does not apply to injuries to life, limb, or health.
+
+5.2  Licensor takes no accountability or responsibility for any damages caused due to a breach of duties according to Section 2 of this Agreement. To avoid data loss, You are required to make use of backup functions of the Application to the extent allowed by applicable third-party terms and conditions of use. You are aware that in case of alterations or manipulations of the Application, You will not have access to licensed Application.
+
+
+6. WARRANTY
+
+6.1  Licensor warrants that the Application is free of spyware, trojan horses, viruses, or any other malware at the time of Your download. Licensor warrants that the Application works as described in the user documentation.
+
+6.2  No warranty is provided for the Application that is not executable on the device, that has been unauthorizedly modified, handled inappropriately or culpably, combined or installed with inappropriate hardware or software, used with inappropriate accessories, regardless if by Yourself or by third parties, or if there are any other reasons outside of Arcadia High Mobile's sphere of influence that affect the executability of the Application.
+
+6.3  You are required to inspect the Application immediately after installing it and notify Arcadia High Mobile about issues discovered without delay by e-mail provided in &lt;a href=”https://app.termly.io/dashboard/website/480077/terms-of-service#productclaims”&gt;Product Claims&lt;/a&gt;. The defect report will be taken into consideration and further investigated if it has been mailed within a period of ninety (90) days after discovery.
+
+6.4  If we confirm that the Application is defective, Arcadia High Mobile reserves a choice to remedy the situation either by means of solving the defect or substitute delivery.
+
+6.5  In the event of any failure of the Application to conform to any applicable warranty, You may notify the App-Store-Operator, and Your Application purchase price will be refunded to You. To the maximum extent permitted by applicable law, the App-Store-Operator will have no other warranty obligation whatsoever with respect to the App, and any other losses, claims, damages, liabilities, expenses and costs attributable to any negligence to adhere to any warranty.
+
+6.6  If the user is an entrepreneur, any claim based on faults expires after a statutory period of limitation amounting to twelve (12) months after the Application was made available to the user. The statutory periods of limitation given by law apply for users who are consumers.
+
+7. PRODUCT CLAIMS
+
+Arcadia High Mobile and the End-User acknowledge that Arcadia High Mobile, and not Apple, is responsible for addressing any claims of the End-User or any third party relating to the licensed Application or the End-User’s possession and/or use of that licensed Application, including, but not limited to:
+
+(i) product liability claims;
+
+(ii) any claim that the licensed Application fails to conform to any applicable legal or regulatory requirement; and
+
+(iii) claims arising under consumer protection, privacy, or similar legislation, including in connection with Your Licensed Application’s use of the HealthKit and HomeKit.
+
+
+8. LEGAL COMPLIANCE
+
+You represent and warrant that You are not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a "terrorist supporting" country; and that You are not listed on any U.S. Government list of prohibited or restricted parties.
+
+
+9. CONTACT INFORMATION                  
+
+For general inquiries, complaints, questions or claims concerning the licensed Application, please contact:
+     
+Arcadia High App Development Team
+180 Campus Dr
+Arcadia, CA 91006
+United States
+hsappdev@students.ausd.net
+
+
+10. TERMINATION
+
+The license is valid until terminated by Arcadia High Mobile or by You. Your rights under this license will terminate automatically and without notice from Arcadia High Mobile if You fail to adhere to any term(s) of this license. Upon License termination, You shall stop all use of the Application, and destroy all copies, full or partial, of the Application.
+
+
+11. THIRD-PARTY TERMS OF AGREEMENTS AND BENEFICIARY
+
+Arcadia High Mobile represents and warrants that Arcadia High Mobile will comply with applicable third-party terms of agreement when using licensed Application.
+
+In Accordance with Section 9 of the "Instructions for Minimum Terms of Developer's End-User License Agreement," Apple and Apple's subsidiaries shall be third-party beneficiaries of this End User License Agreement and - upon Your acceptance of the terms and conditions of this license agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce this End User License Agreement against You as a third-party beneficiary thereof.
+
+
+12. INTELLECTUAL PROPERTY RIGHTS
+
+Arcadia High Mobile and the End-User acknowledge that, in the event of any third-party claim that the licensed Application or the End-User's possession and use of that licensed Application infringes on the third party's intellectual property rights, Arcadia High Mobile, and not Apple, will be solely responsible for the investigation, defense, settlement and discharge or any such intellectual property infringement claims.
+
+
+13. APPLICABLE LAW
+
+This license agreement is governed by the laws of the State of California excluding its conflicts of law rules.
+
+
+14. MISCELLANEOUS
+
+14.1  If any of the terms of this agreement should be or become invalid, the validity of the remaining provisions shall not be affected. Invalid terms will be replaced by valid ones formulated in a way that will achieve the primary purpose.
+             
+14.2  Collateral agreements, changes and amendments are only valid if laid down in writing. The preceding clause can only be waived in writing.</mutableString>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

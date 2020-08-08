@@ -182,7 +182,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     totalArticles.append(c);
                 }
             }
-            totalArticles = totalArticles.sorted(by: sortArticlesByTime);
+            totalArticles.sort(by: sortArticlesByTime);
             currentArticles = filterArticles();
             var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
             

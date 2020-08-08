@@ -327,6 +327,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
 			if (featuredSize > 0){
 				// Featured News ----- NOTE - article is not created by smallArticle() func
+				
+				featuredArticles.sort(by: sortArticlesByTime);
+				
 				featuredScrollView.flashScrollIndicators();
 				featuredMissingLabel.isHidden = true;
 				featuredScrollView.isHidden = false;
