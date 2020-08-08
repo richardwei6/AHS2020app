@@ -25,6 +25,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     
     @IBOutlet weak var articleCatagoryLabel: UILabel!
     
+    @IBOutlet weak var shadowView: UIView!
+    
     var contentWidth: CGFloat = 0.0
     var imageFrame = CGRect(x: 0, y:0, width: 0, height: 0);
     var imageSize = 1;
@@ -87,11 +89,15 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         bookmarkButton.tintColor = mainThemeColor;
         setBookmarkColor();
         
+        shadowView.layer.shadowColor = UIColor.black.cgColor;
+        shadowView.layer.shadowOpacity = 0.05;
+        shadowView.layer.shadowOffset = CGSize(width: 0 , height: 5);
+        
         articleCatagoryLabel.text = articleContent?.articleCatagory ?? "NO Cata.";
         articleCatagoryLabel.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
         mainScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
-        var nextY = CGFloat(0);
+        var nextY = CGFloat(10);
         let padding = CGFloat(15);
         let universalWidth = UIScreen.main.bounds.width - 2 * padding;
         
@@ -135,18 +141,19 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             imageScrollView.isPagingEnabled = true;
             imageScrollView.showsHorizontalScrollIndicator = false;
             
+            nextY += imageScrollViewFrame.size.height;
+            
             if (imageSize + videoSize > 1){
                 imagePageControl.currentPage = 0;
                 imagePageControl.numberOfPages = imageSize + videoSize;
-                imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: imageScrollViewFrame.size.height + 15);
+                imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: imageScrollViewFrame.size.height + 25);
                 imagePageControl.pageIndicatorTintColor = UIColor.lightGray;
                 imagePageControl.currentPageIndicatorTintColor = UIColor.black;
                 mainScrollView.addSubview(imagePageControl);
+                nextY += 20;
             }
             
             mainScrollView.addSubview(imageScrollView);
-            //nextY += imagePageControl.frame.height;
-            nextY += imageScrollViewFrame.size.height + 15;
         }
         
         nextY += 7;

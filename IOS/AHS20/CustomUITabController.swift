@@ -44,7 +44,6 @@ class CustomTabBarController: UIViewController {
     //    let homeTopCornerRadius = CGFloat(15);
     
     let iconImagePath = ["home", "bulletin", "saved", "settings"];
-    //let iconImagePathInv = ["homeInv", "bulletinInv", "BookmarkInv", "GearInv"];
     let selectedColor = makeColor(r: 243, g: 149, b: 143);
     
     var articleContentInSegue: articleData?;

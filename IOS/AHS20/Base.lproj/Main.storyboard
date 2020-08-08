@@ -944,6 +944,10 @@
                                 <rect key="frame" x="0.0" y="58" width="414" height="453.33333333333326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gqs-Ri-FfJ" userLabel="shadowView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxG-mm-MkH">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -996,6 +1000,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Gqs-Ri-FfJ" firstAttribute="top" secondItem="8vf-rb-I3g" secondAttribute="top" id="3pN-B3-KnE"/>
+                            <constraint firstItem="crg-tJ-0rO" firstAttribute="top" secondItem="Gqs-Ri-FfJ" secondAttribute="bottom" id="CVR-Ve-SeD"/>
                             <constraint firstItem="gLJ-tt-5t4" firstAttribute="trailing" secondItem="8vf-rb-I3g" secondAttribute="trailing" constant="-60" id="FZs-eq-22l"/>
                             <constraint firstItem="DgT-rI-5cM" firstAttribute="leading" secondItem="8vf-rb-I3g" secondAttribute="leading" constant="42" id="HnP-5P-zge"/>
                             <constraint firstItem="8vf-rb-I3g" firstAttribute="trailing" secondItem="crg-tJ-0rO" secondAttribute="trailing" id="Nbt-fK-fdP"/>
@@ -1006,9 +1012,11 @@
                             <constraint firstItem="gLJ-tt-5t4" firstAttribute="top" secondItem="8vf-rb-I3g" secondAttribute="top" id="a02-ix-hpf"/>
                             <constraint firstItem="8vf-rb-I3g" firstAttribute="trailing" secondItem="dSA-0F-sUe" secondAttribute="trailing" constant="9" id="qAy-8h-X7j"/>
                             <constraint firstItem="crg-tJ-0rO" firstAttribute="leading" secondItem="8vf-rb-I3g" secondAttribute="leading" id="sxF-2c-bae"/>
+                            <constraint firstItem="Gqs-Ri-FfJ" firstAttribute="leading" secondItem="8vf-rb-I3g" secondAttribute="leading" id="tHe-sA-4kJ"/>
                             <constraint firstItem="crg-tJ-0rO" firstAttribute="top" secondItem="gLJ-tt-5t4" secondAttribute="bottom" id="uSg-89-oJv"/>
                             <constraint firstItem="DgT-rI-5cM" firstAttribute="top" secondItem="8vf-rb-I3g" secondAttribute="top" constant="14" id="uxh-oW-mV8"/>
                             <constraint firstItem="dSA-0F-sUe" firstAttribute="top" secondItem="8vf-rb-I3g" secondAttribute="top" constant="9" id="uzp-sx-CiL"/>
+                            <constraint firstItem="Gqs-Ri-FfJ" firstAttribute="trailing" secondItem="8vf-rb-I3g" secondAttribute="trailing" id="vUb-2A-rC2"/>
                             <constraint firstItem="8vf-rb-I3g" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DgT-rI-5cM" secondAttribute="trailing" symbolic="YES" id="wgt-9v-m1j"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8vf-rb-I3g"/>
@@ -1019,6 +1027,7 @@
                         <outlet property="articleCatagoryLabel" destination="DgT-rI-5cM" id="DR7-CD-fcx"/>
                         <outlet property="bookmarkButton" destination="dSA-0F-sUe" id="NIv-JT-etR"/>
                         <outlet property="mainScrollView" destination="crg-tJ-0rO" id="uOp-ZN-aZo"/>
+                        <outlet property="shadowView" destination="Gqs-Ri-FfJ" id="Yhh-WS-ZFJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3x-Ei-zbE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
