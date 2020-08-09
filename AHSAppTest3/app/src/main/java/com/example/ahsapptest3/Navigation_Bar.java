@@ -16,8 +16,6 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ahsapptest3.Setting_Activities.Settings;
-
 
 public class Navigation_Bar extends Fragment {
 
@@ -46,9 +44,10 @@ public class Navigation_Bar extends Fragment {
         view = inflater.inflate(R.layout.nav_bar, container, false);
         ImageView
                 homeBtn = view.findViewById(R.id.nav_bar_home_button),
-                bulletinBtn = view.findViewById(R.id.nav_bar_bulletin_button),
+                inner_bulletin_btn = view.findViewById(R.id.nav_bar_inner_bulletin_button),
                 savedBtn = view.findViewById(R.id.nav_bar_bookmarks_button),
                 settingsBtn = view.findViewById(R.id.nav_bar_settings_button);
+        View bulletinBtnLayout = view.findViewById(R.id.nav_bar_bulletin_button);
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +55,7 @@ public class Navigation_Bar extends Fragment {
                 navigation.goToHome();
             }
         });
-        bulletinBtn.setOnClickListener(new View.OnClickListener() {
+        bulletinBtnLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navigation.goToBulletin();
@@ -74,15 +73,22 @@ public class Navigation_Bar extends Fragment {
                 navigation.goToSettings();
             }
         });
-        if(getActivity() instanceof News)
-            homeBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_DarkCrimson_1A0303__BULLETIN));
-        else if (getActivity() instanceof Bulletin)
-            bulletinBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_DarkCrimson_1A0303__BULLETIN));
-        else if (getActivity() instanceof Saved)
-            savedBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_DarkCrimson_1A0303__BULLETIN));
-        else if (getActivity() instanceof Settings)
-            settingsBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.NEW_DarkCrimson_1A0303__BULLETIN));
-
+        switch (navigation.getHighlightOption()){
+            case HOME:
+                homeBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
+                break;
+            case BULLETIN:
+                inner_bulletin_btn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
+                break;
+            case SAVED:
+                savedBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
+                break;
+            case SETTINGS:
+                settingsBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
+                break;
+            case NONE:
+            default:
+        }
         return view;
     }
 

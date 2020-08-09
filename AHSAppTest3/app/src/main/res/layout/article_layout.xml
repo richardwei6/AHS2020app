@@ -12,7 +12,8 @@
         android:id="@+id/article_scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF">
+        android:background="@color/White"
+        >
 
         <LinearLayout
             android:id="@+id/article_linearLayout"
@@ -21,19 +22,19 @@
 
             android:orientation="vertical"
 
-            android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+            android:paddingTop="@dimen/Half_Padding"
 
-            android:paddingBottom="@dimen/EveryPage_Side_Padding_Half">
+            android:paddingBottom="@dimen/Half_Padding">
 
             <LinearLayout
                 android:id="@+id/article_headerLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingStart="@dimen/EveryPage_Side_Padding_Half"
-                android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
-                android:paddingEnd="@dimen/EveryPage_Side_Padding"
-                android:paddingRight="@dimen/EveryPage_Side_Padding">
+                android:paddingStart="@dimen/Half_Padding"
+                android:paddingLeft="@dimen/Half_Padding"
+                android:paddingEnd="@dimen/Full_Padding"
+                android:paddingRight="@dimen/Full_Padding">
 
                 <ImageView
                     android:id="@+id/article_header_back"
@@ -42,17 +43,17 @@
                     android:layout_weight="0"
                     android:adjustViewBounds="true"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:paddingStart="@dimen/EveryPage_Side_Padding_Half"
-                    android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
-                    android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
-                    android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
-                    android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
-                    android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
+                    android:paddingStart="@dimen/Half_Padding"
+                    android:paddingLeft="@dimen/Half_Padding"
+                    android:paddingTop="@dimen/Half_Padding"
+                    android:paddingEnd="@dimen/Half_Padding"
+                    android:paddingRight="@dimen/Half_Padding"
+                    android:paddingBottom="@dimen/Half_Padding"
                     android:scaleType="fitStart"
-                    android:tint="@color/NEW_AngryRed_9F0C0C__ALL"
+                    android:tint="@color/AngryRed_9F0C0C"
                     app:srcCompat="@drawable/arrow_back" />
 
-                <TextView
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
                     android:id="@+id/article_type_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -66,7 +67,7 @@
                     android:paddingRight="7dp"
                     android:paddingBottom="3dp"
                     android:text="TYPE"
-                    android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+                    android:textColor="@color/White"
                     android:textSize="12sp" />
 
                 <Space
@@ -76,7 +77,7 @@
 
                 <ImageView
                     android:id="@+id/article_bookmarkButton"
-                    android:padding="@dimen/EveryPage_Side_Padding_Quarter"
+                    android:padding="@dimen/Quarter_Padding"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
@@ -91,10 +92,10 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
 
-                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
-                android:paddingBottom="@dimen/EveryPage_Side_Padding"
-                android:paddingLeft="@dimen/EveryPage_Side_Padding"
-                android:paddingRight="@dimen/EveryPage_Side_Padding">
+                android:paddingTop="@dimen/Half_Padding"
+                android:paddingBottom="@dimen/Full_Padding"
+                android:paddingLeft="@dimen/Full_Padding"
+                android:paddingRight="@dimen/Full_Padding">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -132,7 +133,7 @@
                     android:name="com.google.android.youtube.player.YouTubePlayerSupportFragmentX"
                     android:id="@+id/youtube_player"/>-->
 
-                <TextView
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
                     android:id="@+id/article_dateText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -142,39 +143,39 @@
                     android:gravity="start|center_vertical"
 
                     android:text="Month 00, 0000"
-                    android:textColor="@color/NEW_Gray_707070__HOME_ARTICLE"
+                    android:textColor="@color/GraniteRed_7E6E6A"
                     android:textSize="14sp" />
 
-                <TextView
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
                     android:id="@+id/article_titleText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/EveryPage_Side_Padding_Quarter"
+                    android:layout_marginTop="@dimen/Quarter_Padding"
                     android:fontFamily="@font/sf_pro_semibold"
                     android:text="Title Lorem Ipsum"
-                    android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+                    android:textColor="@color/DarkCrimson_1A0303"
                     android:textSize="24sp" />
 
-                <TextView
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
                     android:id="@+id/article_authorText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
                     android:fontFamily="@font/sf_pro_display"
                     android:text="Author"
-                    android:textColor="@color/NEW_Gray_707070__HOME_ARTICLE"
+                    android:textColor="@color/GraniteRed_7E6E6A"
 
                     android:textSize="14sp" />
 
-                <TextView
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
                     android:id="@+id/article_bodyText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/EveryPage_Side_Padding"
+                    android:layout_marginTop="@dimen/Full_Padding"
                     android:fontFamily="@font/sf_pro_display"
                     android:text="Body"
-                    android:textColor="@color/NEW_Gray_707070__HOME_ARTICLE"
-                    android:textSize="16sp" />
+                    android:textColor="@color/GraniteRed_7E6E6A"
+                    android:textSize="18sp" />
             </LinearLayout>
 
 

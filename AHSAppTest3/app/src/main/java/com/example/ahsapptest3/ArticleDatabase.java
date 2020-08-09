@@ -22,25 +22,17 @@ import java.util.Arrays;
 
 public class ArticleDatabase extends SQLiteOpenHelper {
 
-    private static final String TAG = "BookmarkHandler";
+    private static final String TAG = "ArticleDatabase";
 
-    private static ArticleDatabase[] mInstances = new ArticleDatabase[Option.values().length];
-    public static ArticleDatabase getInstance(Context context, Option selection)
+    private static ArticleDatabase mInstance;
+    public static ArticleDatabase getInstance(Context context)
     {
-        Option[] allOptions = Option.values();
-        int pos = -1;
-        for(int i = 0; i < allOptions.length; i++)
-            if (selection == allOptions[i])
-                pos = i;
-
-        if(mInstances[pos] == null)
+        if(mInstance == null)
         {
-            mInstances[pos] = new ArticleDatabase(context.getApplicationContext(), allOptions[pos]);
+            mInstance = new ArticleDatabase(context.getApplicationContext());
         }
-        return mInstances[pos];
+        return mInstance;
     }
-
-    private static final String COL0 = "ID";
 
     private static final String ART_ID = "ART_ID";
     static final int ID_COL = 1;
@@ -56,42 +48,16 @@ public class ArticleDatabase extends SQLiteOpenHelper {
     static final int IPATHS_COL = 6;
     private static final String V_IDS = "V_IDS";
     static final int V_IDS_COL = 7;
-    private static final String BMARKED = "BMARKED";
-    static final int BMARKED_COL = 8;
-    private static final String NOTIF = "NOTIF";
-    static final int NOTIF_COL = 9;
     private static final String TYPE = "TYPE";
-    static final int TYPE_COL = 10;
+    static final int TYPE_COL = 8;
 
-    public enum Option {
-        BOOKMARK, CURRENT
-    }
-    private static final String BOOKMARK_TABLE = "bookmark_table"; // bookmakred articles stored locally
     private static final String CURRENT_ART_TABLE = "current_table"; // current articles stored locally
 
     private String current_Table;
-    private Option currentOption;
-    public Option getCurrentOption() {
-        return currentOption;
-    }
 
-    private ArticleDatabase(@Nullable Context context, Option selection) {
-        super(context, getTableID_FromEnum(selection), null,1);
-        current_Table = getTableID_FromEnum(selection);
-        currentOption = selection;
-    }
-
-    private static String getTableID_FromEnum (Option selection)
-    {
-        switch(selection)
-        {
-            case BOOKMARK:
-                return BOOKMARK_TABLE;
-            case CURRENT:
-                return CURRENT_ART_TABLE;
-            default:
-                throw new IllegalStateException(); // hah
-        }
+    private ArticleDatabase(@Nullable Context context) {
+        super(context, CURRENT_ART_TABLE, null,1);
+        current_Table = CURRENT_ART_TABLE;
     }
 
     @Override
@@ -106,9 +72,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                         STORY + " TEXT," +
                         IPATHS + " TEXT," +
                         V_IDS + " TEXT," +
-                        BMARKED + " INTEGER," + // No booleans in sqlite, store them as integers instead (0 or 1)
-                        NOTIF + " INTEGER," +
-                        TYPE + " TEXT);"
+                        TYPE + " INTEGER);"
         ;
         db.execSQL(createTable);
 
@@ -141,9 +105,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
             values.put(STORY, article.getStory());
             values.put(IPATHS, convertArrayToString(article.getImagePaths()));
             values.put(V_IDS, convertArrayToString(article.getVideoIDS()));
-            values.put(BMARKED, (article.isBookmarked()) ? 1 : 0);
-            values.put(NOTIF, (article.isNotified()) ? 1 : 0);
-            values.put(TYPE, article.getType().toString());
+            values.put(TYPE, article.getType().getNumCode());
 
             long result = db.insert(current_Table, null, values);
             succeeded = succeeded && (result != -1);
@@ -151,22 +113,6 @@ public class ArticleDatabase extends SQLiteOpenHelper {
 
         // if inserted incorrectly -1 is the return value
         return succeeded;
-    }
-
-    /**
-     * updates a particular article's notified status
-     * @param ID   The article to be updated
-     * @param notified     Whether it is notified or not
-     */
-    public void updateNotifiedStatus(String ID, boolean notified)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "UPDATE " + current_Table
-                + " SET " + NOTIF + " = '" + ((notified) ? 1 : 0)
-                + "' WHERE " + ART_ID + " = '" + ID + "'";
-        db.execSQL(query);
-        Log.d(TAG, getArticleById(ID).toString());
-        Log.d(TAG, current_Table);
     }
 
     /**
@@ -199,8 +145,6 @@ public class ArticleDatabase extends SQLiteOpenHelper {
     @Nullable
     public Article getArticleById(String ID)
     {
-        Log.d(TAG, current_Table);
-
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + current_Table
                 + " WHERE  " + ART_ID + " = '" + ID + "'";
@@ -219,9 +163,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                 data.getString(STORY_COL),
                 convertStringToArray(data.getString(IPATHS_COL)),
                 convertStringToArray(data.getString(V_IDS_COL)),
-                (data.getInt(BMARKED_COL) == 1),
-                (data.getInt(NOTIF_COL) == 1),
-                News.TYPE.valueOf(data.getString(TYPE_COL))
+                Article.Type.getTypeFromNumCode(data.getInt(TYPE_COL))
         );
         data.close();
 
@@ -229,18 +171,13 @@ public class ArticleDatabase extends SQLiteOpenHelper {
     }
 
     /**
-     *  Returns all the data from database
+     * Returns all the data in the database in the form of article objects
+     * @return an arraylist of articles
      */
-    public Cursor getAllData()
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + current_Table;
-        return db.rawQuery(query, null);
-    }
-
     public ArrayList<Article> getAllArticles()
     {
-        Cursor data = getAllData();
+        String query = "SELECT * FROM " + current_Table;
+        Cursor data = this.getWritableDatabase().rawQuery(query, null);
         ArrayList<Article> articles = new ArrayList<>();
         while(data.moveToNext())
         {
@@ -252,13 +189,31 @@ public class ArticleDatabase extends SQLiteOpenHelper {
                     data.getString(STORY_COL),
                     convertStringToArray(data.getString(IPATHS_COL)),
                     convertStringToArray(data.getString(V_IDS_COL)),
-                    (data.getInt(BMARKED_COL) == 1),
-                    (data.getInt(NOTIF_COL) == 1),
-                    News.TYPE.valueOf(data.getString(TYPE_COL))
+                    Article.Type.getTypeFromNumCode(data.getInt(TYPE_COL))
             ));
         }
         data.close();
         return articles;
+    }
+
+    /**
+     * Deletes all articles that are not in the new articles
+     * Updates old articles that are still there rather than destroying them
+     * A little unnecessary, but it will be if there are any fields determined not by firebase
+     * @param articles the articles to replace the old ones
+     */
+    public void updateArticles(Article... articles){
+        /*ArrayList<Article> oldArticles = getAllArticles();
+        Log.d(TAG, "oldArticles");
+        for(Article article: oldArticles)
+            Log.d(TAG, article.getID() + "\t" + article.getTitle());*/
+        deleteAll();
+        // here, you would make a copy of any local instance fields
+        // in this case, there are none
+        add(articles);
+        /*Log.d(TAG, "new Articles");
+        for(Article article: getAllArticles())
+            Log.d(TAG, article.getID() + "\t" + article.getTitle());*/
     }
 
     /**
@@ -283,7 +238,6 @@ public class ArticleDatabase extends SQLiteOpenHelper {
      * @param str
      * @return
      */
-    /*private static final String strSeparator = "__,__";*/
     private static final String JSON_str = "iPaths";
     private static String convertArrayToString(String[] array){
         JSONObject json = new JSONObject();
@@ -293,20 +247,9 @@ public class ArticleDatabase extends SQLiteOpenHelper {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        String str = json.toString();
-        /*String str = "";
-        for (int i = 0;i<array.length; i++) {
-            str = str+array[i];
-            // Do not append comma at the end of last element
-            if(i<array.length-1){
-                str = str+strSeparator;
-            }
-        }*/
-        return str;
+        return json.toString();
     }
     private static String[] convertStringToArray(String str){
-        /*String[] arr = str.split(strSeparator);*/
         JSONObject json = null;
         try {
             json = new JSONObject(str);
@@ -319,22 +262,5 @@ public class ArticleDatabase extends SQLiteOpenHelper {
             strArr[i] = jsonArray.optString(i);
 
         return strArr;
-    }
-
-    // to help keep track of bookmark changes so that onResume() activities display bookmark icons correctly
-    private static boolean bookmarkChanged = false;
-
-    /**
-     * By default sets bookmarkChanged to true
-     */
-    public static void setBookmarkChanged()
-    {
-        bookmarkChanged = true;
-    }
-    public static boolean hasBookmarksChanged()
-    {
-        boolean holder = bookmarkChanged;
-        bookmarkChanged = false; // once this method is called, it is assumed bookmark changes are taken care of
-        return holder;
     }
 }

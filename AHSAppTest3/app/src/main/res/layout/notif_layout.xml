@@ -23,27 +23,27 @@
                 android:id="@+id/notif_header_LinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+                android:background="@color/White"
                 android:elevation="3dp"
                 android:orientation="horizontal"
-                android:paddingStart="@dimen/EveryPage_Side_Padding"
-                android:paddingLeft="@dimen/EveryPage_Side_Padding"
-                android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
-                android:paddingEnd="@dimen/EveryPage_Side_Padding_Half"
-                android:paddingRight="@dimen/EveryPage_Side_Padding_Half"
-                android:paddingBottom="@dimen/EveryPage_Side_Padding_Half">
+                android:paddingStart="@dimen/Full_Padding"
+                android:paddingLeft="@dimen/Full_Padding"
+                android:paddingTop="@dimen/Half_Padding"
+                android:paddingEnd="@dimen/Half_Padding"
+                android:paddingRight="@dimen/Half_Padding"
+                android:paddingBottom="@dimen/Half_Padding">
 
-                <TextView
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
                     android:id="@+id/notif_titleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
-                    android:layout_marginBottom="@dimen/EveryPage_Side_Padding_Half"
+                    android:layout_marginTop="@dimen/Half_Padding"
+                    android:layout_marginBottom="@dimen/Half_Padding"
 
                     android:layout_weight="1"
                     android:fontFamily="@font/din_alternate_bold"
                     android:text="Notifications"
-                    android:textColor="@color/NEW_AngryRed_9F0C0C__ALL"
+                    android:textColor="@color/AngryRed_9F0C0C"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -61,7 +61,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/notif_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layoutAnimation="@anim/recycler_fade_in"/>
 
 
         </LinearLayout>

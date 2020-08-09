@@ -12,33 +12,44 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".Bulletin_Item_Activity"></activity>
+        <activity android:name=".Bulletin_Article_Activity" />
         <activity android:name=".Tester" />
 
         <service
             android:name=".NotifService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <activity android:name=".Setting_Activities.Notifications_Settings_Activity"
             />
         <activity android:name=".Setting_Activities.Credits_Activity" />
         <activity android:name=".Setting_Activities.Terms_And_Agreements_Activity" />
-        <activity android:name=".Setting_Activities.Settings" />
-        <activity android:name=".Saved" />
+        <activity android:name=".Setting_Activities.Settings_Activity" />
+        <activity android:name=".Saved_Activity" />
         <activity android:name=".Notif_Activity" />
         <activity android:name=".ArticleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Bulletin" />
-        <activity android:name=".News">
+            />
+        <activity android:name=".Bulletin_Activity" />
+        <activity android:name=".News_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/icon_bulletin" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/AngryRed_GoldenYellow_MidpointExtrapolate" />
     </application>
 
 </manifest>

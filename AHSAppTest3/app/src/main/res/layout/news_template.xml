@@ -9,22 +9,22 @@
         android:id="@+id/template_news__LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
+        android:background="@color/White"
         android:orientation="vertical"
         android:paddingLeft="0dp"
-        android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
+        android:paddingTop="@dimen/Half_Padding"
         android:paddingRight="0dp">
 
-        <TextView
+        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
             android:id="@+id/template_news__TitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/EveryPage_Side_Padding"
-            android:layout_marginLeft="@dimen/EveryPage_Side_Padding"
+            android:layout_marginStart="@dimen/Full_Padding"
+            android:layout_marginLeft="@dimen/Full_Padding"
 
             android:fontFamily="@font/sf_pro_semibold"
             android:text="SOMETHING NEWS"
-            android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
+            android:textColor="@color/DarkCrimson_1A0303"
             android:textSize="24sp" />
 
         <!--<ImageView

@@ -4,10 +4,10 @@
     android:id="@+id/article_display__ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/EveryPage_Side_Padding"
-    android:paddingRight="@dimen/EveryPage_Side_Padding"
-    android:paddingTop="@dimen/EveryPage_Side_Padding_Quarter"
-    android:paddingBottom="@dimen/EveryPage_Side_Padding_Quarter"
+    android:paddingLeft="@dimen/Full_Padding"
+    android:paddingRight="@dimen/Full_Padding"
+    android:paddingTop="@dimen/Quarter_Padding"
+    android:paddingBottom="@dimen/Quarter_Padding"
     android:background="?attr/selectableItemBackground"
     >
 
@@ -20,17 +20,17 @@
         app:layout_constraintGuide_percent=".5" />
 
 
-    <TextView
+    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
         android:id="@+id/article_display__title_Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:ellipsize="end"
         android:fontFamily="@font/sf_pro_semibold"
         android:maxLines="2"
-        android:ellipsize="end"
         android:text="Lorum Ipsum the Long Title"
-        android:textColor="@color/NEW_DarkCrimson_1A0303__BULLETIN"
-        android:textSize="20sp"
+        android:textColor="@color/DarkCrimson_1A0303"
+        android:textSize="18sp"
         app:autoSizeTextType="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/article_display__guideline"
@@ -44,7 +44,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/sf_pro_display"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "
-        android:textColor="@color/NEW_Gray_707070__HOME_ARTICLE"
+        android:textColor="@color/GraniteRed_7E6E6A"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,8 +55,8 @@
         android:id="@+id/article_display__imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="@dimen/EveryPage_Side_Padding_Half"
-        android:layout_marginRight="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_marginEnd="@dimen/Half_Padding"
+        android:layout_marginRight="@dimen/Half_Padding"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1.5"
@@ -64,13 +64,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
         android:id="@+id/article_display__time_updated_Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/EveryPage_Side_Padding_Quarter"
-        android:layout_marginLeft="@dimen/EveryPage_Side_Padding_Quarter"
-        android:layout_marginBottom="@dimen/EveryPage_Side_Padding_Quarter"
+        android:layout_marginStart="@dimen/Quarter_Padding"
+        android:layout_marginLeft="@dimen/Quarter_Padding"
+        android:layout_marginBottom="@dimen/Quarter_Padding"
         android:background="@drawable/news_updatetext_bg"
         android:fontFamily="@font/sf_pro_display"
         android:maxLines="1"
@@ -79,7 +79,7 @@
         android:paddingRight="5dp"
         android:paddingBottom="3dp"
         android:text="time updated"
-        android:textColor="@color/NEW_Gray_707070__HOME_ARTICLE"
+        android:textColor="@color/GraniteRed_7E6E6A"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/article_display__imageView"
         app:layout_constraintStart_toStartOf="@+id/article_display__imageView" />

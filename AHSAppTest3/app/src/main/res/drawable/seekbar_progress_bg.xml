@@ -7,7 +7,7 @@
             >
             <corners android:radius="8dp"/>
             <size android:height="3dp" />
-            <solid android:color="@color/NEW_LightGray_EAEAEA__HOME" />
+            <solid android:color="@color/LightGray_EAEAEA" />
         </shape>
     </item>
     <item android:id="@android:id/progress"
@@ -21,7 +21,7 @@
                         >
                         <corners android:radius="8dp"/>
                         <size android:height="3dp" />
-                        <solid android:color="@color/NEW_AngryRed_9F0C0C__ALL" />
+                        <solid android:color="@color/AngryRed_9F0C0C" />
                     </shape>
                 </item>
             </selector>

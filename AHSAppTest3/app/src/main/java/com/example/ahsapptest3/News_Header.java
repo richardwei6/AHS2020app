@@ -16,9 +16,9 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Header extends Fragment implements NotifBtn.Navigation{
+public class News_Header extends Fragment implements NotifBtn.Navigation{
 
-    public Header() {
+    public News_Header() {
         // Required empty public constructor
     }
 

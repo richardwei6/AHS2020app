@@ -1,7 +1,8 @@
 package com.example.ahsapptest3;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
-import com.example.ahsapptest3.Setting_Activities.Settings;
+import com.example.ahsapptest3.Setting_Activities.Settings_Activity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,21 +23,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Notif_Activity extends FullScreenActivity implements Navigation, ArticleRecyclerAdapter.OnItemClick, NotifRecyclerAdapter.OnItemClick {
+public class Notif_Activity extends FullScreenActivity implements Navigation, NotifRecyclerAdapter.OnItemClick {
 
     private static final String TAG = "Notif_Activity";
-    private static ArrayList<Article> articles = new ArrayList<>();
+    private NotifRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notif_layout);
 
-        /*listLayout = findViewById(R.id.notif_linearLayout);*/
-
         RecyclerView recyclerView = findViewById(R.id.notif_recyclerView);
         // create recyclerview margins
-        final int margin = (int) getResources().getDimension(R.dimen.EveryPage_Side_Padding_Half);
+        final int margin = (int) getResources().getDimension(R.dimen.Half_Padding);
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
 
             @Override
@@ -49,59 +48,45 @@ public class Notif_Activity extends FullScreenActivity implements Navigation, Ar
                 int position = parent.getChildLayoutPosition(view);
 
                 // first item
-                outRect.top = (position == 0) ? margin : margin/4;
+                outRect.top = (position == 0) ? margin : margin/2;
                 // last item
-                outRect.bottom = (position == state.getItemCount()-1) ? margin : margin/4;
+                outRect.bottom = (position == state.getItemCount()-1) ? margin : margin/2;
 
             }
         });
         recyclerView.requestLayout();
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        /*final ArticleRecyclerAdapter adapter = new ArticleRecyclerAdapter(this, articles,this);
-        recyclerView.setAdapter(adapter);*/
 
+        final ArticleDatabase articleDatabase = ArticleDatabase.getInstance(this);
+        final NotifDatabase notifDatabase = NotifDatabase.getInstance(this);
 
-        final ArticleDatabase articleDatabase = ArticleDatabase.getInstance(this, ArticleDatabase.Option.CURRENT);
-
-        final ArrayList<Notif_Data> dataArrayList = new ArrayList<>();
-        final NotifRecyclerAdapter adapter = new NotifRecyclerAdapter(this, dataArrayList, this);
+        adapter = new NotifRecyclerAdapter(new ArrayList<Notif_Data>(), this);
         recyclerView.setAdapter(adapter);
-        final Context context = this;
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("notifications");
+        final Resources r= getResources();
+        final ArrayList<Notif_Data> notif_data = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_notif_key));
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                articles.clear();
                 adapter.clearAll();
-                for(DataSnapshot child_sn: snapshot.getChildren())
-                {
-                    String articleID = child_sn.child("notificationArticleID").getValue().toString();
-                    String body = child_sn.child("notificationBody").getValue().toString();
-                    String title = child_sn.child("notificationTitle").getValue().toString();
-                    long time = (long) child_sn.child("notificationUnixEpoch").getValue();
-                    int category = ((Long)child_sn.child("notificationCategory").getValue()).intValue();
-                    Notif_Data data = new Notif_Data(time, title, body, category,
-                            articleDatabase.getArticleById(articleID));
-                    if (data.getArticle() != null) {
-                        Log.d(TAG, "from database" + ArticleDatabase.getInstance(context, ArticleDatabase.Option.CURRENT).getArticleById(articleID).toString());
-                        Log.d(TAG, "from object" + data.getArticle().toString());
-                    }
-                    dataArrayList.add(data);
-                    adapter.addItem(data);
-                    //Log.d(TAG, child_sn.getKey());
-                    //Log.d(TAG, "tried once, ID:" + ID);
-                    /*if(articleDatabase.alreadyAdded(articleID))
-                    {
-                        *//*Log.d(TAG,"found articles");*//*
-                        Article article = articleDatabase.getArticleById(articleID);
-                        articles.add(article);
-                        ArticleRecyclerAdapter.articles.add(article);
-                        adapter.notifyDataSetChanged();
-                    }*/
-                }
+                notif_data.clear();
+                for(DataSnapshot child_sn: snapshot.getChildren()) {
+                    String notifID = child_sn.getKey();
+                    String articleID = child_sn.child(r.getString(R.string.fb_notif_artID)).getValue().toString();
+                    String body = child_sn.child(r.getString(R.string.fb_notif_body)).getValue().toString();
+                    String title = child_sn.child(r.getString(R.string.fb_notif_title)).getValue().toString();
+                    long time = (long) child_sn.child(r.getString(R.string.fb_notif_time)).getValue();
+                    int category = ((Long)child_sn.child(r.getString(R.string.fb_notif_cat)).getValue()).intValue();
+                    Notif_Data data = new Notif_Data(notifID, time, title, body, category, articleID,
+                            notifDatabase.getReadStatusByID(notifID));
+                    data.setArticle(articleDatabase.getArticleById(articleID));
 
+                    notif_data.add(data);
+                    adapter.addItem(data);
+                }
+                notifDatabase.updateData(notif_data.toArray(new Notif_Data[0]));
             }
 
             @Override
@@ -111,27 +96,59 @@ public class Notif_Activity extends FullScreenActivity implements Navigation, Ar
         });
     }
 
+    private static final int REQUEST_CODE = 1;
+    private int position;
+    @Override
+    public void onClick(@NonNull Notif_Data data, int position) {
+        this.position = position;
+        data.setNotified(true);
+        NotifDatabase.getInstance(this).updateReadStatus(data);
+        if(data.getArticle()!= null) {
+            /*ArticleDatabase.getInstance(this, ArticleDatabase.Option.CURRENT).updateNotifiedStatus(data.getArticle().getID(),true);*/
+
+            Intent intent = new Intent(Notif_Activity.this, ArticleActivity.class);
+            intent.putExtra("data", data.getArticle());
+            startActivityForResult(intent, REQUEST_CODE);
+        } else {
+            /*data.setNotified(true);
+            NotifDatabase.getInstance(this).updateReadStatus(data);*/
+            adapter.updateReadItemPosition(this.position);
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                /*boolean thing = data.getBooleanExtra(read_KEY, true);*/
+                adapter.updateReadItemPosition(position);
+            } /*else if (resultCode == Activity.RESULT_CANCELED) {
+                // some stuff that will happen if there's no result
+            }*/
+        }
+    }
+
     @Override
     public void goToHome() {
-        Intent intent = new Intent(Notif_Activity.this, News.class);
+        Intent intent = new Intent(Notif_Activity.this, News_Activity.class);
         startActivity(intent);
     }
 
     @Override
     public void goToBulletin() {
-        Intent intent = new Intent(Notif_Activity.this, Bulletin.class);
+        Intent intent = new Intent(Notif_Activity.this, Bulletin_Activity.class);
         startActivity(intent);
     }
 
     @Override
     public void goToSaved() {
-        Intent intent = new Intent(Notif_Activity.this, Saved.class);
+        Intent intent = new Intent(Notif_Activity.this, Saved_Activity.class);
         startActivity(intent);
     }
 
     @Override
     public void goToSettings() {
-        Intent intent = new Intent(Notif_Activity.this, Settings.class);
+        Intent intent = new Intent(Notif_Activity.this, Settings_Activity.class);
         startActivity(intent);
     }
 
@@ -141,24 +158,8 @@ public class Notif_Activity extends FullScreenActivity implements Navigation, Ar
     }
 
     @Override
-    public void onClick(Article data) {
-        if(!data.isNotified())
-            ArticleDatabase.getInstance(this, ArticleDatabase.Option.CURRENT).updateNotifiedStatus(data.getID(),true);
-        Intent intent = new Intent(Notif_Activity.this, ArticleActivity.class);
-        intent.putExtra("data", data);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onClick(@Nullable Article article, int position) {
-        if(article!= null)
-        {
-            ArticleDatabase.getInstance(this, ArticleDatabase.Option.CURRENT).updateNotifiedStatus(article.getID(),true);
-
-            Intent intent = new Intent(Notif_Activity.this, ArticleActivity.class);
-            intent.putExtra("data", article);
-            startActivity(intent);
-        }
+    public HighlightOption getHighlightOption() {
+        return HighlightOption.NONE;
     }
 
 }

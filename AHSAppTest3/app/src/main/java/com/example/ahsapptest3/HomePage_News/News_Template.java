@@ -1,12 +1,16 @@
 package com.example.ahsapptest3.HomePage_News;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.ahsapptest3.Article;
@@ -23,13 +27,11 @@ import java.util.Arrays;
 
 public class News_Template extends Fragment {
 
+
     private static final String TAG = "News_Template";
     public News_Template() {
         // Required empty public constructor
     }
-
-    private EnhancedWrapContentViewPager viewPager;
-    private Article[] articles;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,16 +64,13 @@ public class News_Template extends Fragment {
 
         Parcelable[] parcelables = getArguments().getParcelableArray(ARTICLE_KEY);
 
-        assert parcelables != null;
-        articles = Arrays.copyOf(parcelables,parcelables.length,Article[].class); // attempts to avoid classcastexception
-
-
-        viewPager = view.findViewById(R.id.template_news__ViewPager);
+        Article[] articles = Arrays.copyOf(parcelables, parcelables.length, Article[].class); // attempts to avoid classcastexception
+        EnhancedWrapContentViewPager viewPager = view.findViewById(R.id.template_news__ViewPager);
 
         viewPager.setAdapter(
                 (getArguments().getBoolean(IS_FEATURED))
-                ? new FeaturedArticle_PagerAdapter(getChildFragmentManager(),articles)
-                : new Article_Stacked_PagerAdapter(getChildFragmentManager(),articles,getNumStacked())
+                ? new FeaturedArticle_PagerAdapter(getChildFragmentManager(), articles)
+                : new Article_Stacked_PagerAdapter(getChildFragmentManager(), articles,getNumStacked())
                 );
         TabLayout tabLayout = view.findViewById(R.id.template_news__TabLayout);
         tabLayout.setupWithViewPager(viewPager, true);

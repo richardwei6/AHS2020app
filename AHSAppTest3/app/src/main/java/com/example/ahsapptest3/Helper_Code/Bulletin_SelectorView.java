@@ -37,25 +37,16 @@ public class Bulletin_SelectorView extends FrameLayout{
         init(context,attrs);
     }
 
-
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public Bulletin_SelectorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(context,attrs);
-    }
-
     private void init(Context context) {
         // honestly no clue what to do here lol
     }
 
     private TextView categoryText;
     private ImageView decoration;
-    public OnClick action;
-
+   /* public OnClick action;
+*/
     private boolean selected = false;
 
-    @SuppressLint("ClickableViewAccessibility")
     private void init(Context context, AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Bulletin_SelectorView);
 
@@ -118,10 +109,10 @@ public class Bulletin_SelectorView extends FrameLayout{
     {
         if(selected){
             decoration.setVisibility(View.VISIBLE);
-            categoryText.setTextColor(ContextCompat.getColor(getContext(), R.color.NEW_DarkCrimson_1A0303__BULLETIN));
+            categoryText.setTextColor(ContextCompat.getColor(getContext(), R.color.DarkCrimson_1A0303));
         } else {
             decoration.setVisibility(View.INVISIBLE);
-            categoryText.setTextColor(ContextCompat.getColor(getContext(), R.color.NEW_GraniteRed_7E6E6A__BULLETIN));
+            categoryText.setTextColor(ContextCompat.getColor(getContext(), R.color.GraniteRed_7E6E6A));
         }
     }
 
@@ -135,10 +126,12 @@ public class Bulletin_SelectorView extends FrameLayout{
     {
         return selected;
     }
+/*
 
     public interface OnClick
     {
         void onClick();
     }
+*/
 
 }

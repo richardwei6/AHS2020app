@@ -3,11 +3,11 @@ package com.example.ahsapptest3;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Bulletin_Data implements Parcelable {
+public class Bulletin_Article implements Parcelable {
     private String ID;
     private long time;
     private String title, body;
-    private Bulletin.Type type;
+    private Type type;
     private boolean already_read;
 
     /**
@@ -17,7 +17,7 @@ public class Bulletin_Data implements Parcelable {
      * @param body
      * @param type
      */
-    public Bulletin_Data(String ID, long time, String title, String body, Bulletin.Type type, boolean already_read)
+    public Bulletin_Article(String ID, long time, String title, String body, Type type, boolean already_read)
     {
         this.ID = ID;
         this.time = time;
@@ -29,12 +29,12 @@ public class Bulletin_Data implements Parcelable {
     }
 
 
-    protected Bulletin_Data(Parcel in) {
+    protected Bulletin_Article(Parcel in) {
         ID = in.readString();
         time = in.readLong();
         title = in.readString();
         body = in.readString();
-        type = (Bulletin.Type) in.readSerializable();
+        type = (Type) in.readSerializable();
         already_read = in.readByte() != 0;
     }
 
@@ -53,15 +53,15 @@ public class Bulletin_Data implements Parcelable {
         return 0;
     }
 
-    public static final Creator<Bulletin_Data> CREATOR = new Creator<Bulletin_Data>() {
+    public static final Creator<Bulletin_Article> CREATOR = new Creator<Bulletin_Article>() {
         @Override
-        public Bulletin_Data createFromParcel(Parcel in) {
-            return new Bulletin_Data(in);
+        public Bulletin_Article createFromParcel(Parcel in) {
+            return new Bulletin_Article(in);
         }
 
         @Override
-        public Bulletin_Data[] newArray(int size) {
-            return new Bulletin_Data[size];
+        public Bulletin_Article[] newArray(int size) {
+            return new Bulletin_Article[size];
         }
     };
 
@@ -75,7 +75,7 @@ public class Bulletin_Data implements Parcelable {
     {
         return body;
     }
-    public Bulletin.Type getType() {
+    public Type getType() {
         return type;
     }
     public boolean isAlready_read() {
@@ -90,5 +90,32 @@ public class Bulletin_Data implements Parcelable {
     public String toString()
     {
         return "Title:\t" + title;
+    }
+
+    public enum Type
+    {
+        SENIORS("Seniors", 1), EVENTS("Events", 2), COLLEGES("Colleges", 3),
+        REFERENCE("Reference", 4), ATHLETICS("Athletics", 5), OTHERS("Others", 6);
+        private String name;
+        private int numCode;
+        Type(String name, int numCode) {
+            this.name = name;
+            this.numCode = numCode;
+        }
+        public String getName() {
+            return name;
+        }
+
+        public int getNumCode() {
+            return numCode;
+        }
+
+        public static Type getTypeFromNumCode(int numCode){
+            for(Type type: values()) {
+                if(type.getNumCode() == numCode)
+                    return type;
+            }
+            return null;
+        }
     }
 }

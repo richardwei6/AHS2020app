@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/NEW_AngryRed_9F0C0C__ALL</item> <!--The color of the top bar thingy on your phone-->
+        <item name="colorPrimaryDark">@color/AngryRed_9F0C0C</item> <!--The color of the top bar thingy on your phone-->
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
@@ -14,8 +14,18 @@
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>
-        <item name="android:background">@color/NEW_LightGray_EAEAEA__HOME</item>
+        <item name="android:background">@color/LightGray_EAEAEA</item>
 
+    </style>
+
+    <style name="Spaced_Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/LightGray_EAEAEA</item>
+        <item name = "android:layout_marginLeft">@dimen/Full_Padding</item>
+        <item name = "android:layout_marginRight">@dimen/Full_Padding</item>
+        <item name = "android:layout_marginTop">@dimen/Quarter_Padding</item>
+        <item name = "android:layout_marginBottom">@dimen/Quarter_Padding</item>
     </style>
 
     <style name="SeekBarWithoutSteps" parent="Base.Widget.AppCompat.SeekBar.Discrete">
