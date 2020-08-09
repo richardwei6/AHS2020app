@@ -118,9 +118,4 @@ class notificationSettingsClass: UITableViewController{
         unreadNotif = (notificationList[1].count > 0);
     }
     
-    @IBAction func dismiss(_ sender: Any){
-        dismiss(animated: true);
-        UIImpactFeedbackGenerator(style: .light).impactOccurred();
-    }
-    
 }

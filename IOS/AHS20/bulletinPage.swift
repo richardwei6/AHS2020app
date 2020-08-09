@@ -189,9 +189,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             bulletinFrame.size.height = articleVerticalSize;
             bulletinFrame.size.width = UIScreen.main.bounds.size.width - (2*articleHorizontalPadding);
             
-       //     let imageArticleSize = CGFloat(35);
             let catagoryFrameWidth = CGFloat(70);
-            
             var currY = articleVerticalPadding;
             
             for article in currentArticles[0]{ // UNREAD
@@ -390,6 +388,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         filterScrollView.layer.shadowOffset = .zero;
         filterScrollView.layer.shadowRadius = 5;
         filterScrollView.layer.masksToBounds = false;
+        
         filterScrollView.delegate = self;
     }
     

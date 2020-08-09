@@ -16,6 +16,7 @@ class notificationSettingsWrapperClass: UIViewController{
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true);
+        UIImpactFeedbackGenerator(style: .light).impactOccurred();
     }
     override func viewDidLoad(){
         super.viewDidLoad();

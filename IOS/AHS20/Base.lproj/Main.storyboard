@@ -1516,8 +1516,8 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ9-e6-CdU">
-                                                    <rect key="frame" x="20" y="8.9999999999999982" width="64.333333333333329" height="24.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ9-e6-CdU">
+                                                    <rect key="frame" x="20" y="8.9999999999999982" width="82.333333333333329" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2068,10 +2068,10 @@ This license agreement is governed by the laws of the State of California exclud
             </objects>
             <point key="canvasLocation" x="2692.753623188406" y="2101.630434782609"/>
         </scene>
-        <!--Credits Page-->
+        <!--About Us Page-->
         <scene sceneID="q7S-l9-SU6">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="NZh-8i-WD8" customClass="creditsPage" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="NZh-8i-WD8" customClass="aboutUsPage" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Zw-He-2u0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2095,34 +2095,12 @@ This license agreement is governed by the laws of the State of California exclud
                                     <action selector="exitCredits:" destination="NZh-8i-WD8" eventType="touchUpInside" id="XsC-H1-eoS"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLZ-kx-wP3">
-                                <rect key="frame" x="76" y="221" width="263" height="295"/>
-                                <string key="text">Programmers:
-- Alex Dang
-- Kimberly Yu
-- Emily Yu
-- Richard Wei
-
-Graphic Designers:
-- Arina Miyadi
-- Steffi Huang
-
-Content Editors:
-- Danielle Wong
-- Emily Yu
-</string>
-                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="TxJ-sC-QYS" firstAttribute="leading" secondItem="pYJ-uT-Qmt" secondAttribute="leading" id="45s-Cw-gep"/>
-                            <constraint firstItem="wLZ-kx-wP3" firstAttribute="centerX" secondItem="pYJ-uT-Qmt" secondAttribute="centerX" id="COT-iW-fGQ"/>
                             <constraint firstItem="TxJ-sC-QYS" firstAttribute="trailing" secondItem="pYJ-uT-Qmt" secondAttribute="trailing" id="Jdm-eU-adg"/>
                             <constraint firstItem="kPR-pE-SXP" firstAttribute="leading" secondItem="pYJ-uT-Qmt" secondAttribute="leading" constant="15" id="LCa-bH-xXW"/>
-                            <constraint firstItem="wLZ-kx-wP3" firstAttribute="centerY" secondItem="pYJ-uT-Qmt" secondAttribute="centerY" id="UEE-Os-K8m"/>
                             <constraint firstItem="kPR-pE-SXP" firstAttribute="top" secondItem="pYJ-uT-Qmt" secondAttribute="top" constant="15" id="tYV-RO-ATG"/>
                             <constraint firstItem="TxJ-sC-QYS" firstAttribute="top" secondItem="pYJ-uT-Qmt" secondAttribute="top" id="yuB-a8-3Vr"/>
                         </constraints>
@@ -2130,7 +2108,7 @@ Content Editors:
                     </view>
                     <navigationItem key="navigationItem" id="9Vu-ii-UMs"/>
                     <connections>
-                        <outlet property="mainView" destination="4Zw-He-2u0" id="s28-cU-7jx"/>
+                        <outlet property="mainView" destination="4Zw-He-2u0" id="yQf-fU-cX2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXh-hd-Wr4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
