@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".News"
-    android:paddingLeft="@dimen/EveryPage_Side_Padding"
-    android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
-    android:paddingRight="@dimen/EveryPage_Side_Padding"
+    tools:context=".News_Activity"
+    android:paddingLeft="@dimen/Full_Padding"
+    android:paddingTop="@dimen/Half_Padding"
+    android:paddingRight="@dimen/Full_Padding"
     android:paddingBottom="40dp">
-    <TextView
+    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
         android:id="@+id/template_news__TitleText"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/EveryPage_Side_Padding_Quarter"
+        android:layout_marginTop="@dimen/Quarter_Padding"
         android:text=""
         android:background="@drawable/loading_rounded_bg"
         android:textSize="24sp" />
@@ -36,18 +36,18 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <TextView
+    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
 
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_marginTop="@dimen/Half_Padding"
 
         android:text=""
         android:textSize="20sp"
         android:background="@drawable/loading_rounded_bg"
         />
 
-    <TextView
+    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
 
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -56,11 +56,11 @@
         android:text=""
         android:textSize="20sp" />
 
-    <TextView
+    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
 
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_marginTop="@dimen/Half_Padding"
 
         android:padding="5dp"
         android:text=""

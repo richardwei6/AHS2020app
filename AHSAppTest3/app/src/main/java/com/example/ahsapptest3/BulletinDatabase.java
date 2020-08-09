@@ -5,8 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class BulletinDatabase extends SQLiteOpenHelper {
 
@@ -26,7 +30,14 @@ public class BulletinDatabase extends SQLiteOpenHelper {
     private static final String READ = "READ";
     static final int READ_COL = 6;
 
-    public BulletinDatabase(@Nullable Context context)
+    private static BulletinDatabase thisDatabase;
+    public static BulletinDatabase getInstance(Context context){
+        if(thisDatabase == null)
+            thisDatabase = new BulletinDatabase(context.getApplicationContext());
+        return thisDatabase;
+    }
+
+    private BulletinDatabase(@Nullable Context context)
     {
         super(context, current_Table, null, 1);
     }
@@ -40,7 +51,7 @@ public class BulletinDatabase extends SQLiteOpenHelper {
                 TIME + " INTEGER," +
                 TITLE + " TEXT," +
                 BODY + " TEXT," +
-                TYPE + " TEXT," +
+                TYPE + " INTEGER," +
                 READ + " INTEGER);";
         db.execSQL(createTable);
     }
@@ -51,17 +62,17 @@ public class BulletinDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean add(Bulletin_Data... datas)
+    public boolean add(Bulletin_Article... datas)
     {
         boolean succeeded = true;
-        for(Bulletin_Data data: datas) {
+        for(Bulletin_Article data: datas) {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
             values.put(BUL_ID, data.getID());
             values.put(TIME, data.getTime());
             values.put(TITLE, data.getTitle());
             values.put(BODY, data.getBodyText());
-            values.put(TYPE, data.getType().toString());
+            values.put(TYPE, data.getType().getNumCode());
             values.put(READ, (data.isAlready_read()) ? 1 : 0);
 
             long result = db.insert(current_Table, null, values);
@@ -83,7 +94,7 @@ public class BulletinDatabase extends SQLiteOpenHelper {
 
     public boolean getReadStatusByID(String ID)
     {
-        String query = "SELECT * FROM " + current_Table
+        String query = "SELECT "+ READ + " FROM " + current_Table
                 + " WHERE  " + BUL_ID + " = '" + ID + "'";
         Cursor data = this.getWritableDatabase().rawQuery(query, null);
 
@@ -91,14 +102,12 @@ public class BulletinDatabase extends SQLiteOpenHelper {
             return false;
         data.moveToFirst();
 
-        boolean read = data.getInt(READ_COL) == 1;
+        boolean read = data.getInt(0) == 1;
         data.close();
         return read;
-
-
     }
 
-    public void updateReadStatus(Bulletin_Data data)
+    public void updateReadStatus(Bulletin_Article data)
     {
         String query = "UPDATE " + current_Table
                 + " SET " + READ + " = '" + (data.isAlready_read() ? 1 : 0)
@@ -106,7 +115,7 @@ public class BulletinDatabase extends SQLiteOpenHelper {
         this.getWritableDatabase().execSQL(query);
     }
 
-    public void delete(Bulletin_Data data)
+    public void delete(Bulletin_Article data)
     {
         String query =
                 "DELETE FROM " + current_Table +
@@ -119,5 +128,44 @@ public class BulletinDatabase extends SQLiteOpenHelper {
         String query =
                 "DELETE FROM " + current_Table;
         this.getWritableDatabase().execSQL(query);
+    }
+
+    public ArrayList<Bulletin_Article> getAllArticles()
+    {
+        String query = "SELECT * FROM " + current_Table;
+        Cursor data = this.getWritableDatabase().rawQuery(query, null);
+        ArrayList<Bulletin_Article> articles = new ArrayList<>();
+        while(data.moveToNext())
+        {
+            articles.add(new Bulletin_Article(
+                    data.getString(BUL_COL),
+                    data.getLong(TIME_COL),
+                    data.getString(TITLE_COL),
+                    data.getString(BODY_COL),
+                    Bulletin_Article.Type.getTypeFromNumCode(data.getInt(TYPE_COL)),
+                    data.getInt(READ_COL) == 1
+            ));
+        }
+        data.close();
+        return articles;
+    }
+
+    /**
+     * Deletes all articles that are not in the new articles
+     * Updates old articles that are still there rather than destroying them
+     * A little unnecessary, but it will be if there are any fields determined not by firebase
+     * @param articles the articles to replace the old ones
+     */
+    public void updateArticles(Bulletin_Article... articles) {
+        /*ArrayList<Bulletin_Article> oldArticles = getAllArticles();
+        Log.d(TAG, "~~~~~~~~~~~~~~ oldArticles ~~~~~~~~~~~~~");
+        for(Bulletin_Article article: oldArticles)
+            Log.d(TAG, article.getID() + "\t" + article.getTitle());*/
+        deleteAll(); // note not necessary to update notified field because of the special interaction with getReadStatusByID()
+        add(articles);
+        /*ArrayList<Bulletin_Article> newArticles = getAllArticles();
+        Log.d(TAG, "~~~~~~~~~~~~~~ newArticles ~~~~~~~~~~~~~");
+        for(Bulletin_Article article: newArticles)
+            Log.d(TAG, article.getID() + "\t" + article.getTitle());*/
     }
 }

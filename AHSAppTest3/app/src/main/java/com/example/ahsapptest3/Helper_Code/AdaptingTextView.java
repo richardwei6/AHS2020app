@@ -10,7 +10,7 @@ import android.view.ViewTreeObserver;
  * @link https://stackoverflow.com/questions/11243867/android-last-line-of-textview-cut-off
  * TextView that dynamically adjusts the number of lines
  */
-public class AdaptingTextView extends androidx.appcompat.widget.AppCompatTextView {
+public class AdaptingTextView extends AutoAdjustTextSize_TextView {
     private static final String TAG = "AdaptingTextView";
     public AdaptingTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -52,6 +52,8 @@ public class AdaptingTextView extends androidx.appcompat.widget.AppCompatTextVie
             });
             //Log.d(TAG, String.valueOf(this.getMaxLines()));
         }
+        else
+            setText(""); // don't display anything
     }
 
 }

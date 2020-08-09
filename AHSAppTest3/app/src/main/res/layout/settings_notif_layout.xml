@@ -4,125 +4,235 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightishGray_EFEDED__HOME_NOTIF"
     android:orientation="vertical"
     tools:context=".Setting_Activities.Notifications_Settings_Activity">
 
     <LinearLayout
-        android:id="@+id/notif_settings_headerLinearLayout"
+        android:id="@+id/notif_settings_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF"
+        android:background="@color/White"
+        android:elevation="3dp"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+        android:clipToPadding="false">
 
-        android:paddingRight="@dimen/EveryPage_Side_Padding_Half">
-
-        <ImageButton
-            android:id="@+id/notif_settings_header_back"
-            android:layout_width="30dp"
+        <ImageView
+            android:id="@+id/notif_settings_back_btn"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0"
-            android:adjustViewBounds="false"
-            android:background="?attr/selectableItemBackground"
-
-
-            android:padding="@dimen/EveryPage_Side_Padding_Half"
-
+            android:adjustViewBounds="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:paddingLeft="@dimen/Full_Padding"
+            android:paddingRight="@dimen/Full_Padding"
             android:scaleType="centerInside"
+            android:tint="@color/GraniteRed_7E6E6A"
             app:srcCompat="@drawable/arrow_back" />
 
-        <TextView
-            android:id="@+id/notif_settings_header_text"
+        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+            android:id="@+id/notif_settings_titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/sf_pro_compactbold"
-            android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
-            android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
-            android:text="NOTIFICATIONS SETTINGS"
-            android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
-            android:textSize="18sp" />
+            android:fontFamily="@font/sf_pro_semibold"
+            android:paddingStart="0dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="@dimen/Half_Padding"
+            android:paddingEnd="@dimen/Half_Padding"
+            android:paddingRight="@dimen/Half_Padding"
+            android:paddingBottom="@dimen/Half_Padding"
+            android:text="Notifications Settings"
+            android:textColor="@color/DarkCrimson_1A0303"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         android:orientation="vertical"
-        android:padding="@dimen/EveryPage_Side_Padding_Half">
+        android:padding="@dimen/Full_Padding">
 
-        <FrameLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/White"
+            app:cardCornerRadius="@dimen/Quarter_Padding"
+            app:cardElevation="@dimen/CardView_Height">
 
-            android:padding="@dimen/EveryPage_Side_Padding_Half"
-            android:background="@drawable/bulletin_template_rounded_white"
-            >
-
-            <Switch
-                android:id="@+id/notif_settings_general_switch"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/Half_Padding"
+                android:paddingRight="@dimen/Half_Padding"
+                android:paddingStart="0dp"
+                android:paddingLeft="0dp">
 
-                android:checked="true"
-                android:text="General Updates" />
-        </FrameLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="horizontal">
 
-        <LinearLayout
-        android:id="@+id/notif_settings_indiv_LinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/EveryPage_Side_Padding"
-        android:background="@drawable/bulletin_template_rounded_white"
-        android:orientation="vertical"
-        android:padding="@dimen/EveryPage_Side_Padding_Half">
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/sf_pro_semibold"
+                        android:paddingLeft="@dimen/Half_Padding"
+                        android:paddingTop="@dimen/Half_Padding"
+                        android:paddingRight="@dimen/Half_Padding"
+                        android:paddingBottom="@dimen/Half_Padding"
+                        android:text="General Updates"
+                        android:textColor="@color/DarkCrimson_1A0303"
+                        android:textSize="18sp" />
 
-            <Switch
-                android:id="@+id/notif_settings_sports_switch"
+                    <Switch
+                        android:id="@+id/notif_settings_general_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:checked="true"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/White"
+            app:cardCornerRadius="@dimen/Quarter_Padding"
+            app:cardElevation="@dimen/CardView_Height"
+            android:layout_marginTop="@dimen/Full_Padding">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bulletin_template_rounded_white"
-                android:checked="true"
-                android:text="Sports News" />
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/Half_Padding"
+                android:paddingRight="@dimen/Half_Padding"
+                android:paddingStart="0dp"
+                android:paddingLeft="0dp">
 
-        <View style="@style/Divider" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="horizontal">
 
-            <Switch
-                android:id="@+id/notif_settings_asb_switch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bulletin_template_rounded_white"
-                android:checked="true"
-                android:text="ASB News" />
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/sf_pro_semibold"
+                        android:paddingLeft="@dimen/Half_Padding"
+                        android:paddingTop="@dimen/Half_Padding"
+                        android:paddingRight="@dimen/Half_Padding"
+                        android:paddingBottom="@dimen/Half_Padding"
+                        android:text="Sports News"
+                        android:textColor="@color/DarkCrimson_1A0303"
+                        android:textSize="18sp" />
 
-        <View style="@style/Divider" />
+                    <Switch
+                        android:id="@+id/notif_settings_sports_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:background="@drawable/bulletin_template_rounded_white"
+                        android:checked="true" />
+                </LinearLayout>
 
-            <Switch
-                android:id="@+id/notif_settings_district_switch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bulletin_template_rounded_white"
-                android:checked="true"
-                android:text="District News" />
 
-        <View style="@style/Divider" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="horizontal">
 
-            <Switch
-                android:id="@+id/notif_settings_bulletin_switch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bulletin_template_rounded_white"
-                android:checked="true"
-                android:text="Bulletin" />
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/sf_pro_semibold"
+                        android:paddingLeft="@dimen/Half_Padding"
+                        android:paddingTop="@dimen/Half_Padding"
+                        android:paddingRight="@dimen/Half_Padding"
+                        android:paddingBottom="@dimen/Half_Padding"
+                        android:text="ASB News"
+                        android:textColor="@color/DarkCrimson_1A0303"
+                        android:textSize="18sp" />
 
+                    <Switch
+                        android:id="@+id/notif_settings_asb_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:background="@drawable/bulletin_template_rounded_white"
+                        android:checked="true" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/sf_pro_semibold"
+                        android:paddingLeft="@dimen/Half_Padding"
+                        android:paddingTop="@dimen/Half_Padding"
+                        android:paddingRight="@dimen/Half_Padding"
+                        android:paddingBottom="@dimen/Half_Padding"
+                        android:text="District News"
+                        android:textColor="@color/DarkCrimson_1A0303"
+                        android:textSize="18sp" />
+
+                    <Switch
+                        android:id="@+id/notif_settings_district_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:background="@drawable/bulletin_template_rounded_white"
+                        android:checked="true" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/sf_pro_semibold"
+                        android:paddingLeft="@dimen/Half_Padding"
+                        android:paddingTop="@dimen/Half_Padding"
+                        android:paddingRight="@dimen/Half_Padding"
+                        android:paddingBottom="@dimen/Half_Padding"
+                        android:text="Bulletin"
+                        android:textColor="@color/DarkCrimson_1A0303"
+                        android:textSize="18sp" />
+
+                    <Switch
+                        android:id="@+id/notif_settings_bulletin_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:background="@drawable/bulletin_template_rounded_white"
+                        android:checked="true" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
-    </LinearLayout>
-
 
 
 </LinearLayout>

@@ -1,9 +1,10 @@
 package com.example.ahsapptest3;
 
-import android.content.Context;
+import android.app.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -22,6 +23,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
 import com.example.ahsapptest3.Helper_Code.Helper;
 import com.example.ahsapptest3.Helper_Code.MediaYoutubeFragment;
+import com.example.ahsapptest3.Helper_Code.ValContainer;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.android.material.tabs.TabLayout;
 
@@ -29,11 +31,18 @@ import com.google.android.material.tabs.TabLayout;
 public class ArticleActivity extends FullScreenActivity {
     private static final String TAG = "ArticleActivity";
 
+    public static final String read_KEY = "1";
+    private ValContainer<Boolean> saved;
+    private ValContainer<Boolean> saved_copy;
     private Article article;
+    /*private int oldOrientation;*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_layout);
+        /*oldOrientation = getResources().getConfiguration().orientation;*/
+
         article = getIntent().getParcelableExtra("data");
         TextView
                 dateText = findViewById(R.id.article_dateText),
@@ -41,13 +50,13 @@ public class ArticleActivity extends FullScreenActivity {
                 authorText = findViewById(R.id.article_authorText),
                 bodyText = findViewById(R.id.article_bodyText);
 
-        Helper.setText_toView(dateText,Helper.DateFromTime("MMMM dd, yyyy", article.getTimeUpdated()));
-        Helper.setText_toView(titleText,article.getTitle());
+        dateText.setText(Helper.getDateFromTime(Helper.defaultDatePattern, article.getTimeUpdated()));
+        titleText.setText(article.getTitle());
         authorText.setText(this.getString(R.string.author_placeholder, article.getAuthor()));
         Helper.setHtmlParsedText_toView(bodyText, article.getStory());
 
         final String[] imagePaths = article.getImagePaths();
-        final String[] videoIDs = article.getVideoIDS();//Arrays.copyOfRange(article.getVideoIDS(),0,1);//
+        final String[] videoIDs = article.getVideoIDS();
 
         TabLayout tabLayout = findViewById(R.id.article_tabLayout);
 
@@ -72,25 +81,79 @@ public class ArticleActivity extends FullScreenActivity {
             }
         });
         tabLayoutMediator.attach();
+        TextView typeText = findViewById(R.id.article_type_text);
+        typeText.setText(article.getType().getName());
 
         // set up bookmark button
-        ImageView bookmarkButton = findViewById(R.id.article_bookmarkButton);
+        final ImageView bookmarkButton = findViewById(R.id.article_bookmarkButton);
+        final SavedDatabase savedDatabase = SavedDatabase.getInstance(this);
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                saved = new ValContainer<>();
+                saved.setVal(savedDatabase.alreadyAdded(article.getID()));
+                saved_copy = new ValContainer<>();
+                saved_copy.setVal(saved.getVal());
 
+                Helper.setBookmarked_toView(bookmarkButton, saved.getVal());
 
-        Helper.setBookmarked_toView(bookmarkButton,article.isBookmarked());
-        Helper.setBookMarkListener_toView(bookmarkButton, article);
-        TextView typeText = findViewById(R.id.article_type_text);
-        typeText.setText(article.getType().toString());
+            }
+        });
+        bookmarkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saved.setVal(!saved.getVal());
+                Helper.setBookmarked_toView(bookmarkButton, saved.getVal());
+            }
+        });
 
         // set listener for back button
         ImageView backButton = findViewById(R.id.article_header_back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent();
+                if(saved.getVal() != saved_copy.getVal())
+                {
+                    intent.putExtra(Saved_Activity.saved_status_changed_KEY, true);
+                    updateSavedStatus(savedDatabase);
+                }
+                else
+                    intent.putExtra(Saved_Activity.saved_status_changed_KEY, false);
+
+                intent.putExtra(read_KEY, true);
+
+                setResult(Activity.RESULT_OK, intent);
                 finish();
             }
         });
     }
+
+    public void updateSavedStatus(final SavedDatabase savedDatabase){
+        if(saved.getVal()) { // was false but now true
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    savedDatabase.add(article);
+                }
+            };
+            runnable.run();
+        } else { // was true but now false
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    savedDatabase.deleteByID(article.getID());
+                }
+            };
+            runnable.run();
+        }
+    }
+/*
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+    }*/
 
     /**
      * A FragmentStateAdapter that supports a mix of youtube videos and images
@@ -147,8 +210,13 @@ public class ArticleActivity extends FullScreenActivity {
         }
 
         @Override
-        public void startFullScreen() {
-
+        public void onFullScreen(boolean fullScreen) {
+            /*if(!fullScreen) {
+                int newOrientation = getResources().getConfiguration().orientation;
+                if (newOrientation != oldOrientation) {
+                    setRequestedOrientation(oldOrientation);
+                }
+            }*/
         }
     }
 

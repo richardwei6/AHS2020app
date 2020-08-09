@@ -8,8 +8,8 @@ public class Article implements Parcelable {
     private long time_updated;
     private String title, author, story;
     private String [] imagePaths, videoIDS;
-    private boolean is_bookmarked, notified;
-    private News.TYPE type;
+
+    private Type type;
 
     private boolean blank; // false
 
@@ -21,16 +21,7 @@ public class Article implements Parcelable {
             String story,
             String[] imagePaths,
             String[] videoIDS,
-            // determined by current articles on phone.
-            // false by default
-            // (this must be determined on creation, creating overloaded constructor is too unwieldy)
-            boolean is_bookmarked,
-
-            // determined by current articles on phone.
-            // false by default
-            // for notification page only
-            boolean has_notified,
-            News.TYPE type
+            Type type
     )
     {
         this.ID = ID;
@@ -40,8 +31,6 @@ public class Article implements Parcelable {
         this.story = story;
         this.imagePaths = imagePaths;
         this.videoIDS = videoIDS;
-        this.is_bookmarked = is_bookmarked;
-        this.notified = has_notified;
         this.type = type;
     }
 
@@ -66,10 +55,6 @@ public class Article implements Parcelable {
     {
         return blank;
     }
-    public void swapBookmark()
-    {
-        is_bookmarked = !is_bookmarked;
-    }
 
     public String getID() {return ID;}
     public long getTimeUpdated()
@@ -90,12 +75,8 @@ public class Article implements Parcelable {
         return imagePaths;
     }
     public String[] getVideoIDS() {return videoIDS;}
-    public boolean isBookmarked()
-    {
-        return is_bookmarked;
-    }
-    public boolean isNotified() {return notified;}
-    public News.TYPE getType() { return type;}
+
+    public Type getType() { return type;}
 
     @Override
     public String toString()
@@ -106,14 +87,10 @@ public class Article implements Parcelable {
                 "title::\t" + title + "\n" +
                 "author::\t" + author + "\n" +
                 "story::\t" + ((story.length() > 40) ? story.substring(0,40) : story) + "\n" + // so output might not be overly long
-                "bookmarked?\t" + is_bookmarked + "\n" +
-                "notified?\t" + notified + "\n" +
                 "type::\t" + type.toString()
                 ;
         return returner;
     }
-
-
 
     // The following methods are for the purpose of extending Parcelable
     // make sure to update methods should a new field be added
@@ -125,9 +102,7 @@ public class Article implements Parcelable {
         story = in.readString();
         imagePaths = in.createStringArray();
         videoIDS = in.createStringArray();
-        is_bookmarked = in.readByte() != 0;
-        notified = in.readByte() != 0;
-        type = (News.TYPE) in.readSerializable();
+        type = (Type) in.readSerializable();
         blank = in.readByte() != 0;
     }
 
@@ -145,9 +120,35 @@ public class Article implements Parcelable {
         dest.writeString(story);
         dest.writeStringArray(imagePaths);
         dest.writeStringArray(videoIDS);
-        dest.writeByte((byte) (is_bookmarked ? 1 : 0));
-        dest.writeByte((byte) (notified ? 1 : 0));
         dest.writeSerializable(type);
         dest.writeByte((byte) (blank ? 1 : 0));
+    }
+
+    /**
+     * Be extremely!!! careful when changing these types! May cause problems with type conversion in ArticleDatabase
+     * Need to be careful even when refactoring
+     */
+    public enum Type {
+        ASB("ASB", 1), SPORTS("Sports", 2), DISTRICT("District", 3);
+        private String name;
+        private int numCode;
+        Type(String name, int numCode){
+            this.name =  name;
+            this.numCode = numCode;
+        }
+        public String getName() {
+            return name;
+        }
+
+        public int getNumCode() {
+            return numCode;
+        }
+        public static Type getTypeFromNumCode(int numCode) {
+            for(Type type:  values()) {
+                if(type.getNumCode() == numCode)
+                    return type;
+            }
+            return null;
+        }
     }
 }

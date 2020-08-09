@@ -2,6 +2,7 @@ package com.example.ahsapptest3;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ahsapptest3.Helper_Code.Bulletin_SelectorView;
 import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
-import com.example.ahsapptest3.Setting_Activities.Settings;
+import com.example.ahsapptest3.Setting_Activities.Settings_Activity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,26 +24,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Bulletin extends FullScreenActivity implements Navigation, BulletinRecyclerAdapter.OnItemClick, NotifBtn.Navigation{
+public class Bulletin_Activity extends FullScreenActivity implements Navigation, BulletinRecyclerAdapter.OnItemClick, NotifBtn.Navigation{
 
     private static final String TAG = "BulletinActivity";
     private BulletinRecyclerAdapter adapter;
 
-    public enum Type
-    {
-        SENIORS("Seniors"), EVENTS("Events"), COLLEGES("Colleges"), REFERENCE("Reference"), ATHLETICS("Athletics"), OTHERS("Others");
-        private String name;
-        Type(String name) {
-            this.name = name;
-        }
-        String getName() {
-            return name;
-        }
-    }
- /*   private boolean seniors_active = false, colleges_active = false, events_active = false, athletics_active = false, reference_active = false, others_active = false;
+    /*   private boolean seniors_active = false, colleges_active = false, events_active = false, athletics_active = false, reference_active = false, others_active = false;
 */
 
-    final Type[] types = Type.values();
+    final Bulletin_Article.Type[] types = Bulletin_Article.Type.values();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +47,15 @@ public class Bulletin extends FullScreenActivity implements Navigation, Bulletin
             }
         });*/
 
+        final Resources r = getResources();
         final String[] categories = new String[]
                 {
-                    "seniors",
-                    "events",
-                    "colleges",
-                    "reference",
-                    "athletics",
-                    "others",
+                    r.getString(R.string.fb_bull_seniors),
+                    r.getString(R.string.fb_bull_events),
+                    r.getString(R.string.fb_bull_colleges),
+                    r.getString(R.string.fb_bull_references),
+                    r.getString(R.string.fb_bull_athletics),
+                    r.getString(R.string.fb_bull_others),
                 };
 
         Bulletin_SelectorView 
@@ -84,11 +75,11 @@ public class Bulletin extends FullScreenActivity implements Navigation, Bulletin
                     athletics_selector ,
                     others_selector
                 };
-        final ArrayList<Bulletin_Data> data = new ArrayList<>();
+        final ArrayList<Bulletin_Article> data = new ArrayList<>();
 
         final RecyclerView recyclerView = findViewById(R.id.bulletin_RecyclerView);
         recyclerView.setNestedScrollingEnabled(false);
-        adapter = new BulletinRecyclerAdapter(this, data, this);
+        adapter = new BulletinRecyclerAdapter(data, this);
 
 
         for(int i = 0; i < selectors.length; i++)
@@ -111,7 +102,7 @@ public class Bulletin extends FullScreenActivity implements Navigation, Bulletin
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // create recyclerview margins
-        final int margin = (int) getResources().getDimension(R.dimen.EveryPage_Side_Padding_Half);
+        final int margin = (int) getResources().getDimension(R.dimen.Half_Padding);
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
 
             @Override
@@ -124,16 +115,16 @@ public class Bulletin extends FullScreenActivity implements Navigation, Bulletin
                 int position = parent.getChildLayoutPosition(view);
 
                 // first item
-                outRect.top = (position == 0) ? margin : margin/4;
+                outRect.top = (position == 0) ? margin : margin/2;
                 // last item
-                outRect.bottom = (position == state.getItemCount()-1) ? margin : margin/4;
+                outRect.bottom = (position == state.getItemCount()-1) ? margin : margin/2;
 
             }
         });
         recyclerView.requestLayout();
 
-        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("bulletin");
-        final BulletinDatabase db = new BulletinDatabase(this);
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_bull_key));
+        final BulletinDatabase db = BulletinDatabase.getInstance(this);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -148,11 +139,11 @@ public class Bulletin extends FullScreenActivity implements Navigation, Bulletin
 
                     for (DataSnapshot dataSnapshot : snapshot1.getChildren()) {
                         String ID = dataSnapshot.getKey();
-                        String title = dataSnapshot.child("articleTitle").getValue().toString();
-                        String body = dataSnapshot.child("articleBody").getValue().toString();
-                        long time = (long) dataSnapshot.child("articleUnixEpoch").getValue();
+                        String title = dataSnapshot.child(r.getString(R.string.fb_bull_artTitle)).getValue().toString();
+                        String body = dataSnapshot.child(r.getString(R.string.fb_bull_artBody)).getValue().toString();
+                        long time = (long) dataSnapshot.child(r.getString(R.string.fb_bull_artTime)).getValue();
 
-                        Bulletin_Data info = new Bulletin_Data(ID, time, title, body, types[i],
+                        Bulletin_Article info = new Bulletin_Article(ID, time, title, body, types[i],
                                 db.getReadStatusByID(ID)
                         );
 
@@ -161,9 +152,7 @@ public class Bulletin extends FullScreenActivity implements Navigation, Bulletin
                         adapter.addItem(info);
                     }
                 }
-
-                db.deleteAll(); // clear array of old items not in the new week's bulletin
-                db.add(data.toArray(new Bulletin_Data[0]));
+                db.updateArticles(data.toArray(new Bulletin_Article[0]));
             }
 
             @Override
@@ -176,8 +165,8 @@ public class Bulletin extends FullScreenActivity implements Navigation, Bulletin
 
     @Override
     public void goToHome() {
-        Intent myIntent = new Intent(Bulletin.this, News.class);
-        Bulletin.this.startActivity(myIntent);
+        Intent myIntent = new Intent(Bulletin_Activity.this, News_Activity.class);
+        Bulletin_Activity.this.startActivity(myIntent);
     }
     @Override
     public void goToBulletin() {
@@ -185,33 +174,37 @@ public class Bulletin extends FullScreenActivity implements Navigation, Bulletin
     }
     @Override
     public void goToSaved() {
-        Intent myIntent = new Intent(Bulletin.this, Saved.class);
-        Bulletin.this.startActivity(myIntent);
+        Intent myIntent = new Intent(Bulletin_Activity.this, Saved_Activity.class);
+        Bulletin_Activity.this.startActivity(myIntent);
     }
     @Override
     public void goToSettings() {
-        Intent myIntent = new Intent(Bulletin.this, Settings.class);
-        Bulletin.this.startActivity(myIntent);
+        Intent myIntent = new Intent(Bulletin_Activity.this, Settings_Activity.class);
+        Bulletin_Activity.this.startActivity(myIntent);
     }
     @Override
     public int getScrollingViewId() {
         return R.id.bulletin_outerScrollView;
     }
 
+    @Override
+    public HighlightOption getHighlightOption() {
+        return HighlightOption.BULLETIN;
+    }
 
-    public static final int REQUEST_CODE = 1;
-    public static final String read_KEY = "1";
+
+    private static final int REQUEST_CODE = 1;
     private int position;
     @Override
-    public void onClick(Bulletin_Data data, int position) {
+    public void onClick(Bulletin_Article data, int position) {
         data.setAlready_read(true);
-        BulletinDatabase db = new BulletinDatabase(this);
+        BulletinDatabase db = BulletinDatabase.getInstance(this);
         db.updateReadStatus(data);
         this.position = position;
 
-        Intent intent = new Intent(Bulletin.this, Bulletin_Item_Activity.class);
-        intent.putExtra("data", data);
-        Bulletin.this.startActivityForResult(intent, REQUEST_CODE);
+        Intent intent = new Intent(Bulletin_Activity.this, Bulletin_Article_Activity.class);
+        intent.putExtra(Bulletin_Article_Activity.data_KEY, data);
+        Bulletin_Activity.this.startActivityForResult(intent, REQUEST_CODE);
     }
 
     @Override
@@ -219,17 +212,17 @@ public class Bulletin extends FullScreenActivity implements Navigation, Bulletin
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                boolean thing = data.getBooleanExtra(read_KEY, true);
+                /*boolean thing = data.getBooleanExtra(read_KEY, true);*/
                 adapter.updateReadItemPosition(position);
-            } else if (resultCode == Activity.RESULT_CANCELED) {
+            } /*else if (resultCode == Activity.RESULT_CANCELED) {
                 // some stuff that will happen if there's no result
-            }
+            }*/
         }
     }
 
     @Override
     public void goToNotif() {
-        Intent intent = new Intent(Bulletin.this, Notif_Activity.class);
+        Intent intent = new Intent(Bulletin_Activity.this, Notif_Activity.class);
         startActivity(intent);
     }
 }

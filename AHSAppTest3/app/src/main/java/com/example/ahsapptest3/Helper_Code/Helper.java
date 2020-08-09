@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,10 +25,8 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.ahsapptest3.Article;
 import com.example.ahsapptest3.ArticleActivity;
-import com.example.ahsapptest3.ArticleDatabase;
 import com.example.ahsapptest3.R;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -39,14 +36,6 @@ import java.util.concurrent.TimeUnit;
 // Alex Dang 2020
 public class Helper{
     private static final String TAG = "Helper";
-
-    /**
-    * Kind of unnecessary, but just for symmetry purposes
-    * */
-    public static void setText_toView(TextView view, String text)
-    {
-        view.setText(text);
-    }
 
     public static void setHtmlParsedText_toView(TextView view, String text)
     {
@@ -75,33 +64,34 @@ public class Helper{
                 .transform(new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
                 .into(view);
 
-        Glide
-                .with(view.getContext())
-                .asBitmap()
-                .apply(new RequestOptions().override(10,10))
-                .load(url)
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        Palette.from(resource).generate(new Palette.PaletteAsyncListener()
-                        {
-                            @Override
-                            public void onGenerated(@Nullable Palette palette) {
-                                int mutedColor = palette.getMutedColor(ContextCompat.getColor(view.getContext(),R.color.NEW_CoffeeRed_473D3D__HOME_ARTICLE_SAVED));
+            Glide
+                    .with(view.getContext())
+                    .asBitmap()
+                    .apply(new RequestOptions().override(10,10))
+                    .load(url)
+                    .into(new CustomTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            Palette.from(resource).generate(new Palette.PaletteAsyncListener()
+                            {
+                                @Override
+                                public void onGenerated(@Nullable Palette palette) {
+                                    if (palette != null) {
+                                        int mutedColor = palette.getMutedColor(ContextCompat.getColor(view.getContext(), R.color.CoffeeRed_473D3D));
 
-                                Drawable drawable = ContextCompat.getDrawable(view.getContext(), R.drawable.image_bg);
-                                DrawableCompat.setTint(drawable,mutedColor);
-                                view.setBackgroundResource(R.drawable.image_bg);
+                                        Drawable drawable = ContextCompat.getDrawable(view.getContext(), R.drawable.image_bg);
+                                        DrawableCompat.setTint(drawable, mutedColor);
+                                        view.setBackgroundResource(R.drawable.image_bg);
+                                    }
+                                }
+                            });
+                        }
 
-                            }
-                        });
-                    }
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
 
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                    }
-                });
+                        }
+                    });
         } else {
             Glide
                     .with(view.getContext())
@@ -121,9 +111,11 @@ public class Helper{
                             {
                                 @Override
                                 public void onGenerated(@Nullable Palette palette) {
-                                    int mutedColor = palette.getMutedColor(ContextCompat.getColor(view.getContext(),R.color.NEW_CoffeeRed_473D3D__HOME_ARTICLE_SAVED));
-                                    view.setColorFilter(mutedColor);
-                                    view.setBackgroundResource(R.drawable.image_bg);
+                                    if (palette != null) {
+                                        int mutedColor = palette.getMutedColor(ContextCompat.getColor(view.getContext(),R.color.CoffeeRed_473D3D));
+                                        view.setColorFilter(mutedColor);
+                                        view.setBackgroundResource(R.drawable.image_bg);
+                                    }
                                 }
                             });
                         }
@@ -169,7 +161,7 @@ public class Helper{
      * Sets the default background to an imageView
      * So that should the loaded image take up less space,
      * There wouldn't be an awkward blank space
-     * @param view
+     * @param view imageview
      */
     public static void setDefaultBackground_toView(ImageView view)
     {
@@ -212,31 +204,8 @@ public class Helper{
     }
 
     /**
-     *  Set an onClick listener to a bookmark view based on the current status of the article
-     *  TODO: call a BookmarkHandler that updates the internal files
-     * */
-    public static void setBookMarkListener_toView(final ImageView view, final Article article)
-    {
-        final ArticleDatabase articleDatabase = ArticleDatabase.getInstance(view.getContext(), ArticleDatabase.Option.BOOKMARK);
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                article.swapBookmark();
-                setBookmarked_toView(view,article.isBookmarked());
-                if(!articleDatabase.alreadyAdded(article.getID()))
-                        articleDatabase.add(article);
-                else
-                    articleDatabase.delete(article);
-                ArticleDatabase.setBookmarkChanged();
-            }
-        });
-    }
-
-
-    /*
      *  Sets time in a given unit to a TextView, formatted
-     * */
+     */
     public static void setTimeText_toView(TextView view, long time)
     {
         TimeUnit unit = getLogicalTimeUnit(time);
@@ -251,18 +220,23 @@ public class Helper{
         }
         else
             after = view.getContext().getString(R.string.ago);
-        if(unit.equals(TimeUnit.MINUTES))
-        {
+        if (unit.equals(TimeUnit.MINUTES)) {
             view.setText(view.getContext().getString(R.string.time_minutes_updated_placeholder, time_val, after));
-        }
-        else if(unit.equals(TimeUnit.HOURS))
-        {
+        } else if (unit.equals(TimeUnit.HOURS)) {
             view.setText(view.getContext().getString(R.string.time_hours_updated_placeholder, time_val, after));
+        } else if (unit.equals(TimeUnit.DAYS)) {
+            if(time_val < 7) {
+                view.setText(view.getContext().getString(R.string.time_days_updated_placeholder, time_val, after));
+            } else {
+                if(time_val > 365)
+                    view.setText(view.getContext().getString(R.string.time_years_updated_placeholder, Math.round(time_val/365.24), after));
+                else if(time_val > 30)
+                    view.setText(view.getContext().getString(R.string.time_months_updated_placeholder, Math.round(time_val/30.0), after));
+                else
+                    view.setText(view.getContext().getString(R.string.time_weeks_updated_placeholder, Math.round(time_val/7.0), after));
+            }
         }
-        else if(unit.equals(TimeUnit.DAYS))
-        {
-            view.setText(view.getContext().getString(R.string.time_days_updated_placeholder, time_val, after));
-        }
+
 
     }
 
@@ -275,13 +249,15 @@ public class Helper{
         return currentTime.getTime()-time*1000L; // for interesting reasons, Date() uses seconds not milliseconds
     }
 
-    /*
+    /**
      *  Because I forget how to use SimpleDateFormat()
-     * */
-    public static String DateFromTime(String pattern, long time)
+     *  See @link {https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html} for guidance on pattern
+     */
+    public static String getDateFromTime(String pattern, long time)
     {
         return new SimpleDateFormat(pattern, Locale.US).format(time*1000L);
     }
+    public static final String defaultDatePattern = "MMMM dd, yyyy";
 
     /**
      * Converts a long time to a time unit based on the reasonable unit for the length of time

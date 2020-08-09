@@ -7,28 +7,18 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
 import com.example.ahsapptest3.R;
+import com.example.ahsapptest3.Settings;
 
-public class Notifications_Settings_Activity extends AppCompatActivity {
-
-    private static final String
-            NOTIF_SETTING = "notif settings";
-
-    private static final String
-            GENERAL_SETTING = "1",
-            SPORTS_SETTING = "2",
-            ASB_SETTING = "3",
-            DISTRICT_SETTING = "4",
-            BULLETIN_SETTING = "5";
+public class Notifications_Settings_Activity extends FullScreenActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_notif_layout);
 
-        ImageView backButton = findViewById(R.id.notif_settings_header_back);
+        ImageView backButton = findViewById(R.id.notif_settings_back_btn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,58 +26,79 @@ public class Notifications_Settings_Activity extends AppCompatActivity {
             }
         });
 
-        Switch
+        final Switch
                 general_switch = findViewById(R.id.notif_settings_general_switch),
                 sports_switch = findViewById(R.id.notif_settings_sports_switch),
                 asb_switch = findViewById(R.id.notif_settings_asb_switch),
                 district_switch = findViewById(R.id.notif_settings_district_switch),
                 bulletin_switch = findViewById(R.id.notif_settings_bulletin_switch);
 
-        SharedPreferences sharedPrefs = getSharedPreferences(NOTIF_SETTING,MODE_PRIVATE);
+        final Settings settings = new Settings(getApplicationContext(), new Settings.OnNotifOptionChanged() {
+            @Override
+            public void onOptionChanged(Settings.NotifOption option, boolean currentValue) {
+                switch(option) {
+                    case GENERAL:
+                        general_switch.setChecked(currentValue);
+                        break;
+                    case ASB:
+                        asb_switch.setChecked(currentValue);
+                        break;
+                    case SPORTS:
+                        sports_switch.setChecked(currentValue);
+                        break;
+                    case DISTRICT:
+                        district_switch.setChecked(currentValue);
+                        break;
+                    case BULLETIN:
+                        bulletin_switch.setChecked(currentValue);
+                        break;
+                }
+            }
+        });
 
         general_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = getSharedPreferences(NOTIF_SETTING, MODE_PRIVATE).edit();
-                editor.putBoolean(GENERAL_SETTING,isChecked).apply();
+                settings.updateNotifSettings(Settings.NotifOption.GENERAL, isChecked, true);
             }
         });
-        general_switch.setChecked(sharedPrefs.getBoolean(GENERAL_SETTING,true));
+        general_switch
+                .setChecked(settings.isNotifSettingsSelected(Settings.NotifOption.GENERAL));
 
         sports_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = getSharedPreferences(NOTIF_SETTING, MODE_PRIVATE).edit();
-                editor.putBoolean(SPORTS_SETTING,isChecked).apply();
+                settings.updateNotifSettings(Settings.NotifOption.SPORTS, isChecked, true);
             }
         });
-        sports_switch.setChecked(sharedPrefs.getBoolean(SPORTS_SETTING,true));
+        sports_switch
+                .setChecked(settings.isNotifSettingsSelected(Settings.NotifOption.SPORTS));
 
         asb_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = getSharedPreferences(NOTIF_SETTING, MODE_PRIVATE).edit();
-                editor.putBoolean(ASB_SETTING,isChecked).apply();
+                settings.updateNotifSettings(Settings.NotifOption.ASB, isChecked, true);
             }
         });
-        asb_switch.setChecked(sharedPrefs.getBoolean(ASB_SETTING,true));
+        asb_switch
+                .setChecked(settings.isNotifSettingsSelected(Settings.NotifOption.ASB));
 
         district_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = getSharedPreferences(NOTIF_SETTING, MODE_PRIVATE).edit();
-                editor.putBoolean(DISTRICT_SETTING,isChecked).apply();
+                settings.updateNotifSettings(Settings.NotifOption.DISTRICT, isChecked, true);
             }
         });
-        district_switch.setChecked(sharedPrefs.getBoolean(DISTRICT_SETTING,true));
+        district_switch
+                .setChecked(settings.isNotifSettingsSelected(Settings.NotifOption.DISTRICT));
 
         bulletin_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = getSharedPreferences(NOTIF_SETTING, MODE_PRIVATE).edit();
-                editor.putBoolean(BULLETIN_SETTING,isChecked).apply();
+                settings.updateNotifSettings(Settings.NotifOption.BULLETIN, isChecked, true);
             }
         });
-        bulletin_switch.setChecked(sharedPrefs.getBoolean(BULLETIN_SETTING,true));
+        bulletin_switch
+                .setChecked(settings.isNotifSettingsSelected(Settings.NotifOption.BULLETIN));
     }
 }

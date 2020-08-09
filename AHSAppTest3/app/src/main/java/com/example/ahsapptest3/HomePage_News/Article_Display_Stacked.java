@@ -2,6 +2,7 @@ package com.example.ahsapptest3.HomePage_News;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,17 +97,27 @@ public class Article_Display_Stacked extends Fragment {
                         );
 
                 // set title
-                Helper.setText_toView((TextView) inflated[i].findViewById(R.id.article_display__title_Text),articles[i].getTitle());
+                ((TextView) inflated[i].findViewById(R.id.article_display__title_Text)).setText(articles[i].getTitle());
 
                 // set summary/description
                 Helper.setHtmlParsedText_toView((TextView) inflated[i].findViewById(R.id.article_display__summary_Text), articles[i].getStory());
                 Helper.setArticleListener_toView(inflated[i].findViewById(R.id.article_display__summary_Text), articles[i]);
 
                 // setImage
-                Helper.setImageFromUrl_CenterCrop(
-                        (ImageView) inflated[i].findViewById(R.id.article_display__imageView),
-                        articles[i].getImagePaths()[0],
-                        false);
+                final String[] imagePaths = articles[i].getImagePaths();
+                final ImageView imageView = inflated[i].findViewById(R.id.article_display__imageView);
+                if(imagePaths.length > 0)
+                    new Handler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Helper.setImageFromUrl_CenterCrop(
+                                    imageView,
+                                    imagePaths[0],
+                                    false);
+                        }
+                    });
+                else
+                    imageView.setImageResource(R.drawable.image_bg);
             }
         }
     }

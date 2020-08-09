@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name = "EveryPage_Side_Padding">20dp</dimen>
-    <dimen name = "EveryPage_Side_Padding_Half">10dp</dimen>
-    <dimen name = "EveryPage_Side_Padding_Quarter">5dp</dimen>
+    <dimen name = "Full_Padding">20dp</dimen>
+    <dimen name = "Half_Padding">10dp</dimen>
+    <dimen name = "Quarter_Padding">5dp</dimen>
+    <dimen name = "Double_Padding">40dp</dimen>
 
     <dimen name = "Nav_Button_SideLength">45dp</dimen>
 
@@ -13,19 +14,11 @@
     <dimen name = "Article_Display_bookmarked_btn_size_homepage">40dp</dimen> <!--Weird interactions with constraintlayout on homepage-->
     <dimen name = "Article_Display_bookmarked_btn_padding_homepage">5dp</dimen>
 
-    <dimen name = "Article_Display_middle_spacing">5dp</dimen> <!-- Multiply by 2 to get the actual spacing, since it is applied on both sides-->
-
-    <dimen name = "Bulletin_Image_Size">20dp</dimen>
-    <dimen name = "Bulletin_Item_Inside_Margin">5dp</dimen>
-    <dimen name = "Bulletin_Icon_Selector_Size">50dp</dimen>
-    <dimen name = "Bulletin_Icon_Selector_spacing">30dp</dimen>
-    <dimen name = "Bulletin_Selector_padding">10dp</dimen>
-    <dimen name = "Bulletin_Margin">10dp</dimen>
-
-    <dimen name = "Notif_rounded_radius">10dp</dimen>
+    <dimen name = "CardView_Height">3dp</dimen>
 
     <dimen name = "Selector_Dot_Radius_unselected">4dp</dimen>
     <dimen name = "Selector_Dot_Radius_selected">4dp</dimen>
+    <dimen name = "ExtraSmall_Dot_Radius">3dp</dimen>
 
     <dimen name = "Rounded_Background_Radius">10dp</dimen>
     <dimen name = "SmallRound_BG_Radius">5dp</dimen>

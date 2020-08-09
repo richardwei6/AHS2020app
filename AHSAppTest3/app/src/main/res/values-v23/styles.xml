@@ -7,6 +7,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark
         </item> <!--The color of the top bar thingy on your phone-->
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

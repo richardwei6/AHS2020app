@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,41 +7,74 @@
     android:orientation="vertical"
     tools:context=".Setting_Activities.Terms_And_Agreements_Activity">
 
-    <LinearLayout
-        android:id="@+id/terms_headerLinearLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/Crimson_992938__HOME_BULLETIN_ARTICLE_NOTIF"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/EveryPage_Side_Padding_Half"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        android:paddingRight="@dimen/EveryPage_Side_Padding_Half">
-
-        <ImageButton
-            android:id="@+id/terms_header_back"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:adjustViewBounds="false"
-            android:background="?attr/selectableItemBackground"
-
-
-            android:padding="@dimen/EveryPage_Side_Padding_Half"
-
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/arrow_back" />
-
-        <TextView
-            android:id="@+id/terms_header_text"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/sf_pro_compactbold"
-            android:paddingTop="@dimen/EveryPage_Side_Padding_Half"
-            android:paddingBottom="@dimen/EveryPage_Side_Padding_Half"
-            android:text="TERMS AND AGREEMENTS"
-            android:textColor="@color/White_FFFFFF__HOME_BULLETIN_ARTICLE_NOTIF"
-            android:textSize="18sp" />
-    </LinearLayout>
+            android:orientation="vertical">
 
-</LinearLayout>
+            <LinearLayout
+                android:id="@+id/terms_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/White"
+                android:elevation="3dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/terms_back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:paddingLeft="@dimen/Full_Padding"
+                    android:paddingRight="@dimen/Full_Padding"
+                    android:scaleType="centerInside"
+                    android:tint="@color/GraniteRed_7E6E6A"
+                    app:srcCompat="@drawable/arrow_back" />
+
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    android:id="@+id/terms_titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sf_pro_semibold"
+                    android:paddingStart="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="@dimen/Half_Padding"
+                    android:paddingEnd="@dimen/Half_Padding"
+                    android:paddingRight="@dimen/Half_Padding"
+                    android:paddingBottom="@dimen/Half_Padding"
+                    android:text="Terms and Agreements"
+                    android:textColor="@color/DarkCrimson_1A0303"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Half_Padding"
+                app:cardElevation="@dimen/CardView_Height"
+                app:cardBackgroundColor="@color/White"
+                app:cardCornerRadius="@dimen/SmallRound_BG_Radius"
+                app:contentPadding="@dimen/Half_Padding">
+
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    android:id="@+id/terms_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="TextView"
+                    android:textColor="@color/GraniteRed_7E6E6A"
+                    android:background="?attr/selectableItemBackground"/>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

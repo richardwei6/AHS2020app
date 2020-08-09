@@ -37,7 +37,7 @@ public class MediaYoutubeFragment extends YouTubePlayerSupportFragmentX
     }
 
     public interface MediaFullScreenListener{
-        void startFullScreen();
+        void onFullScreen(boolean fullScreen);
     }
 
     public interface InitializeListener{
@@ -110,6 +110,7 @@ public class MediaYoutubeFragment extends YouTubePlayerSupportFragmentX
     public void onFullscreen(boolean fullscreen) {
         /*mPlayer.setFullscreen(false);
         fullScreenListener.startFullScreen();*/
+        fullScreenListener.onFullScreen(fullscreen);
     }
 
 }
