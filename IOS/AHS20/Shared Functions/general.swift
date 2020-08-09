@@ -348,7 +348,7 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
                     while let article = enumerator.nextObject() as? DataSnapshot{ // each article
                         let enumerator = article.children;
                         var singleArticle = bulletinArticleData();
-                        singleArticle.articleID = article.key as! String;
+                        singleArticle.articleID = article.key;
                         while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                             
                             if (articleContent.key == "articleBody"){
@@ -392,6 +392,26 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
             }
         }
     }
+}
+
+func updateSubscriptionNotifs(){
+    let topics = ["sports", "asb", "district", "bulletin"];
+    if (selectedNotifications[0] == true){
+        for topic in topics{
+            Messaging.messaging().subscribe(toTopic: topic);
+        }
+    }
+    else{
+        for i in 1...4{
+            if (selectedNotifications[i] == true){
+                Messaging.messaging().subscribe(toTopic: topics[i-1]);
+            }
+            else{
+                Messaging.messaging().unsubscribe(fromTopic: topics[i-1]);
+            }
+        }
+    }
+    Messaging.messaging().subscribe(toTopic: "mandatory");
 }
 
 let mainThemeColor = makeColor(r: 159, g: 12, b: 12);

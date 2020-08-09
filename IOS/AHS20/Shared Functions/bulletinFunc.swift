@@ -24,9 +24,6 @@ func loadBullPref(){
             print("error decoding");
         }
     }
-    else{
-        print("no saved bulletin read found");
-    }
 }
 
 func saveBullPref(){

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="er0-Fk-1NM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="er0-Fk-1NM">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -36,7 +36,7 @@
                                         <rect key="frame" x="0.0" y="-1" width="414" height="1339"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Featured" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XT-od-jzj">
-                                                <rect key="frame" x="19.999999999999993" y="10.000000000000002" width="108.33333333333331" height="27.666666666666671"/>
+                                                <rect key="frame" x="19.999999999999993" y="10.000000000000002" width="95.333333333333314" height="27.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -49,8 +49,8 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="hKM-UH-tIK"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="6HT-cQ-dII"/>
                                             </scrollView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YX-jQ-HJz">
-                                                <rect key="frame" x="20.000000000000007" y="358.66666666666669" width="107.66666666666669" height="26"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YX-jQ-HJz">
+                                                <rect key="frame" x="19.999999999999993" y="358.66666666666669" width="114.33333333333331" height="26"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pageControl>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYQ-kZ-sr8" userLabel="loadingASBView">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYQ-kZ-sr8" userLabel="loadingGeneralView">
                                                 <rect key="frame" x="0.0" y="347" width="414" height="325"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q0j-7K-QnK">
@@ -296,6 +296,12 @@
                                                     <constraint firstItem="Q0j-7K-QnK" firstAttribute="leading" secondItem="YYQ-kZ-sr8" secondAttribute="leading" constant="19" id="zle-DO-1Bu"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7St-u3-tL8">
+                                                <rect key="frame" x="21" y="684.66666666666663" width="125" height="25"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2a-Ch-t7Y">
                                                 <rect key="frame" x="19" y="718" width="376" height="240"/>
                                                 <constraints>
@@ -304,12 +310,6 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="IOz-6r-x1z"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Rmm-pj-VGU"/>
                                             </scrollView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7St-u3-tL8">
-                                                <rect key="frame" x="21" y="684.66666666666663" width="142" height="25"/>
-                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iD6-UZ-DlH">
                                                 <rect key="frame" x="188" y="961.66666666666663" width="39" height="35.333333333333371"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -543,8 +543,8 @@
                                                     <constraint firstItem="Ob0-fb-L5o" firstAttribute="leading" secondItem="alZ-v7-9ZZ" secondAttribute="leading" constant="25" id="sRn-RM-PFW"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sports News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BR2-Jb-vl0">
-                                                <rect key="frame" x="22" y="1009.6666666666666" width="134.33333333333334" height="23.333333333333371"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BR2-Jb-vl0">
+                                                <rect key="frame" x="21.999999999999993" y="1009.6666666666666" width="100.33333333333331" height="23.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -565,12 +565,12 @@
                                                 <color key="currentPageIndicatorTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </pageControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Featured Articles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aJ-vf-lyx">
-                                                <rect key="frame" x="98.333333333333329" y="176.66666666666666" width="217.33333333333337" height="24.666666666666657"/>
+                                                <rect key="frame" x="111" y="176.66666666666666" width="192" height="24.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HwD-Wo-mKv" userLabel="loadingSportsNews">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HwD-Wo-mKv" userLabel="loadingASBNews">
                                                 <rect key="frame" x="0.0" y="997" width="414" height="325"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qj6-ys-JLd">
@@ -817,6 +817,7 @@
                                             <constraint firstItem="HwD-Wo-mKv" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" id="0hs-Xb-ZPU"/>
                                             <constraint firstItem="HwD-Wo-mKv" firstAttribute="top" secondItem="iD6-UZ-DlH" secondAttribute="bottom" id="0rl-Rm-DMV"/>
                                             <constraint firstItem="Q2a-Ch-t7Y" firstAttribute="top" secondItem="7St-u3-tL8" secondAttribute="bottom" constant="9" id="2DL-gA-Dmv"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BR2-Jb-vl0" secondAttribute="trailing" constant="20" symbolic="YES" id="3Kv-Ei-icr"/>
                                             <constraint firstAttribute="trailing" secondItem="hOl-JA-13r" secondAttribute="trailing" id="70k-ju-Lc2"/>
                                             <constraint firstAttribute="trailing" secondItem="alZ-v7-9ZZ" secondAttribute="trailing" id="7Rd-YP-Emx"/>
                                             <constraint firstAttribute="trailing" secondItem="YYQ-kZ-sr8" secondAttribute="trailing" id="7r0-Il-0eH"/>
@@ -826,6 +827,7 @@
                                             <constraint firstItem="7St-u3-tL8" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="21" id="8h6-8c-Bab"/>
                                             <constraint firstItem="alZ-v7-9ZZ" firstAttribute="top" secondItem="hFL-pT-fxA" secondAttribute="bottom" id="8mS-Hk-iZp"/>
                                             <constraint firstItem="qZM-au-9Gd" firstAttribute="top" secondItem="alZ-v7-9ZZ" secondAttribute="bottom" id="956-s1-FD8"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7St-u3-tL8" secondAttribute="trailing" constant="20" symbolic="YES" id="9IB-tX-iqW"/>
                                             <constraint firstItem="vrP-oM-pep" firstAttribute="top" secondItem="BR2-Jb-vl0" secondAttribute="bottom" constant="9" id="AhT-HU-E25"/>
                                             <constraint firstItem="Vgb-UA-GmW" firstAttribute="top" secondItem="5XT-od-jzj" secondAttribute="bottom" constant="8.3300000000000001" id="Ao0-WD-gDW"/>
                                             <constraint firstItem="4YX-jQ-HJz" firstAttribute="leading" secondItem="38h-M3-Qey" secondAttribute="leading" constant="20" id="BP2-qK-tsG"/>
@@ -864,6 +866,8 @@
                                             <constraint firstAttribute="trailing" secondItem="HwD-Wo-mKv" secondAttribute="trailing" id="grF-BH-9ZC"/>
                                             <constraint firstItem="4YX-jQ-HJz" firstAttribute="top" secondItem="5XT-od-jzj" secondAttribute="bottom" constant="321" id="j5s-xc-5Sb"/>
                                             <constraint firstItem="YYQ-kZ-sr8" firstAttribute="top" secondItem="IgX-UF-qaB" secondAttribute="bottom" id="jbe-Wg-Dkd"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4YX-jQ-HJz" secondAttribute="trailing" constant="20" symbolic="YES" id="ki2-UO-LOd"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5XT-od-jzj" secondAttribute="trailing" constant="20" symbolic="YES" id="kuW-A3-GSX"/>
                                             <constraint firstAttribute="trailing" secondItem="iD6-UZ-DlH" secondAttribute="trailing" constant="187" id="l0W-Jg-Ixt"/>
                                             <constraint firstItem="hFL-pT-fxA" firstAttribute="top" secondItem="WnD-gz-8Ls" secondAttribute="bottom" constant="3" id="mNG-qp-Hc4"/>
                                             <constraint firstAttribute="trailing" secondItem="Vgb-UA-GmW" secondAttribute="trailing" id="nvy-H7-2Hr"/>
@@ -906,22 +910,22 @@
                     </view>
                     <size key="freeformSize" width="414" height="1340"/>
                     <connections>
-                        <outlet property="asbLabel" destination="4YX-jQ-HJz" id="XNp-cC-h89"/>
-                        <outlet property="asbNewsPageControl" destination="hFL-pT-fxA" id="ALw-Nm-hhC"/>
-                        <outlet property="asbNewsScrollView" destination="WnD-gz-8Ls" id="lCm-cr-oCj"/>
-                        <outlet property="districtLabel" destination="7St-u3-tL8" id="aBn-Z5-9Xg"/>
-                        <outlet property="districtNewsPageControl" destination="iD6-UZ-DlH" id="DWj-nA-RCV"/>
-                        <outlet property="districtNewsScrollView" destination="Q2a-Ch-t7Y" id="AJ9-NY-Pnx"/>
-                        <outlet property="featuredLabel" destination="5XT-od-jzj" id="zZO-NS-gaf"/>
+                        <outlet property="asbLabel" destination="BR2-Jb-vl0" id="5Mj-lA-DJq"/>
+                        <outlet property="asbNewsPageControl" destination="x8m-5V-ULZ" id="RSX-pQ-kFu"/>
+                        <outlet property="asbNewsScrollView" destination="vrP-oM-pep" id="3ea-Ve-47F"/>
+                        <outlet property="districtLabel" destination="7St-u3-tL8" id="5fu-kB-fHN"/>
+                        <outlet property="districtNewsPageControl" destination="iD6-UZ-DlH" id="bFX-QT-Oe9"/>
+                        <outlet property="districtNewsScrollView" destination="Q2a-Ch-t7Y" id="fx9-SU-meh"/>
+                        <outlet property="featuredLabel" destination="5XT-od-jzj" id="phg-7C-ITP"/>
                         <outlet property="featuredMissingLabel" destination="7aJ-vf-lyx" id="h2y-RD-Tk5"/>
-                        <outlet property="featuredScrollView" destination="Vgb-UA-GmW" id="sSw-jg-caJ"/>
-                        <outlet property="loadingASBView" destination="YYQ-kZ-sr8" id="gi6-HX-ZA7"/>
-                        <outlet property="loadingDistrictView" destination="alZ-v7-9ZZ" id="jH3-Rv-ehk"/>
-                        <outlet property="loadingSportsView" destination="HwD-Wo-mKv" id="IoV-DO-dRY"/>
+                        <outlet property="featuredScrollView" destination="Vgb-UA-GmW" id="6nl-rw-Gpt"/>
+                        <outlet property="generalInfoPageControl" destination="hFL-pT-fxA" id="Rz1-kB-Gcd"/>
+                        <outlet property="generalInfoScrollView" destination="WnD-gz-8Ls" id="Mnn-8F-Y3m"/>
+                        <outlet property="generalLabel" destination="4YX-jQ-HJz" id="kBM-tw-HdW"/>
+                        <outlet property="loadingASBView" destination="HwD-Wo-mKv" id="QLb-Ri-IVx"/>
+                        <outlet property="loadingDistrictView" destination="alZ-v7-9ZZ" id="Yi4-Zo-RGL"/>
+                        <outlet property="loadingGeneralView" destination="YYQ-kZ-sr8" id="gaw-Mb-GJc"/>
                         <outlet property="mainScrollView" destination="Xab-Ha-pr7" id="Jdt-6E-T6h"/>
-                        <outlet property="sportsLabel" destination="BR2-Jb-vl0" id="Cat-Ab-vLb"/>
-                        <outlet property="sportsNewsPageControl" destination="x8m-5V-ULZ" id="3fe-P0-OKC"/>
-                        <outlet property="sportsNewsScrollView" destination="vrP-oM-pep" id="rLq-Pq-mGl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4C-W9-Pl9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -940,6 +944,10 @@
                                 <rect key="frame" x="0.0" y="58" width="414" height="453.33333333333326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gqs-Ri-FfJ" userLabel="shadowView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxG-mm-MkH">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -969,11 +977,11 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Athletics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgT-rI-5cM">
-                                <rect key="frame" x="42" y="13.999999999999998" width="105" height="26.333333333333329"/>
+                                <rect key="frame" x="42" y="13.999999999999998" width="110" height="26.333333333333329"/>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26.329999999999998" id="TNC-pH-q9Y"/>
-                                    <constraint firstAttribute="width" constant="105" id="Ygc-JH-ebd"/>
+                                    <constraint firstAttribute="width" constant="110" id="Ygc-JH-ebd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -992,6 +1000,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Gqs-Ri-FfJ" firstAttribute="top" secondItem="8vf-rb-I3g" secondAttribute="top" id="3pN-B3-KnE"/>
+                            <constraint firstItem="crg-tJ-0rO" firstAttribute="top" secondItem="Gqs-Ri-FfJ" secondAttribute="bottom" id="CVR-Ve-SeD"/>
                             <constraint firstItem="gLJ-tt-5t4" firstAttribute="trailing" secondItem="8vf-rb-I3g" secondAttribute="trailing" constant="-60" id="FZs-eq-22l"/>
                             <constraint firstItem="DgT-rI-5cM" firstAttribute="leading" secondItem="8vf-rb-I3g" secondAttribute="leading" constant="42" id="HnP-5P-zge"/>
                             <constraint firstItem="8vf-rb-I3g" firstAttribute="trailing" secondItem="crg-tJ-0rO" secondAttribute="trailing" id="Nbt-fK-fdP"/>
@@ -1002,9 +1012,11 @@
                             <constraint firstItem="gLJ-tt-5t4" firstAttribute="top" secondItem="8vf-rb-I3g" secondAttribute="top" id="a02-ix-hpf"/>
                             <constraint firstItem="8vf-rb-I3g" firstAttribute="trailing" secondItem="dSA-0F-sUe" secondAttribute="trailing" constant="9" id="qAy-8h-X7j"/>
                             <constraint firstItem="crg-tJ-0rO" firstAttribute="leading" secondItem="8vf-rb-I3g" secondAttribute="leading" id="sxF-2c-bae"/>
+                            <constraint firstItem="Gqs-Ri-FfJ" firstAttribute="leading" secondItem="8vf-rb-I3g" secondAttribute="leading" id="tHe-sA-4kJ"/>
                             <constraint firstItem="crg-tJ-0rO" firstAttribute="top" secondItem="gLJ-tt-5t4" secondAttribute="bottom" id="uSg-89-oJv"/>
                             <constraint firstItem="DgT-rI-5cM" firstAttribute="top" secondItem="8vf-rb-I3g" secondAttribute="top" constant="14" id="uxh-oW-mV8"/>
                             <constraint firstItem="dSA-0F-sUe" firstAttribute="top" secondItem="8vf-rb-I3g" secondAttribute="top" constant="9" id="uzp-sx-CiL"/>
+                            <constraint firstItem="Gqs-Ri-FfJ" firstAttribute="trailing" secondItem="8vf-rb-I3g" secondAttribute="trailing" id="vUb-2A-rC2"/>
                             <constraint firstItem="8vf-rb-I3g" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DgT-rI-5cM" secondAttribute="trailing" symbolic="YES" id="wgt-9v-m1j"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8vf-rb-I3g"/>
@@ -1015,6 +1027,7 @@
                         <outlet property="articleCatagoryLabel" destination="DgT-rI-5cM" id="DR7-CD-fcx"/>
                         <outlet property="bookmarkButton" destination="dSA-0F-sUe" id="NIv-JT-etR"/>
                         <outlet property="mainScrollView" destination="crg-tJ-0rO" id="uOp-ZN-aZo"/>
+                        <outlet property="shadowView" destination="Gqs-Ri-FfJ" id="Yhh-WS-ZFJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3x-Ei-zbE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1129,7 +1142,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gx-G2-ytR">
-                                                <rect key="frame" x="0.0" y="10" width="103.66666666666667" height="30"/>
+                                                <rect key="frame" x="0.0" y="11.333333333333369" width="103.66666666666667" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1138,7 +1151,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQX-ap-fFu">
-                                                <rect key="frame" x="103.66666666666669" y="10" width="103.33333333333331" height="30"/>
+                                                <rect key="frame" x="103.66666666666669" y="11.333333333333369" width="103.33333333333331" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1147,7 +1160,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rd3-Ho-FeZ">
-                                                <rect key="frame" x="206.99999999999997" y="10" width="103.66666666666666" height="30"/>
+                                                <rect key="frame" x="206.99999999999997" y="11.333333333333369" width="103.66666666666666" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1156,7 +1169,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBQ-ay-oxj">
-                                                <rect key="frame" x="310.66666666666669" y="10" width="103.33333333333331" height="30"/>
+                                                <rect key="frame" x="310.66666666666669" y="11.333333333333369" width="103.33333333333331" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1169,10 +1182,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="PBQ-ay-oxj" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="7qR-hD-G32"/>
+                                    <constraint firstItem="7gx-G2-ytR" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="8Fn-3W-foe"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerX" secondItem="HYY-fu-odz" secondAttribute="centerX" id="9hc-cb-8Hd"/>
                                     <constraint firstAttribute="bottom" secondItem="7G2-qF-bJP" secondAttribute="bottom" id="CJO-2E-URD"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerY" secondItem="HYY-fu-odz" secondAttribute="centerY" id="J5E-hc-zGD"/>
+                                    <constraint firstItem="rd3-Ho-FeZ" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="KKo-Tb-PGM"/>
                                     <constraint firstAttribute="width" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="207:25" id="Msx-tQ-eGU"/>
+                                    <constraint firstItem="gQX-ap-fFu" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="XcQ-hP-zAc"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerY" secondItem="HYY-fu-odz" secondAttribute="centerY" id="gFj-iB-rCk"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="top" secondItem="HYY-fu-odz" secondAttribute="top" id="kDT-Kg-Jo3"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" id="kXB-sJ-cAC"/>
@@ -1313,7 +1330,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No saved articles found. Click on the bookmark icon to save an article." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rh-dO-soH">
-                                <rect key="frame" x="10" y="455.33333333333331" width="394" height="89.666666666666686"/>
+                                <rect key="frame" x="10" y="456.33333333333331" width="394" height="87.666666666666686"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1364,32 +1381,32 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Font Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3Y-DQ-RmM">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="81" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="9.9999999999999982" width="84" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="1" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="v7E-F5-6SR">
-                                                    <rect key="frame" x="134.33333333333331" y="6.9999999999999982" width="176.33333333333331" height="30.333333333333329"/>
+                                                    <rect key="frame" x="137.33333333333331" y="6.9999999999999982" width="176.33333333333331" height="30.333333333333329"/>
                                                     <color key="minimumTrackTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <connections>
                                                         <action selector="sliderChange:" destination="AeW-YG-ifG" eventType="valueChanged" id="ZvB-KJ-NMb"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsJ-UV-I8Q">
-                                                    <rect key="frame" x="339.66666666666669" y="9.9999999999999982" width="25.333333333333314" height="24.333333333333329"/>
+                                                    <rect key="frame" x="342.66666666666669" y="9.9999999999999982" width="22.333333333333314" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ED-Pk-sSr">
-                                                    <rect key="frame" x="314.66666666666669" y="3" width="19" height="36.333333333333336"/>
+                                                    <rect key="frame" x="317.66666666666669" y="3" width="19" height="36.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="30"/>
                                                     <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bfd-Ei-Kkb">
-                                                    <rect key="frame" x="118.33333333333333" y="7.9999999999999982" width="11.999999999999986" height="27.333333333333329"/>
+                                                    <rect key="frame" x="121.33333333333333" y="7.9999999999999982" width="11.999999999999986" height="27.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="19"/>
                                                     <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1423,7 +1440,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxT-Fq-XRE">
-                                                    <rect key="frame" x="20.000000000000007" y="9.9999999999999982" width="112.66666666666669" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="9.9999999999999982" width="112" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1476,7 +1493,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wG-AV-dN0">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="203.66666666666666" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="9.9999999999999982" width="206.33333333333334" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1499,8 +1516,8 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ9-e6-CdU">
-                                                    <rect key="frame" x="20" y="8.9999999999999982" width="64.333333333333329" height="24.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ9-e6-CdU">
+                                                    <rect key="frame" x="20" y="8.9999999999999982" width="82.333333333333329" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1524,13 +1541,13 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVp-ib-Cim">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="107" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="9.9999999999999982" width="108" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1L-r3-ObI">
-                                                    <rect key="frame" x="319.33333333333331" y="9.9999999999999982" width="47.666666666666686" height="24.333333333333329"/>
+                                                    <rect key="frame" x="322.33333333333331" y="9.9999999999999982" width="44.666666666666686" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -1584,9 +1601,9 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFK-Rj-RZJ">
-                                <rect key="frame" x="41.999999999999986" y="14" width="216.66666666666663" height="28"/>
+                                <rect key="frame" x="41.999999999999986" y="14" width="249.66666666666663" height="28"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
                                 <color key="textColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1650,8 +1667,8 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Updates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzu-8e-Q6j">
-                                                    <rect key="frame" x="20" y="8.9999999999999982" width="148.33333333333334" height="24.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe to all" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzu-8e-Q6j">
+                                                    <rect key="frame" x="20" y="8.9999999999999982" width="139" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1685,7 +1702,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sports News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbK-bn-l9F">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="113" height="24.333333333333329"/>
+                                                    <rect key="frame" x="19.999999999999993" y="9.9999999999999982" width="115.33333333333331" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1715,7 +1732,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2J-vK-8aa">
-                                                    <rect key="frame" x="19.999999999999993" y="9.9999999999999982" width="92.333333333333314" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20.000000000000007" y="9.9999999999999982" width="95.666666666666686" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1745,7 +1762,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPu-Ev-zLs">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="118" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="9.9999999999999982" width="119" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1837,8 +1854,8 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsF-GI-9Jv">
-                                <rect key="frame" x="42.000000000000014" y="14" width="244.33333333333337" height="28"/>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="24"/>
+                                <rect key="frame" x="42.000000000000014" y="14" width="247.33333333333337" height="28"/>
+                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
                                 <color key="textColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1846,105 +1863,149 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naw-Mp-di2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="4706.666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="6555.666666666667"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ddp-ER-vDU">
-                                                <rect key="frame" x="5" y="0.0" width="404" height="4706.666666666667"/>
-                                                <string key="text">Welcome to Arcadia High Mobile!
+                                                <rect key="frame" x="5" y="0.0" width="404" height="6555.666666666667"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES" staticText="YES"/>
+                                                </accessibility>
+                                                <string key="text">END USER LICENSE AGREEMENT
 
-These terms and conditions outline the rules and regulations for the use of Arcadia High App Dev's Website, located at https://hsappdev.wixsite.com/ahsappdev.
+Last updated August 08, 2020
 
-By accessing this website we assume you accept these terms and conditions. Do not continue to use Arcadia High Mobile if you do not agree to take all of the terms and conditions stated on this page. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Free Terms &amp; Conditions Generator.
 
-The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.
 
-Cookies
-We employ the use of cookies. By accessing Arcadia High Mobile, you agreed to use cookies in agreement with the Arcadia High App Dev's Privacy Policy.
+Arcadia High Mobile App is licensed to You (End-User) by Arcadia High Mobile, located at 180 Campus Dr, Arcadia, California 91006, United States (hereinafter: Licensor), for use only under the terms of this License Agreement.
 
-Most interactive websites use cookies to let us retrieve the user’s details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.
+By downloading the Application from the Apple AppStore, and any update thereto (as permitted by this License Agreement), You indicate that You agree to be bound by all of the terms and conditions of this License Agreement, and that You accept this License Agreement.
 
-License
-Unless otherwise stated, Arcadia High App Dev and/or its licensors own the intellectual property rights for all material on Arcadia High Mobile. All intellectual property rights are reserved. You may access this from Arcadia High Mobile for your own personal use subjected to restrictions set in these terms and conditions.
+The parties of this License Agreement acknowledge that Apple is not a Party to this License Agreement and is not bound by any provisions or obligations with regard to the Application, such as warranty, liability, maintenance and support thereof. Arcadia High Mobile, not Apple, is solely responsible for the licensed Application and the content thereof.
 
-You must not:
+This License Agreement may not provide for usage rules for the Application that are in conflict with the latest https://www.apple.com/legal/internet-services/itunes/us/terms.html. Arcadia High Mobile acknowledges that it had the opportunity to review said terms and this License Agreement is not conflicting with them.
 
-Republish material from Arcadia High Mobile
-Sell, rent or sub-license material from Arcadia High Mobile
-Reproduce, duplicate or copy material from Arcadia High Mobile
-Redistribute content from Arcadia High Mobile
-This Agreement shall begin on the date hereof.
+All rights not expressly granted to You are reserved.
 
-Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. Arcadia High App Dev does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of Arcadia High App Dev,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, Arcadia High App Dev shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.
 
-Arcadia High App Dev reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.
+1. THE APPLICATION
 
-You warrant and represent that:
+Arcadia High Mobile App (hereinafter: Application) is a piece of software created to provide school and district news to students and parents through a mobile application - and customized for Apple mobile devices. It is used to allow student and parents to have convenient access to school news and resources.
 
-You are entitled to post the Comments on our website and have all necessary licenses and consents to do so;
-The Comments do not invade any intellectual property right, including without limitation copyright, patent or trademark of any third party;
-The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material which is an invasion of privacy
-The Comments will not be used to solicit or promote business or custom or present commercial activities or unlawful activity.
-You hereby grant Arcadia High App Dev a non-exclusive license to use, reproduce, edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats or media.
+The Application is not tailored to comply with industry-specific regulations (Health Insurance Portability and Accountability Act (HIPAA), Federal Information Security Management Act (FISMA), etc.), so if your interactions would be subjected to such laws, you may not use this Application. You may not use the Application in a way that would violate the Gramm-Leach-Bliley Act (GLBA).
 
-Hyperlinking to our Content
-The following organizations may link to our Website without prior written approval:
 
-Government agencies;
-Search engines;
-News organizations;
-Online directory distributors may link to our Website in the same manner as they hyperlink to the Websites of other listed businesses; and
-System wide Accredited Businesses except soliciting non-profit organizations, charity shopping malls, and charity fundraising groups which may not hyperlink to our Web site.
-These organizations may link to our home page, to publications or to other Website information so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products and/or services; and (c) fits within the context of the linking party’s site.
+2. SCOPE OF LICENSE
 
-We may consider and approve other link requests from the following types of organizations:
+2.1  You are given a non-transferable, non-exclusive, non-sublicensable license to install and use the Licensed Application on any Apple-branded Products that You (End-User) own or control and as permitted by the Usage Rules set forth in this section and the App Store Terms of Service, with the exception that such licensed Application may be accessed and used by other accounts associated with You (End-User, The Purchaser) via Family Sharing or volume purchasing.
 
-commonly-known consumer and/or business information sources;
-dot.com community sites;
-associations or other groups representing charities;
-online directory distributors;
-internet portals;
-accounting, law and consulting firms; and
-educational institutions and trade associations.
-We will approve link requests from these organizations if we decide that: (a) the link would not make us look unfavorably to ourselves or to our accredited businesses; (b) the organization does not have any negative records with us; (c) the benefit to us from the visibility of the hyperlink compensates the absence of Arcadia High App Dev; and (d) the link is in the context of general resource information.
+2.2  This license will also govern any updates of the Application provided by Licensor that replace, repair, and/or supplement the first Application, unless a separate license is provided for such update in which case the terms of that new license will govern.
 
-These organizations may link to our home page so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products or services; and (c) fits within the context of the linking party’s site.
+2.3  You may not share or make the Application available to third parties (unless to the degree allowed by the Apple Terms and Conditions, and with Arcadia High Mobile's prior written consent), sell, rent, lend, lease or otherwise redistribute the Application.
 
-If you are one of the organizations listed in paragraph 2 above and are interested in linking to our website, you must inform us by sending an e-mail to Arcadia High App Dev. Please include your name, your organization name, contact information as well as the URL of your site, a list of any URLs from which you intend to link to our Website, and a list of the URLs on our site to which you would like to link. Wait 2-3 weeks for a response.
+2.4  You may not reverse engineer, translate, disassemble, integrate, decompile, integrate, remove, modify, combine, create derivative works or updates of, adapt, or attempt to derive the source code of the Application, or any part thereof (except with Arcadia High Mobile's prior written consent).
 
-Approved organizations may hyperlink to our Website as follows:
+2.5  You may not copy (excluding when expressly authorized by this license and the Usage Rules) or alter the Application or portions thereof. You may create and store copies only on devices that You own or control for backup keeping under the terms of this license, the App Store Terms of Service, and any other terms and conditions that apply to the device or software used. You may not remove any intellectual property notices. You acknowledge that no unauthorized third parties may gain access to these copies at any time.
 
-By use of our corporate name; or
-By use of the uniform resource locator being linked to; or
-By use of any other description of our Website being linked to that makes sense within the context and format of content on the linking party’s site.
-No use of Arcadia High App Dev's logo or other artwork will be allowed for linking absent a trademark license agreement.
+2.6  Violations of the obligations mentioned above, as well as the attempt of such infringement, may be subject to prosecution and damages.
 
-iFrames
-Without prior approval and written permission, you may not create frames around our Webpages that alter in any way the visual presentation or appearance of our Website.
+2.7  Licensor reserves the right to modify the terms and conditions of licensing.
 
-Content Liability
-We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.
+2.8  Nothing in this license should be interpreted to restrict third-party terms. When using the Application, You must ensure that You comply with applicable third-party terms and conditions.
 
-Your Privacy
-Please read Privacy Policy
 
-Reservation of Rights
-We reserve the right to request that you remove all links or any particular link to our Website. You approve to immediately remove all links to our Website upon request. We also reserve the right to amen these terms and conditions and it’s linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.
+3. TECHNICAL REQUIREMENTS
 
-Removal of links from our website
-If you find any link on our Website that is offensive for any reason, you are free to contact and inform us any moment. We will consider requests to remove links but we are not obligated to or so or to respond to you directly.
+3.1  The Application requires a firmware version 1.0.0 or higher. Licensor recommends using the latest version of the firmware.
 
-We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up to date.
+3.2  Licensor attempts to keep the Application updated so that it complies with modified/new versions of the firmware and new hardware. You are not granted rights to claim such an update.
 
-Disclaimer
-To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:
+3.3  You acknowledge that it is Your responsibility to confirm and determine that the app end-user device on which You intend to use the Application satisfies the technical  specifications mentioned above.
 
-limit or exclude our or your liability for death or personal injury;
-limit or exclude our or your liability for fraud or fraudulent misrepresentation;
-limit any of our or your liabilities in any way that is not permitted under applicable law; or
-exclude any of our or your liabilities that may not be excluded under applicable law.
-The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.
+3.4  Licensor reserves the right to modify the technical specifications as it sees appropriate at any time.
 
-As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature. Arcadia High Mobile or Arcadia High School app is not affiliated in any to Arcadia Unified School District nor are we sponsored by them. This project is student run. </string>
+
+4. MAINTENANCE AND SUPPORT
+
+4.1  The Licensor is solely responsible for providing any maintenance and support services for this licensed Application. You can reach the Licensor at the email address listed in the App Store Overview for this licensed Application.
+
+4.2  Arcadia High Mobile and the End-User acknowledge that Apple has no obligation whatsoever to furnish any maintenance and support services with respect to the licensed Application.
+
+
+5. LIABILITY
+
+5.1  Licensor's responsibility in the case of violation of obligations and tort shall be limited to intent and gross negligence. Only in case of a breach of essential contractual duties (cardinal obligations), Licensor shall also be liable in case of slight negligence. In any case, liability shall be limited to the foreseeable, contractually typical damages. The limitation mentioned above does not apply to injuries to life, limb, or health.
+
+5.2  Licensor takes no accountability or responsibility for any damages caused due to a breach of duties according to Section 2 of this Agreement. To avoid data loss, You are required to make use of backup functions of the Application to the extent allowed by applicable third-party terms and conditions of use. You are aware that in case of alterations or manipulations of the Application, You will not have access to licensed Application.
+
+
+6. WARRANTY
+
+6.1  Licensor warrants that the Application is free of spyware, trojan horses, viruses, or any other malware at the time of Your download. Licensor warrants that the Application works as described in the user documentation.
+
+6.2  No warranty is provided for the Application that is not executable on the device, that has been unauthorizedly modified, handled inappropriately or culpably, combined or installed with inappropriate hardware or software, used with inappropriate accessories, regardless if by Yourself or by third parties, or if there are any other reasons outside of Arcadia High Mobile's sphere of influence that affect the executability of the Application.
+
+6.3  You are required to inspect the Application immediately after installing it and notify Arcadia High Mobile about issues discovered without delay by e-mail provided in &lt;a href=”https://app.termly.io/dashboard/website/480077/terms-of-service#productclaims”&gt;Product Claims&lt;/a&gt;. The defect report will be taken into consideration and further investigated if it has been mailed within a period of ninety (90) days after discovery.
+
+6.4  If we confirm that the Application is defective, Arcadia High Mobile reserves a choice to remedy the situation either by means of solving the defect or substitute delivery.
+
+6.5  In the event of any failure of the Application to conform to any applicable warranty, You may notify the App-Store-Operator, and Your Application purchase price will be refunded to You. To the maximum extent permitted by applicable law, the App-Store-Operator will have no other warranty obligation whatsoever with respect to the App, and any other losses, claims, damages, liabilities, expenses and costs attributable to any negligence to adhere to any warranty.
+
+6.6  If the user is an entrepreneur, any claim based on faults expires after a statutory period of limitation amounting to twelve (12) months after the Application was made available to the user. The statutory periods of limitation given by law apply for users who are consumers.
+
+7. PRODUCT CLAIMS
+
+Arcadia High Mobile and the End-User acknowledge that Arcadia High Mobile, and not Apple, is responsible for addressing any claims of the End-User or any third party relating to the licensed Application or the End-User’s possession and/or use of that licensed Application, including, but not limited to:
+
+(i) product liability claims;
+
+(ii) any claim that the licensed Application fails to conform to any applicable legal or regulatory requirement; and
+
+(iii) claims arising under consumer protection, privacy, or similar legislation, including in connection with Your Licensed Application’s use of the HealthKit and HomeKit.
+
+
+8. LEGAL COMPLIANCE
+
+You represent and warrant that You are not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a "terrorist supporting" country; and that You are not listed on any U.S. Government list of prohibited or restricted parties.
+
+
+9. CONTACT INFORMATION                  
+
+For general inquiries, complaints, questions or claims concerning the licensed Application, please contact:
+     
+Arcadia High App Development Team
+180 Campus Dr
+Arcadia, CA 91006
+United States
+hsappdev@students.ausd.net
+
+
+10. TERMINATION
+
+The license is valid until terminated by Arcadia High Mobile or by You. Your rights under this license will terminate automatically and without notice from Arcadia High Mobile if You fail to adhere to any term(s) of this license. Upon License termination, You shall stop all use of the Application, and destroy all copies, full or partial, of the Application.
+
+
+11. THIRD-PARTY TERMS OF AGREEMENTS AND BENEFICIARY
+
+Arcadia High Mobile represents and warrants that Arcadia High Mobile will comply with applicable third-party terms of agreement when using licensed Application.
+
+In Accordance with Section 9 of the "Instructions for Minimum Terms of Developer's End-User License Agreement," Apple and Apple's subsidiaries shall be third-party beneficiaries of this End User License Agreement and - upon Your acceptance of the terms and conditions of this license agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce this End User License Agreement against You as a third-party beneficiary thereof.
+
+
+12. INTELLECTUAL PROPERTY RIGHTS
+
+Arcadia High Mobile and the End-User acknowledge that, in the event of any third-party claim that the licensed Application or the End-User's possession and use of that licensed Application infringes on the third party's intellectual property rights, Arcadia High Mobile, and not Apple, will be solely responsible for the investigation, defense, settlement and discharge or any such intellectual property infringement claims.
+
+
+13. APPLICABLE LAW
+
+This license agreement is governed by the laws of the State of California excluding its conflicts of law rules.
+
+
+14. MISCELLANEOUS
+
+14.1  If any of the terms of this agreement should be or become invalid, the validity of the remaining provisions shall not be affected. Invalid terms will be replaced by valid ones formulated in a way that will achieve the primary purpose.
+             
+14.2  Collateral agreements, changes and amendments are only valid if laid down in writing. The preceding clause can only be waived in writing.</string>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1974,6 +2035,9 @@ As long as the website and the information and services on the website are provi
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4I7-DN-mXq">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="exitPage:" destination="rhr-QV-yw3" eventType="touchUpInside" id="e6t-OB-9wp"/>
                                 </connections>
@@ -2004,10 +2068,10 @@ As long as the website and the information and services on the website are provi
             </objects>
             <point key="canvasLocation" x="2692.753623188406" y="2101.630434782609"/>
         </scene>
-        <!--Credits Page-->
+        <!--About Us Page-->
         <scene sceneID="q7S-l9-SU6">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="NZh-8i-WD8" customClass="creditsPage" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="NZh-8i-WD8" customClass="aboutUsPage" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Zw-He-2u0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2031,34 +2095,12 @@ As long as the website and the information and services on the website are provi
                                     <action selector="exitCredits:" destination="NZh-8i-WD8" eventType="touchUpInside" id="XsC-H1-eoS"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLZ-kx-wP3">
-                                <rect key="frame" x="76" y="221" width="263" height="295"/>
-                                <string key="text">Programmers:
-- Alex Dang
-- Kimberly Yu
-- Emily Yu
-- Richard Wei
-
-Graphic Designers:
-- Arina Miyadi
-- Steffi Huang
-
-Content Editors:
-- Danielle Wong
-- Emily Yu
-</string>
-                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="TxJ-sC-QYS" firstAttribute="leading" secondItem="pYJ-uT-Qmt" secondAttribute="leading" id="45s-Cw-gep"/>
-                            <constraint firstItem="wLZ-kx-wP3" firstAttribute="centerX" secondItem="pYJ-uT-Qmt" secondAttribute="centerX" id="COT-iW-fGQ"/>
                             <constraint firstItem="TxJ-sC-QYS" firstAttribute="trailing" secondItem="pYJ-uT-Qmt" secondAttribute="trailing" id="Jdm-eU-adg"/>
                             <constraint firstItem="kPR-pE-SXP" firstAttribute="leading" secondItem="pYJ-uT-Qmt" secondAttribute="leading" constant="15" id="LCa-bH-xXW"/>
-                            <constraint firstItem="wLZ-kx-wP3" firstAttribute="centerY" secondItem="pYJ-uT-Qmt" secondAttribute="centerY" id="UEE-Os-K8m"/>
                             <constraint firstItem="kPR-pE-SXP" firstAttribute="top" secondItem="pYJ-uT-Qmt" secondAttribute="top" constant="15" id="tYV-RO-ATG"/>
                             <constraint firstItem="TxJ-sC-QYS" firstAttribute="top" secondItem="pYJ-uT-Qmt" secondAttribute="top" id="yuB-a8-3Vr"/>
                         </constraints>
@@ -2066,7 +2108,7 @@ Content Editors:
                     </view>
                     <navigationItem key="navigationItem" id="9Vu-ii-UMs"/>
                     <connections>
-                        <outlet property="mainView" destination="4Zw-He-2u0" id="s28-cU-7jx"/>
+                        <outlet property="mainView" destination="4Zw-He-2u0" id="yQf-fU-cX2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXh-hd-Wr4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2081,6 +2123,22 @@ Content Editors:
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No notifications. Please check back later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovN-aC-RAA">
+                                <rect key="frame" x="10" y="470" width="394" height="60"/>
+                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NZN-7j-auO">
+                                <rect key="frame" x="0.0" y="58" width="414" height="922"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="quT-Ls-N2h"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="CS7-96-2oQ"/>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0Z-ns-bKQ" userLabel="shadowView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJJ-OQ-oKj">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2097,18 +2155,6 @@ Content Editors:
                                 <color key="textColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No notifications. Please check back later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovN-aC-RAA">
-                                <rect key="frame" x="10" y="470" width="394" height="60"/>
-                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NZN-7j-auO">
-                                <rect key="frame" x="0.0" y="58" width="414" height="922"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="quT-Ls-N2h"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="CS7-96-2oQ"/>
-                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arG-KJ-TsU">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
                                 <constraints>
@@ -2121,16 +2167,20 @@ Content Editors:
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="H0Z-ns-bKQ" firstAttribute="trailing" secondItem="2sE-1G-zN5" secondAttribute="trailing" id="6f1-GT-WCk"/>
                             <constraint firstItem="NZN-7j-auO" firstAttribute="top" secondItem="arG-KJ-TsU" secondAttribute="bottom" id="Hc9-NE-aho"/>
                             <constraint firstItem="ovN-aC-RAA" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" constant="10" id="IHj-jg-rwO"/>
                             <constraint firstItem="NZN-7j-auO" firstAttribute="width" secondItem="VUm-Fx-egc" secondAttribute="width" id="NFo-pA-H9n"/>
                             <constraint firstItem="MJJ-OQ-oKj" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" constant="15" id="QGJ-3E-GgU"/>
                             <constraint firstItem="2sE-1G-zN5" firstAttribute="trailing" secondItem="NZN-7j-auO" secondAttribute="trailing" id="R1S-jJ-qFo"/>
+                            <constraint firstItem="H0Z-ns-bKQ" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" id="SCS-eC-jGb"/>
+                            <constraint firstItem="NZN-7j-auO" firstAttribute="top" secondItem="H0Z-ns-bKQ" secondAttribute="bottom" id="Wl3-Pc-jpl"/>
                             <constraint firstItem="arG-KJ-TsU" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" id="Y7P-WO-FZx"/>
                             <constraint firstItem="arG-KJ-TsU" firstAttribute="trailing" secondItem="2sE-1G-zN5" secondAttribute="trailing" id="ZTR-ML-yK1"/>
                             <constraint firstItem="MJJ-OQ-oKj" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" constant="15" id="bvx-UK-UTp"/>
                             <constraint firstItem="ovN-aC-RAA" firstAttribute="centerX" secondItem="2sE-1G-zN5" secondAttribute="centerX" id="k0H-Gw-m57"/>
                             <constraint firstItem="4fI-zh-Z0s" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" constant="14" id="lHs-mT-DwJ"/>
+                            <constraint firstItem="H0Z-ns-bKQ" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" id="ljp-Ga-PA5"/>
                             <constraint firstItem="ovN-aC-RAA" firstAttribute="centerY" secondItem="2sE-1G-zN5" secondAttribute="centerY" id="m4Y-eF-2iC"/>
                             <constraint firstItem="NZN-7j-auO" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" constant="58" id="mXf-jD-rAc"/>
                             <constraint firstItem="2sE-1G-zN5" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4fI-zh-Z0s" secondAttribute="trailing" symbolic="YES" id="phP-Rt-p2T"/>
@@ -2146,16 +2196,17 @@ Content Editors:
                     <connections>
                         <outlet property="noNotificationLabel" destination="ovN-aC-RAA" id="fdI-hg-nDs"/>
                         <outlet property="notificationScrollView" destination="NZN-7j-auO" id="Djl-yF-4jT"/>
+                        <outlet property="shadowView" destination="H0Z-ns-bKQ" id="fKP-Nf-HRt"/>
                         <segue destination="08X-4I-yxB" kind="show" identifier="notificationToArticle" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="rU3-UD-e0a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLZ-t6-pdv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1596" y="1779"/>
+            <point key="canvasLocation" x="-1597.1014492753625" y="1778.804347826087"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Diy-5I-FmI"/>
+        <segue reference="rU3-UD-e0a"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

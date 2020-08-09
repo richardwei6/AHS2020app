@@ -12,12 +12,12 @@ import Firebase
 
 
 class CustomTabBarController: UIViewController {
-
+    
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var tabBarView: UIView!
     
-
+    
     @IBOutlet weak var notificationDot: UIView!
     @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet var buttons: [UIButton]!
@@ -41,10 +41,9 @@ class CustomTabBarController: UIViewController {
     
     var selectedIndex: Int = 0;
     
-    let homeTopCornerRadius = CGFloat(15);
-
-    let iconImagePath = ["invertedhome", "invertedbulletin", "invertedbookmark", "invertedsettings"];
-    let iconImagePathInv = ["homeInv", "bulletinInv", "BookmarkInv", "GearInv"];
+    //    let homeTopCornerRadius = CGFloat(15);
+    
+    let iconImagePath = ["home", "bulletin", "saved", "settings"];
     let selectedColor = makeColor(r: 243, g: 149, b: 143);
     
     var articleContentInSegue: articleData?;
@@ -56,25 +55,20 @@ class CustomTabBarController: UIViewController {
     
     @objc func articleSelector(notification: NSNotification){
         articleContentInSegue = notification.userInfo?["articleContent"] as? articleData;
-     //   print("pre segue");
-      //  print(articleContentInSegue)
-        //prepare(for: "articleSegue", sender: articleContentInSegue)
         performSegue(withIdentifier: "articleSegue", sender: nil);
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "articleSegue"){
-        //    print("segue");
-         //   print(articleContentInSegue)
             let vc = segue.destination as! articlePageViewController;
             vc.articleContent = articleContentInSegue;
         }
     }
-   
+    
     func setUpNotifDot(){
         setUpConnection();
         if (internetConnected){
-            print("ok -------- loading articles - notifications");
+            // print("ok -------- loading articles - notifications");
             //print(s);
             totalNotificationList = [notificationData]();
             ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
@@ -83,10 +77,10 @@ class CustomTabBarController: UIViewController {
                     let enumerator = article.children;
                     var singleNotification = notificationData();
                     
-                    singleNotification.messageID =  article.key as! String;
+                    singleNotification.messageID =  article.key;
                     
                     while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-         
+                        
                         if (notificationContent.key == "notificationArticleID"){
                             singleNotification.notificationArticleID  = notificationContent.value as? String;
                         }
@@ -105,51 +99,39 @@ class CustomTabBarController: UIViewController {
                         
                     }
                     totalNotificationList.append(singleNotification);
-                    loadNotifPref();
-                    filterTotalArticles();
-                    unreadNotif = (notificationList[1].count > 0);
+                    filterTotalNotificationArticles();
                     self.notificationDot.isHidden = !unreadNotif;
                 };
             }
-        }
-        else{
-            //setUpAllViews();
-            print("no network detected - notifications");
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
+        
+        
         setUpConnection();
-        print("Connection Established");
-
+        //  print("Connection Established");
+        
         setUpNotifDot();
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         
         
-       // getSavedArticles(); // load default saved articles
-        savedArticleClass.getSavedArticles();
+        // getSavedArticles(); // load default saved articles
+        savedArticleClass.getArticleDictionary();
         
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
         
-        //contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
-        //contentView.topAnchor.constraint(equalTo: view.topAnchor, constant: -1).isActive = true;
         
-        //tabBarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true;
-        
-        
-    
-       // tabBarView.frame.size.height = CGFloat(70);
-        
-
         // set up buttons
         for index in 0..<buttons.count{
             let image = UIImage(named: iconImagePath[index]);
-            //image = image?.maskWithColor(color: UIColor.white);
             buttons[index].setImage(image, for: .normal);
-            buttons[index].tintColor = UIColor.black;
+            buttons[index].tintColor = UIColor.gray;
+            buttons[index].imageView?.contentMode = .scaleAspectFit;
+            buttons[index].contentVerticalAlignment = .fill;
+            buttons[index].contentHorizontalAlignment = .fill;
         }
         
         
@@ -166,17 +148,15 @@ class CustomTabBarController: UIViewController {
         vc.view.frame = contentView.bounds;
         contentView.addSubview(vc.view);
         vc.didMove(toParent: self);
-        topBar.layer.cornerRadius = homeTopCornerRadius;
-        topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
         topBar.layer.shadowColor = UIColor.gray.cgColor;
-        topBar.layer.shadowOpacity = 0.1;
+        topBar.layer.shadowOpacity = 0.08;
         topBar.layer.shadowRadius = 5;
         topBar.layer.shadowOffset = CGSize(width: 0 , height:10);
         tabBarView.layer.shadowColor = UIColor.gray.cgColor;
         tabBarView.layer.shadowOpacity = 0.07;
         tabBarView.layer.shadowRadius = 5;
         tabBarView.layer.shadowOffset = CGSize(width: 0, height: -10);
-        buttons[0].tintColor = mainThemeColor;
+        buttons[0].tintColor = UIColor.black;
         dateLabel.text = getTitleDateAndMonth();
     }
     
@@ -208,19 +188,16 @@ class CustomTabBarController: UIViewController {
             }
         }
         else{
-        // remove prev view controller
-        //buttons[prevIndex].isSelected = false;
-           // buttons[prevIndex].setImage(UIImage(named: iconImagePath[prevIndex]), for: .normal);
-            buttons[prevIndex].tintColor = UIColor.black;
+            // remove prev view controller
+            buttons[prevIndex].tintColor = UIColor.gray;
             
             let prevVC = viewControllers[prevIndex];
             prevVC.willMove(toParent: nil);
             prevVC.view.removeFromSuperview();
             prevVC.removeFromParent();
-        
-        // add current view controller
-       // sender.isSelected = true;
-            sender.tintColor = mainThemeColor;
+            
+            // add current view controller
+            sender.tintColor = UIColor.black;
             //sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
             let vc = viewControllers[selectedIndex];
             addChild(vc);
@@ -230,8 +207,8 @@ class CustomTabBarController: UIViewController {
             
             
             if (sender.tag == 0){
-                topBar.layer.cornerRadius = homeTopCornerRadius;
-                topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
+                //               topBar.layer.cornerRadius = homeTopCornerRadius;
+                //topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
                 topBarHeightContraint.constant = 62;
                 topBar.layer.shadowColor = UIColor.gray.cgColor;
                 homeTopBarContent.isHidden = false;
@@ -258,7 +235,7 @@ class CustomTabBarController: UIViewController {
             }
             
         }
-            
+        
     }
     
     

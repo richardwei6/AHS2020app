@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
-
+    
     @IBOutlet weak var mainScrollView: UIScrollView!
     
     
     @objc func openArticle(sender: CustomUIButton){
-       // print("Button pressed");
-       let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
-       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
+        // print("Button pressed");
+        let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
     }
     
     override func viewDidLoad() {
@@ -28,13 +28,11 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
         let savedArticles =  savedArticleClass.getSavedArticles();
-//        print("got saved");
-//        print(savedArticles.count);
         
         for view in mainScrollView.subviews{
             view.removeFromSuperview();
         }
-                
+        
         if (savedArticles.count != 0){
             let articleHeight = CGFloat(130);
             let articleHorizontalPadding = CGFloat(11);
@@ -53,26 +51,35 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 
                 let articleButton = CustomUIButton(frame: articleFrame);
                 articleButton.backgroundColor = UIColor.white;
-            
-                /*let chevronWidth = CGFloat(22);
-                let chevronFrame = CGRect(x: articleFrame.size.width-chevronWidth-15, y: 50, width: chevronWidth-5, height: chevronWidth);
-                let chevronImage = UIImageView(frame: chevronFrame);
-                chevronImage.image = UIImage(systemName: "chevron.right");
-                chevronImage.tintColor = UIColor.gray;*/
                 
                 var leftEdge = CGFloat(0);
+                var rightEdge = CGFloat(0);
+                
+                let chevronWidth = CGFloat(22);
+                let chevronFrame = CGRect(x: articleFrame.size.width-chevronWidth-3, y: 50, width: chevronWidth-5, height: chevronWidth);
+                let chevronImage = UIImageView(frame: chevronFrame);
+                chevronImage.image = UIImage(systemName: "chevron.right");
+                chevronImage.tintColor = UIColor.gray;
+                rightEdge += 32;
+                
+                let leftPadding = CGFloat(6);
                 
                 if (savedArticles[aIndex].articleImages?.count ?? 0 > 0){
-                    let imageViewFrame = CGRect(x: 0, y: 0, width: 100, height: 130);
+                    let imageViewFrame = CGRect(x: leftPadding, y: 8, width: 150-(2*leftPadding), height: articleFrame.size.height - 16);
                     let imageView = UIImageView(frame: imageViewFrame);
                     imageView.imgFromURL(sURL: savedArticles[aIndex].articleImages?[0] ?? "");
+                    imageView.backgroundColor = UIColor.lightGray;
                     imageView.contentMode = .scaleAspectFill;
-                    leftEdge += imageViewFrame.size.width;
                     imageView.clipsToBounds = true;
+                    imageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 5);
                     articleButton.addSubview(imageView);
+                    leftEdge += imageViewFrame.size.width + 2 * leftPadding;
+                }
+                else{
+                    leftEdge += leftPadding + 2;
                 }
                 
-                let articleCatagoryFrame = CGRect(x: leftEdge + 10, y: 8, width: 65, height: 20);
+                let articleCatagoryFrame = CGRect(x: leftEdge + 1, y: 8, width: 65, height: 20);
                 let articleCatagory = UILabel(frame: articleCatagoryFrame);
                 articleCatagory.backgroundColor = mainThemeColor;
                 articleCatagory.text = savedArticles[aIndex].articleCatagory;
@@ -81,14 +88,13 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 articleCatagory.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
                 articleCatagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                 
-                let articleTitleFrame = CGRect(x: leftEdge + 10, y: 30, width: articleFrame.size.width-35-leftEdge, height: 30);
+                let articleTitleFrame = CGRect(x: leftEdge + 1, y: 30, width: articleFrame.size.width-rightEdge-leftEdge, height: 30);
                 let articleTitle = UILabel(frame: articleTitleFrame);
                 articleTitle.text = savedArticles[aIndex].articleTitle;
                 articleTitle.contentMode = .left;
-                //articleTitle.backgroundColor = UIColor.gray;
                 articleTitle.font = UIFont(name: "SFProDisplay-Semibold", size: 18);
                 
-                let articleBodyFrame = CGRect(x: leftEdge + 10, y: 50, width: articleFrame.size.width-35-leftEdge, height: articleFrame.size.height - 55);
+                let articleBodyFrame = CGRect(x: leftEdge + 1, y: 50, width: articleFrame.size.width-rightEdge-leftEdge, height: articleFrame.size.height - 55);
                 let articleBody = UILabel(frame: articleBodyFrame);
                 articleBody.text = (savedArticles[aIndex].hasHTML == true ? parseHTML(s: savedArticles[aIndex].articleBody ?? "").string : savedArticles[aIndex].articleBody);
                 articleBody.numberOfLines = 3;
@@ -99,12 +105,11 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 let timeStampFrame = CGRect(x: articleFrame.size.width - 10 - timeStampWidth, y: 8, width: timeStampWidth, height: 20);
                 let timeStamp = UILabel(frame: timeStampFrame);
                 timeStamp.text = epochClass.epochToString(epoch: savedArticles[aIndex].articleUnixEpoch ?? -1);
-                //timeStamp.text = "12 months ago";
                 timeStamp.textAlignment = .right;
                 timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 12);
                 timeStamp.textColor = UIColor.darkGray;
                 
-                //articleButton.addSubview(chevronImage);
+                articleButton.addSubview(chevronImage);
                 articleButton.addSubview(timeStamp);
                 articleButton.addSubview(articleCatagory);
                 articleButton.addSubview(articleTitle);
@@ -122,7 +127,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
             }
             mainScrollView.contentSize = CGSize(width: articleFrame.size.width, height: 2*articleVerticalPadding+(articleFrame.size.height+articleVerticalPadding) * CGFloat(savedArticles.count));
             mainScrollView.delegate = self;
- 
+            
         }
         else{
             mainScrollView.isHidden = true;

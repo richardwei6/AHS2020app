@@ -12,6 +12,9 @@
 - sharedFunc.swift includes the shared functions/classes between all swift files. You can access any of theses functions from any swift file
 - CustomUIButton is a custom class that I created that is an extension of the regular UIButton class. The main different to this class is that there are extra data types that allow you allow you to pass data to a ".addTarget" @objc function that you normally wouldn't be able to do. The data types can be found in sharedFunc.swift
 */
+
+//SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
+
 import UIKit
 import AudioToolbox
 import Firebase
@@ -21,33 +24,25 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	// link UI elements to swift via outlets
 	
-	//@IBOutlet weak var tabBar: UITabBar!
-	/*@IBOutlet weak var featuredScrollView: UIScrollView!
-	@IBOutlet weak var featuredPageControl: UIPageControl!
-	@IBOutlet weak var asbNewsScrollView: UIScrollView!
-	@IBOutlet weak var asbNewsPageControl: UIPageControl!
-	@IBOutlet weak var sportsNewsScrollView: UIScrollView!
-	@IBOutlet weak var sportsNewsPageControl: UIPageControl!
-	@IBOutlet weak var districtNewsScrollView: UIScrollView!
-	@IBOutlet weak var districtNewsPageControl: UIPageControl!*/
 	@IBOutlet weak var mainScrollView: UIScrollView!
-	@IBOutlet weak var featuredScrollView: UIScrollView!
-	@IBOutlet weak var asbNewsScrollView: UIScrollView!
-	@IBOutlet weak var asbNewsPageControl: UIPageControl!
-	@IBOutlet weak var sportsNewsScrollView: UIScrollView!
-	@IBOutlet weak var sportsNewsPageControl: UIPageControl!
-	@IBOutlet weak var districtNewsScrollView: UIScrollView!
-	@IBOutlet weak var districtNewsPageControl: UIPageControl!
-	
-	@IBOutlet weak var loadingASBView: UIView!
-	@IBOutlet weak var loadingDistrictView: UIView!
-	@IBOutlet weak var loadingSportsView: UIView!
 	
 	@IBOutlet weak var featuredLabel: UILabel!
-	@IBOutlet weak var asbLabel: UILabel!
-	@IBOutlet weak var sportsLabel: UILabel!
-	@IBOutlet weak var districtLabel: UILabel!
+	@IBOutlet weak var featuredScrollView: UIScrollView!
 	
+	@IBOutlet weak var generalLabel: UILabel!
+	@IBOutlet weak var generalInfoScrollView: UIScrollView!
+	@IBOutlet weak var generalInfoPageControl: UIPageControl!
+	@IBOutlet weak var loadingGeneralView: UIView!
+
+	@IBOutlet weak var districtLabel: UILabel!
+	@IBOutlet weak var districtNewsScrollView: UIScrollView!
+	@IBOutlet weak var districtNewsPageControl: UIPageControl!
+	@IBOutlet weak var loadingDistrictView: UIView!
+	
+	@IBOutlet weak var asbLabel: UILabel!
+	@IBOutlet weak var asbNewsScrollView: UIScrollView!
+	@IBOutlet weak var asbNewsPageControl: UIPageControl!
+	@IBOutlet weak var loadingASBView: UIView!
 	
 	
 	@IBOutlet weak var featuredMissingLabel: UILabel!
@@ -65,8 +60,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	var featuredFrame = CGRect(x:0,y:0,width:0,height:0);
 	var asbNewsSize = 1;
 	var asbNewsFrame = CGRect(x:0,y:0,width:0,height:0);
-	var sportsNewsSize = 1;
-	var sportsNewsFrame = CGRect(x:0,y:0,width:0,height:0);
+	var	generalInfoSize = 1;
+	var generalInfoFrame = CGRect(x:0,y:0,width:0,height:0);
 	var districtNewsSize = 1;
 	var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	
@@ -76,46 +71,39 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	func getHomeArticleData(){
 		setUpConnection();
 		if (internetConnected){
-			print("ok -------- loading articles - home");
 			featuredArticles = [articleData]();
 			homeArticleList = [[articleData]](repeating: [articleData](), count: 3);
 			
 			for i in 0...2{
 				var s: String; // path inside homepage
 				switch i {
-				case 0: // asb
-					s = "asb";
+				case 0: // general info
+					s = "General_Info";
 					break;
-				case 1: // sports
-					s = "sports";
+				case 1: // district
+					s = "District";
 					break;
-				case 2: // district
-					s = "district";
+				case 2: // asb
+					s = "ASB";
 					break;
 				default:
 					s = "";
 					break;
 				}
 				
-				//print(s);
 				ref.child("homepage").child(s).observeSingleEvent(of: .value) { (snapshot) in
-					//print(s);
-					
-					//print(snapshot.childrenCount)
 					let enumerator = snapshot.children;
 					var temp = [articleData](); // temporary array
 					while let article = enumerator.nextObject() as? DataSnapshot{ // each article
-						//print(article);
-						
 						
 						let enumerator = article.children;
 						var singleArticle = articleData();
 						
-						singleArticle.articleID = article.key as! String;
+						singleArticle.articleID = article.key;
 						
 						
 						while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-						
+							
 							
 							if (articleContent.key == "articleAuthor"){
 								singleArticle.articleAuthor = articleContent.value as? String;
@@ -133,7 +121,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 								while let image = imageIt.nextObject() as? DataSnapshot{
 									tempImage.append(image.value as! String);
 								}
-								//print(tempImage)
 								singleArticle.articleImages = tempImage;
 							}
 							else if (articleContent.key == "articleVideoIDs"){
@@ -157,14 +144,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 							
 							
 						}
-						// print("append to main")
-						// print(temp.count);
-						//print(singleArticle.articleTitle);
-						//print(singleArticle.articleImages);
-						singleArticle.articleCatagory = s.prefix(1).capitalized + s.dropFirst();
-						if (singleArticle.articleCatagory == "Asb"){
-							singleArticle.articleCatagory = "ASB";
-						}
+						singleArticle.articleCatagory = i == 0 ? "General Info" : s;
 						temp.append(singleArticle);
 						//print(singleArticle.isFeatured);
 						if (singleArticle.isFeatured == true){
@@ -173,7 +153,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					}
 					self.loadingASBView.isHidden = true;
 					self.loadingDistrictView.isHidden = true;
-					self.loadingSportsView.isHidden = true;
+					self.loadingGeneralView.isHidden = true;
 					homeArticleList[i] = temp;
 					self.setUpAllViews();
 					self.refreshControl.endRefreshing();
@@ -181,12 +161,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			}
 		}
 		else{
-			//setUpAllViews();
-			print("no network detected - home");
-			featuredLabel.text = "NO Connection";
-			asbLabel.text = "NO Connection";
-			sportsLabel.text = "NO Connection";
-			districtLabel.text = "NO Connection";
+			featuredLabel.text = "No Connection";
 			let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
 			infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
 				self.refreshControl.endRefreshing();
@@ -210,11 +185,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
 		NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
 	}
-
+	
 	
 	@objc func bookmarkCurrentArticle(sender: CustomUIButton){
-		//print("bookmark - \(savedArticleClass.isSavedCurrentArticle(articleID: sender.articleCompleteData.articleID!))")
-		//print("Bookmark Button - \(sender.articleCompleteData)");
 		if (savedArticleClass.isSavedCurrentArticle(articleID: sender.articleCompleteData.articleID!) == false){
 			sender.tintColor = mainThemeColor;
 			savedArticleClass.saveCurrArticle(articleID: sender.articleCompleteData.articleID!, article: sender.articleCompleteData);
@@ -245,7 +218,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			articleImageView.contentMode = .scaleAspectFill;
 		}
 		articleImageView.backgroundColor = UIColor.gray;
-	    articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
+		articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
 		
 		let spacing = CGFloat(10);
 		
@@ -254,7 +227,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleTitle.text = articleSingle.articleTitle ?? "";
 		articleTitle.textAlignment = .left;
 		articleTitle.font = UIFont(name: "SFProDisplay-Semibold", size: 18);
-	//	articleTitle.lineBreakMode = .byWordWrapping;
 		articleTitle.numberOfLines = 0;
 		
 		var text = "";
@@ -275,19 +247,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleBody.isScrollEnabled = false;
 		articleBody.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0);
 		articleBody.textContainer.lineBreakMode = .byTruncatingTail;
-		//articleBody.backgroundColor = UIColor.gray;
 		
-		/*let articleBodyFrame = CGRect(x: articleImageViewFrame.size.width + spacing, y: articleTitleFrame.maxY, width: articleTextWidth-spacing, height: mainArticleView.frame.height - articleTitleFrame.size.height);
-		let articleBody = UILabel(frame: articleBodyFrame);
-		if (articleSingle.hasHTML){
-			articleBody.text = parseHTML(s: articleSingle.articleBody ?? "").string;
-		}
-		else{
-			articleBody.text = (articleSingle.articleBody ?? "");
-		}
-		articleBody.textAlignment = .left;
-		articleBody.font = UIFont(name: "SFProDisplay-Regular", size: 14);
-		articleBody.numberOfLines = 0;*/
 		
 		let timeStampText = epochClass.epochToString(epoch: articleSingle.articleUnixEpoch ?? -1);
 		let timeStampFrame = CGRect(x: 7, y: height - 25, width: timeStampText.getWidth(withConstrainedHeight: 15, font: UIFont(name: "SFProDisplay-Semibold", size: 8)!) + 10, height: 15);
@@ -334,38 +294,22 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	func setUpAllViews(){
 		
-		//	print("home");
-		//	print(homeArticleList.count);
 		setUpConnection();
 		if (internetConnected && (homeArticleList[0].count > 0 || homeArticleList[1].count > 0 || homeArticleList[2].count > 0)){
 			
 			featuredLabel.text = "Featured";
 			asbLabel.text = "ASB News";
-			sportsLabel.text = "Sports News";
+			generalLabel.text = "General Info";
 			districtLabel.text = "District News";
 			
-			//print("home");
-			//print(homeArticleList)
-			let asbArticlePairs = arrayToPairs(a: homeArticleList[0]);
-			let sportsArticlePairs = arrayToPairs(a: homeArticleList[1]);
-			let districtArticlePairs = arrayToPairs(a: homeArticleList[2]);
+			let generalInfoArticlePairs = arrayToPairs(a: homeArticleList[0]);
+			let districtArticlePairs = arrayToPairs(a: homeArticleList[1]);
+			let asbArticlePairs = arrayToPairs(a: homeArticleList[2]);
 			featuredSize = featuredArticles.count;
 			asbNewsSize = asbArticlePairs.count;
-			sportsNewsSize = sportsArticlePairs.count;
+			generalInfoSize = generalInfoArticlePairs.count;
 			districtNewsSize = districtArticlePairs.count;
-			/*print(asbArticlePairs);
-			print(sportsArticlePairs);
-			print(districtArticlePairs);
-			print("home")
-			print(featuredSize);
-			print(asbNewsSize);
-			print(sportsNewsSize);
-			print(districtNewsSize);*/
 			
-			//let bookMarkBackground = makeColor(r: 165, g: 165, b: 165);
-			
-			
-			//let articleDarkGreyBackground = makeColor(r: 143, g: 142, b: 142);
 			// scrollview variables
 			let scrollViewHorizontalConstraints = CGFloat(38);
 			
@@ -377,7 +321,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			for view in asbNewsScrollView.subviews{
 				view.removeFromSuperview();
 			}
-			for view in sportsNewsScrollView.subviews{
+			for view in generalInfoScrollView.subviews{
 				view.removeFromSuperview();
 			}
 			for view in districtNewsScrollView.subviews{
@@ -386,6 +330,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
 			if (featuredSize > 0){
 				// Featured News ----- NOTE - article is not created by smallArticle() func
+				
+				featuredArticles.sort(by: sortArticlesByTime);
+				
 				featuredScrollView.flashScrollIndicators();
 				featuredMissingLabel.isHidden = true;
 				featuredScrollView.isHidden = false;
@@ -399,15 +346,13 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					let currArticle = featuredArticles[aIndex];
 					
 					let outerContentView = CustomUIButton(frame: featuredFrame);
-					//outerContentView.backgroundColor = UIColor.gray;
-					
 					
 					let innerContentViewContraint = CGFloat(20);
 					let contentViewFrame = CGRect(x: innerContentViewContraint, y: 0, width: featuredFrame.size.width - (2*innerContentViewContraint), height: featuredFrame.size.height);
 					let contentView = CustomUIButton(frame: contentViewFrame);
 					
 					
-					let articleCatagorytext = (currArticle.articleCatagory ?? "No Cata.") + " News";
+					let articleCatagorytext = (currArticle.articleCatagory ?? "No Cata.") + (currArticle.articleCatagory == "General Info" ? "" : " News");
 					let articleCatagoryFrame = CGRect(x: 0, y: contentViewFrame.size.height - 20, width: articleCatagorytext.getWidth(withConstrainedHeight: 20, font: UIFont(name: "SFProText-Bold", size: 12)!) + 12, height: 20);
 					let articleCatagory = UILabel(frame: articleCatagoryFrame);
 					articleCatagory.text = articleCatagorytext;
@@ -429,14 +374,12 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					let titleLabelFrame = CGRect(x: 0, y: contentViewFrame.size.height-20-height, width: contentViewFrame.size.width, height: height);
 					let titleLabel = UILabel(frame: titleLabelFrame);
 					titleLabel.text = title;
-					//titleLabel.text = "super long long long long long long long long long long long long long long"
 					titleLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 22);
 					titleLabel.textAlignment = .left;
 					titleLabel.textColor = UIColor.black;
-					//titleLabel.backgroundColor = UIColor.lightGray
 					titleLabel.numberOfLines = 2;
 					//SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
-			
+					
 					let imageViewFrame = CGRect(x: 0, y: 0, width: contentViewFrame.size.width, height: titleLabelFrame.minY);
 					let imageView = UIImageView(frame: imageViewFrame);
 					imageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
@@ -458,7 +401,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					outerContentView.addSubview(contentView);
 					
 					outerContentView.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
-					//articleImageView.layer.cornerRadius = 10;
 					
 					outerContentView.tag = 1;
 					
@@ -475,59 +417,31 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				featuredScrollView.isHidden = true;
 			}
 			
-			// ASB News -----
-			asbNewsPageControl.numberOfPages = asbNewsSize;
-			asbNewsFrame.size = asbNewsScrollView.frame.size;
-			asbNewsFrame.size.width = UIScreen.main.bounds.width - scrollViewHorizontalConstraints;
-			for aIndex in 0..<asbNewsSize{
-				//districtNewsFrame.origin.x = (UIScreen.main.bounds.size.width-52) * CGFloat(aIndex);
-				//districtNewsFrame.size = UIScreen.main.bounds.size;
-				asbNewsFrame.origin.x = (asbNewsFrame.size.width * CGFloat(aIndex));
-				
-				
-				// create content in scrollview
-				let contentView = UIView(frame: asbNewsFrame); // wrapper for article
-				//contentView.backgroundColor = UIColor.gray;
-				
-				contentView.addSubview(smallArticle(x: 0, y: 0, width: asbNewsFrame.size.width, height: 120, articleSingle: asbArticlePairs[aIndex][0]));
-				if (asbArticlePairs[aIndex].count == 2){
-					// B button
-					contentView.addSubview(smallArticle(x: 0, y: 120, width: asbNewsFrame.size.width, height: 120, articleSingle: asbArticlePairs[aIndex][1]));
-				}
-				
-				self.asbNewsScrollView.addSubview(contentView);
-			}
-			// change horizontal size of scrollview
-			asbNewsScrollView.contentSize = CGSize(width: (asbNewsFrame.size.width * CGFloat(asbNewsSize)) , height: asbNewsScrollView.frame.size.height);
-			asbNewsScrollView.delegate = self;
-			
-			
-			
 			
 			// Sports News -----
-			sportsNewsPageControl.numberOfPages = sportsNewsSize;
-			sportsNewsFrame.size = sportsNewsScrollView.frame.size;
-			sportsNewsFrame.size.width = UIScreen.main.bounds.size.width - scrollViewHorizontalConstraints;
-			for aIndex in 0..<sportsNewsSize{
-				sportsNewsFrame.origin.x = (sportsNewsFrame.size.width * CGFloat(aIndex));
+			generalInfoPageControl.numberOfPages = generalInfoSize;
+			generalInfoFrame.size = generalInfoScrollView.frame.size;
+			generalInfoFrame.size.width = UIScreen.main.bounds.size.width - scrollViewHorizontalConstraints;
+			for aIndex in 0..<generalInfoSize{
+				generalInfoFrame.origin.x = (generalInfoFrame.size.width * CGFloat(aIndex));
 				
 				
 				
 				// create content in scrollview
-				let contentView = UIView(frame: sportsNewsFrame); // wrapper for article
-			
-				contentView.addSubview(smallArticle(x: 0, y: 0, width: sportsNewsFrame.size.width, height: 120, articleSingle: sportsArticlePairs[aIndex][0]));
+				let contentView = UIView(frame: generalInfoFrame); // wrapper for article
 				
-				if (sportsArticlePairs[aIndex].count == 2){
+				contentView.addSubview(smallArticle(x: 0, y: 0, width: generalInfoFrame.size.width, height: 120, articleSingle: generalInfoArticlePairs[aIndex][0]));
+				
+				if (generalInfoArticlePairs[aIndex].count == 2){
 					// B button
-					contentView.addSubview(smallArticle(x: 0, y: 120, width: sportsNewsFrame.size.width, height: 120, articleSingle: sportsArticlePairs[aIndex][1]));
+					contentView.addSubview(smallArticle(x: 0, y: 120, width: generalInfoFrame.size.width, height: 120, articleSingle: generalInfoArticlePairs[aIndex][1]));
 				}
 				
-				self.sportsNewsScrollView.addSubview(contentView);
+				self.generalInfoScrollView.addSubview(contentView);
 			}
 			// change horizontal size of scrollview
-			sportsNewsScrollView.contentSize = CGSize(width: (sportsNewsFrame.size.width * CGFloat(sportsNewsSize)), height: sportsNewsScrollView.frame.size.height);
-			sportsNewsScrollView.delegate = self;
+			generalInfoScrollView.contentSize = CGSize(width: (generalInfoFrame.size.width * CGFloat(generalInfoSize)), height: generalInfoScrollView.frame.size.height);
+			generalInfoScrollView.delegate = self;
 			
 			
 			// District News -----
@@ -551,6 +465,31 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			// change horizontal size of scrollview
 			districtNewsScrollView.contentSize = CGSize(width: (districtNewsFrame.size.width * CGFloat(districtNewsSize)), height: districtNewsScrollView.frame.size.height);
 			districtNewsScrollView.delegate = self;
+			
+			// ASB News -----
+			asbNewsPageControl.numberOfPages = asbNewsSize;
+			asbNewsFrame.size = asbNewsScrollView.frame.size;
+			asbNewsFrame.size.width = UIScreen.main.bounds.width - scrollViewHorizontalConstraints;
+			for aIndex in 0..<asbNewsSize{
+				asbNewsFrame.origin.x = (asbNewsFrame.size.width * CGFloat(aIndex));
+				
+				
+				// create content in scrollview
+				let contentView = UIView(frame: asbNewsFrame); // wrapper for article
+				//contentView.backgroundColor = UIColor.gray;
+				
+				contentView.addSubview(smallArticle(x: 0, y: 0, width: asbNewsFrame.size.width, height: 120, articleSingle: asbArticlePairs[aIndex][0]));
+				if (asbArticlePairs[aIndex].count == 2){
+					// B button
+					contentView.addSubview(smallArticle(x: 0, y: 120, width: asbNewsFrame.size.width, height: 120, articleSingle: asbArticlePairs[aIndex][1]));
+				}
+				
+				self.asbNewsScrollView.addSubview(contentView);
+			}
+			// change horizontal size of scrollview
+			asbNewsScrollView.contentSize = CGSize(width: (asbNewsFrame.size.width * CGFloat(asbNewsSize)) , height: asbNewsScrollView.frame.size.height);
+			asbNewsScrollView.delegate = self;
+			
 		}
 	}
 	
@@ -559,7 +498,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		//article.setUpLocalData();
 		featuredLabel.text = loading;
 		asbLabel.text = loading;
-		sportsLabel.text = loading;
+		generalLabel.text = loading;
 		districtLabel.text = loading;
 		getHomeArticleData();
 	}
@@ -569,11 +508,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		
 		featuredLabel.text = loading;
 		asbLabel.text = loading;
-		sportsLabel.text = loading;
+		generalLabel.text = loading;
 		districtLabel.text = loading;
 		
 		mainScrollView.alwaysBounceVertical = true;
-	  	getHomeArticleData();
+		getHomeArticleData();
 		refreshControl.addTarget(self, action: #selector(refreshAllArticles), for: UIControl.Event.valueChanged);
 		mainScrollView.addSubview(refreshControl);
 		mainScrollView.delegate = self;
@@ -588,7 +527,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			
 			asbNewsPageControl.currentPage = Int(round(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width));
 			
-			sportsNewsPageControl.currentPage = Int(round(sportsNewsScrollView.contentOffset.x / sportsNewsFrame.size.width));
+			generalInfoPageControl.currentPage = Int(round(generalInfoScrollView.contentOffset.x / generalInfoFrame.size.width));
 			
 			districtNewsPageControl.currentPage = Int(round(districtNewsScrollView.contentOffset.x / districtNewsFrame.size.width));
 		}

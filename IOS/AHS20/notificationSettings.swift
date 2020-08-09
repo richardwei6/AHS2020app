@@ -108,17 +108,14 @@ class notificationSettingsClass: UITableViewController{
                 selectedNotifications[sender.tag] = false;
             }
         }
-   
+        
         print(selectedNotifications);
         UserDefaults.standard.set(selectedNotifications, forKey: "selectedNotifications");
         
-        filterTotalArticles();
+        updateSubscriptionNotifs();
+        
+        filterTotalNotificationArticles();
         unreadNotif = (notificationList[1].count > 0);
-    }
-    
-    @IBAction func dismiss(_ sender: Any){
-        dismiss(animated: true);
-        UIImpactFeedbackGenerator(style: .light).impactOccurred();
     }
     
 }
