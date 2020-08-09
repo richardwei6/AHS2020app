@@ -395,7 +395,7 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
 }
 
 func updateSubscriptionNotifs(){
-    let topics = ["sports", "asb", "district", "bulletin"];
+    let topics = ["general", "asb", "district", "bulletin"];
     if (selectedNotifications[0] == true){
         for topic in topics{
             Messaging.messaging().subscribe(toTopic: topic);

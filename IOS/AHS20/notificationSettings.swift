@@ -13,7 +13,7 @@ class notificationSettingsClass: UITableViewController{
     
     @IBOutlet weak var generalUpdates: UISwitch!
     
-    @IBOutlet weak var sportsNews: UISwitch!
+    @IBOutlet weak var generalNews: UISwitch!
     @IBOutlet weak var asbNews: UISwitch!
     @IBOutlet weak var districtNews: UISwitch!
     @IBOutlet weak var bulletinNews: UISwitch!
@@ -30,7 +30,7 @@ class notificationSettingsClass: UITableViewController{
                 }
             case 1:
                 if (selectedNotifications[i] == true){
-                    sportsNews.isOn = true;
+                    generalNews.isOn = true;
                 }
             case 2:
                 if (selectedNotifications[i] == true){
@@ -60,7 +60,7 @@ class notificationSettingsClass: UITableViewController{
                 }
             case 1:
                 if (selectedNotifications[i] == true){
-                    sportsNews.isOn = true;
+                    generalNews.isOn = true;
                 }
             case 2:
                 if (selectedNotifications[i] == true){
@@ -84,7 +84,6 @@ class notificationSettingsClass: UITableViewController{
     @IBAction func changedSettings(_ sender: UISwitch) {
         if (sender.tag > 0){
             if (generalUpdates.isOn == true){
-                //print("false");
                 generalUpdates.isOn = false;
                 selectedNotifications[0] = false;
             }
@@ -97,7 +96,7 @@ class notificationSettingsClass: UITableViewController{
         }
         else{
             if (sender.isOn == true){
-                sportsNews.isOn = false;
+                generalNews.isOn = false;
                 asbNews.isOn = false;
                 districtNews.isOn = false;
                 bulletinNews.isOn = false;
@@ -109,7 +108,7 @@ class notificationSettingsClass: UITableViewController{
             }
         }
         
-        print(selectedNotifications);
+        //print(selectedNotifications);
         UserDefaults.standard.set(selectedNotifications, forKey: "selectedNotifications");
         
         updateSubscriptionNotifs();
