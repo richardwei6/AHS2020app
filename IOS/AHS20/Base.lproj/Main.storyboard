@@ -1074,7 +1074,7 @@
                                                 <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Layer 4" translatesAutoresizingMaskIntoConstraints="NO" id="je2-C8-5Hq">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="80" translatesAutoresizingMaskIntoConstraints="NO" id="je2-C8-5Hq">
                                                 <rect key="frame" x="8" y="9" width="45" height="45"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -1675,7 +1675,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe to all" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzu-8e-Q6j">
-                                                    <rect key="frame" x="20" y="8.9999999999999982" width="139" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="8.9999999999999982" width="135" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1739,7 +1739,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2J-vK-8aa">
-                                                    <rect key="frame" x="20.000000000000007" y="9.9999999999999982" width="95.666666666666686" height="24.333333333333329"/>
+                                                    <rect key="frame" x="19.999999999999993" y="9.9999999999999982" width="92.333333333333314" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1769,7 +1769,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPu-Ev-zLs">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="119" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="9.9999999999999982" width="118" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1870,10 +1870,10 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naw-Mp-di2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="5330"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="5101.666666666667"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ddp-ER-vDU">
-                                                <rect key="frame" x="5" y="0.0" width="404" height="5330"/>
+                                                <rect key="frame" x="5" y="0.0" width="404" height="5101.666666666667"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                 </accessibility>
@@ -2213,11 +2213,11 @@ This license agreement is governed by the laws of the State of California exclud
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rU3-UD-e0a"/>
+        <segue reference="Diy-5I-FmI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
-        <image name="Layer 4" width="885.33331298828125" height="901"/>
+        <image name="80" width="341.33334350585938" height="341.33334350585938"/>
         <image name="bell.fill" catalog="system" width="128" height="124"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
