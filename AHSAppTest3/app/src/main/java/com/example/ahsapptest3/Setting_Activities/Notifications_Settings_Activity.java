@@ -36,7 +36,7 @@ public class Notifications_Settings_Activity extends FullScreenActivity {
         final Settings settings = new Settings(getApplicationContext(), new Settings.OnNotifOptionChanged() {
             @Override
             public void onOptionChanged(Settings.NotifOption option, boolean currentValue) {
-                switch(option) {
+                /*switch(option) {
                     case GENERAL:
                         general_switch.setChecked(currentValue);
                         break;
@@ -52,7 +52,7 @@ public class Notifications_Settings_Activity extends FullScreenActivity {
                     case BULLETIN:
                         bulletin_switch.setChecked(currentValue);
                         break;
-                }
+                }*/
             }
         });
 
