@@ -323,6 +323,7 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
         setUpConnection();
         if (internetConnected){
             bulletinArticleList = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 6);
+            
             for i in 0...4{
                 var s: String; // path inside homepage
                 switch i {
