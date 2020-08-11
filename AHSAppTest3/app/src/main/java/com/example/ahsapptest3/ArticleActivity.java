@@ -1,13 +1,11 @@
 package com.example.ahsapptest3;
 
 import android.app.Activity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
@@ -24,14 +21,15 @@ import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
 import com.example.ahsapptest3.Helper_Code.Helper;
 import com.example.ahsapptest3.Helper_Code.MediaYoutubeFragment;
 import com.example.ahsapptest3.Helper_Code.ValContainer;
-import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 
 public class ArticleActivity extends FullScreenActivity {
     private static final String TAG = "ArticleActivity";
 
     public static final String read_KEY = "1";
+    public static final String data_key = "0";
     private ValContainer<Boolean> saved;
     private ValContainer<Boolean> saved_copy;
     private Article article;
@@ -43,7 +41,7 @@ public class ArticleActivity extends FullScreenActivity {
         setContentView(R.layout.article_layout);
         /*oldOrientation = getResources().getConfiguration().orientation;*/
 
-        article = getIntent().getParcelableExtra("data");
+        article = getIntent().getParcelableExtra(data_key);
         TextView
                 dateText = findViewById(R.id.article_dateText),
                 titleText = findViewById(R.id.article_titleText),
@@ -60,7 +58,7 @@ public class ArticleActivity extends FullScreenActivity {
 
         TabLayout tabLayout = findViewById(R.id.article_tabLayout);
 
-        ViewPager2 viewPager2 =findViewById(R.id.article_viewPager2);
+        final ViewPager2 viewPager2 =findViewById(R.id.article_viewPager2);
         final MultipleVideoImagePagerAdapter adapter = new MultipleVideoImagePagerAdapter(this, videoIDs, imagePaths);
         viewPager2.setAdapter(adapter);
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -250,7 +248,7 @@ public class ArticleActivity extends FullScreenActivity {
                 Log.d(TAG, "help, the container is null");*/
             ImageView imageView = view.findViewById(R.id.article_image);
             /*container.addView(imageView);*/
-            Helper.setImageFromUrl(imageView, imagePath, false);
+            Helper.setImageFromUrl(imageView, imagePath);
             return imageView;
         }
     }

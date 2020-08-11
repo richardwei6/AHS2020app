@@ -11,7 +11,6 @@ public class Article implements Parcelable {
 
     private Type type;
 
-    private boolean blank; // false
 
     public Article(
             String ID,
@@ -34,11 +33,6 @@ public class Article implements Parcelable {
         this.type = type;
     }
 
-    public Article() //blank template, used to construct invisible articles for the purpose of getting the proper view height
-    {
-        blank = true;
-    }
-
     public static final Creator<Article> CREATOR = new Creator<Article>() {
         @Override
         public Article createFromParcel(Parcel in) {
@@ -50,11 +44,6 @@ public class Article implements Parcelable {
             return new Article[size];
         }
     };
-
-    public boolean isBlank()
-    {
-        return blank;
-    }
 
     public String getID() {return ID;}
     public long getTimeUpdated()
@@ -103,7 +92,6 @@ public class Article implements Parcelable {
         imagePaths = in.createStringArray();
         videoIDS = in.createStringArray();
         type = (Type) in.readSerializable();
-        blank = in.readByte() != 0;
     }
 
     @Override
@@ -121,7 +109,6 @@ public class Article implements Parcelable {
         dest.writeStringArray(imagePaths);
         dest.writeStringArray(videoIDS);
         dest.writeSerializable(type);
-        dest.writeByte((byte) (blank ? 1 : 0));
     }
 
     /**
@@ -129,7 +116,7 @@ public class Article implements Parcelable {
      * Need to be careful even when refactoring
      */
     public enum Type {
-        ASB("ASB", 1), SPORTS("Sports", 2), DISTRICT("District", 3);
+        ASB("ASB", 1), DISTRICT("District", 2), GENERAL_INFO("General Info", 3), ;
         private String name;
         private int numCode;
         Type(String name, int numCode){

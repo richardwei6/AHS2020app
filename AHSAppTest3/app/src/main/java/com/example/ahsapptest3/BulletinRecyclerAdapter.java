@@ -19,7 +19,7 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
     private SortedList<Bulletin_Article> list;
     public ArrayList<Bulletin_Article> bulletin_data;
 
-    boolean[] selectors_active = new boolean[6];
+    boolean[] selectors_active = new boolean[Bulletin_Article.Type.values().length];
     private final Bulletin_Article.Type[] types = Bulletin_Article.Type.values();
     private OnItemClick onItemClick;
 

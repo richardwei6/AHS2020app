@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Setting_Activities.Notifications_Settings_Activity">
+    tools:context=".Setting_Activities.Notif_Settings_Activity">
 
     <LinearLayout
         android:id="@+id/notif_settings_header"
@@ -54,7 +54,7 @@
         android:orientation="vertical"
         android:padding="@dimen/Full_Padding">
 
-        <androidx.cardview.widget.CardView
+        <!--<androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/White"
@@ -73,7 +73,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
                     android:orientation="horizontal">
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
@@ -94,11 +93,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:checked="true"
-                        />
+                        android:checked="true" />
                 </LinearLayout>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>-->
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -117,39 +115,10 @@
                 android:paddingStart="0dp"
                 android:paddingLeft="0dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:orientation="horizontal">
-
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/sf_pro_semibold"
-                        android:paddingLeft="@dimen/Half_Padding"
-                        android:paddingTop="@dimen/Half_Padding"
-                        android:paddingRight="@dimen/Half_Padding"
-                        android:paddingBottom="@dimen/Half_Padding"
-                        android:text="Sports News"
-                        android:textColor="@color/DarkCrimson_1A0303"
-                        android:textSize="18sp" />
-
-                    <Switch
-                        android:id="@+id/notif_settings_sports_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:background="@drawable/bulletin_template_rounded_white"
-                        android:checked="true" />
-                </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
                     android:orientation="horizontal">
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
@@ -177,7 +146,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
                     android:orientation="horizontal">
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
@@ -205,7 +173,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/sf_pro_semibold"
+                        android:paddingLeft="@dimen/Half_Padding"
+                        android:paddingTop="@dimen/Half_Padding"
+                        android:paddingRight="@dimen/Half_Padding"
+                        android:paddingBottom="@dimen/Half_Padding"
+                        android:text="General"
+                        android:textColor="@color/DarkCrimson_1A0303"
+                        android:textSize="18sp" />
+
+                    <Switch
+                        android:id="@+id/notif_settings_general_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:background="@drawable/bulletin_template_rounded_white"
+                        android:checked="true" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView

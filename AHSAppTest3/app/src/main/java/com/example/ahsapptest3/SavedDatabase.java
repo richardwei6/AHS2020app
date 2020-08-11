@@ -219,6 +219,37 @@ public class SavedDatabase extends SQLiteOpenHelper {
         return articles;
     }
 
+    public interface ArticleRetrievedCallback {
+        void onArticleLoaded(SavedHolder article);
+    }
+    public void getAllArticles_withCallBack(ArticleRetrievedCallback callback)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + current_Table;
+        Cursor data =  db.rawQuery(query, null);
+
+        while(data.moveToNext())
+        {
+            SavedHolder.Option type = SavedHolder.Option.getOptionFromInteger(data.getInt(TYPE_COL));
+
+            SavedHolder holder = null;
+            if(type != null)
+                switch(type){
+                    case ARTICLE:
+                        holder = new SavedHolder(getArticleFromCursor(data));
+                        break;
+                    case BULLETIN_ARTICLE:
+                        holder = new SavedHolder(getBulletin_ArticleFromCursor(data));
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + type);
+                }
+            callback.onArticleLoaded(holder);
+        }
+        data.close();
+
+    }
+
     private static Article getArticleFromCursor(Cursor data){
         return new Article(
                 data.getString(ID_COL),

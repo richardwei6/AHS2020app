@@ -2,12 +2,10 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
-    android:paddingTop="5dp"
-    >
+    android:paddingTop="5dp">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/nav_bar_ConstraintLayout"
@@ -18,7 +16,7 @@
 
     >
 
-    <ImageButton
+    <ImageView
         android:id="@+id/nav_bar_home_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/Nav_Button_SideLength"
@@ -45,13 +43,12 @@
         app:layout_constraintStart_toEndOf="@+id/nav_bar_home_button"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
+        <ImageView
 
             android:id="@+id/nav_bar_inner_bulletin_button"
             android:layout_width="wrap_content"
 
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
 
             android:scaleType="fitCenter"
             android:tint="@color/GraniteRed_7E6E6A"
@@ -62,9 +59,9 @@
             app:srcCompat="@drawable/icon_bulletin" />
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="6dp"
-            android:layout_height="6dp"
+            android:id="@+id/nav_bar_bulletinDot"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             app:layout_constraintBottom_toTopOf="@+id/nav_bar_inner_bulletin_button"
             app:layout_constraintEnd_toEndOf="@+id/nav_bar_inner_bulletin_button"
             app:layout_constraintStart_toEndOf="@+id/nav_bar_inner_bulletin_button"
@@ -73,7 +70,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <ImageButton
+    <ImageView
         android:id="@+id/nav_bar_bookmarks_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/Nav_Button_SideLength"
@@ -90,7 +87,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_bookmark" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/nav_bar_settings_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/Nav_Button_SideLength"

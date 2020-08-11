@@ -16,8 +16,7 @@
 
     <dimen name = "CardView_Height">3dp</dimen>
 
-    <dimen name = "Selector_Dot_Radius_unselected">4dp</dimen>
-    <dimen name = "Selector_Dot_Radius_selected">4dp</dimen>
+    <dimen name = "Selector_Dot_Radius">4dp</dimen>
     <dimen name = "ExtraSmall_Dot_Radius">3dp</dimen>
 
     <dimen name = "Rounded_Background_Radius">10dp</dimen>

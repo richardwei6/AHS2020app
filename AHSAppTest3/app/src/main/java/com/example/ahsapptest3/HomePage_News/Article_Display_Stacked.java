@@ -1,6 +1,7 @@
 package com.example.ahsapptest3.HomePage_News;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -12,9 +13,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.ahsapptest3.Article;
+import com.example.ahsapptest3.ArticleDatabase;
+import com.example.ahsapptest3.ArticleNavigation;
+import com.example.ahsapptest3.Article_Slim;
 import com.example.ahsapptest3.Helper_Code.Helper;
 import com.example.ahsapptest3.R;
 
@@ -30,16 +35,27 @@ public class Article_Display_Stacked extends Fragment {
         // Required empty public constructor
     }
     private final static String ARTICLE_KEY = "1"; // keys for bundle
+    private ArticleNavigation navigation;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            navigation = (ArticleNavigation) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        LinearLayout outerLayout = new LinearLayout(container.getContext());
+        LinearLayout outerLayout = new LinearLayout(getContext());
         displayFrags(outerLayout);
         return outerLayout;
     }
 
-    public static Article_Display_Stacked newInstanceOf(Article[] articles)
+    public static Article_Display_Stacked newInstanceOf(Article_Slim[] articles)
     {
         Article_Display_Stacked thisFrag = new Article_Display_Stacked();
         Bundle args = new Bundle();
@@ -60,8 +76,7 @@ public class Article_Display_Stacked extends Fragment {
 
         Parcelable[] parcelables = getArguments().getParcelableArray(ARTICLE_KEY);
 
-        assert parcelables != null;
-        Article[] articles = Arrays.copyOf(parcelables,parcelables.length,Article[].class); // attempts to avoid classcastexception
+        final Article_Slim[] articles = Arrays.copyOf(parcelables,parcelables.length,Article_Slim[].class); // attempts to avoid classcastexception
 
         ViewStub[] stubs = new ViewStub[articles.length];
 
@@ -72,6 +87,7 @@ public class Article_Display_Stacked extends Fragment {
         {
             stubs[i] = new ViewStub(this.getContext());
             layout.addView(stubs[i],params);
+
             stubs[i].setLayoutResource(R.layout.news_article_template);
             inflated[i] = stubs[i].inflate();
 
@@ -79,46 +95,50 @@ public class Article_Display_Stacked extends Fragment {
             TypedValue outValue = new TypedValue();
             getContext().getTheme().resolveAttribute(R.attr.selectableItemBackground,outValue,true);
             inflated[i].setBackgroundResource(outValue.resourceId);*/
-
-            Helper.setArticleListener_toView(inflated[i], articles[i]);
+            final int finalI = i;
+            inflated[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Article article1 = ArticleDatabase.getInstance(getContext()).getArticleById(articles[finalI].getID());
+                    if(article1 != null)
+                        navigation.onItemClicked(article1);
+                }
+            });
         }
 
         for(int i = 0; i < inflated.length; i++)
         {
-            if(articles[i].isBlank())
-            {
-                inflated[i].setVisibility(View.INVISIBLE);
-            }
+            // set time updated
+            Helper.setTimeText_toView((TextView) inflated[i].findViewById(R.id.article_display__time_updated_Text),
+                    Helper.TimeFromNow(articles[i].getTimeUpdated())
+                    );
+
+            // set title
+            ((TextView) inflated[i].findViewById(R.id.article_display__title_Text)).setText(articles[i].getTitle());
+
+            // set summary/description
+            TextView summaryText = inflated[i].findViewById(R.id.article_display__summary_Text);
+            Helper.setHtmlParsedText_toView(summaryText, articles[i].getStory());
+            final int finalI = i;
+            summaryText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Article article1 = ArticleDatabase.getInstance(getContext()).getArticleById(articles[finalI].getID());
+                    if(article1 != null)
+                        navigation.onItemClicked(article1);
+                }
+            });
+
+            // setImage
+            String imagePaths = articles[i].getImagePath();
+            ImageView imageView = inflated[i].findViewById(R.id.article_display__imageView);
+            if(imagePaths != null && imagePaths.length() > 0)
+                Helper.setImageFromUrl_CenterCrop_FullSize(
+                        imageView,
+                        imagePaths
+                );
             else
-            {
-                // set time updated
-                Helper.setTimeText_toView((TextView) inflated[i].findViewById(R.id.article_display__time_updated_Text),
-                        Helper.TimeFromNow(articles[i].getTimeUpdated())
-                        );
-
-                // set title
-                ((TextView) inflated[i].findViewById(R.id.article_display__title_Text)).setText(articles[i].getTitle());
-
-                // set summary/description
-                Helper.setHtmlParsedText_toView((TextView) inflated[i].findViewById(R.id.article_display__summary_Text), articles[i].getStory());
-                Helper.setArticleListener_toView(inflated[i].findViewById(R.id.article_display__summary_Text), articles[i]);
-
-                // setImage
-                final String[] imagePaths = articles[i].getImagePaths();
-                final ImageView imageView = inflated[i].findViewById(R.id.article_display__imageView);
-                if(imagePaths.length > 0)
-                    new Handler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Helper.setImageFromUrl_CenterCrop(
-                                    imageView,
-                                    imagePaths[0],
-                                    false);
-                        }
-                    });
-                else
-                    imageView.setImageResource(R.drawable.image_bg);
-            }
+                imageView.setImageResource(R.drawable.image_bg);
         }
     }
 }

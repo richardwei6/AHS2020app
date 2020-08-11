@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="2dp"
@@ -67,6 +66,7 @@
             android:layout_marginEnd="@dimen/Half_Padding"
             android:layout_marginRight="@dimen/Half_Padding"
             android:background="@android:color/transparent"
+            android:foreground="@drawable/image_border"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1.333"
             app:layout_constraintEnd_toStartOf="@+id/saved_template__guideline"

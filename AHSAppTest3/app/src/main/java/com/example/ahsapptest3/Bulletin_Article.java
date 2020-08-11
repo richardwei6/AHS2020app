@@ -3,6 +3,8 @@ package com.example.ahsapptest3;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 public class Bulletin_Article implements Parcelable {
     private String ID;
     private long time;
@@ -10,13 +12,6 @@ public class Bulletin_Article implements Parcelable {
     private Type type;
     private boolean already_read;
 
-    /**
-     * for use with SortedList in Bulletin Activity and related comparisons only
-     * @param time
-     * @param title
-     * @param body
-     * @param type
-     */
     public Bulletin_Article(String ID, long time, String title, String body, Type type, boolean already_read)
     {
         this.ID = ID;
@@ -86,6 +81,7 @@ public class Bulletin_Article implements Parcelable {
         this.already_read = already_read;
     }
 
+    @NonNull
     @Override
     public String toString()
     {
@@ -94,8 +90,8 @@ public class Bulletin_Article implements Parcelable {
 
     public enum Type
     {
-        SENIORS("Seniors", 1), EVENTS("Events", 2), COLLEGES("Colleges", 3),
-        REFERENCE("Reference", 4), ATHLETICS("Athletics", 5), OTHERS("Others", 6);
+        ACADEMICS("Academics", 1), ATHLETICS("Athletics", 2), CLUBS("Clubs", 3),
+        COLLEGES("Colleges", 4), REFERENCE("Reference", 5);
         private String name;
         private int numCode;
         Type(String name, int numCode) {

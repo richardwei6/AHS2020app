@@ -4,12 +4,11 @@
     android:id="@+id/article_display__ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/Full_Padding"
-    android:paddingRight="@dimen/Full_Padding"
-    android:paddingTop="@dimen/Quarter_Padding"
-    android:paddingBottom="@dimen/Quarter_Padding"
     android:background="?attr/selectableItemBackground"
-    >
+    android:paddingLeft="@dimen/Full_Padding"
+    android:paddingTop="@dimen/Quarter_Padding"
+    android:paddingRight="@dimen/Full_Padding"
+    android:paddingBottom="@dimen/Quarter_Padding">
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -30,7 +29,7 @@
         android:maxLines="2"
         android:text="Lorum Ipsum the Long Title"
         android:textColor="@color/DarkCrimson_1A0303"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:autoSizeTextType="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/article_display__guideline"
@@ -45,7 +44,7 @@
         android:fontFamily="@font/sf_pro_display"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "
         android:textColor="@color/GraniteRed_7E6E6A"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/article_display__title_Text"
@@ -58,8 +57,10 @@
         android:layout_marginEnd="@dimen/Half_Padding"
         android:layout_marginRight="@dimen/Half_Padding"
         android:background="@android:color/transparent"
+        android:foreground="@drawable/image_border"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1.5"
+        app:layout_constraintDimensionRatio="1.33"
         app:layout_constraintEnd_toStartOf="@+id/article_display__guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -79,7 +80,7 @@
         android:paddingRight="5dp"
         android:paddingBottom="3dp"
         android:text="time updated"
-        android:textColor="@color/GraniteRed_7E6E6A"
+        android:textColor="@color/DarkCrimson_1A0303"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/article_display__imageView"
         app:layout_constraintStart_toStartOf="@+id/article_display__imageView" />

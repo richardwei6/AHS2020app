@@ -23,8 +23,8 @@
     <ImageView
         android:id="@+id/notif_dot"
         android:layout_width="match_parent"
-        android:layout_height="6dp"
+        android:layout_height="10dp"
         android:src="@drawable/notif_btn_dot"
-        android:layout_marginTop="@dimen/ExtraSmall_Dot_Radius"/>
+        android:layout_marginTop="2dp"/>
 
 </LinearLayout>

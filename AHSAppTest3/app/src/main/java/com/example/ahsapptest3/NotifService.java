@@ -1,6 +1,5 @@
 package com.example.ahsapptest3;
 
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +12,8 @@ import androidx.core.content.ContextCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.util.Map;
 
 public class NotifService extends FirebaseMessagingService {
     private static final String TAG = "NotifService";
@@ -46,6 +47,36 @@ public class NotifService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }*/
+        if(remoteMessage.getData().size() > 0) {
+            for(Map.Entry<String, String> entry: remoteMessage.getData().entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+                Log.d(TAG, "key, " + key + " value " + value);
+            }
+            String articleID = remoteMessage.getData().get(getResources().getString(R.string.notif_articleID_key));
+            if(articleID != null) {
+                Article article = ArticleDatabase.getInstance(getApplicationContext()).getArticleById(articleID);
+                if(article!=null) {
+                    Intent intent = new Intent(this, ArticleActivity.class);
+                    intent.putExtra(ArticleActivity.data_key, article);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+                    String CHANNEL_ID = getResources().getString(R.string.notif_channel_ID);
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                            .setSmallIcon(R.drawable.bookmarked_icon_active)
+                            .setColor(ContextCompat.getColor(getApplicationContext(),R.color.GoldenYellow_E0C260))
+                            .setContentTitle(remoteMessage.getNotification().getTitle())
+                            .setContentText(remoteMessage.getNotification().getBody())
+                            .setPriority(NotificationCompat.DEFAULT_ALL)
+                            .setContentIntent(pendingIntent)
+                            .setAutoCancel(true);
+
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+                    notificationManager.notify(getUniqueNotifID(), builder.build());
+                    return;
+                }
+            }
+        }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         Intent intent = new Intent(this, Notif_Activity.class);

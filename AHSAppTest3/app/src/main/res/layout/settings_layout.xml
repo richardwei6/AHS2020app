@@ -157,6 +157,47 @@
                                 app:srcCompat="@drawable/arrow_forward" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/Quarter_Padding">
+
+                            <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sf_pro_display"
+                                android:paddingStart="@dimen/Full_Padding"
+                                android:paddingLeft="@dimen/Full_Padding"
+                                android:paddingTop="0dp"
+                                android:paddingEnd="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
+                                android:paddingBottom="@dimen/Half_Padding"
+                                android:text="Subscribe to All"
+                                android:textColor="@color/DarkCrimson_1A0303"
+                                android:textSize="18sp" />
+
+                            <CheckBox
+                                android:id="@+id/settings_notif_checkBox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:gravity="top"
+                                android:paddingEnd="@dimen/Full_Padding"
+                                android:paddingRight="@dimen/Full_Padding"
+                                android:paddingBottom="@dimen/Half_Padding" />
+
+                            <!--<Switch
+                                android:id="@+id/notif_settings_general_switch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0"
+                                android:checked="true"
+                                />-->
+                        </LinearLayout>
+
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -203,7 +244,7 @@
                                 android:paddingTop="@dimen/Half_Padding"
                                 android:paddingRight="@dimen/Half_Padding"
                                 android:paddingBottom="@dimen/Half_Padding"
-                                android:text="Terms and Agreements"
+                                android:text="@string/terms_and_agreements"
                                 android:textColor="@color/DarkCrimson_1A0303"
                                 android:textSize="18sp" />
 
@@ -223,14 +264,14 @@
                         <View style="@style/Divider" />
 
                         <LinearLayout
-                            android:id="@+id/settings_credits_LinearLayout"
+                            android:id="@+id/settings_about_LinearLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal">
 
                             <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                                android:id="@+id/settings_creditsText"
+                                android:id="@+id/settings_aboutText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -239,12 +280,12 @@
                                 android:paddingTop="@dimen/Half_Padding"
                                 android:paddingRight="@dimen/Half_Padding"
                                 android:paddingBottom="@dimen/Half_Padding"
-                                android:text="Credits"
+                                android:text="@string/about_us"
                                 android:textColor="@color/DarkCrimson_1A0303"
                                 android:textSize="18sp" />
 
                             <ImageView
-                                android:id="@+id/settings_credits_ArrowImage"
+                                android:id="@+id/settings_about_ArrowImage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:paddingLeft="@dimen/Half_Padding"

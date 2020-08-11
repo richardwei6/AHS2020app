@@ -6,15 +6,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.ahsapptest3.Article;
+import com.example.ahsapptest3.Article_Slim;
 
 public class FeaturedArticle_PagerAdapter extends FragmentPagerAdapter
 {
     private int NUM_PAGES;
-    private Article[] articles;
+    private Article_Slim[] articles;
 
 
 
-    public FeaturedArticle_PagerAdapter(@NonNull FragmentManager fm, Article[] articles)
+    public FeaturedArticle_PagerAdapter(@NonNull FragmentManager fm, Article_Slim[] articles)
     {
         super(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         NUM_PAGES = articles.length;
@@ -25,7 +26,6 @@ public class FeaturedArticle_PagerAdapter extends FragmentPagerAdapter
     @NonNull
     @Override
     public Fragment getItem(int position) {
-
         return Featured_Display.newInstanceOf(articles[position]);
     }
 

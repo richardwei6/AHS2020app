@@ -17,11 +17,11 @@ public class Settings {
     public static final String TEXT_SIZE = "1";
 
     public static final String NOTIF_SETTING = "notif settings";
-    public static final String GENERAL_SETTING = "1";
-    public static final String SPORTS_SETTING = "2";
-    public static final String ASB_SETTING = "3";
-    public static final String DISTRICT_SETTING = "4";
-    public static final String BULLETIN_SETTING = "5";
+    public static final String ALL_SETTING = "A";
+    public static final String ASB_SETTING = "1";
+    public static final String DISTRICT_SETTING = "2";
+    public static final String GENERAL_SETTING = "3";
+    public static final String BULLETIN_SETTING = "4";
     public static final String MANDATORY_SETTING = "0";
 
     public enum TextSizeOption {
@@ -49,16 +49,26 @@ public class Settings {
 
     }
     public enum NotifOption {
-        GENERAL(GENERAL_SETTING), SPORTS(SPORTS_SETTING), ASB(ASB_SETTING), DISTRICT(DISTRICT_SETTING), BULLETIN(BULLETIN_SETTING), MANDATORY(MANDATORY_SETTING);
+        GENERAL("General", GENERAL_SETTING), ASB("ASB", ASB_SETTING),
+        DISTRICT("District", DISTRICT_SETTING), BULLETIN("Bulletin", BULLETIN_SETTING),
+        MANDATORY("Mandatory", MANDATORY_SETTING);
 
         private String fileKey;
-        NotifOption(String fileKey) {
+        private String name;
+        NotifOption(String name, String fileKey) {
+            this.name = name;
             this.fileKey = fileKey;
         }
+
+        public String getName() {
+            return name;
+        }
+
         public String getFileKey() {
             return fileKey;
         }
         private boolean currentSetting;
+
         public boolean getCurrentSetting() {
             return currentSetting;
         }
@@ -94,7 +104,7 @@ public class Settings {
         this.context = context;
         currentOption = getTextSizeOption();
         for(NotifOption notifOption: NotifOption.values()) {
-            notifOption.setCurrentSetting(isNotifSettingsSelected(notifOption));
+            notifOption.setCurrentSetting(getNotifSetting(notifOption));
         }
     }
 
@@ -137,42 +147,64 @@ public class Settings {
         editor.putInt(Settings.TEXT_SIZE, option.getNumCode()).apply();
     }
 
-    public boolean isNotifSettingsSelected(NotifOption option) {
+    public boolean getNotifSetting(NotifOption option) {
         SharedPreferences sharedPrefs = context.getSharedPreferences(NOTIF_SETTING,Activity.MODE_PRIVATE);
         return sharedPrefs.getBoolean(option.getFileKey(), true);
     }
 
+    public boolean getAllNotifSetting() {
+        SharedPreferences sharedPrefs = context.getSharedPreferences(NOTIF_SETTING,Activity.MODE_PRIVATE);
+        return sharedPrefs.getBoolean(ALL_SETTING, true);
+    }
+
     public void updateNotifSettings(NotifOption option, boolean newSetting, boolean makeSuccessToast) {
         if(option.getCurrentSetting() != newSetting) {
-            if(option == NotifOption.GENERAL)
-            {
-                updateNotifSettings(NotifOption.ASB, newSetting, false);
-                updateNotifSettings(NotifOption.SPORTS, newSetting, false);
-                updateNotifSettings(NotifOption.DISTRICT, newSetting, false);
-                updateNotifSettings(NotifOption.BULLETIN, newSetting, false);
-            }
             SharedPreferences.Editor editor = context.getSharedPreferences(NOTIF_SETTING, Activity.MODE_PRIVATE).edit();
             editor.putBoolean(option.getFileKey(), newSetting).apply();
             option.setCurrentSetting(newSetting);
             updateTopicSubscription(option, newSetting, makeSuccessToast);
+
+            boolean generalSetting = getAllNotifSetting();
+            if(newSetting != generalSetting) {
+                if(generalSetting)
+                    updateAllSetting(false, false);
+                else {
+                    boolean newGeneralSetting = true;
+                    for (NotifOption option1 : NotifOption.values()) {
+                        newGeneralSetting = newGeneralSetting && option1.getCurrentSetting();
+                    }
+                    updateAllSetting(newGeneralSetting, false);
+                }
+            }
         }
 
     }
 
+    public void updateAllSetting(boolean newSetting, boolean changeOthers) {
+        if(newSetting != getAllNotifSetting()) {
+            SharedPreferences.Editor editor = context.getSharedPreferences(NOTIF_SETTING, Context.MODE_PRIVATE).edit();
+            editor.putBoolean(ALL_SETTING, newSetting).apply();
+            if(changeOthers)
+                for(NotifOption option: NotifOption.values()) {
+                    if(option != NotifOption.MANDATORY) {
+                        updateNotifSettings(option, newSetting, true);
+                    }
+                }
+        }
+    }
+
     public void updateTopicSubscription(final NotifOption option, boolean subscribe, final boolean makeSuccessToast) {
-        if(option == NotifOption.GENERAL)
-            return;
-        int stringResourceID = -1;
+        int stringResourceID;
 
         switch (option) {
             case ASB:
                 stringResourceID = R.string.fb_topic_asb;
                 break;
-            case SPORTS:
-                stringResourceID = R.string.fb_topic_sports;
-                break;
             case DISTRICT:
                 stringResourceID = R.string.fb_topic_district;
+                break;
+            case GENERAL:
+                stringResourceID = R.string.fb_topic_general;
                 break;
             case BULLETIN:
                 stringResourceID = R.string.fb_topic_bulletin;
@@ -180,44 +212,44 @@ public class Settings {
             case MANDATORY:
                 stringResourceID = R.string.fb_topic_mandatory;
                 break;
+            default:
+                stringResourceID = -1;
         }
-        if(stringResourceID != -1){
-            if(subscribe)
-                FirebaseMessaging.getInstance().subscribeToTopic(context.getResources().getString(stringResourceID))
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(makeSuccessToast) {
-                                Toast.makeText(context, "Successfully subscribed to " + option.toString(), Toast.LENGTH_SHORT).show();
-
-                                // change this later
-                            }
-                            if(notifOptionChanged != null)
-                                notifOptionChanged.onOptionChanged(option, true);
+        if(subscribe)
+            FirebaseMessaging.getInstance().subscribeToTopic(context.getResources().getString(stringResourceID))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            if (makeSuccessToast)
+                                Toast.makeText(context, "Successfully subscribed to " + option.getName() + " notifications", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Unsuccessful: " + task.getException(), Toast.LENGTH_SHORT).show();
                         }
-                    });
-            else
-                FirebaseMessaging.getInstance().unsubscribeFromTopic(context.getResources().getString(stringResourceID))
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(makeSuccessToast) {
-                                Toast.makeText(context, "Successfully unsubscribed to " + option.toString(), Toast.LENGTH_SHORT).show();
-
-                                // change this later
-                            }
-                            if(notifOptionChanged != null)
-                                notifOptionChanged.onOptionChanged(option, false);
+                        if(notifOptionChanged != null)
+                            notifOptionChanged.onOptionChanged(option, true);
+                    }
+                });
+        else
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(context.getResources().getString(stringResourceID))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            if (makeSuccessToast)
+                                Toast.makeText(context, "Successfully unsubscribed to " + option.getName() + " notifications", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Unsuccessful: " + task.getException(), Toast.LENGTH_SHORT).show();
                         }
-                    });
-        }
+                        if(notifOptionChanged != null)
+                            notifOptionChanged.onOptionChanged(option, false);
+                    }
+                });
     }
 
     public void resubscribeToAll() {
         for(NotifOption option: NotifOption.values()) {
-            if(option != NotifOption.GENERAL) {
-                updateTopicSubscription(option, isNotifSettingsSelected(option), true);
-            }
+            updateTopicSubscription(option, getNotifSetting(option), false);
         }
     }
 

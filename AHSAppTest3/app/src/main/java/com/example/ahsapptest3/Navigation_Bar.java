@@ -1,7 +1,10 @@
 package com.example.ahsapptest3;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Process;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,12 @@ import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class Navigation_Bar extends Fragment {
@@ -89,12 +98,59 @@ public class Navigation_Bar extends Fragment {
             case NONE:
             default:
         }
+
+        final ImageView bulletinDot = view.findViewById(R.id.nav_bar_bulletinDot);
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_LOWEST);
+                bulletinDot.setVisibility(View.GONE);
+                final BulletinDatabase db = BulletinDatabase.getInstance(getContext());
+                final Resources r = getResources();
+                final String[] categories = new String[]
+                        {
+                                r.getString(R.string.fb_bull_seniors),
+                                r.getString(R.string.fb_bull_events),
+                                r.getString(R.string.fb_bull_colleges),
+                                r.getString(R.string.fb_bull_reference),
+                                r.getString(R.string.fb_bull_athletics),
+                                r.getString(R.string.fb_bull_others),
+                        };
+                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_bull_key));
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        boolean success = false;
+                        for (String category : categories) {
+                            if(success)
+                                break;
+                            DataSnapshot snapshot1 = snapshot.child(category);
+                            for (DataSnapshot dataSnapshot : snapshot1.getChildren()) {
+                                if(success)
+                                    break;
+                                String ID = dataSnapshot.getKey();
+                                if(!db.getReadStatusByID(ID)) {
+                                    bulletinDot.setVisibility(View.VISIBLE);
+                                    success = true;
+                                }
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
         return view;
     }
 
     /**
      * You can only access the view after activity created; else view is null
-     * @param savedInstanceState uh doesn't really matter for this app
+     * @param savedInstanceState uh doesn't really matter for this function
      */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

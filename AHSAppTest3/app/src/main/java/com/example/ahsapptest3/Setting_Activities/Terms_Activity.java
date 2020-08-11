@@ -1,26 +1,15 @@
 package com.example.ahsapptest3.Setting_Activities;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.SpannableStringBuilder;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.text.HtmlCompat;
 
 import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
 import com.example.ahsapptest3.Helper_Code.Helper;
 import com.example.ahsapptest3.R;
 
-public class Terms_And_Agreements_Activity extends FullScreenActivity {
+public class Terms_Activity extends FullScreenActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +19,9 @@ public class Terms_And_Agreements_Activity extends FullScreenActivity {
         TextView terms = findViewById(R.id.terms_text);
         /*Helper.setHtmlParsedText_toView(terms, getResources().getString(R.string.terms));*/
         /*terms.setText(getResources().getString(R.string.terms));*/
-        setTextViewHTML(terms, getResources().getString(R.string.terms));
-
+        Helper.setHtmlParsedText_toView(terms, getResources().getString(R.string.terms));
+        /*setTextViewHTML(terms, getResources().getString(R.string.terms));
+*/
         ImageView backButton = findViewById(R.id.terms_back_btn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +30,7 @@ public class Terms_And_Agreements_Activity extends FullScreenActivity {
             }
         });
     }
-    protected void makeLinkClickable(SpannableStringBuilder strBuilder, final URLSpan span)
+    /*protected void makeLinkClickable(SpannableStringBuilder strBuilder, final URLSpan span)
     {
 
         int start = strBuilder.getSpanStart(span);
@@ -67,7 +57,7 @@ public class Terms_And_Agreements_Activity extends FullScreenActivity {
         }
         text.setText(strBuilder);
         text.setMovementMethod(LinkMovementMethod.getInstance());
-    }
+    }*/
 }
 
 

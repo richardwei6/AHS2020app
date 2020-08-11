@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
 import com.example.ahsapptest3.Setting_Activities.Settings_Activity;
+
+import java.util.ArrayList;
 
 public class Saved_Activity extends FullScreenActivity implements Navigation, SavedRecyclerAdapter.OnItemClick, NotifBtn.Navigation {
 
@@ -50,10 +53,17 @@ public class Saved_Activity extends FullScreenActivity implements Navigation, Sa
         recyclerView.requestLayout();
         articleDatabase = SavedDatabase.getInstance(this);
 
-        adapter = new SavedRecyclerAdapter(articleDatabase.getAllArticles(), this);
+        adapter = new SavedRecyclerAdapter(new ArrayList<SavedHolder>(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        articleDatabase.getAllArticles_withCallBack(new SavedDatabase.ArticleRetrievedCallback() {
+            @Override
+            public void onArticleLoaded(SavedHolder article) {
+                adapter.addItem(article);
+            }
+        });
 
     }
 
@@ -96,7 +106,7 @@ public class Saved_Activity extends FullScreenActivity implements Navigation, Sa
     public void onItemClick(Article data, int position) {
         this.position = position;
         Intent intent = new Intent(Saved_Activity.this, ArticleActivity.class);
-        intent.putExtra("data", data);
+        intent.putExtra(ArticleActivity.data_key, data);
         startActivityForResult(intent, REQUEST_CODE);
     }
 

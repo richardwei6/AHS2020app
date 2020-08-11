@@ -29,75 +29,27 @@ public class Bulletin_Activity extends FullScreenActivity implements Navigation,
     private static final String TAG = "BulletinActivity";
     private BulletinRecyclerAdapter adapter;
 
-    /*   private boolean seniors_active = false, colleges_active = false, events_active = false, athletics_active = false, reference_active = false, others_active = false;
-*/
-
-    final Bulletin_Article.Type[] types = Bulletin_Article.Type.values();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_layout);
-/*
-        ImageView notifButton = findViewById(R.id.bulletin_notif_Image);
-        notifButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
-
+        final Bulletin_Article.Type[] types = Bulletin_Article.Type.values();
         final Resources r = getResources();
         final String[] categories = new String[]
                 {
-                    r.getString(R.string.fb_bull_seniors),
-                    r.getString(R.string.fb_bull_events),
-                    r.getString(R.string.fb_bull_colleges),
-                    r.getString(R.string.fb_bull_references),
+                    r.getString(R.string.fb_bull_academics),
                     r.getString(R.string.fb_bull_athletics),
-                    r.getString(R.string.fb_bull_others),
+                    r.getString(R.string.fb_bull_clubs),
+                    r.getString(R.string.fb_bull_colleges),
+                    r.getString(R.string.fb_bull_reference),
                 };
 
-        Bulletin_SelectorView 
-                seniors_selector = findViewById(R.id.bulletin_seniors_selection),
-                events_selector = findViewById(R.id.bulletin_events_selection),
-                colleges_selector = findViewById(R.id.bulletin_colleges_selection),
-                reference_selector = findViewById(R.id.bulletin_reference_selection),
-                athletics_selector = findViewById(R.id.bulletin_athletics_selection),
-                others_selector = findViewById(R.id.bulletin_others_selection);
 
-        final Bulletin_SelectorView[] selectors =
-                {
-                    seniors_selector ,
-                    events_selector ,
-                    colleges_selector ,
-                    reference_selector ,
-                    athletics_selector ,
-                    others_selector
-                };
         final ArrayList<Bulletin_Article> data = new ArrayList<>();
 
         final RecyclerView recyclerView = findViewById(R.id.bulletin_RecyclerView);
         recyclerView.setNestedScrollingEnabled(false);
         adapter = new BulletinRecyclerAdapter(data, this);
-
-
-        for(int i = 0; i < selectors.length; i++)
-        {
-            final int finalI = i;
-
-
-            selectors[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    adapter.selectors_active[finalI] = !adapter.selectors_active[finalI];
-                    selectors[finalI].initDecoration(adapter.selectors_active[finalI]);
-                    adapter.filterItems();
-                }
-            });
-        }
-
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -152,7 +104,13 @@ public class Bulletin_Activity extends FullScreenActivity implements Navigation,
                         adapter.addItem(info);
                     }
                 }
-                db.updateArticles(data.toArray(new Bulletin_Article[0]));
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        db.updateArticles(data.toArray(new
+                     Bulletin_Article[0]));
+                    }
+                };
             }
 
             @Override
@@ -160,7 +118,37 @@ public class Bulletin_Activity extends FullScreenActivity implements Navigation,
                 Log.d(TAG, error.getDetails());
             }
         });
+        Bulletin_SelectorView
+                academics_selector = findViewById(R.id.bulletin_academics_selection),
+                athletics_selector = findViewById(R.id.bulletin_athletics_selection),
+                clubs_selector = findViewById(R.id.bulletin_clubs_selection),
+                colleges_selector = findViewById(R.id.bulletin_colleges_selection),
+                reference_selector = findViewById(R.id.bulletin_reference_selection)
+                        ;
 
+        final Bulletin_SelectorView[] selectors =
+                {
+                        academics_selector ,
+                        athletics_selector ,
+                        clubs_selector,
+                        colleges_selector ,
+                        reference_selector ,
+                };
+        for(int i = 0; i < selectors.length; i++)
+        {
+            final int finalI = i;
+
+
+            selectors[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    adapter.selectors_active[finalI] = !adapter.selectors_active[finalI];
+                    selectors[finalI].initDecoration(adapter.selectors_active[finalI]);
+                    adapter.filterItems();
+                }
+            });
+        }
     }
 
     @Override

@@ -32,5 +32,30 @@
         <item name="tickMark">@null</item>
     </style>
 
+    <style name="credits_names_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/sf_pro_display</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/GraniteRed_7E6E6A</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="credits_title_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/sf_pro_semibold</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/DarkCrimson_1A0303</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="bulletin_selectorview_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minWidth">80dp</item>
+    </style>
+
 
 </resources>

@@ -107,7 +107,7 @@ public class Notif_Activity extends FullScreenActivity implements Navigation, No
             /*ArticleDatabase.getInstance(this, ArticleDatabase.Option.CURRENT).updateNotifiedStatus(data.getArticle().getID(),true);*/
 
             Intent intent = new Intent(Notif_Activity.this, ArticleActivity.class);
-            intent.putExtra("data", data.getArticle());
+            intent.putExtra(ArticleActivity.data_key, data.getArticle());
             startActivityForResult(intent, REQUEST_CODE);
         } else {
             /*data.setNotified(true);

@@ -40,7 +40,7 @@ public class YouTubePlayerSupportFragmentX extends Fragment implements YouTubePl
 
     private void a() {
         if (this.c != null && this.e != null) {
-            this.c.a(this.f);
+            /*this.c.a(this.f);*/
             this.c.a(this.getActivity(), this, this.d, this.e, this.b);
             this.b = null;
             this.e = null;

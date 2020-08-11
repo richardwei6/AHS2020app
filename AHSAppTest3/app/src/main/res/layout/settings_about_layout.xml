@@ -23,7 +23,7 @@
 
             >
             <LinearLayout
-                android:id="@+id/credits_header"
+                android:id="@+id/about_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/White"
@@ -33,7 +33,7 @@
                 app:layout_collapseParallaxMultiplier=".7">
 
                 <ImageView
-                    android:id="@+id/credits_back_btn"
+                    android:id="@+id/about_back_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
@@ -46,7 +46,7 @@
                     app:srcCompat="@drawable/arrow_back" />
 
                 <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                    android:id="@+id/credits_titleText"
+                    android:id="@+id/about_titleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -57,7 +57,7 @@
                     android:paddingEnd="@dimen/Half_Padding"
                     android:paddingRight="@dimen/Half_Padding"
                     android:paddingBottom="@dimen/Half_Padding"
-                    android:text="Credits"
+                    android:text="@string/about_us"
                     android:textColor="@color/DarkCrimson_1A0303"
                     android:textSize="20sp" />
 
@@ -73,7 +73,7 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
-            android:id="@+id/credits_outerLayout"
+            android:id="@+id/about_outerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_animation"
@@ -95,7 +95,7 @@
                     android:orientation="vertical">
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:id="@+id/credits_contactUsText"
+                        android:id="@+id/about_contactUsText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_pro_display"
@@ -107,7 +107,7 @@
                     <View style="@style/Spaced_Divider" />
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:id="@+id/credits_email_text"
+                        android:id="@+id/about_email_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autoLink="email"
@@ -139,51 +139,26 @@
                     android:orientation="vertical">
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_semibold"
-                        android:gravity="center_horizontal"
                         android:text="Programmers"
-                        android:textColor="@color/DarkCrimson_1A0303"
-                        android:textSize="18sp" />
+                        style="@style/credits_title_style" />
 
                     <View style="@style/Spaced_Divider" />
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_display"
-                        android:gravity="center_horizontal"
                         android:text="Alex Dang"
-                        android:textColor="@color/GraniteRed_7E6E6A"
-                        android:textSize="18sp" />
+                        style="@style/credits_names_style" />
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_display"
-                        android:gravity="center_horizontal"
                         android:text="Emily Yu"
-                        android:textColor="@color/GraniteRed_7E6E6A"
-                        android:textSize="18sp" />
+                        style="@style/credits_names_style" />
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_display"
-                        android:gravity="center_horizontal"
                         android:text="Kimberly Yu"
-                        android:textColor="@color/GraniteRed_7E6E6A"
-                        android:textSize="18sp" />
+                        style="@style/credits_names_style" />
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_display"
-                        android:gravity="center_horizontal"
                         android:text="Richard Wei"
-                        android:textColor="@color/GraniteRed_7E6E6A"
-                        android:textSize="18sp" />
+                        style="@style/credits_names_style" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -204,33 +179,18 @@
                     android:orientation="vertical">
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_semibold"
-                        android:gravity="center_horizontal"
                         android:text="Graphic Designers"
-                        android:textColor="@color/DarkCrimson_1A0303"
-                        android:textSize="18sp" />
+                        style="@style/credits_title_style" />
 
                     <View style="@style/Spaced_Divider" />
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_display"
-                        android:gravity="center_horizontal"
                         android:text="Arina Miyadi"
-                        android:textColor="@color/GraniteRed_7E6E6A"
-                        android:textSize="18sp" />
+                        style="@style/credits_names_style" />
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_display"
-                        android:gravity="center_horizontal"
                         android:text="Steffi Huang"
-                        android:textColor="@color/GraniteRed_7E6E6A"
-                        android:textSize="18sp" />
+                        style="@style/credits_names_style" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -251,42 +211,114 @@
                     android:orientation="vertical">
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_semibold"
-                        android:gravity="center_horizontal"
                         android:text="Content Editors"
-                        android:textColor="@color/DarkCrimson_1A0303"
-                        android:textSize="18sp" />
+                        style="@style/credits_title_style" />
 
                     <View style="@style/Spaced_Divider" />
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_display"
-                        android:gravity="center_horizontal"
                         android:text="Danielle Wong"
-                        android:textColor="@color/GraniteRed_7E6E6A"
-                        android:textSize="18sp" />
+                        style="@style/credits_names_style" />
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_display"
-                        android:gravity="center_horizontal"
                         android:text="Emily Yu"
-                        android:textColor="@color/GraniteRed_7E6E6A"
-                        android:textSize="18sp" />
+                        style="@style/credits_names_style" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/Double_Padding"
+                app:cardBackgroundColor="@color/White"
+                app:cardCornerRadius="@dimen/SmallRound_BG_Radius"
+                app:cardElevation="@dimen/CardView_Height"
+                app:contentPadding="@dimen/Full_Padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_display"
-                        android:gravity="center_horizontal"
-                        android:text="Kimberly Yu"
-                        android:textColor="@color/GraniteRed_7E6E6A"
-                        android:textSize="18sp" />
+                        android:text="Previous Members"
+                        style="@style/credits_title_style" />
+
+                    <View style="@style/Spaced_Divider" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Elle Yokata"
+                        style="@style/credits_names_style" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Miranda Chen"
+                        style="@style/credits_names_style" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Jocelyn Thai"
+                        style="@style/credits_names_style" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Roselind Zeng"
+                        style="@style/credits_names_style" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/Double_Padding"
+                app:cardBackgroundColor="@color/White"
+                app:cardCornerRadius="@dimen/SmallRound_BG_Radius"
+                app:cardElevation="@dimen/CardView_Height"
+                app:contentPadding="@dimen/Full_Padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Founders"
+                        style="@style/credits_title_style" />
+
+                    <View style="@style/Spaced_Divider" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Albert Yeung"
+                        style="@style/credits_names_style" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Alex Hitti"
+                        style="@style/credits_names_style" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Jason Zhao"
+                        style="@style/credits_names_style" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Jessica Chou"
+                        style="@style/credits_names_style" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Nathan Wong"
+                        style="@style/credits_names_style" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Paul Lee"
+                        style="@style/credits_names_style" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Seongwook Jang"
+                        style="@style/credits_names_style" />
+
+                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        android:text="Tiger Ma"
+                        style="@style/credits_names_style" />
 
                 </LinearLayout>
 

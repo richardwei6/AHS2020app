@@ -27,6 +27,11 @@ public class SavedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.onItemClick = onItemClick;
     }
 
+    public void addItem(SavedHolder article) {
+        articles.add(article);
+        notifyItemChanged(articles.size() -1);
+    }
+
     public void updateItemRemoved(int position){
         articles.remove(position);
         notifyItemRemoved(position);
@@ -90,13 +95,13 @@ public class SavedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
             this.article = article;
             itemView.setOnClickListener(this);
             summaryText.setOnClickListener(this);
-            time_updated.setText(Helper.getDateFromTime(Helper.defaultDatePattern, article.getTimeUpdated()));
+            time_updated.setText(Helper.getDateFromTime(Helper.shortDatePattern, article.getTimeUpdated()));
             typeText.setText(article.getType().getName());
             titleText.setText(article.getTitle());
 
             Helper.setHtmlParsedText_toView(summaryText, article.getStory());
             // setImage
-            Helper.setImageFromUrl_CenterCrop(image,article.getImagePaths()[0], false);
+            Helper.setImageFromUrl_CenterCrop(image,article.getImagePaths()[0]);
         }
 
         @Override
@@ -126,7 +131,7 @@ public class SavedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
             bodyText.setOnClickListener(this);
             titleText.setText(bulletin_article.getTitle());
             Helper.setHtmlParsedText_toView(bodyText, bulletin_article.getBodyText());
-            dateText.setText(Helper.getDateFromTime(Helper.defaultDatePattern, bulletin_article.getTime()));
+            dateText.setText(Helper.getDateFromTime(Helper.shortDatePattern, bulletin_article.getTime()));
             readText.setVisibility(View.GONE);
             typeText.setText(bulletin_article.getType().getName());
         }

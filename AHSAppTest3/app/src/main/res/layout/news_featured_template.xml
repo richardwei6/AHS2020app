@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/template__featured_ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/Full_Padding"
-    android:paddingRight="@dimen/Full_Padding"
-    android:paddingTop="@dimen/Quarter_Padding"
-    android:paddingBottom="@dimen/Quarter_Padding"
+    android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:background="?android:attr/selectableItemBackground">
+    android:paddingLeft="@dimen/Full_Padding"
+    android:paddingTop="@dimen/Quarter_Padding"
+    android:paddingRight="@dimen/Full_Padding"
+    android:paddingBottom="@dimen/Quarter_Padding">
 
     <ImageView
         android:id="@+id/template_featured__ImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:foreground="@drawable/image_border"
         app:layout_constraintDimensionRatio="1.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_bg" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
         android:id="@+id/template_featured__title_Text"
 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/Half_Padding"
+        android:layout_marginTop="@dimen/Quarter_Padding"
         android:layout_weight="1"
         android:ellipsize="end"
         android:fontFamily="@font/sf_pro_semibold"
@@ -46,7 +47,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="@dimen/Half_Padding"
         android:background="@drawable/type_rounded_bg"
         android:fontFamily="@font/sf_pro_display"
         android:paddingLeft="7dp"
@@ -56,27 +56,27 @@
         android:text="Type"
         android:textColor="@color/White"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/news_featured_smalldot"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/template_featured__title_Text" />
+        app:layout_constraintTop_toTopOf="@+id/news_featured_smalldot" />
 
     <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
         android:id="@+id/template_featured__updated_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/Quarter_Padding"
+        android:layout_marginLeft="@dimen/Quarter_Padding"
         android:layout_marginEnd="@dimen/Article_Display_padding"
+        android:layout_marginRight="@dimen/Article_Display_padding"
         android:fontFamily="@font/sf_pro_display"
         android:padding="5dp"
         android:text="00m ago"
         android:textColor="@color/GraniteRed_7E6E6A"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/news_featured_smalldot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/news_featured_smalldot"
-        app:layout_constraintTop_toTopOf="@+id/news_featured_smalldot"
-        android:layout_marginRight="@dimen/Article_Display_padding"
-        android:layout_marginLeft="@dimen/Quarter_Padding" />
+        app:layout_constraintTop_toBottomOf="@+id/template_featured__title_Text" />
 
     <ImageView
         android:id="@+id/news_featured_smalldot"
@@ -84,8 +84,8 @@
         android:layout_height="4dp"
         android:layout_marginStart="@dimen/Half_Padding"
         android:layout_marginLeft="@dimen/Half_Padding"
-        app:layout_constraintBottom_toBottomOf="@+id/news_featured_typeText"
+        app:layout_constraintBottom_toBottomOf="@id/template_featured__updated_Text"
         app:layout_constraintStart_toEndOf="@+id/news_featured_typeText"
-        app:layout_constraintTop_toTopOf="@+id/news_featured_typeText"
+        app:layout_constraintTop_toTopOf="@id/template_featured__updated_Text"
         app:srcCompat="@drawable/news_featured_smalldot" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
-
 import android.os.Process;
 import android.util.Log;
 import android.view.LayoutInflater;

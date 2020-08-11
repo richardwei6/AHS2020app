@@ -44,8 +44,8 @@ public class AdaptingTextView extends AutoAdjustTextSize_TextView {
                     obs.removeOnGlobalLayoutListener(this);
                     if(getLineCount() > fittingLines){
                         int lineEndIndex = getLayout().getLineEnd(fittingLines -1) ;
-                        String text = getText().subSequence(0, lineEndIndex-3)+"...";
-                        setText(text);
+                        if(lineEndIndex - 3 >= 0){String text = getText().subSequence(0, lineEndIndex-3)+"...";
+                        setText(text);}
                         //Log.d(TAG, " NewText\t" + text);
                     }
                 }

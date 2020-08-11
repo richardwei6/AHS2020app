@@ -3,7 +3,6 @@ package com.example.ahsapptest3.Helper_Code;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,10 +38,10 @@ public class Helper{
 
     public static void setHtmlParsedText_toView(TextView view, String text)
     {
-
-        view.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_LEGACY));
+        view.setText(HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_SEPARATOR_LINE_BREAK_PARAGRAPH));
         view.setMovementMethod(LinkMovementMethod.getInstance());
     }
+
 /*
     public static void setHtmlParsed_withRipple(TextView view, View parentView, String text)
     {
@@ -53,10 +52,10 @@ public class Helper{
     /**
      *  Load image from the internet or internal storage into an ImageView
      * */
-    public static void setImageFromUrl(final ImageView view, String url, boolean fromStorage)
+    public static void setImageFromUrl(final ImageView view, String url)
     {
-        if(!fromStorage)
-        {Glide
+
+        Glide
                 .with(view.getContext())
                 .load(url)
                 .error(R.drawable.image_bg)
@@ -64,96 +63,60 @@ public class Helper{
                 .transform(new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
                 .into(view);
 
-            Glide
-                    .with(view.getContext())
-                    .asBitmap()
-                    .apply(new RequestOptions().override(10,10))
-                    .load(url)
-                    .into(new CustomTarget<Bitmap>() {
+        Glide
+            .with(view.getContext())
+            .asBitmap()
+            .apply(new RequestOptions().override(10,10))
+            .load(url)
+            .into(new CustomTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    Palette.from(resource).generate(new Palette.PaletteAsyncListener()
+                    {
                         @Override
-                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                            Palette.from(resource).generate(new Palette.PaletteAsyncListener()
-                            {
-                                @Override
-                                public void onGenerated(@Nullable Palette palette) {
-                                    if (palette != null) {
-                                        int mutedColor = palette.getMutedColor(ContextCompat.getColor(view.getContext(), R.color.CoffeeRed_473D3D));
+                        public void onGenerated(@Nullable Palette palette) {
+                            if (palette != null) {
+                                int mutedColor = palette.getMutedColor(ContextCompat.getColor(view.getContext(), R.color.CoffeeRed_473D3D));
 
-                                        Drawable drawable = ContextCompat.getDrawable(view.getContext(), R.drawable.image_bg);
-                                        DrawableCompat.setTint(drawable, mutedColor);
-                                        view.setBackgroundResource(R.drawable.image_bg);
-                                    }
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onLoadCleared(@Nullable Drawable placeholder) {
-
+                                Drawable drawable = ContextCompat.getDrawable(view.getContext(), R.drawable.image_bg);
+                                DrawableCompat.setTint(drawable, mutedColor);
+                                view.setBackgroundResource(R.drawable.image_bg);
+                            }
                         }
                     });
-        } else {
-            Glide
-                    .with(view.getContext())
-                    .load(Uri.parse(url))
-                    .error(R.drawable.image_bg)
-                    .centerInside()
-                    .into(view);
+                }
 
-            Glide
-                    .with(view.getContext())
-                    .asBitmap()
-                    .load(Uri.parse(url))
-                    .into(new CustomTarget<Bitmap>() {
-                        @Override
-                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                            Palette.from(resource).generate(new Palette.PaletteAsyncListener()
-                            {
-                                @Override
-                                public void onGenerated(@Nullable Palette palette) {
-                                    if (palette != null) {
-                                        int mutedColor = palette.getMutedColor(ContextCompat.getColor(view.getContext(),R.color.CoffeeRed_473D3D));
-                                        view.setColorFilter(mutedColor);
-                                        view.setBackgroundResource(R.drawable.image_bg);
-                                    }
-                                }
-                            });
-                        }
+                @Override
+                public void onLoadCleared(@Nullable Drawable placeholder) {
 
-                        @Override
-                        public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                        }
-                    });
-        }
+                }
+            });
     }
 
     /**
      * same as above but with centercrop() option
      * @param view
      * @param url
-     * @param fromStorage
      */
-    public static void setImageFromUrl_CenterCrop(final ImageView view, String url, boolean fromStorage)
+    public static void setImageFromUrl_CenterCrop(final ImageView view, String url)
     {
-        if(!fromStorage) {
-            Glide
-                    .with(view.getContext())
-                    .load(url)
-                    .error(R.drawable.image_bg)
-                    .transform(new CenterCrop(), new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
-                    .into(view);
-        } else {
-            Glide
-                    .with(view.getContext())
-                    .load(Uri.parse(url))
-                    .error(R.drawable.image_bg)
-                    .transform(new CenterCrop(), new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
-                    .into(view);
-        }
+        Glide
+                .with(view.getContext())
+                .load(url)
+                .override(400,300)
+                .error(R.drawable.image_bg)
+                .transform(new CenterCrop(), new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
+                .into(view);
 
+    }
 
-
+    public static void setImageFromUrl_CenterCrop_FullSize(final ImageView view, String url) {
+        Glide
+                .with(view.getContext())
+                .load(url)
+                .error(R.drawable.image_bg)
+                .transform(new CenterCrop(), new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
+                .into(view);
     }
 
 
@@ -166,23 +129,6 @@ public class Helper{
     public static void setDefaultBackground_toView(ImageView view)
     {
         view.setBackgroundResource(R.drawable.image_bg);
-    }
-
-    /**
-     * Sets onClick listener to a view, opening a corresponding Article Activity
-     * */
-    public static void setArticleListener_toView(final View view, final Article article)
-    {
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(), ArticleActivity.class);
-                intent.putExtra("data", article);
-                view.getContext().startActivity(intent);
-
-
-            }
-        });
     }
 
     /**
@@ -257,7 +203,8 @@ public class Helper{
     {
         return new SimpleDateFormat(pattern, Locale.US).format(time*1000L);
     }
-    public static final String defaultDatePattern = "MMMM dd, yyyy";
+    public static final String defaultDatePattern = "MMMM d, yyyy";
+    public static final String shortDatePattern = "MMM d, ''yy"; // represents single quote
 
     /**
      * Converts a long time to a time unit based on the reasonable unit for the length of time
