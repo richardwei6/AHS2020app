@@ -999,6 +999,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Gqs-Ri-FfJ" firstAttribute="top" secondItem="8vf-rb-I3g" secondAttribute="top" id="3pN-B3-KnE"/>
                             <constraint firstItem="crg-tJ-0rO" firstAttribute="top" secondItem="Gqs-Ri-FfJ" secondAttribute="bottom" id="CVR-Ve-SeD"/>
@@ -1027,6 +1028,7 @@
                         <outlet property="articleCatagoryLabel" destination="DgT-rI-5cM" id="DR7-CD-fcx"/>
                         <outlet property="bookmarkButton" destination="dSA-0F-sUe" id="NIv-JT-etR"/>
                         <outlet property="mainScrollView" destination="crg-tJ-0rO" id="uOp-ZN-aZo"/>
+                        <outlet property="mainView" destination="qDH-gC-dtr" id="lzr-gg-5mx"/>
                         <outlet property="shadowView" destination="Gqs-Ri-FfJ" id="Yhh-WS-ZFJ"/>
                     </connections>
                 </viewController>
@@ -1232,7 +1234,7 @@
                         <outletCollection property="buttons" destination="rd3-Ho-FeZ" collectionClass="NSMutableArray" id="6el-vk-Enz"/>
                         <outletCollection property="buttons" destination="PBQ-ay-oxj" collectionClass="NSMutableArray" id="Jef-C8-zgi"/>
                         <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="at6-zS-lft"/>
-                        <segue destination="08X-4I-yxB" kind="show" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="Diy-5I-FmI"/>
+                        <segue destination="08X-4I-yxB" kind="presentation" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="Diy-5I-FmI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHq-og-Cig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2204,7 +2206,7 @@ This license agreement is governed by the laws of the State of California exclud
                         <outlet property="noNotificationLabel" destination="ovN-aC-RAA" id="fdI-hg-nDs"/>
                         <outlet property="notificationScrollView" destination="NZN-7j-auO" id="Djl-yF-4jT"/>
                         <outlet property="shadowView" destination="H0Z-ns-bKQ" id="fKP-Nf-HRt"/>
-                        <segue destination="08X-4I-yxB" kind="show" identifier="notificationToArticle" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="rU3-UD-e0a"/>
+                        <segue destination="08X-4I-yxB" kind="presentation" identifier="notificationToArticle" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="rU3-UD-e0a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLZ-t6-pdv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

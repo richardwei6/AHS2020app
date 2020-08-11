@@ -11,13 +11,16 @@ import UIKit
 import AudioToolbox
 import youtube_ios_player_helper
 
-class articlePageViewController: UIViewController, UIScrollViewDelegate{
+class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate{
+
+    
     /*@IBOutlet weak var backButton: UIButton!
      @IBOutlet weak var articleText: UILabel!
      @IBOutlet weak var imageScrollView: UIScrollView!
      @IBOutlet weak var imagePageControl: UIPageControl!
      @IBOutlet weak var whiteBackground: UIImageView!*/    //@IBOutlet weak var notificationBellButton: UIButton!
     
+    @IBOutlet var mainView: UIView!
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     
@@ -78,7 +81,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         sender.isSelected = !sender.isSelected;
     }
     
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad();
