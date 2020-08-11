@@ -235,7 +235,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             return "Mandatory";
         }
         else if (id == 1){
-            return "Sports";
+            return "General";
         }
         else if (id == 2){
             return "ASB";
