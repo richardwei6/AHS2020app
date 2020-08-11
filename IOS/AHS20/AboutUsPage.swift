@@ -44,7 +44,7 @@ class aboutUsPage: UIViewController {
        // scrollView.backgroundColor = UIColor.gray;
         let nameTextHeights = [100, 55, 55, 100, 180];
         let arrayNames = ["Programmers", "Graphic Designers", "Content Editors", "Previous Members", "Founders"];
-        let names = ["Kimberly Yu\nEmily Yu\nAlex Dang\nRichard Wei", "Arina Miyadi\nSteffi Huang", "Danielle Wong\nEmily Yu", "Elle Yokata\nMiranda Chen\nJocelyn Thai\nRoselind Zeng", "Seongwook Jang\nJason Zhao\nTiger Ma\nAlbert Yeung\nJessica Chou\nNathan Wong\nPaul Lee\nAlex Hitti"];
+        let names = ["Kimberly Yu\nEmily Yu\nAlex Dang\nRichard Wei", "Arina Miyadi\nSteffi Huang", "Danielle Wong\nEmily Yu", "Elle Yokota\nMiranda Chen\nTiffany Thai\nRoselind Zeng", "Seongwook Jang\nJason Zhao\nTiger Ma\nAlbert Yeung\nJessica Chou\nNathan Wong\nPaul Lee\nAlex Hitti"];
  
         let verticalPadding = CGFloat(40);
         let horizontalPadding = CGFloat(45);
