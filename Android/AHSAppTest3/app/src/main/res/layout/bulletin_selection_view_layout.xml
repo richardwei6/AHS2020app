@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bulletin_selection_outerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        android:id="@+id/bulletin_selection_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:fontFamily="@font/sf_pro_display"
+        android:gravity="center_horizontal"
+        android:paddingStart="@dimen/Half_Padding"
+        android:paddingTop="@dimen/Full_Padding"
+        android:paddingEnd="@dimen/Half_Padding"
+        android:paddingBottom="@dimen/Full_Padding"
+        android:text="Category"
+
+        android:textColor="@color/GraniteRed_7E6E6A"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/bulletin_selection_underline"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+
+        app:srcCompat="@drawable/bulletin_red_underline" />
+
+</LinearLayout>

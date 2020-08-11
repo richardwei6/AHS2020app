@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bulletin_template_CardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/White"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="@dimen/CardView_Height"
+    app:contentPaddingLeft="@dimen/Full_Padding"
+    app:contentPaddingRight="@dimen/Full_Padding"
+    app:contentPaddingBottom="@dimen/Full_Padding"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/bulletin_template_ConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+            android:id="@+id/bulletin_template_typeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/Half_Padding"
+            android:background="@drawable/type_rounded_bg"
+            android:fontFamily="@font/sf_pro_display"
+            android:paddingLeft="7dp"
+            android:paddingTop="3dp"
+            android:paddingRight="7dp"
+            android:paddingBottom="3dp"
+            android:text="Type"
+            android:textColor="@color/White"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+            android:id="@+id/bulletin_template_newText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/Half_Padding"
+            android:layout_marginLeft="@dimen/Half_Padding"
+            android:layout_marginTop="@dimen/Half_Padding"
+            android:background="@drawable/type_rounded_bg"
+            android:backgroundTint="@color/GoldenYellow_E0C260"
+            android:fontFamily="@font/sf_pro_display"
+            android:paddingLeft="7dp"
+            android:paddingTop="3dp"
+            android:paddingRight="7dp"
+            android:paddingBottom="3dp"
+            android:text="New"
+            android:textColor="@color/White"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/bulletin_template_typeText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+            android:id="@+id/bulletin_template_TitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/Quarter_Padding"
+            android:fontFamily="@font/sf_pro_semibold"
+            android:text="TITLE TEXT"
+            android:textColor="@color/DarkCrimson_1A0303"
+            android:textSize="18sp"
+            app:fontFamily="@font/sf_pro_semibold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bulletin_display_barrier" />
+
+        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+            android:id="@+id/bulletin_template_BodyText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="Description of the Article"
+            android:textColor="@color/GraniteRed_7E6E6A"
+            android:textSize="14sp"
+            app:fontFamily="@font/sf_pro_display"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bulletin_template_TitleText" />
+
+        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+            android:id="@+id/bulletin_template_DateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="Date"
+            android:textColor="@color/AngryRed_9F0C0C"
+            android:textSize="12sp"
+            app:fontFamily="@font/sf_pro_display"
+            app:layout_constraintBottom_toBottomOf="@+id/bulletin_template_typeText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bulletin_template_typeText" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/bulletin_display_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="bulletin_template_DateText,bulletin_template_typeText"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="71dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

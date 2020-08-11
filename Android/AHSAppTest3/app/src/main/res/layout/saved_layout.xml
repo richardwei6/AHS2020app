@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/saved_outerConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Saved_Activity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/saved_ScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/saved_header_LinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/White"
+                android:elevation="3dp"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/Full_Padding"
+                android:paddingLeft="@dimen/Full_Padding"
+                android:paddingTop="@dimen/Half_Padding"
+                android:paddingEnd="@dimen/Half_Padding"
+                android:paddingRight="@dimen/Half_Padding"
+                android:paddingBottom="@dimen/Half_Padding">
+
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    android:id="@+id/saved_titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Half_Padding"
+                    android:layout_marginBottom="@dimen/Half_Padding"
+
+                    android:layout_weight="1"
+                    android:fontFamily="@font/din_alternate_bold"
+                    android:text="Saved"
+                    android:textColor="@color/AngryRed_9F0C0C"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <fragment
+                    android:id="@+id/saved_notifbtn"
+                    android:name="com.example.ahsapptest3.NotifBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    tools:layout="@layout/notif_btn"
+                    android:adjustViewBounds="true" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/saved_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutAnimation="@anim/recycler_fade_in"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+    <fragment
+        android:id="@+id/saved_navBar"
+        android:name="com.example.ahsapptest3.Navigation_Bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        tools:layout="@layout/nav_bar" />
+</androidx.constraintlayout.widget.ConstraintLayout>
