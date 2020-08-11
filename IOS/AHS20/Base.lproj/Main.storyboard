@@ -1317,6 +1317,7 @@
                         <outlet property="bulletinScrollView" destination="7fW-Zl-nwU" id="SNI-SI-TpG"/>
                         <outlet property="filterScrollView" destination="6rC-8R-9Il" id="oT4-H9-lIf"/>
                         <outlet property="filterScrollViewHeightContraint" destination="VsH-b4-4hc" id="1Xg-TM-24x"/>
+                        <outlet property="mainView" destination="fN1-Xs-ly6" id="K7Z-tE-EKf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8K-aq-voA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

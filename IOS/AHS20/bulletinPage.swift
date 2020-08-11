@@ -18,6 +18,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     @IBOutlet weak var filterScrollView: UIScrollView!
     @IBOutlet weak var bulletinScrollView: UIScrollView!
+    @IBOutlet var mainView: UIView!
     
     
     @IBOutlet weak var filterScrollViewHeightContraint: NSLayoutConstraint!
@@ -200,6 +201,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             
             let catagoryFrameWidth = CGFloat(70);
             var currY = articleVerticalPadding;
+
             
             if (currentArticles.count > 0){
                 for article in currentArticles{
@@ -279,12 +281,23 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     mainView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
                     self.bulletinScrollView.addSubview(articleButton);
                 }
-                bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: CGFloat(currY));
-                bulletinScrollView.delegate = self;
             }
             else{
-                print("NO ARTICLES - BULLETIN")
+                let labelHeight = CGFloat(100);
+                let noArticlesLabel = UILabel(frame: CGRect(x: articleHorizontalPadding, y: currY, width: UIScreen.main.bounds.width - 2*articleHorizontalPadding, height: labelHeight));
+                noArticlesLabel.text = "No articles found";
+                noArticlesLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 20);
+                noArticlesLabel.backgroundColor = UIColor.white;
+                noArticlesLabel.textAlignment = .center;
+                noArticlesLabel.layer.shadowColor = UIColor.black.cgColor;
+                noArticlesLabel.layer.shadowOpacity = 0.2;
+                noArticlesLabel.layer.shadowRadius = 5;
+                noArticlesLabel.layer.shadowOffset = CGSize(width: 0 , height:3);
+                bulletinScrollView.addSubview(noArticlesLabel);
+                currY += labelHeight;
             }
+            bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: CGFloat(currY));
+            bulletinScrollView.delegate = self;
         }
     }
     
@@ -356,8 +369,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         bulletinScrollView.isScrollEnabled = true;
         bulletinScrollView.alwaysBounceVertical = true;
         refreshControl.beginRefreshing();
+        
         setUpFilters();
-        // set up bulletin for the first time before any filters
         getBulletinArticleData();
         
     }
