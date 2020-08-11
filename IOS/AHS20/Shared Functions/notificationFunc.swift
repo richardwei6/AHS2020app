@@ -17,7 +17,7 @@ import SDWebImage
 // NOTIFICATION START
 var totalNotificationList = [notificationData]();
 var notificationReadDict = [String : Bool](); // Message ID : Read = true
-var notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
+//var notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
 
 // notification settings
 var selectedNotifications = [Bool](repeating: false, count: 5); // true or false 0 - 4 0 is general
@@ -57,16 +57,29 @@ func saveNotifPref(){
     }
 }
 
-func filterTotalNotificationArticles(){ // inital
+func filterThroughSelectedNotifcations() -> [notificationData]{
+     selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
+     updateSubscriptionNotifs();
+     var output = [notificationData]();
+     for i in totalNotificationList{
+        if (selectedNotifications[0] == true || selectedNotifications[i.notificationCatagory ?? 0] == true || i.notificationCatagory == 0){
+             output.append(i);
+         }
+     }
+     return output;
+}
+
+func numOfUnreadInArray(arr: [notificationData]) -> Int{
     loadNotifPref();
-    notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
-    for notification in totalNotificationList{
-        if (notification.notificationCatagory == 0 || selectedNotifications[notification.notificationCatagory ?? 0] == true || selectedNotifications[0] == true){
-            notificationList[(notificationReadDict[notification.messageID ?? ""] == true ? 0 : 1)].append(notification);
+    selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
+    updateSubscriptionNotifs();
+    var count = 0;
+    for singleNotification in arr{
+        if ((selectedNotifications[0] == true || selectedNotifications[singleNotification.notificationCatagory ?? 0] == true || singleNotification.notificationCatagory == 0) && notificationReadDict[singleNotification.messageID ?? ""] != true){
+            count += 1;
         }
     }
-  //  print("change - \(notificationList)")
-    unreadNotif = (notificationList[1].count > 0);
+    return count;
 }
 
 // NOTIFICATION END

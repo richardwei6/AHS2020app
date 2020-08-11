@@ -49,7 +49,7 @@ class CustomTabBarController: UIViewController {
     var articleContentInSegue: articleData?;
     
     @IBAction func openNotifications(_ sender: UIButton) {
-        print("Notifcations");
+        //print("Notifcations");
         performSegue(withIdentifier: "notificationSegue", sender: nil);
     }
     
@@ -64,12 +64,14 @@ class CustomTabBarController: UIViewController {
             vc.articleContent = articleContentInSegue;
         }
     }
-    
+
     func setUpNotifDot(){
+        loadNotifPref();
+        selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
+        updateSubscriptionNotifs();
+        unreadNotifCount = 0;
         setUpConnection();
         if (internetConnected){
-            // print("ok -------- loading articles - notifications");
-            //print(s);
             totalNotificationList = [notificationData]();
             ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
                 let enumerator = snapshot.children;
@@ -99,9 +101,11 @@ class CustomTabBarController: UIViewController {
                         
                     }
                     totalNotificationList.append(singleNotification);
-                    filterTotalNotificationArticles();
-                    self.notificationDot.isHidden = !unreadNotif;
-                    UIApplication.shared.applicationIconBadgeNumber = notificationList[1].count;
+                    if ((selectedNotifications[0] == true || selectedNotifications[singleNotification.notificationCatagory ?? 1] == true || singleNotification.notificationCatagory == 0) && notificationReadDict[singleNotification.messageID ?? ""] == nil){
+                        unreadNotifCount += 1;
+                    }
+                    self.notificationDot.isHidden = unreadNotifCount == 0;
+                    UIApplication.shared.applicationIconBadgeNumber = unreadNotifCount;
                 };
             }
         }
@@ -163,7 +167,7 @@ class CustomTabBarController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         // set notification dot
-        notificationDot.isHidden = !unreadNotif;
+        notificationDot.isHidden = unreadNotifCount == 0;
     }
     
     @IBAction func didPressTab(_ sender: UIButton) {

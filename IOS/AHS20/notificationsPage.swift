@@ -54,7 +54,8 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                         }
                     }
                     totalNotificationList.append(singleNotification);
-                    filterTotalNotificationArticles();
+                    //filterTotalNotificationArticles();
+                  //  print("found notifcaiton article on firebase");
                     self.loadScrollView();
                     self.refreshControl.endRefreshing();
                 };
@@ -199,10 +200,12 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     @objc func openArticle(_ sender: notificationUIButton) {
         if (sender.alreadyRead == false){
-            notificationList[0].append(notificationList[1][sender.articleIndex]);
-            notificationList[1].remove(at: sender.articleIndex);
+            /*notificationList[0].append(notificationList[1][sender.articleIndex]);
+            notificationList[1].remove(at: sender.articleIndex);*/
             notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = true;
             saveNotifPref();
+            unreadNotifCount = numOfUnreadInArray(arr: filterThroughSelectedNotifcations());
+            UIApplication.shared.applicationIconBadgeNumber = unreadNotifCount;
         }
         if (articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""] != nil){
             articleContentInSegue = articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""];
@@ -218,9 +221,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         }
     }
     
-    var unreadNotificationSize = 0;
-    var readNotificationSize = 0;
-    
+
     var notificationFrame = CGRect(x: 0, y: 0, width: 0, height: 0);
     
     var horizontalPadding = CGFloat(10);
@@ -249,15 +250,22 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     }
     
     func notificationSort(a: notificationData, b: notificationData)->Bool{
-        return a.notificationUnixEpoch ?? INT64_MAX > b.notificationUnixEpoch ?? INT64_MAX;
+        let currTime = Int64(NSDate().timeIntervalSince1970);
+        if (a.notificationUnixEpoch ?? INT64_MAX > currTime && b.notificationUnixEpoch ?? INT64_MAX > currTime){
+            return (a.notificationUnixEpoch ?? INT64_MAX) < (b.notificationUnixEpoch ?? INT64_MAX);
+        }
+        else{
+            return (a.notificationUnixEpoch ?? INT64_MAX) > (b.notificationUnixEpoch ?? INT64_MAX);
+        }
     }
+    
     
     func loadScrollView(){
         
-        unreadNotificationSize = notificationList[1].count;
+        /*unreadNotificationSize = notificationList[1].count;
         readNotificationSize = notificationList[0].count;
         notificationList[1] = notificationList[1].sorted(by: notificationSort);
-        notificationList[0] = notificationList[0].sorted(by: notificationSort);
+        notificationList[0] = notificationList[0].sorted(by: notificationSort);*/
         // remove prev subviews
         for subview in notificationScrollView.subviews{
             if (subview != refreshControl){
@@ -265,9 +273,11 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             }
         }
         
-        UIApplication.shared.applicationIconBadgeNumber = unreadNotificationSize;
+      //  print("before - \(totalNotificationList.count)");
+        let currNotifList = filterThroughSelectedNotifcations();
+      //  print("after - \(totalNotificationList.count)")
         
-        if (unreadNotificationSize != 0 || readNotificationSize != 0){
+        if (currNotifList.count > 0){
             
             notificationScrollView.isHidden = false;
             noNotificationLabel.isHidden = true;
@@ -277,39 +287,43 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             
             var yPos = verticalPadding;
             // add notification label at start
-            for nIndex in 0..<unreadNotificationSize{
+            for currNotif in currNotifList{
                 notificationFrame.origin.x = horizontalPadding;
                 notificationFrame.origin.y = yPos;
                 
                 let notificationButton = notificationUIButton(frame: notificationFrame);
-                let currNotif = notificationList[1][nIndex]; // TODO: import data
+                let currArticleRead = notificationReadDict[currNotif.messageID ?? ""] == true ? true : false;
                 
                 let chevronWidth = CGFloat(22);
                 
                 let notificationCatagoryLabelHeight = CGFloat(20);
                 let notificationCatagoryLabelFrame = CGRect(x: 10, y: 12, width: 65, height: notificationCatagoryLabelHeight);
                 let notificationCatagoryLabel = UILabel(frame: notificationCatagoryLabelFrame);
-                notificationCatagoryLabel.backgroundColor = makeColor(r: 159, g: 12, b: 12);
                 notificationCatagoryLabel.text = typeIDToString(id: currNotif.notificationCatagory ?? 0);
                 notificationCatagoryLabel.textAlignment = .center;
                 notificationCatagoryLabel.textColor = UIColor.white;
                 notificationCatagoryLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+                notificationCatagoryLabel.backgroundColor = currArticleRead ? makeColor(r: 144, g: 75, b: 75) : mainThemeColor;
                 notificationCatagoryLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                 //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
                 
-                let readLabelFrame = CGRect(x: 15 + notificationCatagoryLabelFrame.size.width, y: 12, width: 40, height: notificationCatagoryLabelHeight);
-                let readLabel = UILabel(frame: readLabelFrame);
-                readLabel.text = "New";
-                readLabel.backgroundColor = UIColor.systemYellow;
-                readLabel.textAlignment = .center;
-                readLabel.textColor = UIColor.white;
-                readLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
-                readLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
+                if (currArticleRead == false){
+                    let readLabelFrame = CGRect(x: 15 + notificationCatagoryLabelFrame.size.width, y: 12, width: 40, height: notificationCatagoryLabelHeight);
+                    let readLabel = UILabel(frame: readLabelFrame);
+                    readLabel.text = "New";
+                    readLabel.backgroundColor = UIColor.systemYellow;
+                    readLabel.textAlignment = .center;
+                    readLabel.textColor = UIColor.white;
+                    readLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+                    readLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
+                    notificationButton.addSubview(readLabel);
+                }
                 
                 let notificationTitleFrame = CGRect(x: 10, y: notificationCatagoryLabelHeight + 15, width: notificationFrame.size.width - chevronWidth - timeStampLength, height: 30);
                 let notificationTitle = UILabel(frame: notificationTitleFrame);
                 notificationTitle.text = currNotif.notificationTitle;
-                notificationTitle.font = UIFont(name:"SFProText-Bold",size: 18);
+                notificationTitle.font = currArticleRead ? UIFont(name: "SFProDisplay-Semibold",size: 18) : UIFont(name:"SFProText-Bold",size: 18);
+                notificationTitle.textColor = currArticleRead ? UIColor.gray : UIColor.black;
                 notificationTitle.adjustsFontSizeToFitWidth = true;
                 notificationTitle.minimumScaleFactor = 0.2;
                 
@@ -321,6 +335,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationBodyText.text = currNotif.notificationBody;
                 notificationBodyText.numberOfLines = 0;
                 notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 14);
+                notificationBodyText.textColor = currArticleRead ? UIColor.gray : UIColor.black;
                 // notificationBodyText.backgroundColor = UIColor.lightGray;
                 
                 let timeStampFrame = CGRect(x: notificationFrame.size.width - chevronWidth - timeStampLength + 10, y: 5, width: timeStampLength, height: 30);
@@ -330,7 +345,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 timeStamp.textAlignment = .right;
                 timeStamp.textColor = UIColor.darkGray;
                 
-                notificationButton.backgroundColor = UIColor.white;
+                notificationButton.backgroundColor = currArticleRead ? makeColor(r: 250, g: 250, b: 250) : UIColor.white;
                 
                 notificationButton.layer.shadowColor = UIColor.black.cgColor;
                 notificationButton.layer.shadowOpacity = 0.2;
@@ -338,9 +353,8 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationButton.layer.shadowOffset = CGSize(width: 0 , height:3);
                 
                 notificationButton.notificationCompleteData = currNotif;
-                notificationButton.articleIndex = nIndex;
-                
-                notificationButton.addSubview(readLabel);
+               // notificationButton.articleIndex = nIndex;
+            
                 notificationButton.addSubview(notificationCatagoryLabel);
                 notificationButton.addSubview(notificationTitle);
                 notificationButton.addSubview(notificationBodyText);
@@ -348,7 +362,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 
                 notificationButton.frame.size.height = notificationBodyText.frame.maxY + bodyVerticalPadding + 10;
                 
-                if (articleDictionary[currNotif.notificationArticleID ?? ""] != nil && currNotif.notificationArticleID != nil){
+                if (currNotif.notificationArticleID != nil && articleDictionary[currNotif.notificationArticleID ?? ""] != nil){
                     //   print("id - \(currNotif.notificationArticleID) & title = \(articleDictionary[currNotif.notificationArticleID ?? ""]?.articleTitle)")
                     let chevronFrame = CGRect(x: notificationButton.frame.size.width-chevronWidth-15, y: (notificationButton.frame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
                     let chevronImage = UIImageView(frame: chevronFrame);
@@ -358,83 +372,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 }
                 
                 yPos += notificationButton.frame.size.height + verticalPadding;
-                
-                notificationButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
-                notificationScrollView.addSubview(notificationButton);
-            }
-            for nIndex in 0..<readNotificationSize{
-                notificationFrame.origin.x = horizontalPadding;
-                notificationFrame.origin.y = yPos;
-                
-                let notificationButton = notificationUIButton(frame: notificationFrame);
-                let currNotif = notificationList[0][nIndex];
-                
-                let chevronWidth = CGFloat(22);
-                
-                let notificationCatagoryLabelHeight = CGFloat(20);
-                let notificationCatagoryLabelFrame = CGRect(x: 10, y: 12, width: 65, height: notificationCatagoryLabelHeight);
-                let notificationCatagoryLabel = UILabel(frame: notificationCatagoryLabelFrame);
-                notificationCatagoryLabel.backgroundColor = UIColor.gray;
-                notificationCatagoryLabel.layer.cornerRadius = 5;
-                notificationCatagoryLabel.text = typeIDToString(id: currNotif.notificationCatagory ?? 0);
-                notificationCatagoryLabel.textAlignment = .center;
-                notificationCatagoryLabel.textColor = UIColor.white;
-                notificationCatagoryLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
-                notificationCatagoryLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
-                //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
-                
-                let notificationTitleFrame = CGRect(x: 10, y: notificationCatagoryLabelHeight + 15, width: notificationFrame.size.width - chevronWidth - timeStampLength, height: 30);
-                let notificationTitle = UILabel(frame: notificationTitleFrame);
-                notificationTitle.text = currNotif.notificationTitle;
-                notificationTitle.font = UIFont(name:"SFProText-Bold",size: 18);
-                notificationTitle.adjustsFontSizeToFitWidth = true;
-                notificationTitle.minimumScaleFactor = 0.2;
-                
-                let bodyVerticalPadding = CGFloat(10);
-                
-                let notificationBodyWidth = CGFloat(notificationFrame.size.width  - chevronWidth - 27);
-                let notificationBodyFrame = CGRect(x: 10, y: notificationTitleFrame.size.height + 10 + notificationCatagoryLabelFrame.size.height + bodyVerticalPadding, width: notificationBodyWidth, height: currNotif.notificationBody?.getHeight(withConstrainedWidth: notificationBodyWidth, font: UIFont(name:"SFProDisplay-Regular",size: 14)!) ?? 0);
-                let notificationBodyText = UILabel(frame: notificationBodyFrame);
-                notificationBodyText.text = currNotif.notificationBody;
-                notificationBodyText.numberOfLines = 0;
-                notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 14);
-                
-                let timeStampFrame = CGRect(x: notificationFrame.size.width - chevronWidth - timeStampLength + 10, y: 5, width: timeStampLength, height: 30);
-                let timeStamp = UILabel(frame: timeStampFrame);
-                timeStamp.text = epochClass.epochToString(epoch: currNotif.notificationUnixEpoch ?? -1);
-                timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 12);
-                timeStamp.textAlignment = .right;
-                timeStamp.textColor = UIColor.darkGray;
-                
-                notificationButton.backgroundColor = makeColor(r: 250, g: 250, b: 250);
-                
-                notificationButton.layer.shadowColor = UIColor.black.cgColor;
-                notificationButton.layer.shadowOpacity = 0.2;
-                notificationButton.layer.shadowRadius = 5;
-                notificationButton.layer.shadowOffset = CGSize(width: 0 , height:3);
-                
-                notificationButton.alreadyRead = true;
-                notificationButton.notificationCompleteData = currNotif;
-                notificationButton.articleIndex = nIndex+unreadNotificationSize;
-                
-                notificationButton.addSubview(notificationCatagoryLabel);
-                notificationButton.addSubview(notificationTitle);
-                notificationButton.addSubview(notificationBodyText);
-                notificationButton.addSubview(timeStamp);
-                
-                notificationButton.frame.size.height = notificationBodyText.frame.maxY + bodyVerticalPadding + 10;
-                
-                if (articleDictionary[currNotif.notificationArticleID ?? ""] != nil && currNotif.notificationArticleID != nil){
-                    //  print("id - \(currNotif.notificationArticleID) & title = \(articleDictionary[currNotif.notificationArticleID ?? ""]?.articleTitle)")
-                    let chevronFrame = CGRect(x: notificationButton.frame.size.width-chevronWidth-15, y: (notificationButton.frame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
-                    let chevronImage = UIImageView(frame: chevronFrame);
-                    chevronImage.image = UIImage(systemName: "chevron.right");
-                    chevronImage.tintColor = UIColor.gray;
-                    notificationButton.addSubview(chevronImage);
-                }
-                
-                yPos += notificationButton.frame.size.height + verticalPadding;
-                
                 
                 notificationButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
                 notificationScrollView.addSubview(notificationButton);
@@ -469,7 +406,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         shadowView.layer.shadowOffset = CGSize(width: 0 , height: 5);
         
         totalNotificationList = [notificationData]();
-        notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
+        //notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
         
         refreshControl.addTarget(self, action: #selector(refreshNotifications), for: UIControl.Event.valueChanged);
         notificationScrollView.addSubview(refreshControl);
@@ -485,7 +422,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     @IBAction func exitPopup(_ sender: UIButton) {
         
-        unreadNotif = (notificationList[1].count > 0);
+   //     unreadNotif = (notificationList[1].count > 0);
         dismiss(animated: true);
     }
     
