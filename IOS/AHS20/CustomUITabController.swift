@@ -101,7 +101,7 @@ class CustomTabBarController: UIViewController {
                         
                     }
                     totalNotificationList.append(singleNotification);
-                    if ((selectedNotifications[0] == true || selectedNotifications[singleNotification.notificationCatagory ?? 1] == true || singleNotification.notificationCatagory == 0) && notificationReadDict[singleNotification.messageID ?? ""] == nil){
+                    if ((selectedNotifications[0] == true || selectedNotifications[singleNotification.notificationCatagory ?? 0] == true || singleNotification.notificationCatagory == 0) && notificationReadDict[singleNotification.messageID ?? ""] != true){
                         unreadNotifCount += 1;
                     }
                     self.notificationDot.isHidden = unreadNotifCount == 0;
@@ -113,7 +113,7 @@ class CustomTabBarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
+        printFontFamilies();
         
         setUpConnection();
         //  print("Connection Established");
