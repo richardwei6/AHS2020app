@@ -85,7 +85,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
+        // NewYorkSmall-MediumItalic, NewYorkMedium-Bold
         imageAvgColors = [Int:UIColor]();
         bookmarkButton.articleCompleteData = articleContent ?? articleData();
         
@@ -104,6 +104,16 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
         let padding = CGFloat(15);
         let universalWidth = UIScreen.main.bounds.width - 2 * padding;
         
+        //nextY += 7;
+        let articleTitleText = articleContent?.articleTitle;
+        let titleFont = UIFont(name: "NewYorkMedium-Bold", size: CGFloat(fontSize+8));
+        let articleTitleFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleTitleText?.getHeight(withConstrainedWidth: universalWidth, font: titleFont!) ?? 0);
+        let articleTitle = UILabel(frame: articleTitleFrame);
+        articleTitle.text = articleTitleText; // set article title herer
+        articleTitle.font = titleFont;
+        articleTitle.numberOfLines = 0;
+        mainScrollView.addSubview(articleTitle);
+        nextY += articleTitleFrame.height + 7;
         
         if ((articleContent?.articleVideoIDs?.count ?? 0) + (articleContent?.articleImages?.count ?? 0) > 0){ // bulletin
             let imageScrollViewFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: 250);
@@ -159,23 +169,16 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
             mainScrollView.addSubview(imageScrollView);
         }
         
-        nextY += 7;
-        let articleTitleText = articleContent?.articleTitle;
-        let articleTitleFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleTitleText?.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Semibold", size: CGFloat(fontSize+5))!) ?? 0);
-        let articleTitle = UILabel(frame: articleTitleFrame);
-        articleTitle.text = articleTitleText; // set article title herer
-        articleTitle.font = UIFont(name: "SFProDisplay-Semibold", size: CGFloat(fontSize+5));
-        articleTitle.numberOfLines = 0;
-        mainScrollView.addSubview(articleTitle);
-        nextY += articleTitleFrame.height;
         
         nextY += 7;
         if (articleContent?.articleAuthor != nil){
             let articleAuthorText = "By " + (articleContent?.articleAuthor ?? "No Author");
-            let articleAuthorFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleAuthorText.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize-3))!))
+            let articleAuthorFont = UIFont(name: "NewYorkSmall-MediumItalic", size: CGFloat(fontSize-1));
+            let articleAuthorFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleAuthorText.getHeight(withConstrainedWidth: universalWidth, font: articleAuthorFont!))
             let articleAuthor = UILabel(frame: articleAuthorFrame);
             articleAuthor.text = articleAuthorText;
-            articleAuthor.font = UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize-3));
+            articleAuthor.font = articleAuthorFont;
+            articleAuthor.textColor = makeColor(r: 112, g: 112, b: 112);
             articleAuthor.numberOfLines = 0;
             mainScrollView.addSubview(articleAuthor);
             nextY += articleAuthorFrame.size.height+3;
@@ -186,6 +189,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
         let articleDate = UILabel(frame: articleDateFrame);
         articleDate.text = articleDateText;
         articleDate.font = UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize-3));
+        articleDate.textColor = makeColor(r: 112, g: 112, b: 112);
         articleDate.numberOfLines = 0;
         mainScrollView.addSubview(articleDate);
         nextY += articleDateFrame.size.height;
@@ -196,6 +200,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
         let articleBody = UITextView(frame: articleBodyFrame);
         articleBody.attributedText = articleBodyText;
         articleBody.font = UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize));
+        articleBody.textColor = makeColor(r: 33, g: 33, b: 33);
         articleBody.isScrollEnabled = false;
         articleBody.isEditable = false;
         articleBody.tintColor = UIColor.systemBlue;

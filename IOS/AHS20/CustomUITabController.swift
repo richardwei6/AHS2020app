@@ -113,7 +113,7 @@ class CustomTabBarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        printFontFamilies();
+      //  printFontFamilies();
         
         setUpConnection();
         //  print("Connection Established");
