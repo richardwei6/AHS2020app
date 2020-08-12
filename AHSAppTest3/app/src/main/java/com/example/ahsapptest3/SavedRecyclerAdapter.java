@@ -9,25 +9,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ahsapptest3.Helper_Code.Helper;
+import com.example.ahsapptest3.Misc.Helper;
 
 import java.util.ArrayList;
 
 public class SavedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
-    private static final String TAG = "ArticleRecyclerAdapter";
-    private static final int ARTICLE = SavedHolder.Option.ARTICLE.getNum();
-    private static final int BULLETIN_ARTICLE = SavedHolder.Option.BULLETIN_ARTICLE.getNum();
+    /*private static final String TAG = "ArticleRecyclerAdapter";*/
+    private static final int ARTICLE = Article_or_BulletinHolder.Option.ARTICLE.getNum();
+    private static final int BULLETIN_ARTICLE = Article_or_BulletinHolder.Option.BULLETIN_ARTICLE.getNum();
 
-    public ArrayList<SavedHolder> articles; // ArrayList instead of array in case we want to add or remove stuff (which will happen!)
-    private OnItemClick onItemClick;
+    public final ArrayList<Article_or_BulletinHolder> articles; // ArrayList instead of array in case we want to add or remove stuff (which will happen!)
+    private final OnItemClick onItemClick;
 
-    public SavedRecyclerAdapter(ArrayList<SavedHolder> articles, OnItemClick onItemClick) {
+    public SavedRecyclerAdapter(ArrayList<Article_or_BulletinHolder> articles, OnItemClick onItemClick) {
         this.articles = new ArrayList<>(articles);
         this.onItemClick = onItemClick;
     }
 
-    public void addItem(SavedHolder article) {
+    public void addItem(Article_or_BulletinHolder article) {
         articles.add(article);
         notifyItemChanged(articles.size() -1);
     }
@@ -39,9 +39,9 @@ public class SavedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemViewType(int position) {
-        if(articles.get(position).getOption() == SavedHolder.Option.ARTICLE)
+        if(articles.get(position).getOption() == Article_or_BulletinHolder.Option.ARTICLE)
             return ARTICLE;
-        if(articles.get(position).getOption() == SavedHolder.Option.BULLETIN_ARTICLE)
+        if(articles.get(position).getOption() == Article_or_BulletinHolder.Option.BULLETIN_ARTICLE)
             return BULLETIN_ARTICLE;
         throw new IllegalStateException("Unexpected SavedHolder.Option in SavedRecyclerAdapter");
     }
@@ -77,9 +77,12 @@ public class SavedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public static class Article_ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView time_updated, titleText, summaryText, typeText;
-        ImageView image;
-        OnItemClick onItemClick;
+        final TextView time_updated;
+        final TextView titleText;
+        final TextView summaryText;
+        final TextView typeText;
+        final ImageView image;
+        final OnItemClick onItemClick;
         Article article;
         public Article_ViewHolder(@NonNull View itemView, OnItemClick onItemClick) {
             super(itemView);
@@ -111,8 +114,12 @@ public class SavedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public static class Bulletin_Article_ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView titleText, bodyText, dateText, typeText, readText;
-        OnItemClick onItemClick;
+        final TextView titleText;
+        final TextView bodyText;
+        final TextView dateText;
+        final TextView typeText;
+        final TextView readText;
+        final OnItemClick onItemClick;
         Bulletin_Article bulletin_article;
         public Bulletin_Article_ViewHolder(@NonNull View itemView, OnItemClick onItemClick) {
             super(itemView);

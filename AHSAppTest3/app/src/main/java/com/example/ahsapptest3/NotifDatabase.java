@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class NotifDatabase extends SQLiteOpenHelper {
 
-    private static final String TAG = "NotifDatabase";
+    /*private static final String TAG = "NotifDatabase";*/
     private static final String current_Table = "NotifDatabase"; //may change later
 
     private static final String NOTIF_ID = "NOTIF_ID";
@@ -36,11 +36,10 @@ public class NotifDatabase extends SQLiteOpenHelper {
             thisDatabase = new NotifDatabase(context.getApplicationContext());
         return thisDatabase;
     }
-    private Context context;
+
     private NotifDatabase(@Nullable Context context)
     {
         super(context, current_Table, null, 1);
-        this.context = context;
     }
 
     @Override
@@ -93,7 +92,7 @@ public class NotifDatabase extends SQLiteOpenHelper {
         cursor.close();
         return alreadyAdded;
     }
-
+/*
     public ArrayList<Notif_Data> getAllData()
     {
         String query = "SELECT * FROM " + current_Table;
@@ -113,7 +112,7 @@ public class NotifDatabase extends SQLiteOpenHelper {
         }
         data.close();
         return notif_data;
-    }
+    }*/
 
     public boolean getReadStatusByID(String ID)
     {
@@ -129,7 +128,7 @@ public class NotifDatabase extends SQLiteOpenHelper {
         data.close();
         return read;
     }
-
+/*
     public boolean getReadStatusBy_ArticleID(String articleID){
         String query = "SELECT "+ NOTIFIED + " FROM " + current_Table
                 + " WHERE  " + ART_ID + " = '" + articleID + "'";
@@ -142,7 +141,7 @@ public class NotifDatabase extends SQLiteOpenHelper {
         boolean read = data.getInt(0) == 1;
         data.close();
         return read;
-    }
+    }*/
 
     public void updateReadStatus(Notif_Data data)
     {
@@ -151,14 +150,14 @@ public class NotifDatabase extends SQLiteOpenHelper {
                 + "' WHERE " + NOTIF_ID + " = '" + data.getID() + "'";
         this.getWritableDatabase().execSQL(query);
     }
-
+/*
     public void delete(Notif_Data data)
     {
         String query =
                 "DELETE FROM " + current_Table +
                         " WHERE " + NOTIF_ID + " = '" + data.getID() +"'";
         this.getWritableDatabase().execSQL(query);
-    }
+    }*/
 
     public void deleteAll()
     {

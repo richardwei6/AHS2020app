@@ -7,13 +7,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
-import com.example.ahsapptest3.Helper_Code.Helper;
-import com.example.ahsapptest3.Helper_Code.ValContainer;
+import com.example.ahsapptest3.Misc.FullScreenActivity;
+import com.example.ahsapptest3.Misc.Helper;
+import com.example.ahsapptest3.Misc.ValContainer;
 
 public class Bulletin_Article_Activity extends FullScreenActivity {
 
-    public static final String read_KEY = "1";
+    /*public static final String read_KEY = "1";*/
     public static final String data_KEY = "0";
 
     @Override
@@ -21,6 +21,8 @@ public class Bulletin_Article_Activity extends FullScreenActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_article_layout);
 
+        /*PhotoView photoView = findViewById(R.id.photoview);
+        photoView.setImageResource(R.drawable.downsize_feather);*/
         final Bulletin_Article data = getIntent().getParcelableExtra(data_KEY);
         TextView
                 dateText = findViewById(R.id.bulletin_article_dateText),
@@ -38,10 +40,8 @@ public class Bulletin_Article_Activity extends FullScreenActivity {
             final ImageView bookmarkButton = findViewById(R.id.bulletin_article_bookmarkButton);
 
             final SavedDatabase savedDatabase = SavedDatabase.getInstance(this);
-            final ValContainer<Boolean> saved = new ValContainer<>();
-            saved.setVal(savedDatabase.alreadyAdded(data.getID()));
-            final ValContainer<Boolean> saved_copy = new ValContainer<>();
-            saved_copy.setVal(saved.getVal());
+            final ValContainer<Boolean> saved = new ValContainer<>(savedDatabase.alreadyAdded(data.getID()));
+            final ValContainer<Boolean> saved_copy = new ValContainer<>(saved.getVal());
 
             Helper.setBookmarked_toView(bookmarkButton,saved.getVal());
             bookmarkButton.setOnClickListener(new View.OnClickListener() {
@@ -82,14 +82,25 @@ public class Bulletin_Article_Activity extends FullScreenActivity {
                     }
                     else
                         intent.putExtra(Saved_Activity.saved_status_changed_KEY, false);
-
-                    intent.putExtra(read_KEY, true);
-
-                    setResult(Activity.RESULT_OK, intent);
-                    finish();
+                    endWithAnimation(intent);
+                }
+            });
+        } else {
+            ImageView backButton = findViewById(R.id.bulletin_article_header_back);
+            backButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    endWithAnimation(new Intent());
                 }
             });
         }
+
+    }
+
+    public void endWithAnimation(Intent intent) {
+        setResult(Activity.RESULT_OK, intent);
+        finish();
+        overridePendingTransition(0, R.anim.to_right);
     }
 
 }

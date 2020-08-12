@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -12,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
+import com.example.ahsapptest3.Misc.FullScreenActivity;
 import com.example.ahsapptest3.Setting_Activities.Settings_Activity;
 
 import java.util.ArrayList;
@@ -20,8 +19,7 @@ import java.util.ArrayList;
 public class Saved_Activity extends FullScreenActivity implements Navigation, SavedRecyclerAdapter.OnItemClick, NotifBtn.Navigation {
 
     public static final String saved_status_changed_KEY = "saved_changed";
-    private static final String TAG = "SavedActivity";
-    private SavedDatabase articleDatabase;
+    /*private static final String TAG = "SavedActivity";*/
     private SavedRecyclerAdapter adapter;
 
     @Override
@@ -51,16 +49,16 @@ public class Saved_Activity extends FullScreenActivity implements Navigation, Sa
             }
         });
         recyclerView.requestLayout();
-        articleDatabase = SavedDatabase.getInstance(this);
+        SavedDatabase articleDatabase = SavedDatabase.getInstance(this);
 
-        adapter = new SavedRecyclerAdapter(new ArrayList<SavedHolder>(), this);
+        adapter = new SavedRecyclerAdapter(new ArrayList<Article_or_BulletinHolder>(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         articleDatabase.getAllArticles_withCallBack(new SavedDatabase.ArticleRetrievedCallback() {
             @Override
-            public void onArticleLoaded(SavedHolder article) {
+            public void onArticleLoaded(Article_or_BulletinHolder article) {
                 adapter.addItem(article);
             }
         });
@@ -70,13 +68,13 @@ public class Saved_Activity extends FullScreenActivity implements Navigation, Sa
     @Override
     public void goToHome() {
         Intent myIntent = new Intent(Saved_Activity.this, News_Activity.class);
-        Saved_Activity.this.startActivity(myIntent);
+        startActivity(myIntent);
     }
 
     @Override
     public void goToBulletin() {
         Intent myIntent = new Intent(Saved_Activity.this, Bulletin_Activity.class);
-        Saved_Activity.this.startActivity(myIntent);
+        startActivity(myIntent);
     }
 
     @Override
@@ -87,7 +85,7 @@ public class Saved_Activity extends FullScreenActivity implements Navigation, Sa
     @Override
     public void goToSettings() {
         Intent myIntent = new Intent(Saved_Activity.this, Settings_Activity.class);
-        Saved_Activity.this.startActivity(myIntent);
+        startActivity(myIntent);
     }
 
     @Override
@@ -108,6 +106,7 @@ public class Saved_Activity extends FullScreenActivity implements Navigation, Sa
         Intent intent = new Intent(Saved_Activity.this, ArticleActivity.class);
         intent.putExtra(ArticleActivity.data_key, data);
         startActivityForResult(intent, REQUEST_CODE);
+        overridePendingTransition(R.anim.from_right, R.anim.maintain);
     }
 
     @Override
@@ -116,6 +115,7 @@ public class Saved_Activity extends FullScreenActivity implements Navigation, Sa
         Intent intent = new Intent(Saved_Activity.this, Bulletin_Article_Activity.class);
         intent.putExtra(Bulletin_Article_Activity.data_KEY, data);
         startActivityForResult(intent, REQUEST_CODE);
+        overridePendingTransition(R.anim.from_right, R.anim.maintain);
     }
 
     @Override

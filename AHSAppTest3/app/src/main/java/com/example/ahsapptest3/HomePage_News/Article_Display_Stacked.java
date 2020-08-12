@@ -3,7 +3,6 @@ package com.example.ahsapptest3.HomePage_News;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,7 @@ import com.example.ahsapptest3.Article;
 import com.example.ahsapptest3.ArticleDatabase;
 import com.example.ahsapptest3.ArticleNavigation;
 import com.example.ahsapptest3.Article_Slim;
-import com.example.ahsapptest3.Helper_Code.Helper;
+import com.example.ahsapptest3.Misc.Helper;
 import com.example.ahsapptest3.R;
 
 import java.util.Arrays;
@@ -48,7 +47,7 @@ public class Article_Display_Stacked extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         LinearLayout outerLayout = new LinearLayout(getContext());
         displayFrags(outerLayout);

@@ -25,13 +25,12 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:scaleType="fitCenter"
-        android:tint="@color/GraniteRed_7E6E6A"
 
         app:layout_constraintEnd_toStartOf="@+id/nav_bar_bulletin_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_home"
-        />
+        app:tint="@color/GraniteRed_7E6E6A" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -51,12 +50,12 @@
             android:layout_height="wrap_content"
 
             android:scaleType="fitCenter"
-            android:tint="@color/GraniteRed_7E6E6A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_bulletin" />
+            app:srcCompat="@drawable/icon_bulletin"
+            app:tint="@color/GraniteRed_7E6E6A" />
 
         <ImageView
             android:id="@+id/nav_bar_bulletinDot"
@@ -79,13 +78,13 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:scaleType="fitCenter"
-        android:tint="@color/GraniteRed_7E6E6A"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nav_bar_settings_button"
         app:layout_constraintStart_toEndOf="@+id/nav_bar_bulletin_button"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_bookmark" />
+        app:srcCompat="@drawable/icon_bookmark"
+        app:tint="@color/GraniteRed_7E6E6A" />
 
     <ImageView
         android:id="@+id/nav_bar_settings_button"
@@ -96,13 +95,13 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:scaleType="fitCenter"
-        android:tint="@color/GraniteRed_7E6E6A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toEndOf="@+id/nav_bar_bookmarks_button"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_settings" />
+        app:srcCompat="@drawable/icon_settings"
+        app:tint="@color/GraniteRed_7E6E6A" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

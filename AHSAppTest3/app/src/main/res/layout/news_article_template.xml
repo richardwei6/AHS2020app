@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/article_display__ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
@@ -19,7 +18,7 @@
         app:layout_constraintGuide_percent=".5" />
 
 
-    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/article_display__title_Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,7 +34,7 @@
         app:layout_constraintStart_toStartOf="@+id/article_display__guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.ahsapptest3.Helper_Code.AdaptingTextView
+    <com.example.ahsapptest3.Misc.AdaptingTextView
         android:id="@+id/article_display__summary_Text"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -65,7 +64,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/article_display__time_updated_Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -74,6 +73,7 @@
         android:layout_marginBottom="@dimen/Quarter_Padding"
         android:background="@drawable/news_updatetext_bg"
         android:fontFamily="@font/sf_pro_display"
+        android:foreground="@drawable/image_border"
         android:maxLines="1"
         android:paddingLeft="5dp"
         android:paddingTop="3dp"

@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 
-import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
+
+import androidx.appcompat.widget.SwitchCompat;
+
+import com.example.ahsapptest3.Misc.FullScreenActivity;
 import com.example.ahsapptest3.R;
 import com.example.ahsapptest3.Settings;
 
@@ -25,34 +27,13 @@ public class Notif_Settings_Activity extends FullScreenActivity {
             }
         });
 
-        final Switch
+        final SwitchCompat
                 asb_switch = findViewById(R.id.notif_settings_asb_switch),
                 district_switch = findViewById(R.id.notif_settings_district_switch),
                 general_switch = findViewById(R.id.notif_settings_general_switch),
                 bulletin_switch = findViewById(R.id.notif_settings_bulletin_switch);
 
-        final Settings settings = new Settings(getApplicationContext(), new Settings.OnNotifOptionChanged() {
-            @Override
-            public void onOptionChanged(Settings.NotifOption option, boolean currentValue) {
-                /*switch(option) {
-
-                    case ASB:
-                        asb_switch.setChecked(currentValue);
-                        break;
-                    case SPORTS:
-                        sports_switch.setChecked(currentValue);
-                        break;
-                    case DISTRICT:
-                        district_switch.setChecked(currentValue);
-                        break;
-                    case BULLETIN:
-                        bulletin_switch.setChecked(currentValue);
-                        break;
-                }*/
-            }
-        });
-
-
+        final Settings settings = new Settings(getApplicationContext());
 
         asb_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

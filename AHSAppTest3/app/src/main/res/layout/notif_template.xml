@@ -14,12 +14,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
-        android:id="@+id/notif_template_ConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/notif_template_typeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,15 +35,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-            android:id="@+id/notif_template_newText"
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/Half_Padding"
             android:layout_marginLeft="@dimen/Half_Padding"
             android:layout_marginTop="@dimen/Half_Padding"
             android:background="@drawable/type_rounded_bg"
-            android:backgroundTint="@color/GoldenYellow_E0C260"
+            android:backgroundTint="@color/GoldenYellow_E3C44B"
             android:fontFamily="@font/sf_pro_display"
             android:paddingLeft="7dp"
             android:paddingTop="3dp"
@@ -60,13 +58,13 @@
             android:id="@+id/notif_template_forward"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tint="@color/GraniteRed_7E6E6A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/arrow_forward" />
+            app:srcCompat="@drawable/arrow_forward"
+            app:tint="@color/GraniteRed_7E6E6A" />
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/notif_template_TitleText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -81,7 +79,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/notif_template_typeText" />
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/notif_template_BodyText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -95,7 +93,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notif_template_TitleText" />
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/notif_template_DateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

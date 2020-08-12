@@ -79,7 +79,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                     leftEdge += leftPadding + 2;
                 }
                 
-                let articleCatagoryFrame = CGRect(x: leftEdge + 1, y: 8, width: 65, height: 20);
+                let articleCatagoryFrame = CGRect(x: leftEdge + 1, y: 8, width: 70, height: 20);
                 let articleCatagory = UILabel(frame: articleCatagoryFrame);
                 articleCatagory.backgroundColor = mainThemeColor;
                 articleCatagory.text = savedArticles[aIndex].articleCatagory;

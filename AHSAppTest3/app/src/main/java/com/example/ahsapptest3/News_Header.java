@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.ahsapptest3.Misc.Helper;
+
 import java.util.Date;
 
 
@@ -31,10 +33,8 @@ public class News_Header extends Fragment implements NotifBtn.Navigation{
         TextView timeText = view.findViewById(R.id.header__timeText);
 
         // set the current month and date
-        String month = (String) android.text.format.DateFormat.format("MMMM", new Date());
-        String date = (String) android.text.format.DateFormat.format("dd", new Date());
-        timeText.setText(month+" "+date);
-
+        String date = Helper.getDateFromTime("MMMM d", new Date().getTime());
+        timeText.setText(date);
 
         return view;
     }

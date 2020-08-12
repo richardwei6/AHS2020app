@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/settings_outerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Setting_Activities.Settings_Activity">
@@ -15,14 +14,13 @@
         >
 
         <LinearLayout
-            android:id="@+id/settings_scrollConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:windowBackground"
+            android:clipToPadding="false"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/settings_header_LinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/White"
@@ -35,8 +33,7 @@
                 android:paddingRight="@dimen/Half_Padding"
                 android:paddingBottom="@dimen/Half_Padding">
 
-                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                    android:id="@+id/settings_titleText"
+                <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/Half_Padding"
@@ -62,14 +59,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/Full_Padding"
                 android:paddingRight="@dimen/Full_Padding">
 
-                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                    android:id="@+id/settings_GeneralText"
+                <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_semibold"
@@ -86,7 +82,6 @@
                     app:cardElevation="@dimen/CardView_Height">
 
                     <LinearLayout
-                        android:id="@+id/settings_GeneralLinearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
 
@@ -94,7 +89,7 @@
 
                         >
 
-                        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                             android:id="@+id/settings_FontSize_Text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -113,10 +108,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:max="3"
-                            android:progress="1"
                             android:paddingBottom="@dimen/Half_Padding"
-                            android:progressDrawable="@drawable/seekbar_progress_bg"
-                            />
+                            android:progress="1"
+                            android:progressDrawable="@drawable/seekbar_progress_bg" />
 
                         <!--https://stackoverflow.com/questions/5049852/android-drawing-separator-divider-line-in-layout-->
 
@@ -130,8 +124,7 @@
                             android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal">
 
-                            <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                                android:id="@+id/settings_notifText"
+                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -145,7 +138,6 @@
                                 android:textSize="18sp" />
 
                             <ImageView
-                                android:id="@+id/settings_notif_ArrowImage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0"
@@ -153,8 +145,8 @@
                                 android:paddingLeft="@dimen/Half_Padding"
                                 android:paddingRight="@dimen/Half_Padding"
                                 android:scaleType="centerInside"
-                                android:tint="@color/GraniteRed_7E6E6A"
-                                app:srcCompat="@drawable/arrow_forward" />
+                                app:srcCompat="@drawable/arrow_forward"
+                                app:tint="@color/GraniteRed_7E6E6A" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -163,7 +155,7 @@
                             android:orientation="horizontal"
                             android:paddingBottom="@dimen/Quarter_Padding">
 
-                            <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -183,9 +175,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0"
+                                android:checked="true"
                                 android:gravity="top"
                                 android:paddingEnd="@dimen/Full_Padding"
+                                android:paddingStart="0dp"
                                 android:paddingRight="@dimen/Full_Padding"
+                                android:paddingLeft="0dp"
                                 android:paddingBottom="@dimen/Half_Padding" />
 
                             <!--<Switch
@@ -201,8 +196,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                    android:id="@+id/settings_InfoText"
+                <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_semibold"
@@ -220,7 +214,6 @@
                     app:cardElevation="@dimen/CardView_Height">
 
                     <LinearLayout
-                        android:id="@+id/settings_InfoLinearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
@@ -234,8 +227,7 @@
                             android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal">
 
-                            <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                                android:id="@+id/settings_termsText"
+                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -249,16 +241,15 @@
                                 android:textSize="18sp" />
 
                             <ImageView
-                                android:id="@+id/settings_terms_ArrowImage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:paddingLeft="@dimen/Half_Padding"
-                                android:paddingRight="@dimen/Half_Padding"
                                 android:layout_weight="0"
                                 android:adjustViewBounds="true"
+                                android:paddingLeft="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
                                 android:scaleType="centerInside"
-                                android:tint="@color/GraniteRed_7E6E6A"
-                                app:srcCompat="@drawable/arrow_forward" />
+                                app:srcCompat="@drawable/arrow_forward"
+                                app:tint="@color/GraniteRed_7E6E6A" />
                         </LinearLayout>
 
                         <View style="@style/Divider" />
@@ -270,8 +261,7 @@
                             android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal">
 
-                            <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                                android:id="@+id/settings_aboutText"
+                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -285,28 +275,25 @@
                                 android:textSize="18sp" />
 
                             <ImageView
-                                android:id="@+id/settings_about_ArrowImage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:paddingLeft="@dimen/Half_Padding"
-                                android:paddingRight="@dimen/Half_Padding"
                                 android:layout_weight="0"
                                 android:adjustViewBounds="true"
+                                android:paddingLeft="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
                                 android:scaleType="centerInside"
-                                android:tint="@color/GraniteRed_7E6E6A"
-                                app:srcCompat="@drawable/arrow_forward" />
+                                app:srcCompat="@drawable/arrow_forward"
+                                app:tint="@color/GraniteRed_7E6E6A" />
                         </LinearLayout>
 
                         <View style="@style/Divider" />
 
                         <LinearLayout
-                            android:id="@+id/settings_version_LinearLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                                android:id="@+id/settings_versionText"
+                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -319,27 +306,20 @@
                                 android:textColor="@color/DarkCrimson_1A0303"
                                 android:textSize="18sp" />
 
-                            <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                                android:id="@+id/settings_versionNumber"
+                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:fontFamily="@font/sf_pro_display"
+                                android:gravity="center"
                                 android:paddingLeft="@dimen/Half_Padding"
                                 android:paddingRight="@dimen/Half_Padding"
-                                android:layout_weight="0"
-                                android:gravity="center"
-                                android:fontFamily="@font/sf_pro_display"
                                 android:scaleType="centerInside"
                                 android:text="@string/app_version" />
                         </LinearLayout>
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
-                <Button
-                    android:id="@+id/settings_tester_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tester" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -352,4 +332,4 @@
         tools:layout="@layout/nav_bar"
         android:layout_gravity="bottom"/>
 
-</FrameLayout>
+</merge>

@@ -2,16 +2,16 @@
 
 <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/template_news__LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/White"
+    android:background="@drawable/news_gradient"
     android:orientation="vertical"
     android:paddingLeft="0dp"
     android:paddingTop="@dimen/Half_Padding"
-    android:paddingRight="0dp">
+    android:paddingRight="0dp"
+    >
 
-    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/template_news__TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:textColor="@color/DarkCrimson_1A0303"
         android:textSize="24sp" />
 
-    <com.example.ahsapptest3.Helper_Code.EnhancedWrapContentViewPager
+    <com.example.ahsapptest3.Misc.EnhancedWrapContentViewPager
         android:id="@+id/template_news__ViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

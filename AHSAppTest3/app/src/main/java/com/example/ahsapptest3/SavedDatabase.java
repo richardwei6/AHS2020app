@@ -21,7 +21,7 @@ import java.util.Arrays;
 
 public class SavedDatabase extends SQLiteOpenHelper {
 
-    private static final String TAG = "SavedDatabase";
+    /*private static final String TAG = "SavedDatabase";*/
 
     private static SavedDatabase mInstance;
     public static SavedDatabase getInstance(Context context)
@@ -56,8 +56,8 @@ public class SavedDatabase extends SQLiteOpenHelper {
     static final int CATEGORY_COL = 9;
 
     private static final String current_Table = "saved_table";
-    private static final int ARTICLE = SavedHolder.Option.ARTICLE.getNum();
-    private static final int BULLETIN = SavedHolder.Option.BULLETIN_ARTICLE.getNum();
+    private static final int ARTICLE = Article_or_BulletinHolder.Option.ARTICLE.getNum();
+    private static final int BULLETIN = Article_or_BulletinHolder.Option.BULLETIN_ARTICLE.getNum();
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -147,41 +147,41 @@ public class SavedDatabase extends SQLiteOpenHelper {
     /**
      * Deletes all articles from the database while leaving the database intact
      */
-    public void deleteAll()
+    /*public void deleteAll()
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "DELETE FROM " + current_Table;
         db.execSQL(query);
-    }
+    }*/
 
     /**
      * Self Explanatory, but note if for whatever reason there are duplicate ids, it returns the first article only
      * @param ID the id of the article to search for
      * @return null if Article not found, Article if it is found
      */
-    @Nullable
-    public SavedHolder getArticleById(String ID)
+    /*@Nullable
+    public Article_or_BulletinHolder getArticleById(String ID)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + current_Table
                 + " WHERE  " + SavedDatabase.ID + " = '" + ID + "'";
         Cursor data = db.rawQuery(query, null);
 
-        /*Log.d(TAG, DatabaseUtils.dumpCursorToString(data));*/
+        *//*Log.d(TAG, DatabaseUtils.dumpCursorToString(data));*//*
         if(data.getCount() < 1) // no id found
             return null;
 
         data.moveToFirst();
-        SavedHolder.Option type = SavedHolder.Option.getOptionFromInteger(data.getInt(TYPE_COL));
+        Article_or_BulletinHolder.Option type = Article_or_BulletinHolder.Option.getOptionFromInteger(data.getInt(TYPE_COL));
         if(type == null)
             return null;
-        SavedHolder holder;
+        Article_or_BulletinHolder holder;
         switch(type){
             case ARTICLE:
-                holder = new SavedHolder(getArticleFromCursor(data));
+                holder = new Article_or_BulletinHolder(getArticleFromCursor(data));
                 break;
             case BULLETIN_ARTICLE:
-                holder = new SavedHolder(getBulletin_ArticleFromCursor(data));
+                holder = new Article_or_BulletinHolder(getBulletin_ArticleFromCursor(data));
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + type);
@@ -189,26 +189,26 @@ public class SavedDatabase extends SQLiteOpenHelper {
         data.close();
 
         return holder;
-    }
+    }*/
 
-    public ArrayList<SavedHolder> getAllArticles()
+   /* public ArrayList<Article_or_BulletinHolder> getAllArticles()
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + current_Table;
         Cursor data =  db.rawQuery(query, null);
-        ArrayList<SavedHolder> articles = new ArrayList<>();
+        ArrayList<Article_or_BulletinHolder> articles = new ArrayList<>();
         while(data.moveToNext())
         {
-            SavedHolder.Option type = SavedHolder.Option.getOptionFromInteger(data.getInt(TYPE_COL));
+            Article_or_BulletinHolder.Option type = Article_or_BulletinHolder.Option.getOptionFromInteger(data.getInt(TYPE_COL));
 
-            SavedHolder holder = null;
+            Article_or_BulletinHolder holder = null;
             if(type != null)
                 switch(type){
                     case ARTICLE:
-                        holder = new SavedHolder(getArticleFromCursor(data));
+                        holder = new Article_or_BulletinHolder(getArticleFromCursor(data));
                         break;
                     case BULLETIN_ARTICLE:
-                        holder = new SavedHolder(getBulletin_ArticleFromCursor(data));
+                        holder = new Article_or_BulletinHolder(getBulletin_ArticleFromCursor(data));
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + type);
@@ -217,10 +217,10 @@ public class SavedDatabase extends SQLiteOpenHelper {
         }
         data.close();
         return articles;
-    }
+    }*/
 
     public interface ArticleRetrievedCallback {
-        void onArticleLoaded(SavedHolder article);
+        void onArticleLoaded(Article_or_BulletinHolder article);
     }
     public void getAllArticles_withCallBack(ArticleRetrievedCallback callback)
     {
@@ -230,16 +230,16 @@ public class SavedDatabase extends SQLiteOpenHelper {
 
         while(data.moveToNext())
         {
-            SavedHolder.Option type = SavedHolder.Option.getOptionFromInteger(data.getInt(TYPE_COL));
+            Article_or_BulletinHolder.Option type = Article_or_BulletinHolder.Option.getOptionFromInteger(data.getInt(TYPE_COL));
 
-            SavedHolder holder = null;
+            Article_or_BulletinHolder holder = null;
             if(type != null)
                 switch(type){
                     case ARTICLE:
-                        holder = new SavedHolder(getArticleFromCursor(data));
+                        holder = new Article_or_BulletinHolder(getArticleFromCursor(data));
                         break;
                     case BULLETIN_ARTICLE:
-                        holder = new SavedHolder(getBulletin_ArticleFromCursor(data));
+                        holder = new Article_or_BulletinHolder(getBulletin_ArticleFromCursor(data));
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + type);

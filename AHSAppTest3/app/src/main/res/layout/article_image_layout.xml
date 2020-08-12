@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/article_image_outerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ArticleImageActivity">
+
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/photoview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/article_image_circlebg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/article_image_backBtn"
+        app:layout_constraintEnd_toEndOf="@+id/article_image_backBtn"
+        app:layout_constraintStart_toStartOf="@+id/article_image_backBtn"
+        app:layout_constraintTop_toTopOf="@+id/article_image_backBtn" />
+
+    <ImageView
+        android:id="@+id/article_image_backBtn"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:adjustViewBounds="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:paddingStart="@dimen/Full_Padding"
+        android:paddingLeft="@dimen/Full_Padding"
+        android:paddingTop="@dimen/Full_Padding"
+        android:paddingEnd="@dimen/Full_Padding"
+        android:paddingRight="@dimen/Full_Padding"
+        android:paddingBottom="@dimen/Full_Padding"
+        android:scaleType="fitStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back"
+        app:tint="@color/White" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

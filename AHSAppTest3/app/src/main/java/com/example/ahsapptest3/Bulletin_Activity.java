@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -13,8 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ahsapptest3.Helper_Code.Bulletin_SelectorView;
-import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
+import com.example.ahsapptest3.Misc.Bulletin_SelectorView;
+import com.example.ahsapptest3.Misc.FullScreenActivity;
 import com.example.ahsapptest3.Setting_Activities.Settings_Activity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class Bulletin_Activity extends FullScreenActivity implements Navigation, BulletinRecyclerAdapter.OnItemClick, NotifBtn.Navigation{
 
-    private static final String TAG = "BulletinActivity";
+   /* private static final String TAG = "BulletinActivity";*/
     private BulletinRecyclerAdapter adapter;
 
     @Override
@@ -76,7 +76,7 @@ public class Bulletin_Activity extends FullScreenActivity implements Navigation,
         recyclerView.requestLayout();
 
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_bull_key));
-        final BulletinDatabase db = BulletinDatabase.getInstance(this);
+        final BulletinDatabase db = BulletinDatabase.getInstance(getApplicationContext());
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -98,24 +98,38 @@ public class Bulletin_Activity extends FullScreenActivity implements Navigation,
                         Bulletin_Article info = new Bulletin_Article(ID, time, title, body, types[i],
                                 db.getReadStatusByID(ID)
                         );
+                        /*Log.d(TAG, title+" read?\t" + db.getReadStatusByID(ID));*/
 
                         data.add(info);
                         /*Log.d(TAG, data.toString());*/
                         adapter.addItem(info);
                     }
                 }
-                new Runnable() {
+                new Handler().post((new Runnable() {
+                    @Override
+                    public void run() {
+                        db.updateArticles(data.toArray(new
+                                Bulletin_Article[0]));
+                        /*for(Bulletin_Article bulletin_article: db.getAllArticles()) {
+                            Log.d(TAG, bulletin_article.getTitle() + "\t" + bulletin_article.getID() + "\t" + bulletin_article.isAlready_read());
+                        }*/
+                    }
+                }));
+                /*new Runnable() {
                     @Override
                     public void run() {
                         db.updateArticles(data.toArray(new
                      Bulletin_Article[0]));
+                        for(Bulletin_Article bulletin_article: db.getAllArticles()) {
+                            Log.d(TAG, bulletin_article.getTitle() + "\t" + bulletin_article.getID() + "\t" + bulletin_article.isAlready_read());
+                        }
                     }
-                };
+                };*/
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d(TAG, error.getDetails());
+                /*Log.d(TAG, error.getDetails());*/
             }
         });
         Bulletin_SelectorView
@@ -186,13 +200,14 @@ public class Bulletin_Activity extends FullScreenActivity implements Navigation,
     @Override
     public void onClick(Bulletin_Article data, int position) {
         data.setAlready_read(true);
-        BulletinDatabase db = BulletinDatabase.getInstance(this);
+        BulletinDatabase db = BulletinDatabase.getInstance(getApplicationContext());
         db.updateReadStatus(data);
         this.position = position;
 
         Intent intent = new Intent(Bulletin_Activity.this, Bulletin_Article_Activity.class);
         intent.putExtra(Bulletin_Article_Activity.data_KEY, data);
-        Bulletin_Activity.this.startActivityForResult(intent, REQUEST_CODE);
+        startActivityForResult(intent, REQUEST_CODE);
+        overridePendingTransition(R.anim.from_right, R.anim.maintain);
     }
 
     @Override

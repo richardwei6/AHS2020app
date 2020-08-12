@@ -4,15 +4,18 @@
     <color name="colorPrimaryDark">@color/DarkCrimson_1A0303</color>
     <color name="colorAccent">@color/AngryRed_9F0C0C</color>
 
-    <color name = "Blank">#0000</color>
     <color name = "White">#FFFFFF</color>
+    <color name = "FadedWhite_FAFAFA">#FAFAFA</color>
 
     <color name = "CoffeeRed_473D3D">#473D3D</color>
     <color name = "GraniteRed_7E6E6A">#7E6E6A</color>
     <color name = "AngryRed_GoldenYellow_MidpointExtrapolate">#E4F</color>
     <color name = "AngryRed_9F0C0C">#9F0C0C</color>
-    <color name = "AngryRed_GoldenYellow_Midpoint">#C06736</color>
-    <color name = "GoldenYellow_E0C260">#E0C260</color>
+    <color name = "FadedRed_904B4B">#904B4B</color>
+    <color name = "AngryRed_GoldenYellow_Midpoint">#C1682C</color>
+    <color name = "GoldenYellow_E3C44B">#E3C44B</color>
     <color name = "LightGray_EAEAEA">#EAEAEA</color>
+    <color name = "Gray_5F5F5F">#5F5F5F</color>
     <color name = "DarkCrimson_1A0303">#1A0303</color>
+    <color name = "DarkCrimson_Transparent">#DD1A0303</color>
 </resources>

@@ -8,7 +8,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/bulletin_selection_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

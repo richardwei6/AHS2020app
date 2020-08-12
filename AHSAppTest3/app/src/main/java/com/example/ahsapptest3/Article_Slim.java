@@ -2,14 +2,17 @@ package com.example.ahsapptest3;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 public class Article_Slim implements Parcelable {
 
-    private String ID;
-    private long time_updated;
-    private String title, story;
-    private String imagePath;
+    private final String ID;
+    private final long time_updated;
+    private final String title;
+    private final String story;
+    private final String imagePath;
 
-    private Article.Type type;
+    private final Article.Type type;
 
 
     public Article_Slim(
@@ -61,17 +64,15 @@ public class Article_Slim implements Parcelable {
 
     public Article.Type getType() { return type;}
 
+    @NonNull
     @Override
     public String toString()
     {
-        String returner =
-                "ID::\t" + ID + "\n" +
-                "time::\t" + time_updated + "\n" +
-                "title::\t" + title + "\n" +
-                "story::\t" + ((story.length() > 40) ? story.substring(0,40) : story) + "\n" + // so output might not be overly long
-                "type::\t" + type.toString()
-                ;
-        return returner;
+        return "ID::\t" + ID + "\n" +
+        "time::\t" + time_updated + "\n" +
+        "title::\t" + title + "\n" +
+        "story::\t" + ((story.length() > 40) ? story.substring(0,40) : story) + "\n" + // so output might not be overly long
+        "type::\t" + type.toString();
     }
 
     // The following methods are for the purpose of extending Parcelable

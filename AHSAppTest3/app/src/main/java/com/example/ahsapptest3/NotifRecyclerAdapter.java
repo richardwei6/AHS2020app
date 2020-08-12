@@ -1,6 +1,5 @@
 package com.example.ahsapptest3;
 
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,35 +8,34 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
 
-import com.example.ahsapptest3.Helper_Code.Helper;
+import com.example.ahsapptest3.Misc.Helper;
 
 import java.util.ArrayList;
 
 public class NotifRecyclerAdapter extends RecyclerView.Adapter<NotifRecyclerAdapter.ViewHolder>{
-    private static final String TAG = "NotifRecyclerAdapter";
+    /*private static final String TAG = "NotifRecyclerAdapter";*/
 
-    private OnItemClick onItemClick;
-    private SortedList<Notif_Data> dataSortedList;
+    private final OnItemClick onItemClick;
+    private final SortedList<Notif_Data> sortedList;
     public NotifRecyclerAdapter(ArrayList<Notif_Data> dataList, OnItemClick onItemClick){
         this.onItemClick = onItemClick;
-        dataSortedList = new SortedList<>(Notif_Data.class, new SortedList.Callback<Notif_Data>() {
+        sortedList = new SortedList<>(Notif_Data.class, new SortedList.Callback<Notif_Data>() {
             @Override
             public int compare(Notif_Data o1, Notif_Data o2) {
-                if(o1.isNotified() && !o2.isNotified())
+                /*if(o1.isNotified() && !o2.isNotified())
                     return 1;
                 if(!o1.isNotified() && o2.isNotified())
-                    return -1;
+                    return -1;*/
 
                 long time_diff = o1.getTime() - o2.getTime();
                 if(time_diff < 0) // o2 time greater than o1, so o2 after o1,
                     return 1;
                 if(time_diff > 0)
                     return -1;
-                return 0;
+                return o1.getTitle().compareTo(o2.getTitle());
             }
 
             @Override
@@ -73,62 +71,66 @@ public class NotifRecyclerAdapter extends RecyclerView.Adapter<NotifRecyclerAdap
             }
         });
         for(Notif_Data item: dataList){
-            dataSortedList.add(item);
+            sortedList.add(item);
         }
     }
 
     public void addItem(Notif_Data item){
-        dataSortedList.add(item);
+        sortedList.add(item);
     }
 
-    public void clearAll() {dataSortedList.clear();}
+    public void clearAll() {
+        sortedList.clear();}
 
     public void updateReadItemPosition(int position)
     {
-        dataSortedList.get(position).setNotified(true);
+        sortedList.get(position).setNotified(true);
         notifyItemChanged(position);
-        dataSortedList.recalculatePositionOfItemAt(position);
+        sortedList.recalculatePositionOfItemAt(position);
     }
 
+    public static final int READ = 0;
     @Override
     public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+        if(sortedList.get(position).isNotified())
+            return READ;
+        return 1;
     }
 
     @NonNull
     @Override
     public NotifRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.notif_template, parent, false);
+                .inflate((viewType != READ) ? R.layout.notif_template: R.layout.notif_template_inactive, parent, false);
 
         return new NotifRecyclerAdapter.ViewHolder(view, onItemClick);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.setDetails(dataSortedList.get(position));
+        holder.setDetails(sortedList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return dataSortedList.size();
+        return sortedList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView titleText, bodyText, dateText, typeText, newText;
-        ImageView arrow;
-        OnItemClick onItemClick;
-        CardView outerLayout;
+        final TextView titleText;
+        final TextView bodyText;
+        final TextView dateText;
+        final TextView typeText;
+        final ImageView arrow;
+        final OnItemClick onItemClick;
         public ViewHolder(@NonNull View itemView, OnItemClick onItemClick) {
             super(itemView);
             this.onItemClick = onItemClick;
-            outerLayout = itemView.findViewById(R.id.notif_template_CardView);
             titleText = itemView.findViewById(R.id.notif_template_TitleText);
             bodyText = itemView.findViewById(R.id.notif_template_BodyText);
             dateText = itemView.findViewById(R.id.notif_template_DateText);
             typeText = itemView.findViewById(R.id.notif_template_typeText);
-            newText = itemView.findViewById(R.id.notif_template_newText);
             arrow = itemView.findViewById(R.id.notif_template_forward);
 
         }
@@ -140,13 +142,8 @@ public class NotifRecyclerAdapter extends RecyclerView.Adapter<NotifRecyclerAdap
             bodyText.setText(data.getBody());
             Helper.setTimeText_toView(dateText, Helper.TimeFromNow(data.getTime()));
             typeText.setText(data.getType());
-            if(data.isNotified()){
-                newText.setVisibility(View.GONE);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    outerLayout.setBackgroundTintList(ContextCompat.getColorStateList(itemView.getContext(), R.color.LightGray_EAEAEA));
-                }
-            }
-            if(data.getArticle() == null)
+
+            if(data.getHolder() == null)
                 arrow.setVisibility(View.GONE);
             itemView.setOnClickListener(this);
             bodyText.setOnClickListener(this);

@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/article_image"/>
+        android:id="@+id/article_image"
+        android:foreground="@drawable/image_border"
+        />
+
+    <ImageView
+        android:id="@+id/article_image_open_in_new"
+        android:layout_width="@dimen/Double_Padding"
+        android:layout_height="@dimen/Double_Padding"
+        android:layout_marginTop="@dimen/Quarter_Padding"
+        android:layout_marginEnd="@dimen/Quarter_Padding"
+        android:layout_gravity="top|end"
+        android:padding="@dimen/Half_Padding"
+        app:srcCompat="@drawable/open_in_new"
+        app:tint="@color/White"
+        android:layout_marginRight="@dimen/Quarter_Padding" />
 
 
 </FrameLayout>

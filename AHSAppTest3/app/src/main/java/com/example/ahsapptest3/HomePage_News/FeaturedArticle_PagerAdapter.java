@@ -5,13 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.ahsapptest3.Article;
 import com.example.ahsapptest3.Article_Slim;
 
 public class FeaturedArticle_PagerAdapter extends FragmentPagerAdapter
 {
-    private int NUM_PAGES;
-    private Article_Slim[] articles;
+    private final int NUM_PAGES;
+    private final Article_Slim[] articles;
 
 
 

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/template__featured_ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
@@ -23,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/template_featured__title_Text"
 
         android:layout_width="0dp"
@@ -42,7 +40,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/template_featured__ImageView" />
 
-    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/news_featured_typeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/news_featured_smalldot" />
 
-    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/template_featured__updated_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

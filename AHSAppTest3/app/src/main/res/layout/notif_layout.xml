@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/notif_outerFrameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Notif_Activity">
@@ -13,13 +12,11 @@
         android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/notif_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/notif_header_LinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/White"
@@ -32,9 +29,8 @@
                 android:paddingRight="@dimen/Half_Padding"
                 android:paddingBottom="@dimen/Half_Padding">
 
-                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                    android:id="@+id/notif_titleText"
-                    android:layout_width="wrap_content"
+                <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/Half_Padding"
                     android:layout_marginBottom="@dimen/Half_Padding"
@@ -75,4 +71,4 @@
         android:layout_gravity="bottom"
         tools:layout="@layout/nav_bar" />
 
-</FrameLayout>
+</merge>

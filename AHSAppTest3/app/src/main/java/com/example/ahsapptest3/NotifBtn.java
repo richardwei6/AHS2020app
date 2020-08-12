@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class NotifBtn extends Fragment implements View.OnClickListener{
-    private static final String TAG = "NotifBtn";
+    /*private static final String TAG = "NotifBtn";*/
     private Navigation navigation;
 
     @Override
@@ -84,7 +83,7 @@ public class NotifBtn extends Fragment implements View.OnClickListener{
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Log.e(TAG, error.getDetails());
+                        /*Log.e(TAG, error.getDetails());*/
                     }
                 });
             }

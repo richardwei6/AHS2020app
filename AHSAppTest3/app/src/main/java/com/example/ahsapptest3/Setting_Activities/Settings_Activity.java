@@ -6,7 +6,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -17,7 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.example.ahsapptest3.Bulletin_Activity;
-import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
+import com.example.ahsapptest3.Misc.FullScreenActivity;
 import com.example.ahsapptest3.Navigation;
 import com.example.ahsapptest3.News_Activity;
 import com.example.ahsapptest3.NotifBtn;
@@ -25,10 +24,9 @@ import com.example.ahsapptest3.Notif_Activity;
 import com.example.ahsapptest3.R;
 import com.example.ahsapptest3.Saved_Activity;
 import com.example.ahsapptest3.Settings;
-import com.example.ahsapptest3.Tester;
 
 public class Settings_Activity extends FullScreenActivity implements Navigation, NotifBtn.Navigation, Settings.OnTextSizeOptionChanged{
-    private static final String TAG = "Settings_Activity";
+    // --Commented out by Inspection (8/12/2020 12:33 PM):private static final String TAG = "Settings_Activity";
     private CheckBox notifCheckBox;
     /*private boolean changeSettings = true; */// tries to avoid infinite loop with onResume set checked and listener
     @Override
@@ -113,15 +111,6 @@ public class Settings_Activity extends FullScreenActivity implements Navigation,
                 Settings_Activity.this.startActivity(myIntent);
             }
         });
-
-        Button goToTester = findViewById(R.id.settings_tester_button);
-        goToTester.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(Settings_Activity.this, Tester.class);
-                Settings_Activity.this.startActivity(myIntent);
-            }
-        });
     }
 
     @Override
@@ -180,7 +169,7 @@ public class Settings_Activity extends FullScreenActivity implements Navigation,
         int colorResourceID;
         switch(Settings.getCurrentTextSizeOption()) {
             case SMALL:
-                colorResourceID = R.color.GoldenYellow_E0C260;
+                colorResourceID = R.color.GoldenYellow_E3C44B;
                 break;
             case DEFAULT:
                 colorResourceID = R.color.AngryRed_GoldenYellow_Midpoint;

@@ -5,14 +5,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.ahsapptest3.Article;
 import com.example.ahsapptest3.Article_Slim;
 
 public class Article_Stacked_PagerAdapter extends FragmentPagerAdapter
 {
-    private int NUM_PAGES;
-    private int num_stacked;
-    private Article_Slim[] articles;
+    private final int NUM_PAGES;
+    private final int num_stacked;
+    private final Article_Slim[] articles;
 
     public Article_Stacked_PagerAdapter(@NonNull FragmentManager fm, Article_Slim[] articles, int num_stacked) {
         super(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -47,9 +46,8 @@ public class Article_Stacked_PagerAdapter extends FragmentPagerAdapter
             return Article_Display_Stacked.newInstanceOf(stacked_info);
         }
         Article_Slim[] stacked_info = new Article_Slim[articles.length - position*num_stacked];
-        for(int i = 0; i < articles.length-num_stacked*position; i++) {
-            stacked_info[i] = articles[i + num_stacked*position];
-        }
+        if (articles.length - num_stacked * position >= 0)
+            System.arraycopy(articles, num_stacked * position, stacked_info, 0, articles.length - num_stacked * position);
         return Article_Display_Stacked.newInstanceOf(stacked_info);
 
     }

@@ -2,14 +2,19 @@ package com.example.ahsapptest3;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 public class Article implements Parcelable {
 
-    private String ID;
-    private long time_updated;
-    private String title, author, story;
-    private String [] imagePaths, videoIDS;
+    private final String ID;
+    private final long time_updated;
+    private final String title;
+    private final String author;
+    private final String story;
+    private final String [] imagePaths;
+    private final String [] videoIDS;
 
-    private Type type;
+    private final Type type;
 
 
     public Article(
@@ -67,18 +72,16 @@ public class Article implements Parcelable {
 
     public Type getType() { return type;}
 
+    @NonNull
     @Override
     public String toString()
     {
-        String returner =
-                "ID::\t" + ID + "\n" +
-                "time::\t" + time_updated + "\n" +
-                "title::\t" + title + "\n" +
-                "author::\t" + author + "\n" +
-                "story::\t" + ((story.length() > 40) ? story.substring(0,40) : story) + "\n" + // so output might not be overly long
-                "type::\t" + type.toString()
-                ;
-        return returner;
+        return "ID::\t" + ID + "\n" +
+        "time::\t" + time_updated + "\n" +
+        "title::\t" + title + "\n" +
+        "author::\t" + author + "\n" +
+        "story::\t" + ((story.length() > 40) ? story.substring(0,40) : story) + "\n" + // so output might not be overly long
+        "type::\t" + type.toString();
     }
 
     // The following methods are for the purpose of extending Parcelable
@@ -117,8 +120,8 @@ public class Article implements Parcelable {
      */
     public enum Type {
         ASB("ASB", 1), DISTRICT("District", 2), GENERAL_INFO("General Info", 3), ;
-        private String name;
-        private int numCode;
+        private final String name;
+        private final int numCode;
         Type(String name, int numCode){
             this.name =  name;
             this.numCode = numCode;

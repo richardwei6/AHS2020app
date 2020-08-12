@@ -8,7 +8,6 @@
     tools:context=".Setting_Activities.Notif_Settings_Activity">
 
     <LinearLayout
-        android:id="@+id/notif_settings_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/White"
@@ -26,11 +25,10 @@
             android:paddingLeft="@dimen/Full_Padding"
             android:paddingRight="@dimen/Full_Padding"
             android:scaleType="centerInside"
-            android:tint="@color/GraniteRed_7E6E6A"
-            app:srcCompat="@drawable/arrow_back" />
+            app:srcCompat="@drawable/arrow_back"
+            app:tint="@color/GraniteRed_7E6E6A" />
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-            android:id="@+id/notif_settings_titleText"
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -121,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -134,7 +132,7 @@
                         android:textColor="@color/DarkCrimson_1A0303"
                         android:textSize="18sp" />
 
-                    <Switch
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/notif_settings_asb_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -148,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -161,7 +159,7 @@
                         android:textColor="@color/DarkCrimson_1A0303"
                         android:textSize="18sp" />
 
-                    <Switch
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/notif_settings_district_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -175,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -188,7 +186,7 @@
                         android:textColor="@color/DarkCrimson_1A0303"
                         android:textSize="18sp" />
 
-                    <Switch
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/notif_settings_general_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -202,7 +200,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -215,7 +213,7 @@
                         android:textColor="@color/DarkCrimson_1A0303"
                         android:textSize="18sp" />
 
-                    <Switch
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/notif_settings_bulletin_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

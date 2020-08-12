@@ -231,19 +231,20 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
             for i in 0...2{
                 var s: String; // path inside homepage
                 switch i {
-                case 0: // asb
-                    s = "asb";
+                case 0: // general info
+                    s = "General_Info";
                     break;
-                case 1: // sports
-                    s = "sports";
+                case 1: // district
+                    s = "District";
                     break;
-                case 2: // district
-                    s = "district";
+                case 2: // asb
+                    s = "ASB";
                     break;
                 default:
                     s = "";
                     break;
                 }
+                
                 ref.child("homepage").child(s).observeSingleEvent(of: .value) { (snapshot) in
                     let enumerator = snapshot.children;
                     var temp = [articleData](); // temporary array
@@ -251,8 +252,7 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
                         let enumerator = article.children;
                         var singleArticle = articleData();
                         
-                        singleArticle.articleID = article.key as! String;
-                        
+                        singleArticle.articleID = article.key;
                         
                         while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
                         
@@ -273,8 +273,15 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
                                 while let image = imageIt.nextObject() as? DataSnapshot{
                                     tempImage.append(image.value as! String);
                                 }
-                                //print(tempImage)
                                 singleArticle.articleImages = tempImage;
+                            }
+                            else if (articleContent.key == "articleVideoIDs"){
+                                var tempArr = [String]();
+                                let idIt = articleContent.children;
+                                while let id = idIt.nextObject() as? DataSnapshot{
+                                    tempArr.append(id.value as! String);
+                                }
+                                singleArticle.articleVideoIDs = tempArr;
                             }
                             else if (articleContent.key == "articleTitle"){
                                 
@@ -289,12 +296,11 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
                             
                             
                         }
-                        singleArticle.articleCatagory = s.prefix(1).capitalized + s.dropFirst();
+                        singleArticle.articleCatagory = i == 0 ? "General Info" : s;
                         temp.append(singleArticle);
                         if (utilNeedID == singleArticle.articleID){
                             let articleDataDict: [String: articleData] = ["articleContent" : singleArticle];
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
-                            return;
                         }
                     }
                     homeArticleList[i] = temp;
@@ -317,26 +323,24 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
         setUpConnection();
         if (internetConnected){
             bulletinArticleList = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 6);
-            for i in 0..<6{
+            
+            for i in 0...4{
                 var s: String; // path inside homepage
                 switch i {
                 case 0: // seniors
-                    s = "seniors";
+                    s = "Academics";
                     break;
                 case 1: // colleges
-                    s = "colleges";
+                    s = "Athletics";
                     break;
                 case 2: // events
-                    s = "events";
+                    s = "Clubs";
                     break;
                 case 3: // athletics
-                    s = "athletics";
+                    s = "Colleges";
                     break;
                 case 4: // reference
-                    s = "reference";
-                    break;
-                case 5: // others
-                    s = "others";
+                    s = "Reference";
                     break;
                 default:
                     s = "";
@@ -365,20 +369,18 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
                             }
                             
                         }
-                        singleArticle.articleCatagory = s.prefix(1).capitalized + s.dropFirst();
+                        singleArticle.articleCatagory = s;
                         singleArticle.articleType = i;
                         temp.append(singleArticle);
                         if (utilNeedID == singleArticle.articleID){
                             let articleDataDict: [String: articleData] = ["articleContent" : bulletinDataToarticleData(data: singleArticle)];
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
-                            return;
                         }
                     }
                     bulletinArticleList[i] = temp;
                 };
                 
             }
-            
         }
     }
     else{
@@ -395,7 +397,7 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
 }
 
 func updateSubscriptionNotifs(){
-    let topics = ["sports", "asb", "district", "bulletin"];
+    let topics = ["general", "asb", "district", "bulletin"];
     if (selectedNotifications[0] == true){
         for topic in topics{
             Messaging.messaging().subscribe(toTopic: topic);

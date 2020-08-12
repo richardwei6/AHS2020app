@@ -27,8 +27,8 @@ public class Settings {
     public enum TextSizeOption {
         SMALL("Small", 0), DEFAULT("Default", 1), LARGE("Large", 2), MASSIVE("MASSIVE", 3);
 
-        private String name;
-        private int numCode;
+        private final String name;
+        private final int numCode;
         TextSizeOption(String name, int numCode) {
             this.name = name;
             this.numCode = numCode;
@@ -53,8 +53,8 @@ public class Settings {
         DISTRICT("District", DISTRICT_SETTING), BULLETIN("Bulletin", BULLETIN_SETTING),
         MANDATORY("Mandatory", MANDATORY_SETTING);
 
-        private String fileKey;
-        private String name;
+        private final String fileKey;
+        private final String name;
         NotifOption(String name, String fileKey) {
             this.name = name;
             this.fileKey = fileKey;
@@ -96,7 +96,7 @@ public class Settings {
     }
 
 
-    private Context context;
+    private final Context context;
     private OnTextSizeOptionChanged optionChanged;
     private OnNotifOptionChanged notifOptionChanged;
 
@@ -117,12 +117,12 @@ public class Settings {
         this(context);
         this.notifOptionChanged = notifOptionChanged;
     }
-
+/*
     public Settings(Context context, OnTextSizeOptionChanged optionChanged, OnNotifOptionChanged notifOptionChanged) {
         this(context);
         this.optionChanged = optionChanged;
         this.notifOptionChanged = notifOptionChanged;
-    }
+    }*/
 
     public void updateTextSize(TextSizeOption option) {
         if(currentOption != option) {

@@ -9,20 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ahsapptest3.Helper_Code.EnhancedWrapContentViewPager;
 import com.example.ahsapptest3.HomePage_News.Article_Stacked_PagerAdapter;
 import com.example.ahsapptest3.HomePage_News.FeaturedArticle_PagerAdapter;
+import com.example.ahsapptest3.Misc.EnhancedWrapContentViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
 public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    private static final String TAG = "NewsRecyclerAdapter";
+    /*private static final String TAG = "NewsRecyclerAdapter";*/
 
-    ArrayList<Article_Slim> featuredArticles = new ArrayList<>();
-    ArrayList<ArrayList<Article_Slim>> articles = new ArrayList<>();
-    private String[] titles;
-    private FragmentManager fragmentManager;
+    final ArrayList<Article_Slim> featuredArticles = new ArrayList<>();
+    final ArrayList<ArrayList<Article_Slim>> articles = new ArrayList<>();
+    private final String[] titles;
+    private final FragmentManager fragmentManager;
     public NewsRecyclerAdapter(FragmentManager fragmentManager, String[] titles){
         this.fragmentManager = fragmentManager;
         this.titles = titles;
@@ -38,6 +38,8 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        parent.setClipChildren(false);
+        parent.setClipToPadding(false);
         if(viewType != 0) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.news_template, parent, false);
@@ -65,9 +67,9 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private static int idgen = 1000000;
         private static final int numStacked = 2;
-        TextView titleText;
-        EnhancedWrapContentViewPager viewPager;
-        TabLayout tabLayout;
+        final TextView titleText;
+        final EnhancedWrapContentViewPager viewPager;
+        final TabLayout tabLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             titleText = itemView.findViewById(R.id.template_news__TitleText);
@@ -84,6 +86,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             : new Article_Stacked_PagerAdapter(fragmentManager, articles,numStacked)
             );
             tabLayout.setupWithViewPager(viewPager, true);
+
         }
 
     }

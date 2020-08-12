@@ -6,10 +6,11 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class Bulletin_Article implements Parcelable {
-    private String ID;
-    private long time;
-    private String title, body;
-    private Type type;
+    private final String ID;
+    private final long time;
+    private final String title;
+    private final String body;
+    private final Type type;
     private boolean already_read;
 
     public Bulletin_Article(String ID, long time, String title, String body, Type type, boolean already_read)
@@ -92,8 +93,8 @@ public class Bulletin_Article implements Parcelable {
     {
         ACADEMICS("Academics", 1), ATHLETICS("Athletics", 2), CLUBS("Clubs", 3),
         COLLEGES("Colleges", 4), REFERENCE("Reference", 5);
-        private String name;
-        private int numCode;
+        private final String name;
+        private final int numCode;
         Type(String name, int numCode) {
             this.name = name;
             this.numCode = numCode;

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class BulletinDatabase extends SQLiteOpenHelper {
 
-    private static final String TAG = "BulletinDatabase";
+   /* private static final String TAG = "BulletinDatabase";*/
     private static final String current_Table = "BulletinDatabase"; //may change later
 
     private static final String BUL_ID = "BUL_ID";
@@ -80,6 +80,7 @@ public class BulletinDatabase extends SQLiteOpenHelper {
         // if inserted incorrectly -1 is the return value
         return succeeded;
     }
+/*
 
     public boolean alreadyAdded(String ID)
     {
@@ -89,18 +90,40 @@ public class BulletinDatabase extends SQLiteOpenHelper {
         cursor.close();
         return alreadyAdded;
     }
+*/
+
+    @Nullable
+    public Bulletin_Article getArticleByID(String ID) {
+        String query = "SELECT * FROM " + current_Table
+                + " WHERE  " + BUL_ID + " = '" + ID + "'";
+        Cursor data = this.getWritableDatabase().rawQuery(query, null);
+        if(data.getCount()<1)
+            return null;
+        data.moveToFirst();
+
+        Bulletin_Article article = new Bulletin_Article(
+                data.getString(BUL_COL),
+                data.getLong(TIME_COL),
+                data.getString(TITLE_COL),
+                data.getString(BODY_COL),
+                Bulletin_Article.Type.getTypeFromNumCode(data.getInt(TYPE_COL)),
+                data.getInt(READ_COL) == 1);
+        data.close();
+        return article;
+    }
 
     public boolean getReadStatusByID(String ID)
     {
         String query = "SELECT "+ READ + " FROM " + current_Table
                 + " WHERE  " + BUL_ID + " = '" + ID + "'";
         Cursor data = this.getWritableDatabase().rawQuery(query, null);
-
+        /*Log.d(TAG, "found:\t" + data.getCount());*/
         if(data.getCount()<1) // not found
             return false;
         data.moveToFirst();
 
         boolean read = data.getInt(0) == 1;
+        /*Log.d(TAG, "read? " + read);*/
         data.close();
         return read;
     }
@@ -112,14 +135,14 @@ public class BulletinDatabase extends SQLiteOpenHelper {
                 + "' WHERE " + BUL_ID + " = '" + data.getID() + "'";
         this.getWritableDatabase().execSQL(query);
     }
-
+/*
     public void delete(Bulletin_Article data)
     {
         String query =
                 "DELETE FROM " + current_Table +
                         " WHERE " + BUL_ID + " = '" + data.getID() +"'";
         this.getWritableDatabase().execSQL(query);
-    }
+    }*/
 
     public void deleteAll()
     {
@@ -127,7 +150,7 @@ public class BulletinDatabase extends SQLiteOpenHelper {
                 "DELETE FROM " + current_Table;
         this.getWritableDatabase().execSQL(query);
     }
-
+/*
     public ArrayList<Bulletin_Article> getAllArticles()
     {
         String query = "SELECT * FROM " + current_Table;
@@ -146,7 +169,7 @@ public class BulletinDatabase extends SQLiteOpenHelper {
         }
         data.close();
         return articles;
-    }
+    }*/
 
     /**
      * Deletes all articles that are not in the new articles

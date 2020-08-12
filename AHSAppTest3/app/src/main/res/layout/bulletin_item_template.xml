@@ -3,7 +3,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bulletin_template_CardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
@@ -19,12 +18,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
-        android:id="@+id/bulletin_template_ConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/bulletin_template_typeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/bulletin_template_newText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,7 +47,7 @@
             android:layout_marginLeft="@dimen/Half_Padding"
             android:layout_marginTop="@dimen/Half_Padding"
             android:background="@drawable/type_rounded_bg"
-            android:backgroundTint="@color/GoldenYellow_E0C260"
+            android:backgroundTint="@color/GoldenYellow_E3C44B"
             android:fontFamily="@font/sf_pro_display"
             android:paddingLeft="7dp"
             android:paddingTop="3dp"
@@ -61,7 +59,7 @@
             app:layout_constraintStart_toEndOf="@id/bulletin_template_typeText"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/bulletin_template_TitleText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -75,7 +73,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/bulletin_display_barrier" />
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/bulletin_template_BodyText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -88,7 +86,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bulletin_template_TitleText" />
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/bulletin_template_DateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

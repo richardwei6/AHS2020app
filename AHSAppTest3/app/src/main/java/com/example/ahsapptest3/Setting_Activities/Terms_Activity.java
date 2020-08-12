@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
-import com.example.ahsapptest3.Helper_Code.Helper;
+import com.example.ahsapptest3.Misc.FullScreenActivity;
+import com.example.ahsapptest3.Misc.Helper;
 import com.example.ahsapptest3.R;
 
 public class Terms_Activity extends FullScreenActivity {

@@ -6,7 +6,7 @@
             android:shape="ring"
             android:thickness="@dimen/Selector_Dot_Radius"
             android:useLevel="false">
-            <solid android:color="@color/GoldenYellow_E0C260"/>
+            <solid android:color="@color/GoldenYellow_E3C44B"/>
         </shape>
     </item>
     <item>

@@ -21,7 +21,7 @@ import java.util.Arrays;
 
 public class ArticleDatabase extends SQLiteOpenHelper {
 
-    private static final String TAG = "ArticleDatabase";
+    /*private static final String TAG = "ArticleDatabase";*/
 
     private static ArticleDatabase mInstance;
     public static ArticleDatabase getInstance(Context context)
@@ -52,7 +52,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
 
     private static final String CURRENT_ART_TABLE = "current_table"; // current articles stored locally
 
-    private String current_Table;
+    private final String current_Table;
 
     private ArticleDatabase(@Nullable Context context) {
         super(context, CURRENT_ART_TABLE, null,1);
@@ -118,13 +118,13 @@ public class ArticleDatabase extends SQLiteOpenHelper {
      * Removes the specified article from the database based on id
      * @param article   The article to be deleted
      */
-    public void delete(Article article)
+    /*public void delete(Article article)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "DELETE FROM " + current_Table + " WHERE "
                 + ART_ID + " = '" + article.getID() + "'";
         db.execSQL(query);
-    }
+    }*/
 
     /**
      * Deletes all articles from the database while leaving the database intact
@@ -144,10 +144,9 @@ public class ArticleDatabase extends SQLiteOpenHelper {
     @Nullable
     public Article getArticleById(String ID)
     {
-        SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + current_Table
                 + " WHERE  " + ART_ID + " = '" + ID + "'";
-        Cursor data = db.rawQuery(query, null);
+        Cursor data = this.getWritableDatabase().rawQuery(query, null);
 
         /*Log.d(TAG, DatabaseUtils.dumpCursorToString(data));*/
         if(data.getCount()<1)
@@ -173,7 +172,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
      * Returns all the data in the database in the form of article objects
      * @return an arraylist of articles
      */
-    public ArrayList<Article> getAllArticles()
+    /*public ArrayList<Article> getAllArticles()
     {
         String query = "SELECT * FROM " + current_Table;
         Cursor data = this.getWritableDatabase().rawQuery(query, null);
@@ -193,7 +192,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
         }
         data.close();
         return articles;
-    }
+    }*/
 
     /**
      * Deletes all articles that are not in the new articles
@@ -220,7 +219,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
      * @param id: article ID
      * @return true if bookmark already exists
      */
-    public boolean alreadyAdded(String id)
+    /*public boolean alreadyAdded(String id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String selectQuery = "SELECT "+ ART_ID +" FROM " + current_Table + " WHERE  " + ART_ID + " = '" + id + "'";
@@ -228,7 +227,7 @@ public class ArticleDatabase extends SQLiteOpenHelper {
         boolean alreadyAdded = cursor.getCount() > 0;
         cursor.close();
         return alreadyAdded;
-    }
+    }*/
 
     /**
      * https://stackoverflow.com/questions/9053685/android-sqlite-saving-string-array

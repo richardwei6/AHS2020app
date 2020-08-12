@@ -101,6 +101,7 @@ class CustomTabBarController: UIViewController {
                     totalNotificationList.append(singleNotification);
                     filterTotalNotificationArticles();
                     self.notificationDot.isHidden = !unreadNotif;
+                    UIApplication.shared.applicationIconBadgeNumber = notificationList[1].count;
                 };
             }
         }

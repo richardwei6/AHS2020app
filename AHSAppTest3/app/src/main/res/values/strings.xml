@@ -6,21 +6,39 @@
     <string name="notif_channel_description">Notifications about school updates and articles</string>
     <string name="notif_articleID_key">articleID</string>
 
-    <string name="time_hours_updated_placeholder">%1$d hours %2$s</string>
-    <string name="time_minutes_updated_placeholder">%1$d min %2$s</string>
-    <string name="time_days_updated_placeholder">%1$d days %2$s</string>
-    <string name="time_weeks_updated_placeholder">%1$d weeks %2$s</string>
-    <string name="time_months_updated_placeholder">%1$d months %2$s</string>
-    <string name="time_years_updated_placeholder">%1$d years %2$s</string>
+    <plurals name="time_minutes_updated_placeholder">
+        <item quantity="one">%1$d minute %2$s</item>
+        <item quantity="other">%1$d minutes %2$s</item>
+    </plurals>
+    <plurals name="time_hours_updated_placeholder">
+        <item quantity="one">%1$d hour %2$s</item>
+        <item quantity="other">%1$d hours %2$s</item>
+    </plurals>
+    <plurals name="time_days_updated_placeholder">
+        <item quantity="one">%1$d day %2$s</item>
+        <item quantity="other">%1$d days %2$s</item>
+    </plurals>
+    <plurals name="time_weeks_updated_placeholder">
+        <item quantity="one">%1$d weeks %2$s</item>
+        <item quantity="other">%1$d week %2$s</item>
+    </plurals>
+    <plurals name="time_months_updated_placeholder">
+        <item quantity="one">%1$d month %2$s</item>
+        <item quantity="other">%1$d months %2$s</item>
+    </plurals>
+    <plurals name="time_years_updated_placeholder">
+        <item quantity="one">%1$d year %2$s</item>
+        <item quantity="other">%1$d years %2$s</item>
+    </plurals>
     <string name="ago">ago</string>
     <string name="from_now">from now</string>
     <string name="author_placeholder">By %1$s</string>
 
-    <string name ="fb_topic_asb">asb</string>
-    <string name ="fb_topic_district">district</string>
-    <string name ="fb_topic_general">general</string>
-    <string name ="fb_topic_bulletin">bulletin</string>
-    <string name ="fb_topic_mandatory">mandatory</string>
+    <string name="fb_topic_asb">asb</string>
+    <string name="fb_topic_district">district</string>
+    <string name="fb_topic_general">general</string>
+    <string name="fb_topic_bulletin">bulletin</string>
+    <string name="fb_topic_mandatory">mandatory</string>
     <string name="fb_news_key">homepage</string>
     <string name="fb_news_asb">ASB</string>
     <string name="fb_news_sports">District</string>

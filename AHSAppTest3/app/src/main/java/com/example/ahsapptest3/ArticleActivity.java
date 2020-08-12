@@ -4,44 +4,82 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
-import com.example.ahsapptest3.Helper_Code.Helper;
-import com.example.ahsapptest3.Helper_Code.MediaYoutubeFragment;
-import com.example.ahsapptest3.Helper_Code.ValContainer;
+import com.example.ahsapptest3.Misc.FullScreenActivity;
+import com.example.ahsapptest3.Misc.Helper;
+import com.example.ahsapptest3.Misc.MediaYoutubeFragment;
+import com.example.ahsapptest3.Misc.ValContainer;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 
-public class ArticleActivity extends FullScreenActivity {
-    private static final String TAG = "ArticleActivity";
+public class ArticleActivity extends FullScreenActivity implements ArticleImageFragment.OnImageClick{
+    /*private static final String TAG = "ArticleActivity";*/
 
     public static final String read_KEY = "1";
     public static final String data_key = "0";
     private ValContainer<Boolean> saved;
     private ValContainer<Boolean> saved_copy;
     private Article article;
-    /*private int oldOrientation;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.article_layout);
-        /*oldOrientation = getResources().getConfiguration().orientation;*/
 
         article = getIntent().getParcelableExtra(data_key);
+        final String[] imagePaths = article.getImagePaths();
+        final String[] videoIDs = article.getVideoIDS();
+
+        final ViewPager2 viewPager2 = findViewById(R.id.article_viewPager2);
+        final MultipleVideoImagePagerAdapter adapter = new MultipleVideoImagePagerAdapter(this, videoIDs, imagePaths);
+        viewPager2.setAdapter(adapter);
+        // don't even bother handling it if there is 1 video or less
+        if(videoIDs.length > 1)
+            viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                int oldPosition = -1; // so on load it's "changed" and method is called
+                @Override
+                public void onPageSelected(int position) {
+                    super.onPageSelected(position);
+                    /*Log.d(TAG, "selected page\t"+position);*/
+                    adapter.onPageChanged(oldPosition, position);
+                    oldPosition = position;
+
+                }
+            });
+
+        /*gestureDetector = new GestureDetector(this, new SwipeDetector(new SwipeDetector.onSwipeListener() {
+            @Override
+            public void onSwipeFromLeft() {
+                *//*if(viewPager2.getScrollState() != ViewPager2.SCROLL_STATE_DRAGGING) {
+                    finish();
+                    overridePendingTransition(0, R.anim.to_right);
+                }*//*
+
+            }
+        }));*/
+
+        TabLayout tabLayout = findViewById(R.id.article_tabLayout);
+        if(videoIDs.length + imagePaths.length <= 1)
+            tabLayout.setVisibility(View.GONE);
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, true, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+
+            }
+        });
+        tabLayoutMediator.attach();
+
         TextView
                 dateText = findViewById(R.id.article_dateText),
                 titleText = findViewById(R.id.article_titleText),
@@ -53,32 +91,6 @@ public class ArticleActivity extends FullScreenActivity {
         authorText.setText(this.getString(R.string.author_placeholder, article.getAuthor()));
         Helper.setHtmlParsedText_toView(bodyText, article.getStory());
 
-        final String[] imagePaths = article.getImagePaths();
-        final String[] videoIDs = article.getVideoIDS();
-
-        TabLayout tabLayout = findViewById(R.id.article_tabLayout);
-
-        final ViewPager2 viewPager2 =findViewById(R.id.article_viewPager2);
-        final MultipleVideoImagePagerAdapter adapter = new MultipleVideoImagePagerAdapter(this, videoIDs, imagePaths);
-        viewPager2.setAdapter(adapter);
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            int oldPosition = -1; // so on load it's "changed" and method is called
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                /*Log.d(TAG, "selected page\t"+position);*/
-                adapter.onPageChanged(oldPosition, position);
-                oldPosition = position;
-
-            }
-        });
-        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, true, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-
-            }
-        });
-        tabLayoutMediator.attach();
         TextView typeText = findViewById(R.id.article_type_text);
         typeText.setText(article.getType().getName());
 
@@ -88,10 +100,8 @@ public class ArticleActivity extends FullScreenActivity {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                saved = new ValContainer<>();
-                saved.setVal(savedDatabase.alreadyAdded(article.getID()));
-                saved_copy = new ValContainer<>();
-                saved_copy.setVal(saved.getVal());
+                saved = new ValContainer<>(savedDatabase.alreadyAdded(article.getID()));
+                saved_copy = new ValContainer<>(saved.getVal());
 
                 Helper.setBookmarked_toView(bookmarkButton, saved.getVal());
 
@@ -123,6 +133,7 @@ public class ArticleActivity extends FullScreenActivity {
 
                 setResult(Activity.RESULT_OK, intent);
                 finish();
+                overridePendingTransition(0, R.anim.to_right);
             }
         });
     }
@@ -146,20 +157,22 @@ public class ArticleActivity extends FullScreenActivity {
             runnable.run();
         }
     }
-/*
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
 
-    }*/
+    @Override
+    public void onClick(String imagePath) {
+        Intent intent = new Intent(ArticleActivity.this, ArticleImageActivity.class);
+        intent.putExtra(ArticleImageActivity.imagePath_key, imagePath);
+        startActivity(intent);
+    }
 
     /**
      * A FragmentStateAdapter that supports a mix of youtube videos and images
      */
     public static class MultipleVideoImagePagerAdapter extends FragmentStateAdapter implements  MediaYoutubeFragment.MediaFullScreenListener
     {
-        String[] videoIDs, imagePaths;
-        MediaYoutubeFragment.InitializeListener[] initializeListeners;
+        final String[] videoIDs;
+        final String[] imagePaths;
+        final MediaYoutubeFragment.InitializeListener[] initializeListeners;
         public MultipleVideoImagePagerAdapter(@NonNull FragmentActivity fragmentActivity, String[] videoIDs, String[] imagePaths) {
             super(fragmentActivity);
             this.videoIDs = videoIDs;
@@ -178,9 +191,11 @@ public class ArticleActivity extends FullScreenActivity {
             if(inVideosRange(position)){
                 MediaYoutubeFragment fragment = MediaYoutubeFragment.newInstance(videoIDs[position], this);
                 initializeListeners[position] = fragment.getmInitializeListener();
+                if(initializeListeners.length == 1)
+                    initializeListeners[position].startVideo();
                 return fragment;
             } else { // images
-                return ImageFragment.newInstance(imagePaths[position-videoIDs.length]);
+                return ArticleImageFragment.newInstance(imagePaths[position-videoIDs.length]);
             }
         }
 
@@ -218,38 +233,4 @@ public class ArticleActivity extends FullScreenActivity {
         }
     }
 
-    /**
-     * A simple Image holder compatible with FragmentPagerAdapters solely for use in viewPagers in articles
-     */
-    public static class ImageFragment extends Fragment {
-
-        private static final String imagePath_KEY = "1";
-        private String imagePath;
-        public static ImageFragment newInstance(String imagePath) {
-            ImageFragment thisFrag = new ImageFragment();
-            Bundle args = new Bundle();
-            args.putString(imagePath_KEY, imagePath);
-            thisFrag.setArguments(args);
-            return thisFrag;
-        }
-
-        @Override
-        public void onCreate(@Nullable Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            if(getArguments() != null)
-                imagePath = getArguments().getString(imagePath_KEY);
-        }
-
-        @Nullable
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.article_image, container, false);
-            /*if(container == null) // apparently, it always is in the viewpager
-                Log.d(TAG, "help, the container is null");*/
-            ImageView imageView = view.findViewById(R.id.article_image);
-            /*container.addView(imageView);*/
-            Helper.setImageFromUrl(imageView, imagePath);
-            return imageView;
-        }
-    }
 }

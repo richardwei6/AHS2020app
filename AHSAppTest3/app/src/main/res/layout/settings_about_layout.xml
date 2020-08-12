@@ -8,7 +8,6 @@
     app:elevation="0dp">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
 
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -23,7 +22,6 @@
 
             >
             <LinearLayout
-                android:id="@+id/about_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/White"
@@ -42,11 +40,10 @@
                     android:paddingLeft="@dimen/Full_Padding"
                     android:paddingRight="@dimen/Full_Padding"
                     android:scaleType="centerInside"
-                    android:tint="@color/GraniteRed_7E6E6A"
-                    app:srcCompat="@drawable/arrow_back" />
+                    app:srcCompat="@drawable/arrow_back"
+                    app:tint="@color/GraniteRed_7E6E6A" />
 
-                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                    android:id="@+id/about_titleText"
+                <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -94,8 +91,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:id="@+id/about_contactUsText"
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_pro_display"
@@ -106,8 +102,7 @@
 
                     <View style="@style/Spaced_Divider" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                        android:id="@+id/about_email_text"
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autoLink="email"
@@ -138,25 +133,25 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Programmers"
                         style="@style/credits_title_style" />
 
                     <View style="@style/Spaced_Divider" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Alex Dang"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Emily Yu"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Kimberly Yu"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Richard Wei"
                         style="@style/credits_names_style" />
                 </LinearLayout>
@@ -178,17 +173,17 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Graphic Designers"
                         style="@style/credits_title_style" />
 
                     <View style="@style/Spaced_Divider" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Arina Miyadi"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Steffi Huang"
                         style="@style/credits_names_style" />
                 </LinearLayout>
@@ -210,17 +205,17 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Content Editors"
                         style="@style/credits_title_style" />
 
                     <View style="@style/Spaced_Divider" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Danielle Wong"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Emily Yu"
                         style="@style/credits_names_style" />
 
@@ -242,25 +237,25 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Previous Members"
                         style="@style/credits_title_style" />
 
                     <View style="@style/Spaced_Divider" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Elle Yokata"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Miranda Chen"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Jocelyn Thai"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Roselind Zeng"
                         style="@style/credits_names_style" />
 
@@ -282,41 +277,41 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Founders"
                         style="@style/credits_title_style" />
 
                     <View style="@style/Spaced_Divider" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Albert Yeung"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Alex Hitti"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Jason Zhao"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Jessica Chou"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Nathan Wong"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Paul Lee"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Seongwook Jang"
                         style="@style/credits_names_style" />
 
-                    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                         android:text="Tiger Ma"
                         style="@style/credits_names_style" />
 

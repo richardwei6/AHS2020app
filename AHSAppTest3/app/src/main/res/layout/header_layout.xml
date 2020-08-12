@@ -2,11 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/header__ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/news_header_bg"
-    android:elevation="5dp"
+
     android:paddingTop="@dimen/Quarter_Padding"
     android:paddingBottom="@dimen/Quarter_Padding"
     android:paddingEnd="@dimen/Half_Padding"
@@ -30,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/header__TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,14 +43,14 @@
         app:layout_constraintStart_toEndOf="@id/header__image"
         app:layout_constraintTop_toTopOf="parent" />
     <!--android:includeFontPadding="false"-->
-    <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/header__timeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:fontFamily="@font/sf_pro_semibold"
         android:text="Month 00"
-        android:textColor="@color/GoldenYellow_E0C260"
+        android:textColor="@color/GoldenYellow_E3C44B"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/header__TitleText"
         app:layout_constraintTop_toBottomOf="@+id/header__TitleText" />

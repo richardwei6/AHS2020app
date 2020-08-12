@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
+import com.example.ahsapptest3.Misc.FullScreenActivity;
 import com.example.ahsapptest3.Setting_Activities.Settings_Activity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 
 public class Notif_Activity extends FullScreenActivity implements Navigation, NotifRecyclerAdapter.OnItemClick {
 
-    private static final String TAG = "Notif_Activity";
+    /*private static final String TAG = "Notif_Activity";*/
     private NotifRecyclerAdapter adapter;
 
     @Override
@@ -58,8 +57,9 @@ public class Notif_Activity extends FullScreenActivity implements Navigation, No
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        final ArticleDatabase articleDatabase = ArticleDatabase.getInstance(this);
-        final NotifDatabase notifDatabase = NotifDatabase.getInstance(this);
+        final ArticleDatabase articleDatabase = ArticleDatabase.getInstance(getApplicationContext());
+        final BulletinDatabase bulletinDatabase = BulletinDatabase.getInstance(getApplicationContext());
+        final NotifDatabase notifDatabase = NotifDatabase.getInstance(getApplicationContext());
 
         adapter = new NotifRecyclerAdapter(new ArrayList<Notif_Data>(), this);
         recyclerView.setAdapter(adapter);
@@ -74,15 +74,27 @@ public class Notif_Activity extends FullScreenActivity implements Navigation, No
                 notif_data.clear();
                 for(DataSnapshot child_sn: snapshot.getChildren()) {
                     String notifID = child_sn.getKey();
-                    String articleID = child_sn.child(r.getString(R.string.fb_notif_artID)).getValue().toString();
+                    final String articleID = child_sn.child(r.getString(R.string.fb_notif_artID)).getValue().toString();
                     String body = child_sn.child(r.getString(R.string.fb_notif_body)).getValue().toString();
                     String title = child_sn.child(r.getString(R.string.fb_notif_title)).getValue().toString();
                     long time = (long) child_sn.child(r.getString(R.string.fb_notif_time)).getValue();
                     int category = ((Long)child_sn.child(r.getString(R.string.fb_notif_cat)).getValue()).intValue();
-                    Notif_Data data = new Notif_Data(notifID, time, title, body, category, articleID,
+                    final Notif_Data data = new Notif_Data(notifID, time, title, body, category, articleID,
                             notifDatabase.getReadStatusByID(notifID));
-                    data.setArticle(articleDatabase.getArticleById(articleID));
+                    Article article = articleDatabase.getArticleById(articleID);
+                    if(article != null)
+                        data.setHolder(new Article_or_BulletinHolder(article));
+                    else {
+                        Bulletin_Article article1 = bulletinDatabase.getArticleByID(articleID);
+                        if(article1 != null)
+                            data.setHolder(new Article_or_BulletinHolder(article1));
+                    /*new Runnable() {
+                        @Override
+                        public void run() {
 
+                            }
+                        }*/
+                    }
                     notif_data.add(data);
                     adapter.addItem(data);
                 }
@@ -91,7 +103,7 @@ public class Notif_Activity extends FullScreenActivity implements Navigation, No
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(TAG, error.getDetails());
+               /* Log.e(TAG, error.getDetails());*/
             }
         });
     }
@@ -103,12 +115,26 @@ public class Notif_Activity extends FullScreenActivity implements Navigation, No
         this.position = position;
         data.setNotified(true);
         NotifDatabase.getInstance(this).updateReadStatus(data);
-        if(data.getArticle()!= null) {
+        if(data.getHolder()!= null) {
             /*ArticleDatabase.getInstance(this, ArticleDatabase.Option.CURRENT).updateNotifiedStatus(data.getArticle().getID(),true);*/
 
-            Intent intent = new Intent(Notif_Activity.this, ArticleActivity.class);
-            intent.putExtra(ArticleActivity.data_key, data.getArticle());
-            startActivityForResult(intent, REQUEST_CODE);
+
+            switch(data.getHolder().getOption()) {
+                case ARTICLE:
+                    Intent intent = new Intent(Notif_Activity.this, ArticleActivity.class);
+                    intent.putExtra(ArticleActivity.data_key, data.getHolder().getArticle());
+                    startActivityForResult(intent, REQUEST_CODE);
+                    overridePendingTransition(R.anim.from_right, R.anim.maintain);
+                    break;
+                case BULLETIN_ARTICLE:
+                    Intent intent1 = new Intent(Notif_Activity.this, Bulletin_Article_Activity.class);
+                    intent1.putExtra(ArticleActivity.data_key, data.getHolder().getBulletin_article());
+                    startActivityForResult(intent1, REQUEST_CODE);
+                    overridePendingTransition(R.anim.from_right, R.anim.maintain);
+            }
+
+
+
         } else {
             /*data.setNotified(true);
             NotifDatabase.getInstance(this).updateReadStatus(data);*/

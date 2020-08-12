@@ -15,8 +15,7 @@ import com.example.ahsapptest3.Article;
 import com.example.ahsapptest3.ArticleDatabase;
 import com.example.ahsapptest3.ArticleNavigation;
 import com.example.ahsapptest3.Article_Slim;
-import com.example.ahsapptest3.Helper_Code.Helper;
-import com.example.ahsapptest3.Navigation;
+import com.example.ahsapptest3.Misc.Helper;
 import com.example.ahsapptest3.R;
 
 /**

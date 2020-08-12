@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/saved_outerConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Saved_Activity">
@@ -23,7 +22,6 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/saved_header_LinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/White"
@@ -36,8 +34,7 @@
                 android:paddingRight="@dimen/Half_Padding"
                 android:paddingBottom="@dimen/Half_Padding">
 
-                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
-                    android:id="@+id/saved_titleText"
+                <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/Half_Padding"

@@ -9,32 +9,32 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
 
-import com.example.ahsapptest3.Helper_Code.Helper;
+import com.example.ahsapptest3.Misc.Helper;
 
 import java.util.ArrayList;
 
 public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecyclerAdapter.ViewHolder>{
-    private static final String TAG = "BulletinRecyclerAdapter";
+    /*private static final String TAG = "BulletinRecyclerAdapter";*/
 
-    private SortedList<Bulletin_Article> list;
-    public ArrayList<Bulletin_Article> bulletin_data;
+    private final SortedList<Bulletin_Article> sortedList;
+    public final ArrayList<Bulletin_Article> bulletin_data;
 
-    boolean[] selectors_active = new boolean[Bulletin_Article.Type.values().length];
+    final boolean[] selectors_active = new boolean[Bulletin_Article.Type.values().length];
     private final Bulletin_Article.Type[] types = Bulletin_Article.Type.values();
-    private OnItemClick onItemClick;
+    private final OnItemClick onItemClick;
 
     public BulletinRecyclerAdapter(ArrayList<Bulletin_Article> data, OnItemClick onItemClick) {
         this.bulletin_data = new ArrayList<>(data);
         this.onItemClick = onItemClick;
 
-        list = new SortedList<>(Bulletin_Article.class, new SortedList.Callback<Bulletin_Article>() {
+        sortedList = new SortedList<>(Bulletin_Article.class, new SortedList.Callback<Bulletin_Article>() {
             @Override
             public int compare(Bulletin_Article o1, Bulletin_Article o2) {
                 // give priority to new vs not new articles
-                if(o1.isAlready_read() && !o2.isAlready_read())
+                /*if(o1.isAlready_read() && !o2.isAlready_read())
                     return 1;
                 if(!o1.isAlready_read() && o2.isAlready_read())
-                    return -1;
+                    return -1;*/
 
                 // give priority to future vs past events
                 if(Helper.TimeFromNow(o1.getTime()) > 0 && Helper.TimeFromNow(o2.getTime()) < 0)
@@ -48,7 +48,7 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
                     return 1;
                 if(time_diff < 0)
                     return -1;
-                return 0;
+                return o1.getTitle().compareTo(o2.getTitle());
 
             }
 
@@ -91,21 +91,29 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
         });
         for(Bulletin_Article info: data)
         {
-            list.add(info);
+            sortedList.add(info);
         }
     }
 
     public void addItem(Bulletin_Article item)
     {
         bulletin_data.add(item);
-        list.add(item);
+        sortedList.add(item);
         /*Log.d(TAG, item.toString());*/
     }
 
     public void clearAll()
     {
         bulletin_data.clear();
-        list.clear();
+        sortedList.clear();
+    }
+
+    public static final int READ = 0;
+    @Override
+    public int getItemViewType(int position) {
+        if(sortedList.get(position).isAlready_read())
+            return READ;
+        return 1;
     }
 
     @NonNull
@@ -113,14 +121,14 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
     public BulletinRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.bulletin_item_template, parent, false)
+                .inflate((viewType != READ) ? R.layout.bulletin_item_template: R.layout.bulletin_item_template_inactive, parent, false)
                 ;
         return new BulletinRecyclerAdapter.ViewHolder(view, onItemClick);
     }
     /*private int lastPosition = -1;*/
     @Override
     public void onBindViewHolder(@NonNull BulletinRecyclerAdapter.ViewHolder holder, int position) {
-        holder.setDetails(list.get(position));
+        holder.setDetails(sortedList.get(position));
         /*if (position > lastPosition)
         {
             Animation animation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
@@ -131,12 +139,12 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return sortedList.size();
     }
 
     public void filterItems()
     {
-        list.beginBatchedUpdates();
+        sortedList.beginBatchedUpdates();
 
         // make a copy of the original data and filter it
         ArrayList<Bulletin_Article> copy = new ArrayList<>(bulletin_data);
@@ -156,46 +164,49 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
 
         //Log.d(TAG, copy.toString());
 
-        for(int i = list.size() - 1; i >= 0; i--)
+        for(int i = sortedList.size() - 1; i >= 0; i--)
         {
             boolean alreadyHas = false;
             for(Bulletin_Article info: copy)
-                if(list.get(i).getTitle().equals(info.getTitle()))
+                if(sortedList.get(i).getTitle().equals(info.getTitle()))
                     alreadyHas = true;
             if(!alreadyHas)
-                list.removeItemAt(i);
+                sortedList.removeItemAt(i);
 
         }
         for(Bulletin_Article info: copy)
         {
             boolean alreadyHas = false;
-            for(int i = list.size() - 1; i >= 0; i--)
+            for(int i = sortedList.size() - 1; i >= 0; i--)
             {
-                if(list.get(i).getTitle().equals(info.getTitle()))
+                if(sortedList.get(i).getTitle().equals(info.getTitle()))
                     alreadyHas = true;
             }
             if(!alreadyHas)
-                list.add(info);
+                sortedList.add(info);
         }
         /*for(int i = 0; i < list.size(); i++)
         {
             Log.d(TAG, list.get(i).toString());
         }*/
 
-        list.endBatchedUpdates();
+        sortedList.endBatchedUpdates();
     }
 
     public void updateReadItemPosition(int position)
     {
-        list.get(position).setAlready_read(true);
+        sortedList.get(position).setAlready_read(true);
         notifyItemChanged(position);
-        list.recalculatePositionOfItemAt(position);
+        sortedList.recalculatePositionOfItemAt(position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView titleText, bodyText, dateText, typeText, readText;
-        OnItemClick onItemClick;
+        final TextView titleText;
+        final TextView bodyText;
+        final TextView dateText;
+        final TextView typeText/*, readText*/;
+        final OnItemClick onItemClick;
         private Bulletin_Article bulletin_article;
 
         public ViewHolder(@NonNull View itemView, OnItemClick onItemClick) {
@@ -204,7 +215,7 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
             bodyText = itemView.findViewById(R.id.bulletin_template_BodyText);
             dateText = itemView.findViewById(R.id.bulletin_template_DateText);
             typeText = itemView.findViewById(R.id.bulletin_template_typeText);
-            readText = itemView.findViewById(R.id.bulletin_template_newText);
+            /*readText = itemView.findViewById(R.id.bulletin_template_newText);*/
 
             this.onItemClick = onItemClick;
 
@@ -219,7 +230,7 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
             /*Helper.setHtmlParsed_withRipple(bodyText, parentView, bulletin_article.getBodyText());*/
 
             Helper.setTimeText_toView(dateText, Helper.TimeFromNow(bulletin_article.getTime()));
-            readText.setVisibility((bulletin_article.isAlready_read() ? View.GONE : View.VISIBLE));
+            /*readText.setVisibility((bulletin_article.isAlready_read() ? View.GONE : View.VISIBLE));*/
             typeText.setText(bulletin_article.getType().getName());
             itemView.setOnClickListener(this);
             bodyText.setOnClickListener(this); // so link movement method doesn't (fully) consume click events

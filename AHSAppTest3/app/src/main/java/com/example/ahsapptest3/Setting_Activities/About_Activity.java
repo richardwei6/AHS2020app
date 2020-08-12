@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.ahsapptest3.Helper_Code.FullScreenActivity;
+import com.example.ahsapptest3.Misc.FullScreenActivity;
 import com.example.ahsapptest3.R;
 
 public class About_Activity extends FullScreenActivity {

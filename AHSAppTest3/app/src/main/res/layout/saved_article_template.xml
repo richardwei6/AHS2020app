@@ -9,7 +9,6 @@
     android:foreground="?attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/saved_template__ConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/Half_Padding"
@@ -28,7 +27,7 @@
             app:layout_constraintGuide_percent=".5" />
 
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/saved_template__title_Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -44,7 +43,7 @@
             app:layout_constraintStart_toStartOf="@+id/saved_template__guideline"
             app:layout_constraintTop_toBottomOf="@+id/saved_template__time_updated_Text" />
 
-        <com.example.ahsapptest3.Helper_Code.AdaptingTextView
+        <com.example.ahsapptest3.Misc.AdaptingTextView
             android:id="@+id/saved_template__summary_Text"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -73,7 +72,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/saved_template__time_updated_Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -90,7 +89,7 @@
             app:layout_constraintStart_toEndOf="@+id/saved_template_typeText"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/saved_template_typeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
