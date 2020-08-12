@@ -14,7 +14,8 @@
         android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity android:name=".ArticleImageActivity" />
-        <activity android:name=".Bulletin_Article_Activity" />
+        <activity android:name=".Bulletin_Article_Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"/>
 
         <service
             android:name=".NotifService"

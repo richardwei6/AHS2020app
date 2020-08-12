@@ -82,11 +82,12 @@ public class NotifRecyclerAdapter extends RecyclerView.Adapter<NotifRecyclerAdap
     public void clearAll() {
         sortedList.clear();}
 
-    public void updateReadItemPosition(int position)
-    {
-        sortedList.get(position).setNotified(true);
-        notifyItemChanged(position);
-        sortedList.recalculatePositionOfItemAt(position);
+    public void updateReadItemPosition(int position) {
+        if(position < sortedList.size()) {
+            sortedList.get(position).setNotified(true);
+            notifyItemChanged(position);
+            sortedList.recalculatePositionOfItemAt(position);
+        }
     }
 
     public static final int READ = 0;

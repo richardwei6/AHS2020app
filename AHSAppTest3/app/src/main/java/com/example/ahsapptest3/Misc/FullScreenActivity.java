@@ -30,27 +30,31 @@ public class FullScreenActivity extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        hideSystemUI();
+
         super.onCreate(savedInstanceState);
+        hideSystemUI();
     }
 
     @Override
     public void onResume() {
-        hideSystemUI();
+
         super.onResume();
+        hideSystemUI();
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        hideSystemUI();
+
         super.onWindowFocusChanged(hasFocus);
+        if(hasFocus)
+            hideSystemUI();
     }
 
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        hideSystemUI();
-        super.onConfigurationChanged(newConfig);
 
+        super.onConfigurationChanged(newConfig);
+        hideSystemUI();
         /*Log.d(TAG, "config changed");*/
         /*hideSystemUI();*/
     }

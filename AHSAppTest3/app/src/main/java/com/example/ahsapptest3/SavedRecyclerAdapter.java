@@ -33,8 +33,10 @@ public class SavedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void updateItemRemoved(int position){
-        articles.remove(position);
-        notifyItemRemoved(position);
+        if(position <articles.size()) {
+            articles.remove(position);
+            notifyItemRemoved(position);
+        }
     }
 
     @Override

@@ -193,11 +193,16 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
         sortedList.endBatchedUpdates();
     }
 
-    public void updateReadItemPosition(int position)
+    public boolean updateReadItemPosition(int position)
     {
-        sortedList.get(position).setAlready_read(true);
-        notifyItemChanged(position);
-        sortedList.recalculatePositionOfItemAt(position);
+        if(position < sortedList.size()) {
+            sortedList.get(position).setAlready_read(true);
+            notifyItemChanged(position);
+            sortedList.recalculatePositionOfItemAt(position);
+            return true;
+        }
+        return false;
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
