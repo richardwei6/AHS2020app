@@ -18,6 +18,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     @IBOutlet weak var filterScrollView: UIScrollView!
     @IBOutlet weak var bulletinScrollView: UIScrollView!
+    @IBOutlet var mainView: UIView!
     
     
     @IBOutlet weak var filterScrollViewHeightContraint: NSLayoutConstraint!
@@ -37,7 +38,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     
     var selectedFilters: [Bool] = [false, false, false, false, false]; // selected types in this order - seniors, colleges, events, athletics, reference, and others
     
-    var currentArticles = [[bulletinArticleData]]();
+    var currentArticles = [bulletinArticleData]();
     
     // icon stuff
     var iconViewFrame: CGRect?;
@@ -133,15 +134,23 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         UIImpactFeedbackGenerator(style: .light).impactOccurred();
     }
     
+    func noFilterSelected() -> Bool{
+        for i in selectedFilters{
+            if (i){
+                return false;
+            }
+        }
+        return true;
+    }
     
-    func filterArticles() -> [[bulletinArticleData]]{
+    func filterArticles() -> [bulletinArticleData]{
         var copy = [bulletinArticleData]();
         for i in 0..<totalArticles.count{
             if (selectedFilters[totalArticles[i].articleType] == true){
                 copy.append(totalArticles[i]);
             }
         }
-        return copy.count == 0 ? filterRead(copy: totalArticles) : filterRead(copy: copy);
+        return copy.count == 0 && noFilterSelected() ? totalArticles : copy;
     }
     
     func sortArticlesByTime(a: bulletinArticleData, b: bulletinArticleData)->Bool{
@@ -154,24 +163,18 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         }
     }
     
-    func filterRead(copy: [bulletinArticleData]) -> [[bulletinArticleData]]{ // 0th row is unread 1st is read
-        var output = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 2);
-        loadBullPref();
-        for i in copy{
-            if (bulletinReadDict[i.articleID ?? ""] == true){
-                output[1].append(i);
-            }
-            else{
-                output[0].append(i);
-            }
-        }
-        for subview in bulletinScrollView.subviews{
-            if (subview != refreshControl){
-                subview.removeFromSuperview();
-            }
-        }
-        return output;
-    }
+    /*func filterRead(copy: [bulletinArticleData]) -> [[bulletinArticleData]]{ // 0th row is unread 1st is read
+     var output = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 2);
+     for i in copy{
+     if (bulletinReadDict[i.articleID ?? ""] == true){
+     output[1].append(i);
+     }
+     else{
+     output[0].append(i);
+     }
+     }
+     return output;
+     }*/
     
     
     func generateBulletin(){
@@ -184,147 +187,114 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             }
             totalArticles.sort(by: sortArticlesByTime);
             currentArticles = filterArticles();
+            loadBullPref();
             var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
+            
+            for subview in bulletinScrollView.subviews{
+                if (subview != refreshControl){
+                    subview.removeFromSuperview();
+                }
+            }
             
             bulletinFrame.size.height = articleVerticalSize;
             bulletinFrame.size.width = UIScreen.main.bounds.size.width - (2*articleHorizontalPadding);
             
             let catagoryFrameWidth = CGFloat(70);
             var currY = articleVerticalPadding;
+
             
-            for article in currentArticles[0]{ // UNREAD
-                bulletinFrame.origin.x = articleHorizontalPadding;
-                bulletinFrame.origin.y = currY;
-                currY += bulletinFrame.size.height + articleVerticalPadding;
-                let articleButton = UIView(frame: bulletinFrame);
-                articleButton.backgroundColor = UIColor.white;
-                
-                // content inside button
-                let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding), height: bulletinFrame.size.height - 10);
-                let mainView = CustomUIButton(frame: mainViewFrame);
-                
-                let articleTitleFrame = CGRect(x: 0, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 55, height: 34);
-                let articleTitleText = UILabel(frame: articleTitleFrame);
-                articleTitleText.text = article.articleTitle; // insert title text here ------ temporary
-                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 16);
-                articleTitleText.numberOfLines = 1;
-                
-                let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
-                let articleBodyText = UILabel(frame: articleBodyFrame);
-                if (article.hasHTML == true){
-                    articleBodyText.text = parseHTML(s: article.articleBody ?? "").string;
+            if (currentArticles.count > 0){
+                for article in currentArticles{
+                    bulletinFrame.origin.x = articleHorizontalPadding;
+                    bulletinFrame.origin.y = currY;
+                    currY += bulletinFrame.size.height + articleVerticalPadding;
+                    let articleButton = UIView(frame: bulletinFrame);
+                    let currArticleRead = bulletinReadDict[article.articleID ?? ""] == true ? true : false;
+                    
+                    // content inside button
+                    let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding), height: bulletinFrame.size.height - 10);
+                    let mainView = CustomUIButton(frame: mainViewFrame);
+                    
+                    let articleTitleFrame = CGRect(x: 0, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 55, height: 34);
+                    let articleTitleText = UILabel(frame: articleTitleFrame);
+                    articleTitleText.text = article.articleTitle;
+                    articleTitleText.font = currArticleRead ? UIFont(name: "SFProDisplay-Semibold",size: 16) : UIFont(name: "SFProText-Bold",size: 16);
+                    articleTitleText.textColor = currArticleRead ? UIColor.gray : UIColor.black;
+                    articleTitleText.numberOfLines = 1;
+                    
+                    let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
+                    let articleBodyText = UILabel(frame: articleBodyFrame);
+                    if (article.hasHTML == true){
+                        articleBodyText.text = parseHTML(s: article.articleBody ?? "").string;
+                    }
+                    else{
+                        articleBodyText.text = (article.articleBody ?? "");
+                    }
+                    articleBodyText.numberOfLines = 4;
+                    articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
+                    articleBodyText.textColor = currArticleRead ? UIColor.gray : UIColor.black;
+                    
+                    mainView.addSubview(articleTitleText);
+                    mainView.addSubview(articleBodyText);
+                    
+                    let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
+                    let dateText = UILabel(frame: dateTextFrame);
+                    dateText.text = epochClass.epochToString(epoch: article.articleUnixEpoch ?? -1); // insert date here -------- temporary
+                    dateText.textColor = makeColor(r: 156, g: 0, b: 0);
+                    dateText.textAlignment = .right;
+                    dateText.font = UIFont(name: "SFProDisplay-Regular", size: 12);
+                    
+                    let catagoryFrame = CGRect(x: 8, y: 12, width: catagoryFrameWidth, height: 20);
+                    let catagory = UILabel(frame: catagoryFrame);
+                    catagory.text = article.articleCatagory ?? "No Cata.";
+                    catagory.backgroundColor = currArticleRead ? makeColor(r: 144, g: 75, b: 75) : mainThemeColor;
+                    catagory.textAlignment = .center;
+                    catagory.textColor = UIColor.white;
+                    catagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
+                    catagory.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+                    
+                    if (currArticleRead == false){
+                        let readLabelFrame = CGRect(x: 15 + catagoryFrame.size.width, y: 12, width: 40, height: 20);
+                        let readLabel = UILabel(frame: readLabelFrame);
+                        readLabel.text = "New";
+                        readLabel.backgroundColor = UIColor.systemYellow;
+                        readLabel.textAlignment = .center;
+                        readLabel.textColor = UIColor.white;
+                        readLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+                        readLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
+                        articleButton.addSubview(readLabel);
+                    }
+                    
+                    articleButton.addSubview(dateText);
+                    articleButton.addSubview(mainView);
+                    articleButton.addSubview(catagory);
+                    
+                    articleButton.layer.shadowColor = UIColor.black.cgColor;
+                    articleButton.layer.shadowOpacity = 0.2;
+                    articleButton.layer.shadowRadius = 5;
+                    articleButton.layer.shadowOffset = CGSize(width: 0 , height:3);
+                    
+                    articleButton.backgroundColor = currArticleRead ? makeColor(r: 250, g: 250, b: 250) : UIColor.white;
+                    
+                    mainView.articleCompleteData = bulletinDataToarticleData(data: article);
+                    
+                    mainView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
+                    self.bulletinScrollView.addSubview(articleButton);
                 }
-                else{
-                    articleBodyText.text = (article.articleBody ?? "");
-                }
-                articleBodyText.numberOfLines = 4;
-                articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
-                
-                mainView.addSubview(articleTitleText);
-                mainView.addSubview(articleBodyText);
-                
-                let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
-                let dateText = UILabel(frame: dateTextFrame);
-                dateText.text = epochClass.epochToString(epoch: article.articleUnixEpoch ?? -1); // insert date here -------- temporary
-                dateText.textColor = makeColor(r: 156, g: 0, b: 0);
-                dateText.textAlignment = .right;
-                dateText.font = UIFont(name: "SFProDisplay-Regular", size: 12);
-                
-                let catagoryFrame = CGRect(x: 8, y: 12, width: catagoryFrameWidth, height: 20);
-                let catagory = UILabel(frame: catagoryFrame);
-                catagory.text = article.articleCatagory ?? "No Cata.";
-                catagory.backgroundColor = mainThemeColor;
-                catagory.textAlignment = .center;
-                catagory.textColor = UIColor.white;
-                catagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
-                catagory.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
-                
-                let readLabelFrame = CGRect(x: 15 + catagoryFrame.size.width, y: 12, width: 40, height: 20);
-                let readLabel = UILabel(frame: readLabelFrame);
-                readLabel.text = "New";
-                readLabel.backgroundColor = UIColor.systemYellow;
-                readLabel.textAlignment = .center;
-                readLabel.textColor = UIColor.white;
-                readLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
-                readLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
-                
-                articleButton.addSubview(dateText);
-                articleButton.addSubview(mainView);
-                articleButton.addSubview(catagory);
-                articleButton.addSubview(readLabel);
-                
-                articleButton.layer.shadowColor = UIColor.black.cgColor;
-                articleButton.layer.shadowOpacity = 0.2;
-                articleButton.layer.shadowRadius = 5;
-                articleButton.layer.shadowOffset = CGSize(width: 0 , height:3);
-                
-                mainView.articleCompleteData = bulletinDataToarticleData(data: article);
-                
-                mainView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
-                self.bulletinScrollView.addSubview(articleButton);
             }
-            for article in currentArticles[1]{
-                bulletinFrame.origin.x = articleHorizontalPadding;
-                bulletinFrame.origin.y = currY;
-                currY += bulletinFrame.size.height + articleVerticalPadding;
-                let articleButton = UIView(frame: bulletinFrame);
-                articleButton.backgroundColor =  makeColor(r: 250, g: 250, b: 250);
-                
-                
-                // content inside button
-                let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding), height: bulletinFrame.size.height - 10);
-                let mainView = CustomUIButton(frame: mainViewFrame);
-                
-                
-                let articleTitleFrame = CGRect(x: 0, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 55, height: 34);
-                let articleTitleText = UILabel(frame: articleTitleFrame);
-                articleTitleText.text = article.articleTitle; // insert title text here ------ temporary
-                articleTitleText.font =  UIFont(name: "SFProText-Bold",size: 16);
-                
-                let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
-                let articleBodyText = UILabel(frame: articleBodyFrame);
-                if (article.hasHTML == true){
-                    articleBodyText.text = parseHTML(s: article.articleBody ?? "").string;
-                }
-                else{
-                    articleBodyText.text = (article.articleBody ?? "");
-                }
-                articleBodyText.numberOfLines = 4;
-                articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
-                
-                
-                mainView.addSubview(articleTitleText);
-                mainView.addSubview(articleBodyText);
-                
-                let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
-                let dateText = UILabel(frame: dateTextFrame);
-                dateText.text = epochClass.epochToString(epoch: article.articleUnixEpoch ?? -1); // insert date here -------- temporary
-                dateText.textColor = makeColor(r: 156, g: 0, b: 0);
-                dateText.textAlignment = .right;
-                dateText.font = UIFont(name: "SFProDisplay-Regular", size: 12);
-                
-                let catagoryFrame = CGRect(x: 8, y: 12, width: catagoryFrameWidth, height: 20);
-                let catagory = UILabel(frame: catagoryFrame);
-                catagory.text = article.articleCatagory ?? "No Cata.";
-                catagory.backgroundColor = UIColor.gray;
-                catagory.textAlignment = .center;
-                catagory.textColor = UIColor.white;
-                catagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
-                catagory.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
-                
-                articleButton.addSubview(dateText);
-                articleButton.addSubview(mainView);
-                articleButton.addSubview(catagory);
-                
-                articleButton.layer.shadowColor = UIColor.black.cgColor;
-                articleButton.layer.shadowOpacity = 0.2;
-                articleButton.layer.shadowRadius = 5;
-                articleButton.layer.shadowOffset = CGSize(width: 0 , height:3);
-                
-                mainView.articleCompleteData = bulletinDataToarticleData(data: article);
-                
-                mainView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
-                self.bulletinScrollView.addSubview(articleButton);
+            else{
+                let labelHeight = CGFloat(100);
+                let noArticlesLabel = UILabel(frame: CGRect(x: articleHorizontalPadding, y: currY, width: UIScreen.main.bounds.width - 2*articleHorizontalPadding, height: labelHeight));
+                noArticlesLabel.text = "No articles found";
+                noArticlesLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 20);
+                noArticlesLabel.backgroundColor = UIColor.white;
+                noArticlesLabel.textAlignment = .center;
+                noArticlesLabel.layer.shadowColor = UIColor.black.cgColor;
+                noArticlesLabel.layer.shadowOpacity = 0.2;
+                noArticlesLabel.layer.shadowRadius = 5;
+                noArticlesLabel.layer.shadowOffset = CGSize(width: 0 , height:3);
+                bulletinScrollView.addSubview(noArticlesLabel);
+                currY += labelHeight;
             }
             bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: CGFloat(currY));
             bulletinScrollView.delegate = self;
@@ -332,7 +302,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     }
     
     @objc func refreshBulletin(){
-      //  print("refresh");
+        //  print("refresh");
         // add func to load data
         getBulletinArticleData();
     }
@@ -359,7 +329,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             let filterButton = CustomUIButton(frame: filterFrame);
             filterButton.setTitle(filterName[buttonIndex], for: .normal);
             filterButton.setTitleColor(selectedFilters[buttonIndex] ? UIColor.black : UIColor.gray, for: .normal);
-            filterButton.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 20);
+            filterButton.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 20);
             filterButton.contentVerticalAlignment = .top;
             filterButton.sizeToFit();
             //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
@@ -399,8 +369,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         bulletinScrollView.isScrollEnabled = true;
         bulletinScrollView.alwaysBounceVertical = true;
         refreshControl.beginRefreshing();
+        
         setUpFilters();
-        // set up bulletin for the first time before any filters
         getBulletinArticleData();
         
     }

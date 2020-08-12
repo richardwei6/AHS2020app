@@ -11,13 +11,16 @@ import UIKit
 import AudioToolbox
 import youtube_ios_player_helper
 
-class articlePageViewController: UIViewController, UIScrollViewDelegate{
+class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate{
+
+    
     /*@IBOutlet weak var backButton: UIButton!
      @IBOutlet weak var articleText: UILabel!
      @IBOutlet weak var imageScrollView: UIScrollView!
      @IBOutlet weak var imagePageControl: UIPageControl!
      @IBOutlet weak var whiteBackground: UIImageView!*/    //@IBOutlet weak var notificationBellButton: UIButton!
     
+    @IBOutlet var mainView: UIView!
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     
@@ -26,6 +29,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var articleCatagoryLabel: UILabel!
     
     @IBOutlet weak var shadowView: UIView!
+    
     
     var contentWidth: CGFloat = 0.0
     var imageFrame = CGRect(x: 0, y:0, width: 0, height: 0);
@@ -36,6 +40,67 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     
     let imagePageControl = UIPageControl();
     let imageScrollView = UIScrollView();
+    
+    
+    /// START DISMISS ON PAN
+    var interactor: Interactor? = nil;
+    let transition = CATransition();
+    
+    func transitionDismissal() {
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
+        view.window?.layer.add(transition, forKey: nil)
+        dismiss(animated: false)
+    }
+    
+    
+    @objc func gestureAction(_ sender: UIPanGestureRecognizer) {
+        let percentThreshold: CGFloat = 0.3
+        let translation = sender.translation(in: view)
+        let fingerMovement = translation.x / view.bounds.width
+        let rightMovement = fmaxf(Float(fingerMovement), 0.0)
+        let rightMovementPercent = fminf(rightMovement, 1.0)
+        let progress = CGFloat(rightMovementPercent)
+        
+        switch sender.state {
+        case .began:
+            
+            interactor?.hasStarted = true
+            dismiss(animated: true)
+            
+        case .changed:
+            
+            interactor?.shouldFinish = progress > percentThreshold
+            interactor?.update(progress)
+            
+        case .cancelled:
+            
+            interactor?.hasStarted = false
+            interactor?.cancel()
+            
+        case .ended:
+            
+            guard let interactor = interactor else { return }
+            interactor.hasStarted = false
+            interactor.shouldFinish
+                ? interactor.finish()
+                : interactor.cancel()
+            
+        default:
+            break
+        }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let scrollView = otherGestureRecognizer.view as? UIScrollView {
+            return scrollView.contentOffset.x == 0;
+        }
+        return false
+    }
+    
+    /// END DISMISS ON PAN
     
     @IBAction func saveArticle(sender: CustomUIButton){
         if (sender.articleCompleteData.articleID != nil){
@@ -53,7 +118,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
     
     @IBAction func exitArticle(_ sender: UIButton){
         imageAvgColors = [Int:UIColor]();
-        dismiss(animated: true);
+        transitionDismissal();
     }
     
     func setBookmarkColor(){
@@ -77,17 +142,22 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         }
         sender.isSelected = !sender.isSelected;
     }
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
+        // NewYorkSmall-MediumItalic, NewYorkMedium-Bold
         imageAvgColors = [Int:UIColor]();
         bookmarkButton.articleCompleteData = articleContent ?? articleData();
         
         bookmarkButton.tintColor = mainThemeColor;
         setBookmarkColor();
+        
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureAction));
+        //gestureRecognizer.edges = .left;
+        gestureRecognizer.delegate = self;
+        //view.addGestureRecognizer(gestureRecognizer);
+        mainScrollView.addGestureRecognizer(gestureRecognizer);
         
         shadowView.layer.shadowColor = UIColor.black.cgColor;
         shadowView.layer.shadowOpacity = 0.05;
@@ -101,6 +171,16 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         let padding = CGFloat(15);
         let universalWidth = UIScreen.main.bounds.width - 2 * padding;
         
+        //nextY += 7;
+        let articleTitleText = articleContent?.articleTitle;
+        let titleFont = UIFont(name: "NewYorkMedium-Bold", size: CGFloat(fontSize+8));
+        let articleTitleFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleTitleText?.getHeight(withConstrainedWidth: universalWidth, font: titleFont!) ?? 0);
+        let articleTitle = UILabel(frame: articleTitleFrame);
+        articleTitle.text = articleTitleText; // set article title herer
+        articleTitle.font = titleFont;
+        articleTitle.numberOfLines = 0;
+        mainScrollView.addSubview(articleTitle);
+        nextY += articleTitleFrame.height + 7;
         
         if ((articleContent?.articleVideoIDs?.count ?? 0) + (articleContent?.articleImages?.count ?? 0) > 0){ // bulletin
             let imageScrollViewFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: 250);
@@ -146,7 +226,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             if (imageSize + videoSize > 1){
                 imagePageControl.currentPage = 0;
                 imagePageControl.numberOfPages = imageSize + videoSize;
-                imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: imageScrollViewFrame.size.height + 25);
+                imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: nextY + 12);
                 imagePageControl.pageIndicatorTintColor = UIColor.lightGray;
                 imagePageControl.currentPageIndicatorTintColor = UIColor.black;
                 mainScrollView.addSubview(imagePageControl);
@@ -156,23 +236,16 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
             mainScrollView.addSubview(imageScrollView);
         }
         
-        nextY += 7;
-        let articleTitleText = articleContent?.articleTitle;
-        let articleTitleFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleTitleText?.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Semibold", size: CGFloat(fontSize+5))!) ?? 0);
-        let articleTitle = UILabel(frame: articleTitleFrame);
-        articleTitle.text = articleTitleText; // set article title herer
-        articleTitle.font = UIFont(name: "SFProDisplay-Semibold", size: CGFloat(fontSize+5));
-        articleTitle.numberOfLines = 0;
-        mainScrollView.addSubview(articleTitle);
-        nextY += articleTitleFrame.height;
         
         nextY += 7;
         if (articleContent?.articleAuthor != nil){
             let articleAuthorText = "By " + (articleContent?.articleAuthor ?? "No Author");
-            let articleAuthorFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleAuthorText.getHeight(withConstrainedWidth: universalWidth, font: UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize-3))!))
+            let articleAuthorFont = UIFont(name: "NewYorkSmall-MediumItalic", size: CGFloat(fontSize-1));
+            let articleAuthorFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleAuthorText.getHeight(withConstrainedWidth: universalWidth, font: articleAuthorFont!))
             let articleAuthor = UILabel(frame: articleAuthorFrame);
             articleAuthor.text = articleAuthorText;
-            articleAuthor.font = UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize-3));
+            articleAuthor.font = articleAuthorFont;
+            articleAuthor.textColor = makeColor(r: 112, g: 112, b: 112);
             articleAuthor.numberOfLines = 0;
             mainScrollView.addSubview(articleAuthor);
             nextY += articleAuthorFrame.size.height+3;
@@ -183,6 +256,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         let articleDate = UILabel(frame: articleDateFrame);
         articleDate.text = articleDateText;
         articleDate.font = UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize-3));
+        articleDate.textColor = makeColor(r: 112, g: 112, b: 112);
         articleDate.numberOfLines = 0;
         mainScrollView.addSubview(articleDate);
         nextY += articleDateFrame.size.height;
@@ -193,6 +267,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate{
         let articleBody = UITextView(frame: articleBodyFrame);
         articleBody.attributedText = articleBodyText;
         articleBody.font = UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize));
+        articleBody.textColor = makeColor(r: 33, g: 33, b: 33);
         articleBody.isScrollEnabled = false;
         articleBody.isEditable = false;
         articleBody.tintColor = UIColor.systemBlue;

@@ -15,7 +15,7 @@ import SDWebImage
 import Firebase
 
 var resetUpArticles = false;
-var unreadNotif = false;
+var unreadNotifCount = 0;
 
 // swift file with shared functions and extensions between files
 

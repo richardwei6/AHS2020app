@@ -1,0 +1,143 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bulletin_article_frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ArticleActivity">
+
+    <ScrollView
+        android:id="@+id/bulletin_article_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White"
+        >
+
+        <LinearLayout
+            android:id="@+id/bulletin_article_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+
+            android:paddingTop="@dimen/Half_Padding"
+
+            android:paddingBottom="@dimen/Half_Padding">
+
+            <LinearLayout
+                android:id="@+id/bulletin_article_headerLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/Half_Padding"
+                android:paddingLeft="@dimen/Half_Padding"
+                android:paddingEnd="@dimen/Full_Padding"
+                android:paddingRight="@dimen/Full_Padding">
+
+                <ImageView
+                    android:id="@+id/bulletin_article_header_back"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:paddingStart="@dimen/Half_Padding"
+                    android:paddingLeft="@dimen/Half_Padding"
+                    android:paddingTop="@dimen/Half_Padding"
+                    android:paddingEnd="@dimen/Half_Padding"
+                    android:paddingRight="@dimen/Half_Padding"
+                    android:paddingBottom="@dimen/Half_Padding"
+                    android:scaleType="fitStart"
+                    android:tint="@color/AngryRed_9F0C0C"
+                    app:srcCompat="@drawable/arrow_back" />
+
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    android:id="@+id/bulletin_article_type_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
+                    android:background="@drawable/type_rounded_bg"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:paddingLeft="7dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="7dp"
+                    android:paddingBottom="3dp"
+                    android:text="TYPE"
+                    android:textColor="@color/White"
+                    android:textSize="12sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/bulletin_article_bookmarkButton"
+                    android:padding="@dimen/Quarter_Padding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:scaleType="fitCenter"
+                    tools:srcCompat="@drawable/bookmarked_icon_inactive"
+                    android:background="?attr/selectableItemBackgroundBorderless"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+
+                android:paddingTop="@dimen/Half_Padding"
+                android:paddingBottom="@dimen/Full_Padding"
+                android:paddingLeft="@dimen/Full_Padding"
+                android:paddingRight="@dimen/Full_Padding">
+                
+                <!--
+                                <fragment
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:name="com.google.android.youtube.player.YouTubePlayerSupportFragmentX"
+                                    android:id="@+id/youtube_player"/>-->
+
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    android:id="@+id/bulletin_article_dateText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/sf_pro_display"
+                    android:gravity="start|center_vertical"
+
+                    android:text="Month 00, 0000"
+                    android:textColor="@color/GraniteRed_7E6E6A"
+                    android:textSize="14sp" />
+
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    android:id="@+id/bulletin_article_titleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Quarter_Padding"
+                    android:fontFamily="@font/sf_pro_semibold"
+                    android:text="Title Lorem Ipsum"
+                    android:textColor="@color/DarkCrimson_1A0303"
+                    android:textSize="24sp" />
+
+                <com.example.ahsapptest3.Helper_Code.AutoAdjustTextSize_TextView
+                    android:id="@+id/bulletin_article_bodyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Half_Padding"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Body"
+                    android:textColor="@color/GraniteRed_7E6E6A"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

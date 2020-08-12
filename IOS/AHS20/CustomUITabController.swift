@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 
 
-class CustomTabBarController: UIViewController {
+class CustomTabBarController: UIViewController, UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var contentView: UIView!
     
@@ -49,11 +49,11 @@ class CustomTabBarController: UIViewController {
     var articleContentInSegue: articleData?;
     
     @IBAction func openNotifications(_ sender: UIButton) {
-        print("Notifcations");
+        //print("Notifcations");
         performSegue(withIdentifier: "notificationSegue", sender: nil);
     }
     
-    @objc func articleSelector(notification: NSNotification){
+    /*@objc func articleSelector(notification: NSNotification){
         articleContentInSegue = notification.userInfo?["articleContent"] as? articleData;
         performSegue(withIdentifier: "articleSegue", sender: nil);
     }
@@ -63,13 +63,51 @@ class CustomTabBarController: UIViewController {
             let vc = segue.destination as! articlePageViewController;
             vc.articleContent = articleContentInSegue;
         }
+    }*/
+    
+    let interactor = Interactor();
+    let transition = CATransition();
+    
+    func transition(to controller: UIViewController) {
+        transition.duration = 0.2
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        view.window?.layer.add(transition, forKey: kCATransition)
+        present(controller, animated: false)
+    }
+    
+    func animationController(
+        forDismissed dismissed: UIViewController)
+        -> UIViewControllerAnimatedTransitioning? {
+            return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(
+        using animator: UIViewControllerAnimatedTransitioning)
+        -> UIViewControllerInteractiveTransitioning? {
+            
+            return interactor.hasStarted
+                ? interactor
+                : nil
+    }
+
+    @objc func articleSelector(notification: NSNotification){ // instigate transition
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageViewController else{
+            return;
+        };
+        vc.transitioningDelegate = self;
+        vc.interactor = interactor;
+        vc.articleContent = notification.userInfo?["articleContent"] as? articleData;
+        transition(to: vc);
     }
     
     func setUpNotifDot(){
+        loadNotifPref();
+        selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
+        updateSubscriptionNotifs();
+        unreadNotifCount = 0;
         setUpConnection();
         if (internetConnected){
-            // print("ok -------- loading articles - notifications");
-            //print(s);
             totalNotificationList = [notificationData]();
             ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
                 let enumerator = snapshot.children;
@@ -99,9 +137,11 @@ class CustomTabBarController: UIViewController {
                         
                     }
                     totalNotificationList.append(singleNotification);
-                    filterTotalNotificationArticles();
-                    self.notificationDot.isHidden = !unreadNotif;
-                    UIApplication.shared.applicationIconBadgeNumber = notificationList[1].count;
+                    if ((selectedNotifications[0] == true || selectedNotifications[singleNotification.notificationCatagory ?? 0] == true || singleNotification.notificationCatagory == 0) && notificationReadDict[singleNotification.messageID ?? ""] != true){
+                        unreadNotifCount += 1;
+                    }
+                    self.notificationDot.isHidden = unreadNotifCount == 0;
+                    UIApplication.shared.applicationIconBadgeNumber = unreadNotifCount;
                 };
             }
         }
@@ -109,11 +149,7 @@ class CustomTabBarController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
-        
         setUpConnection();
-        //  print("Connection Established");
-        
         setUpNotifDot();
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
@@ -163,7 +199,7 @@ class CustomTabBarController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         // set notification dot
-        notificationDot.isHidden = !unreadNotif;
+        notificationDot.isHidden = unreadNotifCount == 0;
     }
     
     @IBAction func didPressTab(_ sender: UIButton) {
