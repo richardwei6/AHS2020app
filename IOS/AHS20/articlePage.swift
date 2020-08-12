@@ -56,8 +56,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
     }
     
     
-    @objc func gestureAction(_ sender: UIScreenEdgePanGestureRecognizer) {
-        let percentThreshold: CGFloat = 0.4
+    @objc func gestureAction(_ sender: UIPanGestureRecognizer) {
+        let percentThreshold: CGFloat = 0.3
         let translation = sender.translation(in: view)
         let fingerMovement = translation.x / view.bounds.width
         let rightMovement = fmaxf(Float(fingerMovement), 0.0)
@@ -91,6 +91,13 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
         default:
             break
         }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let scrollView = otherGestureRecognizer.view as? UIScrollView {
+            return scrollView.contentOffset.x == 0;
+        }
+        return false
     }
     
     /// END DISMISS ON PAN
@@ -146,8 +153,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
         bookmarkButton.tintColor = mainThemeColor;
         setBookmarkColor();
         
-        let gestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(gestureAction));
-        gestureRecognizer.edges = .left;
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureAction));
+        //gestureRecognizer.edges = .left;
         gestureRecognizer.delegate = self;
         //view.addGestureRecognizer(gestureRecognizer);
         mainScrollView.addGestureRecognizer(gestureRecognizer);
