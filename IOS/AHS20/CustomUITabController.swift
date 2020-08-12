@@ -149,11 +149,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     
     override func viewDidLoad() {
         super.viewDidLoad();
-      //  printFontFamilies();
-        
         setUpConnection();
-        //  print("Connection Established");
-        
         setUpNotifDot();
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
