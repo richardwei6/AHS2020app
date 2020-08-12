@@ -47,7 +47,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
     let transition = CATransition();
     
     func transitionDismissal() {
-        transition.duration = 0.2
+        transition.duration = 0.3
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromLeft

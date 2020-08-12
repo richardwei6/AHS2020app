@@ -79,7 +79,6 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     func animationController(
         forDismissed dismissed: UIViewController)
         -> UIViewControllerAnimatedTransitioning? {
-            
             return DismissAnimator()
     }
     
