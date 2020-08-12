@@ -11,7 +11,7 @@ import UIKit
 import AudioToolbox
 import youtube_ios_player_helper
 
-class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate{
+class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate{
 
     
     /*@IBOutlet weak var backButton: UIButton!
@@ -30,6 +30,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
     
     @IBOutlet weak var shadowView: UIView!
     
+    
     var contentWidth: CGFloat = 0.0
     var imageFrame = CGRect(x: 0, y:0, width: 0, height: 0);
     var imageSize = 1;
@@ -39,6 +40,60 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
     
     let imagePageControl = UIPageControl();
     let imageScrollView = UIScrollView();
+    
+    
+    /// START DISMISS ON PAN
+    var interactor: Interactor? = nil;
+    let transition = CATransition();
+    
+    func transitionDismissal() {
+        transition.duration = 0.2
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
+        view.window?.layer.add(transition, forKey: nil)
+        dismiss(animated: false)
+    }
+    
+    
+    @objc func gestureAction(_ sender: UIScreenEdgePanGestureRecognizer) {
+        let percentThreshold: CGFloat = 0.4
+        let translation = sender.translation(in: view)
+        let fingerMovement = translation.x / view.bounds.width
+        let rightMovement = fmaxf(Float(fingerMovement), 0.0)
+        let rightMovementPercent = fminf(rightMovement, 1.0)
+        let progress = CGFloat(rightMovementPercent)
+        
+        switch sender.state {
+        case .began:
+            
+            interactor?.hasStarted = true
+            dismiss(animated: true)
+            
+        case .changed:
+            
+            interactor?.shouldFinish = progress > percentThreshold
+            interactor?.update(progress)
+            
+        case .cancelled:
+            
+            interactor?.hasStarted = false
+            interactor?.cancel()
+            
+        case .ended:
+            
+            guard let interactor = interactor else { return }
+            interactor.hasStarted = false
+            interactor.shouldFinish
+                ? interactor.finish()
+                : interactor.cancel()
+            
+        default:
+            break
+        }
+    }
+    
+    /// END DISMISS ON PAN
     
     @IBAction func saveArticle(sender: CustomUIButton){
         if (sender.articleCompleteData.articleID != nil){
@@ -56,7 +111,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
     
     @IBAction func exitArticle(_ sender: UIButton){
         imageAvgColors = [Int:UIColor]();
-        dismiss(animated: true);
+        transitionDismissal();
     }
     
     func setBookmarkColor(){
@@ -80,7 +135,6 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
         }
         sender.isSelected = !sender.isSelected;
     }
-    
 
     
     override func viewDidLoad() {
@@ -91,6 +145,12 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
         
         bookmarkButton.tintColor = mainThemeColor;
         setBookmarkColor();
+        
+        let gestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(gestureAction));
+        gestureRecognizer.edges = .left;
+        gestureRecognizer.delegate = self;
+        //view.addGestureRecognizer(gestureRecognizer);
+        mainScrollView.addGestureRecognizer(gestureRecognizer);
         
         shadowView.layer.shadowColor = UIColor.black.cgColor;
         shadowView.layer.shadowOpacity = 0.05;

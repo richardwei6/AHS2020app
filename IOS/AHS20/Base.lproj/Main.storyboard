@@ -935,7 +935,7 @@
         <!--Article Page View Controller-->
         <scene sceneID="Pyp-JE-SPZ">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="08X-4I-yxB" customClass="articlePageViewController" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="articlePageController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="08X-4I-yxB" customClass="articlePageViewController" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qDH-gC-dtr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="508"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -943,6 +943,10 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="crg-tJ-0rO">
                                 <rect key="frame" x="0.0" y="58" width="414" height="453.33333333333326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="delegate" destination="08X-4I-yxB" id="5BU-sD-xkd"/>
+                                </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gqs-Ri-FfJ" userLabel="shadowView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>

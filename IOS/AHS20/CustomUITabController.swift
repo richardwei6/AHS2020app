@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 
 
-class CustomTabBarController: UIViewController {
+class CustomTabBarController: UIViewController, UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var contentView: UIView!
     
@@ -53,7 +53,7 @@ class CustomTabBarController: UIViewController {
         performSegue(withIdentifier: "notificationSegue", sender: nil);
     }
     
-    @objc func articleSelector(notification: NSNotification){
+    /*@objc func articleSelector(notification: NSNotification){
         articleContentInSegue = notification.userInfo?["articleContent"] as? articleData;
         performSegue(withIdentifier: "articleSegue", sender: nil);
     }
@@ -63,8 +63,45 @@ class CustomTabBarController: UIViewController {
             let vc = segue.destination as! articlePageViewController;
             vc.articleContent = articleContentInSegue;
         }
+    }*/
+    
+    let interactor = Interactor();
+    let transition = CATransition();
+    
+    func transition(to controller: UIViewController) {
+        transition.duration = 0.2
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        view.window?.layer.add(transition, forKey: kCATransition)
+        present(controller, animated: false)
+    }
+    
+    func animationController(
+        forDismissed dismissed: UIViewController)
+        -> UIViewControllerAnimatedTransitioning? {
+            
+            return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(
+        using animator: UIViewControllerAnimatedTransitioning)
+        -> UIViewControllerInteractiveTransitioning? {
+            
+            return interactor.hasStarted
+                ? interactor
+                : nil
     }
 
+    @objc func articleSelector(notification: NSNotification){ // instigate transition
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageViewController else{
+            return;
+        };
+        vc.transitioningDelegate = self;
+        vc.interactor = interactor;
+        vc.articleContent = notification.userInfo?["articleContent"] as? articleData;
+        transition(to: vc);
+    }
+    
     func setUpNotifDot(){
         loadNotifPref();
         selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];

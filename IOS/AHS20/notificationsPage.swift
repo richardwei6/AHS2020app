@@ -12,7 +12,7 @@ import AudioToolbox
 import Firebase
 import FirebaseDatabase
 
-class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
+class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate, UIViewControllerTransitioningDelegate {
     
     
     @IBOutlet weak var notificationScrollView: UIScrollView!
@@ -24,6 +24,65 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     var articleDictionary = [String: articleData]();
     
     var articleContentInSegue: articleData?;
+    
+    
+    let interactor = Interactor();
+    let transition = CATransition();
+    
+    func transition(to controller: UIViewController) {
+        transition.duration = 0.2
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        view.window?.layer.add(transition, forKey: kCATransition)
+        present(controller, animated: false)
+    }
+    
+    func animationController(
+        forDismissed dismissed: UIViewController)
+        -> UIViewControllerAnimatedTransitioning? {
+            
+            return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(
+        using animator: UIViewControllerAnimatedTransitioning)
+        -> UIViewControllerInteractiveTransitioning? {
+            
+            return interactor.hasStarted
+                ? interactor
+                : nil
+    }
+
+    /*@objc func articleSelector(notification: NSNotification){ // instigate transition
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageViewController else{
+            return;
+        };
+        vc.transitioningDelegate = self;
+        vc.interactor = interactor;
+        vc.articleContent = notification.userInfo?["articleContent"] as? articleData;
+        transition(to: vc);
+    }*/
+    
+    @objc func openArticle(_ sender: notificationUIButton) {
+        if (sender.alreadyRead == false){
+            notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = true;
+            saveNotifPref();
+            unreadNotifCount = numOfUnreadInArray(arr: filterThroughSelectedNotifcations());
+            UIApplication.shared.applicationIconBadgeNumber = unreadNotifCount;
+        }
+        if (articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""] != nil){
+            /*articleContentInSegue = articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""];
+            performSegue(withIdentifier: "notificationToArticle", sender: nil);*/
+            guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageViewController else{
+                return;
+            };
+            vc.transitioningDelegate = self;
+            vc.interactor = interactor;
+            vc.articleContent = articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""];
+            transition(to: vc);
+        }
+        loadScrollView();
+    }
     
     func getLocalNotifications(){
         setUpConnection();
@@ -198,28 +257,13 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         }
     }
     
-    @objc func openArticle(_ sender: notificationUIButton) {
-        if (sender.alreadyRead == false){
-            /*notificationList[0].append(notificationList[1][sender.articleIndex]);
-            notificationList[1].remove(at: sender.articleIndex);*/
-            notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = true;
-            saveNotifPref();
-            unreadNotifCount = numOfUnreadInArray(arr: filterThroughSelectedNotifcations());
-            UIApplication.shared.applicationIconBadgeNumber = unreadNotifCount;
-        }
-        if (articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""] != nil){
-            articleContentInSegue = articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""];
-            performSegue(withIdentifier: "notificationToArticle", sender: nil);
-        }
-        loadScrollView();
-    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "notificationToArticle"){
             let vc = segue.destination as! articlePageViewController;
             vc.articleContent = articleContentInSegue;
         }
-    }
+    }*/
     
 
     var notificationFrame = CGRect(x: 0, y: 0, width: 0, height: 0);

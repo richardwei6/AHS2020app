@@ -57,6 +57,7 @@
 		33D3626424C10053008B4E67 /* htmlFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3626324C10053008B4E67 /* htmlFunctions.swift */; };
 		33D3626524C10053008B4E67 /* htmlFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3626324C10053008B4E67 /* htmlFunctions.swift */; };
 		33D3626624C10053008B4E67 /* htmlFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3626324C10053008B4E67 /* htmlFunctions.swift */; };
+		33DAB44824E365A60062EF63 /* DismissOnPanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAB44724E365A60062EF63 /* DismissOnPanGesture.swift */; };
 		33E69202243ACA970004E2F1 /* CustomUITabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69201243ACA970004E2F1 /* CustomUITabController.swift */; };
 		33E69204243AD1F20004E2F1 /* bulletinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69203243AD1F20004E2F1 /* bulletinPage.swift */; };
 		33E69208243AD21F0004E2F1 /* settingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69207243AD21F0004E2F1 /* settingPage.swift */; };
@@ -123,6 +124,7 @@
 		33CD41B72453ED78008E6558 /* notificationsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationsPage.swift; sourceTree = "<group>"; };
 		33CF84AE24512CB500F8872A /* HARLOWSI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HARLOWSI.ttf; sourceTree = "<group>"; };
 		33D3626324C10053008B4E67 /* htmlFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = htmlFunctions.swift; sourceTree = "<group>"; };
+		33DAB44724E365A60062EF63 /* DismissOnPanGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissOnPanGesture.swift; sourceTree = "<group>"; };
 		33E46F31248987790058128B /* AHS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AHS.entitlements; sourceTree = "<group>"; };
 		33E69201243ACA970004E2F1 /* CustomUITabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITabController.swift; sourceTree = "<group>"; };
 		33E69203243AD1F20004E2F1 /* bulletinPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bulletinPage.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				33B77F31249ED2E500A74B3A /* extensions.swift */,
 				33CB33CC24BC0F11005BB736 /* bulletinFunc.swift */,
 				333C082724CD004900E236CD /* UIImageColors.swift */,
+				33DAB44724E365A60062EF63 /* DismissOnPanGesture.swift */,
 			);
 			path = "Shared Functions";
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				330D3E10241D5E8C007D0628 /* AppDelegate.swift in Sources */,
 				33E69208243AD21F0004E2F1 /* settingPage.swift in Sources */,
 				33E69202243ACA970004E2F1 /* CustomUITabController.swift in Sources */,
+				33DAB44824E365A60062EF63 /* DismissOnPanGesture.swift in Sources */,
 				3354C8D824664AA5008C0F67 /* termsandagreementsPage.swift in Sources */,
 				33CD41B42453ECAB008E6558 /* savedPage.swift in Sources */,
 				33E80EDB244FD76900020640 /* general.swift in Sources */,
@@ -747,7 +751,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AHS20/AHS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = P5E4JP96ES;
 				INFOPLIST_FILE = AHS20/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -770,7 +774,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AHS20/AHS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = P5E4JP96ES;
 				INFOPLIST_FILE = AHS20/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
