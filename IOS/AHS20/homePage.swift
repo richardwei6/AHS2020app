@@ -277,9 +277,10 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	}
 	
 	func arrayToPairs(a: [articleData]) -> [[articleData]]{
+		let b = a.sorted(by: sortArticlesByTime);
 		var ans = [[articleData]]();
 		var temp = [articleData](); // pairs
-		for i in a{
+		for i in b{
 			temp.append(i);
 			if (temp.count == 2){
 				ans.append(temp);
