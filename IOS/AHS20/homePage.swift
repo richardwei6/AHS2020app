@@ -181,7 +181,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	
 	@objc func openArticle(sender: CustomUIButton){
-		print("Button pressed");
+		//print("Button pressed");
 		let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
 		NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
 	}

@@ -36,7 +36,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
     var imageSize = 1;
     var videoSize = 1;
     var articleContent: articleData?;
-    var imageAvgColors = [Int:UIColor]();
+    //var imageAvgColors = [Int:UIColor]();
     
     let imagePageControl = UIPageControl();
     let imageScrollView = UIScrollView();
@@ -117,7 +117,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
     }
     
     @IBAction func exitArticle(_ sender: UIButton){
-        imageAvgColors = [Int:UIColor]();
+       // imageAvgColors = [Int:UIColor]();
         transitionDismissal();
     }
     
@@ -133,21 +133,28 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
         }
     }
     
+    var passImageToZoomSegue: UIImage?;
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "openImageZoomPage"){
+            let vc = segue.destination as! zoomableImageViewController;
+            vc.image = passImageToZoomSegue;
+        }
+    }
+    
     @objc func toggleZoom(sender: UIButton){
-        if (sender.isSelected){
-            sender.imageView?.contentMode = .scaleAspectFill;
+        if (sender.imageView?.image != nil){
+            UIImpactFeedbackGenerator(style: .light).impactOccurred();
+            passImageToZoomSegue = sender.imageView?.image;
+            performSegue(withIdentifier: "openImageZoomPage", sender: nil);
         }
-        else{
-            sender.imageView?.contentMode = .scaleAspectFit;
-        }
-        sender.isSelected = !sender.isSelected;
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad();
         // NewYorkSmall-MediumItalic, NewYorkMedium-Bold
-        imageAvgColors = [Int:UIColor]();
+       // imageAvgColors = [Int:UIColor]();
         bookmarkButton.articleCompleteData = articleContent ?? articleData();
         
         bookmarkButton.tintColor = mainThemeColor;
@@ -204,13 +211,12 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
                 let buttonImage = UIButton(frame: imageFrame);
                 buttonImage.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
                 buttonImage.imageView?.contentMode = .scaleAspectFill;
-                buttonImage.imageView?.image?.getColors({ (colors) -> Void in
+                /*buttonImage.imageView?.image?.getColors({ (colors) -> Void in
                     self.imageAvgColors[imageIndex+self.videoSize] = colors?.primary ?? UIColor.lightGray;
                     if (imageIndex == 0){
                         self.imageScrollView.backgroundColor = self.imageAvgColors[self.videoSize];
                     }
-                });
-                buttonImage.isSelected = false;
+                });*/
                 buttonImage.addTarget(self, action: #selector(toggleZoom), for: .touchUpInside);
                 imageScrollView.addSubview(buttonImage);
                 origX += imageFrame.size.width;
@@ -281,7 +287,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (articleContent?.articleAuthor != nil){
             imagePageControl.currentPage = Int(round(imageScrollView.contentOffset.x / imageFrame.size.width));
-            UIScrollView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {self.imageScrollView.backgroundColor = self.imageAvgColors[self.imagePageControl.currentPage] != nil ? self.imageAvgColors[self.imagePageControl.currentPage] : UIColor.lightGray;}, completion: nil);
+            //UIScrollView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {self.imageScrollView.backgroundColor = self.imageAvgColors[self.imagePageControl.currentPage] != nil ? self.imageAvgColors[self.imagePageControl.currentPage] : UIColor.lightGray;}, completion: nil);
         }
     }
 }

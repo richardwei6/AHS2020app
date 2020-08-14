@@ -1034,11 +1034,86 @@
                         <outlet property="mainScrollView" destination="crg-tJ-0rO" id="uOp-ZN-aZo"/>
                         <outlet property="mainView" destination="qDH-gC-dtr" id="lzr-gg-5mx"/>
                         <outlet property="shadowView" destination="Gqs-Ri-FfJ" id="Yhh-WS-ZFJ"/>
+                        <segue destination="jyW-0e-uWq" kind="show" identifier="openImageZoomPage" id="7pb-qa-Lrl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3x-Ei-zbE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="160.86956521739131" y="2939.6739130434785"/>
+        </scene>
+        <!--Zoomable Image View Controller-->
+        <scene sceneID="ppk-HT-0Pv">
+            <objects>
+                <viewController id="jyW-0e-uWq" customClass="zoomableImageViewController" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mv5-qp-Kyq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A6P-oF-paa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wU6-yC-LQ7">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="wU6-yC-LQ7" firstAttribute="top" secondItem="A6P-oF-paa" secondAttribute="top" id="10k-on-zwf"/>
+                                    <constraint firstAttribute="trailing" secondItem="wU6-yC-LQ7" secondAttribute="trailing" id="13m-21-avh"/>
+                                    <constraint firstItem="wU6-yC-LQ7" firstAttribute="width" secondItem="A6P-oF-paa" secondAttribute="width" id="SFe-IT-JXD"/>
+                                    <constraint firstItem="wU6-yC-LQ7" firstAttribute="leading" secondItem="A6P-oF-paa" secondAttribute="leading" id="UQK-j8-x6x"/>
+                                    <constraint firstItem="wU6-yC-LQ7" firstAttribute="height" secondItem="A6P-oF-paa" secondAttribute="height" id="a83-0c-2Qt"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="uEP-wa-OSm"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="SyX-jy-aFO"/>
+                                <connections>
+                                    <outlet property="delegate" destination="jyW-0e-uWq" id="rV5-J1-ZI9"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziQ-E2-lBB">
+                                <rect key="frame" x="10.000000000000002" y="10" width="18.666666666666671" height="27"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="chevron.left" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissAction:" destination="jyW-0e-uWq" eventType="touchUpInside" id="BPh-wk-ORc"/>
+                                    <action selector="exitCredits:" destination="NZh-8i-WD8" eventType="touchUpInside" id="4ud-9Z-swh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNk-eu-Zak">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="g3h-md-dut"/>
+                                    <constraint firstAttribute="height" constant="50" id="rsE-N1-mvx"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="dismissAction:" destination="jyW-0e-uWq" eventType="touchUpInside" id="1A4-Ak-hgd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ziQ-E2-lBB" firstAttribute="top" secondItem="eZM-Fy-nQm" secondAttribute="top" constant="10" id="9Ey-Lz-qBw"/>
+                            <constraint firstItem="A6P-oF-paa" firstAttribute="height" secondItem="mv5-qp-Kyq" secondAttribute="height" id="9sj-jO-iL7"/>
+                            <constraint firstItem="eZM-Fy-nQm" firstAttribute="trailing" secondItem="A6P-oF-paa" secondAttribute="trailing" id="9y8-Jk-aVy"/>
+                            <constraint firstItem="GNk-eu-Zak" firstAttribute="leading" secondItem="eZM-Fy-nQm" secondAttribute="leading" id="HSS-FL-xc1"/>
+                            <constraint firstItem="A6P-oF-paa" firstAttribute="width" secondItem="mv5-qp-Kyq" secondAttribute="width" id="Kmd-uR-zUg"/>
+                            <constraint firstItem="A6P-oF-paa" firstAttribute="leading" secondItem="eZM-Fy-nQm" secondAttribute="leading" id="QEl-7u-eTB"/>
+                            <constraint firstItem="GNk-eu-Zak" firstAttribute="top" secondItem="eZM-Fy-nQm" secondAttribute="top" id="WU0-Nd-xnY"/>
+                            <constraint firstItem="ziQ-E2-lBB" firstAttribute="leading" secondItem="eZM-Fy-nQm" secondAttribute="leading" constant="10" id="nYQ-tQ-l0S"/>
+                            <constraint firstItem="A6P-oF-paa" firstAttribute="top" secondItem="eZM-Fy-nQm" secondAttribute="top" id="w65-Fz-OvE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eZM-Fy-nQm"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="WBt-SA-7GP"/>
+                    <connections>
+                        <outlet property="imageView" destination="wU6-yC-LQ7" id="YNb-ra-BXt"/>
+                        <outlet property="scrollView" destination="A6P-oF-paa" id="Y4R-xt-I8o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UcL-Yi-wfa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1086.9565217391305" y="2894.8369565217395"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="8ma-U8-Tfd">
