@@ -217,7 +217,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			articleImageView.imgFromURL(sURL: articleSingle.articleImages?[0] ?? "");
 			articleImageView.contentMode = .scaleAspectFill;
 		}
-		articleImageView.backgroundColor = UIColor.gray;
+		articleImageView.backgroundColor = UIColor.white;
 		articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
 		
 		let spacing = CGFloat(10);
@@ -386,7 +386,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					imageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
 					imageView.contentMode = .scaleAspectFill;
 					imageView.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
-					imageView.backgroundColor = UIColor.lightGray;
+					imageView.backgroundColor = UIColor.white;
 					
 					contentView.addSubview(timeStamp);
 					contentView.addSubview(articleCatagory);

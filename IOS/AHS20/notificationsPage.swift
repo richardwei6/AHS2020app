@@ -306,10 +306,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     func loadScrollView(){
         
-        /*unreadNotificationSize = notificationList[1].count;
-        readNotificationSize = notificationList[0].count;
-        notificationList[1] = notificationList[1].sorted(by: notificationSort);
-        notificationList[0] = notificationList[0].sorted(by: notificationSort);*/
         // remove prev subviews
         for subview in notificationScrollView.subviews{
             if (subview != refreshControl){
@@ -317,9 +313,8 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             }
         }
         
-      //  print("before - \(totalNotificationList.count)");
-        let currNotifList = filterThroughSelectedNotifcations();
-      //  print("after - \(totalNotificationList.count)")
+        var currNotifList = filterThroughSelectedNotifcations();
+        currNotifList.sort(by: notificationSort);
         
         if (currNotifList.count > 0){
             
