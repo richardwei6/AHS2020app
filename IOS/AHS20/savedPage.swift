@@ -68,7 +68,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                     let imageViewFrame = CGRect(x: leftPadding, y: 8, width: 150-(2*leftPadding), height: articleFrame.size.height - 16);
                     let imageView = UIImageView(frame: imageViewFrame);
                     imageView.imgFromURL(sURL: savedArticles[aIndex].articleImages?[0] ?? "");
-                    imageView.backgroundColor = UIColor.lightGray;
+                    imageView.backgroundColor = UIColor.white;
                     imageView.contentMode = .scaleAspectFill;
                     imageView.clipsToBounds = true;
                     imageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 5);

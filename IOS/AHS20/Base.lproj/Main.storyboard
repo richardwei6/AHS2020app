@@ -1078,9 +1078,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNk-eu-Zak">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="g3h-md-dut"/>
                                     <constraint firstAttribute="height" constant="50" id="rsE-N1-mvx"/>
                                 </constraints>
                                 <connections>
@@ -1090,14 +1089,18 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="GNk-eu-Zak" firstAttribute="width" secondItem="mv5-qp-Kyq" secondAttribute="width" id="2Rx-2S-o0g"/>
                             <constraint firstItem="ziQ-E2-lBB" firstAttribute="top" secondItem="eZM-Fy-nQm" secondAttribute="top" constant="10" id="9Ey-Lz-qBw"/>
                             <constraint firstItem="A6P-oF-paa" firstAttribute="height" secondItem="mv5-qp-Kyq" secondAttribute="height" id="9sj-jO-iL7"/>
                             <constraint firstItem="eZM-Fy-nQm" firstAttribute="trailing" secondItem="A6P-oF-paa" secondAttribute="trailing" id="9y8-Jk-aVy"/>
                             <constraint firstItem="GNk-eu-Zak" firstAttribute="leading" secondItem="eZM-Fy-nQm" secondAttribute="leading" id="HSS-FL-xc1"/>
                             <constraint firstItem="A6P-oF-paa" firstAttribute="width" secondItem="mv5-qp-Kyq" secondAttribute="width" id="Kmd-uR-zUg"/>
+                            <constraint firstItem="GNk-eu-Zak" firstAttribute="trailing" secondItem="eZM-Fy-nQm" secondAttribute="trailing" id="LyZ-vx-Iye"/>
                             <constraint firstItem="A6P-oF-paa" firstAttribute="leading" secondItem="eZM-Fy-nQm" secondAttribute="leading" id="QEl-7u-eTB"/>
+                            <constraint firstItem="GNk-eu-Zak" firstAttribute="top" secondItem="eZM-Fy-nQm" secondAttribute="top" id="TkF-DR-HxK"/>
                             <constraint firstItem="GNk-eu-Zak" firstAttribute="top" secondItem="eZM-Fy-nQm" secondAttribute="top" id="WU0-Nd-xnY"/>
                             <constraint firstItem="ziQ-E2-lBB" firstAttribute="leading" secondItem="eZM-Fy-nQm" secondAttribute="leading" constant="10" id="nYQ-tQ-l0S"/>
+                            <constraint firstItem="GNk-eu-Zak" firstAttribute="leading" secondItem="eZM-Fy-nQm" secondAttribute="leading" id="ux7-sa-cDE"/>
                             <constraint firstItem="A6P-oF-paa" firstAttribute="top" secondItem="eZM-Fy-nQm" secondAttribute="top" id="w65-Fz-OvE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eZM-Fy-nQm"/>
@@ -2292,7 +2295,7 @@ This license agreement is governed by the laws of the State of California exclud
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Diy-5I-FmI"/>
+        <segue reference="rU3-UD-e0a"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
