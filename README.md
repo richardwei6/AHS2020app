@@ -4,3 +4,5 @@ The official source code for Arcadia High Mobile (avaliable on the Apple app sto
 Languages used for iOS include - Swift/Obj C
 
 Languages used for Android include - Java
+
+Contact us at: hsappdev@students.ausd.net
