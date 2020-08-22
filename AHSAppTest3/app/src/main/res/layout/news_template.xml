@@ -11,7 +11,7 @@
     android:paddingRight="0dp"
     >
 
-    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+    <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/template_news__TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:textColor="@color/DarkCrimson_1A0303"
         android:textSize="24sp" />
 
-    <com.example.ahsapptest3.Misc.EnhancedWrapContentViewPager
+    <com.hsappdev.ahs.Misc.EnhancedWrapContentViewPager
         android:id="@+id/template_news__ViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

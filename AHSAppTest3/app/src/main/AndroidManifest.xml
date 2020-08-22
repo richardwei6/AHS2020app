@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ahsapptest3">
+    package="com.hsappdev.ahs">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,12 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor">
-        <activity android:name=".ArticleImageActivity" />
-        <activity android:name=".Bulletin_Article_Activity"
+        <activity android:name="com.hsappdev.ahs.ArticleImageActivity" />
+        <activity android:name="com.hsappdev.ahs.Bulletin_Article_Activity"
             android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"/>
 
         <service
-            android:name=".NotifService"
+            android:name="com.hsappdev.ahs.NotifService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -30,13 +30,13 @@
         <activity android:name=".Setting_Activities.About_Activity" />
         <activity android:name=".Setting_Activities.Terms_Activity" />
         <activity android:name=".Setting_Activities.Settings_Activity" />
-        <activity android:name=".Saved_Activity" />
-        <activity android:name=".Notif_Activity" />
+        <activity android:name="com.hsappdev.ahs.Saved_Activity" />
+        <activity android:name="com.hsappdev.ahs.Notif_Activity" />
         <activity
-            android:name=".ArticleActivity"
+            android:name="com.hsappdev.ahs.ArticleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection" />
-        <activity android:name=".Bulletin_Activity" />
-        <activity android:name=".News_Activity">
+        <activity android:name="com.hsappdev.ahs.Bulletin_Activity" />
+        <activity android:name="com.hsappdev.ahs.News_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

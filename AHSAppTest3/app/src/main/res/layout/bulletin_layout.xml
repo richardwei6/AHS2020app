@@ -44,7 +44,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                    <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/Half_Padding"
@@ -59,7 +59,7 @@
 
                     <fragment
                         android:id="@+id/bulletin_notifbtn"
-                        android:name="com.example.ahsapptest3.NotifBtn"
+                        android:name="com.hsappdev.ahs.NotifBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
 
@@ -86,29 +86,29 @@
                         android:paddingRight="@dimen/Half_Padding">
 
 
-                        <com.example.ahsapptest3.Misc.Bulletin_SelectorView
+                        <com.hsappdev.ahs.Misc.Bulletin_SelectorView
                             android:id="@+id/bulletin_academics_selection"
                             app:text="Academics"
                             style="@style/bulletin_selectorview_style" />
 
-                        <com.example.ahsapptest3.Misc.Bulletin_SelectorView
+                        <com.hsappdev.ahs.Misc.Bulletin_SelectorView
                             android:id="@+id/bulletin_athletics_selection"
                             app:text="Athletics"
                             style="@style/bulletin_selectorview_style">
 
-                        </com.example.ahsapptest3.Misc.Bulletin_SelectorView>
+                        </com.hsappdev.ahs.Misc.Bulletin_SelectorView>
 
-                        <com.example.ahsapptest3.Misc.Bulletin_SelectorView
+                        <com.hsappdev.ahs.Misc.Bulletin_SelectorView
                             android:id="@+id/bulletin_clubs_selection"
                             app:text="Clubs"
                             style="@style/bulletin_selectorview_style"/>
 
-                        <com.example.ahsapptest3.Misc.Bulletin_SelectorView
+                        <com.hsappdev.ahs.Misc.Bulletin_SelectorView
                             android:id="@+id/bulletin_colleges_selection"
                             app:text="Colleges"
                             style="@style/bulletin_selectorview_style"/>
 
-                        <com.example.ahsapptest3.Misc.Bulletin_SelectorView
+                        <com.hsappdev.ahs.Misc.Bulletin_SelectorView
                             android:id="@+id/bulletin_reference_selection"
                             app:text="Reference"
                             style="@style/bulletin_selectorview_style"/>
@@ -133,7 +133,7 @@
 
     <fragment
         android:id="@+id/bulletin_navBar"
-        android:name="com.example.ahsapptest3.Navigation_Bar"
+        android:name="com.hsappdev.ahs.Navigation_Bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

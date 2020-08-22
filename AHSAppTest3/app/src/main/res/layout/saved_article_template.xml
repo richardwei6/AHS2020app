@@ -27,7 +27,7 @@
             app:layout_constraintGuide_percent=".5" />
 
 
-        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+        <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/saved_template__title_Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             app:layout_constraintStart_toStartOf="@+id/saved_template__guideline"
             app:layout_constraintTop_toBottomOf="@+id/saved_template__time_updated_Text" />
 
-        <com.example.ahsapptest3.Misc.AdaptingTextView
+        <com.hsappdev.ahs.Misc.AdaptingTextView
             android:id="@+id/saved_template__summary_Text"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -51,7 +51,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/sf_pro_display"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "
-            android:textColor="@color/GraniteRed_7E6E6A"
+            android:textColor="@color/DarkCrimson_1A0303"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+        <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/saved_template__time_updated_Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -83,13 +83,13 @@
             android:paddingRight="5dp"
             android:paddingBottom="3dp"
             android:text="time updated"
-            android:textColor="@color/GraniteRed_7E6E6A"
+            android:textColor="@color/DarkCrimson_1A0303"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/saved_template_typeText"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+        <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/saved_template_typeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

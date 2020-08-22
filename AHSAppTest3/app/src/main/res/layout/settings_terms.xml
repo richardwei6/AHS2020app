@@ -30,7 +30,7 @@
                 app:srcCompat="@drawable/arrow_back"
                 app:tint="@color/GraniteRed_7E6E6A" />
 
-            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -57,13 +57,13 @@
             app:contentPadding="@dimen/Half_Padding"
             android:foreground="?attr/selectableItemBackground">
 
-            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                 android:id="@+id/terms_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
                 android:fontFamily="@font/sf_pro_display"
-                android:textColor="@color/GraniteRed_7E6E6A" />
+                android:textColor="@color/DarkCrimson_1A0303" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 </ScrollView>

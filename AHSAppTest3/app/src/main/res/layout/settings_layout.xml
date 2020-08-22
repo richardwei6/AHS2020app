@@ -33,7 +33,7 @@
                 android:paddingRight="@dimen/Half_Padding"
                 android:paddingBottom="@dimen/Half_Padding">
 
-                <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/Half_Padding"
@@ -48,7 +48,7 @@
 
                 <fragment
                     android:id="@+id/settings_notifbtn"
-                    android:name="com.example.ahsapptest3.NotifBtn"
+                    android:name="com.hsappdev.ahs.NotifBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
@@ -65,7 +65,7 @@
                 android:paddingLeft="@dimen/Full_Padding"
                 android:paddingRight="@dimen/Full_Padding">
 
-                <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_semibold"
@@ -89,7 +89,7 @@
 
                         >
 
-                        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                        <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                             android:id="@+id/settings_FontSize_Text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                             android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal">
 
-                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -155,7 +155,7 @@
                             android:orientation="horizontal"
                             android:paddingBottom="@dimen/Quarter_Padding">
 
-                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -196,7 +196,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_semibold"
@@ -227,7 +227,7 @@
                             android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal">
 
-                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -261,7 +261,7 @@
                             android:background="?attr/selectableItemBackground"
                             android:orientation="horizontal">
 
-                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -293,7 +293,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -306,7 +306,7 @@
                                 android:textColor="@color/DarkCrimson_1A0303"
                                 android:textSize="18sp" />
 
-                            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0"
@@ -320,13 +320,21 @@
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/test_viewpager2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#E91E63" />
             </LinearLayout>
+
+
         </LinearLayout>
     </ScrollView>
 
     <fragment
         android:id="@+id/settings_navBar"
-        android:name="com.example.ahsapptest3.Navigation_Bar"
+        android:name="com.hsappdev.ahs.Navigation_Bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/nav_bar"

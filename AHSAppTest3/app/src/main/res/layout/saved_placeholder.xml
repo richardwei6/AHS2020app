@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/merge"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/Double_Padding">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_pro_semibold"
+        android:text="No saved articles found. Click on the bookmark icon to save an article."
+        android:textColor="@color/DarkCrimson_1A0303"
+        android:textSize="18sp" />
+</FrameLayout>

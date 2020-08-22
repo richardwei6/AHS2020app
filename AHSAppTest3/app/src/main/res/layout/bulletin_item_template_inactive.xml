@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+        <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/bulletin_template_typeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+        <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/bulletin_template_TitleText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -51,11 +51,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/bulletin_display_barrier" />
 
-        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+        <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/bulletin_template_BodyText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:scrollHorizontally="true"
             android:text="Description of the Article"
             android:textColor="@color/Gray_5F5F5F"
             android:textSize="14sp"
@@ -64,7 +67,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bulletin_template_TitleText" />
 
-        <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+        <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/bulletin_template_DateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

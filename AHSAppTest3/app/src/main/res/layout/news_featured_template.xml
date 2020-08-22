@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+    <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/template_featured__title_Text"
 
         android:layout_width="0dp"
@@ -40,7 +40,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/template_featured__ImageView" />
 
-    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+    <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/news_featured_typeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/news_featured_smalldot" />
 
-    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+    <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/template_featured__updated_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
         android:fontFamily="@font/sf_pro_display"
         android:padding="5dp"
         android:text="00m ago"
-        android:textColor="@color/GraniteRed_7E6E6A"
+        android:textColor="@color/DarkCrimson_1A0303"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

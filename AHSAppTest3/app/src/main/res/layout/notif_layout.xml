@@ -29,7 +29,7 @@
                 android:paddingRight="@dimen/Half_Padding"
                 android:paddingBottom="@dimen/Half_Padding">
 
-                <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+                <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/Half_Padding"
@@ -65,7 +65,7 @@
 
     <fragment
         android:id="@+id/notif_navBar"
-        android:name="com.example.ahsapptest3.Navigation_Bar"
+        android:name="com.hsappdev.ahs.Navigation_Bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

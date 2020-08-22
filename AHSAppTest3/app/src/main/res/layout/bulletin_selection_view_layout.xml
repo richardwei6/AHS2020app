@@ -8,7 +8,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+    <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
         android:id="@+id/bulletin_selection_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:paddingBottom="@dimen/Full_Padding"
         android:text="Category"
 
-        android:textColor="@color/GraniteRed_7E6E6A"
+        android:textColor="@color/DarkCrimson_1A0303"
         android:textSize="18sp" />
 
     <ImageView

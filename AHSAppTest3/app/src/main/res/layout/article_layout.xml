@@ -45,7 +45,7 @@
                 app:tint="@color/AngryRed_9F0C0C"
                 app:srcCompat="@drawable/arrow_back" />
 
-            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                 android:id="@+id/article_type_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             android:paddingBottom="@dimen/Full_Padding">
 
 
-            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                 android:id="@+id/article_titleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,18 +136,18 @@
                 android:name="com.google.android.youtube.player.YouTubePlayerSupportFragmentX"
                 android:id="@+id/youtube_player"/>-->
 
-            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                 android:id="@+id/article_authorText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
                 android:fontFamily="@font/newyork_smallmediumitalic"
                 android:text="Author"
-                android:textColor="@color/GraniteRed_7E6E6A"
+                android:textColor="@color/DarkCrimson_1A0303"
 
                 android:textSize="16sp" />
 
-            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                 android:id="@+id/article_dateText"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -157,17 +157,17 @@
                 android:gravity="start|center_vertical"
 
                 android:text="Month 00, 0000"
-                android:textColor="@color/GraniteRed_7E6E6A"
+                android:textColor="@color/DarkCrimson_1A0303"
                 android:textSize="14sp" />
 
-            <com.example.ahsapptest3.Misc.AutoAdjustTextSize_TextView
+            <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                 android:id="@+id/article_bodyText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/Full_Padding"
                 android:fontFamily="@font/sf_pro_display"
                 android:text="Body"
-                android:textColor="@color/GraniteRed_7E6E6A"
+                android:textColor="@color/DarkCrimson_1A0303"
                 android:textSize="18sp" />
         </LinearLayout>
 
