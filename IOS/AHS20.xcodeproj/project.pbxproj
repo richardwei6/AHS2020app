@@ -18,6 +18,9 @@
 		330D3E27241D5E8D007D0628 /* AHS20Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E26241D5E8D007D0628 /* AHS20Tests.swift */; };
 		330D3E32241D5E8D007D0628 /* AHS20UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E31241D5E8D007D0628 /* AHS20UITests.swift */; };
 		331793F22464FEF5007CF7B7 /* notificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331793F12464FEF5007CF7B7 /* notificationSettings.swift */; };
+		331F0C3624F0EAAA005ABCCC /* alpha1developer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F0C3524F0EAAA005ABCCC /* alpha1developer.swift */; };
+		331F0C3724F0EAAA005ABCCC /* alpha1developer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F0C3524F0EAAA005ABCCC /* alpha1developer.swift */; };
+		331F0C3824F0EAAA005ABCCC /* alpha1developer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F0C3524F0EAAA005ABCCC /* alpha1developer.swift */; };
 		333C082824CD004900E236CD /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C082724CD004900E236CD /* UIImageColors.swift */; };
 		3343E25D244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */; };
 		3343E25E244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */; };
@@ -106,6 +109,7 @@
 		330D3E31241D5E8D007D0628 /* AHS20UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHS20UITests.swift; sourceTree = "<group>"; };
 		330D3E33241D5E8D007D0628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		331793F12464FEF5007CF7B7 /* notificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationSettings.swift; sourceTree = "<group>"; };
+		331F0C3524F0EAAA005ABCCC /* alpha1developer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alpha1developer.swift; sourceTree = "<group>"; };
 		333C082724CD004900E236CD /* UIImageColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Black.ttf"; sourceTree = "<group>"; };
 		3343E260244D0DD30009D136 /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				33E46F31248987790058128B /* AHS.entitlements */,
+				331F0C3524F0EAAA005ABCCC /* alpha1developer.swift */,
 				330D3E0F241D5E8C007D0628 /* AppDelegate.swift */,
 				330D3E11241D5E8C007D0628 /* SceneDelegate.swift */,
 				33E69201243ACA970004E2F1 /* CustomUITabController.swift */,
@@ -556,6 +561,7 @@
 				33CB33CD24BC0F11005BB736 /* bulletinFunc.swift in Sources */,
 				33B77F30249ED2B200A74B3A /* epochClass.swift in Sources */,
 				33D3626424C10053008B4E67 /* htmlFunctions.swift in Sources */,
+				331F0C3624F0EAAA005ABCCC /* alpha1developer.swift in Sources */,
 				33B3F59924E6343300F48FAB /* zoomableImageViewController.swift in Sources */,
 				330D3E14241D5E8C007D0628 /* homePage.swift in Sources */,
 				33CD41B82453ED78008E6558 /* notificationsPage.swift in Sources */,
@@ -584,6 +590,7 @@
 				33D3626524C10053008B4E67 /* htmlFunctions.swift in Sources */,
 				33CD41B92453ED78008E6558 /* notificationsPage.swift in Sources */,
 				33CD41B52453ECAB008E6558 /* savedPage.swift in Sources */,
+				331F0C3724F0EAAA005ABCCC /* alpha1developer.swift in Sources */,
 				330D3E27241D5E8D007D0628 /* AHS20Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -595,6 +602,7 @@
 				33D3626624C10053008B4E67 /* htmlFunctions.swift in Sources */,
 				33CD41BA2453ED78008E6558 /* notificationsPage.swift in Sources */,
 				33CD41B62453ECAB008E6558 /* savedPage.swift in Sources */,
+				331F0C3824F0EAAA005ABCCC /* alpha1developer.swift in Sources */,
 				330D3E32241D5E8D007D0628 /* AHS20UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -763,7 +771,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 99.01;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArcadiaApaches.ArcadiaHighSchoolApp;
 				PRODUCT_NAME = AHS;
 				SWIFT_VERSION = 5.0;
@@ -786,7 +794,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 99.01;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArcadiaApaches.ArcadiaHighSchoolApp;
 				PRODUCT_NAME = AHS;
 				SWIFT_VERSION = 5.0;

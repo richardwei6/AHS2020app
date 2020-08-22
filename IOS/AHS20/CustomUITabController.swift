@@ -53,17 +53,6 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         performSegue(withIdentifier: "notificationSegue", sender: nil);
     }
     
-    /*@objc func articleSelector(notification: NSNotification){
-        articleContentInSegue = notification.userInfo?["articleContent"] as? articleData;
-        performSegue(withIdentifier: "articleSegue", sender: nil);
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "articleSegue"){
-            let vc = segue.destination as! articlePageViewController;
-            vc.articleContent = articleContentInSegue;
-        }
-    }*/
     
     let interactor = Interactor();
     let transition = CATransition();
@@ -152,10 +141,11 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         setUpConnection();
         setUpNotifDot();
         
+        // DEVELOPER ONLY FUNC
+        setUpDevConfigs();
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
-        
-        
-        // getSavedArticles(); // load default saved articles
+
         savedArticleClass.getArticleDictionary();
         
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
