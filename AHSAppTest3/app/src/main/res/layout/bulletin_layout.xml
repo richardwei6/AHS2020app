@@ -123,7 +123,6 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layoutAnimation="@anim/recycler_fade_in"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

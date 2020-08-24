@@ -23,11 +23,10 @@
         android:textColor="@color/DarkCrimson_1A0303"
         android:textSize="24sp" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/template_news__ViewPager2"
+    <com.hsappdev.ahs.Misc.EnhancedWrapContentViewPager
+        android:id="@+id/template_news__ViewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layoutAnimation="@anim/recycler_fade_in"/>
+        android:layout_height="wrap_content" />
 
 
     <com.google.android.material.tabs.TabLayout

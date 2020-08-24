@@ -10,6 +10,7 @@ import androidx.core.text.HtmlCompat;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.hsappdev.ahs.R;
 
 import java.text.SimpleDateFormat;
@@ -95,6 +96,7 @@ public class Helper{
                 .override(400,300)
                 .error(R.drawable.image_bg)
                 .transform(new CenterCrop(), new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
+                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(view);
 
     }
@@ -105,6 +107,7 @@ public class Helper{
                 .load(url)
                 .error(R.drawable.image_bg)
                 .transform(new CenterCrop(), new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
+                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(view);
     }
 

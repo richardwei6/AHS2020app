@@ -60,7 +60,8 @@
                 android:paddingBottom="3dp"
                 android:text="TYPE"
                 android:textColor="@color/White"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                />
 
             <Space
                 android:layout_width="wrap_content"
@@ -97,7 +98,8 @@
                 android:fontFamily="@font/newyork_mediumbold"
                 android:text="Title Lorem Ipsum"
                 android:textColor="@color/DarkCrimson_1A0303"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textIsSelectable="true"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -145,7 +147,8 @@
                 android:text="Author"
                 android:textColor="@color/DarkCrimson_1A0303"
 
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textIsSelectable="true"/>
 
             <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                 android:id="@+id/article_dateText"
@@ -158,7 +161,8 @@
 
                 android:text="Month 00, 0000"
                 android:textColor="@color/DarkCrimson_1A0303"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textIsSelectable="true"/>
 
             <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
                 android:id="@+id/article_bodyText"
@@ -168,7 +172,8 @@
                 android:fontFamily="@font/sf_pro_display"
                 android:text="Body"
                 android:textColor="@color/DarkCrimson_1A0303"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textIsSelectable="true"/>
         </LinearLayout>
 
 

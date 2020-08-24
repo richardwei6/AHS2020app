@@ -16,7 +16,7 @@ import com.google.android.youtube.player.YouTubePlayerSupportFragmentX;
 public class MediaYoutubeFragment extends YouTubePlayerSupportFragmentX
         implements YouTubePlayer.OnInitializedListener, YouTubePlayer.OnFullscreenListener {
     private static final String KEY_VIDEO_ID = "VIDEO_ID";
-
+    public static final String YOUTUBE_API_KEY = "AIzaSyBRBGC45zgZd6JtLKDq2nfwDnW5symCwX8";
     public String apiKey = "yor apiKey";
     private String mVideoId;
     private YouTubePlayer mPlayer;
@@ -63,7 +63,7 @@ public class MediaYoutubeFragment extends YouTubePlayerSupportFragmentX
     }
 
     private void initialize() {
-        initialize(Config.YOUTUBE_API_KEY, this);
+        initialize(YOUTUBE_API_KEY, this);
     }
 
     public static MediaYoutubeFragment newInstance(String videoId, MediaFullScreenListener listener) {

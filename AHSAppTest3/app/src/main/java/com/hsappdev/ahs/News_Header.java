@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.hsappdev.ahs.Misc.Helper;
-import com.hsappdev.ahs.R;
 
 import java.util.Date;
 

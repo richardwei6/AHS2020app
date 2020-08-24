@@ -1,25 +1,19 @@
 package com.hsappdev.ahs.Setting_Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.hsappdev.ahs.Bulletin_Activity;
 import com.hsappdev.ahs.Misc.FullScreenActivity;
@@ -44,48 +38,11 @@ public class Settings_Activity extends FullScreenActivity implements Navigation,
         }
 
     }
-private class TestViewHolder extends RecyclerView.ViewHolder {
-    TextView textView;
-    public TestViewHolder(@NonNull View itemView) {
-        super(itemView);
-        textView = itemView.findViewById(R.id.textView2);
-    }
-}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_layout);
-        /*if(getIntent().hasExtra("bundle")) {
-
-        }*/
-        final Context context = this;
-        ViewPager2 viewPager2 = findViewById(R.id.test_viewpager2);
-        viewPager2.setAdapter(new RecyclerView.Adapter<TestViewHolder>() {
-            @NonNull
-            @Override
-            public TestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.testviewpager, parent, false);
-
-                return new TestViewHolder(view) {
-
-                };
-            }
-
-            @Override
-            public void onBindViewHolder(@NonNull TestViewHolder holder, int position) {
-                String text = "blah hahah";
-                for(int i = 0; i < getItemCount() -1 - position; i++)
-                    text += text;
-                holder.textView.setText(text);
-            }
-
-            @Override
-            public int getItemCount() {
-                return 4;
-            }
-        });
-
 
         final Settings settings = new Settings(getApplicationContext(), this);
 

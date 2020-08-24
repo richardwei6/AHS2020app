@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hsappdev.ahs.Misc.FullScreenActivity;
-import com.hsappdev.ahs.R;
 import com.hsappdev.ahs.Setting_Activities.Settings_Activity;
 
 import java.util.ArrayList;

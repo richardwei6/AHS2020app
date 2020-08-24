@@ -21,7 +21,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.hsappdev.ahs.Misc.Helper;
-import com.hsappdev.ahs.R;
 
 /**
  * A simple Image holder compatible with FragmentPagerAdapters solely for use in viewPagers in articles

@@ -13,15 +13,14 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hsappdev.ahs.Misc.Bulletin_SelectorView;
-import com.hsappdev.ahs.Misc.FullScreenActivity;
-import com.hsappdev.ahs.R;
-import com.hsappdev.ahs.Setting_Activities.Settings_Activity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.hsappdev.ahs.Misc.Bulletin_SelectorView;
+import com.hsappdev.ahs.Misc.FullScreenActivity;
+import com.hsappdev.ahs.Setting_Activities.Settings_Activity;
 
 import java.util.ArrayList;
 

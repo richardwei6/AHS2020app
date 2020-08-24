@@ -11,16 +11,17 @@
     app:cardBackgroundColor="@color/White"
     app:cardCornerRadius="2dp"
     app:cardElevation="@dimen/CardView_Height"
-    app:contentPaddingLeft="@dimen/Full_Padding"
-    app:contentPaddingRight="@dimen/Full_Padding"
-    app:contentPaddingBottom="@dimen/Full_Padding"
-    >
+    app:contentPaddingBottom="@dimen/Half_Padding"
+    app:contentPaddingLeft="@dimen/Half_Padding"
+    app:contentPaddingRight="@dimen/Half_Padding">
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:paddingLeft="@dimen/Quarter_Padding"
+        android:paddingRight="@dimen/Quarter_Padding"
+        android:paddingBottom="@dimen/Quarter_Padding">
 
         <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/bulletin_template_typeText"

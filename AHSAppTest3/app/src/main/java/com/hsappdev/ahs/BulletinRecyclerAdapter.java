@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
 
 import com.hsappdev.ahs.Misc.Helper;
-import com.hsappdev.ahs.R;
 
 import java.util.ArrayList;
 
@@ -222,7 +221,6 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
             bodyText = itemView.findViewById(R.id.bulletin_template_BodyText);
             dateText = itemView.findViewById(R.id.bulletin_template_DateText);
             typeText = itemView.findViewById(R.id.bulletin_template_typeText);
-            /*readText = itemView.findViewById(R.id.bulletin_template_newText);*/
 
             this.onItemClick = onItemClick;
 

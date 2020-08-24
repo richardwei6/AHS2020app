@@ -1,10 +1,9 @@
 package com.hsappdev.ahs;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
-
-import java.util.Comparator;
 
 public class Article_Slim implements Parcelable, Comparable<Article_Slim> {
 

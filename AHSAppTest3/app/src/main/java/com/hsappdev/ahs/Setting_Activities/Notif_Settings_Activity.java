@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 
-
 import androidx.appcompat.widget.SwitchCompat;
 
 import com.hsappdev.ahs.Misc.FullScreenActivity;

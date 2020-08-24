@@ -13,16 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hsappdev.ahs.Misc.FullScreenActivity;
-import com.hsappdev.ahs.Setting_Activities.Settings_Activity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.hsappdev.ahs.Misc.FullScreenActivity;
+import com.hsappdev.ahs.Setting_Activities.Settings_Activity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class News_Activity extends FullScreenActivity implements Navigation, NotifBtn.Navigation, ArticleNavigation{
 
@@ -99,6 +98,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                                 return;
                             }
                         }
+
                     }
                 }
 
@@ -107,7 +107,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
 
                 }
             });
-            FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_news_key)).addValueEventListener(new ValueEventListener() {
+            FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_news_key)).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(int i = 0; i < data_ref.length; i++) {
@@ -172,6 +172,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                 }
             });
         }
+
         setContentView(R.layout.news_layout);
 
         final String[] titles = {
@@ -184,7 +185,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
         final RecyclerView recyclerView = findViewById(R.id.news_recyclerView);
         recyclerView.setNestedScrollingEnabled(false);
 
-        final NewsRecyclerAdapter adapter = new NewsRecyclerAdapter(getSupportFragmentManager(), titles);
+        final NewsRecyclerAdapter adapter = new NewsRecyclerAdapter(titles, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -192,13 +193,24 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull final DataSnapshot snapshot) {
-                adapter.articles.clear();
-                adapter.featuredArticles.clear();
-                ArrayList<Article_Slim> featuredArts = new ArrayList<>();
+                /*adapter.articles.clear();
+                adapter.featuredArticles.clear();*/
+
+                NewsRecyclerAdapter.FeaturedViewHolder featuredViewHolder = (NewsRecyclerAdapter.FeaturedViewHolder) recyclerView.findViewHolderForAdapterPosition(0);
+                if(featuredViewHolder != null) {
+                    featuredViewHolder.clearAll();
+                }
                 for(int i = 0; i < data_ref.length; i++) {
-                    ArrayList<Article_Slim> articles_categorized = new ArrayList<>();
                     DataSnapshot innerSnap = snapshot.child(data_ref[i]);
-                    adapter.articles.add(new ArrayList<Article_Slim>());
+
+                    /*adapter.articles.add(new ArrayList<Article_Slim>());*/
+
+                    NewsRecyclerAdapter.CategoryViewHolder categoryViewHolder = (NewsRecyclerAdapter.CategoryViewHolder)
+                            recyclerView.findViewHolderForAdapterPosition(i+1);
+                    if(categoryViewHolder != null) {
+                        categoryViewHolder.clearAll();
+                    }
+
                     // use ArrayList b/c no idea how many articles
                     for (DataSnapshot child_sn : innerSnap.getChildren()) {
 
@@ -226,20 +238,32 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                         boolean is_featured = (boolean) child_sn.child(articleFeatured).getValue();
 
                         Article_Slim article = new Article_Slim(ID, article_time, title, body, imagePath, Article.Type.values()[i]);
-                        articles_categorized.add(article);
+
+                        if(categoryViewHolder != null) {
+                            categoryViewHolder.addArticle(article);
+                        }
+                        /*articles_categorized.add(article);*/
 
                         if (is_featured) {
-                            featuredArts.add(article);
+                            if(featuredViewHolder != null) {
+                                featuredViewHolder.addArticle(article);
+
+                            }
+                            /*else {
+                                adapter.featuredArticles.add(article);
+                            }*/
+                            /*featuredArts.add(article);*/
                         }
 
                     }
-                    Collections.sort(articles_categorized);
+                    /*Collections.sort(articles_categorized);
                     adapter.articles.get(i).addAll(articles_categorized);
-                    adapter.notifyItemChanged(i + 1);
+                    adapter.notifyItemChanged(i + 1);*/
                 }
-                Collections.sort(featuredArts);
+/*Collections.sort(featuredArts);
                 adapter.featuredArticles.addAll(featuredArts);
-                adapter.notifyItemChanged(0);
+                adapter.notifyItemChanged(0);*/
+
 
                 new Runnable(){
                     @Override
@@ -265,8 +289,10 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                                     body = "";
                                 // so html parse works correctly with new line characters
                                 body = body.replace("\n","<br/>");
-                        /*// cover all weird cases
-                        body = body.replace("\\n","<br/>");*/
+
+                                // cover all weird cases
+                                body = body.replace("\\n","<br/>");
+
 
                                 ArrayList<String> imagePathsList = new ArrayList<>();
                                 for(DataSnapshot images_sn: child_sn.child(articleImages).getChildren())
@@ -303,6 +329,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 /*Log.i(TAG, error.getDetails());*/
+
             }
         });
 

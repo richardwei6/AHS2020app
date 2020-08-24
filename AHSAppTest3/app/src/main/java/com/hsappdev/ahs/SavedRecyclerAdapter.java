@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hsappdev.ahs.Misc.Helper;
-import com.hsappdev.ahs.R;
 
 import java.util.ArrayList;
 
@@ -32,7 +31,7 @@ public class SavedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public void addItem(Article_or_BulletinHolder article) {
         articles.add(article);
-        notifyItemChanged(articles.size() -1);
+        notifyItemInserted(articles.size() -1);
     }
 
     public void updateItemRemoved(int position){

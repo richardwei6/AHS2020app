@@ -14,13 +14,12 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.hsappdev.ahs.Misc.FullScreenActivity;
 import com.hsappdev.ahs.Misc.Helper;
 import com.hsappdev.ahs.Misc.MediaYoutubeFragment;
 import com.hsappdev.ahs.Misc.ValContainer;
-import com.hsappdev.ahs.R;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 
 public class ArticleActivity extends FullScreenActivity implements ArticleImageFragment.OnImageClick{

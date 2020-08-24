@@ -17,9 +17,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.hsappdev.ahs.Misc.FullScreenActivity;
-import com.hsappdev.ahs.R;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.hsappdev.ahs.Misc.FullScreenActivity;
 
 public class ArticleImageActivity extends FullScreenActivity {
 

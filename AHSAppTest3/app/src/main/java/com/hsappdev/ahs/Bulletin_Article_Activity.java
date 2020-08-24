@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.hsappdev.ahs.Misc.FullScreenActivity;
 import com.hsappdev.ahs.Misc.Helper;
 import com.hsappdev.ahs.Misc.ValContainer;
-import com.hsappdev.ahs.R;
 
 public class Bulletin_Article_Activity extends FullScreenActivity {
 
