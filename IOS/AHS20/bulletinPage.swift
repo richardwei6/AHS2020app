@@ -191,7 +191,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             var bulletinFrame = CGRect(x:0, y:0, width: 0, height: 0);
             
             for subview in bulletinScrollView.subviews{
-                if (subview != refreshControl){
+                if (subview != refreshControl && subview.tag == 1){
                     subview.removeFromSuperview();
                 }
             }
@@ -279,6 +279,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     mainView.articleCompleteData = bulletinDataToarticleData(data: article);
                     
                     mainView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
+                    articleButton.tag = 1;
                     self.bulletinScrollView.addSubview(articleButton);
                 }
             }
@@ -293,6 +294,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 noArticlesLabel.layer.shadowOpacity = 0.2;
                 noArticlesLabel.layer.shadowRadius = 5;
                 noArticlesLabel.layer.shadowOffset = CGSize(width: 0 , height:3);
+                noArticlesLabel.tag = 1;
                 bulletinScrollView.addSubview(noArticlesLabel);
                 currY += labelHeight;
             }
