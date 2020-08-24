@@ -42,15 +42,6 @@
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
-                <!--<fragment
-                    android:id="@+id/notif_notifbtn"
-                    android:name="com.example.ahsapptest3.NotifBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-
-                    android:adjustViewBounds="true"
-                    tools:layout="@layout/notif_btn" />-->
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

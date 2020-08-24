@@ -1,6 +1,7 @@
 package com.hsappdev.ahs.HomePage_News;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,12 +12,12 @@ import com.hsappdev.ahs.R;
 
 public class News_ArticleView extends FrameLayout{
 
-    public News_ArticleView(Context context, Article_Slim article) {
+    public News_ArticleView(Context context, Article_Slim article, View.OnClickListener onClickListener) {
         super(context);
-        init(context, article);
+        init(context, article, onClickListener);
     }
 
-    private void init(Context context, Article_Slim article) {
+    private void init(Context context, Article_Slim article, View.OnClickListener onClickListener) {
 
         inflate(context, R.layout.news_article_template, this);
         TextView summaryText = findViewById(R.id.article_display__summary_Text),
@@ -36,5 +37,8 @@ public class News_ArticleView extends FrameLayout{
             );
         else
             imageView.setImageResource(R.drawable.image_bg);
+
+        summaryText.setOnClickListener(onClickListener);
+        this.setOnClickListener(onClickListener);
     }
 }

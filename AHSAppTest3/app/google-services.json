@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:654225823864:android:561f07cea383679ab7758d",
         "android_client_info": {
-          "package_name": "com.example.ahsapptest3"
+          "package_name": "com.hsappdev.ahs"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "654225823864-rqd57a4aj8iorbmstm6r897q8k1ugdlp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ahsapptest3",
+            "package_name": "com.hsappdev.ahs",
             "certificate_hash": "740e5ccbf8f4e61dbf2a4f9880ba2be79fdd8478"
           }
         },
@@ -52,7 +52,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:654225823864:android:221e2dcebe7ea444b7758d",
+        "mobilesdk_app_id": "1:654225823864:android:be4d26f1d66d7af2b7758d",
         "android_client_info": {
           "package_name": "com.hsappdev.ahs"
         }

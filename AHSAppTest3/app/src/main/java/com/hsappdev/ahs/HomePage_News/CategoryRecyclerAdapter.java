@@ -1,9 +1,11 @@
 package com.hsappdev.ahs.HomePage_News;
 
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CategoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    /*private static final String TAG = "CategoryRecyclerAdapter";*/
     private final ArrayList<Article_Slim> articles = new ArrayList<>();
     private ArticleNavigation articleNavigation;
     public CategoryRecyclerAdapter(ArticleNavigation articleNavigation) {
@@ -66,12 +69,12 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                     int i1 = i + position*num_stacked;
                     articles_stacked[i] = this.articles.get(i1);
                 }
-                ((ViewHolder)holder).initialize(articles_stacked);
+                ((ViewHolder)holder).initialize(articles_stacked, false);
             } else {
                 Article_Slim[] articles_stacked = new Article_Slim[articles.size() - position*num_stacked];
                 if (articles.size() - num_stacked * position >= 0)
                     System.arraycopy(articles.toArray(new Article_Slim[0]), num_stacked * position, articles_stacked, 0, articles.size() - num_stacked * position);
-                ((ViewHolder)holder).initialize(articles_stacked);
+                ((ViewHolder)holder).initialize(articles_stacked, position != 0);
             }
         }
         else
@@ -94,21 +97,31 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             this.articleNavigation = articleNavigation;
         }
 
-        public void initialize(final Article_Slim[] articles) {
+        public void initialize(final Article_Slim[] articles, boolean notFull) {
+            /*Log.d(TAG, getAdapterPosition() + "" + articles.length);*/
+            linearLayout.removeAllViews();
             final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
             for(final Article_Slim article: articles) {
-                News_ArticleView articleView = new News_ArticleView(itemView.getContext(), article);
+                News_ArticleView articleView = new News_ArticleView(itemView.getContext(), article,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Article article1 = ArticleDatabase.getInstance(itemView.getContext()).getArticleById(article.getID());
+                                if(article1 != null)
+                                    articleNavigation.onItemClicked(article1);
+                            }
+                        });
                 linearLayout.addView(articleView, params);
-                articleView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Article article1 = ArticleDatabase.getInstance(itemView.getContext()).getArticleById(article.getID());
-                        if(article1 != null)
-                            articleNavigation.onItemClicked(article1);
-                    }
-                });
+                if(notFull) {
+                    FrameLayout frameLayout = new FrameLayout(itemView.getContext());
+                    View view = View.inflate(itemView.getContext(), R.layout.news_article_loading, frameLayout);
+                    view.setVisibility(View.INVISIBLE);
+                    linearLayout.addView(frameLayout, params);
+
+
+                }
             }
         }
 
