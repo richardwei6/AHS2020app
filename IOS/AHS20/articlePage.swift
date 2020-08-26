@@ -112,7 +112,6 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
             }
             sender.isSelected = !sender.isSelected;
             setBookmarkColor();
-            resetUpArticles = true;
         }
     }
     

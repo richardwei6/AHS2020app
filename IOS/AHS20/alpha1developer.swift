@@ -14,3 +14,11 @@ import Firebase
 func setUpDevConfigs(){
     Messaging.messaging().subscribe(toTopic: "testing");
 }
+
+func resetAllSettingsDefaults() {
+    let defaults = UserDefaults.standard
+    let dictionary = defaults.dictionaryRepresentation()
+    dictionary.keys.forEach { key in
+        defaults.removeObject(forKey: key)
+    }
+}

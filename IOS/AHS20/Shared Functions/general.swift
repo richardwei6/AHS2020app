@@ -14,7 +14,6 @@ import FirebaseDatabase
 import SDWebImage
 import Firebase
 
-var resetUpArticles = false;
 var unreadNotifCount = 0;
 
 // swift file with shared functions and extensions between files
@@ -156,14 +155,6 @@ func bulletinDataToarticleData(data: bulletinArticleData) -> articleData{
     temp.articleCatagory = data.articleCatagory;
     temp.hasHTML = data.hasHTML;
     return temp;
-}
-
-func resetAllSettingsDefaults() {
-    let defaults = UserDefaults.standard
-    let dictionary = defaults.dictionaryRepresentation()
-    dictionary.keys.forEach { key in
-        defaults.removeObject(forKey: key)
-    }
 }
 
 // func that returns UIcolor from rgb values
