@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">AHS Mobile</string>
-    <string name="app_version">3.0.0</string>
+    <string name="app_version">3.1.0</string>
     <string name="notif_channel_ID">AHS_MOBILE</string>
     <string name="notif_channel_name">AHS Mobile Notifications</string>
     <string name="notif_channel_description">Notifications about school updates and articles</string>

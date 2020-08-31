@@ -22,7 +22,7 @@ public class Article_Slim implements Parcelable, Comparable<Article_Slim> {
         this.time_updated = article.getTimeUpdated();
         this.title = article.getTitle();
         String story = article.getStory();
-        this.story = (story.length() > 100) ? story.substring(0, 100) : story;
+        this.story = (story.length() > 200) ? story.substring(0, 200) : story;
         if(article.getImagePaths().length > 0)
             this.imagePath = article.getImagePaths()[0];
         else
@@ -54,7 +54,7 @@ public class Article_Slim implements Parcelable, Comparable<Article_Slim> {
         this.ID = ID;
         this.time_updated = time_updated;
         this.title = title;
-        this.story = (story.length() > 100) ? story.substring(0, 100) : story;
+        this.story = (story.length() > 200) ? story.substring(0, 200) : story;
         this.imagePath = imagePath;
         this.type = type;
     }
