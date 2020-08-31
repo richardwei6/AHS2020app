@@ -28,15 +28,13 @@ public class FeaturedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     public FeaturedRecyclerAdapter(ArticleNavigation articleNavigation) {
         this.articleNavigation = articleNavigation;
     }
-    public void addArticle(Article_Slim article) {
+    public void addArticle(ArrayList<Article_Slim> new_articles) {
         int oldSize = articles.size();
-        articles.add(article);
+        articles.addAll(new_articles);
         Collections.sort(articles);
         if(oldSize == 0)
             notifyItemChanged(0);
-        else
-            notifyItemInserted(articles.size() -1);
-        /*Log.d("NewsFeatured", "Add successfully + listsize:" + articles.size());*/
+        notifyItemRangeInserted(articles.size() -1, new_articles.size());
     }
     public void clearAll() {
         articles.clear();

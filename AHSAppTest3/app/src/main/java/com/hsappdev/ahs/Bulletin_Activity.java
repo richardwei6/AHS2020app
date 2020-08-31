@@ -33,23 +33,12 @@ public class Bulletin_Activity extends FullScreenActivity implements Navigation,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bulletin_layout);
-        final Bulletin_Article.Type[] types = Bulletin_Article.Type.values();
-        final Resources r = getResources();
-        final String[] categories = new String[]
-                {
-                    r.getString(R.string.fb_bull_academics),
-                    r.getString(R.string.fb_bull_athletics),
-                    r.getString(R.string.fb_bull_clubs),
-                    r.getString(R.string.fb_bull_colleges),
-                    r.getString(R.string.fb_bull_reference),
-                };
 
-
-        final ArrayList<Bulletin_Article> data = new ArrayList<>();
+        /*final ArrayList<Bulletin_Article> data = new ArrayList<>();*/
 
         final RecyclerView recyclerView = findViewById(R.id.bulletin_RecyclerView);
         recyclerView.setNestedScrollingEnabled(false);
-        adapter = new BulletinRecyclerAdapter(data, this);
+        adapter = new BulletinRecyclerAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -75,69 +64,33 @@ public class Bulletin_Activity extends FullScreenActivity implements Navigation,
         });
         recyclerView.requestLayout();
 
-        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_bull_key));
-        final BulletinDatabase db = BulletinDatabase.getInstance(getApplicationContext());
-        ref.addValueEventListener(new ValueEventListener() {
+        new FirebaseDatabaseHandler(getApplicationContext()).getBulletinArticles(new FirebaseDatabaseHandler.BulletinArticleCallback() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                data.clear(); // so it doesn't just keep adding should the data change
+            public void onDataLoaded() {
                 adapter.clearAll();
+            }
 
-                for(int i = 0; i < categories.length; i++)
-                    {
-                    // Log.d(TAG, categories[i]);
-                    DataSnapshot snapshot1 = snapshot.child(categories[i]);
+            @Override
+            public void onArticleLoaded(Bulletin_Article article) {
+                adapter.addItem(article);
+            }
 
-
-                    for (DataSnapshot dataSnapshot : snapshot1.getChildren()) {
-                        String ID = dataSnapshot.getKey();
-                        if(ID == null)
-                            continue;
-                        String title = dataSnapshot.child(r.getString(R.string.fb_bull_artTitle)).getValue(String.class);
-                        if(title == null)
-                            title = "";
-                        String body = dataSnapshot.child(r.getString(R.string.fb_bull_artBody)).getValue(String.class);
-                        if(body == null)
-                            body = "";
-                        Long time_holder = dataSnapshot.child(r.getString(R.string.fb_bull_artTime)).getValue(long.class);
-                        long time = (time_holder != null) ? time_holder : 0;
-                        Bulletin_Article info = new Bulletin_Article(ID, time, title, body, types[i],
-                                db.getReadStatusByID(ID)
-                        );
-                        /*Log.d(TAG, title+" read?\t" + db.getReadStatusByID(ID));*/
-
-                        data.add(info);
-                        /*Log.d(TAG, data.toString());*/
-                        adapter.addItem(info);
-                    }
-                }
+            @Override
+            public void onAllArticlesLoaded(final ArrayList<Bulletin_Article> articles) {
                 new Handler().post((new Runnable() {
                     @Override
                     public void run() {
-                        db.updateArticles(data.toArray(new
-                                Bulletin_Article[0]));
-                        /*for(Bulletin_Article bulletin_article: db.getAllArticles()) {
-                            Log.d(TAG, bulletin_article.getTitle() + "\t" + bulletin_article.getID() + "\t" + bulletin_article.isAlready_read());
-                        }*/
+                        BulletinDatabase.getInstance(getApplicationContext()).updateArticles(articles);
                     }
                 }));
-                /*new Runnable() {
-                    @Override
-                    public void run() {
-                        db.updateArticles(data.toArray(new
-                     Bulletin_Article[0]));
-                        for(Bulletin_Article bulletin_article: db.getAllArticles()) {
-                            Log.d(TAG, bulletin_article.getTitle() + "\t" + bulletin_article.getID() + "\t" + bulletin_article.isAlready_read());
-                        }
-                    }
-                };*/
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                /*Log.d(TAG, error.getDetails());*/
+            public void onDatabaseError(@NonNull DatabaseError error) {
+
             }
         });
+
         Bulletin_SelectorView
                 academics_selector = findViewById(R.id.bulletin_academics_selection),
                 athletics_selector = findViewById(R.id.bulletin_athletics_selection),

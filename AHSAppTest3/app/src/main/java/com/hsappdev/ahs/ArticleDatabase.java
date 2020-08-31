@@ -214,6 +214,10 @@ public class ArticleDatabase extends SQLiteOpenHelper {
             Log.d(TAG, article.getID() + "\t" + article.getTitle());*/
     }
 
+    public void updateArticles(ArrayList<Article> articles) {
+        updateArticles(articles.toArray(new Article[0]));
+    }
+
     /**
      * searches bookmark database if an article is already bookmarked by ID
      * @param id: article ID

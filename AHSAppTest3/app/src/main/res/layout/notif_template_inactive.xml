@@ -6,16 +6,19 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/FadedWhite_FAFAFA"
+    app:cardBackgroundColor="@color/White"
     app:cardCornerRadius="2dp"
     app:cardElevation="@dimen/CardView_Height"
-    app:contentPaddingLeft="@dimen/Full_Padding"
-    app:contentPaddingRight="@dimen/Full_Padding">
+    app:contentPaddingLeft="@dimen/Half_Padding"
+    app:contentPaddingRight="@dimen/Half_Padding">
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/Quarter_Padding"
+        android:paddingRight="@dimen/Quarter_Padding"
+        >
 
         <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
             android:id="@+id/notif_template_typeText"
@@ -33,6 +36,7 @@
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
             android:id="@+id/notif_template_forward"
@@ -53,7 +57,7 @@
             android:layout_marginRight="@dimen/Quarter_Padding"
             android:fontFamily="@font/sf_pro_semibold"
             android:text="TITLE TEXT"
-            android:textColor="@color/Gray_5F5F5F"
+            android:textColor="@color/DarkCrimson_1A0303"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/notif_template_forward"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,12 +67,12 @@
             android:id="@+id/notif_template_BodyText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/Full_Padding"
+            android:layout_marginBottom="@dimen/Half_Padding"
             android:text="Description of the Article"
-            android:textColor="@color/Gray_5F5F5F"
+            android:textColor="@color/DarkCrimson_1A0303"
             android:textSize="14sp"
             app:fontFamily="@font/sf_pro_display"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/notif_template_space"
             app:layout_constraintEnd_toEndOf="@+id/notif_template_TitleText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notif_template_TitleText" />
@@ -86,14 +90,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/notif_template_typeText" />
 
-        <!-- <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/notif_display_barrier"
+        <Space
+            android:id="@+id/notif_template_space"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="notif_template_DateText,notif_template_typeText"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="71dp" />-->
+            android:layout_height="@dimen/Quarter_Padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/notif_template_BodyText"
+            app:layout_constraintStart_toStartOf="@+id/notif_template_BodyText"
+            app:layout_constraintTop_toBottomOf="@+id/notif_template_BodyText" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

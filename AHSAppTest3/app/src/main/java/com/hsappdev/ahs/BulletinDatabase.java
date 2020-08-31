@@ -2,11 +2,16 @@ package com.hsappdev.ahs;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.google.firebase.database.DataSnapshot;
+
+import java.util.ArrayList;
 
 public class BulletinDatabase extends SQLiteOpenHelper {
 
@@ -60,21 +65,30 @@ public class BulletinDatabase extends SQLiteOpenHelper {
 
     public boolean add(Bulletin_Article... datas)
     {
+        SQLiteDatabase db = this.getWritableDatabase();
         boolean succeeded = true;
-        for(Bulletin_Article data: datas) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            ContentValues values = new ContentValues();
-            values.put(BUL_ID, data.getID());
-            values.put(TIME, data.getTime());
-            values.put(TITLE, data.getTitle());
-            values.put(BODY, data.getBodyText());
-            values.put(TYPE, data.getType().getNumCode());
-            values.put(READ, (data.isAlready_read()) ? 1 : 0);
+        try {
+            db.beginTransaction();
+            for(Bulletin_Article data: datas) {
 
-            long result = db.insert(current_Table, null, values);
-            succeeded = succeeded && (result != -1);
+                ContentValues values = new ContentValues();
+                values.put(BUL_ID, data.getID());
+                values.put(TIME, data.getTime());
+                values.put(TITLE, data.getTitle());
+                values.put(BODY, data.getBodyText());
+                values.put(TYPE, data.getType().getNumCode());
+                values.put(READ, (data.isAlready_read()) ? 1 : 0);
+
+                long result = db.insert(current_Table, null, values);
+                succeeded = succeeded && (result != -1);
+            }
+            if(succeeded)
+                db.setTransactionSuccessful();
+
+        } finally {
+            db.endTransaction();
+            db.close();
         }
-
         // if inserted incorrectly -1 is the return value
         return succeeded;
     }
@@ -186,5 +200,52 @@ public class BulletinDatabase extends SQLiteOpenHelper {
         Log.d(TAG, "~~~~~~~~~~~~~~ newArticles ~~~~~~~~~~~~~");
         for(Bulletin_Article article: newArticles)
             Log.d(TAG, article.getID() + "\t" + article.getTitle());*/
+    }
+
+    public void updateArticles(ArrayList<Bulletin_Article> articles) {
+        updateArticles(articles.toArray(new Bulletin_Article[0]));
+    }
+
+    public void updateArticles(DataSnapshot snapshot, Resources resources) {
+        final String[] categories = new String[]
+                {
+                        resources.getString(R.string.fb_bull_academics),
+                        resources.getString(R.string.fb_bull_athletics),
+                        resources.getString(R.string.fb_bull_clubs),
+                        resources.getString(R.string.fb_bull_colleges),
+                        resources.getString(R.string.fb_bull_reference),
+                };
+        final String articleTitle = resources.getString(R.string.fb_bull_artTitle),
+                articleBody = resources.getString(R.string.fb_bull_artBody),
+                articleTime = resources.getString(R.string.fb_bull_artTime);
+        final Bulletin_Article.Type[] types = Bulletin_Article.Type.values();
+
+        final ArrayList<Bulletin_Article> data = new ArrayList<>();
+        for(int i = 0; i < categories.length; i++)
+        {
+            // Log.d(TAG, categories[i]);
+            DataSnapshot snapshot1 = snapshot.child(categories[i]);
+
+
+            for (DataSnapshot dataSnapshot : snapshot1.getChildren()) {
+                String ID = dataSnapshot.getKey();
+                if(ID == null)
+                    continue;
+                String title = dataSnapshot.child(articleTitle).getValue(String.class);
+                if(title == null)
+                    title = "";
+                String body = dataSnapshot.child(articleBody).getValue(String.class);
+                if(body == null)
+                    body = "";
+                Long time_holder = dataSnapshot.child(articleTime).getValue(long.class);
+                long time = (time_holder != null) ? time_holder : 0;
+                Bulletin_Article info = new Bulletin_Article(ID, time, title, body, types[i],
+                        getReadStatusByID(ID)
+                );
+                data.add(info);
+
+            }
+        }
+        updateArticles(data);
     }
 }

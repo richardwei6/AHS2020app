@@ -18,14 +18,13 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
     /*private static final String TAG = "BulletinRecyclerAdapter";*/
 
     private final SortedList<Bulletin_Article> sortedList;
-    public final ArrayList<Bulletin_Article> bulletin_data;
+    public final ArrayList<Bulletin_Article> bulletin_data = new ArrayList<>();
 
     final boolean[] selectors_active = new boolean[Bulletin_Article.Type.values().length];
     private final Bulletin_Article.Type[] types = Bulletin_Article.Type.values();
     private final OnItemClick onItemClick;
 
-    public BulletinRecyclerAdapter(ArrayList<Bulletin_Article> data, OnItemClick onItemClick) {
-        this.bulletin_data = new ArrayList<>(data);
+    public BulletinRecyclerAdapter(OnItemClick onItemClick) {
         this.onItemClick = onItemClick;
 
         sortedList = new SortedList<>(Bulletin_Article.class, new SortedList.Callback<Bulletin_Article>() {
@@ -38,17 +37,18 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
                     return -1;*/
 
                 // give priority to future vs past events
-                if(Helper.TimeFromNow(o1.getTime()) > 0 && Helper.TimeFromNow(o2.getTime()) < 0)
+                long diff1 = Helper.TimeFromNow(o1.getTime()), diff2 = Helper.TimeFromNow(o2.getTime());
+                if(diff1 > 0 && diff2 < 0)
                     return 1;
-                if(Helper.TimeFromNow(o1.getTime()) < 0 && Helper.TimeFromNow(o2.getTime()) > 0)
+                if(diff1 < 0 && diff2 > 0)
                     return -1;
 
-                long time_diff = o1.getTime()- o2.getTime();
-
-                if(time_diff > 0) // o1 > o2, so o1 after o2; thus appears after
+                // prioritize stuff closer to the present
+                if(Math.abs(diff1) > Math.abs(diff2))
                     return 1;
-                if(time_diff < 0)
+                if(Math.abs(diff1) < Math.abs(diff2))
                     return -1;
+
                 return o1.getTitle().compareTo(o2.getTitle());
 
             }
@@ -90,10 +90,7 @@ public class BulletinRecyclerAdapter extends RecyclerView.Adapter<BulletinRecycl
                 notifyItemRangeChanged(position, count, payload);
             }
         });
-        for(Bulletin_Article info: data)
-        {
-            sortedList.add(info);
-        }
+
     }
 
     public void addItem(Bulletin_Article item)

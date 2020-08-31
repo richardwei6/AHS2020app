@@ -9,13 +9,15 @@
     app:cardBackgroundColor="@color/White"
     app:cardCornerRadius="2dp"
     app:cardElevation="@dimen/CardView_Height"
-    app:contentPaddingLeft="@dimen/Full_Padding"
-    app:contentPaddingRight="@dimen/Full_Padding">
+    app:contentPaddingLeft="@dimen/Half_Padding"
+    app:contentPaddingRight="@dimen/Half_Padding">
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/Quarter_Padding"
+        android:paddingRight="@dimen/Quarter_Padding"
         >
 
         <com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
@@ -83,12 +85,12 @@
             android:id="@+id/notif_template_BodyText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/Full_Padding"
+            android:layout_marginBottom="@dimen/Half_Padding"
             android:text="Description of the Article"
             android:textColor="@color/DarkCrimson_1A0303"
             android:textSize="14sp"
             app:fontFamily="@font/sf_pro_display"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/notif_template_space"
             app:layout_constraintEnd_toEndOf="@+id/notif_template_TitleText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notif_template_TitleText" />
@@ -105,6 +107,15 @@
             app:layout_constraintBottom_toBottomOf="@+id/notif_template_typeText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/notif_template_typeText" />
+
+        <Space
+            android:id="@+id/notif_template_space"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/Quarter_Padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/notif_template_BodyText"
+            app:layout_constraintStart_toStartOf="@+id/notif_template_BodyText"
+            app:layout_constraintTop_toBottomOf="@+id/notif_template_BodyText" />
 
         <!-- <androidx.constraintlayout.widget.Barrier
             android:id="@+id/notif_display_barrier"

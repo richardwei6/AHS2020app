@@ -14,6 +14,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.hsappdev.ahs.HomePage_News.CategoryRecyclerAdapter;
 import com.hsappdev.ahs.HomePage_News.FeaturedRecyclerAdapter;
 
+import java.util.ArrayList;
+
 public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     /*private static final String TAG = "NewsRecyclerAdapter";*/
 /*
@@ -157,9 +159,9 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             });*/
         }
-        public void addArticle(Article_Slim article) {
+        public void addArticles(ArrayList<Article_Slim> articles) {
             if(adapter != null) {
-                adapter.addArticle(article);
+                adapter.addArticle(articles);
             }
         }
         public void clearAll() {
@@ -242,9 +244,9 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             });*/
 
         }
-        public void addArticle(Article_Slim article) {
+        public void addArticles(ArrayList<Article_Slim> articles) {
             if(adapter != null)
-                adapter.addArticle(article);
+                adapter.addArticle(articles);
         }
         public void clearAll() {
             if(adapter != null) adapter.clearAll();

@@ -6,6 +6,11 @@
     <string name="notif_channel_description">Notifications about school updates and articles</string>
     <string name="notif_articleID_key">articleID</string>
 
+    <string name="news_featured_name">Featured</string>
+    <string name="news_generalInfo_name">General Info</string>
+    <string name="news_districtNews_name">District News</string>
+    <string name="news_asbNews_name">ASB News</string>
+
     <plurals name="time_minutes_updated_placeholder">
         <item quantity="one">%1$d minute %2$s</item>
         <item quantity="other">%1$d minutes %2$s</item>
@@ -41,8 +46,8 @@
     <string name="fb_topic_mandatory">mandatory</string>
     <string name="fb_news_key">homepage</string>
     <string name="fb_news_asb">ASB</string>
-    <string name="fb_news_sports">District</string>
-    <string name="fb_news_district">General_Info</string>
+    <string name="fb_news_district">District</string>
+    <string name="fb_news_general_info">General_Info</string>
 
     <string name="fb_art_author">articleAuthor</string>
     <string name="fb_art_title">articleTitle</string>

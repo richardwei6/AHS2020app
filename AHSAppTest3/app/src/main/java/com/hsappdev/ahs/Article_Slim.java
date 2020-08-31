@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+
 public class Article_Slim implements Parcelable, Comparable<Article_Slim> {
 
     private final String ID;
@@ -15,6 +17,26 @@ public class Article_Slim implements Parcelable, Comparable<Article_Slim> {
 
     private final Article.Type type;
 
+    public Article_Slim(Article article) {
+        this.ID = article.getID();
+        this.time_updated = article.getTimeUpdated();
+        this.title = article.getTitle();
+        String story = article.getStory();
+        this.story = (story.length() > 100) ? story.substring(0, 100) : story;
+        if(article.getImagePaths().length > 0)
+            this.imagePath = article.getImagePaths()[0];
+        else
+            this.imagePath = "";
+        this.type = article.getType();
+    }
+
+    public static ArrayList<Article_Slim> toArticle_Slim(ArrayList<Article> articles) {
+        ArrayList<Article_Slim> article_slims= new ArrayList<>();
+        for(Article article: articles) {
+            article_slims.add(new Article_Slim(article));
+        }
+        return article_slims;
+    }
 
     public Article_Slim(
             @NonNull
