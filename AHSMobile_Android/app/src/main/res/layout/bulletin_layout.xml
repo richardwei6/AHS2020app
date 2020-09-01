@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bulletin_outerScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/bulletin_options_header_linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/White"
+                android:elevation="3dp"
+                android:orientation="vertical"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier=".7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/bulletin_header_LinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/Full_Padding"
+
+                    android:paddingLeft="@dimen/Full_Padding"
+                    android:paddingTop="@dimen/Half_Padding"
+                    android:paddingEnd="@dimen/Half_Padding"
+                    android:paddingRight="@dimen/Half_Padding"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/Half_Padding"
+                        android:layout_marginBottom="@dimen/Half_Padding"
+                        android:layout_weight="1"
+
+                        android:fontFamily="@font/din_alternate_bold"
+                        android:text="Student Bulletin"
+                        android:textColor="@color/AngryRed_9F0C0C"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <fragment
+                        android:id="@+id/bulletin_notifbtn"
+                        android:name="com.hsappdev.ahs.NotifBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:layout_weight="0"
+                        android:adjustViewBounds="true"
+                        tools:layout="@layout/notif_btn" />
+                </LinearLayout>
+
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bulletin_header_LinearLayout">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/Half_Padding"
+                        android:paddingRight="@dimen/Half_Padding">
+
+
+                        <com.hsappdev.ahs.misc.Bulletin_SelectorView
+                            android:id="@+id/bulletin_academics_selection"
+                            app:text="Academics"
+                            style="@style/bulletin_selectorview_style" />
+
+                        <com.hsappdev.ahs.misc.Bulletin_SelectorView
+                            android:id="@+id/bulletin_athletics_selection"
+                            app:text="Athletics"
+                            style="@style/bulletin_selectorview_style">
+
+                        </com.hsappdev.ahs.misc.Bulletin_SelectorView>
+
+                        <com.hsappdev.ahs.misc.Bulletin_SelectorView
+                            android:id="@+id/bulletin_clubs_selection"
+                            app:text="Clubs"
+                            style="@style/bulletin_selectorview_style"/>
+
+                        <com.hsappdev.ahs.misc.Bulletin_SelectorView
+                            android:id="@+id/bulletin_colleges_selection"
+                            app:text="Colleges"
+                            style="@style/bulletin_selectorview_style"/>
+
+                        <com.hsappdev.ahs.misc.Bulletin_SelectorView
+                            android:id="@+id/bulletin_reference_selection"
+                            app:text="Reference"
+                            style="@style/bulletin_selectorview_style"/>
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bulletin_RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layoutAnimation="@anim/recycler_fade_in"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bulletin_options_header_linearLayout" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <fragment
+        android:id="@+id/bulletin_navBar"
+        android:name="com.hsappdev.ahs.Navigation_Bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        tools:layout="@layout/nav_bar" />
+</merge>
+

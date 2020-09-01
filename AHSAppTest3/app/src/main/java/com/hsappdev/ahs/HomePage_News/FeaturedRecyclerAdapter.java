@@ -1,6 +1,5 @@
 package com.hsappdev.ahs.HomePage_News;
 
-import android.os.Handler;
 import android.os.Process;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +21,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class FeaturedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final String TAG = "FeaturedRecyclerAdapter";
-    private ArrayList<Article_Slim> articles = new ArrayList<>();
-    private ArticleNavigation articleNavigation;
+    // --Commented out by Inspection (8/31/2020 11:32 AM):private static final String TAG = "FeaturedRecyclerAdapter";
+    private final ArrayList<Article_Slim> articles = new ArrayList<>();
+    private final ArticleNavigation articleNavigation;
     public FeaturedRecyclerAdapter(ArticleNavigation articleNavigation) {
         this.articleNavigation = articleNavigation;
     }
-    public void addArticle(ArrayList<Article_Slim> new_articles) {
+    public void addArticles(ArrayList<Article_Slim> new_articles) {
         int oldSize = articles.size();
         articles.addAll(new_articles);
         Collections.sort(articles);
@@ -73,10 +72,12 @@ public class FeaturedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public static class FeaturedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView titleText, typeText, timeText;
-        private ImageView imageView;
-        private ArticleNavigation articleNavigation;
-        View outerLayout;
+        private final TextView titleText;
+        private final TextView typeText;
+        private final TextView timeText;
+        private final ImageView imageView;
+        private final ArticleNavigation articleNavigation;
+        final View outerLayout;
         public FeaturedViewHolder(@NonNull View itemView, ArticleNavigation articleNavigation) {
             super(itemView);
             titleText = itemView.findViewById(R.id.template_featured__title_Text);
@@ -107,14 +108,14 @@ public class FeaturedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
             outerLayout.setOnClickListener(this);
             /*Log.d("Featured", article_slim.getID());*/
-            new Handler().post(new Runnable() {
+            new Runnable() {
                 @Override
                 public void run() {
                     android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_LOWEST);
                     initArticle(article_slim.getID());
                     /*Log.d(TAG, "initializing article");*/
                 }
-            });
+            }.run();
 
         }
         private void initArticle(String articleID) {

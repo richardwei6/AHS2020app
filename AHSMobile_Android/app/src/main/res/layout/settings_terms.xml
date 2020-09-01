@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/White"
+            android:elevation="3dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/terms_back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:adjustViewBounds="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:paddingLeft="@dimen/Full_Padding"
+                android:paddingRight="@dimen/Full_Padding"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/arrow_back"
+                app:tint="@color/GraniteRed_7E6E6A" />
+
+            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_pro_semibold"
+                android:paddingStart="0dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="@dimen/Half_Padding"
+                android:paddingEnd="@dimen/Half_Padding"
+                android:paddingRight="@dimen/Half_Padding"
+                android:paddingBottom="@dimen/Half_Padding"
+                android:text="@string/terms_and_agreements"
+                android:textColor="@color/DarkCrimson_1A0303"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/Half_Padding"
+            app:cardElevation="@dimen/CardView_Height"
+            app:cardBackgroundColor="@color/White"
+            app:cardCornerRadius="@dimen/SmallRound_BG_Radius"
+            app:contentPadding="@dimen/Half_Padding"
+            android:foreground="?attr/selectableItemBackground">
+
+            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                android:id="@+id/terms_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/sf_pro_display"
+                android:textColor="@color/DarkCrimson_1A0303" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

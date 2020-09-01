@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    tools:context=".NotifBtn">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:adjustViewBounds="true"
+        android:paddingLeft="@dimen/Full_Padding"
+        android:paddingRight="@dimen/Full_Padding"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/icon_notifications" />
+
+    <ImageView
+        android:id="@+id/notif_dot"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:src="@drawable/notif_btn_dot"
+        android:layout_marginTop="2dp"/>
+
+</LinearLayout>

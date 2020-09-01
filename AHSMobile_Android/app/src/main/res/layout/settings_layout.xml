@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settingsActivities.Settings_Activity">
+
+    <ScrollView
+        android:id="@+id/settings_ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:windowBackground"
+            android:clipToPadding="false"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/White"
+                android:elevation="3dp"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/Full_Padding"
+                android:paddingLeft="@dimen/Full_Padding"
+                android:paddingTop="@dimen/Half_Padding"
+                android:paddingEnd="@dimen/Half_Padding"
+                android:paddingRight="@dimen/Half_Padding"
+                android:paddingBottom="@dimen/Half_Padding">
+
+                <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Half_Padding"
+                    android:layout_marginBottom="@dimen/Half_Padding"
+
+                    android:layout_weight="1"
+                    android:fontFamily="@font/din_alternate_bold"
+                    android:text="Settings"
+                    android:textColor="@color/AngryRed_9F0C0C"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <fragment
+                    android:id="@+id/settings_notifbtn"
+                    android:name="com.hsappdev.ahs.NotifBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+
+                    android:adjustViewBounds="true"
+                    tools:layout="@layout/notif_btn" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/Full_Padding"
+                android:paddingRight="@dimen/Full_Padding">
+
+                <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_semibold"
+                    android:paddingTop="@dimen/Half_Padding"
+                    android:paddingBottom="@dimen/Half_Padding"
+                    android:text="General"
+                    android:textColor="@color/DarkCrimson_1A0303"
+                    android:textSize="18sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/Quarter_Padding"
+                    app:cardElevation="@dimen/CardView_Height">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:orientation="vertical"
+
+                        >
+
+                        <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                            android:id="@+id/settings_FontSize_Text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_pro_semibold"
+                            android:paddingLeft="@dimen/Half_Padding"
+                            android:paddingTop="@dimen/Half_Padding"
+                            android:paddingRight="@dimen/Half_Padding"
+                            android:paddingBottom="@dimen/Half_Padding"
+                            android:text="Font Size"
+                            android:textColor="@color/DarkCrimson_1A0303"
+                            android:textSize="18sp" />
+
+                        <SeekBar
+                            android:id="@+id/settings_FontSize_SeekBar"
+                            style="@style/SeekBarWithoutSteps"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="3"
+                            android:paddingBottom="@dimen/Half_Padding"
+                            android:progress="1"
+                            android:progressDrawable="@drawable/seekbar_progress_bg" />
+
+                        <!--https://stackoverflow.com/questions/5049852/android-drawing-separator-divider-line-in-layout-->
+
+
+                        <View style="@style/Divider" />
+
+                        <LinearLayout
+                            android:id="@+id/settings_notif_LinearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sf_pro_semibold"
+                                android:paddingLeft="@dimen/Half_Padding"
+                                android:paddingTop="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
+                                android:paddingBottom="@dimen/Half_Padding"
+                                android:text="Notifications"
+                                android:textColor="@color/DarkCrimson_1A0303"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:adjustViewBounds="true"
+                                android:paddingLeft="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
+                                android:scaleType="centerInside"
+                                app:srcCompat="@drawable/arrow_forward"
+                                app:tint="@color/GraniteRed_7E6E6A" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/Quarter_Padding">
+
+                            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sf_pro_display"
+                                android:paddingStart="@dimen/Full_Padding"
+                                android:paddingLeft="@dimen/Full_Padding"
+                                android:paddingTop="0dp"
+                                android:paddingEnd="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
+                                android:paddingBottom="@dimen/Half_Padding"
+                                android:text="Subscribe to All"
+                                android:textColor="@color/DarkCrimson_1A0303"
+                                android:textSize="18sp" />
+
+                            <CheckBox
+                                android:id="@+id/settings_notif_checkBox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:checked="true"
+                                android:gravity="top"
+                                android:paddingEnd="@dimen/Full_Padding"
+                                android:paddingStart="0dp"
+                                android:paddingRight="@dimen/Full_Padding"
+                                android:paddingLeft="0dp"
+                                android:paddingBottom="@dimen/Half_Padding" />
+
+                            <!--<Switch
+                                android:id="@+id/notif_settings_general_switch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0"
+                                android:checked="true"
+                                />-->
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_semibold"
+                    android:paddingTop="@dimen/Half_Padding"
+                    android:paddingBottom="@dimen/Half_Padding"
+
+                    android:text="Info"
+                    android:textColor="@color/DarkCrimson_1A0303"
+                    android:textSize="18sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/Quarter_Padding"
+                    app:cardElevation="@dimen/CardView_Height">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/bulletin_template_rounded_white"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/settings_terms_LinearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sf_pro_semibold"
+                                android:paddingLeft="@dimen/Half_Padding"
+                                android:paddingTop="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
+                                android:paddingBottom="@dimen/Half_Padding"
+                                android:text="@string/terms_and_agreements"
+                                android:textColor="@color/DarkCrimson_1A0303"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:adjustViewBounds="true"
+                                android:paddingLeft="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
+                                android:scaleType="centerInside"
+                                app:srcCompat="@drawable/arrow_forward"
+                                app:tint="@color/GraniteRed_7E6E6A" />
+                        </LinearLayout>
+
+                        <View style="@style/Divider" />
+
+                        <LinearLayout
+                            android:id="@+id/settings_about_LinearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:orientation="horizontal">
+
+                            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sf_pro_semibold"
+                                android:paddingLeft="@dimen/Half_Padding"
+                                android:paddingTop="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
+                                android:paddingBottom="@dimen/Half_Padding"
+                                android:text="@string/about_us"
+                                android:textColor="@color/DarkCrimson_1A0303"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:adjustViewBounds="true"
+                                android:paddingLeft="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
+                                android:scaleType="centerInside"
+                                app:srcCompat="@drawable/arrow_forward"
+                                app:tint="@color/GraniteRed_7E6E6A" />
+                        </LinearLayout>
+
+                        <View style="@style/Divider" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sf_pro_semibold"
+                                android:paddingLeft="@dimen/Half_Padding"
+                                android:paddingTop="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
+                                android:paddingBottom="@dimen/Half_Padding"
+                                android:text="App Version"
+                                android:textColor="@color/DarkCrimson_1A0303"
+                                android:textSize="18sp" />
+
+                            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:fontFamily="@font/sf_pro_display"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/Half_Padding"
+                                android:paddingRight="@dimen/Half_Padding"
+                                android:scaleType="centerInside"
+                                android:text="@string/app_version" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <fragment
+        android:id="@+id/settings_navBar"
+        android:name="com.hsappdev.ahs.Navigation_Bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/nav_bar"
+        android:layout_gravity="bottom"/>
+
+</merge>

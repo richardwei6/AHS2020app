@@ -1,0 +1,140 @@
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context=".Bulletin_Article_Activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+
+        android:paddingTop="@dimen/Half_Padding"
+
+        android:paddingBottom="@dimen/Half_Padding"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/Half_Padding"
+            android:paddingLeft="@dimen/Half_Padding"
+            android:paddingEnd="@dimen/Full_Padding"
+            android:paddingRight="@dimen/Full_Padding">
+
+            <ImageView
+                android:id="@+id/bulletin_article_header_back"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:adjustViewBounds="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:paddingStart="@dimen/Half_Padding"
+                android:paddingLeft="@dimen/Half_Padding"
+                android:paddingTop="@dimen/Half_Padding"
+                android:paddingEnd="@dimen/Half_Padding"
+                android:paddingRight="@dimen/Half_Padding"
+                android:paddingBottom="@dimen/Half_Padding"
+                android:scaleType="fitStart"
+                app:tint="@color/AngryRed_9F0C0C"
+                app:srcCompat="@drawable/arrow_back" />
+
+            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                android:id="@+id/bulletin_article_type_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:background="@drawable/type_rounded_bg"
+                android:fontFamily="@font/sf_pro_display"
+                android:paddingLeft="7dp"
+                android:paddingTop="3dp"
+                android:paddingRight="7dp"
+                android:paddingBottom="3dp"
+                android:text="TYPE"
+                android:textColor="@color/White"
+                android:textSize="12sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/bulletin_article_bookmarkButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/Quarter_Padding"
+                android:scaleType="fitCenter"
+                tools:srcCompat="@drawable/bookmarked_icon_inactive" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:paddingLeft="@dimen/Full_Padding"
+            android:paddingTop="@dimen/Half_Padding"
+            android:paddingRight="@dimen/Full_Padding"
+            android:paddingBottom="@dimen/Full_Padding">
+
+            <!--
+                            <fragment
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:name="com.google.android.youtube.player.YouTubePlayerSupportFragmentX"
+                                android:id="@+id/youtube_player"/>-->
+
+            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                android:id="@+id/bulletin_article_titleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Quarter_Padding"
+                android:fontFamily="@font/newyork_mediumbold"
+                android:text="Title Lorem Ipsum"
+                android:textColor="@color/DarkCrimson_1A0303"
+                android:textSize="24sp"
+                android:textIsSelectable="true"/>
+
+            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                android:id="@+id/bulletin_article_dateText"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/sf_pro_display"
+                android:gravity="start|center_vertical"
+
+                android:text="Month 00, 0000"
+                android:textColor="@color/DarkCrimson_1A0303"
+                android:textSize="14sp"
+                android:textIsSelectable="true"/>
+
+            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                android:id="@+id/bulletin_article_bodyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Half_Padding"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Body"
+                android:textColor="@color/DarkCrimson_1A0303"
+                android:textSize="18sp"
+                android:textIsSelectable="true"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/news_gradient"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingTop="@dimen/Half_Padding"
+    android:paddingRight="0dp"
+    >
+
+    <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+        android:id="@+id/template_news__TitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Full_Padding"
+        android:layout_marginLeft="@dimen/Full_Padding"
+
+        android:fontFamily="@font/sf_pro_semibold"
+        android:text="SOMETHING NEWS"
+        android:textColor="@color/DarkCrimson_1A0303"
+        android:textSize="24sp" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/template_news__ViewPager2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutAnimation="@anim/recycler_fade_in"/>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/template_news__TabLayout"
+        android:layout_width="wrap_content"
+
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="fill"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed">
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+</LinearLayout>

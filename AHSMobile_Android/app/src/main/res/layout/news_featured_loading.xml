@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/Full_Padding"
+        android:paddingTop="@dimen/Quarter_Padding"
+        android:paddingRight="@dimen/Full_Padding"
+        android:paddingBottom="@dimen/Quarter_Padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".News_Activity">
+
+        <!--<com.hsappdev.ahs.Misc.AutoAdjustTextSize_TextView
+            android:id="@+id/template_news__TitleText"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/Quarter_Padding"
+            android:background="@drawable/loading_rounded_bg"
+            android:text=""
+            android:textSize="24sp" />-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+
+                android:background="@drawable/loading_rounded_bg"
+                app:layout_constraintDimensionRatio="1.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/Quarter_Padding"
+
+            android:background="@drawable/loading_rounded_bg"
+            android:text=""
+            android:textSize="20sp" />
+
+        <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/loading_rounded_bg"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textSize="20sp" />
+
+        <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/loading_rounded_bg"
+            android:padding="3dp"
+            android:text=""
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

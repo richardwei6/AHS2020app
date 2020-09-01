@@ -17,7 +17,6 @@ public class MediaYoutubeFragment extends YouTubePlayerSupportFragmentX
         implements YouTubePlayer.OnInitializedListener, YouTubePlayer.OnFullscreenListener {
     private static final String KEY_VIDEO_ID = "VIDEO_ID";
     public static final String YOUTUBE_API_KEY = "AIzaSyBRBGC45zgZd6JtLKDq2nfwDnW5symCwX8";
-    public String apiKey = "yor apiKey";
     private String mVideoId;
     private YouTubePlayer mPlayer;
     boolean mIsFullScreen;

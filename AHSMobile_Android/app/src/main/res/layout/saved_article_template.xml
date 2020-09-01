@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="@dimen/CardView_Height"
+    app:cardBackgroundColor="@color/White"
+    android:foreground="?attr/selectableItemBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/Half_Padding"
+        android:paddingTop="@dimen/Half_Padding"
+        android:paddingRight="@dimen/Half_Padding"
+        android:paddingBottom="@dimen/Half_Padding"
+
+        >
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/saved_template__guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".5" />
+
+
+        <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+            android:id="@+id/saved_template__title_Text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/sf_pro_semibold"
+            android:maxLines="2"
+            android:text="Lorum Ipsum the Long Title"
+            android:textColor="@color/DarkCrimson_1A0303"
+            android:textSize="18sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/saved_template__guideline"
+            app:layout_constraintTop_toBottomOf="@+id/saved_template__time_updated_Text" />
+
+        <com.hsappdev.ahs.misc.AdaptingTextView
+            android:id="@+id/saved_template__summary_Text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0"
+            android:ellipsize="end"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "
+            android:textColor="@color/DarkCrimson_1A0303"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/saved_template__title_Text"
+            app:layout_constraintTop_toBottomOf="@id/saved_template__title_Text" />
+
+        <ImageView
+            android:id="@+id/saved_template__imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/Half_Padding"
+            android:layout_marginRight="@dimen/Half_Padding"
+            android:background="@android:color/transparent"
+            android:foreground="@drawable/image_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1.333"
+            app:layout_constraintEnd_toStartOf="@+id/saved_template__guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+            android:id="@+id/saved_template__time_updated_Text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display"
+            android:gravity="end"
+            android:paddingLeft="5dp"
+            android:paddingTop="3dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="3dp"
+            android:text="time updated"
+            android:textColor="@color/DarkCrimson_1A0303"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/saved_template_typeText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+            android:id="@+id/saved_template_typeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/type_rounded_bg"
+            android:fontFamily="@font/sf_pro_display"
+            android:paddingLeft="7dp"
+            android:paddingTop="3dp"
+            android:paddingRight="7dp"
+            android:paddingBottom="3dp"
+            android:text="Type"
+            android:textColor="@color/White"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/saved_template__guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

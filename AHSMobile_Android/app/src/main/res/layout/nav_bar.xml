@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:paddingTop="5dp">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/nav_bar_ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/White"
+    android:elevation="15dp"
+
+    >
+
+    <ImageView
+        android:id="@+id/nav_bar_home_button"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/Nav_Button_SideLength"
+        android:background="?attr/selectableItemBackgroundBorderless"
+
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:scaleType="fitCenter"
+
+        app:layout_constraintEnd_toStartOf="@+id/nav_bar_bulletin_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_home"
+        app:tint="@color/GraniteRed_7E6E6A" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/Nav_Button_SideLength"
+        android:id="@+id/nav_bar_bulletin_button"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nav_bar_bookmarks_button"
+        app:layout_constraintStart_toEndOf="@+id/nav_bar_home_button"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+
+            android:id="@+id/nav_bar_inner_bulletin_button"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_bulletin"
+            app:tint="@color/GraniteRed_7E6E6A" />
+
+        <ImageView
+            android:id="@+id/nav_bar_bulletinDot"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/nav_bar_inner_bulletin_button"
+            app:layout_constraintEnd_toEndOf="@+id/nav_bar_inner_bulletin_button"
+            app:layout_constraintStart_toEndOf="@+id/nav_bar_inner_bulletin_button"
+            app:layout_constraintTop_toTopOf="@+id/nav_bar_inner_bulletin_button"
+            app:srcCompat="@drawable/notif_btn_dot" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ImageView
+        android:id="@+id/nav_bar_bookmarks_button"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/Nav_Button_SideLength"
+        android:background="?attr/selectableItemBackgroundBorderless"
+
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:scaleType="fitCenter"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nav_bar_settings_button"
+        app:layout_constraintStart_toEndOf="@+id/nav_bar_bulletin_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_bookmark"
+        app:tint="@color/GraniteRed_7E6E6A" />
+
+    <ImageView
+        android:id="@+id/nav_bar_settings_button"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/Nav_Button_SideLength"
+        android:background="?attr/selectableItemBackgroundBorderless"
+
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toEndOf="@+id/nav_bar_bookmarks_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_settings"
+        app:tint="@color/GraniteRed_7E6E6A" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

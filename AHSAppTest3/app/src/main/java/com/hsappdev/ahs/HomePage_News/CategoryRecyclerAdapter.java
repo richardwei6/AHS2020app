@@ -1,7 +1,5 @@
 package com.hsappdev.ahs.HomePage_News;
 
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +21,11 @@ import java.util.Collections;
 public class CategoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     /*private static final String TAG = "CategoryRecyclerAdapter";*/
     private final ArrayList<Article_Slim> articles = new ArrayList<>();
-    private ArticleNavigation articleNavigation;
+    private final ArticleNavigation articleNavigation;
     public CategoryRecyclerAdapter(ArticleNavigation articleNavigation) {
         this.articleNavigation = articleNavigation;
     }
-    public void addArticle(ArrayList<Article_Slim> new_articles) {
+    public void addArticles(ArrayList<Article_Slim> new_articles) {
         int oldSize = articles.size();
         articles.addAll(new_articles);
         Collections.sort(articles);
@@ -88,8 +86,8 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private LinearLayout linearLayout;
-        private ArticleNavigation articleNavigation;
+        private final LinearLayout linearLayout;
+        private final ArticleNavigation articleNavigation;
         public ViewHolder(@NonNull View itemView, ArticleNavigation articleNavigation) {
             super(itemView);
             linearLayout = itemView.findViewById(R.id.news_category_linearLayout);
@@ -127,7 +125,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public static class LoadingViewHolder extends RecyclerView.ViewHolder {
-        private LinearLayout linearLayout;
+        private final LinearLayout linearLayout;
         public LoadingViewHolder(@NonNull View itemView) {
             super(itemView);
             linearLayout = itemView.findViewById(R.id.news_category_linearLayout);

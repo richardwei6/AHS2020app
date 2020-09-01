@@ -38,7 +38,11 @@ public class ArticleActivity extends FullScreenActivity implements ArticleImageF
         setContentView(R.layout.article_layout);
 
         article = getIntent().getParcelableExtra(data_key);
-        final String[] imagePaths = article.getImagePaths();
+        final String[] imagePaths;
+        if(article.getImagePaths() != null)
+            imagePaths = article.getImagePaths();
+        else
+            imagePaths = new String[0];
         final String[] videoIDs = article.getVideoIDS();
 
         final ViewPager2 viewPager2 = findViewById(R.id.article_viewPager2);

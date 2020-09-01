@@ -18,15 +18,31 @@ import java.util.ArrayList;
 
 public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     /*private static final String TAG = "NewsRecyclerAdapter";*/
-/*
-    final ArrayList<Article_Slim> featuredArticles = new ArrayList<>();
-    final ArrayList<ArrayList<Article_Slim>> articles = new ArrayList<>();*/
+
+    private final ArrayList<Article_Slim> featuredArticles = new ArrayList<>();
+    private final ArrayList<ArrayList<Article_Slim>> articles = new ArrayList<>();
     private final String[] titles;
-    private ArticleNavigation articleNavigation;
+    private final ArticleNavigation articleNavigation;
 
     public NewsRecyclerAdapter(String[] titles, ArticleNavigation articleNavigation){
         this.titles = titles;
         this.articleNavigation = articleNavigation;
+        for(int i = 0; i < titles.length - 1; i++)
+            articles.add(new ArrayList<Article_Slim>());
+    }
+
+    public void setFeaturedArticles(ArrayList<Article_Slim> articles) {
+        featuredArticles.clear();
+        featuredArticles.addAll(articles);
+        notifyItemChanged(0);
+    }
+
+    public void setCategoryArticlesAtPosition(ArrayList<Article_Slim> articles, int position) {
+        if(position < this.articles.size()) {
+            this.articles.get(position).clear();
+            this.articles.get(position).addAll(articles);
+            notifyItemChanged(position + 1);
+        }
     }
 
     private static final int FEATURED = 0;
@@ -56,9 +72,9 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(position == 0)
-            ((FeaturedViewHolder)holder).setDetails(titles[position]);
+            ((FeaturedViewHolder)holder).setDetails(titles[position], featuredArticles);
         else
-            ((CategoryViewHolder)holder).setDetails(titles[position]);
+            ((CategoryViewHolder)holder).setDetails(titles[position], articles.get(position - 1));
 
     }
 
@@ -71,8 +87,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         final TextView titleText;
         final ViewPager2 viewPager;
         final TabLayout tabLayout;
-        private ArticleNavigation articleNavigation;
-        private FeaturedRecyclerAdapter adapter;
+        private final ArticleNavigation articleNavigation;
 
         public FeaturedViewHolder(@NonNull View itemView, ArticleNavigation articleNavigation) {
             super(itemView);
@@ -82,92 +97,33 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             this.articleNavigation = articleNavigation;
         }
 
-        public void setDetails(String title) {
+        public void setDetails(String title, ArrayList<Article_Slim> articles) {
             /*Log.d("NewsFeatured", "Setting details");*/
             titleText.setText(title);
-            if(adapter == null) {
-                adapter = new FeaturedRecyclerAdapter(articleNavigation);
+            FeaturedRecyclerAdapter adapter = new FeaturedRecyclerAdapter(articleNavigation);
 
-                viewPager.setAdapter(
-                        adapter
-                );
-                /*Log.d("NewsFeatured", "adapter null");*/
-            }
-
+            viewPager.setAdapter(
+                    adapter
+            );
+            adapter.clearAll();
+            adapter.addArticles(articles);
             new TabLayoutMediator(tabLayout, viewPager, true, new TabLayoutMediator.TabConfigurationStrategy() {
                 @Override
                 public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
 
                 }
             }).attach();
-            /*
-            final Resources r = itemView.getContext().getResources();
-            final String
-                    articleTitle = r.getString(R.string.fb_art_title),
-                    articleBody =  r.getString(R.string.fb_art_body),
-                    articleImages = r.getString(R.string.fb_art_images),
-                    articleTime = r.getString(R.string.fb_art_time),
-                    articleFeatured = r.getString(R.string.fb_art_featured);
-            final Article.Type [] types = Article.Type.values();
-            final String [] cat_ref = new String[] {
-                    r.getString(R.string.fb_news_district),
-                    r.getString(R.string.fb_news_sports),
-                    r.getString(R.string.fb_news_asb),
-            };
 
-            FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_news_key)).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    adapter.clearAll();
-                    for(int i = 0; i < types.length; i++) {
-                        DataSnapshot cat_sn = snapshot.child(cat_ref[i]);
-                        for(DataSnapshot art_sn: cat_sn.getChildren()) {
-                            boolean is_featured = (boolean) art_sn.child(articleFeatured).getValue();
-                            if(is_featured) {
-                                String ID = art_sn.getKey();
-                                if(ID == null)
-                                    continue;
-
-                                String title = art_sn.child(articleTitle).getValue(String.class);
-                                if(title == null)
-                                    title = "";
-
-                                String body = art_sn.child(articleBody).getValue(String.class);
-                                if(body == null)
-                                    body = "";
-
-                                String imagePath = null;
-                                for (DataSnapshot images_sn : art_sn.child(articleImages).getChildren()) {
-                                    imagePath = (images_sn.getValue(String.class));
-                                    break;
-                                }
-                                if(imagePath == null)
-                                    imagePath = "";
-
-                                long article_time = (long) art_sn.child(articleTime).getValue();
-
-                                adapter.addArticle(new Article_Slim(ID, article_time, title, body, imagePath, Article.Type.values()[i]));
-
-                            }
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });*/
         }
-        public void addArticles(ArrayList<Article_Slim> articles) {
+        /*public void addArticles(ArrayList<Article_Slim> articles) {
             if(adapter != null) {
-                adapter.addArticle(articles);
+                adapter.addArticles(articles);
             }
         }
         public void clearAll() {
             if(adapter != null)
                 adapter.clearAll();
-        }
+        }*/
     }
 
     public static class CategoryViewHolder extends RecyclerView.ViewHolder{
@@ -175,7 +131,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         final ViewPager2 viewPager;
         final TabLayout tabLayout;
         private final ArticleNavigation articleNavigation;
-        private CategoryRecyclerAdapter adapter;
+
         public CategoryViewHolder(@NonNull View itemView, ArticleNavigation articleNavigation) {
             super(itemView);
             titleText = itemView.findViewById(R.id.template_news__TitleText);
@@ -185,72 +141,27 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         }
 
-        public void setDetails(String title) {
+        public void setDetails(String title, ArrayList<Article_Slim> articles) {
             titleText.setText(title);
-            adapter = new CategoryRecyclerAdapter(articleNavigation);
+            CategoryRecyclerAdapter adapter = new CategoryRecyclerAdapter(articleNavigation);
             viewPager.setAdapter(adapter);
+            adapter.clearAll();
+            adapter.addArticles(articles);
             new TabLayoutMediator(tabLayout, viewPager, true, new TabLayoutMediator.TabConfigurationStrategy() {
                 @Override
                 public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
 
                 }
             }).attach();
-            /*final Resources r = itemView.getContext().getResources();
-            final String
-                    articleTitle = r.getString(R.string.fb_art_title),
-                    articleBody =  r.getString(R.string.fb_art_body),
-                    articleImages = r.getString(R.string.fb_art_images),
-                    articleTime = r.getString(R.string.fb_art_time),
-                    articleFeatured = r.getString(R.string.fb_art_featured);
-            FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_news_key)).child(childPath).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    adapter.clearAll();
-                    for(DataSnapshot art_sn: snapshot.getChildren()) {
-                        boolean is_featured = (boolean) art_sn.child(articleFeatured).getValue();
-                        if(is_featured) {
-                            String ID = art_sn.getKey();
-                            if(ID == null)
-                                continue;
-
-                            String title = art_sn.child(articleTitle).getValue(String.class);
-                            if(title == null)
-                                title = "";
-
-                            String body = art_sn.child(articleBody).getValue(String.class);
-                            if(body == null)
-                                body = "";
-
-                            String imagePath = null;
-                            for (DataSnapshot images_sn : art_sn.child(articleImages).getChildren()) {
-                                imagePath = (images_sn.getValue(String.class));
-                                break;
-                            }
-                            if(imagePath == null)
-                                imagePath = "";
-
-                            long article_time = (long) art_sn.child(articleTime).getValue();
-
-                            adapter.addArticle(new Article_Slim(ID, article_time, title, body, imagePath, type));
-                        }
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });*/
 
         }
-        public void addArticles(ArrayList<Article_Slim> articles) {
+        /*public void addArticles(ArrayList<Article_Slim> articles) {
             if(adapter != null)
-                adapter.addArticle(articles);
+                adapter.addArticles(articles);
         }
         public void clearAll() {
             if(adapter != null) adapter.clearAll();
-        }
+        }*/
 
     }
 }

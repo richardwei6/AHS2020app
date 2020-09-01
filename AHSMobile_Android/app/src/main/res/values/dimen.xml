@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name = "Full_Padding">20dp</dimen>
+    <dimen name = "Half_Padding">10dp</dimen>
+    <dimen name = "Quarter_Padding">5dp</dimen>
+    <dimen name = "Double_Padding">40dp</dimen>
+
+    <dimen name = "Nav_Button_SideLength">45dp</dimen>
+
+
+    <dimen name = "Article_Display_padding">5dp</dimen>
+    <!--Weird interactions with constraintlayout on homepage-->
+
+    <dimen name = "CardView_Height">3dp</dimen>
+
+    <dimen name = "Selector_Dot_Radius">4dp</dimen>
+
+    <dimen name = "SmallRound_BG_Radius">5dp</dimen>
+</resources>

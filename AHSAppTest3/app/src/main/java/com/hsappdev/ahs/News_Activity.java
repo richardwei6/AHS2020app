@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,19 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.hsappdev.ahs.Misc.FullScreenActivity;
 import com.hsappdev.ahs.Misc.ValContainer;
 import com.hsappdev.ahs.Setting_Activities.Settings_Activity;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class News_Activity extends FullScreenActivity implements Navigation, NotifBtn.Navigation, ArticleNavigation{
 
@@ -100,32 +93,23 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                 @Override
                 public void onArticleLoaded(Article article) {
                     if(article.getID().equals(notif_articleID)) {
-                        Log.d("frames", "FOUND!");
+                        /*Log.d("frames", "FOUND!");*/
                         news_found.setVal(FOUND);
                         Intent intent = new Intent(News_Activity.this, ArticleActivity.class);
                         intent.putExtra(Bulletin_Article_Activity.data_KEY, article);
-                        Log.d("frames", "start Activity");
+                        /*Log.d("frames", "start Activity");*/
                         startActivity(intent);
                     }
                 }
 
                 @Override
                 public void onFeaturedArticlesLoaded(ArrayList<Article> articles) {
-                    NewsRecyclerAdapter.FeaturedViewHolder featuredViewHolder = (NewsRecyclerAdapter.FeaturedViewHolder) recyclerView.findViewHolderForAdapterPosition(0);
-                    if(featuredViewHolder != null) {
-                        featuredViewHolder.clearAll();
-                        featuredViewHolder.addArticles(Article_Slim.toArticle_Slim(articles));
-                    }
+                    adapter.setFeaturedArticles(Article_Slim.toArticle_Slim(articles));
                 }
 
                 @Override
                 public void onCategoryArticlesLoaded(int position, ArrayList<Article> articles) {
-                    NewsRecyclerAdapter.CategoryViewHolder categoryViewHolder = (NewsRecyclerAdapter.CategoryViewHolder)
-                            recyclerView.findViewHolderForAdapterPosition(position+1);
-                    if(categoryViewHolder != null) {
-                        categoryViewHolder.clearAll();
-                        categoryViewHolder.addArticles(Article_Slim.toArticle_Slim(articles));
-                    }
+                    adapter.setCategoryArticlesAtPosition(Article_Slim.toArticle_Slim(articles), position);
                 }
 
                 @Override
@@ -139,14 +123,14 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
 
                     if(bulletin_found.getVal() == NOT_FOUND && news_found.getVal() != FOUND) {
                         startActivity(new Intent(News_Activity.this, Notif_Activity.class));
-                        Log.d("frames", "start Activity");
+                        /*Log.d("frames", "start Activity");*/
                     }
                     new Runnable() {
                         @Override
                         public void run() {
 
                             android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-                            Log.d("frames", "saving news");
+                            /*Log.d("frames", "saving news");*/
                             ArticleDatabase.getInstance(getApplicationContext()).updateArticles(articles);
                         }
                     }.run();
@@ -158,7 +142,6 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
 
                 }
             });
-
             handler.getBulletinArticles(new FirebaseDatabaseHandler.BulletinArticleCallback() {
                 @Override
                 public void onDataLoaded() {
@@ -168,11 +151,11 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                 @Override
                 public void onArticleLoaded(Bulletin_Article article) {
                     if(article.getID().equals(notif_articleID)) {
-                        Log.d("frames", "FOUND!");
+                        /*Log.d("frames", "FOUND!");*/
                         bulletin_found.setVal(FOUND);
                         Intent intent = new Intent(News_Activity.this, Bulletin_Article_Activity.class);
                         intent.putExtra(Bulletin_Article_Activity.data_KEY, article);
-                        Log.d("frames", "start Activity");
+                        /*Log.d("frames", "start Activity");*/
                         startActivity(intent);
                     }
 
@@ -183,14 +166,14 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
 
                     if(news_found.getVal() == NOT_FOUND && bulletin_found.getVal() != FOUND) {
                         startActivity(new Intent(News_Activity.this, Notif_Activity.class));
-                        Log.d("frames", "start Activity");
+                        /*Log.d("frames", "start Activity");*/
                     }
                     new Runnable() {
                         @Override
                         public void run() {
 
                             android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-                            Log.d("frames", "saving news");
+                            /*Log.d("frames", "saving news");*/
                             BulletinDatabase.getInstance(getApplicationContext()).updateArticles(articles);
                         }
                     }.run();
@@ -216,21 +199,12 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
 
                 @Override
                 public void onFeaturedArticlesLoaded(ArrayList<Article> articles) {
-                    NewsRecyclerAdapter.FeaturedViewHolder featuredViewHolder = (NewsRecyclerAdapter.FeaturedViewHolder) recyclerView.findViewHolderForAdapterPosition(0);
-                    if(featuredViewHolder != null) {
-                        featuredViewHolder.clearAll();
-                        featuredViewHolder.addArticles(Article_Slim.toArticle_Slim(articles));
-                    }
+                    adapter.setFeaturedArticles(Article_Slim.toArticle_Slim(articles));
                 }
 
                 @Override
                 public void onCategoryArticlesLoaded(int position, ArrayList<Article> articles) {
-                    NewsRecyclerAdapter.CategoryViewHolder categoryViewHolder = (NewsRecyclerAdapter.CategoryViewHolder)
-                            recyclerView.findViewHolderForAdapterPosition(position+1);
-                    if(categoryViewHolder != null) {
-                        categoryViewHolder.clearAll();
-                        categoryViewHolder.addArticles(Article_Slim.toArticle_Slim(articles));
-                    }
+                    adapter.setCategoryArticlesAtPosition(Article_Slim.toArticle_Slim(articles), position);
                 }
 
                 @Override
@@ -246,8 +220,9 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                         public void run() {
 
                             android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-                            Log.d("frames", "saving news");
+                            /*Log.d("frames", "saving news");*/
                             ArticleDatabase.getInstance(getApplicationContext()).updateArticles(articles);
+                            /*Log.d("frames", "saved news");*/
                         }
                     }.run();
 
@@ -258,36 +233,43 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
 
                 }
             });
-            handler.getBulletinArticles(new FirebaseDatabaseHandler.BulletinArticleCallback() {
+            new Runnable() {
                 @Override
-                public void onDataLoaded() {
-
-                }
-
-                @Override
-                public void onArticleLoaded(Bulletin_Article article) {
-
-                }
-
-                @Override
-                public void onAllArticlesLoaded(final ArrayList<Bulletin_Article> articles) {
-                    new Runnable() {
+                public void run() {
+                    android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+                    handler.getBulletinArticles(new FirebaseDatabaseHandler.BulletinArticleCallback() {
                         @Override
-                        public void run() {
+                        public void onDataLoaded() {
 
-                            android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-                            Log.d("frames", "saving bulletin news");
-                            BulletinDatabase.getInstance(getApplicationContext()).updateArticles(articles);
                         }
-                    }.run();
 
+                        @Override
+                        public void onArticleLoaded(Bulletin_Article article) {
+
+                        }
+
+                        @Override
+                        public void onAllArticlesLoaded(final ArrayList<Bulletin_Article> articles) {
+                            new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+                                    /*Log.d("frames", "saving bulletin news");*/
+                                    BulletinDatabase.getInstance(getApplicationContext()).updateArticles(articles);
+                                    /*Log.d("frames", "saved bulletin news");*/
+                                }
+                            }.run();
+
+                        }
+
+                        @Override
+                        public void onDatabaseError(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
-
-                @Override
-                public void onDatabaseError(@NonNull DatabaseError error) {
-
-                }
-            });
+            }.run();
         }
 
         new Handler().post(new Runnable() {
