@@ -30,7 +30,7 @@
         android:id="@+id/bulletin_selection_underline"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-
+        android:minWidth="80dp"
 
         app:srcCompat="@drawable/bulletin_red_underline" />
 
