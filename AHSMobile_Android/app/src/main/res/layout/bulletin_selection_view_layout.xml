@@ -7,13 +7,13 @@
     android:background="?attr/selectableItemBackground"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:minWidth="80dp">
+    >
 
     <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
         android:id="@+id/bulletin_selection_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:minWidth="80dp"
 
         android:fontFamily="@font/sf_pro_display"
         android:gravity="center_horizontal"
