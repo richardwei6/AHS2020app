@@ -100,8 +100,9 @@
 
                         <com.hsappdev.ahs.misc.Bulletin_SelectorView
                             android:id="@+id/bulletin_clubs_selection"
-                            app:text="Clubs"
-                            style="@style/bulletin_selectorview_style"/>
+                            style="@style/bulletin_selectorview_style"
+                            android:background="#00BCD4"
+                            app:text="Clubs" />
 
                         <com.hsappdev.ahs.misc.Bulletin_SelectorView
                             android:id="@+id/bulletin_colleges_selection"

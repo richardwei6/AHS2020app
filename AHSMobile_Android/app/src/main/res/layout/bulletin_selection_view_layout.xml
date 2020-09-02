@@ -4,7 +4,7 @@
     android:id="@+id/bulletin_selection_outerLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
+
     android:gravity="center_horizontal"
     android:orientation="vertical"
     >
@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="80dp"
-
+        android:background="#FF55AA"
         android:fontFamily="@font/sf_pro_display"
         android:gravity="center_horizontal"
         android:paddingStart="@dimen/Half_Padding"
@@ -30,7 +30,6 @@
         android:id="@+id/bulletin_selection_underline"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:minWidth="80dp"
 
         app:srcCompat="@drawable/bulletin_red_underline" />
 
