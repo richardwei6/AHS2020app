@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.hsappdev.ahs.misc.FullScreenActivity;
 import com.hsappdev.ahs.R;
+import com.hsappdev.ahs.misc.FullScreenActivity;
 
 public class About_Activity extends FullScreenActivity {
 

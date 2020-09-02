@@ -8,16 +8,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.hsappdev.ahs.misc.FullScreenActivity;
 import com.hsappdev.ahs.misc.ValContainer;
 import com.hsappdev.ahs.settingsActivities.Settings_Activity;
@@ -56,13 +52,6 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                 }
             }
         }
-
-        FirebaseMessaging.getInstance().subscribeToTopic("testing").addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(getApplicationContext(), "testing subbed", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         final String[] titles = {
                 r.getString(R.string.news_featured_name),
@@ -256,17 +245,9 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
 
                         @Override
                         public void onAllArticlesLoaded(final ArrayList<Bulletin_Article> articles) {
-                            new Runnable() {
-                                @Override
-                                public void run() {
 
-                                    android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-                                    /*Log.d("frames", "saving bulletin news");*/
-                                    BulletinDatabase.getInstance(getApplicationContext()).updateArticles(articles);
-                                    /*Log.d("frames", "saved bulletin news");*/
-                                }
-                            }.run();
-
+                            android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+                            BulletinDatabase.getInstance(getApplicationContext()).updateArticles(articles);
                         }
 
                         @Override

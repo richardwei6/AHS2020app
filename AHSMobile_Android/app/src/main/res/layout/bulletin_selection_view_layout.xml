@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bulletin_selection_outerLayout"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:minWidth="80dp">
 
     <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
         android:id="@+id/bulletin_selection_text"
@@ -29,6 +30,7 @@
         android:id="@+id/bulletin_selection_underline"
         android:layout_width="match_parent"
         android:layout_height="2dp"
+
 
         app:srcCompat="@drawable/bulletin_red_underline" />
 

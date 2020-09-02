@@ -5,9 +5,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hsappdev.ahs.R;
 import com.hsappdev.ahs.misc.FullScreenActivity;
 import com.hsappdev.ahs.misc.Helper;
-import com.hsappdev.ahs.R;
 
 public class Terms_Activity extends FullScreenActivity {
 

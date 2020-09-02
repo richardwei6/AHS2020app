@@ -14,8 +14,8 @@ import com.hsappdev.ahs.Article;
 import com.hsappdev.ahs.ArticleDatabase;
 import com.hsappdev.ahs.ArticleNavigation;
 import com.hsappdev.ahs.Article_Slim;
-import com.hsappdev.ahs.misc.Helper;
 import com.hsappdev.ahs.R;
+import com.hsappdev.ahs.misc.Helper;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hsappdev.ahs.Article_Slim;
-import com.hsappdev.ahs.misc.Helper;
 import com.hsappdev.ahs.R;
+import com.hsappdev.ahs.misc.Helper;
 
 public class News_ArticleView extends FrameLayout{
 

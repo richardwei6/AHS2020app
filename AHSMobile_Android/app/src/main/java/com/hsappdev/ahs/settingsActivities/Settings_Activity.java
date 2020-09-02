@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.hsappdev.ahs.Bulletin_Activity;
-import com.hsappdev.ahs.misc.FullScreenActivity;
 import com.hsappdev.ahs.Navigation;
 import com.hsappdev.ahs.News_Activity;
 import com.hsappdev.ahs.NotifBtn;
@@ -24,6 +23,7 @@ import com.hsappdev.ahs.Notif_Activity;
 import com.hsappdev.ahs.R;
 import com.hsappdev.ahs.Saved_Activity;
 import com.hsappdev.ahs.Settings;
+import com.hsappdev.ahs.misc.FullScreenActivity;
 
 public class Settings_Activity extends FullScreenActivity implements Navigation, NotifBtn.Navigation, Settings.OnTextSizeOptionChanged{
     // --Commented out by Inspection (8/12/2020 12:33 PM):private static final String TAG = "Settings_Activity";

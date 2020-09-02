@@ -7,9 +7,9 @@ import android.widget.ImageView;
 
 import androidx.appcompat.widget.SwitchCompat;
 
-import com.hsappdev.ahs.misc.FullScreenActivity;
 import com.hsappdev.ahs.R;
 import com.hsappdev.ahs.Settings;
+import com.hsappdev.ahs.misc.FullScreenActivity;
 
 public class Notif_Settings_Activity extends FullScreenActivity {
 
