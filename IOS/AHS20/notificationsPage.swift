@@ -308,7 +308,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         
         // remove prev subviews
         for subview in notificationScrollView.subviews{
-            if (subview != refreshControl){
+            if (subview.tag == 1){
                 subview.removeFromSuperview();
             }
         }
@@ -413,6 +413,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 yPos += notificationButton.frame.size.height + verticalPadding;
                 
                 notificationButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside);
+                notificationButton.tag = 1;
                 notificationScrollView.addSubview(notificationButton);
             }
             notificationScrollView.contentSize = CGSize(width: notificationFrame.size.width, height: yPos + verticalPadding);

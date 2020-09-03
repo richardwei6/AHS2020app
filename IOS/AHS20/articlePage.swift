@@ -100,7 +100,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
         return false
     }
     
-    /// END DISMISS ON PAN
+    // END DISMISS ON PAN
     
     @IBAction func saveArticle(sender: CustomUIButton){
         if (sender.articleCompleteData.articleID != nil){
