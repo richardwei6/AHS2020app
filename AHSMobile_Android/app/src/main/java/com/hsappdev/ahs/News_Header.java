@@ -12,13 +12,14 @@ import androidx.fragment.app.Fragment;
 
 import com.hsappdev.ahs.misc.Helper;
 
+import java.util.Calendar;
 import java.util.Date;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class News_Header extends Fragment implements NotifBtn.Navigation{
+public class News_Header extends Fragment{
 
     public News_Header() {
         // Required empty public constructor
@@ -33,16 +34,10 @@ public class News_Header extends Fragment implements NotifBtn.Navigation{
         TextView timeText = view.findViewById(R.id.header__timeText);
 
         // set the current month and date
-        String date = Helper.getDateFromTime("MMMM d", new Date().getTime());
+        String date = Helper.getDateFromTime("MMM d", Calendar.getInstance().getTimeInMillis()/1000L);
         timeText.setText(date);
 
         return view;
     }
 
-    @Override
-    public void goToNotif() {
-        final Context context = this.getContext();
-        Intent intent = new Intent(context, Notif_Activity.class);
-        context.startActivity(intent);
-    }
 }
