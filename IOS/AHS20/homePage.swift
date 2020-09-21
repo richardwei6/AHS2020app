@@ -221,7 +221,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		//articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
 		articleImageView.layer.borderColor = UIColor.gray.cgColor;
 		articleImageView.layer.borderWidth = 0.5;
-		articleImageView.layer.cornerRadius = 10;
+		articleImageView.layer.cornerRadius = 7;
 		articleImageView.clipsToBounds = true;
 		
 		let spacing = CGFloat(10);
@@ -262,7 +262,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		timeStamp.textColor = UIColor.gray;
 		timeStamp.font = UIFont(name: "SFProDisplay-Semibold", size: 8);
 		timeStamp.backgroundColor = UIColor.white;
-		timeStamp.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 3);
+		timeStamp.layer.borderColor = UIColor.gray.cgColor;
+		timeStamp.layer.borderWidth = 0.5;
+		timeStamp.layer.cornerRadius = 3;
+		timeStamp.clipsToBounds = true;
+		//timeStamp.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 3);
 		
 		
 		
