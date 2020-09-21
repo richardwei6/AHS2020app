@@ -218,7 +218,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			articleImageView.contentMode = .scaleAspectFill;
 		}
 		articleImageView.backgroundColor = UIColor.white;
-		articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
+		//articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
+		articleImageView.layer.borderColor = UIColor.gray.cgColor;
+		articleImageView.layer.borderWidth = 0.5;
+		articleImageView.layer.cornerRadius = 10;
+		articleImageView.clipsToBounds = true;
 		
 		let spacing = CGFloat(10);
 		
@@ -385,7 +389,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					let imageView = UIImageView(frame: imageViewFrame);
 					imageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
 					imageView.contentMode = .scaleAspectFill;
-					imageView.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
+					//imageView.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
+					imageView.clipsToBounds = true;
+					imageView.layer.borderColor = UIColor.gray.cgColor;
+					imageView.layer.borderWidth = 0.5;
+					imageView.layer.cornerRadius = 5;
 					imageView.backgroundColor = UIColor.white;
 					
 					contentView.addSubview(timeStamp);
