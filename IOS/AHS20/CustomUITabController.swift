@@ -34,6 +34,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     var homeViewController: UIViewController!
     var bulletinViewController: UIViewController!
     var savedViewController: UIViewController!
+    var profileViewController: UIViewController!
     var settingsViewController: UIViewController!
     
     
@@ -43,7 +44,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     
     //    let homeTopCornerRadius = CGFloat(15);
     
-    let iconImagePath = ["home", "bulletin", "saved", "settings"];
+    let iconImagePath = ["home", "bulletin", "saved", "", "settings"];
     let selectedColor = makeColor(r: 243, g: 149, b: 143);
     
     var articleContentInSegue: articleData?;
@@ -166,8 +167,9 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         homeViewController = storyboard.instantiateViewController(withIdentifier: "homeViewController") as! homeClass;
         bulletinViewController = storyboard.instantiateViewController(withIdentifier: "bulletinViewController") as! bulletinClass;
         savedViewController = storyboard.instantiateViewController(withIdentifier: "savedViewController") as! savedClass;
+        profileViewController = storyboard.instantiateViewController(identifier: "profileViewController") as! profilePageClass;
         settingsViewController = storyboard.instantiateViewController(withIdentifier: "settingsViewController") as! settingClass;
-        viewControllers = [homeViewController, bulletinViewController, savedViewController, settingsViewController];
+        viewControllers = [homeViewController, bulletinViewController, savedViewController, profileViewController, settingsViewController];
         //buttons[selectedIndex].setImage(UIImage(named: iconImagePathInv[selectedIndex]), for: .normal);
         //buttons[selectedIndex].tintColor = selectedColor;
         let vc = viewControllers[selectedIndex];
@@ -256,6 +258,10 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
                     topBar.layer.shadowColor = UIColor.gray.cgColor;
                 }
                 else if (sender.tag == 3){
+                    topBarPageName.text = "Profile";
+                    topBar.layer.shadowColor = UIColor.gray.cgColor;
+                }
+                else if (sender.tag == 4){
                     topBarPageName.text = "Settings";
                     topBar.layer.shadowColor = UIColor.gray.cgColor;
                 }

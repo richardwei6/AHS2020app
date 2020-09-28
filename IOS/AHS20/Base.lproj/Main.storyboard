@@ -1120,7 +1120,7 @@
         <!--Profile Page Class-->
         <scene sceneID="2ic-tb-PSg">
             <objects>
-                <viewController id="PMD-Yj-Awt" customClass="profilePageClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profileViewController" id="PMD-Yj-Awt" customClass="profilePageClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sIt-a2-Hlj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1158,7 +1158,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9h-Ju-R2A" userLabel="contentView">
-                                <rect key="frame" x="0.0" y="62" width="414" height="888"/>
+                                <rect key="frame" x="0.0" y="62" width="414" height="888.33333333333337"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWQ-Aq-Bwe">
@@ -1251,13 +1251,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYY-fu-odz" userLabel="TabBarView">
-                                <rect key="frame" x="0.0" y="950" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="950.33333333333337" width="414" height="49.666666666666629"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7G2-qF-bJP">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="49.666666666666664"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gx-G2-ytR">
-                                                <rect key="frame" x="0.0" y="11.333333333333369" width="103.66666666666667" height="27.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="10.999999999999998" width="82.666666666666671" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1266,7 +1266,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQX-ap-fFu">
-                                                <rect key="frame" x="103.66666666666669" y="11.333333333333369" width="103.33333333333331" height="27.333333333333329"/>
+                                                <rect key="frame" x="82.666666666666671" y="10.999999999999998" width="83.000000000000014" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1275,7 +1275,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rd3-Ho-FeZ">
-                                                <rect key="frame" x="206.99999999999997" y="11.333333333333369" width="103.66666666666666" height="27.333333333333329"/>
+                                                <rect key="frame" x="165.66666666666666" y="10.999999999999998" width="82.666666666666657" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1284,7 +1284,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBQ-ay-oxj">
-                                                <rect key="frame" x="310.66666666666669" y="11.333333333333369" width="103.33333333333331" height="27.333333333333329"/>
+                                                <rect key="frame" x="248.33333333333337" y="10.999999999999998" width="83" height="27.333333333333329"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1292,18 +1292,28 @@
                                                     <action selector="didPressTab:" destination="er0-Fk-1NM" eventType="touchUpInside" id="zzP-nf-xPd"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sA3-sx-4ur">
+                                                <rect key="frame" x="331.33333333333331" y="10.999999999999998" width="82.666666666666686" height="27.333333333333329"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didPressTab:" destination="er0-Fk-1NM" eventType="touchUpInside" id="LSS-hG-OVo"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="sA3-sx-4ur" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="1IW-5K-NCV"/>
                                     <constraint firstItem="PBQ-ay-oxj" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="7qR-hD-G32"/>
                                     <constraint firstItem="7gx-G2-ytR" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="8Fn-3W-foe"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerX" secondItem="HYY-fu-odz" secondAttribute="centerX" id="9hc-cb-8Hd"/>
                                     <constraint firstAttribute="bottom" secondItem="7G2-qF-bJP" secondAttribute="bottom" id="CJO-2E-URD"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerY" secondItem="HYY-fu-odz" secondAttribute="centerY" id="J5E-hc-zGD"/>
                                     <constraint firstItem="rd3-Ho-FeZ" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="KKo-Tb-PGM"/>
-                                    <constraint firstAttribute="width" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="207:25" id="Msx-tQ-eGU"/>
+                                    <constraint firstAttribute="width" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="208:25" id="Msx-tQ-eGU"/>
                                     <constraint firstItem="gQX-ap-fFu" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="XcQ-hP-zAc"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="centerY" secondItem="HYY-fu-odz" secondAttribute="centerY" id="gFj-iB-rCk"/>
                                     <constraint firstItem="7G2-qF-bJP" firstAttribute="top" secondItem="HYY-fu-odz" secondAttribute="top" id="kDT-Kg-Jo3"/>
@@ -1346,6 +1356,7 @@
                         <outletCollection property="buttons" destination="gQX-ap-fFu" collectionClass="NSMutableArray" id="Eqt-4g-Ikt"/>
                         <outletCollection property="buttons" destination="rd3-Ho-FeZ" collectionClass="NSMutableArray" id="6el-vk-Enz"/>
                         <outletCollection property="buttons" destination="PBQ-ay-oxj" collectionClass="NSMutableArray" id="Jef-C8-zgi"/>
+                        <outletCollection property="buttons" destination="sA3-sx-4ur" collectionClass="NSMutableArray" id="Fmq-R8-bfC"/>
                         <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="at6-zS-lft"/>
                         <segue destination="08X-4I-yxB" kind="presentation" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="Diy-5I-FmI"/>
                     </connections>
