@@ -186,6 +186,15 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
     if (id == ""){
         return;
     }
+    // set id to read
+    
+    /*loadNotifPref();
+    
+    //notificationReadDict[id] = true;
+    
+    saveNotifPref();*/
+    
+    // end set id to read
     utilNeedID = id;
     if (homeArticleList[0].count == 0 && homeArticleList[1].count == 0 && homeArticleList[2].count == 0){ // load homepage
         setUpConnection();

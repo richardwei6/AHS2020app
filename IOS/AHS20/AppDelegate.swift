@@ -10,9 +10,11 @@ import UIKit
 import Firebase
 import UserNotifications
 import FirebaseMessaging
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
     
     var window: UIWindow?;
     let gcmMessageIDKey = "gcm.message_id";
@@ -35,6 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         application.registerForRemoteNotifications();
+        
+        
+        GIDSignIn.sharedInstance()?.clientID = "654225823864-jq2vdkeeoh3evsi7oun6r5u6li7ie70m.apps.googleusercontent.com";
+        GIDSignIn.sharedInstance()?.delegate = self;
+        
         return true;
     }
     
@@ -101,7 +108,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    // GOOGLE SSO signin
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+      // Perform any operations when the user disconnects from app here.
+      
+    }
+    
 }
+
 
 // MARK: FIREBASE HANDLING MESSAGES
 @available(iOS 10, *)
@@ -139,8 +158,10 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         // Print full message.
         //  print(userInfo["articleID"])
         // TODO: GOTO ARTICLE from  articleID
+        //print(userInfo);
+        
         findArticleFromIDAndSegue(id: userInfo["articleID"] as? String ?? "");
-        completionHandler()
+        completionHandler();
     }
 }
 // [END ios_10_message_handling]

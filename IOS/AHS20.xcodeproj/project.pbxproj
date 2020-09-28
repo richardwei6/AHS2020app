@@ -67,6 +67,8 @@
 		33E69208243AD21F0004E2F1 /* settingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E69207243AD21F0004E2F1 /* settingPage.swift */; };
 		33E80ED9244FBBB900020640 /* articlePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E80ED8244FBBB900020640 /* articlePage.swift */; };
 		33E80EDB244FD76900020640 /* general.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E80EDA244FD76900020640 /* general.swift */; };
+		33EA9A2D252179EE00B12737 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33EA9A2C252179EE00B12737 /* credentials.plist */; };
+		33EA9A3A25217DD600B12737 /* profilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EA9A3925217DD600B12737 /* profilePage.swift */; };
 		33FB5EAE248F32210059EE61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FB5EAD248F32210059EE61 /* GoogleService-Info.plist */; };
 		33FB5EAF248F32210059EE61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FB5EAD248F32210059EE61 /* GoogleService-Info.plist */; };
 		33FB5EB0248F32210059EE61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FB5EAD248F32210059EE61 /* GoogleService-Info.plist */; };
@@ -137,6 +139,8 @@
 		33E69207243AD21F0004E2F1 /* settingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingPage.swift; sourceTree = "<group>"; };
 		33E80ED8244FBBB900020640 /* articlePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = articlePage.swift; sourceTree = "<group>"; };
 		33E80EDA244FD76900020640 /* general.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = general.swift; sourceTree = "<group>"; };
+		33EA9A2C252179EE00B12737 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
+		33EA9A3925217DD600B12737 /* profilePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profilePage.swift; sourceTree = "<group>"; };
 		33FB5EAD248F32210059EE61 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B0FD4EB59C5515C65AAE033 /* Pods_AHS20.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AHS20.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70AEF84C85A0602A173A3766 /* Pods-AHS20-AHS20UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AHS20-AHS20UITests.release.xcconfig"; path = "Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -230,12 +234,14 @@
 				33E80ED8244FBBB900020640 /* articlePage.swift */,
 				33CD41B72453ED78008E6558 /* notificationsPage.swift */,
 				33B3F59824E6343300F48FAB /* zoomableImageViewController.swift */,
+				33EA9A3925217DD600B12737 /* profilePage.swift */,
 				33B77F2A249ED1D500A74B3A /* Shared Functions */,
 				330D3E15241D5E8C007D0628 /* Main.storyboard */,
 				330D3E1A241D5E8D007D0628 /* LaunchScreen.storyboard */,
 				334E1EF8241DB50000D482B4 /* Assets */,
 				330D3E18241D5E8D007D0628 /* Assets.xcassets */,
 				33FB5EAD248F32210059EE61 /* GoogleService-Info.plist */,
+				33EA9A2C252179EE00B12737 /* credentials.plist */,
 				330D3E1D241D5E8D007D0628 /* Info.plist */,
 				335AEEED24E35333002A2C5F /* NewYorkMedium-Bold.otf */,
 				335AEEE924E3532B002A2C5F /* NewYorkSmall-MediumItalic.otf */,
@@ -304,6 +310,7 @@
 				330D3E09241D5E8C007D0628 /* Frameworks */,
 				330D3E0A241D5E8C007D0628 /* Resources */,
 				41995647C2EDB19AAD739762 /* [CP] Embed Pods Frameworks */,
+				20996F03858CA30345DB8F14 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -342,6 +349,7 @@
 				330D3E2A241D5E8D007D0628 /* Frameworks */,
 				330D3E2B241D5E8D007D0628 /* Resources */,
 				9E7871C57B40F018439ACDA1 /* [CP] Embed Pods Frameworks */,
+				253EC1EB392CF6C342671E3A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -413,6 +421,7 @@
 				330D3E17241D5E8C007D0628 /* Main.storyboard in Resources */,
 				3343E265244D0DD80009D136 /* SFProText-Bold.ttf in Resources */,
 				335AEEEE24E35333002A2C5F /* NewYorkMedium-Bold.otf in Resources */,
+				33EA9A2D252179EE00B12737 /* credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +458,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		20996F03858CA30345DB8F14 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AHS20/Pods-AHS20-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AHS20/Pods-AHS20-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AHS20/Pods-AHS20-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		253EC1EB392CF6C342671E3A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2C0CB474E8E35300F89B67C4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -558,6 +601,7 @@
 			files = (
 				33B77F2C249ED23300A74B3A /* notificationFunc.swift in Sources */,
 				3354C8DA24664C9B008C0F67 /* AboutUsPage.swift in Sources */,
+				33EA9A3A25217DD600B12737 /* profilePage.swift in Sources */,
 				33CB33CD24BC0F11005BB736 /* bulletinFunc.swift in Sources */,
 				33B77F30249ED2B200A74B3A /* epochClass.swift in Sources */,
 				33D3626424C10053008B4E67 /* htmlFunctions.swift in Sources */,
