@@ -127,12 +127,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
          let email = user.profile.email
          // ...*/
         print("signed in - \(user.profile.email)")
+        
+        isSignedIn = true;
+        userEmail = user.profile.email;
+        userFullName = user.profile.name;
+        
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
               withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
-        print("signed out functions");
+        //print("signed out functions");
     }
     
 }
