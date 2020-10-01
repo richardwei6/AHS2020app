@@ -40,6 +40,10 @@ class profilePageClass: UIViewController{
         return regex.firstMatch(in: email, options: [], range: NSRange(location: 0, length: email.utf16.count)) != nil;
     }
     
+    
+    /*
+     Interesting fact about our school's barcode. So our school's barcode uses CICode39 encoding for our ids and its why our barcode is so long. This encoder uses CICode128 which is short and can hold more data. However, the readers at school should not have any issues with different encoders.
+     */
     func generateBarcode(from string: String) -> UIImage? {
 
         let data = string.data(using: String.Encoding.ascii)
@@ -89,6 +93,7 @@ class profilePageClass: UIViewController{
         for view in mainScrollView.subviews{
             view.removeFromSuperview();
         }
+        mainScrollView.layer.sublayers?.forEach{ $0.removeFromSuperlayer(); };
         
         let padding = CGFloat(10);
         var scrollViewHeight = CGFloat(0);
@@ -148,7 +153,7 @@ class profilePageClass: UIViewController{
                 let barcodeWidth = CGFloat(200);
                 let barcodeFrame = CGRect(x: (UIScreen.main.bounds.width/2) - (barcodeWidth/2), y: scrollViewHeight, width: barcodeWidth, height: 60);
                 let barcodeView = UIImageView(frame: barcodeFrame);
-                barcodeView.backgroundColor = UIColor.gray;
+                barcodeView.backgroundColor = UIColor.white;
                 barcodeView.layer.cornerRadius = 5;
                 barcodeView.clipsToBounds = true;
                 //print("barcode - \(userEmail.substring(with: 0..<5))")
@@ -157,7 +162,7 @@ class profilePageClass: UIViewController{
                 DispatchQueue.global(qos: .background).async { // multithreading
                     let barcodeImage = self.generateBarcode(from: userEmail.substring(with: 0..<5));
                     DispatchQueue.main.async {
-                        barcodeView.backgroundColor = UIColor.clear;
+                        //barcodeView.backgroundColor = UIColor.clear;
                         barcodeView.image = barcodeImage;
                     }
                 }
@@ -165,6 +170,14 @@ class profilePageClass: UIViewController{
                 scrollViewHeight += barcodeFrame.size.height;
                 
                 mainScrollView.addSubview(barcodeView);
+                
+                
+                let gradient = gradientColors(colorTop: UIColor.white, colorBottom: UIColor.red, topAlpha: 1);
+                
+                mainScrollView.backgroundColor = UIColor.clear;
+                let backgroundLayer = gradient.gl;
+                backgroundLayer!.frame = mainScrollView.frame;
+                mainScrollView.layer.insertSublayer(backgroundLayer!, at: 0);
             }
         }
         else{
@@ -179,6 +192,7 @@ class profilePageClass: UIViewController{
             mainScrollView.addSubview(signInButton);
             
             scrollViewHeight += padding;
+            
         }
         
         mainScrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: scrollViewHeight);

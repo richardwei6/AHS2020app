@@ -143,6 +143,14 @@ final class SegueFromRight: UIStoryboardSegue {
     }
 }
 
+class gradientColors {
+    var gl:CAGradientLayer!
+    init(colorTop: UIColor, colorBottom: UIColor, topAlpha: NSNumber) { // topAlpha is from 0 to 1.0
+        self.gl = CAGradientLayer();
+        self.gl.colors = [colorTop.cgColor, colorBottom.cgColor];
+        self.gl.locations = [0.0, topAlpha];
+    }
+}
 
 func bulletinDataToarticleData(data: bulletinArticleData) -> articleData{
     var temp = articleData();
