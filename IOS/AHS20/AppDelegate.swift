@@ -132,6 +132,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         userEmail = user.profile.email;
         userFullName = user.profile.name;
         
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadProfilePage"), object: nil, userInfo: nil);
+        
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
