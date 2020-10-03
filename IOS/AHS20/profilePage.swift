@@ -14,11 +14,39 @@ import AudioToolbox
 var userEmail = "";
 var userFullName = "";
 var isSignedIn = false;
+var userProfileImageURL = "";
+let profileImageViewWidth = CGFloat(60);
+
+let barcodeUserDefaultsKey = "idBarcode";
+
+func saveBarcodeDefault(image: UIImage){
+    UserDefaults.standard.register(defaults: [barcodeUserDefaultsKey:image.jpegData(compressionQuality: 100)!]);
+    UserDefaults.standard.set(image.jpegData(compressionQuality: 100), forKey: barcodeUserDefaultsKey);
+}
+func getBarcodeDefault()->UIImage{
+    var image = UIImage();
+    if (UserDefaults.standard.object(forKey: barcodeUserDefaultsKey) != nil){
+        if let imageData = UserDefaults.standard.value(forKey: barcodeUserDefaultsKey) as? Data{
+            let imageFromData = UIImage(data: imageData)
+            image = imageFromData!;
+        }
+    }
+    else{
+        print("error - getBarcodeDefault called without userdef");
+    }
+    return image;
+}
+func removeBarcodeDefault(){
+    if (UserDefaults.standard.object(forKey: barcodeUserDefaultsKey) != nil){
+        UserDefaults.standard.removeObject(forKey: barcodeUserDefaultsKey);
+    }
+}
+
 
 class profilePageClass: UIViewController{
     
     @IBOutlet weak var mainScrollView: UIScrollView!
-    
+        
     @objc func signOutFunction(){
         AudioServicesPlaySystemSound(1519);
         let confirmPopup = UIAlertController(title: "Sign out", message: "You will be signed out of your account.", preferredStyle: UIAlertController.Style.actionSheet);
@@ -28,6 +56,7 @@ class profilePageClass: UIViewController{
             userEmail = "";
             userFullName = "";
             isSignedIn = false;
+            removeBarcodeDefault();
             self.renderView();
         }));
         confirmPopup.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in }));
@@ -145,6 +174,16 @@ class profilePageClass: UIViewController{
             
             scrollViewHeight += nameLabelRect.height + padding;
             
+            let profileImageViewFrame = CGRect(x: (UIScreen.main.bounds.width/2) - (profileImageViewWidth/2), y: scrollViewHeight, width: profileImageViewWidth, height: profileImageViewWidth);
+            let profileImageView = UIImageView(frame: profileImageViewFrame);
+            profileImageView.layer.cornerRadius = 5;
+            profileImageView.clipsToBounds = true;
+            profileImageView.backgroundColor = UIColor.gray;
+            profileImageView.imgFromURL(sURL: userProfileImageURL);
+            
+            scrollViewHeight += profileImageViewFrame.height + padding;
+            
+            mainScrollView.addSubview(profileImageView);
             mainScrollView.addSubview(nameLabel);
             mainScrollView.addSubview(emailLabel);
             mainScrollView.addSubview(signOutButton);
@@ -159,14 +198,19 @@ class profilePageClass: UIViewController{
                 //print("barcode - \(userEmail.substring(with: 0..<5))")
                 //barcodeView.image = UIImage(barcode: userEmail.substring(with: 0..<5));
                 
-                DispatchQueue.global(qos: .background).async { // multithreading
-                    let barcodeImage = self.generateBarcode(from: userEmail.substring(with: 0..<5));
-                    DispatchQueue.main.async {
-                        //barcodeView.backgroundColor = UIColor.clear;
-                        barcodeView.image = barcodeImage;
+                if (UserDefaults.standard.object(forKey: barcodeUserDefaultsKey) == nil){
+                    DispatchQueue.global(qos: .background).async { // multithreading
+                        let barcodeImage = self.generateBarcode(from: userEmail.substring(with: 0..<5));
+                        DispatchQueue.main.async {
+                            //barcodeView.backgroundColor = UIColor.clear;
+                            barcodeView.image = barcodeImage;
+                            saveBarcodeDefault(image: barcodeImage!);
+                        }
                     }
                 }
-                
+                else{
+                    barcodeView.image = getBarcodeDefault();
+                }
                 scrollViewHeight += barcodeFrame.size.height;
                 
                 mainScrollView.addSubview(barcodeView);
@@ -178,6 +222,7 @@ class profilePageClass: UIViewController{
                 let backgroundLayer = gradient.gl;
                 backgroundLayer!.frame = mainScrollView.frame;
                 mainScrollView.layer.insertSublayer(backgroundLayer!, at: 0);
+                
             }
         }
         else{
