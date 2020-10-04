@@ -13,17 +13,31 @@ import Firebase
 
 class CustomTabBarController: UIViewController, UIViewControllerTransitioningDelegate {
     
+    
+    @IBOutlet weak var mainContentView: UIView!
+    
+    @IBOutlet var outerView: UIView!
     @IBOutlet weak var contentView: UIView!
     
-    @IBOutlet weak var tabBarView: UIView!
+    //@IBOutlet weak var tabBarView: UIView!
     
     
     @IBOutlet weak var notificationDot: UIView!
     @IBOutlet weak var notificationButton: UIButton!
-    @IBOutlet var buttons: [UIButton]!
+    //@IBOutlet var buttons: [UIButton]!
+    @IBOutlet weak var hamBurgMenuButton: UIButton!
+    
+
+    
+    @IBOutlet weak var hamBurgMenuView: UIView!
     
     @IBOutlet weak var topBar: UIView!
     @IBOutlet weak var topBarHeightContraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var mainContentViewWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var hamBurgMenuLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var hamBurgMenuWidthConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var topBarPageName: UILabel!
     @IBOutlet weak var homeTopBarContent: UIView!
@@ -42,6 +56,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     
     var selectedIndex: Int = 0;
     
+    var hamBurgMenuWidth = CGFloat(320);
     //    let homeTopCornerRadius = CGFloat(15);
     
     let iconImagePath = ["home", "bulletin", "saved", "", "settings"];
@@ -52,6 +67,26 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     @IBAction func openNotifications(_ sender: UIButton) {
         //print("Notifcations");
         performSegue(withIdentifier: "notificationSegue", sender: nil);
+    }
+    
+    
+    var enableHamBurgMenu = false;
+    
+    @IBAction func toggleHamBurgMenu(_ sender: UIButton) {
+        if (enableHamBurgMenu){
+            enableHamBurgMenu = false;
+            UIView.animate(withDuration: 0.2){
+                self.hamBurgMenuLeadingConstraint.constant = 0;
+                self.outerView.layoutIfNeeded();
+            }
+        }
+        else{
+            enableHamBurgMenu = true;
+            UIView.animate(withDuration: 0.2){
+                self.hamBurgMenuLeadingConstraint.constant = -self.hamBurgMenuWidth; // const
+                self.outerView.layoutIfNeeded();
+            }
+        }
     }
     
     
@@ -152,15 +187,29 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
         
         
+        contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
+        mainContentView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
+        mainContentViewWidthConstraint.constant = UIScreen.main.bounds.width;
+        
+        hamBurgMenuWidth = UIScreen.main.bounds.width - 80;
+        
+        hamBurgMenuWidthConstraint.constant = hamBurgMenuWidth;
+        hamBurgMenuLeadingConstraint.constant = -hamBurgMenuWidth;
+        
+        hamBurgMenuView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
+        // ENABLE THIS AFTER TESTING
+        
+        hamBurgMenuView.backgroundColor = UIColor.green;
+        
         // set up buttons
-        for index in 0..<buttons.count{
+        /*for index in 0..<buttons.count{
             let image = UIImage(named: iconImagePath[index]);
             buttons[index].setImage(image, for: .normal);
             buttons[index].tintColor = UIColor.gray;
             buttons[index].imageView?.contentMode = .scaleAspectFit;
             buttons[index].contentVerticalAlignment = .fill;
             buttons[index].contentHorizontalAlignment = .fill;
-        }
+        }*/
         
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil);
@@ -181,11 +230,11 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         topBar.layer.shadowOpacity = 0.08;
         topBar.layer.shadowRadius = 5;
         topBar.layer.shadowOffset = CGSize(width: 0 , height:10);
-        tabBarView.layer.shadowColor = UIColor.gray.cgColor;
+        /*tabBarView.layer.shadowColor = UIColor.gray.cgColor;
         tabBarView.layer.shadowOpacity = 0.07;
         tabBarView.layer.shadowRadius = 5;
         tabBarView.layer.shadowOffset = CGSize(width: 0, height: -10);
-        buttons[0].tintColor = UIColor.black;
+        buttons[0].tintColor = UIColor.black;*/
         dateLabel.text = getTitleDateAndMonth();
     }
     
@@ -218,7 +267,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         }
         else{
             // remove prev view controller
-            buttons[prevIndex].tintColor = UIColor.gray;
+            //buttons[prevIndex].tintColor = UIColor.gray;
             
             let prevVC = viewControllers[prevIndex];
             prevVC.willMove(toParent: nil);

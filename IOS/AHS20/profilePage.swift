@@ -32,7 +32,7 @@ func getBarcodeDefault()->UIImage{
         }
     }
     else{
-        print("error - getBarcodeDefault called without userdef");
+        print("error - getBarcodeDefault called without previous saved data");
     }
     return image;
 }
