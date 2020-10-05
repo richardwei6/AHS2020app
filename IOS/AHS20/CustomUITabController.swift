@@ -19,6 +19,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     @IBOutlet var outerView: UIView!
     @IBOutlet weak var contentView: UIView!
     
+    @IBOutlet var outerViewGestureRecognizer: UIPanGestureRecognizer!
     //@IBOutlet weak var tabBarView: UIView!
     
     
@@ -71,24 +72,8 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     
     
     var enableHamBurgMenu = false;
-    
-    @IBAction func toggleHamBurgMenu(_ sender: UIButton) {
-        if (enableHamBurgMenu){
-            enableHamBurgMenu = false;
-            UIView.animate(withDuration: 0.2){
-                self.hamBurgMenuLeadingConstraint.constant = 0;
-                self.outerView.layoutIfNeeded();
-            }
-        }
-        else{
-            enableHamBurgMenu = true;
-            UIView.animate(withDuration: 0.2){
-                self.hamBurgMenuLeadingConstraint.constant = -self.hamBurgMenuWidth; // const
-                self.outerView.layoutIfNeeded();
-            }
-        }
-    }
-    
+
+    // ARTICLE PAN
     
     let interactor = Interactor();
     let transition = CATransition();
@@ -125,6 +110,8 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         vc.articleContent = notification.userInfo?["articleContent"] as? articleData;
         transition(to: vc);
     }
+    
+    // ARTICLE PAN END
     
     func setUpNotifDot(){
         loadNotifPref();
@@ -172,6 +159,121 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         }
     }
     
+    func openHamBurgMenu(){
+        enableHamBurgMenu = true;
+        UIView.animate(withDuration: 0.2){
+            self.hamBurgMenuLeadingConstraint.constant = 0;
+            self.outerView.layoutIfNeeded();
+        }
+    }
+    
+    func closeHamBurgMenu(){
+        enableHamBurgMenu = false;
+        UIView.animate(withDuration: 0.2){
+            self.hamBurgMenuLeadingConstraint.constant = -self.hamBurgMenuWidth; // const
+            self.outerView.layoutIfNeeded();
+        }
+    }
+    
+    @IBAction func toggleHamBurgMenu(_ sender: UIButton) {
+        if (enableHamBurgMenu){
+            closeHamBurgMenu();
+        }
+        else{
+            openHamBurgMenu();
+        }
+        //print("enableHamBurgMenu - \(enableHamBurgMenu)")
+    }
+    
+    @objc func renderHamBurgMenu(){
+        for view in hamBurgMenuView.subviews{
+            view.removeFromSuperview();
+        }
+
+        let contentScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: hamBurgMenuWidth, height: hamBurgMenuView.frame.height));
+        
+        let padding = CGFloat(20);
+        var nextY = CGFloat(0);
+        
+        nextY += 40 + padding;
+        
+        
+        
+        contentScrollView.contentSize = CGSize(width: hamBurgMenuWidth, height: nextY);
+        //contentScrollView.backgroundColor = UIColor.gray;
+        
+        hamBurgMenuView.addSubview(contentScrollView);
+        
+        let exitButtonFrame = CGRect(x: 10, y: 10, width: 40, height: 40);
+        let exitButton = UIButton(frame: exitButtonFrame);
+        exitButton.setTitle("X", for: .normal);
+        exitButton.setTitleColor(UIColor.black, for: .normal);
+        
+        exitButton.addTarget(self, action: #selector(self.toggleHamBurgMenu), for: .touchUpInside);
+        
+        hamBurgMenuView.addSubview(exitButton); // NOTE BUTTON IS NOT PART OF SCROLLVIEW
+        
+    }
+    
+    @IBAction func handlePan(_ sender: UIPanGestureRecognizer) { // main goal is to set the hamburgmenuconstraint
+        let percentThreshold: CGFloat = 0.3;
+        let sensitivity = CGFloat(2.5); // 0 to x, where 1 is normal multiplier
+        let translation = sender.translation(in: view);
+        let fingerMovement = translation.x / view.bounds.width;
+        //print("hamBurgMenu - \(enableHamBurgMenu)")
+        //print("fingermovement = \(translation.x) / \(view.bounds.width) = \(fingerMovement)")
+        if (enableHamBurgMenu){ // exit menu
+            let rightMovement = fmaxf(Float(-fingerMovement), 0.0);
+            let rightMovementPercent = fminf(rightMovement, 1.0);
+            let progress = CGFloat(rightMovementPercent);
+            if (sender.state == .began || sender.state == .changed){
+                //print("exit pan - \(progress)");
+                UIView.animate(withDuration: 0.2){
+                    self.hamBurgMenuLeadingConstraint.constant = -(self.hamBurgMenuWidth * min(progress * sensitivity, 1.0));
+                    self.outerView.layoutIfNeeded();
+                }
+            }
+            else if (sender.state == .ended){
+                //print("stop exit pan - \(progress)");
+                if (progress > percentThreshold){
+                    closeHamBurgMenu();
+                }
+                else{
+                    openHamBurgMenu();
+                }
+            }
+        }
+        else{ // open menu
+            let leftMovement = fminf(Float(fingerMovement), 1.0);
+            let leftMovementPercent = fmaxf(leftMovement, 0.0);
+            let progress = CGFloat(leftMovementPercent);
+            if (sender.state == .began || sender.state == .changed){
+                //print("start pan - \(progress)");
+                UIView.animate(withDuration: 0.2){
+                    self.hamBurgMenuLeadingConstraint.constant = -self.hamBurgMenuWidth + (self.hamBurgMenuWidth * min(progress * sensitivity, 1.0));
+                    self.outerView.layoutIfNeeded();
+                }
+            }
+            else if (sender.state == .ended){
+                //print("stop start pan - \(progress)");
+                if (progress > percentThreshold){
+                    openHamBurgMenu();
+                }
+                else{
+                    closeHamBurgMenu();
+                }
+            }
+        }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let scrollView = otherGestureRecognizer.view as? UIScrollView {
+            return scrollView.contentOffset.x == 0;
+        }
+        return false
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         setUpConnection();
@@ -197,10 +299,8 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         hamBurgMenuLeadingConstraint.constant = -hamBurgMenuWidth;
         
         hamBurgMenuView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
-        // ENABLE THIS AFTER TESTING
-        
-        hamBurgMenuView.backgroundColor = UIColor.green;
-        
+
+        renderHamBurgMenu();
         // set up buttons
         /*for index in 0..<buttons.count{
             let image = UIImage(named: iconImagePath[index]);

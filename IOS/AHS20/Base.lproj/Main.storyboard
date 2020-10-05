@@ -1290,12 +1290,16 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="re5-dC-xIv"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="N67-ib-7sY" firstAttribute="leading" secondItem="nYW-Is-Dmb" secondAttribute="trailing" id="Qiq-n8-UoV"/>
                             <constraint firstItem="nYW-Is-Dmb" firstAttribute="leading" secondItem="re5-dC-xIv" secondAttribute="leading" constant="-320" id="RWs-WM-EJH"/>
                             <constraint firstItem="N67-ib-7sY" firstAttribute="top" secondItem="re5-dC-xIv" secondAttribute="top" id="VRb-YK-kZW"/>
                             <constraint firstItem="nYW-Is-Dmb" firstAttribute="top" secondItem="re5-dC-xIv" secondAttribute="top" id="YxM-U0-BkU"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Pfp-R0-aLW" appends="YES" id="riI-gX-bKJ"/>
+                        </connections>
                     </view>
                     <size key="freeformSize" width="700" height="1000"/>
                     <connections>
@@ -1312,6 +1316,7 @@
                         <outlet property="notificationButton" destination="FCR-wd-cBL" id="roX-OL-tDm"/>
                         <outlet property="notificationDot" destination="aP5-N2-NNW" id="h13-UU-7iA"/>
                         <outlet property="outerView" destination="oqJ-Lj-MFC" id="Qqo-9A-F04"/>
+                        <outlet property="outerViewGestureRecognizer" destination="Pfp-R0-aLW" id="cc7-tC-ZzY"/>
                         <outlet property="topBar" destination="uIv-9b-Smo" id="N6k-Gi-SWL"/>
                         <outlet property="topBarHeightContraint" destination="ASS-WT-ZG0" id="eA3-i5-FAC"/>
                         <outlet property="topBarPageName" destination="iL1-6u-hmx" id="Wul-VX-URH"/>
@@ -1320,6 +1325,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHq-og-Cig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Pfp-R0-aLW">
+                    <connections>
+                        <action selector="handlePan:" destination="er0-Fk-1NM" id="5Um-vK-fiQ"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="734.78260869565224" y="488.31521739130437"/>
         </scene>
