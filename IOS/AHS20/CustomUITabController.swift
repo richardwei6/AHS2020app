@@ -217,11 +217,9 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer) { // main goal is to set the hamburgmenuconstraint
         let percentThreshold: CGFloat = 0.3;
-        let sensitivity = CGFloat(2.5); // 0 to x, where 1 is normal multiplier
+        let sensitivity = CGFloat(5); // 0 to x, where 1 is normal multiplier
         let translation = sender.translation(in: view);
         let fingerMovement = translation.x / view.bounds.width;
-        //print("hamBurgMenu - \(enableHamBurgMenu)")
-        //print("fingermovement = \(translation.x) / \(view.bounds.width) = \(fingerMovement)")
         if (enableHamBurgMenu){ // exit menu
             let rightMovement = fmaxf(Float(-fingerMovement), 0.0);
             let rightMovementPercent = fminf(rightMovement, 1.0);
