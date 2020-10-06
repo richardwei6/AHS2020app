@@ -23,8 +23,8 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     //@IBOutlet weak var tabBarView: UIView!
     
     
-    @IBOutlet weak var notificationDot: UIView!
-    @IBOutlet weak var notificationButton: UIButton!
+ //   @IBOutlet weak var notificationDot: UIView!
+ //   @IBOutlet weak var notificationButton: UIButton!
     //@IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var hamBurgMenuButton: UIButton!
     
@@ -65,10 +65,10 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     
     var articleContentInSegue: articleData?;
     
-    @IBAction func openNotifications(_ sender: UIButton) {
+    /*@IBAction func openNotifications(_ sender: UIButton) {
         //print("Notifcations");
         performSegue(withIdentifier: "notificationSegue", sender: nil);
-    }
+    }*/
     
     
     var enableHamBurgMenu = false;
@@ -113,7 +113,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     
     // ARTICLE PAN END
     
-    func setUpNotifDot(){
+    /*func setUpNotifDot(){
         loadNotifPref();
         selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
         updateSubscriptionNotifs();
@@ -157,7 +157,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
                 };
             }
         }
-    }
+    }*/
     
     func openHamBurgMenu(){
         enableHamBurgMenu = true;
@@ -195,12 +195,83 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         let padding = CGFloat(20);
         var nextY = CGFloat(0);
         
-        nextY += 40 + padding;
+        nextY += 45;
+    
+        let profileButtonFrame = CGRect(x: 0, y: nextY, width: hamBurgMenuWidth, height: 120);
+        let profileButton = UIButton(frame: profileButtonFrame);
+        //profileButton.backgroundColor = UIColor.green;
+        
+        let profileViewFrame = CGRect(x: 0, y: 0, width: profileButtonFrame.width, height: profileButtonFrame.height);
+        let profileView = UIView(frame: profileViewFrame);
+        //profileView.backgroundColor = UIColor.lightGray;
+        
+        let profileVerticalPadding = CGFloat(20);
+        let profileHorizontalPadding = CGFloat(15);
+        
+        let profilePicSize = CGFloat(profileButtonFrame.height - 2*profileVerticalPadding);
+        let profilePicViewFrame = CGRect(x: profileHorizontalPadding, y: profileVerticalPadding, width: profilePicSize, height: profilePicSize);
+        let profilePicView = UIImageView(frame: profilePicViewFrame);
+        
+        if (isSignedIn){
+            profilePicView.imgFromURL(sURL: userProfileImageURL);
+        }
+        else{
+            profilePicView.image = UIImage(named: "defaultprofileimage");
+            //profilePicView.backgroundColor = mainThemeColor;
+        }
+        
+        profilePicView.clipsToBounds = true;
+        profilePicView.layer.cornerRadius = profilePicSize/2;
+        //profilePicView.contentMode = .scaleAspectFill;
+        //profilePicView.layer.borderWidth = 2;
+        //profilePicView.layer.borderColor = UIColor.black.cgColor;
+        
+        profileView.addSubview(profilePicView);
+        
+        //let profileTextContent = isSignedIn ? userFullName : "text text text text text text text text text text text text text text text text text text text text text text text text text text text text text";
+        let profileTextContent = isSignedIn ? userFullName : "Sign in";
+        let profileTextWidth = CGFloat(hamBurgMenuWidth - 2*profileHorizontalPadding - profilePicSize);
+        let profileTextFont = UIFont(name: "SFProDisplay-Semibold", size: 30);
+        let profileTextFrame = CGRect(x: 2*profileHorizontalPadding + profilePicSize, y: profileVerticalPadding + 10, width: profileTextWidth, height: profileTextContent.getHeight(withConstrainedWidth: profileTextWidth, font: profileTextFont!));
+        let profileText = UILabel(frame: profileTextFrame);
+        profileText.text = profileTextContent;
+        profileText.font = profileTextFont;
+        profileText.numberOfLines = 0;
+        /*profileText.lineBreakMode = .byTruncatingTail;
+        profileText.adjustsFontSizeToFitWidth = true;
+        profileText.minimumScaleFactor = 0.5;*/
+        
+        profileView.addSubview(profileText);
+        
+        let profileManageText = "View Profile >";
+        let profileManageTextFont = UIFont(name: "SFProDisplay-Semibold", size: 15);
+        let profileManageTextOffset = CGFloat(2);
+        let profileManageTextFrame = CGRect(x: 2*profileHorizontalPadding + profilePicSize + profileManageTextOffset, y: profileTextFrame.maxY, width: profileTextFrame.width - profileManageTextOffset, height: profileManageText.getHeight(withConstrainedWidth: profileTextFrame.width - profileManageTextOffset, font: profileManageTextFont!));
+        let profileManageTextLabel = UILabel(frame: profileManageTextFrame);
+        profileManageTextLabel.text = profileManageText;
+        profileManageTextLabel.font = profileManageTextFont;
+        profileManageTextLabel.textColor = UIColor.gray;
+        profileManageTextLabel.numberOfLines = 0;
+        
+        profileView.addSubview(profileManageTextLabel);
+        
+        profileButton.addSubview(profileView);
+        
+        profileButton.layer.borderColor = UIColor.lightGray.cgColor;
+        profileButton.layer.borderWidth = 1;
+        
+        contentScrollView.addSubview(profileButton);
+        
+        nextY += profileButtonFrame.height + padding;
+        
         
         
         
         contentScrollView.contentSize = CGSize(width: hamBurgMenuWidth, height: nextY);
         //contentScrollView.backgroundColor = UIColor.gray;
+        
+        //contentScrollView.layer.borderColor = UIColor.lightGray.cgColor;
+        //contentScrollView.layer.borderWidth = 1;
         
         hamBurgMenuView.addSubview(contentScrollView);
         
@@ -275,7 +346,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     override func viewDidLoad() {
         super.viewDidLoad();
         setUpConnection();
-        setUpNotifDot();
+        //setUpNotifDot();
         
         // DEVELOPER ONLY FUNC
         setUpDevConfigs();
@@ -336,12 +407,22 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         dateLabel.text = getTitleDateAndMonth();
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    /*override func viewDidAppear(_ animated: Bool) {
         // set notification dot
-        notificationDot.isHidden = unreadNotifCount == 0;
-    }
+       // notificationDot.isHidden = unreadNotifCount == 0;
+    }*/
     
-    @IBAction func didPressTab(_ sender: UIButton) {
+    /*
+     original order of UIButton.tag is:
+     0 == home
+     1 == bulletin
+     2 == saved
+     3 == profile
+     4 == settings
+     // NEW - 5 - notifications
+     */
+    
+    @objc func didPressTab(_ sender: UIButton) {
         let prevIndex = selectedIndex;
         selectedIndex = sender.tag;
         if (prevIndex == sender.tag){
@@ -352,12 +433,12 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
                 }
                 
             }
-            if (sender.tag == 2){
+            else if (sender.tag == 2){
                 if let page = viewControllers[sender.tag] as? savedClass{
                     page.mainScrollView.setContentOffset(.zero, animated: true);
                 }
             }
-            if (sender.tag == 1){
+            else if (sender.tag == 1){
                 if let page = viewControllers[sender.tag] as? bulletinClass{
                     page.bulletinScrollView.setContentOffset(.zero, animated: true);
                 }

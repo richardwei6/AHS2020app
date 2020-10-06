@@ -1212,31 +1212,6 @@
                                                     <constraint firstItem="uIX-Oj-88Q" firstAttribute="top" secondItem="9fZ-oV-iGQ" secondAttribute="top" constant="9" id="tnv-Oj-WR9"/>
                                                 </constraints>
                                             </view>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aP5-N2-NNW">
-                                                <rect key="frame" x="377" y="46.666666666666664" width="5" height="5"/>
-                                                <color key="backgroundColor" red="0.62352941179999999" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="5" id="5wr-cD-oqv"/>
-                                                    <constraint firstAttribute="height" constant="5" id="Dsw-a0-qYu"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="2"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCR-wd-cBL">
-                                                <rect key="frame" x="366.66666666666669" y="13.666666666666663" width="25" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="25" id="1aE-Q2-mtD"/>
-                                                    <constraint firstAttribute="height" constant="30.670000000000002" id="WsB-7e-IyK"/>
-                                                </constraints>
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="bell.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="openNotifications:" destination="er0-Fk-1NM" eventType="touchUpInside" id="oY2-go-9cl"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4m-Io-Gki">
                                                 <rect key="frame" x="10" y="10" width="33.333333333333336" height="44"/>
                                                 <color key="tintColor" systemColor="labelColor"/>
@@ -1253,16 +1228,12 @@
                                             <constraint firstAttribute="bottom" secondItem="9fZ-oV-iGQ" secondAttribute="bottom" id="5HT-kE-Mhc"/>
                                             <constraint firstAttribute="height" constant="62" id="ASS-WT-ZG0"/>
                                             <constraint firstItem="C4m-Io-Gki" firstAttribute="leading" secondItem="uIv-9b-Smo" secondAttribute="leading" constant="10" id="B8R-I1-hEe"/>
-                                            <constraint firstItem="aP5-N2-NNW" firstAttribute="top" secondItem="FCR-wd-cBL" secondAttribute="bottom" constant="3" id="P98-kb-a8u"/>
                                             <constraint firstItem="9fZ-oV-iGQ" firstAttribute="leading" secondItem="C4m-Io-Gki" secondAttribute="trailing" constant="-8" id="QnK-jG-jvc"/>
                                             <constraint firstItem="C4m-Io-Gki" firstAttribute="top" secondItem="uIv-9b-Smo" secondAttribute="top" constant="10" id="RvE-JB-V6f"/>
                                             <constraint firstItem="iL1-6u-hmx" firstAttribute="centerY" secondItem="uIv-9b-Smo" secondAttribute="centerY" id="UFD-bM-wmN"/>
                                             <constraint firstItem="9fZ-oV-iGQ" firstAttribute="top" secondItem="uIv-9b-Smo" secondAttribute="top" id="X25-lM-MWT"/>
                                             <constraint firstItem="iL1-6u-hmx" firstAttribute="leading" secondItem="C4m-Io-Gki" secondAttribute="trailing" constant="4" id="Z6J-E0-rIc"/>
                                             <constraint firstItem="9fZ-oV-iGQ" firstAttribute="height" secondItem="uIv-9b-Smo" secondAttribute="height" id="cFc-xZ-h66"/>
-                                            <constraint firstAttribute="trailing" secondItem="aP5-N2-NNW" secondAttribute="trailing" constant="32" id="hZq-np-pIh"/>
-                                            <constraint firstItem="FCR-wd-cBL" firstAttribute="top" secondItem="uIv-9b-Smo" secondAttribute="top" constant="13" id="iFm-sz-HN9"/>
-                                            <constraint firstAttribute="trailing" secondItem="FCR-wd-cBL" secondAttribute="trailing" constant="22.399999999999999" id="uPR-tW-Ai4"/>
                                             <constraint firstAttribute="bottom" secondItem="C4m-Io-Gki" secondAttribute="bottom" constant="8" id="wYw-Bc-rF4"/>
                                         </constraints>
                                     </view>
@@ -1313,8 +1284,6 @@
                         <outlet property="homeTopBarContent" destination="9fZ-oV-iGQ" id="BDK-g7-iWy"/>
                         <outlet property="mainContentView" destination="N67-ib-7sY" id="4F3-oZ-RTd"/>
                         <outlet property="mainContentViewWidthConstraint" destination="yFG-tJ-T6E" id="JE3-tn-U96"/>
-                        <outlet property="notificationButton" destination="FCR-wd-cBL" id="roX-OL-tDm"/>
-                        <outlet property="notificationDot" destination="aP5-N2-NNW" id="h13-UU-7iA"/>
                         <outlet property="outerView" destination="oqJ-Lj-MFC" id="Qqo-9A-F04"/>
                         <outlet property="outerViewGestureRecognizer" destination="Pfp-R0-aLW" id="cc7-tC-ZzY"/>
                         <outlet property="topBar" destination="uIv-9b-Smo" id="N6k-Gi-SWL"/>
@@ -2313,7 +2282,6 @@ This license agreement is governed by the laws of the State of California exclud
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="80" width="341.33334350585938" height="341.33334350585938"/>
-        <image name="bell.fill" catalog="system" width="128" height="124"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
