@@ -1289,7 +1289,6 @@
                         <outlet property="topBar" destination="uIv-9b-Smo" id="N6k-Gi-SWL"/>
                         <outlet property="topBarHeightContraint" destination="ASS-WT-ZG0" id="eA3-i5-FAC"/>
                         <outlet property="topBarPageName" destination="iL1-6u-hmx" id="Wul-VX-URH"/>
-                        <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="at6-zS-lft"/>
                         <segue destination="08X-4I-yxB" kind="presentation" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="Diy-5I-FmI"/>
                     </connections>
                 </viewController>
@@ -2189,7 +2188,7 @@ This license agreement is governed by the laws of the State of California exclud
         <!--Notifications Class-->
         <scene sceneID="wEy-Kl-Saf">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="iaA-pd-aga" customClass="notificationsClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="notificationViewController" modalPresentationStyle="fullScreen" id="iaA-pd-aga" customClass="notificationsClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VUm-Fx-egc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2201,64 +2200,22 @@ This license agreement is governed by the laws of the State of California exclud
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NZN-7j-auO">
-                                <rect key="frame" x="0.0" y="58" width="414" height="922"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="980"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="quT-Ls-N2h"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="CS7-96-2oQ"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0Z-ns-bKQ" userLabel="shadowView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJJ-OQ-oKj">
-                                <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="chevron.left" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="exitPopup:" destination="iaA-pd-aga" eventType="touchUpInside" id="nIV-zE-pp8"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fI-zh-Z0s">
-                                <rect key="frame" x="42" y="14" width="155.33333333333334" height="28"/>
-                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
-                                <color key="textColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arG-KJ-TsU">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="HJf-b2-LfI"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="exitPopup:" destination="iaA-pd-aga" eventType="touchUpInside" id="Xbd-Zg-dYD"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2sE-1G-zN5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="H0Z-ns-bKQ" firstAttribute="trailing" secondItem="2sE-1G-zN5" secondAttribute="trailing" id="6f1-GT-WCk"/>
-                            <constraint firstItem="NZN-7j-auO" firstAttribute="top" secondItem="arG-KJ-TsU" secondAttribute="bottom" id="Hc9-NE-aho"/>
                             <constraint firstItem="ovN-aC-RAA" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" constant="10" id="IHj-jg-rwO"/>
                             <constraint firstItem="NZN-7j-auO" firstAttribute="width" secondItem="VUm-Fx-egc" secondAttribute="width" id="NFo-pA-H9n"/>
-                            <constraint firstItem="MJJ-OQ-oKj" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" constant="15" id="QGJ-3E-GgU"/>
                             <constraint firstItem="2sE-1G-zN5" firstAttribute="trailing" secondItem="NZN-7j-auO" secondAttribute="trailing" id="R1S-jJ-qFo"/>
-                            <constraint firstItem="H0Z-ns-bKQ" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" id="SCS-eC-jGb"/>
-                            <constraint firstItem="NZN-7j-auO" firstAttribute="top" secondItem="H0Z-ns-bKQ" secondAttribute="bottom" id="Wl3-Pc-jpl"/>
-                            <constraint firstItem="arG-KJ-TsU" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" id="Y7P-WO-FZx"/>
-                            <constraint firstItem="arG-KJ-TsU" firstAttribute="trailing" secondItem="2sE-1G-zN5" secondAttribute="trailing" id="ZTR-ML-yK1"/>
-                            <constraint firstItem="MJJ-OQ-oKj" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" constant="15" id="bvx-UK-UTp"/>
                             <constraint firstItem="ovN-aC-RAA" firstAttribute="centerX" secondItem="2sE-1G-zN5" secondAttribute="centerX" id="k0H-Gw-m57"/>
-                            <constraint firstItem="4fI-zh-Z0s" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" constant="14" id="lHs-mT-DwJ"/>
-                            <constraint firstItem="H0Z-ns-bKQ" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" id="ljp-Ga-PA5"/>
                             <constraint firstItem="ovN-aC-RAA" firstAttribute="centerY" secondItem="2sE-1G-zN5" secondAttribute="centerY" id="m4Y-eF-2iC"/>
-                            <constraint firstItem="NZN-7j-auO" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" constant="58" id="mXf-jD-rAc"/>
-                            <constraint firstItem="2sE-1G-zN5" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4fI-zh-Z0s" secondAttribute="trailing" symbolic="YES" id="phP-Rt-p2T"/>
-                            <constraint firstItem="4fI-zh-Z0s" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" constant="42" id="sEV-cR-s1m"/>
+                            <constraint firstItem="NZN-7j-auO" firstAttribute="top" secondItem="2sE-1G-zN5" secondAttribute="top" id="mXf-jD-rAc"/>
                             <constraint firstItem="2sE-1G-zN5" firstAttribute="trailing" secondItem="ovN-aC-RAA" secondAttribute="trailing" constant="10" id="sVS-UA-2ZP"/>
-                            <constraint firstItem="arG-KJ-TsU" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" id="tIO-bv-aMS"/>
                             <constraint firstItem="NZN-7j-auO" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" id="vHO-QD-qX5"/>
                         </constraints>
                     </view>
@@ -2267,7 +2224,6 @@ This license agreement is governed by the laws of the State of California exclud
                     <connections>
                         <outlet property="noNotificationLabel" destination="ovN-aC-RAA" id="fdI-hg-nDs"/>
                         <outlet property="notificationScrollView" destination="NZN-7j-auO" id="Djl-yF-4jT"/>
-                        <outlet property="shadowView" destination="H0Z-ns-bKQ" id="fKP-Nf-HRt"/>
                         <segue destination="08X-4I-yxB" kind="presentation" identifier="notificationToArticle" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="rU3-UD-e0a"/>
                     </connections>
                 </viewController>
@@ -2277,7 +2233,7 @@ This license agreement is governed by the laws of the State of California exclud
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Diy-5I-FmI"/>
+        <segue reference="rU3-UD-e0a"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

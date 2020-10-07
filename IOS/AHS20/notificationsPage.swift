@@ -19,8 +19,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     @IBOutlet weak var noNotificationLabel: UILabel!
     
-    @IBOutlet weak var shadowView: UIView!
-    
     var articleDictionary = [String: articleData]();
     
     var articleContentInSegue: articleData?;
@@ -441,10 +439,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         // set iphone x or above color below the safe area
         notificationScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
-        shadowView.layer.shadowColor = UIColor.black.cgColor;
-        shadowView.layer.shadowOpacity = 0.05;
-        shadowView.layer.shadowOffset = CGSize(width: 0 , height: 5);
-        
         totalNotificationList = [notificationData]();
         //notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
         
@@ -457,13 +451,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         loadNotifPref();
         getLocalNotifications();
         
-    }
-    
-    
-    @IBAction func exitPopup(_ sender: UIButton) {
-        
-   //     unreadNotif = (notificationList[1].count > 0);
-        dismiss(animated: true);
     }
     
 }

@@ -51,11 +51,11 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     var savedViewController: UIViewController!
     var profileViewController: UIViewController!
     var settingsViewController: UIViewController!
-    
+    var notificationViewController: UIViewController!
     
     var viewControllers: [UIViewController]!
     
-    var selectedIndex: Int = 0;
+    var selectedIndex: Int = 1;
     
     var hamBurgMenuWidth = CGFloat(320);
     //    let homeTopCornerRadius = CGFloat(15);
@@ -264,7 +264,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         //profileButton.layer.borderColor = UIColor.lightGray.cgColor;
         //profileButton.layer.borderWidth = 1;
         
-        profileButton.tag = 3;
+        profileButton.tag = 0;
         
         profileButton.addTarget(self, action: #selector(self.didPressTab), for: .touchUpInside);
         
@@ -314,6 +314,9 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
             buttonName.numberOfLines = 1;
             
             button.addSubview(buttonName);
+            
+            button.tag = i + 1;
+            button.addTarget(self, action: #selector(self.didPressTab), for: .touchUpInside);
             
             contentScrollView.addSubview(button);
             
@@ -457,9 +460,10 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         homeViewController = storyboard.instantiateViewController(withIdentifier: "homeViewController") as! homeClass;
         bulletinViewController = storyboard.instantiateViewController(withIdentifier: "bulletinViewController") as! bulletinClass;
         savedViewController = storyboard.instantiateViewController(withIdentifier: "savedViewController") as! savedClass;
-        profileViewController = storyboard.instantiateViewController(identifier: "profileViewController") as! profilePageClass;
+        profileViewController = storyboard.instantiateViewController(withIdentifier: "profileViewController") as! profilePageClass;
         settingsViewController = storyboard.instantiateViewController(withIdentifier: "settingsViewController") as! settingClass;
-        viewControllers = [homeViewController, bulletinViewController, savedViewController, profileViewController, settingsViewController];
+        notificationViewController = storyboard.instantiateViewController(withIdentifier: "notificationViewController") as! notificationsClass;
+        viewControllers = [profileViewController, homeViewController, bulletinViewController, notificationViewController, savedViewController, settingsViewController];
         //buttons[selectedIndex].setImage(UIImage(named: iconImagePathInv[selectedIndex]), for: .normal);
         //buttons[selectedIndex].tintColor = selectedColor;
         let vc = viewControllers[selectedIndex];
@@ -492,27 +496,35 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
      3 == profile
      4 == settings
      // NEW - 5 - notifications
+     
+     
+     0 == profile
+     1 == home
+     2 == bulletin
+     3 == notifications
+     4 == saved
+     5 == settings
      */
     
     @objc func didPressTab(_ sender: UIButton) {
         let prevIndex = selectedIndex;
         selectedIndex = sender.tag;
         if (prevIndex == sender.tag){
-            if (sender.tag == 0){
+            if (sender.tag == 1){
                 // add code here
-                if let page  = viewControllers[0] as? homeClass{
+                if let page = viewControllers[sender.tag] as? homeClass{
                     page.mainScrollView.setContentOffset(.zero, animated: true);
                 }
                 
             }
             else if (sender.tag == 2){
-                if let page = viewControllers[sender.tag] as? savedClass{
-                    page.mainScrollView.setContentOffset(.zero, animated: true);
-                }
-            }
-            else if (sender.tag == 1){
                 if let page = viewControllers[sender.tag] as? bulletinClass{
                     page.bulletinScrollView.setContentOffset(.zero, animated: true);
+                }
+            }
+            else if (sender.tag == 4){
+                if let page = viewControllers[sender.tag] as? savedClass{
+                    page.mainScrollView.setContentOffset(.zero, animated: true);
                 }
             }
         }
@@ -535,7 +547,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
             vc.didMove(toParent: self);
             
             
-            if (sender.tag == 0){
+            if (sender.tag == 1){
                 //               topBar.layer.cornerRadius = homeTopCornerRadius;
                 //topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
                 topBarHeightContraint.constant = 62;
@@ -549,23 +561,29 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
                 topBarHeightContraint.constant = 60;
                 homeTopBarContent.isHidden = true;
                 topBarPageName.isHidden = false;
-                if (sender.tag == 1){
-                    topBarPageName.text = "Student Bulletin";
-                    topBar.layer.shadowColor = UIColor.white.cgColor;
-                }
-                else if (sender.tag == 2){
-                    topBarPageName.text = "Saved";
-                    topBar.layer.shadowColor = UIColor.gray.cgColor;
-                }
-                else if (sender.tag == 3){
+                if (sender.tag == 0){
                     topBarPageName.text = "Profile";
                     topBar.layer.shadowColor = UIColor.gray.cgColor;
                 }
+                else if (sender.tag == 2){
+                    topBarPageName.text = "Student Bulletin";
+                    topBar.layer.shadowColor = UIColor.white.cgColor;
+                }
+                else if (sender.tag == 3){
+                    topBarPageName.text = "Notifications";
+                    topBar.layer.shadowColor = UIColor.white.cgColor;
+                }
                 else if (sender.tag == 4){
+                    topBarPageName.text = "Saved";
+                    topBar.layer.shadowColor = UIColor.gray.cgColor;
+                }
+                else if (sender.tag == 5){
                     topBarPageName.text = "Settings";
                     topBar.layer.shadowColor = UIColor.gray.cgColor;
                 }
             }
+            
+            closeHamBurgMenu();
             
         }
         
