@@ -197,19 +197,28 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         
         nextY += 45;
     
-        let profileButtonFrame = CGRect(x: 0, y: nextY, width: hamBurgMenuWidth, height: 120);
-        let profileButton = UIButton(frame: profileButtonFrame);
-        //profileButton.backgroundColor = UIColor.green;
+        /// START PROFILE BUTTON
         
-        let profileViewFrame = CGRect(x: 0, y: 0, width: profileButtonFrame.width, height: profileButtonFrame.height);
-        let profileView = UIView(frame: profileViewFrame);
-        //profileView.backgroundColor = UIColor.lightGray;
+        let profilePicSize = CGFloat(80); // 80
         
         let profileVerticalPadding = CGFloat(20);
         let profileHorizontalPadding = CGFloat(15);
         
-        let profilePicSize = CGFloat(profileButtonFrame.height - 2*profileVerticalPadding);
-        let profilePicViewFrame = CGRect(x: profileHorizontalPadding, y: profileVerticalPadding, width: profilePicSize, height: profilePicSize);
+        /// Attributes to determine height
+        //let profileTextContent = isSignedIn ? userFullName : "text text text text text text text text text text text text text text text text text text text text text text text text text text text text text";
+        let profileTextContent = isSignedIn ? userFullName : "Sign in";
+        let profileTextWidth = CGFloat(hamBurgMenuWidth - 2*profileHorizontalPadding - profilePicSize);
+        let profileTextFont = UIFont(name: "SFProDisplay-Semibold", size: 30);
+        
+        let profileManageText = "View Profile >";
+        let profileManageTextFont = UIFont(name: "SFProDisplay-Semibold", size: 15);
+        let profileManageTextOffset = CGFloat(2);
+        
+        let profileButtonHeight = CGFloat(10 + profileVerticalPadding + profileTextContent.getHeight(withConstrainedWidth: profileTextWidth, font: profileTextFont!) + profileManageText.getHeight(withConstrainedWidth: profileTextWidth - profileManageTextOffset, font: profileManageTextFont!) + 16 + profileVerticalPadding);
+        
+        /// end attributes
+        
+        let profilePicViewFrame = CGRect(x: profileHorizontalPadding, y: (profileButtonHeight/2) - (profilePicSize/2), width: profilePicSize, height: profilePicSize);
         let profilePicView = UIImageView(frame: profilePicViewFrame);
         
         if (isSignedIn){
@@ -217,35 +226,22 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         }
         else{
             profilePicView.image = UIImage(named: "defaultprofileimage");
-            //profilePicView.backgroundColor = mainThemeColor;
         }
         
         profilePicView.clipsToBounds = true;
         profilePicView.layer.cornerRadius = profilePicSize/2;
-        //profilePicView.contentMode = .scaleAspectFill;
-        //profilePicView.layer.borderWidth = 2;
-        //profilePicView.layer.borderColor = UIColor.black.cgColor;
+        profilePicView.contentMode = .scaleAspectFill;
+        profilePicView.layer.borderWidth = 1;
+        profilePicView.layer.borderColor = UIColor.black.cgColor;
         
-        profileView.addSubview(profilePicView);
-        
-        //let profileTextContent = isSignedIn ? userFullName : "text text text text text text text text text text text text text text text text text text text text text text text text text text text text text";
-        let profileTextContent = isSignedIn ? userFullName : "Sign in";
-        let profileTextWidth = CGFloat(hamBurgMenuWidth - 2*profileHorizontalPadding - profilePicSize);
-        let profileTextFont = UIFont(name: "SFProDisplay-Semibold", size: 30);
+
         let profileTextFrame = CGRect(x: 2*profileHorizontalPadding + profilePicSize, y: profileVerticalPadding + 10, width: profileTextWidth, height: profileTextContent.getHeight(withConstrainedWidth: profileTextWidth, font: profileTextFont!));
         let profileText = UILabel(frame: profileTextFrame);
         profileText.text = profileTextContent;
         profileText.font = profileTextFont;
         profileText.numberOfLines = 0;
-        /*profileText.lineBreakMode = .byTruncatingTail;
-        profileText.adjustsFontSizeToFitWidth = true;
-        profileText.minimumScaleFactor = 0.5;*/
         
-        profileView.addSubview(profileText);
-        
-        let profileManageText = "View Profile >";
-        let profileManageTextFont = UIFont(name: "SFProDisplay-Semibold", size: 15);
-        let profileManageTextOffset = CGFloat(2);
+    
         let profileManageTextFrame = CGRect(x: 2*profileHorizontalPadding + profilePicSize + profileManageTextOffset, y: profileTextFrame.maxY, width: profileTextFrame.width - profileManageTextOffset, height: profileManageText.getHeight(withConstrainedWidth: profileTextFrame.width - profileManageTextOffset, font: profileManageTextFont!));
         let profileManageTextLabel = UILabel(frame: profileManageTextFrame);
         profileManageTextLabel.text = profileManageText;
@@ -253,19 +249,25 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         profileManageTextLabel.textColor = UIColor.gray;
         profileManageTextLabel.numberOfLines = 0;
         
-        profileView.addSubview(profileManageTextLabel);
+        //print("max y - \(profileManageTextLabel.frame.maxY)") // add 16 to vertical padding get to 120
         
-        profileButton.addSubview(profileView);
+        let profileButtonFrame = CGRect(x: 0, y: nextY, width: hamBurgMenuWidth, height: profileButtonHeight);
+        let profileButton = UIButton(frame: profileButtonFrame);
+        
+        // PROFILE Button subviews
+        profileButton.addSubview(profileText);
+        profileButton.addSubview(profileManageTextLabel);
+        profileButton.addSubview(profilePicView);
         
         profileButton.layer.borderColor = UIColor.lightGray.cgColor;
         profileButton.layer.borderWidth = 1;
         
+        /// END PROFILE BUTTON
+        
         contentScrollView.addSubview(profileButton);
         
         nextY += profileButtonFrame.height + padding;
-        
-        
-        
+
         
         contentScrollView.contentSize = CGSize(width: hamBurgMenuWidth, height: nextY);
         //contentScrollView.backgroundColor = UIColor.gray;
