@@ -248,7 +248,6 @@ class profilePageClass: UIViewController{
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.renderView), name:NSNotification.Name(rawValue: "reloadProfilePage"), object: nil);
         GIDSignIn.sharedInstance()?.presentingViewController = self;
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn();
         
         renderView();
     }

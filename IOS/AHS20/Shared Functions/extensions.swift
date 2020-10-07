@@ -13,6 +13,7 @@ import SystemConfiguration
 import FirebaseDatabase
 import SDWebImage
 
+
 extension String {
     func getHeight(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
@@ -167,15 +168,15 @@ extension UIImage {
     }
     
     convenience init?(barcode: String) {
-            let data = barcode.data(using: .ascii)
-            guard let filter = CIFilter(name: "CICode128BarcodeGenerator") else {
-                return nil
-            }
-            filter.setValue(data, forKey: "inputMessage")
-            guard let ciImage = filter.outputImage else {
-                return nil
-            }
-            self.init(ciImage: ciImage)
+        let data = barcode.data(using: .ascii)
+        guard let filter = CIFilter(name: "CICode128BarcodeGenerator") else {
+            return nil
         }
+        filter.setValue(data, forKey: "inputMessage")
+        guard let ciImage = filter.outputImage else {
+            return nil
+        }
+        self.init(ciImage: ciImage)
+    }
     
 }

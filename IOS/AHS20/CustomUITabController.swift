@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
-
+import GoogleSignIn
 
 class CustomTabBarController: UIViewController, UIViewControllerTransitioningDelegate {
     
@@ -60,7 +60,8 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     var hamBurgMenuWidth = CGFloat(320);
     //    let homeTopCornerRadius = CGFloat(15);
     
-    let iconImagePath = ["home", "bulletin", "saved", "", "settings"];
+    let iconImagePath = ["home", "bulletin", "", "saved", "settings"]; // use system bell - bell.fill
+    let buttonNameArray = ["Home", "Bulletin", "Notifications", "Saved", "Settings"];
     let selectedColor = makeColor(r: 243, g: 149, b: 143);
     
     var articleContentInSegue: articleData?;
@@ -207,7 +208,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         /// Attributes to determine height
         //let profileTextContent = isSignedIn ? userFullName : "text text text text text text text text text text text text text text text text text text text text text text text text text text text text text";
         let profileTextContent = isSignedIn ? userFullName : "Sign in";
-        let profileTextWidth = CGFloat(hamBurgMenuWidth - 2*profileHorizontalPadding - profilePicSize);
+        let profileTextWidth = CGFloat(hamBurgMenuWidth - 3*profileHorizontalPadding - profilePicSize);
         let profileTextFont = UIFont(name: "SFProDisplay-Semibold", size: 30);
         
         let profileManageText = "View Profile >";
@@ -240,6 +241,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         profileText.text = profileTextContent;
         profileText.font = profileTextFont;
         profileText.numberOfLines = 0;
+       // profileText.backgroundColor = UIColor.gray;
         
     
         let profileManageTextFrame = CGRect(x: 2*profileHorizontalPadding + profilePicSize + profileManageTextOffset, y: profileTextFrame.maxY, width: profileTextFrame.width - profileManageTextOffset, height: profileManageText.getHeight(withConstrainedWidth: profileTextFrame.width - profileManageTextOffset, font: profileManageTextFont!));
@@ -259,15 +261,64 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         profileButton.addSubview(profileManageTextLabel);
         profileButton.addSubview(profilePicView);
         
-        profileButton.layer.borderColor = UIColor.lightGray.cgColor;
-        profileButton.layer.borderWidth = 1;
+        //profileButton.layer.borderColor = UIColor.lightGray.cgColor;
+        //profileButton.layer.borderWidth = 1;
         
-        /// END PROFILE BUTTON
+        profileButton.tag = 3;
+        
+        profileButton.addTarget(self, action: #selector(self.didPressTab), for: .touchUpInside);
         
         contentScrollView.addSubview(profileButton);
+        /// END PROFILE BUTTON
         
-        nextY += profileButtonFrame.height + padding;
+        let borderLineFrame = CGRect(x: 0, y: profileButtonFrame.maxY, width: hamBurgMenuWidth, height: 1);
+        let borderLine = UIView(frame: borderLineFrame);
+        borderLine.backgroundColor = UIColor.lightGray;
+        
+        contentScrollView.addSubview(borderLine);
+        
+        let hamBurgMenuButtonVerticalPadding = CGFloat(10);
+        
+        nextY += profileButtonFrame.height + hamBurgMenuButtonVerticalPadding;
 
+        let hamBurgMenuButtonHorizontalPadding = CGFloat(10);
+        let hamBurgMenuButtonHeight = CGFloat(70);
+        
+        for i in 0...4{
+            
+            let buttonFrame = CGRect(x: hamBurgMenuButtonHorizontalPadding, y: nextY, width: hamBurgMenuWidth - 2*hamBurgMenuButtonHorizontalPadding, height: hamBurgMenuButtonHeight);
+            let button = UIButton(frame: buttonFrame);
+            //button.backgroundColor = UIColor.gray;
+            
+            let buttonImagePadding = CGFloat(15);
+            let buttonImageFrame = CGRect(x: buttonImagePadding, y: buttonImagePadding, width: hamBurgMenuButtonHeight - 2*buttonImagePadding, height: hamBurgMenuButtonHeight - 2*buttonImagePadding);
+            let buttonImage = UIImageView(frame: buttonImageFrame);
+            
+            if (i == 2){ // use bell.fill system image
+                buttonImage.image = UIImage(systemName: "bell.fill");
+            }
+            else{
+                buttonImage.image = UIImage(named: iconImagePath[i]);
+            }
+            
+            buttonImage.contentMode = .scaleAspectFit;
+            buttonImage.tintColor = UIColor.black;
+            
+            button.addSubview(buttonImage);
+            
+            let buttonNameFrame = CGRect(x: buttonImageFrame.maxX + 15, y: buttonImagePadding, width: buttonFrame.width - buttonImageFrame.maxX - 15, height: hamBurgMenuButtonHeight - 2*buttonImagePadding);
+            let buttonName = UILabel(frame: buttonNameFrame);
+            buttonName.text = buttonNameArray[i];
+            buttonName.font = UIFont(name: "SFProDisplay-Semibold", size: 22);
+            buttonName.lineBreakMode = .byTruncatingTail;
+            buttonName.numberOfLines = 1;
+            
+            button.addSubview(buttonName);
+            
+            contentScrollView.addSubview(button);
+            
+            nextY += buttonFrame.height + hamBurgMenuButtonVerticalPadding;
+        }
         
         contentScrollView.contentSize = CGSize(width: hamBurgMenuWidth, height: nextY);
         //contentScrollView.backgroundColor = UIColor.gray;
@@ -284,6 +335,12 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         
         exitButton.addTarget(self, action: #selector(self.toggleHamBurgMenu), for: .touchUpInside);
         
+        hamBurgMenuView.layer.masksToBounds = false;
+        hamBurgMenuView.layer.shadowRadius = 2;
+        hamBurgMenuView.layer.shadowOpacity = 0.5;
+        hamBurgMenuView.layer.shadowColor = UIColor.lightGray.cgColor;
+        hamBurgMenuView.layer.shadowOffset = CGSize(width: 3, height: 3);
+        
         hamBurgMenuView.addSubview(exitButton); // NOTE BUTTON IS NOT PART OF SCROLLVIEW
         
     }
@@ -299,9 +356,14 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
             let progress = CGFloat(rightMovementPercent);
             if (sender.state == .began || sender.state == .changed){
                 //print("exit pan - \(progress)");
-                UIView.animate(withDuration: 0.2){
-                    self.hamBurgMenuLeadingConstraint.constant = -(self.hamBurgMenuWidth * min(progress * sensitivity, 1.0));
-                    self.outerView.layoutIfNeeded();
+                if (progress == 1){
+                    closeHamBurgMenu();
+                }
+                else{
+                    UIView.animate(withDuration: 0.2){
+                        self.hamBurgMenuLeadingConstraint.constant = -(self.hamBurgMenuWidth * min(progress * sensitivity, 1.0));
+                        self.outerView.layoutIfNeeded();
+                    }
                 }
             }
             else if (sender.state == .ended){
@@ -320,9 +382,14 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
             let progress = CGFloat(leftMovementPercent);
             if (sender.state == .began || sender.state == .changed){
                 //print("start pan - \(progress)");
-                UIView.animate(withDuration: 0.2){
-                    self.hamBurgMenuLeadingConstraint.constant = -self.hamBurgMenuWidth + (self.hamBurgMenuWidth * min(progress * sensitivity, 1.0));
-                    self.outerView.layoutIfNeeded();
+                if (progress == 1){
+                    openHamBurgMenu();
+                }
+                else{
+                    UIView.animate(withDuration: 0.2){
+                        self.hamBurgMenuLeadingConstraint.constant = -self.hamBurgMenuWidth + (self.hamBurgMenuWidth * min(progress * sensitivity, 1.0));
+                        self.outerView.layoutIfNeeded();
+                    }
                 }
             }
             else if (sender.state == .ended){
@@ -353,6 +420,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         // DEVELOPER ONLY FUNC
         setUpDevConfigs();
         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
 
         savedArticleClass.getArticleDictionary();
@@ -363,6 +431,8 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         mainContentView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         mainContentViewWidthConstraint.constant = UIScreen.main.bounds.width;
+    
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn();
         
         hamBurgMenuWidth = UIScreen.main.bounds.width - 80;
         
