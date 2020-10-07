@@ -501,10 +501,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         let prevIndex = selectedIndex;
         selectedIndex = sender.tag;
         if (prevIndex == sender.tag){
-            if (sender.tag == 0){
-                closeHamBurgMenu();
-            }
-            else if (sender.tag == 1){
+            if (sender.tag == 1){
                 // add code here
                 if let page = viewControllers[sender.tag] as? homeClass{
                     page.mainScrollView.setContentOffset(.zero, animated: true);
@@ -525,6 +522,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
                     page.mainScrollView.setContentOffset(.zero, animated: true);
                 }
             }
+            closeHamBurgMenu();
         }
         else{
             // remove prev view controller
