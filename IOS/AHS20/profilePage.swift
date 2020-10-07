@@ -58,6 +58,7 @@ class profilePageClass: UIViewController{
             isSignedIn = false;
             removeBarcodeDefault();
             self.renderView();
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "rerenderHamBurgMenu"), object: nil, userInfo: nil);
         }));
         confirmPopup.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in }));
         present(confirmPopup, animated: true, completion: nil);

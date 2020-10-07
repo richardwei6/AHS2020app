@@ -132,10 +132,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         userEmail = user.profile.email;
         userFullName = user.profile.name;
         userProfileImageURL = user.profile.imageURL(withDimension: UInt(round(profileImageViewWidth * UIScreen.main.scale)))?.absoluteString ?? "";
-        print("profile image url - \(userProfileImageURL)")
+        //print("profile image url - \(userProfileImageURL)")
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadProfilePage"), object: nil, userInfo: nil);
-        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "rerenderHamBurgMenu"), object: nil, userInfo: nil);
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,

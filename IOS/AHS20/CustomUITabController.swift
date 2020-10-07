@@ -423,9 +423,9 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         // DEVELOPER ONLY FUNC
         setUpDevConfigs();
         
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
-
+        NotificationCenter.default.addObserver(self, selector: #selector(self.renderHamBurgMenu), name:NSNotification.Name(rawValue: "rerenderHamBurgMenu"), object: nil);
+        
         savedArticleClass.getArticleDictionary();
         
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
@@ -489,15 +489,6 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
     }*/
     
     /*
-     original order of UIButton.tag is:
-     0 == home
-     1 == bulletin
-     2 == saved
-     3 == profile
-     4 == settings
-     // NEW - 5 - notifications
-     
-     
      0 == profile
      1 == home
      2 == bulletin
@@ -510,16 +501,23 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         let prevIndex = selectedIndex;
         selectedIndex = sender.tag;
         if (prevIndex == sender.tag){
-            if (sender.tag == 1){
+            if (sender.tag == 0){
+                closeHamBurgMenu();
+            }
+            else if (sender.tag == 1){
                 // add code here
                 if let page = viewControllers[sender.tag] as? homeClass{
                     page.mainScrollView.setContentOffset(.zero, animated: true);
                 }
-                
             }
             else if (sender.tag == 2){
                 if let page = viewControllers[sender.tag] as? bulletinClass{
                     page.bulletinScrollView.setContentOffset(.zero, animated: true);
+                }
+            }
+            else if (sender.tag == 3){
+                if let page = viewControllers[sender.tag] as? notificationsClass{
+                    page.notificationScrollView.setContentOffset(.zero, animated: true);
                 }
             }
             else if (sender.tag == 4){
@@ -571,7 +569,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
                 }
                 else if (sender.tag == 3){
                     topBarPageName.text = "Notifications";
-                    topBar.layer.shadowColor = UIColor.white.cgColor;
+                    topBar.layer.shadowColor = UIColor.gray.cgColor;
                 }
                 else if (sender.tag == 4){
                     topBarPageName.text = "Saved";
