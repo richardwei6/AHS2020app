@@ -298,7 +298,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 bulletinScrollView.addSubview(noArticlesLabel);
                 currY += labelHeight;
             }
-            bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: CGFloat(currY));
+            bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: CGFloat(currY) + 50);
             bulletinScrollView.delegate = self;
         }
     }

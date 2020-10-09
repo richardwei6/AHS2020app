@@ -128,7 +128,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 
                 self.mainScrollView.addSubview(articleButton);
             }
-            mainScrollView.contentSize = CGSize(width: articleFrame.size.width, height: 2*articleVerticalPadding+(articleFrame.size.height+articleVerticalPadding) * CGFloat(savedArticles.count));
+            mainScrollView.contentSize = CGSize(width: articleFrame.size.width, height: 2*articleVerticalPadding+(articleFrame.size.height+articleVerticalPadding) * CGFloat(savedArticles.count) + 50);
             mainScrollView.delegate = self;
             
         }

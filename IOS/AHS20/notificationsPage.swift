@@ -414,7 +414,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationButton.tag = 1;
                 notificationScrollView.addSubview(notificationButton);
             }
-            notificationScrollView.contentSize = CGSize(width: notificationFrame.size.width, height: yPos + verticalPadding);
+            notificationScrollView.contentSize = CGSize(width: notificationFrame.size.width, height: yPos + verticalPadding + 50);
             notificationScrollView.delegate = self;
         }
         else{

@@ -42,6 +42,11 @@ func removeBarcodeDefault(){
     }
 }
 
+func isValidStudentEmail(email: String) -> Bool{ // regex matching
+    let pattern = "[0-9]{5}@students.ausd.net";
+    let regex = try! NSRegularExpression(pattern: pattern);
+    return regex.firstMatch(in: email, options: [], range: NSRange(location: 0, length: email.utf16.count)) != nil && email.count == 23;
+}
 
 class profilePageClass: UIViewController{
     
@@ -62,12 +67,6 @@ class profilePageClass: UIViewController{
         }));
         confirmPopup.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in }));
         present(confirmPopup, animated: true, completion: nil);
-    }
-    
-    func isValidStudentEmail(email: String) -> Bool{ // regex matching
-        let pattern = "[0-9]{5}@students.ausd.net";
-        let regex = try! NSRegularExpression(pattern: pattern);
-        return regex.firstMatch(in: email, options: [], range: NSRange(location: 0, length: email.utf16.count)) != nil;
     }
     
     
@@ -123,14 +122,62 @@ class profilePageClass: UIViewController{
         for view in mainScrollView.subviews{
             view.removeFromSuperview();
         }
-        mainScrollView.layer.sublayers?.forEach{ $0.removeFromSuperlayer(); };
+        //mainScrollView.layer.sublayers?.forEach{ $0.removeFromSuperlayer(); };
         
         let padding = CGFloat(10);
         var scrollViewHeight = CGFloat(0);
         
-        scrollViewHeight += padding;
+        //scrollViewHeight += padding;
         
         if (isSignedIn){
+            
+            if (isValidStudentEmail(email: userEmail)){
+                /*let barcodeWidth = CGFloat(200);
+                let barcodeFrame = CGRect(x: (UIScreen.main.bounds.width/2) - (barcodeWidth/2), y: scrollViewHeight, width: barcodeWidth, height: 60);
+                let barcodeView = UIImageView(frame: barcodeFrame);
+                barcodeView.backgroundColor = UIColor.white;
+                barcodeView.layer.cornerRadius = 5;
+                barcodeView.clipsToBounds = true;
+                //print("barcode - \(userEmail.substring(with: 0..<5))")
+                //barcodeView.image = UIImage(barcode: userEmail.substring(with: 0..<5));
+                
+                if (UserDefaults.standard.object(forKey: barcodeUserDefaultsKey) == nil){
+                    DispatchQueue.global(qos: .background).async { // multithreading
+                        let barcodeImage = self.generateBarcode(from: userEmail.substring(with: 0..<5));
+                        DispatchQueue.main.async {
+                            //barcodeView.backgroundColor = UIColor.clear;
+                            barcodeView.image = barcodeImage;
+                            saveBarcodeDefault(image: barcodeImage!);
+                        }
+                    }
+                }
+                else{
+                    barcodeView.image = getBarcodeDefault();
+                }
+                
+                scrollViewHeight += barcodeFrame.size.height;
+                
+                mainScrollView.addSubview(barcodeView);
+                */
+                let idCardPadding = CGFloat(10);
+                let idCardViewFrame = CGRect(x: idCardPadding, y: idCardPadding, width: UIScreen.main.bounds.width - 2*idCardPadding, height: UIScreen.main.bounds.width *  0.56);
+                let idCardView = UIView(frame: idCardViewFrame);
+                idCardView.backgroundColor = mainThemeColor;
+                
+                idCardView.clipsToBounds = true;
+                idCardView.layer.cornerRadius = 10;
+                
+                let cornerPadding = CGFloat(10);
+               // let nameViewFrame = CGRect(x: cornerPadding, y: cornerPadding, width: , height: )
+                
+                
+                scrollViewHeight += idCardViewFrame.height + 2*idCardPadding;
+                mainScrollView.addSubview(idCardView);
+            }
+            else{
+                scrollViewHeight += padding;
+            }
+            
             let signOutButtonWidth = CGFloat(120);
             let signOutButtonFrame = CGRect(x: (UIScreen.main.bounds.width/2) - (signOutButtonWidth/2), y: scrollViewHeight, width: signOutButtonWidth, height: 40);
             let signOutButton = UIButton(frame: signOutButtonFrame);
@@ -189,42 +236,6 @@ class profilePageClass: UIViewController{
             mainScrollView.addSubview(emailLabel);
             mainScrollView.addSubview(signOutButton);
             
-            if (isValidStudentEmail(email: userEmail)){
-                let barcodeWidth = CGFloat(200);
-                let barcodeFrame = CGRect(x: (UIScreen.main.bounds.width/2) - (barcodeWidth/2), y: scrollViewHeight, width: barcodeWidth, height: 60);
-                let barcodeView = UIImageView(frame: barcodeFrame);
-                barcodeView.backgroundColor = UIColor.white;
-                barcodeView.layer.cornerRadius = 5;
-                barcodeView.clipsToBounds = true;
-                //print("barcode - \(userEmail.substring(with: 0..<5))")
-                //barcodeView.image = UIImage(barcode: userEmail.substring(with: 0..<5));
-                
-                if (UserDefaults.standard.object(forKey: barcodeUserDefaultsKey) == nil){
-                    DispatchQueue.global(qos: .background).async { // multithreading
-                        let barcodeImage = self.generateBarcode(from: userEmail.substring(with: 0..<5));
-                        DispatchQueue.main.async {
-                            //barcodeView.backgroundColor = UIColor.clear;
-                            barcodeView.image = barcodeImage;
-                            saveBarcodeDefault(image: barcodeImage!);
-                        }
-                    }
-                }
-                else{
-                    barcodeView.image = getBarcodeDefault();
-                }
-                scrollViewHeight += barcodeFrame.size.height;
-                
-                mainScrollView.addSubview(barcodeView);
-                
-                
-                let gradient = gradientColors(colorTop: UIColor.white, colorBottom: UIColor.red, topAlpha: 1);
-                
-                mainScrollView.backgroundColor = UIColor.clear;
-                let backgroundLayer = gradient.gl;
-                backgroundLayer!.frame = mainScrollView.frame;
-                mainScrollView.layer.insertSublayer(backgroundLayer!, at: 0);
-                
-            }
         }
         else{
             let signInButtonHeight = CGFloat(80);
