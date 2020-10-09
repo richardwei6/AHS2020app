@@ -12,6 +12,8 @@ import AudioToolbox
 import Firebase
 import FirebaseDatabase
 
+var unreadNotifCount = 0;
+
 class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate, UIViewControllerTransitioningDelegate {
     
     
@@ -416,6 +418,10 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             }
             notificationScrollView.contentSize = CGSize(width: notificationFrame.size.width, height: yPos + verticalPadding + 50);
             notificationScrollView.delegate = self;
+            
+            unreadNotifCount = numOfUnreadInArray(arr: filterThroughSelectedNotifcations());
+            UIApplication.shared.applicationIconBadgeNumber = unreadNotifCount;
+            
         }
         else{
             notificationScrollView.isHidden = true;

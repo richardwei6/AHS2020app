@@ -14,8 +14,6 @@ import FirebaseDatabase
 import SDWebImage
 import Firebase
 
-var unreadNotifCount = 0;
-
 // swift file with shared functions and extensions between files
 
 

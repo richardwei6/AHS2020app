@@ -232,7 +232,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
             
             if (imageSize + videoSize > 1){
                 //print("dots");
-                imagePageControl.frame = CGRect(x: -4, y: nextY+8, width: UIScreen.main.bounds.width, height: 10);
+                imagePageControl.frame = CGRect(x: -4.5, y: nextY+8, width: UIScreen.main.bounds.width, height: 10);
                 imagePageControl.autoresizingMask = UIView.AutoresizingMask.flexibleBottomMargin;
                 imagePageControl.currentPage = 0;
                 imagePageControl.numberOfPages = imageSize + videoSize;
