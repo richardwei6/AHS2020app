@@ -231,13 +231,19 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
             nextY += imageScrollViewFrame.size.height;
             
             if (imageSize + videoSize > 1){
+                //print("dots");
+                imagePageControl.frame = CGRect(x: -4, y: nextY+8, width: UIScreen.main.bounds.width, height: 10);
+                imagePageControl.autoresizingMask = UIView.AutoresizingMask.flexibleBottomMargin;
                 imagePageControl.currentPage = 0;
                 imagePageControl.numberOfPages = imageSize + videoSize;
-                imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: nextY + 12);
+                //imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: nextY+12);
                 imagePageControl.pageIndicatorTintColor = UIColor.lightGray;
                 imagePageControl.currentPageIndicatorTintColor = UIColor.black;
                 mainScrollView.addSubview(imagePageControl);
-                nextY += 20;
+                
+                //imagePageControl.backgroundColor = UIColor.gray;
+                //print("diff - \(UIScreen.main.bounds.width - imagePageControl.frame.width)")
+                nextY += 15;
             }
             
             mainScrollView.addSubview(imageScrollView);

@@ -323,8 +323,11 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
             nextY += buttonFrame.height + hamBurgMenuButtonVerticalPadding;
         }
         
-        contentScrollView.contentSize = CGSize(width: hamBurgMenuWidth, height: nextY);
+        //print("set content size height - \(nextY + 20)")
+        contentScrollView.contentSize = CGSize(width: hamBurgMenuWidth, height: nextY + 20);
         //contentScrollView.backgroundColor = UIColor.gray;
+        
+       // contentScrollView.alwaysBounceVertical = true;
         
         //contentScrollView.layer.borderColor = UIColor.lightGray.cgColor;
         //contentScrollView.layer.borderWidth = 1;
@@ -443,8 +446,6 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         hamBurgMenuLeadingConstraint.constant = -hamBurgMenuWidth;
         
         hamBurgMenuView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
-
-        renderHamBurgMenu();
         // set up buttons
         /*for index in 0..<buttons.count{
             let image = UIImage(named: iconImagePath[index]);
@@ -481,6 +482,8 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         tabBarView.layer.shadowOffset = CGSize(width: 0, height: -10);
         buttons[0].tintColor = UIColor.black;*/
         dateLabel.text = getTitleDateAndMonth();
+        
+        renderHamBurgMenu();
     }
     
     /*override func viewDidAppear(_ animated: Bool) {
