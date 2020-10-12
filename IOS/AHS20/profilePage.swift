@@ -14,7 +14,8 @@ import AudioToolbox
 var userEmail = "";
 var userFullName = "";
 var isSignedIn = false;
-var userProfileImageURL = "";
+var userHamBurgProfileImageURL = "";
+var userGoogleStruct = GIDGoogleUser();
 let profileImageViewWidth = CGFloat(60);
 
 let barcodeUserDefaultsKey = "idBarcode";
@@ -160,15 +161,79 @@ class profilePageClass: UIViewController{
                 mainScrollView.addSubview(barcodeView);
                 */
                 let idCardPadding = CGFloat(10);
-                let idCardViewFrame = CGRect(x: idCardPadding, y: idCardPadding, width: UIScreen.main.bounds.width - 2*idCardPadding, height: UIScreen.main.bounds.width *  0.56);
+                let idCardViewFrameWidth = CGFloat(UIScreen.main.bounds.width - 2*idCardPadding);
+                
+                let idCardViewWidth = CGFloat(UIScreen.main.bounds.width - 2*idCardPadding);
+                let idCardProfilePictureViewWidth = CGFloat(idCardViewWidth * 0.33);
+            
+                let idCardNameFont = UIFont(name: "SFProDisplay-Semibold", size: 32)!;
+                let idCardNameWidth = CGFloat(idCardViewWidth - 3*idCardPadding - idCardProfilePictureViewWidth);
+                
+                let innerIdCardPadding = CGFloat(10);
+                let innerIdCardPaddingXOffset = CGFloat(10);
+                // let nameViewFrame = CGRect(x: cornerPadding, y: cornerPadding, width: , height: )
+                
+                let idCardNameFrame = CGRect(x: innerIdCardPadding + innerIdCardPaddingXOffset, y: innerIdCardPadding, width: idCardNameWidth, height: userFullName.getHeight(withConstrainedWidth: idCardNameWidth, font: idCardNameFont));
+                let idCardName = UILabel(frame: idCardNameFrame);
+                idCardName.text = userFullName;
+                idCardName.font = idCardNameFont;
+                idCardName.textColor = UIColor.white;
+                idCardName.numberOfLines = 0;
+                //idCardName.textAlignment = .center;
+                
+                let idCardClassNameFrame = CGRect(x: innerIdCardPadding + innerIdCardPaddingXOffset, y: idCardNameFrame.maxY + innerIdCardPadding, width: idCardNameWidth, height: 20);
+                let idCardClassName = UILabel(frame: idCardClassNameFrame);
+                idCardClassName.text = "Class of 2020"; // INSERT CLASS
+                idCardClassName.font = UIFont(name: "SFProDisplay-Regular", size: 28);
+                idCardClassName.textColor = UIColor.white;
+                idCardClassName.adjustsFontSizeToFitWidth = true;
+                idCardClassName.minimumScaleFactor = 0.3;
+                
+                
+                let idCardProfileFrame = CGRect(x: 2*innerIdCardPadding + idCardNameWidth, y: innerIdCardPadding, width: idCardProfilePictureViewWidth, height: idCardProfilePictureViewWidth);
+                let idCardProfile = UIImageView(frame: idCardProfileFrame);
+                idCardProfile.layer.cornerRadius = 5;
+                idCardProfile.clipsToBounds = true;
+                idCardProfile.backgroundColor = UIColor.gray;
+                //idCardProfile.imgFromURL(sURL: userGoogleStruct.profile.imageURL(withDimension: UInt(idCardProfilePictureViewWidth))?.absoluteString ?? "");
+                idCardProfile.imgFromURL(sURL: userHamBurgProfileImageURL);
+                idCardProfile.layer.borderWidth = 0.5;
+                idCardProfile.layer.borderColor = UIColor.black.cgColor;
+                
+                let idCardBarcodePadding = CGFloat(15);
+                let idCardBarcodeWidth = CGFloat(idCardViewFrameWidth - 2*idCardBarcodePadding);
+                let idCardBarcodeFrame = CGRect(x: idCardBarcodePadding, y: max(idCardProfile.frame.maxY, idCardClassName.frame.maxY) + idCardBarcodePadding, width: idCardBarcodeWidth, height: idCardBarcodeWidth * 0.3);
+                let idCardBarcode = UIImageView(frame: idCardBarcodeFrame);
+                idCardBarcode.backgroundColor = UIColor.white;
+                idCardBarcode.layer.cornerRadius = 5;
+                idCardBarcode.clipsToBounds = true;
+                
+                // multithreading to generate image
+                if (UserDefaults.standard.object(forKey: barcodeUserDefaultsKey) == nil){
+                    DispatchQueue.global(qos: .background).async { // multithreading
+                        let barcodeImage = self.generateBarcode(from: userEmail.substring(with: 0..<5));
+                        DispatchQueue.main.async {
+                            //barcodeView.backgroundColor = UIColor.clear;
+                            idCardBarcode.image = barcodeImage;
+                            saveBarcodeDefault(image: barcodeImage!);
+                        }
+                    }
+                }
+                else{
+                    idCardBarcode.image = getBarcodeDefault();
+                }
+                
+                let idCardViewFrame = CGRect(x: idCardPadding, y: idCardPadding, width: idCardViewFrameWidth, height: idCardBarcodeFrame.maxY + idCardBarcodePadding);
                 let idCardView = UIView(frame: idCardViewFrame);
-                idCardView.backgroundColor = mainThemeColor;
+                idCardView.backgroundColor = makeColor(r: 217, g: 4, b: 4);
                 
                 idCardView.clipsToBounds = true;
                 idCardView.layer.cornerRadius = 10;
                 
-                let cornerPadding = CGFloat(10);
-               // let nameViewFrame = CGRect(x: cornerPadding, y: cornerPadding, width: , height: )
+                idCardView.addSubview(idCardName);
+                idCardView.addSubview(idCardClassName);
+                idCardView.addSubview(idCardProfile);
+                idCardView.addSubview(idCardBarcode);
                 
                 
                 scrollViewHeight += idCardViewFrame.height + 2*idCardPadding;
@@ -227,7 +292,7 @@ class profilePageClass: UIViewController{
             profileImageView.layer.cornerRadius = 5;
             profileImageView.clipsToBounds = true;
             profileImageView.backgroundColor = UIColor.gray;
-            profileImageView.imgFromURL(sURL: userProfileImageURL);
+            profileImageView.imgFromURL(sURL: userHamBurgProfileImageURL);
             
             scrollViewHeight += profileImageViewFrame.height + padding;
             

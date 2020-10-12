@@ -223,7 +223,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         let profilePicView = UIImageView(frame: profilePicViewFrame);
         
         if (isSignedIn){
-            profilePicView.imgFromURL(sURL: userProfileImageURL);
+            profilePicView.imgFromURL(sURL: userHamBurgProfileImageURL);
         }
         else{
             profilePicView.image = UIImage(named: "defaultprofileimage");

@@ -131,8 +131,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         isSignedIn = true;
         userEmail = user.profile.email;
         userFullName = user.profile.name;
-        userProfileImageURL = user.profile.imageURL(withDimension: UInt(round(profileImageViewWidth * UIScreen.main.scale)))?.absoluteString ?? "";
+        userHamBurgProfileImageURL = user.profile.imageURL(withDimension: UInt(round(profileImageViewWidth * UIScreen.main.scale)))?.absoluteString ?? "";
         //print("profile image url - \(userProfileImageURL)")
+        userGoogleStruct = user;
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadProfilePage"), object: nil, userInfo: nil);
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "rerenderHamBurgMenu"), object: nil, userInfo: nil);
