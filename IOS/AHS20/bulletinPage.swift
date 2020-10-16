@@ -116,11 +116,53 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         
     }
     
+    func makeCustomButtonRead(button: CustomUIButton){
+        button.backgroundColor = makeColor(r: 250, g: 250, b: 250);
+        
+        /*
+         TAG LIST for UICustomUIButton:
+         Main view  - 1 - subviews title and body text
+         Title - 2 - uicolor.gray - UIFont(name: "SFProDisplay-Semibold",size: 16)
+         Body - 3 - uicolor.gray
+         Catagory - 4 - set background to makeColor(r: 144, g: 75, b: 75)
+         ReadLabel - 5 - remove from superview
+         */
+        
+        for view in button.subviews{
+            switch view.tag {
+            case -1:
+                for subview in view.subviews{
+                    switch subview.tag {
+                    case 2:
+                        //print("title label view - \(view)")
+                        let titleLabel = subview as! UILabel;
+                        titleLabel.textColor = UIColor.gray;
+                        titleLabel.font = UIFont(name: "SFProDisplay-Semibold",size: 16);
+                    case 3:
+                        let bodyText = subview as! UILabel;
+                        bodyText.textColor = UIColor.gray;
+                    default:
+                        print("unknown view tag found in makeCustomButtonRead mainView subviews - \(subview)")
+                    }
+                }
+            case 4:
+                let catagory = view as! UILabel;
+                catagory.backgroundColor = makeColor(r: 144, g: 75, b: 75);
+            case 5:
+                view.removeFromSuperview();
+            default:
+                break;
+                //print("unknown view tag found in makeCustomButtonRead - \(view)")
+            }
+        }
+    }
+    
     @objc func openArticle(sender: CustomUIButton){
         if (bulletinReadDict[sender.articleCompleteData.articleID ?? ""] == nil){
             bulletinReadDict[sender.articleCompleteData.articleID ?? ""] = true;
             saveBullPref();
-            generateBulletin();
+            //generateBulletin(); -- too resource intensive
+            makeCustomButtonRead(button: sender);
         }
         let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
@@ -208,12 +250,13 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     bulletinFrame.origin.x = articleHorizontalPadding;
                     bulletinFrame.origin.y = currY;
                     currY += bulletinFrame.size.height + articleVerticalPadding;
-                    let articleButton = UIView(frame: bulletinFrame);
+                    let articleButton = CustomUIButton(frame: bulletinFrame);
                     let currArticleRead = bulletinReadDict[article.articleID ?? ""] == true ? true : false;
                     
                     // content inside button
                     let mainViewFrame = CGRect(x: 10, y: 10, width: bulletinFrame.size.width - (2*articleHorizontalPadding), height: bulletinFrame.size.height - 10);
-                    let mainView = CustomUIButton(frame: mainViewFrame);
+                    let mainView = UIView(frame: mainViewFrame);
+                    mainView.isUserInteractionEnabled = false;
                     
                     let articleTitleFrame = CGRect(x: 0, y : 17, width: UIScreen.main.bounds.size.width - articleHorizontalPadding - 55, height: 34);
                     let articleTitleText = UILabel(frame: articleTitleFrame);
@@ -221,6 +264,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     articleTitleText.font = currArticleRead ? UIFont(name: "SFProDisplay-Semibold",size: 16) : UIFont(name: "SFProText-Bold",size: 16);
                     articleTitleText.textColor = currArticleRead ? UIColor.gray : UIColor.black;
                     articleTitleText.numberOfLines = 1;
+                    articleTitleText.tag = 2;
+                    articleTitleText.isUserInteractionEnabled = false;
                     
                     let articleBodyFrame = CGRect(x: 0, y: 44, width: mainViewFrame.size.width, height: mainViewFrame.size.height - 50);
                     let articleBodyText = UILabel(frame: articleBodyFrame);
@@ -233,9 +278,13 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     articleBodyText.numberOfLines = 4;
                     articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
                     articleBodyText.textColor = currArticleRead ? UIColor.gray : UIColor.black;
+                    articleBodyText.tag = 3;
+                    articleBodyText.isUserInteractionEnabled = false;
                     
                     mainView.addSubview(articleTitleText);
                     mainView.addSubview(articleBodyText);
+                    
+                    mainView.tag = -1; // NOTE - DIFFERENT usage FROM articleButton tag. This tag is used in makeCustomButtonRead function
                     
                     let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
                     let dateText = UILabel(frame: dateTextFrame);
@@ -243,6 +292,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     dateText.textColor = makeColor(r: 156, g: 0, b: 0);
                     dateText.textAlignment = .right;
                     dateText.font = UIFont(name: "SFProDisplay-Regular", size: 12);
+                    dateText.isUserInteractionEnabled = false;
                     
                     let catagoryFrame = CGRect(x: 8, y: 12, width: catagoryFrameWidth, height: 20);
                     let catagory = UILabel(frame: catagoryFrame);
@@ -252,6 +302,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     catagory.textColor = UIColor.white;
                     catagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                     catagory.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
+                    catagory.tag = 4;
+                    catagory.isUserInteractionEnabled = false;
                     
                     if (currArticleRead == false){
                         let readLabelFrame = CGRect(x: 15 + catagoryFrame.size.width, y: 12, width: 40, height: 20);
@@ -262,6 +314,8 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                         readLabel.textColor = UIColor.white;
                         readLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
                         readLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
+                        readLabel.tag = 5;
+                        readLabel.isUserInteractionEnabled = false;
                         articleButton.addSubview(readLabel);
                     }
                     
@@ -276,9 +330,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     
                     articleButton.backgroundColor = currArticleRead ? makeColor(r: 250, g: 250, b: 250) : UIColor.white;
                     
-                    mainView.articleCompleteData = bulletinDataToarticleData(data: article);
+                    articleButton.articleCompleteData = bulletinDataToarticleData(data: article);
                     
-                    mainView.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
+                    articleButton.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
                     articleButton.tag = 1;
                     self.bulletinScrollView.addSubview(articleButton);
                 }
